@@ -7,5 +7,51 @@
 },{
     "type":"EXIT",
     "count":3
+},{
+    "type": "ENTER",
+    "index": "traders"
+},{
+    "type": "SET_KEY",
+    "index": "booster-ascended",
+    "content": {
+        "name": {"en_US": "Booster Master"},
+        "order": 1,
+        "noTrack": true,
+        "options": [{
+            "get": [
+                {
+                    "id": "618",
+                    "amount": 1
+                }
+            ],
+            "require": [
+                {
+                    "id": "457",
+                    "amount": 5
+                },
+                {
+                    "id": "459",
+                    "amount": 5
+                },
+                {
+                    "id": "462",
+                    "amount": 5
+                },
+                {
+                    "id": "464",
+                    "amount": 5
+                },
+                {
+                    "id": "465",
+                    "amount": 5
+                }
+            ],
+            "scale": 1,
+            "cost": 200000
+        }],
+        "area": "rhombus-sqr"
+    }
+},{
+    "type": "EXIT"
 }
 ]

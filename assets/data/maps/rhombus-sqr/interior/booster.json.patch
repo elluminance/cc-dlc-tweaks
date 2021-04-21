@@ -1,0 +1,34 @@
+[{
+"type":"ENTER",
+"index": "entities"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "type": "NPC",
+        "x": 360,
+        "y": 250,
+        "level": 0,
+        "settings": {
+            "name": "",
+            "characterName": "advisors.man-tall-gray",
+            "mapId": 2,
+            "npcStates": [
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "NORTH",
+                    "hidden": false,
+                    "condition": "",
+                    "config": "normal",
+                    "event": {
+                        "trade": {
+                            "trader": "booster-ascended"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+},{
+    "type": "EXIT",
+    "count": 1
+}]
