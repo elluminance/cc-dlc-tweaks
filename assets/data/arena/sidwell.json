@@ -52,7 +52,7 @@
             "type": "DEFAULT",
             "medal": 0,
             "waves": [],
-            "map": "",
+            "map": "arena.sidwell",
             "bonuses": [
                 {
                     "type": "TIME",
