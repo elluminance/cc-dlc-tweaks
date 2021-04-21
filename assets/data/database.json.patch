@@ -1,0 +1,11 @@
+[{
+    "type": "ENTER",
+    "index":["toggle-sets","booster","items"]
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content":"618"
+},{
+    "type":"EXIT",
+    "count":3
+}
+]

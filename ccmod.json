@@ -1,18 +1,18 @@
 {
     "id": "cc-dlc-tweaks",
-	"version": "0.0.1",
+    "version": "0.1.0",
 
-	"title": "CC DLC Tweaks",
-	"description": "Adds ascended gear scaling to arena cups added before \\c[3]CrossCode: A New Home\\c[0].",
-	
+    "title": "CC DLC Tweaks",
+    "description": "Makes tweaks to \\c[3]CrossCode: A New Home\\c[0] along with adding some missing pieces!",
+
     "homepage": "https://github.com/EL20202/cc-dlc-tweaks",
     "icons": {
         "24": "icon.png"
     },
-    
+
     "prestart": "mod.js",
 
-	"dependencies": {
+    "dependencies": {
         "ccloader": "^2.20.0",
         "crosscode": "^1.4.0"
 	}

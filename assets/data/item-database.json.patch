@@ -1,0 +1,24 @@
+[{
+    "type": "ENTER",
+    "index": ["items",618]
+},{
+    "type": "ENTER",
+    "index": ["name"]
+},{
+    "type": "SET_KEY",
+    "index": "en_US",
+    "content": "Ascended Booster"
+},{
+    "type": "EXIT",
+    "count": 1
+},{
+    "type": "ENTER",
+    "index": ["description"]
+},{
+    "type": "SET_KEY",
+    "index": "en_US",
+    "content": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+},{
+    "type": "EXIT",
+    "count": 1
+}]
