@@ -16,3 +16,10 @@ sc.EnemyBooster.inject({
         }
     }
 })
+
+sc.Arena.inject({
+    init(){
+        this.parent()
+        this.registerCup('sidwell',".\/assets\/data\/arena\/");
+    }
+})
