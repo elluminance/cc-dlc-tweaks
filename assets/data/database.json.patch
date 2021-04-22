@@ -29,6 +29,10 @@
     "index": "boosterItem",
     "content": "dlctweaks-beach-booster"
 },{
+    "type": "SET_KEY",
+    "index": "chests",
+    "content": 14
+},{
     "type": "EXIT"
 },{
     "type": "ENTER",

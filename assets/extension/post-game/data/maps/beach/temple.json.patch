@@ -1,0 +1,18 @@
+[{
+    "type": "ENTER",
+    "index": "entities"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "type": "Chest",
+        "x": 211,
+        "y": 696,
+        "level": 1,
+        "settings": {
+            "mapId": 2441,
+            "chestType": "Gold",
+            "item": "dlctweaks-trade-beach-special",
+            "amount": 1
+        }
+    }
+}]

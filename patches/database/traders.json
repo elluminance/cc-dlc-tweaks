@@ -108,6 +108,10 @@
                 ],
                 "require": [
                     {
+                        "id": "dlctweaks-trade-beach-special",
+                        "amount": 1
+                    },
+                    {
                         "id": "619",
                         "amount": 5
                     },
@@ -139,6 +143,10 @@
                     }
                 ],
                 "require": [
+                    {
+                        "id": "dlctweaks-trade-final-dng-special",
+                        "amount": 1
+                    },
                     {
                         "id": "563",
                         "amount": 5
