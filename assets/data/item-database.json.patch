@@ -20,5 +20,199 @@
     "content": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
 },{
     "type": "EXIT",
-    "count": 1
-}]
+    "count": 3
+},{
+    "type":"ENTER",
+    "index": "items"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":
+      {
+        "order": 20000,
+        "customItem": "dlctweaks-trade-warm-gem",
+        "name": {
+            "en_US": "Warm Crystal"
+        },
+        "description": {
+            "en_US": "A warm-colored gem that holds the essence of strong adversaries."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":
+      {
+        "order": 20000,
+        "customItem": "dlctweaks-trade-cool-gem",
+        "name": {
+            "en_US": "Cool Crystal"
+        },
+        "description": {
+            "en_US": "A cool-colored gem that holds the essence of strong adversaries."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":
+      {
+        "order": 22,
+        "customItem": "dlctweaks-trade-beach-gem",
+        "name": {
+            "en_US": "Aquamarine"
+        },
+        "description": {
+            "en_US": "A rare turquoise gem only found when fighting strong adversaries."
+        },
+        "type": "TRADE",
+        "rarity": 3,
+        "cost": 1500,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+            {
+                "type": "OTHER",
+                "value": {
+                    "icon": "ENEMY",
+                    "text": {
+                        "en_US": "Boosted Enemies in \\c[3]\\v[area.beach.name]\\c[0]"
+                    },
+                    "type": "ENEMY",
+                    "value": "hedgehog"
+                }
+            }
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":
+      {
+        "order": 23,
+        "customItem": "dlctweaks-trade-final-dng-gem",
+        "name": {
+            "en_US": "Opal"
+        },
+        "description": {
+            "en_US": "A rare rainbow gem only found when fighting strong adversaries."
+        },
+        "type": "TRADE",
+        "rarity": 3,
+        "cost": 1500,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+            {
+                "type": "OTHER",
+                "value": {
+                    "icon": "ENEMY",
+                    "text": {
+                        "en_US": "Boosted Enemies in \\c[3]\\v[area.final-dng.name]\\c[0]"
+                    },
+                    "type": "ENEMY",
+                    "value": "hedgehog"
+                }
+            }
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "order": 13,
+        "customItem":"dlctweaks-ascended-booster",
+        "name": {
+            "en_US": "Ascended Booster"
+        },
+        "description": {
+            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 1000,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "isScalable": false,
+        "noCount": true
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "order": 11,
+        "customItem":"dlctweaks-beach-booster",
+        "name": {
+            "en_US": "Archipelago Booster"
+        },
+        "description": {
+            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 1000,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "isScalable": false,
+        "noCount": true
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "order": 12,
+        "customItem":"dlctweaks-final-dng-booster",
+        "name": {
+            "en_US": "Ku'lero Booster"
+        },
+        "description": {
+            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 1000,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "isScalable": false,
+        "noCount": true
+    }
+}
+]

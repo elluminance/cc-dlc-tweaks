@@ -3,10 +3,16 @@
     "index":["toggle-sets","booster","items"]
 },{
     "type":"ADD_ARRAY_ELEMENT",
-    "content":"618"
+    "content": "dlctweaks-beach-booster"
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "dlctweaks-final-dng-booster"
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "dlctweaks-ascended-booster"
 },{
     "type":"EXIT",
-    "count":3
+    "count": 3
 },{
     "type": "ENTER",
     "index": "traders"
@@ -17,10 +23,71 @@
         "name": {"en_US": "Booster Master"},
         "order": 1,
         "noTrack": true,
-        "options": [{
+        "options": [
+            {
+                "get":[
+                    {
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "457",
+                        "amount": 3
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 2500
+            },
+            {
+                "get":[
+                    {
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "460",
+                        "amount": 3
+                    },
+                    {
+                        "id": "463",
+                        "amount": 3
+                    },
+                    {
+                        "id": "464",
+                        "amount": 3
+                    },
+                    {
+                        "id": "465",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 2500
+            },
+            {
             "get": [
                 {
-                    "id": "618",
+                    "id": "dlctweaks-ascended-booster",
                     "amount": 1
                 }
             ],
