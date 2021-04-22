@@ -93,29 +93,103 @@
             ],
             "require": [
                 {
-                    "id": "457",
+                    "id": "dlctweaks-trade-warm-gem",
                     "amount": 5
                 },
                 {
-                    "id": "459",
+                    "id": "dlctweaks-trade-cool-gem",
                     "amount": 5
                 },
                 {
-                    "id": "462",
-                    "amount": 5
+                    "id": "dlctweaks-trade-beach-gem",
+                    "amount": 15
                 },
                 {
-                    "id": "464",
-                    "amount": 5
-                },
-                {
-                    "id": "465",
-                    "amount": 5
+                    "id": "dlctweaks-trade-final-dng-gem",
+                    "amount": 15
                 }
             ],
             "scale": 1,
             "cost": 200000
         }],
+        "area": "rhombus-sqr"
+    }
+},{
+    "type": "SET_KEY",
+    "index": "booster-beach",
+    "content": {
+        "name": {"en_US": "Archipelago Master"},
+        "order": 1,
+        "noTrack": true,
+        "options": [
+            {
+                "get": [
+                    {
+                        "id": "dlctweaks-beach-booster",
+                        "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 15
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 15
+                    }
+                ],
+                "scale": 1,
+                "cost": 75000
+            }
+        ],
+        "area": "rhombus-sqr"
+    }
+},{
+    "type": "SET_KEY",
+    "index": "booster-final-dng",
+    "content": {
+        "name": {"en_US": "Ku'lero Master"},
+        "order": 1,
+        "noTrack": true,
+        "options": [
+            {
+                "get": [
+                    {
+                        "id": "dlctweaks-final-dng-booster",
+                        "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 15
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 15
+                    }
+                ],
+                "scale": 1,
+                "cost": 75000
+            }
+        ],
         "area": "rhombus-sqr"
     }
 },{
