@@ -194,5 +194,23 @@
     }
 },{
     "type": "EXIT"
-}
-]
+},{
+    "type": "ENTER",
+    "index": ["areas", "beach"]
+},{
+    "type": "SET_KEY",
+    "index": "boosterItem",
+    "content": "dlctweaks-beach-booster"
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "final-dng"
+},{
+    "type": "SET_KEY",
+    "index": "boosterItem",
+    "content": "dlctweaks-final-dng-booster"
+},{
+    "type": "EXIT",
+    "count": 2
+}]
