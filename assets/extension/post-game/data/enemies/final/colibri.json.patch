@@ -1,0 +1,21 @@
+[{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 88
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content":{
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.25,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled || stat.items.457>= 1"
+    }
+},{
+    "type": "EXIT",
+    "count": 1
+}]

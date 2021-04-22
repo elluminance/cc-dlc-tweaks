@@ -178,6 +178,181 @@
 },{
     "type": "EXIT",
     "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "final.crystal-cold"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 86
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.075,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "final.crystal-heat"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 86
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.075,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "final.crystal-shock"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 86
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.075,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "final.crystal-wave"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 86
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.075,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "final.colibri"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 88
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.25,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "guest.honeybear"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 89
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.3,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "guest.firespirit"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 89
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-final-dng-gem",
+        "prob": 0.3,
+        "min": 1,
+        "max": 1,
+        "boosted": true,
+        "condition": "item.dlctweaks-final-dng-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
 }
 
 ]
