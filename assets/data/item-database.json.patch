@@ -1,27 +1,5 @@
-[{
-    "type": "ENTER",
-    "index": ["items",618]
-},{
-    "type": "ENTER",
-    "index": ["name"]
-},{
-    "type": "SET_KEY",
-    "index": "en_US",
-    "content": "Ascended Booster"
-},{
-    "type": "EXIT",
-    "count": 1
-},{
-    "type": "ENTER",
-    "index": ["description"]
-},{
-    "type": "SET_KEY",
-    "index": "en_US",
-    "content": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
-},{
-    "type": "EXIT",
-    "count": 3
-},{
+[
+{
     "type":"ENTER",
     "index": "items"
 },{
@@ -34,7 +12,7 @@
             "en_US": "Warm Crystal"
         },
         "description": {
-            "en_US": "A warm-colored gem that holds the essence of strong adversaries."
+            "en_US": "A warm-colored gem infused with the essence of many strong adversaries."
         },
         "type": "TRADE",
         "rarity": 4,
@@ -57,7 +35,7 @@
             "en_US": "Cool Crystal"
         },
         "description": {
-            "en_US": "A cool-colored gem that holds the essence of strong adversaries."
+            "en_US": "A cool-colored gem infused with the essence of many strong adversaries."
         },
         "type": "TRADE",
         "rarity": 4,
@@ -151,7 +129,7 @@
             "en_US": "Ascended Booster"
         },
         "description": {
-            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+            "en_US": "\\c[2]The ultimate booster.\\c[0] Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -175,7 +153,7 @@
             "en_US": "Archipelago Booster"
         },
         "description": {
-            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+            "en_US": "Increases the levels of enemies in \\c[3]\\v[area.beach.name]\\c[0] and unlocks new loot drops."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -199,7 +177,7 @@
             "en_US": "Ku'lero Booster"
         },
         "description": {
-            "en_US": "Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
+            "en_US": "Increases the levels of enemies in \\c[3]\\v[area.final-dng.name]\\c[0] and unlocks new loot drops."
         },
         "type": "TOGGLE",
         "rarity": 0,
