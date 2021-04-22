@@ -108,20 +108,16 @@
                 ],
                 "require": [
                     {
-                        "id": "dlctweaks-trade-warm-gem",
+                        "id": "619",
                         "amount": 5
                     },
                     {
-                        "id": "dlctweaks-trade-cool-gem",
+                        "id": "620",
                         "amount": 5
                     },
                     {
-                        "id": "dlctweaks-trade-beach-gem",
-                        "amount": 15
-                    },
-                    {
-                        "id": "dlctweaks-trade-final-dng-gem",
-                        "amount": 15
+                        "id": "621",
+                        "amount": 5
                     }
                 ],
                 "scale": 1,
@@ -144,19 +140,15 @@
                 ],
                 "require": [
                     {
-                        "id": "dlctweaks-trade-warm-gem",
+                        "id": "563",
                         "amount": 5
                     },
                     {
-                        "id": "dlctweaks-trade-cool-gem",
+                        "id": "565",
                         "amount": 5
                     },
                     {
-                        "id": "dlctweaks-trade-beach-gem",
-                        "amount": 15
-                    },
-                    {
-                        "id": "dlctweaks-trade-final-dng-gem",
+                        "id": "561",
                         "amount": 15
                     }
                 ],
