@@ -65,7 +65,7 @@
         "cost": 1500,
         "level": 1,
         "icon": "item-trade",
-        "noTrack": true,
+        "noTrack": false,
         "sources": [
             {
                 "type": "OTHER",
@@ -101,7 +101,7 @@
         "cost": 1500,
         "level": 1,
         "icon": "item-trade",
-        "noTrack": true,
+        "noTrack": false,
         "sources": [
             {
                 "type": "OTHER",
@@ -136,13 +136,13 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": true,
+        "noTrack": false,
         "effect": {
             "sheet": "",
             "name": null
         },
         "isScalable": false,
-        "noCount": true
+        "noCount": false
     }
 },{
     "type": "ADD_ARRAY_ELEMENT",
@@ -160,13 +160,13 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": true,
+        "noTrack": false,
         "effect": {
             "sheet": "",
             "name": null
         },
         "isScalable": false,
-        "noCount": true
+        "noCount": false
     }
 },{
     "type": "ADD_ARRAY_ELEMENT",

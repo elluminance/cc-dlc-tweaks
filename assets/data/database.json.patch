@@ -192,7 +192,9 @@
         ],
         "area": "rhombus-sqr"
     }
-},{
+},
+
+{
     "type": "EXIT"
 },{
     "type": "ENTER",
@@ -213,4 +215,15 @@
 },{
     "type": "EXIT",
     "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "enemies"
+},{
+    "type": "INCLUDE",
+    "src": "mod:/patches/database/enemies.json"
+},{
+    "type": "EXIT",
+    "count": 1
 }]

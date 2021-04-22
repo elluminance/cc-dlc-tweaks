@@ -1,0 +1,183 @@
+[{
+    "type": "ENTER",
+    "index": "beach.sea-star-cold"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 80
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.04,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.sea-star-heat"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 80
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.04,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.sea-star-shock"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 80
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.04,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.sea-star-wave"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 82
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.04,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.fish"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 82
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.1,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.turtle-man"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 84
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.2,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "beach.worm"
+},{
+    "type": "SET_KEY",
+    "index": "boostedLevel",
+    "content": 83
+},{
+    "type": "ENTER",
+    "index": "itemDrops"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "item": "dlctweaks-trade-beach-gem",
+        "prob": 0.1,
+        "min": 1,
+        "max": 1,
+        "rank": "C",
+        "boosted": true,
+        "condition": "item.dlctweaks-beach-booster.toggled"
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+}
+
+]
