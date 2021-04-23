@@ -44,7 +44,7 @@
                     "reactType": "FIXED_POS",
                     "face": "NORTH",
                     "hidden": false,
-                    "condition": "",
+                    "condition": "plot.line >= 40000",
                     "config": "normal",
                     "event": {
                         "trade": {
@@ -71,7 +71,7 @@
                     "reactType": "FIXED_POS",
                     "face": "NORTH",
                     "hidden": false,
-                    "condition": "",
+                    "condition": "plot.line >= 40000",
                     "config": "normal",
                     "event": {
                         "trade": {

@@ -1,0 +1,145 @@
+[{
+    "type": "ENTER",
+    "index":["entities", 161, "settings", "npcStates"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "reactType": "FIXED_POS",
+        "face": "SOUTH",
+        "action": [],
+        "hidden": false,
+        "condition": "plot.line >= 40000",
+        "config": "normal",
+        "event": {
+            "trade": {
+                "event": [
+                    {
+                        "side": "LEFT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "side": "RIGHT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "main.lea",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "message": {
+                            "en_US": "Hey girl, ya looking for some rare weapons?"
+                        },
+                        "autoContinue": false,
+                        "type": "SHOW_MSG",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "withBranches": true,
+                        "type": "START_NPC_TRADE_MENU",
+                        "traded": [
+                            {
+                                "ignoreSlowDown": false,
+                                "type": "WAIT",
+                                "time": 0.2
+                            },
+                            {
+                                "message": {
+                                    "en_US": "You won't regret it, girl!",
+                                    "de_DE": "Du wirst es nicht bereuen!",
+                                    "fr_FR": "fr_FR",
+                                    "langUid": 2,
+                                    "zh_CN": "\u4f60\u4e0d\u4f1a\u540e\u6094\u7684\uff01",
+                                    "ko_KR": "\ubd84\uba85 \ud6c4\ud68c\ud558\uc9c0 \uc54a\uc744 \uac70\uc57c!",
+                                    "ja_JP": "\u5f8c\u6094\u306f\u3055\u305b\u306a\u3044\u3088\u3001\u304a\u5b22\u3061\u3083\u3093\uff01",
+                                    "zh_TW": "\u4f60\u4e0d\u6703\u5f8c\u6094\u7684\uff01"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "basin.male-raincoat",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "...",
+                                    "de_DE": "...",
+                                    "fr_FR": "fr_FR",
+                                    "langUid": 3,
+                                    "zh_CN": "\u2026",
+                                    "ko_KR": "...",
+                                    "ja_JP": "...",
+                                    "zh_TW": "\u2026"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "SMILE"
+                                }
+                            }
+                        ],
+                        "canceled": [
+                            {
+                                "ignoreSlowDown": false,
+                                "type": "WAIT",
+                                "time": 0.2
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Really? This is a once in a life time offer, ma girl!",
+                                    "de_DE": "Echt? Das ist ein einmaliges Angebot, M\u00e4del!",
+                                    "fr_FR": "fr_FR",
+                                    "langUid": 4,
+                                    "zh_CN": "\u771f\u7684\u5417\uff1f\u8fd9\u53ef\u662f\u5343\u8f7d\u96be\u9022\u7684\u673a\u4f1a\u554a\uff0c\u6211\u7684\u59d0\uff01",
+                                    "ko_KR": "\uc9c4\uc2ec\uc778\uac00? \uc77c\uc0dd\uc5d0 \ud55c \ubc88\ubfd0\uc778 \uae30\ud68c\ub77c\uace0, \uc544\uac00\uc528!",
+                                    "ja_JP": "\u672c\u6c17\u304b\u3044\uff1f\u3053\u3044\u3064\u306f\u4eba\u751f\u3067\u4e00\u5ea6\u306e\n\u53d6\u5f15\u306a\u3093\u3060\u305c\u3001\u304a\u5b22\u3061\u3083\u3093\uff01",
+                                    "zh_TW": "\u771f\u7684\u55ce\uff1f\u9019\u662f\u5343\u8f09\u96e3\u9022\u7684\u6a5f\u6703\u554a\uff0c\u6211\u7684\u59d0\u59d0\uff01"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "basin.male-raincoat",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "...",
+                                    "de_DE": "...",
+                                    "fr_FR": "fr_FR",
+                                    "langUid": 5,
+                                    "zh_CN": "...",
+                                    "ko_KR": "...",
+                                    "ja_JP": "...",
+                                    "zh_TW": "..."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "SMILE"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "trader": "basinEastExcalibruh"
+            }
+        }
+    }
+},{
+    "type": "EXIT",
+    "count": 4
+}]

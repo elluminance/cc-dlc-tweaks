@@ -94,6 +94,7 @@
         }],
         "area": "rhombus-sqr"
     },
+
     "booster-beach":{
         "name": {"en_US": "Archipelago Master"},
         "order": 1,
@@ -130,6 +131,7 @@
         ],
         "area": "rhombus-sqr"
     },
+
     "booster-final-dng":{
         "name": {"en_US": "Ku'lero Master"},
         "order": 1,
@@ -165,5 +167,74 @@
             }
         ],
         "area": "rhombus-sqr"
+    },
+
+    "basinEastExcalibruh":{
+        "name": {
+            "en_US": "Basin Weapon Supreme",
+            "de_DE": "Bassins Edelwaffen",
+            "zh_CN": "\u5df4\u8f9b\u5821\u7ec8\u6781\u6b66\u5668",
+            "zh_TW": "\u5df4\u8f9b\u5821\u7d42\u6975\u6b66\u5668",
+            "ja_JP": "\u30d9\u30a4\u30b9\u30f3\u30ad\u30fc\u30d7\u306e\u4e0a\u4f4d\u6b66\u5668",
+            "ko_KR": "\uc720\uc5ed \ucd5c\uace0 \ubb34\uae30",
+            "langUid": 9185
+        },
+        "order": 100,
+        "upgradeTo": "basinEastExcalibro",
+        "options": [
+            {
+                "get": [
+                    {
+                        "id": "330",
+                        "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "249",
+                        "amount": 30
+                    },
+                    {
+                        "id": "252",
+                        "amount": 30
+                    },
+                    {
+                        "id": "255",
+                        "amount": 30
+                    }
+                ],
+                "scale": 1,
+                "cost": 33333
+            },
+            {
+                "get": [
+                    {
+                        "id": "dlctweaks-excalibro-scale",
+                        "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "330",
+                        "amount": 1
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 12
+                    },
+                    {
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 12
+                    },
+                    {
+                        "id": "255",
+                        "amount": 30
+                    }
+                ],
+                "scale": 1,
+                "cost": 69420
+            }
+        ],
+        "area": "jungle-city"
     }
 }
