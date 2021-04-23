@@ -3,55 +3,54 @@
     "index":["toggle-sets","booster","items"]
 },{
     "type":"ADD_ARRAY_ELEMENT",
-    "content":"618"
+    "content": "dlctweaks-beach-booster"
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "dlctweaks-final-dng-booster"
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "dlctweaks-ascended-booster"
 },{
     "type":"EXIT",
-    "count":3
+    "count": 3
 },{
     "type": "ENTER",
     "index": "traders"
 },{
-    "type": "SET_KEY",
-    "index": "booster-ascended",
-    "content": {
-        "name": {"en_US": "Booster Master"},
-        "order": 1,
-        "noTrack": true,
-        "options": [{
-            "get": [
-                {
-                    "id": "618",
-                    "amount": 1
-                }
-            ],
-            "require": [
-                {
-                    "id": "457",
-                    "amount": 5
-                },
-                {
-                    "id": "459",
-                    "amount": 5
-                },
-                {
-                    "id": "462",
-                    "amount": 5
-                },
-                {
-                    "id": "464",
-                    "amount": 5
-                },
-                {
-                    "id": "465",
-                    "amount": 5
-                }
-            ],
-            "scale": 1,
-            "cost": 200000
-        }],
-        "area": "rhombus-sqr"
-    }
+    "type": "IMPORT",
+    "src": "mod:/patches/database/traders.json"
 },{
     "type": "EXIT"
-}
-]
+},{
+    "type": "ENTER",
+    "index": ["areas", "beach"]
+},{
+    "type": "SET_KEY",
+    "index": "boosterItem",
+    "content": "dlctweaks-beach-booster"
+},{
+    "type": "SET_KEY",
+    "index": "chests",
+    "content": 14
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "final-dng"
+},{
+    "type": "SET_KEY",
+    "index": "boosterItem",
+    "content": "dlctweaks-final-dng-booster"
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": "enemies"
+},{
+    "type": "INCLUDE",
+    "src": "mod:/patches/database/enemies.json"
+},{
+    "type": "EXIT",
+    "count": 1
+}]
