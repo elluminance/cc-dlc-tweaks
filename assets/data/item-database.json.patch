@@ -461,8 +461,5 @@
         "noTrack": true,
         "isScalable": true
     }
-},{
-    "type": "ADD_ARRAY_ELEMENT",
-    "content": {}
 }
 ]
