@@ -1,6 +1,6 @@
 [{
     "type": "ENTER",
-    "index": ["entities", 678, "settings"]
+    "index": ["entities", 228, "settings"]
 },{
     "type": "SET_KEY",
     "index": "noTrack",
