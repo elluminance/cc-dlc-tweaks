@@ -62,7 +62,19 @@
 },{
     "type": "EXIT",
     "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": "commonEvents"
 },{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/commonEvents.json"
+},{
+    "type": "EXIT"
+},
+
+{
     "type": "ENTER",
     "index": "enemies"
 },{
