@@ -2,7 +2,7 @@
     "booster-ascended": {
         "name": {"en_US": "Booster Master"},
         "order": 1,
-        "noTrack": true,
+        "noTrack": false,
         "options": [
             {
                 "get":[
@@ -98,7 +98,7 @@
     "booster-beach":{
         "name": {"en_US": "Archipelago Master"},
         "order": 1,
-        "noTrack": true,
+        "noTrack": false,
         "options": [
             {
                 "get": [
@@ -135,7 +135,7 @@
     "booster-final-dng":{
         "name": {"en_US": "Ku'lero Master"},
         "order": 1,
-        "noTrack": true,
+        "noTrack": false,
         "options": [
             {
                 "get": [
