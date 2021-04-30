@@ -1,7 +1,7 @@
 {
     "booster-ascended": {
         "name": {"en_US": "Booster Master"},
-        "order": 1,
+        "order": 9,
         "noTrack": false,
         "options": [
             {
@@ -90,14 +90,14 @@
                 }
             ],
             "scale": 1,
-            "cost": 200000
+            "cost": 400000
         }],
         "area": "rhombus-sqr"
     },
 
     "booster-beach":{
         "name": {"en_US": "Archipelago Master"},
-        "order": 1,
+        "order": 7,
         "noTrack": false,
         "options": [
             {
@@ -126,7 +126,7 @@
                     }
                 ],
                 "scale": 1,
-                "cost": 75000
+                "cost": 100000
             }
         ],
         "area": "rhombus-sqr"
@@ -134,7 +134,7 @@
 
     "booster-final-dng":{
         "name": {"en_US": "Ku'lero Master"},
-        "order": 1,
+        "order": 8,
         "noTrack": false,
         "options": [
             {
@@ -163,7 +163,7 @@
                     }
                 ],
                 "scale": 1,
-                "cost": 75000
+                "cost": 100000
             }
         ],
         "area": "rhombus-sqr"

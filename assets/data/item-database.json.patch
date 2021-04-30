@@ -124,7 +124,7 @@
         "cost": 0,
         "level": 1,
         "icon": "item-trade",
-        "noTrack": false,
+        "noTrack": true,
         "sources": [
             {
                 "type": "OTHER",
@@ -232,7 +232,7 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": false,
+        "noTrack": true,
         "effect": {
             "sheet": "",
             "name": null
@@ -256,7 +256,7 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": false,
+        "noTrack": true,
         "effect": {
             "sheet": "",
             "name": null
@@ -456,7 +456,7 @@
             "en_US": "Excalibruh"
         },
         "description": {
-            "en_US": "An improved mass-market knockoff. It absolutely assures victory now! Although... \\i[ascended]"
+            "en_US": "An improved mass-market knockoff. It absolutely assures victory now! \\c[1]Although...\\c[0] \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -482,7 +482,7 @@
             "sheet": "",
             "name": null
         },
-        "noTrack": true,
+        "noTrack": false,
         "isScalable": true
     }
 }]
