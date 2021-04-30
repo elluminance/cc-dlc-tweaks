@@ -1,3 +1,5 @@
+import "./js/el2020/impact/feature/base/event-steps/update-chest-count.js"
+
 sc.EnemyBooster.inject({
     updateEnemyBoostState(b){
         if (b.boosterState != sc.ENEMY_BOOSTER_STATE.NONE){
