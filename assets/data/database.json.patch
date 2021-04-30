@@ -13,15 +13,40 @@
 },{
     "type":"EXIT",
     "count": 3
-},{
+},
+
+{
     "type": "ENTER",
     "index": "traders"
 },{
     "type": "IMPORT",
     "src": "mod:/patches/database/traders.json"
 },{
-    "type": "EXIT"
+    "type": "FOR_IN",
+    "values":  ["glitchTrader","bakiBrewing_3","rhombusPostWeapon1","rhombusPostHead1",
+                "rhombusPostTorso1","rhombusPostFeet1","rhombusPostEquipAntique1",
+                "rhombusPostEquipSpecial1","rhombusPostEquipSpecial2","rhombusPostEquipSpecial3",
+                "rhombusPostEquipArena1","rhombusPostEquipArena2","tremorTrader1","tremorTrader2",
+                "villageFood","villageMaterials"],
+    "keyword": "__VALUE__",
+    "body": [
+        {
+            "type": "ENTER",
+            "index": "__VALUE__"
+        },{
+            "type": "SET_KEY",
+            "index": "noTrack",
+            "content": false
+        },{
+            "type": "EXIT"
+        }
+    ]
 },{
+    "type": "EXIT"
+},
+
+
+{
     "type": "ENTER",
     "index": ["areas", "beach"]
 },{

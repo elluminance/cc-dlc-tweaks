@@ -20,10 +20,6 @@
         "index": "noTrack",
         "content": false
     },{
-        "type": "SET_KEY",
-        "index": "noCount",
-        "content": false
-    },{
         "type": "EXIT"
     }]
 },
