@@ -232,9 +232,40 @@
                     }
                 ],
                 "scale": 1,
-                "cost": 69420
+                "cost": 66666
             }
         ],
         "area": "jungle-city"
+    },
+
+    "daikon-scale-trade": {
+        "name": {
+            "en_US": "Best Weapon Trader"
+        },
+        "order": 100,
+        "options": [{
+            "get": [{
+                "id": "dlctweaks-daikon-scale",
+                "amount": 1
+            }],
+            "require":[
+                {
+                    "id": "57",
+                    "amount": 1
+                },{
+                    "id": "457",
+                    "amount": 10
+                },{
+                    "id": "dlctweaks-trade-beach-gem",
+                    "amount": 6
+                },{
+                    "id": "564",
+                    "amount": 20
+                }
+            ],
+            "scale": 1,
+            "cost": 69420
+        }],
+        "area": "autumn-area"
     }
 }
