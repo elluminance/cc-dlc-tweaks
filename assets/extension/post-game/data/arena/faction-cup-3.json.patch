@@ -1,0 +1,10 @@
+[{
+    "type": "ENTER",
+    "index": "core"
+  }, {
+    "type": "SET_KEY",
+    "index": "mods",
+    "content": ["WEAPON_ADJUST"]
+  },{
+    "type": "EXIT"
+}]
