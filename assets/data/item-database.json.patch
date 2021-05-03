@@ -3,6 +3,30 @@
     "type":"ENTER",
     "index": "items"
 },{
+    "type": "FOR_IN",
+    "keyword": "__INDEX__",
+    "values":  [369, 374, 504, 513, 561, 562, 563, 564, 565, 567,
+                568, 569, 570, 571, 572, 573, 574, 577, 578, 579,
+                580, 581, 582, 583, 584, 585, 586, 592, 593, 594, 
+                595, 598, 599, 601, 602, 603, 604, 606, 607, 608,
+                609, 610, 611, 629, 630, 631, 632, 633, 634, 635,
+                638, 639, 640, 656, 657, 658, 659, 660, 662, 663,
+                665, 666, 667, 668, 669, 670, 671],
+    "body":[{
+        "type": "ENTER",
+        "index": "__INDEX__"
+    },{
+        "type": "SET_KEY",
+        "index": "noTrack",
+        "content": false
+    },{
+        "type": "EXIT"
+    }]
+},
+
+
+
+{
     "type": "ADD_ARRAY_ELEMENT",
     "content":
       {
@@ -100,7 +124,7 @@
         "cost": 0,
         "level": 1,
         "icon": "item-trade",
-        "noTrack": false,
+        "noTrack": true,
         "sources": [
             {
                 "type": "OTHER",
@@ -208,7 +232,7 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": false,
+        "noTrack": true,
         "effect": {
             "sheet": "",
             "name": null
@@ -232,7 +256,7 @@
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",
-        "noTrack": false,
+        "noTrack": true,
         "effect": {
             "sheet": "",
             "name": null
@@ -432,7 +456,7 @@
             "en_US": "Excalibruh"
         },
         "description": {
-            "en_US": "An improved mass-market knockoff. It absolutely assures victory now! Although... \\i[ascended]"
+            "en_US": "An improved mass-market knockoff. It absolutely assures victory now! \\c[1]Although...\\c[0] \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -458,11 +482,7 @@
             "sheet": "",
             "name": null
         },
-        "noTrack": true,
+        "noTrack": false,
         "isScalable": true
     }
-},{
-    "type": "ADD_ARRAY_ELEMENT",
-    "content": {}
-}
-]
+}]

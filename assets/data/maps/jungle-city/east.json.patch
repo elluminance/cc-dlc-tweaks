@@ -1,0 +1,128 @@
+[{
+    "type": "ENTER",
+    "index":["entities", 161, "settings", "npcStates"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "reactType": "FIXED_POS",
+        "face": "SOUTH",
+        "action": [],
+        "hidden": false,
+        "condition": "plot.line >= 40000",
+        "config": "normal",
+        "event": {
+            "trade": {
+                "event": [
+                    {
+                        "side": "LEFT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "side": "RIGHT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "main.lea",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "message": {
+                            "en_US": "Hey girl, ya looking for some rare weapons?"
+                        },
+                        "autoContinue": false,
+                        "type": "SHOW_MSG",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "message": {
+                            "en_US": "I could even upgrade it if ya want."
+                        },
+                        "autoContinue": false,
+                        "type": "SHOW_MSG",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    },
+                    {
+                        "withBranches": true,
+                        "type": "START_NPC_TRADE_MENU",
+                        "traded": [
+                            {
+                                "ignoreSlowDown": false,
+                                "type": "WAIT",
+                                "time": 0.2
+                            },
+                            {
+                                "message": {
+                                    "en_US": "You won't regret it, girl!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "basin.male-raincoat",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "..."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "SMILE"
+                                }
+                            }
+                        ],
+                        "canceled": [
+                            {
+                                "ignoreSlowDown": false,
+                                "type": "WAIT",
+                                "time": 0.2
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Really? This is a once in a life time offer, ma girl!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "basin.male-raincoat",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "..."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "SMILE"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "trader": "basinEastExcalibruh"
+            }
+        }
+    }
+},{
+    "type": "EXIT",
+    "count": 4
+}]

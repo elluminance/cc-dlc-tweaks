@@ -1,0 +1,11 @@
+[{
+    "type": "ENTER",
+    "index": ["entities", 228, "settings"]
+},{
+    "type": "SET_KEY",
+    "index": "noTrack",
+    "content": false
+},{
+    "type": "EXIT",
+    "count": 3
+}]

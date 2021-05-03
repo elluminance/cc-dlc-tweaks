@@ -1,0 +1,82 @@
+[{
+    "type":"ENTER",
+    "index": "entities"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "type": "NPC",
+        "x": 1644,
+        "y": 1100,
+        "level": 1,
+        "settings": {
+            "name": "",
+            "characterName": "basin.male-raincoat",
+            "mapId": 2510,
+            "npcStates": [
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "WEST",
+                    "hidden": false,
+                    "condition": "plot.line >= 40000",
+                    "config": "normal",
+                    "event": {
+                        "trade":{
+                            "event":[
+                                {
+                                    "side": "LEFT",
+                                    "order": 0,
+                                    "clearSide": false,
+                                    "type": "ADD_MSG_PERSON",
+                                    "person": {
+                                        "person": "basin.male-raincoat",
+                                        "expression": "DEFAULT"
+                                    }
+                                },
+                                {
+                                    "side": "RIGHT",
+                                    "order": 0,
+                                    "clearSide": false,
+                                    "type": "ADD_MSG_PERSON",
+                                    "person": {
+                                        "person": "main.lea",
+                                        "expression": "DEFAULT"
+                                    }
+                                },
+                                {
+                                    "message": {
+                                        "en_US": "Hey... I found an upgrade to this pretty good weapon."
+                                    },
+                                    "autoContinue": false,
+                                    "type": "SHOW_MSG",
+                                    "person": {
+                                        "person": "basin.male-raincoat",
+                                        "expression": "DEFAULT"
+                                    }
+                                },
+                                {
+                                    "message": {
+                                        "en_US": "I'll trade ya for one, if you have the goods."
+                                    },
+                                    "autoContinue": false,
+                                    "type": "SHOW_MSG",
+                                    "person": {
+                                        "person": "basin.male-raincoat",
+                                        "expression": "DEFAULT"
+                                    }
+                                },
+                                {
+                                    "withBranches": false,
+                                    "type": "START_NPC_TRADE_MENU"
+                                }
+                            ],
+                            "trader": "daikon-scale-trade"
+                       }
+                    }
+                }
+            ]
+        }
+    }
+},{
+    "type": "EXIT",
+    "count": 1
+}]
