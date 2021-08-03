@@ -18,3 +18,17 @@ sc.EnemyBooster.inject({
         }
     }
 })
+
+sc.MapWorldMap.inject({
+    _setAreaName(a){
+        this.parent(a)
+        let area = a.area,
+            chestCount = sc.stats.getMap("chests", a.key),
+            totalChests = sc.map.getChestCount(a.key),
+            chestString = ""
+        if (totalChests != 0){
+            chestString = chestCount >= totalChests ? ` \\c[3][${chestCount}/${totalChests}]\\c[0]` : ` [${chestCount}/${totalChests}]`
+        }
+        this.areaName.setText(ig.LangLabel.getText(area.name) + chestString);
+    }
+})
