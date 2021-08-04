@@ -2,6 +2,7 @@
     "dlcTweaks-updateChests": {
         "frequency": "ALWAYS",
         "repeat": "REPEAT",
+        "condition": "plot.line >= 40000",
         "eventType": "PARALLEL",
         "overrideSideMessage": false,
         "event":[
@@ -58,7 +59,6 @@
                 "chestVariable": "chestGet"
             }
         ],
-        "loopCount": 1,
         "type": {
             "type": "MAP_ENTERED"
         }
