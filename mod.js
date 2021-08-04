@@ -32,9 +32,11 @@ sc.MapWorldMap.inject({
         switch (a.key) {
             case "rhombus-sqr":
                 totalChests += 7;
+                chestCount += ig.vars.get("dlctweaks.chests.rhombus-sqr")
                 break;
             case "bergen":
                 totalChests += 1;
+                chestCount += ig.vars.get("dlctweaks.chests.bergen")
                 break;
         }
         if (totalChests != 0){
