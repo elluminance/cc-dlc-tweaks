@@ -1,5 +1,8 @@
 import "./js/el2020/impact/feature/base/event-steps/update-chest-count.js"
 
+import "./js/event-step/update-chest-count.js"
+
+
 sc.EnemyBooster.inject({
     updateEnemyBoostState(b){
         if (b.boosterState != sc.ENEMY_BOOSTER_STATE.NONE){
@@ -26,6 +29,14 @@ sc.MapWorldMap.inject({
             chestCount = sc.stats.getMap("chests", a.key),
             totalChests = sc.map.getChestCount(a.key),
             chestString = ""
+        switch (a.key) {
+            case "rhombus-sqr":
+                totalChests += 7;
+                break;
+            case "bergen":
+                totalChests += 1;
+                break;
+        }
         if (totalChests != 0){
             chestString = chestCount >= totalChests ? ` \\c[3][${chestCount}/${totalChests}]\\c[0]` : ` [${chestCount}/${totalChests}]`
         }
