@@ -8,7 +8,6 @@ ig.EVENT_STEP.DLCTWEAKS_ADD_TO_CHEST_COUNT = ig.EventStepBase.extend({
     start: function(){
         let varPath = `maps.${this.map.toPath("", "").toCamel()}.${this.chestVariable ?? ("chest_" + this.chestID)}`;
         if(ig.vars.get(varPath)){
-            console.log("h")
             ig.vars["add"](`dlctweaks.chests.${this.area}`, 1)
         }
     }
