@@ -26,18 +26,17 @@ sc.MapWorldMap.inject({
 
 sc.MapModel.inject({
     getTotalChestsFound(asPercent) {
-        this.parent(asPercent);
-        let count = 0, total = 0;
-        for(const area in this.areas){
-            if(!this.areas[area]['track']) continue;
-            count += sc.stats.getMap("chests", area) ?? 0;
-            total += this.areas[area]["chests"] ?? 0;
-        }
+        let count = this.parent(false), 
+            total = this.getTotalChests();
         if(ig.extensions.enabled["post-game"]){
             count += ig.vars.get("dlctweaks.chests.rhombus-sqr");
             count += ig.vars.get("dlctweaks.chests.bergen");
             total += 8;
         }
         return asPercent ? (count/total) : count
+    },
+
+    getTotalChests(){
+        return this.parent() + (ig.extensions.enabled["post-game"] ? 8 : 0)
     }
 })
