@@ -28,15 +28,18 @@ sc.MapModel.inject({
     getTotalChestsFound(asPercent) {
         let count = this.parent(false), 
             total = this.getTotalChests();
-        if(ig.extensions.enabled["post-game"]){
+        if(ig.extensions.enabled["post-game"] && (ig.vars.get("plot.line") >= 40000)){
             count += ig.vars.get("dlctweaks.chests.rhombus-sqr");
             count += ig.vars.get("dlctweaks.chests.bergen");
-            total += 8;
+            count += sc.stats.getMap("chests", "evo-village")
+            count += sc.stats.getMap("chests", "beach")
+            count += sc.stats.getMap("chests", "final-dng")
         }
         return asPercent ? (count/total) : count
     },
 
     getTotalChests(){
-        return this.parent() + (ig.extensions.enabled["post-game"] ? 8 : 0)
+        // 7 (rhombus) + 1 (bergen) + 6 (homestedt) + 13 (azure) + 16 (ku'lero) = 43 total DLC chests
+        return this.parent() + ((ig.extensions.enabled["post-game"] && (ig.vars.get("plot.line") >= 40000)) ? 43 : 0)
     }
 })
