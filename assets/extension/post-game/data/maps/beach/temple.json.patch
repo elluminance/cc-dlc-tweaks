@@ -12,6 +12,7 @@
             "mapId": 2441,
             "chestType": "Gold",
             "item": "dlctweaks-trade-beach-special",
+            "noTrack": true,
             "amount": 1
         }
     }

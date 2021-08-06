@@ -59,6 +59,7 @@
                 "chestVariable": "chestGet"
             }
         ],
+        "loopCount": 1,
         "type": {
             "type": "MAP_ENTERED"
         }
