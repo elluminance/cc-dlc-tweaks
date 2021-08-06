@@ -69,16 +69,6 @@
 
 {
     "type": "ENTER",
-    "index": "commonEvents"
-},{
-    "type": "IMPORT",
-    "src": "mod:/patches/database/commonEvents.json"
-},{
-    "type": "EXIT"
-},
-
-{
-    "type": "ENTER",
     "index": "enemies"
 },{
     "type": "INCLUDE",

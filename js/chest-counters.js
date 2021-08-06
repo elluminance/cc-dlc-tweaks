@@ -1,3 +1,26 @@
+function getAreaDLCChestCount(area) {
+    let count = 0;
+    switch(area){
+        case "rhombus-sqr":
+            if(ig.extensions.enabled["post-game"]){
+                count += ig.vars.get("maps.rhombusSqr/centerS.chest_888") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/centerNe.chest_5") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/centerN.chest_197") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/centerNe.chest_437") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/centerNw.chest_251") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/centerW.chest_305") ?? 0
+                count += ig.vars.get("maps.rhombusSqr/beachSw.chest_1096") ?? 0
+            }
+            break;
+        case "bergen":
+            if(ig.extensions.enabled["post-game"]){
+                count += ig.vars.get("maps.bergen/special/monksQuestcave3.chestGet") ?? 0
+            }
+            break;
+    }
+    return count;
+}
+
 sc.MapWorldMap.inject({
     _setAreaName(a){
         this.parent(a)
@@ -9,11 +32,11 @@ sc.MapWorldMap.inject({
             switch (a.key) {
                 case "rhombus-sqr":
                     totalChests += 7;
-                    chestCount += ig.vars.get("dlctweaks.chests.rhombus-sqr")
+                    chestCount += getAreaDLCChestCount("rhombus-sqr")
                     break;
                 case "bergen":
                     totalChests += 1;
-                    chestCount += ig.vars.get("dlctweaks.chests.bergen")
+                    chestCount += getAreaDLCChestCount("bergen")
                     break;
             }
         }
@@ -29,8 +52,8 @@ sc.MapModel.inject({
         let count = this.parent(false), 
             total = this.getTotalChests();
         if(ig.extensions.enabled["post-game"]){
-            count += ig.vars.get("dlctweaks.chests.rhombus-sqr");
-            count += ig.vars.get("dlctweaks.chests.bergen");
+            count += getAreaDLCChestCount("rhombus-sqr");
+            count += getAreaDLCChestCount("bergen");
             count += sc.stats.getMap("chests", "evo-village")
             count += sc.stats.getMap("chests", "beach")
             count += sc.stats.getMap("chests", "final-dng")
@@ -50,11 +73,11 @@ sc.MapChestDisplay.inject({
         switch(sc.map.currentArea.path){
             case "rhombus-sqr":
                 this.max.setNumber(this._oldMax + 7)
-                this.current.setNumber(this._oldCount + ig.vars.get("dlctweaks.chests.rhombus-sqr"))
+                this.current.setNumber(this._oldCount + getAreaDLCChestCount("rhombus-sqr"))
                 break;
             case "bergen":
                 this.max.setNumber(this._oldMax + 1)
-                this.current.setNumber(this._oldCount + ig.vars.get("dlctweaks.chests.bergen"))
+                this.current.setNumber(this._oldCount + getAreaDLCChestCount("rhombus-sqr"))
                 break;
         }
     }
