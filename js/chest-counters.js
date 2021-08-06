@@ -47,6 +47,25 @@ function getAreaDLCChestCount(area) {
     return count;
 }
 
+function getExtraChests(area) {
+    switch(area){
+        case "rhombus-sqr":
+            return ig.extensions.enabled["post-game"] ? 7 : 0
+        case "bergen":
+            return ig.extensions.enabled["post-game"] ? 1 : 0
+        case "heat-area":
+            return ig.extensions.enabled["scorpion-robo"] ? 1 : 0
+        /*case "bergen-trail": //preparing for the future!
+            return ig.extensions.enabled["snowman-tank"] ? 1 : 0
+        case "autumn-fall":
+            return ig.extensions.enabled["flying-hedgehag"] ? 1 : 0
+        case "jungle":
+            return ig.extensions.enabled["fish-gear"] ? 1 : 0*/
+        default:
+            return 0
+    }
+}
+
 sc.MapWorldMap.inject({
     _setAreaName(a){
         this.parent(a)
@@ -105,6 +124,18 @@ sc.MapModel.inject({
                (ig.extensions.enabled["fish-gear"] ? 1 : 0)*/
     }
 })
+
+sc.STATS_BUILD[sc.STATS_CATEGORY.EXPLORATION].chestAres.getSettings = area => {
+    return !sc.map.getVisitedArea(area) || !sc.map.areas[area].track || !sc.map.areas[area].chests ? null : {
+        highlight: true,
+        displayName: sc.map.getAreaName(area, false, true),
+        map: "chests",
+        stat: area,
+        max: () => {
+            return sc.map.areas[area].chests + getExtraChests(area)
+        }
+    }
+}
 
 sc.MapChestDisplay.inject({
     update() {
