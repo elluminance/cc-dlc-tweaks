@@ -5,7 +5,7 @@ sc.MapWorldMap.inject({
             chestCount = sc.stats.getMap("chests", a.key) ?? 0,
             totalChests = sc.map.getChestCount(a.key) ?? 0,
             chestString = ""
-        if(ig.vars.get("plot.line") >= 40000) {
+        if(ig.extensions.enabled["post-game"]) {
             switch (a.key) {
                 case "rhombus-sqr":
                     totalChests += 7;
@@ -33,9 +33,11 @@ sc.MapModel.inject({
             count += sc.stats.getMap("chests", area) ?? 0;
             total += this.areas[area]["chests"] ?? 0;
         }
-        count += ig.vars.get("dlctweaks.chests.rhombus-sqr");
-        count += ig.vars.get("dlctweaks.chests.bergen");
-        total += 8;
+        if(ig.extensions.enabled["post-game"]){
+            count += ig.vars.get("dlctweaks.chests.rhombus-sqr");
+            count += ig.vars.get("dlctweaks.chests.bergen");
+            total += 8;
+        }
         return asPercent ? (count/total) : count
     }
 })
