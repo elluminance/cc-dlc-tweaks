@@ -1,5 +1,3 @@
-import "./js/event-step/update-chest-count.js"
-
 import "./js/chest-counters.js"
 
 sc.EnemyBooster.inject({
