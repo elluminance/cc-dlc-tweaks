@@ -72,19 +72,8 @@ sc.MapWorldMap.inject({
             chestCount = sc.stats.getMap("chests", a.key) ?? 0,
             totalChests = sc.map.getChestCount(a.key) ?? 0,
             chestString = ""
-        if(ig.extensions.enabled["post-game"]){ 
-            totalChests += (a.key == "rhombus-sqr") ? 7
-                         : (a.key == "bergen") ? 1 : 0;
-        }
-        if(ig.extensions.enabled["scorpion-robo"]) totalChests += a.key == "heat-area" ? 1 : 0
-        
-        // preparing for the future
-        /*
-         *  if(ig.extensions.enabled["snowman-tank"]) totalChests += a.key == "bergen-trail" ? 1 : 0
-         *  if(ig.extensions.enabled["flying-hedgehag"]) totalChests += a.key == "autumn-fall" ? 1 : 0
-         *  if(ig.extensions.enabled["fish-gear"]) totalChests += a.key == "jungle" ? 1 : 0
-         */
-        //chestCount += getAreaDLCChestCount(a.key)
+
+        totalChests += getExtraChests(a.key) 
 
         if (totalChests != 0){
             chestString = chestCount >= totalChests ? ` \\c[3][${chestCount}/${totalChests}]\\c[0]` : ` [${chestCount}/${totalChests}]`
@@ -161,6 +150,7 @@ sc.MapChestDisplay.inject({
                 break;
             */
         }
+        // not fully sure why this is needed, but without it, it displays a wrong count
         this.current.setNumber(this._oldCount)
     }
 })
