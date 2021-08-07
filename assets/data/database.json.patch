@@ -54,10 +54,6 @@
     "index": "boosterItem",
     "content": "dlctweaks-beach-booster"
 },{
-    "type": "SET_KEY",
-    "index": "chests",
-    "content": 14
-},{
     "type": "EXIT"
 },{
     "type": "ENTER",
@@ -67,36 +63,8 @@
     "index": "boosterItem",
     "content": "dlctweaks-final-dng-booster"
 },{
-    "type":"EXIT"
-},{
-    "type":"ENTER",
-    "index":"rhombus-sqr"
-},{
-    "type": "SET_KEY",
-    "index": "chests",
-    "content": 15
-},{
-    "type": "EXIT"
-},{
-    "type": "ENTER",
-    "index": "bergen"
-},{
-    "type": "SET_KEY",
-    "index": "chests",
-    "content": 18
-},{
     "type": "EXIT",
     "count": 2
-},
-
-{
-    "type": "ENTER",
-    "index": "commonEvents"
-},{
-    "type": "IMPORT",
-    "src": "mod:/patches/database/commonEvents.json"
-},{
-    "type": "EXIT"
 },
 
 {

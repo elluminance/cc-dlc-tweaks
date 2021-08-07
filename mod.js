@@ -1,4 +1,4 @@
-import "./js/el2020/impact/feature/base/event-steps/update-chest-count.js"
+import "./js/chest-counters.js"
 
 sc.EnemyBooster.inject({
     updateEnemyBoostState(b){
