@@ -14,35 +14,24 @@ function getAreaDLCChestCount(area) {
             break;
 
         case "bergen":
-            if(ig.extensions.enabled["post-game"]){
-                count += ig.vars.get("maps.bergen/special/monksQuestcave3.chestGet") ? 1 : 0
-            }
+            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.bergen/special/monksQuestcave3.chestGet") ? 1 : 0
             break;
 
         case "heat-area":
-            if(ig.extensions.enabled["scorpion-robo"]){
-                count += ig.vars.get("maps.heat/lab/roomFinal.chest_89") ? 1 : 0
-            }
+            if(ig.extensions.enabled["scorpion-robo"]) count += ig.vars.get("maps.heat/lab/roomFinal.chest_89") ? 1 : 0
             break;
-// preparing for the future :)
-/*      case "bergen-trail":
-            if(ig.extensions.enabled["snowman-tank"]){
-                count += ig.vars.get() ?? 0
-            }
+        // preparing for the future :)
+        /*case "bergen-trail":
+            if(ig.extensions.enabled["snowman-tank"]) count += ig.vars.get() ? 1 : 0
             break;
 
         case "autumn-fall":
-            if(ig.extensions.enabled["flying-hedgehag"]){
-                count += ig.vars.get() ?? 0
-            }
+            if(ig.extensions.enabled["flying-hedgehag"]) count += ig.vars.get() ? 1 : 0
             break;
 
         case "jungle":
-            if(ig.extensions.enabled["fish-gear"]){
-                count += ig.vars.get() ?? 0
-            }
-            break; 
-*/
+            if(ig.extensions.enabled["fish-gear"] count += ig.vars.get() ? 1 : 0
+            break;*/
     }
     return count;
 }
@@ -66,6 +55,16 @@ function getExtraChests(area) {
     }
 }
 
+sc.StatsModel.inject({
+    getMap(b, a){
+        let value = this.parent(b, a);
+        if(b === "chests") {
+            value += getAreaDLCChestCount(a)
+        }
+        return value
+    }
+})
+
 sc.MapWorldMap.inject({
     _setAreaName(a){
         this.parent(a)
@@ -85,7 +84,7 @@ sc.MapWorldMap.inject({
          *  if(ig.extensions.enabled["flying-hedgehag"]) totalChests += a.key == "autumn-fall" ? 1 : 0
          *  if(ig.extensions.enabled["fish-gear"]) totalChests += a.key == "jungle" ? 1 : 0
          */
-        chestCount += getAreaDLCChestCount(a.key)
+        //chestCount += getAreaDLCChestCount(a.key)
 
         if (totalChests != 0){
             chestString = chestCount >= totalChests ? ` \\c[3][${chestCount}/${totalChests}]\\c[0]` : ` [${chestCount}/${totalChests}]`
@@ -162,6 +161,6 @@ sc.MapChestDisplay.inject({
                 break;
             */
         }
-        this.current.setNumber(this._oldCount + getAreaDLCChestCount(sc.map.currentArea.path))
+        this.current.setNumber(this._oldCount)
     }
 })
