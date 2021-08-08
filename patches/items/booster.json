@@ -18,7 +18,8 @@
             "sheet": "",
             "name": null
         }
-    },{
+    },
+    {
         "order": 20000,
         "customItem": "dlctweaks-trade-cool-gem",
         "name": {
@@ -37,7 +38,8 @@
             "sheet": "",
             "name": null
         }
-    },{
+    },
+    {
         "order": 114,
         "customItem": "dlctweaks-trade-beach-special",
         "name": {
@@ -68,7 +70,8 @@
             "sheet": "",
             "name": null
         }
-    },{
+    },
+    {
         "order": 114,
         "customItem": "dlctweaks-trade-final-dng-special",
         "name": {
@@ -99,7 +102,8 @@
             "sheet": "",
             "name": null
         }
-    },{
+    },
+    {
         "order": 22,
         "customItem": "dlctweaks-trade-beach-gem",
         "name": {
@@ -131,7 +135,8 @@
             "sheet": "",
             "name": null
         }
-    },{
+    },
+    {
         "order": 23,
         "customItem": "dlctweaks-trade-final-dng-gem",
         "name": {
@@ -165,6 +170,8 @@
         }
     },
 
+
+
     {
         "order": 11,
         "customItem":"dlctweaks-beach-booster",
@@ -186,7 +193,8 @@
         },
         "isScalable": false,
         "noCount": false
-    },{
+    },
+    {
         "order": 12,
         "customItem":"dlctweaks-final-dng-booster",
         "name": {
@@ -207,7 +215,8 @@
         },
         "isScalable": false,
         "noCount": true
-    },{
+    },
+    {
         "order": 13,
         "customItem":"dlctweaks-ascended-booster",
         "name": {

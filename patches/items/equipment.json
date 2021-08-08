@@ -37,7 +37,8 @@
             "DASH_INVINC": 0.85,
             "ITEM_GUARD": 2
         }
-    },{
+    },
+    {
         "customItem": "dlctweaks-old-geta-scale",
         "order": 12,
         "name": {
@@ -73,7 +74,8 @@
             "name": null
         },
         "isScalable": true
-    },{
+    },
+    {
         "customItem": "dlctweaks-daikon-scale",
         "name": {
             "en_US": "Daikon+"
@@ -108,7 +110,8 @@
         "noTrack": true,
         "isScalable": true,
         "noCount": false
-    },{
+    },
+    {
         "customItem": "dlctweaks-excalibro-scale",
         "order": 12,
         "name": {
