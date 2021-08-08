@@ -128,29 +128,7 @@ sc.STATS_BUILD[sc.STATS_CATEGORY.EXPLORATION].chestAres.getSettings = area => {
 sc.MapChestDisplay.inject({
     update() {
         this.parent()
-        switch(sc.map.currentArea.path){
-            case "rhombus-sqr":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["post-game"] ? 7 : 0))
-                break;
-            case "bergen":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["post-game"] ? 1 : 0))
-                break;
-            case "heat-area":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["scorpion-robo"] ? 1 : 0))
-                break;
-            // preparing for the future
-            /*case "bergen-trail":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["snowman-tank"] ? 1 : 0))
-                break;
-            case "autumn-fall":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["flying-hedgehag"] ? 1 : 0))
-                break;
-            case "jungle":
-                this.max.setNumber(this._oldMax + (ig.extensions.enabled["fish-gear"] ? 1 : 0))
-                break;
-            */
-        }
-        // not fully sure why this is needed, but without it, it displays a wrong count
+        this.max.setNumber(this._oldMax + getExtraChests(sc.map.currentArea.path))
         this.current.setNumber(this._oldCount)
     }
 })
