@@ -17,7 +17,8 @@ sc.EnemyBooster.inject({
         this.parent(b)
         if(!this.ignoreAscended){
             if (this.boostedAscended && (b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTABLE || b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTED)) {
-                b.setLevelOverride(!sc.newgame.get("scale-enemies") ? sc.model.player.level : sc.model.player.getParamAvgLevel(10))
+                let ascendedLevel = (sc.model.player.level >= (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL)) ? sc.model.player.level : (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL);
+                b.setLevelOverride(sc.newgame.get("scale-enemies") ? sc.model.player.getParamAvgLevel(10) : ascendedLevel)
                 b.boosterState = sc.ENEMY_BOOSTER_STATE.BOOSTED;
             } else {
                 b.boosterState = sc.ENEMY_BOOSTER_STATE.BOOSTABLE;
