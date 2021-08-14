@@ -1,0 +1,150 @@
+[
+    {
+        "order": 12,
+        "customItem": "dlctweaks-lead-boots-scale",
+        "name": {
+            "en_US": "Tungsten Boots"
+        },
+        "description": {
+            "en_US": "Very heavy boots that can surprisingly be walked in. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 58,
+        "icon": "item-shoe",
+        "noTrack": true,
+        "isScalable": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "equipType": "FEET",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 666,
+            "attack": 6,
+            "defense": 56,
+            "focus": 31
+        },
+        "properties": {
+            "SP_REGEN": 1.15,
+            "DASH_INVINC": 0.85,
+            "ITEM_GUARD": 2
+        }
+    },
+    {
+        "customItem": "dlctweaks-old-geta-scale",
+        "order": 12,
+        "name": {
+            "en_US": "New Geta"
+        },
+        "description": {
+            "en_US": "Repaired clogs with an even higher elevated wood base. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 62,
+        "icon": "item-shoe",
+        "equipType": "FEET",
+        "noTrack": true,
+        "params": {
+            "elemFactor": [
+                1,
+                1.1,
+                1,
+                1
+            ],
+            "hp": 900,
+            "attack": 2,
+            "defense": 45,
+            "focus": 50
+        },
+        "properties": {
+            "SPIDER_SLOW_DOWN_GUARD": 2
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "dlctweaks-daikon-scale",
+        "name": {
+            "en_US": "Daikon+"
+        },
+        "description": {
+            "en_US": "Because some people refuse to move on from the best possible weapon. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2910,
+        "level": 13,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 69,
+            "attack": 11
+        },
+        "properties": {
+            "HP_REGEN": 1.15
+        },
+        "order": 12,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": true,
+        "isScalable": true,
+        "noCount": false
+    },
+    {
+        "customItem": "dlctweaks-excalibro-scale",
+        "order": 12,
+        "name": {
+            "en_US": "Excalibruh"
+        },
+        "description": {
+            "en_US": "An improved mass-market knockoff. It absolutely assures victory now! \\c[1]Although...\\c[0] \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 47,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 1
+        },
+        "properties": {
+            "MONEY_PLUS": 0.5,
+            "DROP_CHANCE": 0.5,
+            "XP_ZERO": 2
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
+    }
+]

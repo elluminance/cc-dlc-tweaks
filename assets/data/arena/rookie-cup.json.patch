@@ -1,0 +1,17 @@
+[{
+  "type": "ENTER",
+  "index": "core"
+},{
+  "type": "INIT_KEY",
+  "index": "mods",
+  "content": []
+},{
+  "type": "ENTER",
+  "index": "mods"
+},{
+  "type": "ADD_ARRAY_ELEMENT",
+  "index": "mods",
+  "content": "WEAPON_ADJUST"
+},{
+  "type": "EXIT"
+}]
