@@ -7,6 +7,6 @@ import "./js/action-step.js"
 sc.Arena.inject({
     init(){
         this.parent()
-        this.registerCup('dlctweaks-sidwell',".\/assets\/data\/arena\/");
+        this.registerCup('sidwell',".\/assets\/data\/arena\/");
     }
 })

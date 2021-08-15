@@ -13,3 +13,17 @@ ig.ACTION_STEP.EL_SET_TARGET = ig.ActionStepBase.extend({
         a.setTarget(ig.game.getEntityByName(this.name) ?? null)
     }
 })
+
+ig.ACTION_STEP.EL_SET_TARGET_POS = ig.ActionStepBase.extend({
+    newPos: null,
+    init(a) {
+        this.newPos = a.newPos
+    },
+    start(a) {
+        let target = a.getTarget(),
+            b = ig.Action.getVec3(this.newPos, target, Vec3.createC(0, 0, 0)),
+            c = target.coll;
+
+        target.setPos(b.x - c.size.x / 2, b.y - c.size.y / 2, b.z);
+    }
+})
