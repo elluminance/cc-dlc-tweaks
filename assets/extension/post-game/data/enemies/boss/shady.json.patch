@@ -1,0 +1,33 @@
+[{
+    "type": "ENTER",
+    "index": ["states", "DEFAULT", "choices", 4, "req", 0]
+},{
+    "type": "SET_KEY",
+    "index": "condition",
+    "content": "party.alive.Glasses || tmp.sidwell-arena"
+},{
+    "type": "EXIT",
+    "count": 6
+},{
+    "type": "ENTER",
+    "index": ["actions","Interogation"]
+},{
+    "type": "REMOVE_ARRAY_ELEMENT",
+    "index": 2
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 2,
+    "content": {
+        "type": "IF",
+        "withElse": true,
+        "condition": "!tmp.sidwell-arena",
+        "thenStep": [{
+            "member": "Glasses",
+            "type": "SET_TARGET_TO_PARTYMEMBER"
+        }],
+        "elseStep": [{
+            "enemy": "bossSidwell",
+            "type": "SET_ENEMY_TARGET"
+        }]
+    }
+}]
