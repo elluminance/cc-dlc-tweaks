@@ -21,10 +21,12 @@
         "type": "IF",
         "withElse": true,
         "condition": "!tmp.sidwell-arena",
-        "thenStep": [{
-            "member": "Glasses",
-            "type": "SET_TARGET_TO_PARTYMEMBER"
-        }],
+        "thenStep": [
+            {
+                "member": "Glasses",
+                "type": "SET_TARGET_TO_PARTYMEMBER"
+            }
+        ],
         "elseStep": [
             {
                 "name": "fakeCtron",
@@ -97,6 +99,58 @@
                     "y": 0,
                     "level": "1"
                 }
+            }
+        ]
+    }
+},{
+    "type": "EXIT",
+    "count": 1
+},{
+    "type": "ENTER",
+    "index": ["BoostDefense"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 0,
+    "content": {
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "kind": "NAMED_ENTITY",
+                "key": "fakeCtron",
+                "type": "SET_TEMP_TARGET"
+            },
+            {
+                "duration": 0.1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": true,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "hideQuicker"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },{
+                "type": "EL_SET_TARGET_POS",
+                "newPos": {
+                    "x": 0,
+                    "y": 0,
+                    "level": "1"
+                }
+            },
+            {
+                "type": "CLEAR_TEMP_TARGET"
             }
         ]
     }

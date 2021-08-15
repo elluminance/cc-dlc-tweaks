@@ -89,7 +89,47 @@
                 "type": "WAIT",
                 "time": 0.1
             }
+        ],
+        "Disappear": [
+            {
+                "duration": 0.1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": true,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "SELF",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "hideQuicker"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },{
+                "type": "SET_POS",
+                "newPos": {
+                    "x": 0,
+                    "y": 0,
+                    "level": "1"
+                }
+            }
         ]
+    },
+    "reactions": {
+        "CLEAR": {
+            "action": "Disappear",
+            "eventType": {
+                "key": "CLONE_CLEAR",
+                "type": "ENEMY_MSG"
+            },
+            "type": "ENEMY_EVENT"
+        }
     },
     "meta": {
         "species": {
