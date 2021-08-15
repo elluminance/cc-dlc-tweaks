@@ -26,8 +26,8 @@
             "type": "SET_TARGET_TO_PARTYMEMBER"
         }],
         "elseStep": [{
-            "enemy": "bossSidwell",
-            "type": "SET_ENEMY_TARGET"
+            "name": "fakeCtron",
+            "type": "EL_SET_TARGET"
         }]
     }
 }]

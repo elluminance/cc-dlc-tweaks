@@ -33,7 +33,7 @@
     "rounds":[
         {
             "name": {
-                "en_US": "Interogation: Redux",
+                "en_US": "Interrogation: Redux",
                 "langUid": 7
             },
             "customCode": true,
@@ -51,13 +51,8 @@
             "bonuses": [
                 {
                     "type": "TIME",
-                    "seconds": 80,
+                    "seconds": 420,
                     "points": 25000
-                },
-                {
-                    "type": "EFFECTIVE_DAMAGE",
-                    "target": 10000,
-                    "points": 5000
                 }
             ],
             "spawn": "PLAYER_SPAWN"

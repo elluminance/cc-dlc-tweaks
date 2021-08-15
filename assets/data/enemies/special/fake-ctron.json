@@ -1,0 +1,101 @@
+{
+    "level": 0,
+    "credit": 0,
+    "exp": 0,
+    "maxSp": 8,
+    "enduranceScale": 1,
+    "healDropRate": 0,
+    "boss": false,
+    "bossOrder": 0,
+    "padding": {
+        "x": 0,
+        "y": 0
+    },
+    "material": "METAL",
+    "aiGroup": "",
+    "aiLearnType": "IMMEDIATELY",
+    "targetDetect": null,
+    "hpBreaks": [],
+    "size": {
+        "x": 16,
+        "y": 16,
+        "z": 24
+    },
+    "trackers": {},
+    "anims": "npc.glasses",
+    "collType": "IGNORE",
+    "aggression": "PEACEFUL",
+    "weight": 100,
+    "maxVel": 180,
+    "jumpingEnabled": true,
+    "shadow": 16,    
+    "DOCTYPE": "ENEMY",
+    "walkConfigs": {
+        "battle": {
+            "idle": "aim",
+            "move": "aimMove",
+            "moveRev": "aimMoveRev",
+            "run": "run",
+            "jump": "jump",
+            "fall": "fall",
+            "damage": "damage"
+        },
+        "interogate": {
+            "idle": "interogate",
+            "damage": "interogateDmg"
+        }
+    },
+    "walkAnims": "normal",
+    "defaultState": "DEFAULT",
+    "states": {
+        "DEFAULT": {
+            "appearAction": "Appear",
+            "choices": [
+                {
+                    "action": "Idle"
+                }
+            ]
+        }
+    },
+    "actions": {
+        "Appear": [
+            {
+                "duration": 0,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "npc",
+                    "name": "appear"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "type": "WAIT",
+                "time": 0.05
+            }
+        ],
+        "Idle": [
+            {
+                "type": "WAIT",
+                "time": 0.1
+            }
+        ]
+    },
+    "meta": {
+        "species": {
+            "en_US": "Copy of a Copy of a Copy"
+        },
+        "category": "PLAYERS",
+        "descriptions": []
+    }
+}
