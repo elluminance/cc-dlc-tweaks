@@ -25,7 +25,7 @@
     "anims": "npc.glasses",
     "collType": "IGNORE",
     "aggression": "PEACEFUL",
-    "weight": 100,
+    "weight": 400,
     "maxVel": 180,
     "jumpingEnabled": true,
     "shadow": 16,    

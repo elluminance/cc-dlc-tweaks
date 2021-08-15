@@ -62,4 +62,42 @@
             }
         ]
     }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 78,
+    "content": {
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "duration": 0.1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": true,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "hideQuicker"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },{
+                "type": "EL_SET_TARGET_POS",
+                "newPos": {
+                    "x": 0,
+                    "y": 0,
+                    "level": "1"
+                }
+            }
+        ]
+    }
 }]
