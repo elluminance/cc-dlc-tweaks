@@ -19,9 +19,9 @@
             "WEAPON_ADJUST"
         ],
         "condition": "plot.completedPostGame",
-        "difficulty": "4",
+        "difficulty": "5",
         "noRush": true,
-        "level": 90,
+        "level": 75,
         "banner": {
             "src": "media\/gui\/sidwell-arena-banner.png",
             "offX": 0,
