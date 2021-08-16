@@ -12,6 +12,15 @@
     "content": "dlctweaks-ascended-booster"
 },{
     "type":"EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": ["pet", "items"]
+},{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/pet-items.json"
+},{
+    "type": "EXIT",
     "count": 3
 },
 
@@ -76,4 +85,30 @@
 },{
     "type": "EXIT",
     "count": 1
+},
+
+{
+    "type": "INIT_KEY",
+    "index": "playerSkins",
+    "content": {}
+},{
+    "type": "ENTER",
+    "index": "playerSkins"
+},{
+    "type": "SET_KEY",
+    "index": "el-spinwell",
+    "content": {
+        "id": "el-spinwell",
+        "item": "el-pet-spinwell",
+        "autoAdd": false,
+        "type": "Pet",
+        "settings": {
+            "animSheet": "pets.spinwell",
+            "walkAnims": {
+                "idle": "idle"
+            }
+        }
+    }
+},{
+    "type": "EXIT"
 }]

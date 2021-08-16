@@ -1,0 +1,22 @@
+[
+    {
+        "order": 20,
+        "customItem": "el-pet-spinwell",
+        "name": {
+            "en_US": "Sidwell...?"
+        },
+        "description": {
+            "en_US": "Asserts dominance over all who are inferior."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+]
