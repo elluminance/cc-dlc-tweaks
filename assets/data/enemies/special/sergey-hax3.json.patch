@@ -1,0 +1,26 @@
+[{
+    "type": "ENTER",
+    "index": ["proxies", "playerHack", "action"]
+},{
+    "type": "REMOVE_ARRAY_ELEMENT",
+    "index": 1
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 1,
+    "content": {
+        "type": "IF",
+        "condition": "!tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [{
+            "offsetX": 0,
+            "offsetY": 0,
+            "speed": "NORMAL",
+            "transition": "EASE_IN_OUT",
+            "wait": false,
+            "waitSkip": 0,
+            "zoom": 1,
+            "focusType": "SELF",
+            "type": "FOCUS_CAMERA"
+        }]
+    }
+}]
