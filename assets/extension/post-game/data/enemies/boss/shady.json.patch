@@ -31,10 +31,25 @@
             {
                 "name": "fakeCtron",
                 "type": "EL_SET_TARGET"
-            },{
+            },
+            {
                 "type": "SET_TARGET_WALK_ANIMS",
                 "config": "battle"
-            },{
+            },
+            {
+                "type": "EL_SET_TARGET_POS",
+                "random": true,
+                "newPos": {
+                    "x": 552,
+                    "y": 500,
+                    "level": "1"
+                },
+                "randRange": {
+                    "x": 40,
+                    "y": 20
+                }
+            },
+            {
                 "duration": 0,
                 "align": "BOTTOM",
                 "rotateFace": 2,
@@ -55,21 +70,10 @@
                     "z": 0
                 }
             },
+            
             {
-                "type": "EL_SET_TARGET_POS",
-                "random": true,
-                "newPos": {
-                    "x": 544,
-                    "y": 460,
-                    "level": "1"
-                },
-                "randRange": {
-                    "x": 40,
-                    "y": 20
-                }
-            },{
                 "type": "WAIT",
-                "time": 0.25
+                "time": 0.2
             }
         ]
     }
