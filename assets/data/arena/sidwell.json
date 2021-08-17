@@ -2,16 +2,13 @@
     "core":{
         "type": "TEAM_CUSTOM",
         "name": {
-            "en_US": "Vs Sidwell",
-            "langUid": 1
+            "en_US": "Vs Sidwell"
         },
         "info": {
-            "en_US": "The one and only.",
-            "langUid": 2
+            "en_US": "The one and only."
         },
         "creator": {
-            "en_US": "??????",
-            "langUid": 3
+            "en_US": "??????"
         },
         "music": "challenge",
         "rushMusic": "bossRush",
