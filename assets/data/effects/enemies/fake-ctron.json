@@ -1,0 +1,72 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": [
+            {
+                "name": "SHACKLES",
+                "sheet": {
+                    "src": "media\/entity\/effects\/fakeCtronShackles.png",
+                    "offX": 0,
+                    "offY": 0,
+                    "width": 32,
+                    "height": 40
+                },
+                "guiSprites": true,
+                "renderMode": "source-over",
+                "time": 0.05,
+                "repeat": true,
+                "frames": [0],
+                "framesGfxOffset": [0]
+            }
+        ]
+    },
+    "EFFECTS": {
+        "shackles": [
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "numParticles": 1,
+                "duration": 0,
+                "centralAngle": 0,
+                "startDist": 0,
+                "random": true,
+                "alongZ": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "moveDist": 0,
+                "keySpline": "EASE_IN_OUT",
+                "normalMoveDist": 0,
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 1,
+                        "time": 1,
+                        "spline": ""
+                    },
+                    "end": {
+                        "value": 1,
+                        "time": 1,
+                        "spline": ""
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": 1,
+                "anim": "SHACKLES",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "type": "WAIT",
+                "time": 1
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}

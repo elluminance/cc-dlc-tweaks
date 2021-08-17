@@ -116,6 +116,38 @@
         ]
     }
 },{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 63,
+    "content":{
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "group": "shackles",
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "enemies.fake-ctron",
+                    "name": "shackles"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": -16,
+                    "z": 0
+                }
+            }
+        ]
+    }
+},{
     "type": "EXIT",
     "count": 1
 },{
