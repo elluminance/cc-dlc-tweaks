@@ -15,10 +15,19 @@
     "count": 2
 },{
     "type": "ENTER",
+    "index": ["aura", "items"]
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "el-effect-shady"
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
     "index": ["pet", "items"]
 },{
-    "type": "IMPORT",
-    "src": "mod:/patches/database/pet-items.json"
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": "el-pet-spinwell"
 },{
     "type": "EXIT",
     "count": 3
@@ -107,6 +116,18 @@
             "walkAnims": {
                 "idle": "idle"
             }
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "el-shady-aura",
+    "content": {
+        "id": "el-shady-aura",
+        "item": "el-effect-shady",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.shady-aura"
         }
     }
 },{
