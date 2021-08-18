@@ -1,0 +1,129 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": []
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "alpha": 1,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "scaleX": 0,
+                "scaleY": 0,
+                "duration": 0,
+                "type": "CHANGE_SCALE"
+            },
+            {
+                "scaleX": 1,
+                "scaleY": 1,
+                "duration": 0.5,
+                "spline": "JUMPY",
+                "type": "CHANGE_SCALE"
+            },
+            {
+                "numParticles": 12,
+                "duration": 0.2,
+                "centralAngle": 1,
+                "startDist": 4,
+                "random": true,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 12
+                },
+                "moveDist": 12,
+                "moveVariance": 8,
+                "moveDuration": 0.01,
+                "keySpline": "EASE_OUT",
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "randFlip": true,
+                "anim": "CYBER_DOT3",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "color": "black",
+                "alpha": 1,
+                "fadeIn": 0,
+                "fadeOut": 0.4,
+                "duration": -1,
+                "noLighter": true,
+                "type": "FADE_COLOR"
+            },
+            {
+                "color": "#ff00aa",
+                "alpha": 1,
+                "duration": 0.5,
+                "keepDuration": 0,
+                "noLighter": false,
+                "type": "FLASH_COLOR"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "color": "#00ccff",
+                "maxAlpha": 1,
+                "minAlpha": 0.8,
+                "blinkDuration": 0.4,
+                "blinkCount": -1,
+                "noLighter": false,
+                "type": "BLINK_COLOR"
+            },
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "color": "#ff0088",
+                "offset": {
+                    "x": 0,
+                    "y": -3,
+                    "z": -3
+                },
+                "noLighter": true,
+                "pAlpha": {
+                    "init": 0.5,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1.6,
+                            "y": 1.2
+                        },
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": 0.25,
+                "cancelable": true,
+                "type": "COPY_SPRITE"
+            },
+            {
+                "time": 0.05,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}

@@ -12,6 +12,24 @@
     "content": "dlctweaks-ascended-booster"
 },{
     "type":"EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": ["aura", "items"]
+},{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": "el-effect-shady"
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": ["pet", "items"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": "el-pet-spinwell"
+},{
+    "type": "EXIT",
     "count": 3
 },
 
@@ -76,4 +94,42 @@
 },{
     "type": "EXIT",
     "count": 1
+},
+
+{
+    "type": "INIT_KEY",
+    "index": "playerSkins",
+    "content": {}
+},{
+    "type": "ENTER",
+    "index": "playerSkins"
+},{
+    "type": "SET_KEY",
+    "index": "el-spinwell",
+    "content": {
+        "id": "el-spinwell",
+        "item": "el-pet-spinwell",
+        "autoAdd": false,
+        "type": "Pet",
+        "settings": {
+            "animSheet": "pets.spinwell",
+            "walkAnims": {
+                "idle": "idle"
+            }
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "el-shady-aura",
+    "content": {
+        "id": "el-shady-aura",
+        "item": "el-effect-shady",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.shady-aura"
+        }
+    }
+},{
+    "type": "EXIT"
 }]

@@ -1,0 +1,202 @@
+[{
+    "type": "ENTER",
+    "index": ["states", "DEFAULT", "choices", 4, "req", 0]
+},{
+    "type": "SET_KEY",
+    "index": "condition",
+    "content": "party.alive.Glasses || tmp.sidwell-arena"
+},{
+    "type": "EXIT",
+    "count": 6
+},{
+    "type": "ENTER",
+    "index": ["actions","Interogation"]
+},{
+    "type": "REMOVE_ARRAY_ELEMENT",
+    "index": 2
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 2,
+    "content": {
+        "type": "IF",
+        "withElse": true,
+        "condition": "!tmp.sidwell-arena",
+        "thenStep": [
+            {
+                "member": "Glasses",
+                "type": "SET_TARGET_TO_PARTYMEMBER"
+            }
+        ],
+        "elseStep": [
+            {
+                "name": "fakeCtron",
+                "type": "EL_SET_TARGET"
+            },
+            {
+                "type": "SET_TARGET_WALK_ANIMS",
+                "config": "battle"
+            },
+            {
+                "type": "EL_SET_TARGET_POS",
+                "random": true,
+                "newPos": {
+                    "x": 552,
+                    "y": 500,
+                    "level": "1"
+                },
+                "randRange": {
+                    "x": 40,
+                    "y": 20
+                }
+            },
+            {
+                "duration": 0,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "showQuickerSnd"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            
+            {
+                "type": "WAIT",
+                "time": 0.2
+            }
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 78,
+    "content": {
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "duration": 0.1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": true,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "hideQuicker"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },{
+                "type": "EL_SET_TARGET_POS",
+                "newPos": {
+                    "x": 0,
+                    "y": 0,
+                    "level": "1"
+                }
+            }
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 63,
+    "content":{
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "group": "shackles",
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "enemies.fake-ctron",
+                    "name": "shackles"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": -16,
+                    "z": 0
+                }
+            }
+        ]
+    }
+},{
+    "type": "EXIT",
+    "count": 1
+},{
+    "type": "ENTER",
+    "index": ["BoostDefense"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 0,
+    "content": {
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "withElse": false,
+        "thenStep": [
+            {
+                "kind": "NAMED_ENTITY",
+                "key": "fakeCtron",
+                "type": "SET_TEMP_TARGET"
+            },
+            {
+                "duration": 0.1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": true,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "teleport",
+                    "name": "hideQuicker"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },{
+                "type": "EL_SET_TARGET_POS",
+                "newPos": {
+                    "x": 0,
+                    "y": 0,
+                    "level": "1"
+                }
+            },
+            {
+                "type": "CLEAR_TEMP_TARGET"
+            }
+        ]
+    }
+}]
