@@ -1,0 +1,5 @@
+[{
+    "type": "SET_KEY",
+    "index": "ignoreTaunts",
+    "content": true
+}]
