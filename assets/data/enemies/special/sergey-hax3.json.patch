@@ -1,4 +1,8 @@
 [{
+    "type": "SET_KEY",
+    "index": "ignoreTaunts",
+    "content": true
+},{
     "type": "ENTER",
     "index": ["proxies", "playerHack", "action"]
 },{
