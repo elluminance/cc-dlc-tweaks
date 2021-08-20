@@ -9,6 +9,6 @@ import "./js/sidwell-workaround.js"
 sc.Arena.inject({
     init(){
         this.parent()
-        this.registerCup('sidwell', {order: 100});
+        this.registerCup('sidwell', {order: 100, id: "sidwell"});
     }
 })
