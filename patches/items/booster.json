@@ -226,7 +226,7 @@
             "en_US": "\\c[2]The ultimate booster.\\c[0] Empowers enemies to \\c[3]scale to your level\\c[0] everywhere!"
         },
         "type": "TOGGLE",
-        "rarity": 0,
+        "rarity": 6,
         "cost": 1000,
         "level": 1,
         "icon": "item-toggle",

@@ -7,6 +7,11 @@
  * this workaround is dirty, and i know it. but it was honestly just the easiest way
  */
 sc.Arena.inject({
+    init(){
+        this.parent()
+        this.registerCup('sidwell', {order: 100, id: "sidwell"});
+    },
+
     onPreDamageApply(a, b, c, d, e) {
         if(this.active && ig.vars.get("tmp.sidwell-arena")){
             if (this.active && !(c == sc.SHIELD_RESULT.PERFECT || d.getCombatantRoot().party != sc.COMBATANT_PARTY.PLAYER || this.isEnemyBlocked(a))) {
