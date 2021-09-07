@@ -15,6 +15,7 @@ sc.EnemyBooster.inject({
 
     updateEnemyBoostState(b){
         this.parent(b)
+        if(b.boosterState == sc.ENEMY_BOOSTER_STATE.NONE) return;
         if(!this.ignoreAscended){
             if (this.boostedAscended && (b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTABLE || b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTED)) {
                 let ascendedLevel = (sc.model.player.level >= (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL)) ? sc.model.player.level : (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL);
