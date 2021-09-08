@@ -10,7 +10,7 @@ ig.ACTION_STEP.EL_SET_TARGET = ig.ActionStepBase.extend({
         this.name = a.name
     },
     start: function(a) {
-        a.setTarget(ig.game.getEntityByName(this.name) ?? null)
+        a.setTarget(ig.game.getEntityByName(this.name) || null)
     }
 })
 
@@ -20,8 +20,8 @@ ig.ACTION_STEP.EL_SET_TARGET_POS = ig.ActionStepBase.extend({
     randRange: null,
     init(a) {
         this.newPos = a.newPos
-        this.random = a.random ?? false
-        this.randRange = a.randRange ?? {x: 0, y: 0}
+        this.random = a.random || false
+        this.randRange = a.randRange || {x: 0, y: 0}
     },
     start(a) {
         let pos = this.newPos;

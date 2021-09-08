@@ -1,7 +1,7 @@
 sc.SaveSlotButton.inject({
     setSave(a, b, c) {
         this.parent(a, b, c);
-        this.chapter.showPostgameStar(a?.vars?.storage?.plot?.completedPostGame, a?.vars?.storage?.plot?.metaSpace);
+        this.chapter.showPostgameStar(a.vars.storage.plot.completedPostGame, a.vars.storage.plot.metaSpace);
     }
 })
 
