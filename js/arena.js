@@ -13,7 +13,7 @@ sc.Arena.inject({
     },
 
     onPreDamageApply(a, b, c, d, e) {
-        if(this.active && ig.vars.get("tmp.sidwell-arena")){
+        if(ig.vars.get("tmp.sidwell-arena")){
             if (this.active && !(c == sc.SHIELD_RESULT.PERFECT || d.getCombatantRoot().party != sc.COMBATANT_PARTY.PLAYER || this.isEnemyBlocked(a))) {
                 c = 1;
                 if (d.params.buffs.length > 0)
@@ -34,3 +34,22 @@ sc.Arena.inject({
         } else this.parent(a, b, c, d, e)
     }
 })
+
+sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
+    _type: "EMPTY",
+    order: 1E5,
+    displayRangePoints: true,
+
+    init: function(a, b) {
+        b._maxHits = a.value;
+    },
+    check: function(a) {
+        return ig.vars.get("tmp.ctronHits") <= a._maxHits;
+    },
+    getText(a, b, c) {
+        return a.replace("[!]", !c ? b.value : `${ig.vars.get("tmp.ctronHits") || 0}\\i[slash-highlight]${b._maxHits}`)
+    },
+    getPoints(a, b) {
+        return (1 - ((ig.vars.get("tmp.ctronHits") || 0) / a._maxHits)).limit(0, 1) * b
+    }
+}

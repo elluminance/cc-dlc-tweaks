@@ -50,6 +50,10 @@
     "states": {
         "DEFAULT": {
             "appearAction": "Appear",
+            "enabledReactions": [
+                "ON_HIT",
+                "CLEAR"
+            ],
             "choices": [
                 {
                     "action": "Idle"
@@ -115,10 +119,34 @@
                 "type": "SET_POS",
                 "newPos": {
                     "x": 0,
-                    "y": 0,
-                    "level": "1"
+                    "y": 0
                 }
             }
+        ],
+        "UpdateHitCounter": [
+            {
+                "type": "IF",
+                "condition": "",
+                "thenStep": [
+                    {
+                        "type": "CHANGE_VAR_NUMBER",
+                        "varName": "tmp.ctronHits",
+                        "changeType": "add",
+                        "value": 1
+                    },{
+                        "text": {
+                            "en_US": "\\v[tmp.ctronHits]"
+                        },
+                        "mode": "NO_LINE",
+                        "color": "RED",
+                        "actionDetached": true,
+                        "hideOutsideOfScreen": false,
+                        "type": "SHOW_AR_MSG",
+                        "time": 1
+                    }
+                ]
+            }
+            
         ]
     },
     "reactions": {
@@ -129,6 +157,11 @@
                 "type": "ENEMY_MSG"
             },
             "type": "ENEMY_EVENT"
+        },
+
+        "ON_HIT": {
+            "action": "UpdateHitCounter",
+            "type": "HIT_REACTION"
         }
     },
     "meta": {
