@@ -1,0 +1,408 @@
+{
+    "el-story-11": {
+        "track": true,
+        "name": {
+            "en_US": "Chapter 11 Complete",
+            "de_DE": "Kapitel 11 vollst\u00e4ndig",
+            "zh_CN": "\u5b8c\u6210\u7b2c11\u7ae0",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc11\u30af\u30ea\u30a2",
+            "ko_KR": "\ucc55\ud130 11 \uc644\ub8cc",
+            "langUid": 16007,
+            "zh_TW": "\u5b8c\u6210\u7b2c11\u7ae0"
+        },
+        "nameCond": "trophies.triggered.el-story-11",
+        "description": {
+            "en_US": "Completed Chapter 11.",
+            "de_DE": "Kapitel 10 abgeschlossen.",
+            "zh_CN": "\u5df2\u5b8c\u6210\u7b2c10\u7ae0\u3002",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc10\u3092\u30af\u30ea\u30a2\u3059\u308b\u3002",
+            "ko_KR": "\ucc55\ud130 10\uc744 \uc644\ub8cc\ud588\uc2b5\ub2c8\ub2e4.",
+            "langUid": 16008,
+            "zh_TW": "\u5df2\u5b8c\u6210\u7b2c10\u7ae0\u3002"
+        },
+        "descCond": "trophies.triggered.el-story-11",
+        "order": 1006,
+        "icon": "STORY_DLC",
+        "stars": "5",
+        "points": 10,
+        "condition": "plot.line >= 400000 && false",
+        "progType": "CONDITION",
+        "section": "PROGRESS",
+        "category": "GENERAL",
+        "stats": []
+    },
+    "el-story-12": {
+        "track": true,
+        "name": {
+            "en_US": "Chapter 12 Complete",
+            "de_DE": "Kapitel 12 vollst\u00e4ndig",
+            "zh_CN": "\u5b8c\u6210\u7b2c12\u7ae0",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc12\u30af\u30ea\u30a2",
+            "ko_KR": "\ucc55\ud130 12 \uc644\ub8cc",
+            "langUid": 16007,
+            "zh_TW": "\u5b8c\u6210\u7b2c12\u7ae0"
+        },
+        "nameCond": "trophies.triggered.el-story-12",
+        "description": {
+            "en_US": "Completed Chapter 12.",
+            "de_DE": "Kapitel 12 abgeschlossen.",
+            "zh_CN": "\u5df2\u5b8c\u6210\u7b2c12\u7ae0\u3002",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc12\u3092\u30af\u30ea\u30a2\u3059\u308b\u3002",
+            "ko_KR": "\ucc55\ud130 12\uc744 \uc644\ub8cc\ud588\uc2b5\ub2c8\ub2e4.",
+            "zh_TW": "\u5df2\u5b8c\u6210\u7b2c12\u7ae0\u3002"
+        },
+        "descCond": "trophies.triggered.el-story-12",
+        "order": 1006,
+        "icon": "STORY_DLC",
+        "stars": "5",
+        "points": 10,
+        "condition": "plot.line >= 400000 && false",
+        "progType": "CONDITION",
+        "section": "PROGRESS",
+        "category": "GENERAL",
+        "stats": []
+    },
+    "el-story-13": {
+        "track": true,
+        "name": {
+            "en_US": "Chapter 13 Complete",
+            "de_DE": "Kapitel 13 vollst\u00e4ndig",
+            "zh_CN": "\u5b8c\u6210\u7b2c13\u7ae0",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc13\u30af\u30ea\u30a2",
+            "ko_KR": "\ucc55\ud130 13 \uc644\ub8cc",
+            "langUid": 16007,
+            "zh_TW": "\u5b8c\u6210\u7b2c13\u7ae0"
+        },
+        "nameCond": "trophies.triggered.el-story-13",
+        "description": {
+            "en_US": "Completed Chapter 13.",
+            "de_DE": "Kapitel 13 abgeschlossen.",
+            "zh_CN": "\u5df2\u5b8c\u6210\u7b2c13\u7ae0\u3002",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc13\u3092\u30af\u30ea\u30a2\u3059\u308b\u3002",
+            "ko_KR": "\ucc55\ud130 13\uc744 \uc644\ub8cc\ud588\uc2b5\ub2c8\ub2e4.",
+            "zh_TW": "\u5df2\u5b8c\u6210\u7b2c13\u7ae0\u3002"
+        },
+        "descCond": "trophies.triggered.el-story-13",
+        "order": 1006,
+        "icon": "STORY_DLC",
+        "stars": "5",
+        "points": 10,
+        "condition": "plot.line >= 400000 && false",
+        "progType": "CONDITION",
+        "section": "PROGRESS",
+        "category": "GENERAL",
+        "stats": []
+    },
+    "el-story-14": {
+        "track": true,
+        "name": {
+            "en_US": "Chapter 14 Complete",
+            "de_DE": "Kapitel 14 vollst\u00e4ndig",
+            "zh_CN": "\u5b8c\u6210\u7b2c14\u7ae0",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc14\u30af\u30ea\u30a2",
+            "ko_KR": "\ucc55\ud130 14 \uc644\ub8cc",
+            "zh_TW": "\u5b8c\u6210\u7b2c14\u7ae0"
+        },
+        "nameCond": "trophies.triggered.el-story-14",
+        "description": {
+            "en_US": "Completed Chapter 14.",
+            "de_DE": "Kapitel 14 abgeschlossen.",
+            "zh_CN": "\u5df2\u5b8c\u6210\u7b2c14\u7ae0\u3002",
+            "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc14\u3092\u30af\u30ea\u30a2\u3059\u308b\u3002",
+            "ko_KR": "\ucc55\ud130 14\uc744 \uc644\ub8cc\ud588\uc2b5\ub2c8\ub2e4.",
+            "zh_TW": "\u5df2\u5b8c\u6210\u7b2c14\u7ae0\u3002"
+        },
+        "descCond": "trophies.triggered.el-story-14",
+        "order": 1006,
+        "icon": "STORY_DLC",
+        "stars": "5",
+        "points": 20,
+        "condition": "plot.completedPostGame",
+        "progType": "CONDITION",
+        "section": "PROGRESS",
+        "category": "GENERAL",
+        "stats": []
+    },
+
+    "el-player-level-03": {
+        "track": true,
+        "name": {
+            "en_US": "Legendary Seeker",
+            "de_DE": "Legend\u00e4rer Seeker",
+            "zh_CN": "\u4f20\u5947\u63a2\u7d22\u8005<<A<<[CHANGED 2017\/10\/10]",
+            "ja_JP": "\u4f1d\u8aac\u306e\u63a2\u7d22\u8005<<A<<[CHANGED 2017\/11\/04]",
+            "ko_KR": "\uc804\uc124\uc801\uc778 \uc2dc\ucee4<<A<<[CHANGED 2017\/10\/17]",
+            "langUid": 13330,
+            "zh_TW": "\u50b3\u5947\u63a2\u7d22\u8005<<A<<[CHANGED 2017\/10\/10]"
+        },
+        "description": {
+            "en_US": "Reach \\c[3]Level 75\\c[0].",
+            "de_DE": "Erreiche \\c[3]Level 75\\c[0].",
+            "zh_CN": "\u8fbe\u5230\\c[3]75\u7ea7\\c[0]\u3002<<A<<[CHANGED 2017\/10\/10]",
+            "ja_JP": "\\c[3]\u30ec\u30d9\u30eb75\\c[0]\u306b\u9054\u3059\u308b\u3002<<A<<[CHANGED 2017\/11\/04]",
+            "ko_KR": "\\c[3]\ub808\ubca8 75\\c[0] \ub2ec\uc131.<<A<<[CHANGED 2017\/10\/17]",
+            "langUid": 13331,
+            "zh_TW": "\u9054\u5230\\c[3]75\u7d1a\\c[0]\u3002<<A<<[CHANGED 2017\/10\/10]"
+        },
+        "descCond": "trophies.triggered.player-level-02",
+        "order": 202,
+        "icon": "LEVEL",
+        "stars": "4",
+        "points": 100,
+        "progType": "VALUE",
+        "category": "GENERAL",
+        "stats": [{
+            "0": " ",
+            "key": "player",
+            "mapKey": "level",
+            "value": "75",
+            "compare": "min"
+        }],
+        "section": "PLAYER"
+    },
+
+    "el-kill-apollo-04": {
+        "track": true,
+        "name": {
+            "en_US": "Showdown at Rhombus Square"
+        },
+        "description": {
+            "en_US": "Win the \\c[3]fourth PvP Battle against Apollo\\c[0]. "
+        },
+        "descCond": "trophies.triggered.el-kill-apollo-04",
+        "order": 2003,
+        "icon": "BOSS_APOLLO_4",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killavatar.apollo-4",
+            "value": "1",
+            "compare": "min"
+        }]
+    },
+
+    "el-chests-evo-village": {
+        "track": true,
+        "name": {
+            "en_US": "Homestedt Scavenger"
+        },
+        "nameCond": "area.evo-village.unlocked",
+        "description": {
+            "en_US": "\\c[3]Find and open all Chests\\c[0] in \\v[area.evo-village.name]."
+        },
+        "descCond": "area.evo-village.unlocked",
+        "order": 109,
+        "icon": "CHESTS_EVO_VILLAGE",
+        "stars": "4",
+        "points": 125,
+        "progType": "VALUE",
+        "category": "EXPLORATION",
+        "stats": [
+            {
+                "0": " ",
+                "key": "chests",
+                "mapKey": "evo-village",
+                "compare": "min",
+                "value": {
+                    "varName": "area.evo-village.chests"
+                }
+            }
+        ],
+        "section": "CHESTS"
+    },
+    "el-chests-beach": {
+        "track": true,
+        "name": {
+            "en_US": "Azure Scavenger"
+        },
+        "nameCond": "area.beach.unlocked",
+        "description": {
+            "en_US": "\\c[3]Find and open all Chests\\c[0] in \\v[area.beach.name]."
+        },
+        "descCond": "area.beach.unlocked",
+        "order": 110,
+        "icon": "CHESTS_BEACH",
+        "stars": "4",
+        "points": 125,
+        "progType": "VALUE",
+        "category": "EXPLORATION",
+        "stats": [
+            {
+                "0": " ",
+                "key": "chests",
+                "mapKey": "beach",
+                "compare": "min",
+                "value": {
+                    "varName": "area.beach.chests"
+                }
+            }
+        ],
+        "section": "CHESTS"
+    },
+    "el-chests-final-dng": {
+        "track": true,
+        "name": {
+            "en_US": "Ku'lero Scavenger"
+        },
+        "nameCond": "area.final-dng.unlocked",
+        "description": {
+            "en_US": "\\c[3]Find and open all Chests\\c[0] in \\v[area.final-dng.name]."
+        },
+        "descCond": "area.final-dng.unlocked",
+        "order": 111,
+        "icon": "CHESTS_FINAL_DNG",
+        "stars": "4",
+        "points": 125,
+        "progType": "VALUE",
+        "category": "EXPLORATION",
+        "stats": [
+            {
+                "0": " ",
+                "key": "chests",
+                "mapKey": "final-dng",
+                "compare": "min",
+                "value": {
+                    "varName": "area.final-dng.chests"
+                }
+            }
+        ],
+        "section": "CHESTS"
+    },
+
+    "el-landmarks-dlc": {
+        "track": true,
+        "name": {
+            "en_US": "A New Home Landmarks"
+        },
+        "nameCond": "area.evo-village.unlocked && area.beach.unlocked && area.final-dng.unlocked",
+        "description": {
+            "en_US": "\\c[3]Find all Landmarks\\c[0] in Homestedt, Azure Archipelago, and Ku'lero Temple."
+        },
+        "descCond": "area.evo-village.unlocked && area.beach.unlocked && area.final-dng.unlocked",
+        "order": 106,
+        "icon": "LANDMARKS_DLC",
+        "stars": "3",
+        "points": 75,
+        "progType": "VALUE",
+        "category": "EXPLORATION",
+        "stats": [
+            {
+                "0": " ",
+                "key": "exploration",
+                "mapKey": "evo-village-landmarks",
+                "value": "1",
+                "compare": "min"
+            }, {
+                "0": " ",
+                "key": "exploration",
+                "mapKey": "beach-landmarks",
+                "value": "3",
+                "compare": "min"
+            }, {
+                "0": " ",
+                "key": "exploration",
+                "mapKey": "final-dng-landmarks",
+                "value": "1",
+                "compare": "min"
+            }
+        ],
+        "section": "AREAS"
+    },
+
+    "el-kill-boss-gods": {
+        "track": true,
+        "name": {
+            "en_US": "The Final Trial"
+        },
+        "description": {
+            "en_US": "\\c[3]Defeat \\v[combat.name.final\/god-neutral]\\c[0] in the \\v[area.final-dng.name]."
+        },
+        "descCond": "trophies.triggered.el-kill-boss-gods",
+        "order": 250,
+        "icon": "BOSS_GODS",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killfinal.god-neutral",
+            "value": "1",
+            "compare": "min"
+        }]
+    },
+    "el-kill-boss-sidwell": {
+        "track": true,
+        "name": {
+            "en_US": "The Interrogation"
+        },
+        "description": {
+            "en_US": "\\c[3]Defeat \\v[combat.name.boss\/shady]\\c[0] in \\v[area.arid.name]."
+        },
+        "descCond": "trophies.triggered.el-kill-boss-sidwell",
+        "order": 251,
+        "icon": "BOSS_SIDWELL",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killboss.shady",
+            "value": "1",
+            "compare": "min"
+        }]
+    },
+
+    "el-kill-special-panda": {
+        "track": true,
+        "name": {
+            "en_US": "An Upgraded Model"
+        },
+        "description": {
+            "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/panda-boss]\\c[0]."
+        },
+        "order": 3004,
+        "icon": "BOSS_MISC",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killminibosses.panda-boss",
+            "value": "1",
+            "compare": "min"
+        }]
+    },
+
+    "el-kill-robo-scorpion": {
+        "track": true,
+        "name": {
+            "en_US": "The Overclocked Menace"
+        },
+        "description": {
+            "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/scorpion-boss]\\c[0]."
+        },
+        "order": 3100,
+        "icon": "BOSS_MISC",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killminibosses.scorpion-boss",
+            "value": "1",
+            "compare": "min"
+        }]
+    }
+}

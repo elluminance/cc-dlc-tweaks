@@ -132,4 +132,14 @@
     }
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": "achievements"
+},{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/trophies.json"
+},{
+    "type": "EXIT"
 }]
