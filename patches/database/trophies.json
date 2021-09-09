@@ -411,9 +411,11 @@
         "name": {
             "en_US": "The Overclocked Menace"
         },
+        "nameCond": "item.434.amount >= 1",
         "description": {
             "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/scorpion-boss]\\c[0]."
         },
+        "descCond": "trophies.triggered.el-kill-robo-scorpion",
         "order": 3101,
         "icon": "BOSS_MISC",
         "stars": "3",
@@ -431,11 +433,13 @@
     "el-kill-king-hedgehag": {
         "track": false,
         "name": {
-            "en_US": "King of Kings"
+            "en_US": "When Hedgehags Fly"
         },
+        "nameCond": "item.434.amount >= 1",
         "description": {
             "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/hedgehag-king]\\c[0]."
         },
+        "descCond": "trophies.triggered.el-kill-king-hedgehag",
         "order": 3102,
         "icon": "BOSS_MISC",
         "stars": "3",
@@ -455,9 +459,11 @@
         "name": {
             "en_US": "[placeholder]"
         },
+        "nameCond": "item.434.amount >= 1",
         "description": {
             "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/snow-megatank]\\c[0]."
         },
+        "descCond": "trophies.triggered.el-kill-snow-megatank",
         "order": 3102,
         "icon": "BOSS_MISC",
         "stars": "3",
@@ -477,9 +483,11 @@
         "name": {
             "en_US": "[placeholder]"
         },
+        "nameCond": "item.434.amount >= 1",
         "description": {
             "en_US": "Find and \\c[3]defeat \\v[combat.name.minibosses\/fish-mega-gear]\\c[0]."
         },
+        "descCond": "trophies.triggered.el-kill-fish-mega-gear",
         "order": 3102,
         "icon": "BOSS_MISC",
         "stars": "3",

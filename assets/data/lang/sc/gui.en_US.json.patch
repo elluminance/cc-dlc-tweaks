@@ -2,7 +2,7 @@
     "labels": {
         "arena": {
             "bonuses": {
-                "INTERROGATION_HITS": "Let less than \\c[3][!] clones interrogate C'tron\\c[0]"
+                "INTERROGATION_HITS": "Let less than \\c[3][!] clones hit C'tron\\c[0]"
             }
         }
     }
