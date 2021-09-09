@@ -87,9 +87,9 @@ sc.MapModel.inject({
         let count = this.parent(false), 
             total = this.getTotalChests();
         if(ig.extensions.enabled["post-game"]){
-            count += sc.stats.getMap("chests", "evo-village")
-            count += sc.stats.getMap("chests", "beach")
-            count += sc.stats.getMap("chests", "final-dng")
+            count += sc.stats.getMap("chests", "evo-village") || 0
+            count += sc.stats.getMap("chests", "beach") || 0
+            count += sc.stats.getMap("chests", "final-dng") || 0
         }
 
         count += getAreaDLCChestCount("rhombus-sqr");
