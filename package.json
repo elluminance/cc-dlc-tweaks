@@ -1,6 +1,6 @@
 {
 	"name": "cc-dlc-tweaks",
-	"version": "0.7.3",
+	"version": "0.8.1",
 	"description": "Makes tweaks to \\c[3]CrossCode: A New Home\\c[0] along with adding some missing pieces!",
 	"homepage": "https://github.com/EL20202/cc-dlc-tweaks",
 	"prestart": "prestart.js",
