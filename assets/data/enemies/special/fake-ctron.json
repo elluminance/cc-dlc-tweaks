@@ -125,15 +125,17 @@
         ],
         "UpdateHitCounter": [
             {
+                "type": "CHANGE_VAR_NUMBER",
+                "varName": "tmp.ctronHits",
+                "changeType": "add",
+                "value": 1
+            },
+            {
                 "type": "IF",
-                "condition": "",
+                "condition": "tmp.debugSidwell",
+                "withElse": false,
                 "thenStep": [
                     {
-                        "type": "CHANGE_VAR_NUMBER",
-                        "varName": "tmp.ctronHits",
-                        "changeType": "add",
-                        "value": 1
-                    },{
                         "text": {
                             "en_US": "\\v[tmp.ctronHits]"
                         },
