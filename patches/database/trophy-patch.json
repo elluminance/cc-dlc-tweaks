@@ -1,0 +1,39 @@
+[{
+    "type": "FOR_IN",
+    "keyword": {
+        "name": "__NAME__",
+        "icon": "__ICON__"
+    },
+    "values": [
+        {
+            "name": "kill-special-blue",
+            "icon": "BOSS_BLUE_HEDGEHAG"
+        },
+        {
+            "name": "kill-special-peng",
+            "icon": "BOSS_DAKARA"
+        },
+        {
+            "name": "kill-special-shark",
+            "icon": "BOSS_SHARKSTER"
+        },
+        {
+            "name": "kill-special-fish",
+            "icon": "BOSS_ANGLER"
+        }
+    ],
+    "body": [
+        {
+            "type": "ENTER",
+            "index": "__NAME__"
+        },
+        {
+            "type": "SET_KEY",
+            "index": "icon",
+            "content": "__ICON__"
+        },
+        {
+            "type": "EXIT"
+        }
+    ]
+}]

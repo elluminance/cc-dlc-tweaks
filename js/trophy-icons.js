@@ -57,6 +57,55 @@ sc.TROPHY_ICONS.STORY_DLC = {
     customIndex: 7
 }
 
+sc.TROPHY_ICONS.BOSS_BEACH_APE = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 8
+}
+
+sc.TROPHY_ICONS.BOSS_BLUE_HEDGEHAG = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 9
+}
+
+sc.TROPHY_ICONS.BOSS_DAKARA = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 10
+}
+
+sc.TROPHY_ICONS.BOSS_SHARKSTER = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 11
+}
+
+sc.TROPHY_ICONS.BOSS_ANGLER = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 12
+}
+
+sc.TROPHY_ICONS.BOSS_PANDA = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: true,
+    sheet: "dlc-tweaks",
+    customIndex: 13
+}
+
+
 sc.TrophyIconGraphic.inject({
     customIcons: {
         "dlc-tweaks": new ig.Image("media/gui/dlctweaks-trophies.png")
@@ -68,8 +117,9 @@ sc.TrophyIconGraphic.inject({
         if(iconIndex == -1){
             let customIndex = sc.TROPHY_ICONS[a].customIndex;
             this.removeChildGui(this.icon);
-            
-            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[a].sheet], customIndex % 12 * 42, ~~(customIndex / 12) * 42, 42, 42);
+            const imgSize = Math.floor(this.customIcons[sc.TROPHY_ICONS[a].sheet].width / 42);
+
+            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[a].sheet], customIndex % imgSize * 42, ~~(customIndex / imgSize) * 42, 42, 42);
             this.addChildGui(this.icon);
             this.removeChildGui(this.ribbon);
             this.addChildGui(this.ribbon);

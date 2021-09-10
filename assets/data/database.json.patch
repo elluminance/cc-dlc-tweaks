@@ -141,5 +141,8 @@
     "type": "IMPORT",
     "src": "mod:/patches/database/trophies.json"
 },{
+    "type": "INCLUDE",
+    "src": "mod:/patches/database/trophy-patch.json"
+},{
     "type": "EXIT"
 }]
