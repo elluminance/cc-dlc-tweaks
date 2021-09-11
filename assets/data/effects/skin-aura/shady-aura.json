@@ -2,7 +2,29 @@
     "DOCTYPE": "EFFECT",
     "ANIMS": {
         "namedSheets": null,
-        "SUB": []
+        "SUB": [
+            {
+                "name": "CYBER_DOT3",
+                "sheet": {
+                    "src": "media\/entity\/enemy\/boss\/sidwell-fx.png",
+                    "offX": 528,
+                    "offY": 72,
+                    "width": 24,
+                    "height": 24
+                },
+                "guiSprites": true,
+                "renderMode": "lighter",
+                "time": 0.066,
+                "repeat": false,
+                "frames": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            }
+        ]
     },
     "EFFECTS": {
         "aura": [
