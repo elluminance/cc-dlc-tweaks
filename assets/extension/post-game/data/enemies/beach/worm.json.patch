@@ -1,7 +1,7 @@
 [{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 83
+    "content": 81
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -14,7 +14,7 @@
         "max": 1,
         "rank": "C",
         "boosted": true,
-        "condition": "item.dlctweaks-beach-booster.toggled || stat.items.457>= 1"
+        "condition": "item.dlctweaks-beach-booster.toggled"
     }
 },{
     "type": "EXIT",

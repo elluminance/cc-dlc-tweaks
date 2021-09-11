@@ -1,7 +1,7 @@
 [{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 82
+    "content": 80
 },{
     "type": "ENTER",
     "index": "itemDrops"

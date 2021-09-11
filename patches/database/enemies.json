@@ -4,7 +4,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 80
+    "content": 78
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -30,7 +30,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 80
+    "content": 78
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -56,7 +56,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 80
+    "content": 78
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -82,7 +82,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 82
+    "content": 78
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -108,7 +108,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 82
+    "content": 80
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -134,7 +134,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 84
+    "content": 82
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -142,7 +142,7 @@
     "type": "ADD_ARRAY_ELEMENT",
     "content": {
         "item": "dlctweaks-trade-beach-gem",
-        "prob": 0.2,
+        "prob": 0.15,
         "min": 1,
         "max": 1,
         "rank": "C",
@@ -160,7 +160,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 83
+    "content": 81
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -186,7 +186,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 86
+    "content": 82
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -211,7 +211,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 86
+    "content": 82
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -236,7 +236,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 86
+    "content": 82
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -261,7 +261,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 86
+    "content": 82
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -286,7 +286,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 88
+    "content": 84
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -311,7 +311,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 89
+    "content": 86
 },{
     "type": "ENTER",
     "index": "itemDrops"
@@ -336,7 +336,7 @@
 },{
     "type": "SET_KEY",
     "index": "boostedLevel",
-    "content": 89
+    "content": 86
 },{
     "type": "ENTER",
     "index": "itemDrops"
