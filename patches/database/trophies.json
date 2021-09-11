@@ -481,7 +481,7 @@
     "el-kill-fish-mega-gear": {
         "track": false,
         "name": {
-            "en_US": "[placeholder]"
+            "en_US": "Fishy Business"
         },
         "nameCond": "item.434.amount >= 1",
         "description": {
