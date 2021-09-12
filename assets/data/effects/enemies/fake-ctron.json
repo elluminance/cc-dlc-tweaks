@@ -18,6 +18,27 @@
                 "repeat": true,
                 "frames": [0],
                 "framesGfxOffset": [0]
+            },
+            {
+                "name": "CYBER_DOT3",
+                "sheet": {
+                    "src": "media\/entity\/enemy\/boss\/sidwell-fx.png",
+                    "offX": 528,
+                    "offY": 72,
+                    "width": 24,
+                    "height": 24
+                },
+                "guiSprites": true,
+                "renderMode": "lighter",
+                "time": 0.066,
+                "repeat": false,
+                "frames": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ]
             }
         ]
     },
@@ -66,6 +87,36 @@
             },
             {
                 "type": "LOOP_END"
+            }
+        ],
+
+        "teleport": [
+            {
+                "numParticles": 12,
+                "duration": 0.2,
+                "centralAngle": 1,
+                "startDist": 4,
+                "random": true,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 12
+                },
+                "moveDist": 12,
+                "moveVariance": 8,
+                "moveDuration": 0.01,
+                "keySpline": "EASE_OUT",
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "randFlip": true,
+                "anim": "CYBER_DOT3",
+                "type": "OFFSET_PARTICLE_CIRCLE"
             }
         ]
     }

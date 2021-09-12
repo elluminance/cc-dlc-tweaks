@@ -50,6 +50,27 @@
                 }
             },
             {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 2,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "target": "TARGET",
+                "effect": {
+                    "sheet": "enemies.shady",
+                    "name": "cloneAura"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
                 "duration": 0,
                 "align": "BOTTOM",
                 "rotateFace": 2,
@@ -61,8 +82,8 @@
                 "type": "SHOW_EFFECT",
                 "target": "TARGET",
                 "effect": {
-                    "sheet": "teleport",
-                    "name": "showQuickerSnd"
+                    "sheet": "enemies.fake-ctron",
+                    "name": "teleport"
                 },
                 "offset": {
                     "x": 0,
