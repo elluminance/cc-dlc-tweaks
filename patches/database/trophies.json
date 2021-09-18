@@ -25,7 +25,7 @@
         "icon": "STORY_DLC",
         "stars": "5",
         "points": 10,
-        "condition": "plot.line >= 44500",
+        "condition": "plot.line >= 44000",
         "progType": "CONDITION",
         "section": "PROGRESS",
         "category": "GENERAL",
