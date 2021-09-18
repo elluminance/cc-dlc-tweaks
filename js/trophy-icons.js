@@ -105,6 +105,14 @@ sc.TROPHY_ICONS.BOSS_PANDA = {
     customIndex: 13
 }
 
+sc.TROPHY_ICONS.BONUS_CIRCUIT_POINTS = {
+    index: -1,
+    cat: "COMBAT",
+    hidden: false,
+    sheet: "dlc-tweaks",
+    customIndex: 14
+}
+
 
 sc.TrophyIconGraphic.inject({
     customIcons: {

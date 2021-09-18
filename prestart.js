@@ -11,3 +11,5 @@ import "./js/icon.js"
 import "./js/save-star.js"
 
 import "./js/trophy-icons.js"
+
+import "./js/vars.js"

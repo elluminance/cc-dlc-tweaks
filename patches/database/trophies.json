@@ -313,6 +313,30 @@
         "section": "AREAS"
     },
 
+    "el-circuit-bonus-points": {
+        "track": true,
+        "name": {
+            "en_US": "Ultimate Power"
+        },
+        "description": {
+            "en_US": "Obtain all \\c[3]bonus Circuit Points\\c[0] from various sources. Nothing can stop you now!"
+        },
+        "order": 250,
+        "icon": "BONUS_CIRCUIT_POINTS",
+        "stars": "5",
+        "points": 150,
+        "progType": "VALUE",
+        "section": "CIRCUITS",
+        "category": "COMBAT",
+        "stats": [{
+            "0": " ",
+            "key": "varValue",
+            "mapKey": "player.totalSkillPointsExtra",
+            "value": "46",
+            "compare": "min"
+        }]
+    },
+
     "el-kill-boss-gods": {
         "track": true,
         "name": {
