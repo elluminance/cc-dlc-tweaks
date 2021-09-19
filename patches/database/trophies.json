@@ -273,6 +273,33 @@
         "section": "CHESTS"
     },
 
+    "el-facility-x": {
+        "track": true,
+        "name": {
+            "en_US": "The Key to Cooperation"
+        },
+        "nameCond": "quest.console-pc-1.solved || quest.console-switch-1.solved || quest.console-playstation-1.solved || quest.console-xbox-1.solved",
+        "description": {
+            "en_US": "Find all four \\c[3]hidden decryption spots\\c[0] to decode the \\c[3]mysterious encrypted key\\c[0]."
+        },
+        "descCond": "quest.console-pc-1.solved || quest.console-switch-1.solved || quest.console-playstation-1.solved || quest.console-xbox-1.solved",
+        "order": 1200,
+        "icon": "FACILITY_X_KEY",
+        "stars": "3",
+        "points": 50,
+        "progType": "CONDITION",
+        "section": "ITEMS",
+        "category": "GENERAL",
+        "stats": [
+            {
+                "key": "items",
+                "mapKey": "541",
+                "value": "1",
+                "compare": "min"
+            }
+        ]
+    },
+
     "el-landmarks-dlc": {
         "track": true,
         "name": {

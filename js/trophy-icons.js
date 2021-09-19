@@ -113,6 +113,14 @@ sc.TROPHY_ICONS.BONUS_CIRCUIT_POINTS = {
     customIndex: 14
 }
 
+sc.TROPHY_ICONS.FACILITY_X_KEY = {
+    index: -1,
+    cat: "GENERAL",
+    hidden: false,
+    sheet: "dlc-tweaks",
+    customIndex: 15
+}
+
 
 sc.TrophyIconGraphic.inject({
     customIcons: {
