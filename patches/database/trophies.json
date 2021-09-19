@@ -324,7 +324,7 @@
         "order": 250,
         "icon": "BONUS_CIRCUIT_POINTS",
         "stars": "5",
-        "points": 150,
+        "points": 250,
         "progType": "VALUE",
         "section": "CIRCUITS",
         "category": "COMBAT",
@@ -412,7 +412,7 @@
             "en_US": "A Test of Ability"
         },
         "description": {
-            "en_US": "Defeat \\c[3]\\v[combat.name.beach\/ape-beach]\\c[0] in \\v[area.beach.name]."
+            "en_US": "\\c[3]Defeat \\v[combat.name.beach\/ape-beach]\\c[0] in \\v[area.beach.name]."
         },
         "descCond": "plot.line >= 48500",
         "order": 2500,
