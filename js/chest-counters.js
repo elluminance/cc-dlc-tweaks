@@ -21,17 +21,17 @@ function getAreaDLCChestCount(area) {
             if(ig.extensions.enabled["scorpion-robo"]) count += ig.vars.get("maps.heat/lab/roomFinal.chest_89") ? 1 : 0
             break;
         // preparing for the future :)
-        /*case "bergen-trail":
-            if(ig.extensions.enabled["snowman-tank"]) count += ig.vars.get() ? 1 : 0
+        case "bergen-trails":
+            if(ig.extensions.enabled["snowman-tank"]) count += ig.vars.get("maps.bergenTrail/lab/roomFinal.chest_54") ? 1 : 0
             break;
 
         case "autumn-fall":
-            if(ig.extensions.enabled["flying-hedgehag"]) count += ig.vars.get() ? 1 : 0
+            if(ig.extensions.enabled["flying-hedgehag"]) count += ig.vars.get("maps.autumn/lab/roomFinal.chest_55") ? 1 : 0
             break;
 
         case "jungle":
-            if(ig.extensions.enabled["fish-gear"] count += ig.vars.get() ? 1 : 0
-            break;*/
+            if(ig.extensions.enabled["fish-gear"]) count += ig.vars.get("maps.jungle/lab/roomFinal.chest_59") ? 1 : 0
+            break;
     }
     return count;
 }
@@ -44,12 +44,12 @@ function getExtraChests(area) {
             return ig.extensions.enabled["post-game"] ? 1 : 0
         case "heat-area":
             return ig.extensions.enabled["scorpion-robo"] ? 1 : 0
-        /*case "bergen-trail": //preparing for the future!
+        case "bergen-trails": //preparing for the future!
             return ig.extensions.enabled["snowman-tank"] ? 1 : 0
         case "autumn-fall":
             return ig.extensions.enabled["flying-hedgehag"] ? 1 : 0
         case "jungle":
-            return ig.extensions.enabled["fish-gear"] ? 1 : 0*/
+            return ig.extensions.enabled["fish-gear"] ? 1 : 0
         default:
             return 0
     }
@@ -96,20 +96,20 @@ sc.MapModel.inject({
         count += getAreaDLCChestCount("bergen");
         count += getAreaDLCChestCount("heat-area");
         // preparing for the future
-        /* count += getAreaDLCChestCount("autumn-fall");
-         * count += getAreaDLCChestCount("bergen-trail");
-         * count += getAreaDLCChestCount("jungle");
-         */
+        count += getAreaDLCChestCount("autumn-fall");
+        count += getAreaDLCChestCount("bergen-trails");
+        count += getAreaDLCChestCount("jungle");
+        
         return asPercent ? (count/total) : count
     },
 
     getTotalChests(){
         // 7 (rhombus) + 1 (bergen) + 6 (homestedt) + 13 (azure) + 16 (ku'lero) = 43 total DLC chests
         return this.parent() + ((ig.extensions.enabled["post-game"]) ? 43 : 0) + 
-               (ig.extensions.enabled["scorpion-robo"] ? 1 : 0)/* + //preparing for the future
+               (ig.extensions.enabled["scorpion-robo"] ? 1 : 0) + 
                (ig.extensions.enabled["snowman-tank"] ? 1 : 0) +
                (ig.extensions.enabled["flying-hedgehag"] ? 1 : 0) +
-               (ig.extensions.enabled["fish-gear"] ? 1 : 0)*/
+               (ig.extensions.enabled["fish-gear"] ? 1 : 0)
     }
 })
 

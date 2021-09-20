@@ -482,7 +482,7 @@
         }]
     },
     "el-kill-king-hedgehag": {
-        "track": false,
+        "track": true,
         "name": {
             "en_US": "When Hedgehags Fly"
         },
@@ -506,9 +506,9 @@
         }]
     },
     "el-kill-snow-megatank": {
-        "track": false,
+        "track": true,
         "name": {
-            "en_US": "[placeholder]"
+            "en_US": "Heavily Armed Snowman"
         },
         "nameCond": "item.434.amount >= 1",
         "description": {
@@ -530,7 +530,7 @@
         }]
     },
     "el-kill-fish-mega-gear": {
-        "track": false,
+        "track": true,
         "name": {
             "en_US": "Fishy Business"
         },

@@ -1,6 +1,6 @@
 {
     "id": "cc-dlc-tweaks",
-    "version": "0.8.3",
+    "version": "0.8.4",
 
     "title": "CC DLC Tweaks",
     "description": "Makes tweaks to \\c[3]CrossCode: A New Home\\c[0] along with adding some missing pieces!",
@@ -13,7 +13,7 @@
     "prestart": "prestart.js",
 
     "dependencies": {
-        "crosscode": ">=1.4.0",
+        "crosscode": ">=1.4.2",
         "item-api": ">=0.4.2"
 	}
 }
