@@ -145,4 +145,14 @@
     "src": "mod:/patches/database/trophy-patch.json"
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": "commonEvents"
+},{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/commonEvents.json"
+},{
+    "type": "EXIT"
 }]

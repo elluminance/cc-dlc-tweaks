@@ -1,0 +1,28 @@
+{
+    "set-postgame-completion":{
+        "frequency": "ALWAYS",
+        "repeat": "ONCE",
+        "eventType": "PARALLEL",
+        "condition": "plot.line >= 48500 && !plot.completedPostGame",
+        "overrideSideMessage": false,
+        "event": [
+            {
+                "type": "IF",
+                "condition": "stat.combat.killboss.shady >= 1",
+                "withElse": false,
+                "thenStep": [
+                    {
+                        "type": "CHANGE_VAR_BOOL",
+                        "varName": "plot.completedPostGame",
+                        "changeType": "set",
+                        "value": true
+                    }
+                ]
+            }
+        ],
+        "loopCount": 1,
+        "type": {
+            "type": "FORCE_UPDATE"
+        }
+    }
+}
