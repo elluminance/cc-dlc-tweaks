@@ -1,0 +1,22 @@
+[{
+    "type": "INIT_KEY",
+    "index": "el-special",
+    "content": {
+        "type": "MULTI",
+        "name": {
+            "en_US": "Special"
+        },
+        "order": 25,
+        "color": "#880",
+        "items": []
+    }
+},{
+    "type": "ENTER",
+    "index": ["el-special", "items"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": "el-toggle-one-hit-die"
+},{
+    "type": "EXIT",
+    "count": 2
+}]

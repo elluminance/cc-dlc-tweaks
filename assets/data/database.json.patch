@@ -155,4 +155,14 @@
     "src": "mod:/patches/database/commonEvents.json"
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": "toggle-sets"
+},{
+    "type": "INCLUDE",
+    "src": "mod:/patches/database/toggle-sets.json"
+},{
+    "type": "EXIT"
 }]

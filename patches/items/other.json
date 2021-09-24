@@ -18,14 +18,14 @@
             "sheet": "",
             "name": null
         }
-    },{
+    }, {
         "order": 20,
         "customItem": "el-effect-shady",
         "name": {
-          "en_US": "Shady Aura"
+            "en_US": "Shady Aura"
         },
         "description": {
-          "en_US": "Feel like you're a copy of someone else for a change."
+            "en_US": "Feel like you're a copy of someone else for a change."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -34,8 +34,46 @@
         "icon": "item-toggle",
         "noTrack": true,
         "effect": {
-          "sheet": "",
-          "name": null
+            "sheet": "",
+            "name": null
         }
-      }
+    }, {
+        "order": 20,
+        "customItem": "el-toggle-one-hit-die",
+        "name": {
+            "en_US": "Frail Body"
+        },
+        "description": {
+            "en_US": "\\c[1]Die in one hit.\\c[0]"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }, {
+        "order": 20,
+        "customItem": "el-toggle-no-xp",
+        "name": {
+            "en_US": "Disable XP"
+        },
+        "description": {
+            "en_US": "Disable the gaining of experience"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
 ]

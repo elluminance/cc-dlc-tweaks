@@ -1,6 +1,6 @@
 import "./js/chest-counters.js"
 
-import "./js/booster.js"
+import "./js/toggle-sets.js"
 
 import "./js/action-step.js"
 
