@@ -44,11 +44,10 @@ sc.NewGamePlusModel.inject({
     get(b) {
         switch(b){
             case "lea-must-die":
-                if(sc.model.player.getToggleItemState("el-toggle-lea-must-die")) return true
+                if(sc.model.player.getToggleItemState("el-toggle-one-hit-die")) return true
             case "disable-exp":
-                if(sc.model.player.getToggleItemState("el-toggle-disable-exp")) return true
+                if(sc.model.player.getToggleItemState("el-toggle-no-xp")) return true
         };
-
         return this.parent(b)
     }
 })

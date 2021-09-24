@@ -17,6 +17,9 @@
     "type": "ADD_ARRAY_ELEMENT",
     "content": "el-toggle-one-hit-die"
 },{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": "el-toggle-no-xp"
+},{
     "type": "EXIT",
     "count": 2
 }]
