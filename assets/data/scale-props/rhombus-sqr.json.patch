@@ -1,0 +1,36 @@
+[{
+    "type": "ENTER",
+    "index": "entries"
+},{
+    "type": "SET_KEY",
+    "index": "wallARelshop",
+    "content": {
+        "baseSize": {
+            "x": 16,
+            "y": 16,
+            "z": 0
+        },
+        "scalableX": true,
+        "scalableY": false,
+        "scalableStep": 4,
+        "renderMode": "lighter",
+        "collType": "NONE",
+        "gfx": "media\/map\/rhombus-sign-el.png",
+        "gfxBaseX": 0,
+        "gfxBaseY": 0,
+        "patterns": {
+            "x": 0,
+            "y": 0,
+            "w": 80,
+            "h": 16,
+            "xCount": 1,
+            "yCount": 1
+        },
+        "timePadding": {
+            "x": 16,
+            "y": 0
+        }
+    }
+},{
+    "type": "EXIT"
+}]

@@ -1,0 +1,27 @@
+[{
+    "type": "ENTER",
+    "index": ["entities", 730, "settings"]
+},{
+    "type": "SET_KEY",
+    "index": "map",
+    "content": "rhombus-sqr.interior.el-shop-f1"
+},{
+    "type": "SET_KEY",
+    "index": "condition",
+    "content": "true"
+},{
+    "type": "EXIT",
+    "count": 2
+},
+
+{
+    "type": "ENTER",
+    "index": [ 951, "settings", "propConfig"]
+},{
+    "type": "SET_KEY",
+    "index": "name",
+    "content": "wallARelshop"
+},{
+    "type": "EXIT",
+    "count": 4
+}]

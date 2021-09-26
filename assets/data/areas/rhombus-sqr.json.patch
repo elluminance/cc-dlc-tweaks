@@ -1,0 +1,18 @@
+[{
+    "type": "ENTER",
+    "index": ["floors", 1, "maps"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "path": "rhombus-sqr.interior.el-shop-f1",
+        "name": {
+            "en_US": "Strange Shop",
+            "langUid": 1900
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        },
+        "dungeon": ""
+    }
+}]
