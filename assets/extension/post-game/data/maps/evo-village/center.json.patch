@@ -46,6 +46,27 @@
         }
     }
 },{
+    "type":"ADD_ARRAY_ELEMENT",
+    "content": {
+        "type": "Pet",
+        "x": 1770,
+        "y": 864,
+        "level": 5,
+        "settings": {
+            "name": "",
+            "action": [
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "idle"
+                }
+            ],
+            "pet": "el-spinwell",
+            "mapId": 1403
+        }
+    }
+},{
     "type": "EXIT",
     "count": 1
 }]
