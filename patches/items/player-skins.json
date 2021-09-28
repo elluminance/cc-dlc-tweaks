@@ -105,7 +105,7 @@
         "order": 20,
         "customItem": "el-effect-shadow",
         "name": {
-            "en_US": "Shadow Walker Aura"
+            "en_US": "Shadowy Aura"
         },
         "description": {
             "en_US": "Leave behind a trail of complete darkness. Perfect for running through the night."
@@ -145,7 +145,7 @@
         "order": 20,
         "customItem": "el-effect-hax",
         "name": {
-            "en_US": "Haxxor Aura"
+            "en_US": "Hacker Aura"
         },
         "description": {
             "en_US": "Hack all the things. \\c[1]All of them.\\c[0]"

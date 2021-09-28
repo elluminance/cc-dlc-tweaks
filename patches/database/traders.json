@@ -298,5 +298,183 @@
                 ]
             }
         ]
+    },
+
+    "el-aura-trade-1": {
+        "name": {
+            "en_US": "Auras-R-Us"
+        },
+        "noTrack": true,
+        "order": 65,
+        "options": [
+            {
+                "get": [
+                    {
+                    "id": "el-effect-rainbow",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-vaporwave",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-hp",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-sp",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-shadow",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-void",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-hax",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 5
+                    },{
+                        "id": "176",
+                        "amount": 5
+                    },{
+                        "id": "182",
+                        "amount": 2
+                    }
+                ],
+                "cost": 50000
+            }
+        ]
     }
 }
