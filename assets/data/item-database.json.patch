@@ -30,7 +30,7 @@
     "src": "mod:patches/items/equipment.json"
 },{
     "type": "IMPORT",
-    "src": "mod:patches/items/other.json"
+    "src": "mod:patches/items/special-toggle-sets.json"
 },{
     "type": "IMPORT",
     "src": "mod:patches/items/player-skins.json"
