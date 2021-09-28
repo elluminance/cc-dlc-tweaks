@@ -1,0 +1,83 @@
+[{
+    "type": "ENTER",
+    "index": "entities"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "type": "NPC",
+        "x": 256,
+        "y": 256,
+        "level": 0,
+        "settings": {
+            "name": "owner",
+            "characterName": "basin.male-raincoat",
+            "analyzable": {
+                "text": {
+                    "en_US": "Curios Jim"
+                },
+                "active": ""
+            },
+            "mapId": 32,
+            "npcStates": [{
+                "reactType": "FIXED_POS",
+                "face": "SOUTH",
+                "hidden": false,
+                "condition": "",
+                "config": "normal",
+                "event": {
+                    "shop": [{
+                        "side": "RIGHT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "main.lea",
+                            "expression": "DEFAULT"
+                        }
+                    }, {
+                        "side": "LEFT",
+                        "order": 0,
+                        "clearSide": false,
+                        "type": "ADD_MSG_PERSON",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    }, {
+                        "message": {
+                            "en_US": "Hey girl. Want some neat stuff I found?"
+                        },
+                        "autoContinue": false,
+                        "type": "SHOW_MSG",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    }, {
+                        "message": {
+                            "en_US": "Same rule as my brother over there, though - \\c[3]Only one of each item per person\\c[0]."
+                        },
+                        "autoContinue": false,
+                        "type": "SHOW_MSG",
+                        "person": {
+                            "person": "basin.male-raincoat",
+                            "expression": "DEFAULT"
+                        }
+                    }, {
+                        "side": "ALL",
+                        "type": "CLEAR_MSG"
+                    }, {
+                        "ignoreSlowDown": false,
+                        "type": "WAIT",
+                        "time": 0.15
+                    }, {
+                        "shop": "el-skins-shop",
+                        "type": "OPEN_SHOP"
+                    }]
+                }
+            }]
+        }
+    }
+},{
+    "type": "EXIT"
+}]

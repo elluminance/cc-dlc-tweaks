@@ -32,5 +32,8 @@
     "type": "IMPORT",
     "src": "mod:patches/items/other.json"
 },{
+    "type": "IMPORT",
+    "src": "mod:patches/items/player-skins.json"
+},{
     "type": "EXIT"
 }]

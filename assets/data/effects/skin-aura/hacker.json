@@ -1,0 +1,109 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": [
+            {
+                "name": "HACKING_S",
+                "sheet": {
+                    "src": "media\/entity\/effects\/particles1.png",
+                    "offX": 32,
+                    "offY": 104,
+                    "width": 8,
+                    "height": 8
+                },
+                "guiSprites": true,
+                "renderMode": "lighter",
+                "time": 0.3,
+                "repeat": false,
+                "frames": [
+                    0
+                ]
+            }
+        ]
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "radius": 16,
+                "useTargetAngle": false,
+                "numParticles": 1,
+                "duration": 0.05,
+                "alongY": true,
+                "alongZ": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 0
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "time": 0.1,
+                        "spline": "EASE_OUT"
+                    },
+                    "end": {
+                        "value": {
+                            "x": 1,
+                            "y": 0
+                        },
+                        "time": 0.05,
+                        "spline": ""
+                    }
+                },
+                "particleDuration": 0.5,
+                "anim": "HACKING_S",
+                "type": "PLAY_ANIM_RANGE"
+            },
+            {
+                "color": "#F00",
+                "noLighter": false,
+                "pAlpha": {
+                    "init": 0,
+                    "start": {
+                        "value": 0.5,
+                        "time": 0.05,
+                        "spline": ""
+                    },
+                    "end": {
+                        "value": 0,
+                        "time": 0.5,
+                        "spline": ""
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1.3,
+                            "y": 1.3
+                        },
+                        "spline": ""
+                    }
+                },
+                "particleDuration": 0.6,
+                "type": "COPY_SPRITE"
+            },
+            {
+                "time": 0.1,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}

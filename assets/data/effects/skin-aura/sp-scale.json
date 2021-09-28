@@ -1,0 +1,53 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": []
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "mode": "sp",
+                "noLighter": true,
+                "pAlpha": {
+                    "init": 0,
+                    "start": {
+                        "value": 0.5,
+                        "time": 0.05,
+                        "spline": ""
+                    },
+                    "end": {
+                        "value": 0,
+                        "time": 0.5,
+                        "spline": ""
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1.3,
+                            "y": 1.3
+                        },
+                        "spline": ""
+                    }
+                },
+                "particleDuration": 0.51,
+                "type": "COPY_SPRITE_SPECIAL_COLOR_EL"
+            },
+            {
+                "time": 0.066,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}

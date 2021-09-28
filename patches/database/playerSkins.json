@@ -1,0 +1,119 @@
+{
+    "el-spinwell": {
+        "id": "el-spinwell",
+        "item": "el-pet-spinwell",
+        "autoAdd": false,
+        "type": "Pet",
+        "settings": {
+            "animSheet": "pets.spinwell",
+            "walkAnims": {
+                "idle": "idle"
+            }
+        }
+    },
+    
+    "el-rainbow-aura": {
+        "item": "el-effect-rainbow",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.rainbow"
+        }
+    },
+    "el-vaporwave-aura": {
+        "item": "el-effect-vaporwave",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.vaporwave"
+        }
+    },
+    "el-hp-aura": {
+        "item": "el-effect-hp",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.hp-scale"
+        }
+    },
+    "el-sp-aura": {
+        "item": "el-effect-sp",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.sp-scale"
+        }
+    },
+    "el-hax-aura": {
+        "item": "el-effect-hax",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.hacker"
+        }
+    },
+    "el-shadow-aura": {
+        "item": "el-effect-shadow",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.shadow-step"
+        }
+    },
+    "el-void-aura": {
+        "item": "el-effect-void",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.void"
+        }
+    },
+    "el-shady-aura": {
+        "id": "el-shady-aura",
+        "item": "el-effect-shady",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.shady-aura"
+        }
+    },
+
+    "el-edgy-lea": {
+        "id": "el-edgy-lea",
+        "item": "el-edgy-lea-skin",
+        "autoAdd": false,
+        "type": "Appearance",
+        "settings": {
+            "sheet": "player-skins.edgy-lea",
+            "fx": "skins.edgy-lea",
+            "gui": "edgy-lea.png",
+            "guiBounds": {
+                "face": {
+                    "x": 44,
+                    "y": 44,
+                    "w": 60,
+                    "h": 34
+                }
+            }
+        }
+    },
+    "el-ael": {
+        "id": "el-ael",
+        "item": "el-ael-skin",
+        "autoAdd": false,
+        "type": "Appearance",
+        "settings": {
+            "sheet": "player-skins.ael",
+            "fx": "skins.ael",
+            "gui": "ael.png",
+            "guiBounds": {
+                "face": {
+                    "x": 44,
+                    "y": 44,
+                    "w": 60,
+                    "h": 34
+                }
+            }
+        }
+    }
+}

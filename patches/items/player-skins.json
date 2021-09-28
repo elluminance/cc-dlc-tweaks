@@ -1,0 +1,224 @@
+[
+    {
+        "order": 20,
+        "customItem": "el-pet-spinwell",
+        "name": {
+            "en_US": "Sidwell...?"
+        },
+        "description": {
+            "en_US": "Asserts dominance over all who are inferior in the only way he knows how."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+
+    {
+        "order": 14,
+        "customItem": "el-edgy-lea-skin",
+        "name": {
+            "en_US": "Ow The Edge"
+        },
+        "description": {
+            "en_US": "Become edgier by dyeing your hair black. Become the ultimate mute goth gf waifu."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 14,
+        "customItem": "el-ael-skin",
+        "name": {
+            "en_US": "aeL"
+        },
+        "description": {
+            "en_US": "!evah syawla uoy woh ekil yltcaxe kool uoy sekaM"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+
+    {
+        "order": 20,
+        "customItem": "el-effect-rainbow",
+        "name": {
+            "en_US": "Rainbow Aura"
+        },
+        "description": {
+            "en_US": "Taste the \\i[el-rainbow-text]."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-vaporwave",
+        "name": {
+            "en_US": "Vaporwave Aura"
+        },
+        "description": {
+            "en_US": "Feel the power of ~ a e s t h e t i c ~ within you."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-shadow",
+        "name": {
+            "en_US": "Shadow Walker Aura"
+        },
+        "description": {
+            "en_US": "Leave behind a trail of complete darkness. Perfect for running through the night."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-void",
+        "name": {
+            "en_US": "Void Aura"
+        },
+        "description": {
+            "en_US": "Stare into the void. It'll say 'Hi!'"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-hax",
+        "name": {
+            "en_US": "Haxxor Aura"
+        },
+        "description": {
+            "en_US": "Hack all the things. \\c[1]All of them.\\c[0]"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-hp",
+        "name": {
+            "en_US": "Health Aura"
+        },
+        "description": {
+            "en_US": "Changes color based on current HP."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-sp",
+        "name": {
+            "en_US": "SP Aura"
+        },
+        "description": {
+            "en_US": "Changes color based on your current SP."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-shady",
+        "name": {
+            "en_US": "Shady Aura"
+        },
+        "description": {
+            "en_US": "Feel like you're a copy of someone else for a change."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+]
