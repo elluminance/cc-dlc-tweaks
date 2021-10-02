@@ -304,7 +304,7 @@
         "name": {
             "en_US": "Auras-R-Us"
         },
-        "noTrack": true,
+        "noTrack": false,
         "order": 65,
         "options": [
             {
@@ -316,10 +316,13 @@
                 ],
                 "require": [
                     {
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 5
-                    },{
                         "id": "dlctweaks-trade-warm-gem",
+                        "amount": 3
+                    },{
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 3
+                    },{
+                        "id": "dlctweaks-trade-final-dng-gem",
                         "amount": 5
                     },{
                         "id": "176",
@@ -340,17 +343,17 @@
                 ],
                 "require": [
                     {
-                        "id": "176",
-                        "amount": 5
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 4
                     },{
-                        "id": "dlctweaks-trade-warm-gem",
-                        "amount": 5
+                        "id": "463",
+                        "amount": 4
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 5
+                        "id": "80",
+                        "amount": 6
                     },{
-                        "id": "182",
-                        "amount": 2
+                        "id": "633",
+                        "amount": 6
                     }
                 ],
                 "cost": 50000
@@ -475,6 +478,7 @@
                 ],
                 "cost": 50000
             }
-        ]
+        ],
+        "area": "rhombus-sqr"
     }
 }
