@@ -1,9 +1,17 @@
-// ascended booster
+//#region booster
+
 sc.EnemyBooster.inject({
     boostedAscended: false,
     // this next one exists to fix the bug of having both a normal/ascended booster on,
     // then turning the ascended booster off, which would keep enemies at an "ascended" level
     ignoreAscended: false, 
+
+    calcAscendedLevel(enemyType){
+        const minBoostedLevel = (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL);
+        const playerLevel = sc.model.player.level;
+        let ascendedLevel = Math.max(playerLevel, minBoostedLevel);
+        return ascendedLevel;
+    }, 
 
     updateBoosterState(){
         this.parent()
@@ -22,9 +30,7 @@ sc.EnemyBooster.inject({
         if(!this.ignoreAscended){
             if (this.boostedAscended && (b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTABLE || b.boosterState === sc.ENEMY_BOOSTER_STATE.BOOSTED)) {
                 // set enemy levels to at minimum their standard boosted level, otherwise the player's level.
-                let ascendedLevel = (sc.model.player.level >= (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL)) 
-                                    ? sc.model.player.level 
-                                    : (b.enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL);
+                let ascendedLevel = this.calcAscendedLevel(b.enemyType);
                 // check if GoML is enabled, and boost enemies beyond what a booster would otherwise do.
                 b.setLevelOverride(sc.newgame.get("scale-enemies") ? sc.model.player.getParamAvgLevel(10) : ascendedLevel)
                 b.boosterState = sc.ENEMY_BOOSTER_STATE.BOOSTED;
@@ -37,6 +43,48 @@ sc.EnemyBooster.inject({
         }
     }
 })
+
+sc.EnemyInfoBox.inject({
+    setEnemy(b){
+        const ascBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster");
+        this.parent(b);
+        if(this.enemy && ascBooster && sc.combat.canShowBoostedEntry(b, this.enemy.boss)){
+            this.level.setNumber(sc.enemyBooster.calcAscendedLevel(b))
+        }
+    }
+})
+
+sc.EnemyEntryButton.inject({
+    init(b, a, d){
+        let enemyType = sc.combat.enemyDataList[a];
+        this.parent(b, a, d);
+        if(d >= 0 && sc.model.player.getToggleItemState("dlctweaks-ascended-booster") && sc.combat.canShowBoostedEntry(a, enemyType.boss)) {
+            this.level.setNumber(sc.enemyBooster.calcAscendedLevel(enemyType))
+        }
+    }
+})
+
+sc.EnemyDisplayGui.inject({
+    init(b, a, d, c, e, f){
+        this.parent(b, a, d, c, e, sc.model.player.getToggleItemState("dlctweaks-ascended-booster") || f);
+    }
+})
+
+sc.EnemyPageGeneralInfo.inject({
+    setData(a, d, f, g){
+        //console.log({a})
+        const ascBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster");
+        let oldBoostedLevel;
+        if(d){
+            oldBoostedLevel = d.boostedLevel || sc.MIN_BOOSTER_LEVEL;
+            if(ascBooster) d.boostedLevel = sc.enemyBooster.calcAscendedLevel(d) 
+        }
+        this.parent(a,d,f, ascBooster || g)
+        d && oldBoostedLevel && (d.boostedLevel = oldBoostedLevel);
+    }
+})
+
+//#endregion booster
 
 
 // special toggle sets
