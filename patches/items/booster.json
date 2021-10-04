@@ -104,6 +104,28 @@
         }
     },
     {
+        "order": 115,
+        "customItem": "el-ascension-core",
+        "name": {
+            "en_US": "Ascension Core"
+        },
+        "description": {
+            "en_US": "This strange gemstone contains the raw power of growth."
+        },
+        "type": "TRADE",
+        "rarity": 6,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": false,
+        "sources": [],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+
+    {
         "order": 22,
         "customItem": "dlctweaks-trade-beach-gem",
         "name": {

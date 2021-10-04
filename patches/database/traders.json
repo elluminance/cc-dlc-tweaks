@@ -73,6 +73,10 @@
             ],
             "require": [
                 {
+                    "id": "el-ascension-core",
+                    "amount": 1
+                },
+                {
                     "id": "dlctweaks-trade-warm-gem",
                     "amount": 5
                 },
