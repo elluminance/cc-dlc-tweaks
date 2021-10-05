@@ -17,7 +17,146 @@
                     "reactType": "FIXED_POS",
                     "face": "NORTH",
                     "hidden": false,
-                    "condition": "",
+                    "condition": "plot.line >= 40000",
+                    "config": "normal",
+                    "event": {}
+                },
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "NORTH",
+                    "hidden": false,
+                    "condition": "plot.line >= 40000 && (stat.items.448 >= 1) && (stat.items.449 >= 1) && (stat.items.450 >= 1) && (stat.items.451 >= 1) && (stat.items.452 >= 1) && (stat.items.453 >= 1) && (stat.items.dlctweaks-beach-booster >= 1) && (stat.items.dlctweaks-final-dng-booster >= 1)",
+                    "config": "normal",
+                    "event": {
+                        "quest": [
+                            {
+                                "side": "LEFT",
+                                "order": 0,
+                                "clearSide": false,
+                                "type": "ADD_MSG_PERSON",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "side": "RIGHT",
+                                "order": 0,
+                                "clearSide": false,
+                                "type": "ADD_MSG_PERSON",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Congratulations, Seeker! You have now obtained the boosters for all major areas in CrossWorlds!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "As a reward for your dedication, you are now eligble to obtain the \\c[3]Ascended Booster\\c[0]!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "...!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "EXCITED"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "This miraculous booster is similar to the others you have obtained on your journey - but with one major difference."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Unlike other boosters, this booster will scale enemies \\c[3]everywhere you go\\c[0]!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Not only that, but it will scale enemies levels \\c[3]to your level\\c[0]!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "...!"
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "ASTONISHED"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "To obtain it, you may use this core and other materials obtained from boosters to receive your ultimate prize."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "item": "el-ascension-core",
+                                "amount": 1,
+                                "skip": false,
+                                "type":"GIVE_ITEM"
+                            },
+                            {
+                                "type": "CHANGE_VAR_BOOL",
+                                "varName": "dlctweaks.ascendCoreGot",
+                                "changeType": "set",
+                                "value": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "NORTH",
+                    "hidden": false,
+                    "condition": "plot.line >= 40000 && dlctweaks.ascendCoreGot",
                     "config": "normal",
                     "event": {
                         "trade": {
