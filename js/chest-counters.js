@@ -32,6 +32,12 @@ function getAreaDLCChestCount(area) {
         case "jungle":
             if(ig.extensions.enabled["fish-gear"]) count += ig.vars.get("maps.jungle/lab/roomFinal.chest_59") ? 1 : 0
             break;
+
+        // modded chests
+        case "beach":
+            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.beach/temple.chest_2441");
+        case "final-dng":
+            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.finalDng/g/outdoor-01.chest_24410");
     }
     return count;
 }
@@ -44,12 +50,18 @@ function getExtraChests(area) {
             return ig.extensions.enabled["post-game"] ? 1 : 0
         case "heat-area":
             return ig.extensions.enabled["scorpion-robo"] ? 1 : 0
-        case "bergen-trails": //preparing for the future!
+        case "bergen-trails":
             return ig.extensions.enabled["snowman-tank"] ? 1 : 0
         case "autumn-fall":
             return ig.extensions.enabled["flying-hedgehag"] ? 1 : 0
         case "jungle":
             return ig.extensions.enabled["fish-gear"] ? 1 : 0
+        
+        case "beach":
+            return ig.extensions.enabled["post-game"] ? 1 : 0
+        case "final-dng":
+            return ig.extensions.enabled["post-game"] ? 1 : 0
+
         default:
             return 0
     }
@@ -95,17 +107,19 @@ sc.MapModel.inject({
         count += getAreaDLCChestCount("rhombus-sqr");
         count += getAreaDLCChestCount("bergen");
         count += getAreaDLCChestCount("heat-area");
-        // preparing for the future
         count += getAreaDLCChestCount("autumn-fall");
         count += getAreaDLCChestCount("bergen-trails");
         count += getAreaDLCChestCount("jungle");
+
+        count += getAreaDLCChestCount("beach");
+        count += getAreaDLCChestCount("final-dng");
         
         return asPercent ? (count/total) : count
     },
 
     getTotalChests(){
         // 7 (rhombus) + 1 (bergen) + 6 (homestedt) + 13 (azure) + 16 (ku'lero) = 43 total DLC chests
-        return this.parent() + ((ig.extensions.enabled["post-game"]) ? 43 : 0) + 
+        return this.parent() + ((ig.extensions.enabled["post-game"]) ? (43 + 2) : 0) + 
                (ig.extensions.enabled["scorpion-robo"] ? 1 : 0) + 
                (ig.extensions.enabled["snowman-tank"] ? 1 : 0) +
                (ig.extensions.enabled["flying-hedgehag"] ? 1 : 0) +

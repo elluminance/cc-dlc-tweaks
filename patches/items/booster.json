@@ -46,7 +46,7 @@
             "en_US": "Pure Sand"
         },
         "description": {
-            "en_US": "A pile of surprisingly soft sand with little to no impurities."
+            "en_US": "A pile of surprisingly soft, white sand with no visible impurities."
         },
         "type": "TRADE",
         "rarity": 3,
@@ -75,10 +75,10 @@
         "order": 114,
         "customItem": "dlctweaks-trade-final-dng-special",
         "name": {
-            "en_US": "??????"
+            "en_US": "Comet Shard"
         },
         "description": {
-            "en_US": "A very special item... that needs a name still! :)"
+            "en_US": "A small crystal chunk said to have formed from the impact of the Message of the Sky."
         },
         "type": "TRADE",
         "rarity": 3,

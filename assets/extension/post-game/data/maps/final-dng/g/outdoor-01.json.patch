@@ -1,0 +1,21 @@
+[{
+    "type": "ENTER",
+    "index": "entities"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content":{
+        "type": "Chest",
+        "x": 1192,
+        "y": 256,
+        "level": 3,
+        "settings": {
+            "mapId": 24410,
+            "chestType": "Gold",
+            "item": "dlctweaks-trade-final-dng-special",
+            "noTrack": true,
+            "amount": 1
+        }
+    }
+},{
+    "type": "EXIT"
+}]
