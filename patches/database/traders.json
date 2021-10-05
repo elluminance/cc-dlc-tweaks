@@ -5,66 +5,6 @@
         "noTrack": false,
         "options": [
             {
-                "get":[
-                    {
-                        "id": "dlctweaks-trade-warm-gem",
-                        "amount": 1
-                    }
-                ],
-                "require":[
-                    {
-                        "id": "457",
-                        "amount": 3
-                    },
-                    {
-                        "id": "458",
-                        "amount": 3
-                    },
-                    {
-                        "id":"459",
-                        "amount": 3
-                    },
-                    {
-                        "id": "461",
-                        "amount": 3
-                    },
-                    {
-                        "id": "462",
-                        "amount": 3
-                    }
-                ],
-                "scale": 1,
-                "cost": 2500
-            },
-            {
-                "get":[
-                    {
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 1
-                    }
-                ],
-                "require":[
-                    {
-                        "id": "460",
-                        "amount": 3
-                    },
-                    {
-                        "id": "463",
-                        "amount": 3
-                    },
-                    {
-                        "id": "464",
-                        "amount": 3
-                    },
-                    {
-                        "id": "465",
-                        "amount": 3
-                    }
-                ],
-                "scale": 1,
-                "cost": 2500
-            },
-            {
             "get": [
                 {
                     "id": "dlctweaks-ascended-booster",
@@ -484,5 +424,75 @@
             }
         ],
         "area": "rhombus-sqr"
+    },
+
+    "el-material-1": {
+        "name": {
+            "en_US": "Rhombus Strange Materials"
+        },
+        "order": 100,
+        "options": [
+            {
+                "get":[
+                    {
+                        "id": "dlctweaks-trade-warm-gem",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "457",
+                        "amount": 3
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 2500
+            },
+            {
+                "get":[
+                    {
+                        "id": "dlctweaks-trade-cool-gem",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "460",
+                        "amount": 3
+                    },
+                    {
+                        "id": "463",
+                        "amount": 3
+                    },
+                    {
+                        "id": "464",
+                        "amount": 3
+                    },
+                    {
+                        "id": "465",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 2500
+            }
+        ],
+        "area": "autumn-area"
     }
 }
