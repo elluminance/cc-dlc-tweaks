@@ -39,17 +39,18 @@
             "name": null
         }
     },
+    
     {
         "order": 114,
-        "customItem": "dlctweaks-trade-beach-special",
+        "customItem": "el-ascension-core",
         "name": {
-            "en_US": "Pure Sand"
+            "en_US": "Ascension Core"
         },
         "description": {
-            "en_US": "A pile of surprisingly soft, white sand with no visible impurities."
+            "en_US": "This strange gemstone contains the raw power of growth."
         },
         "type": "TRADE",
-        "rarity": 3,
+        "rarity": 6,
         "cost": 0,
         "level": 1,
         "icon": "item-trade",
@@ -59,7 +60,7 @@
                 "type": "OTHER",
                 "value": {
                     "text": {
-                        "en_US": "Found in \\c[3]\\v[area.beach.name]\\c[0]"
+                        "en_US": "Given in \\c[3]\\v[area.rhombus-sqr.name]\\c[0]"
                     },
                     "type": "ENEMY",
                     "value": "baggy-kun-test"
@@ -104,26 +105,38 @@
         }
     },
     {
-        "order": 115,
-        "customItem": "el-ascension-core",
+        "order": 114,
+        "customItem": "dlctweaks-trade-beach-special",
         "name": {
-            "en_US": "Ascension Core"
+            "en_US": "Pure Sand"
         },
         "description": {
-            "en_US": "This strange gemstone contains the raw power of growth."
+            "en_US": "A pile of surprisingly soft white sand with no visible imperfections."
         },
         "type": "TRADE",
-        "rarity": 6,
+        "rarity": 3,
         "cost": 0,
         "level": 1,
         "icon": "item-trade",
         "noTrack": false,
-        "sources": [],
+        "sources": [
+            {
+                "type": "OTHER",
+                "value": {
+                    "text": {
+                        "en_US": "Found in \\c[3]\\v[area.beach.name]\\c[0]"
+                    },
+                    "type": "ENEMY",
+                    "value": "baggy-kun-test"
+                }
+            }
+        ],
         "effect": {
             "sheet": "",
             "name": null
         }
     },
+    
 
     {
         "order": 22,
