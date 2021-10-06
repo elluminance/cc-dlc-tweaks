@@ -18,19 +18,19 @@
                 },
                 {
                     "id": "dlctweaks-trade-warm-gem",
-                    "amount": 5
+                    "amount": 3
                 },
                 {
                     "id": "dlctweaks-trade-cool-gem",
-                    "amount": 5
+                    "amount": 3
                 },
                 {
                     "id": "dlctweaks-trade-beach-gem",
-                    "amount": 15
+                    "amount": 7
                 },
                 {
                     "id": "dlctweaks-trade-final-dng-gem",
-                    "amount": 15
+                    "amount": 7
                 }
             ],
             "scale": 1,
@@ -493,6 +493,6 @@
                 "cost": 2500
             }
         ],
-        "area": "autumn-area"
+        "area": "rhombus-sqr"
     }
 }
