@@ -1,0 +1,168 @@
+[{
+    "type": "ENTER",
+    "index": ["actions","SpawnGhosts"]
+},
+{
+    "type": "REMOVE_ARRAY_ELEMENT",
+    "index": 6
+},
+{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 6,
+    "content": {
+        "type": "IF",
+        "withElse":true,
+        "condition": "!tmp.observerArena",
+        "thenStep": [{
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SPAWN_ENEMIES",
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "count": 0,
+            "enemyInfo": {
+                "group": "ghosts",
+                "party": "",
+                "state": "INIT",
+                "startEffect": {
+                    "sheet": "teleport",
+                    "name": "showAlphaInstant"
+                },
+                "targetOnSpawn": true,
+                "type": "minibosses.ghost-sandshark",
+                "attribs": {}
+            }
+        }],
+        "elseStep":[{
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SPAWN_ENEMIES",
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "count": 0,
+            "enemyInfo": {
+                "group": "ghosts",
+                "party": "",
+                "state": "INIT",
+                "startEffect": {
+                    "sheet": "teleport",
+                    "name": "showAlphaInstant"
+                },
+                "targetOnSpawn": true,
+                "type": "minibosses.ghost-sandshark",
+                "level": 64,
+                "attribs": {}
+            }
+        }]
+    }
+},
+{
+    "type": "ENTER",
+    "index": ["8","thenStep"]
+},
+{
+    "type": "REMOVE_ARRAY_ELEMENT",
+    "index": 2
+},
+{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 2,
+    "content": {
+        "type": "IF",
+        "withElse":true,
+        "condition": "!tmp.observerArena",
+        "thenStep": [{
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SPAWN_ENEMIES",
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "count": 0,
+            "enemyInfo": {
+                "group": "ghosts",
+                "party": "",
+                "state": "INIT",
+                "startEffect": {
+                    "sheet": "teleport",
+                    "name": "showAlphaInstant"
+                },
+                "targetOnSpawn": true,
+                "type": "minibosses.ghost-sandshark",
+                "attribs": {}
+            }
+        }],
+        "elseStep":[{
+            "align": "BOTTOM",
+            "centralAngle": 0,
+            "angleVary": 0,
+            "random": false,
+            "duration": 0,
+            "clockwise": false,
+            "flipLeftFace": 0,
+            "circularArea": false,
+            "uniformDir": 0,
+            "delay": 0,
+            "repeat": false,
+            "type": "SPAWN_ENEMIES",
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "count": 0,
+            "enemyInfo": {
+                "group": "ghosts",
+                "party": "",
+                "state": "INIT",
+                "startEffect": {
+                    "sheet": "teleport",
+                    "name": "showAlphaInstant"
+                },
+                "targetOnSpawn": true,
+                "type": "minibosses.ghost-sandshark",
+                "level": 64,
+                "attribs": {}
+            }
+        }]
+    }
+},
+{
+    "type": "EXIT",
+    "count": 4
+}]

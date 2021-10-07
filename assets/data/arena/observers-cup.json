@@ -1,0 +1,202 @@
+{
+    "core": {
+        "type": "SOLO_CUP",
+        "name": {
+            "en_US": "Observer's Cup",
+            "langUid": 1
+        },
+        "info": {
+            "en_US": "Take on stronger versions of the foes guarding the \\c[3]broken weapons\\c[0]!",
+            "langUid": 2
+        },
+        "creator": {
+            "en_US": "EL2020",
+            "langUid": 3
+        },
+        "music": "challenge",
+        "rushMusic": "bossRush",
+        "mods": [
+            "WEAPON_ADJUST"
+        ],
+        "difficulty": "3",
+        "level": 64,
+        "banner": {
+            "src": "media\/gui\/observer-arena-banner.png",
+            "offX": 0,
+            "offY": 0,
+            "width": 280,
+            "height": 64
+        },
+        "condition": "quest.unknown-warrior-5.solved"
+    },
+    "rounds": [
+        {
+            "name": {
+                "en_US": "The Cobalt Speedster",
+                "langUid": 7
+            },
+            "customCode": true,
+            "camFocus": "PLAYER_SPAWN",
+            "platPoints": 160000,
+            "coins": 0,
+            "objective": {
+                "en_US": "Beat a stronger version of the \\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0] boss from \\c[3]\\v[area.autumn-area.name]\\c[0]!",
+                "langUid": 29,
+                "zh_CN": "\u51fb\u8d25\u6765\u81ea\\c[3]\\v[area.autumn-area.name]\\c[0]\u7684\u5f3a\u5316\u7248\\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0]!<<A<<[CHANGED 2019\/04\/16]",
+                "ko_KR": "\\c[3]\\v[area.autumn-area.name]\\c[0]\uc758 \ubcf4\uc2a4\uc778 \\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0]\uc758 \ub354 \uac15\ud55c \ubc84\uc804\uc744 \ucc98\uce58\ud558\uc138\uc694!<<A<<[CHANGED 2019\/04\/16]",
+                "ja_JP": "\\c[3]\\v[area.autumn-area.name]\\c[0]\u306e\u30dc\u30b9\u3001\\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0]\u306e\u5f37\u5316\u7248\u3092\u5012\u305b\uff01<<A<<[CHANGED 2019\/04\/16]",
+                "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0], dem Boss aus dem \\c[3]\\v[area.autumn-area.name]\\c[0]!",
+                "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.autumn-area.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
+            },
+            "points": 110000,
+            "type": "DEFAULT",
+            "medal": 0,
+            "waves": [],
+            "map": "arena.observer.blue-hedgehag",
+            "bonuses": [
+                {
+                    "type": "TIME",
+                    "seconds": 80,
+                    "points": 25000
+                },
+                {
+                    "type": "EFFECTIVE_DAMAGE",
+                    "target": 10000,
+                    "points": 5000
+                }
+            ],
+            "spawn": "PLAYER_SPAWN"
+        },
+        {
+            "name": {
+                "en_US": "The Chilly Performer",
+                "langUid": 59
+            },
+            "customCode": true,
+            "camFocus": "PLAYER_SPAWN",
+            "platPoints": 170000,
+            "coins": 0,
+            "objective": {
+                "en_US": "Beat a stronger version of the boss \\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0] from \\c[3]\\v[area.bergen-trails.name]\\c[0]!",
+                "langUid": 29,
+                "zh_CN": "\u51fb\u8d25\u6765\u81ea\\c[3]\\v[area.bergen-trails.name]\\c[0]\u7684\u5f3a\u5316\u7248\\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0]!<<A<<[CHANGED 2019\/04\/16]",
+                "ko_KR": "\\c[3]\\v[area.bergen-trails.name]\\c[0]\uc758 \ubcf4\uc2a4\uc778 \\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0]\uc758 \ub354 \uac15\ud55c \ubc84\uc804\uc744 \ucc98\uce58\ud558\uc138\uc694!<<A<<[CHANGED 2019\/04\/16]",
+                "ja_JP": "\\c[3]\\v[area.bergen-trails.name]\\c[0]\u306e\u30dc\u30b9\u3001\\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0]\u306e\u5f37\u5316\u7248\u3092\u5012\u305b\uff01<<A<<[CHANGED 2019\/04\/16]",
+                "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0], dem Boss aus dem \\c[3]\\v[area.bergen-trails.name]\\c[0]!",
+                "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.bergen-trails.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/penguin-rapper]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
+            },
+            "points": 120000,
+            "type": "DEFAULT",
+            "medal": 0,
+            "waves": [],
+            "map": "arena.observer.dakara",
+            "bonuses": [
+                {
+                    "type": "TIME",
+                    "seconds": 150,
+                    "points": 50000
+                }
+            ],
+            "spawn": "PLAYER_SPAWN"
+        },
+        {
+            "name": {
+                "en_US": "The Avaricious Shark",
+                "langUid": 61
+            },
+            
+            "customCode": true,
+            "camFocus": "PLAYER_SPAWN",
+            "platPoints": 175000,
+            "coins": 0,
+            "objective": {
+                "en_US": "Beat a stronger version of the \\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0] boss from \\c[3]\\v[area.heat-area.name]\\c[0]!",
+                "langUid": 29,
+                "zh_CN": "\u51fb\u8d25\u6765\u81ea\\c[3]\\v[area.heat-area.name]\\c[0]\u7684\u5f3a\u5316\u7248\\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0]!<<A<<[CHANGED 2019\/04\/16]",
+                "ko_KR": "\\c[3]\\v[area.heat-area.name]\\c[0]\uc758 \ubcf4\uc2a4\uc778 \\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0]\uc758 \ub354 \uac15\ud55c \ubc84\uc804\uc744 \ucc98\uce58\ud558\uc138\uc694!<<A<<[CHANGED 2019\/04\/16]",
+                "ja_JP": "\\c[3]\\v[area.heat-area.name]\\c[0]\u306e\u30dc\u30b9\u3001\\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0]\u306e\u5f37\u5316\u7248\u3092\u5012\u305b\uff01<<A<<[CHANGED 2019\/04\/16]",
+                "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0], dem Boss aus dem \\c[3]\\v[area.heat-area.name]\\c[0]!",
+                "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.heat-area.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/cursed-sandshark]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
+            },
+            "points": 130000,
+            "type": "DEFAULT",
+            "medal": 0,
+            "waves": [],
+            "map": "arena.observer.sharkster",
+            "bonuses": [
+                {
+                    "type": "TIME",
+                    "seconds": 210,
+                    "points": 50000
+                }
+            ],
+            "spawn": "PLAYER_SPAWN"
+        },
+        {
+            "name": {
+                "en_US": "The Shadowed Lurker",
+                "langUid": 63
+            },
+            
+            "customCode": true,
+            "camFocus": "PLAYER_SPAWN",
+            "platPoints": 175000,
+            "coins": 0,
+            "objective": {
+                "en_US": "Beat a stronger version of the \\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0] boss from \\c[3]\\v[area.jungle.name]\\c[0]!",
+                "langUid": 29,
+                "zh_CN": "\u51fb\u8d25\u6765\u81ea\\c[3]\\v[area.jungle.name]\\c[0]\u7684\u5f3a\u5316\u7248\\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0]!<<A<<[CHANGED 2019\/04\/16]",
+                "ko_KR": "\\c[3]\\v[area.jungle.name]\\c[0]\uc758 \ubcf4\uc2a4\uc778 \\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0]\uc758 \ub354 \uac15\ud55c \ubc84\uc804\uc744 \ucc98\uce58\ud558\uc138\uc694!<<A<<[CHANGED 2019\/04\/16]",
+                "ja_JP": "\\c[3]\\v[area.jungle.name]\\c[0]\u306e\u30dc\u30b9\u3001\\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0]\u306e\u5f37\u5316\u7248\u3092\u5012\u305b\uff01<<A<<[CHANGED 2019\/04\/16]",
+                "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0], dem Boss aus dem \\c[3]\\v[area.jungle.name]\\c[0]!",
+                "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.jungle.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/deep-fish]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
+            },
+            "points": 130000,
+            "type": "DEFAULT",
+            "medal": 0,
+            "waves": [],
+            "map": "arena.observer.angler",
+            "bonuses": [
+                {
+                    "type": "TIME",
+                    "seconds": 105,
+                    "points": 30000
+                }
+            ],
+            "spawn": "PLAYER_SPAWN"
+        },
+        {
+            "name": {
+                "en_US": "The Militant Panda",
+                "langUid": 51
+            },
+            
+            "customCode": true,
+            "camFocus": "PLAYER_SPAWN",
+            "platPoints": 300000,
+            "coins": 0,
+            "objective": {
+                "en_US": "Beat a stronger version of the \\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0] boss from \\c[3]\\v[area.forest.name]\\c[0]!",
+                "langUid": 29,
+                "zh_CN": "\u51fb\u8d25\u6765\u81ea\\c[3]\\v[area.forest.name]\\c[0]\u7684\u5f3a\u5316\u7248\\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0]!<<A<<[CHANGED 2019\/04\/16]",
+                "ko_KR": "\\c[3]\\v[area.forest.name]\\c[0]\uc758 \ubcf4\uc2a4\uc778 \\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0]\uc758 \ub354 \uac15\ud55c \ubc84\uc804\uc744 \ucc98\uce58\ud558\uc138\uc694!<<A<<[CHANGED 2019\/04\/16]",
+                "ja_JP": "\\c[3]\\v[area.forest.name]\\c[0]\u306e\u30dc\u30b9\u3001\\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0]\u306e\u5f37\u5316\u7248\u3092\u5012\u305b\uff01<<A<<[CHANGED 2019\/04\/16]",
+                "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0], dem Boss aus dem \\c[3]\\v[area.forest.name]\\c[0]!",
+                "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.forest.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/panda-boss]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
+            },
+            "points": 210000,
+            "type": "DEFAULT",
+            "medal": 0,
+            "waves": [],
+            "map": "arena.observer.pandza",
+            "bonuses": [
+                {
+                    "type": "TIME",
+                    "seconds": 300,
+                    "points": 75000
+                }
+            ],
+            "spawn": "PLAYER_SPAWN"
+        }
+    ]
+}

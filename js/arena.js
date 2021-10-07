@@ -10,6 +10,7 @@ sc.Arena.inject({
     init(){
         this.parent()
         this.registerCup('sidwell', {order: 100, id: "sidwell"});
+        this.registerCup('observers-cup', {order: 1000, id: "observers-cup"});
     },
 
     onPreDamageApply(a, b, c, d, e) {
