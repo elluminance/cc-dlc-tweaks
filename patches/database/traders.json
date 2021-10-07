@@ -494,5 +494,66 @@
             }
         ],
         "area": "rhombus-sqr"
+    },
+
+    "el-vermillion-trades": {
+        "name": {
+            "en_US": "Wasteland Imports"
+        },
+        "order": 100,
+        "area": "rhombus-sqr",
+        "options": [
+            {
+                "get": [
+                    {
+                    "id": "401",
+                    "amount": 2
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "98",
+                        "amount": 1
+                    },{
+                        "id": "254",
+                        "amount": 2
+                    }
+                ]
+            }, 
+            {
+                "get": [
+                    {
+                    "id": "401",
+                    "amount": 2
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "97",
+                        "amount": 1
+                    },{
+                        "id": "254",
+                        "amount": 2
+                    }
+                ]
+            },
+            {
+                "get": [
+                    {
+                    "id": "402",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "130",
+                        "amount": 1
+                    },{
+                        "id": "401",
+                        "amount": 2
+                    }
+                ]
+            }
+        ]
     }
 }
