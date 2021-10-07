@@ -23,6 +23,25 @@
         "type": "EXIT"
     }]
 },{
+    "type": "FOR_IN",
+    "keyword": "__INDEX__",
+    "values":  [401, 402],
+    "body":[
+        {
+            "type": "ENTER",
+            "index": ["__INDEX__", "sources"]
+        },{
+            "type": "ADD_ARRAY_ELEMENT",
+            "content": {
+                "type": "TRADER",
+                "value": "el-vermillion-trades"
+            }
+        },{
+            "type": "EXIT",
+            "count": 2
+        }
+    ]
+},{
     "type": "IMPORT",
     "src": "mod:patches/items/booster.json"
 },{
