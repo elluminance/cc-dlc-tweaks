@@ -359,16 +359,16 @@
                 ],
                 "require": [
                     {
-                        "id": "176",
+                        "id": "459",
                         "amount": 5
                     },{
-                        "id": "dlctweaks-trade-warm-gem",
+                        "id": "610",
                         "amount": 5
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
+                        "id": "246",
                         "amount": 5
                     },{
-                        "id": "182",
+                        "id": "632",
                         "amount": 2
                     }
                 ],
@@ -383,16 +383,16 @@
                 ],
                 "require": [
                     {
-                        "id": "176",
+                        "id": "460",
                         "amount": 5
                     },{
-                        "id": "dlctweaks-trade-warm-gem",
+                        "id": "610",
                         "amount": 5
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
+                        "id": "246",
                         "amount": 5
                     },{
-                        "id": "182",
+                        "id": "629",
                         "amount": 2
                     }
                 ],
@@ -407,16 +407,16 @@
                 ],
                 "require": [
                     {
-                        "id": "dlctweaks-trade-warm-gem",
-                        "amount": 5
+                        "id": "457",
+                        "amount": 8
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 5
+                        "id": "401",
+                        "amount": 4
                     },{
-                        "id": "176",
-                        "amount": 5
+                        "id": "402",
+                        "amount": 2
                     },{
-                        "id": "182",
+                        "id": "629",
                         "amount": 2
                     }
                 ],
