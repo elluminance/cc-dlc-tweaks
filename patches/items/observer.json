@@ -1,0 +1,283 @@
+[
+    {
+        "order": 23,
+        "customItem": "el-shard-sword",
+        "name": {
+            "en_US": "Sword Shard"
+        },
+        "description": {
+            "en_US": "Once a fine blade, now scrap..."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 23,
+        "customItem": "el-shard-shield",
+        "name": {
+            "en_US": "Shield Shard"
+        },
+        "description": {
+            "en_US": "Once a grand shield, now garbage..."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 23,
+        "customItem": "el-shard-gauntlet",
+        "name": {
+            "en_US": "Gauntlet Shard"
+        },
+        "description": {
+            "en_US": "Once a powerful gauntlet, now trash..."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 23,
+        "customItem": "el-shard-deck",
+        "name": {
+            "en_US": "Deck Shard"
+        },
+        "description": {
+            "en_US": "Once a wonderful deck of cards, now rubbish..."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 23,
+        "customItem": "el-shard-chakram",
+        "name": {
+            "en_US": "Chakram Shard"
+        },
+        "description": {
+            "en_US": "Once a powerful chakram, now waste..."
+        },
+        "type": "TRADE",
+        "rarity": 4,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": true,
+        "sources": [
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+
+    {
+        "order": 1,
+        "customItem": "el-fixed-sword",
+        "name": {
+            "en_US": "Repaired Sword"
+        },
+        "description": {
+            "en_US": "A fixed sword that will have a cool description later. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 150000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 139,
+            "defense": 83
+        },
+        "properties": {},
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "order": 1,
+        "customItem": "el-fixed-shield",
+        "name": {
+            "en_US": "Repaired Shield"
+        },
+        "description": {
+            "en_US": "A fixed shield that will have a cool description later. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 150000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 139,
+            "defense": 83
+        },
+        "properties": {},
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "order": 1,
+        "customItem": "el-fixed-gauntlet",
+        "name": {
+            "en_US": "Repaired Gauntlets"
+        },
+        "description": {
+            "en_US": "A fixed gauntlet that will have a cool description later. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 150000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 139,
+            "defense": 83
+        },
+        "properties": {},
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "order": 1,
+        "customItem": "el-fixed-deck",
+        "name": {
+            "en_US": "Repaired Deck"
+        },
+        "description": {
+            "en_US": "A fixed deck that will have a cool description later. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 150000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 139,
+            "defense": 83
+        },
+        "properties": {},
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "order": 1,
+        "customItem": "el-fixed-chakram",
+        "name": {
+            "en_US": "Repaired Chakrams"
+        },
+        "description": {
+            "en_US": "A fixed sword that will have a cool description later. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 150000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 139,
+            "defense": 83
+        },
+        "properties": {},
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    }
+]

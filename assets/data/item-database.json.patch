@@ -46,6 +46,9 @@
     "src": "mod:patches/items/booster.json"
 },{
     "type": "IMPORT",
+    "src": "mod:patches/items/observer.json"
+},{
+    "type": "IMPORT",
     "src": "mod:patches/items/equipment.json"
 },{
     "type": "IMPORT",
