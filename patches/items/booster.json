@@ -1,6 +1,6 @@
 [
     {
-        "order": 20000,
+        "order": 23,
         "customItem": "dlctweaks-trade-warm-gem",
         "name": {
             "en_US": "Warm Crystal"
@@ -14,13 +14,19 @@
         "level": 1,
         "icon": "item-trade",
         "noTrack": true,
+        "sources": [
+            {
+                "type": "TRADER",
+                "value": "el-material-1"
+            }
+        ],
         "effect": {
             "sheet": "",
             "name": null
         }
     },
     {
-        "order": 20000,
+        "order": 23,
         "customItem": "dlctweaks-trade-cool-gem",
         "name": {
             "en_US": "Cool Crystal"
@@ -34,6 +40,12 @@
         "level": 1,
         "icon": "item-trade",
         "noTrack": true,
+        "sources": [
+            {
+                "type": "TRADER",
+                "value": "el-material-1"
+            }
+        ],
         "effect": {
             "sheet": "",
             "name": null
