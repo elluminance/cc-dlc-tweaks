@@ -261,13 +261,13 @@
                 "require": [
                     {
                         "id": "dlctweaks-trade-warm-gem",
-                        "amount": 3
+                        "amount": 1
                     },{
                         "id": "dlctweaks-trade-cool-gem",
-                        "amount": 3
+                        "amount": 1
                     },{
                         "id": "dlctweaks-trade-final-dng-gem",
-                        "amount": 5
+                        "amount": 3
                     },{
                         "id": "176",
                         "amount": 5
@@ -311,17 +311,17 @@
                 ],
                 "require": [
                     {
-                        "id": "176",
-                        "amount": 5
+                        "id": "464",
+                        "amount": 8
                     },{
-                        "id": "dlctweaks-trade-warm-gem",
-                        "amount": 5
+                        "id": "457",
+                        "amount": 8
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 5
+                        "id": "79",
+                        "amount": 4
                     },{
                         "id": "182",
-                        "amount": 2
+                        "amount": 5
                     }
                 ],
                 "cost": 50000
@@ -335,17 +335,17 @@
                 ],
                 "require": [
                     {
-                        "id": "176",
-                        "amount": 5
+                        "id": "465",
+                        "amount": 8
                     },{
-                        "id": "dlctweaks-trade-warm-gem",
-                        "amount": 5
+                        "id": "463",
+                        "amount": 8
                     },{
-                        "id": "dlctweaks-trade-cool-gem",
-                        "amount": 5
+                        "id": "357",
+                        "amount": 4
                     },{
                         "id": "182",
-                        "amount": 2
+                        "amount": 5
                     }
                 ],
                 "cost": 50000
