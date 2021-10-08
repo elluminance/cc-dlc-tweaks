@@ -68,6 +68,14 @@
             "fx": "skin-aura.void"
         }
     },
+    "el-decoy-aura": {
+        "item": "el-effect-decoy",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.warp-decoy"
+        }
+    },
     "el-shady-aura": {
         "id": "el-shady-aura",
         "item": "el-effect-shady",

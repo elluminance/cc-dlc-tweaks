@@ -1,0 +1,109 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": [
+            {
+                "name": "TELEPORT_RIPPLE",
+                "sheet": {
+                    "src": "media\/entity\/effects\/particles1.png  ",
+                    "xCount": 2,
+                    "offX": 192,
+                    "offY": 64,
+                    "width": 8,
+                    "height": 8
+                },
+                "guiSprites": true,
+                "renderMode": "lighter",
+                "time": 0.05,
+                "flipY": false,
+                "frames": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            }
+        ]
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "alpha": 0.7,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "size": "L",
+                "fadeIn": 0.1,
+                "fadeOut": 0.1,
+                "duration": -1,
+                "glow": false,
+                "type": "LIGHT"
+            },
+            {
+                "color": "#00aa77",
+                "maxAlpha": 1,
+                "minAlpha": 0.5,
+                "blinkDuration": 0.2,
+                "blinkCount": -1,
+                "noLighter": false,
+                "type": "BLINK_COLOR"
+            },
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "numParticles": 1,
+                "duration": 0.2,
+                "centralAngle": 1,
+                "startDist": 12,
+                "random": true,
+                "moveDist": 0,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 16
+                },
+                "keySpline": "EASE_IN_OUT",
+                "collision": false,
+                "anim": "TELEPORT_RIPPLE",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "color": "#00aa77",
+                "noLighter": false,
+                "pAlpha": {
+                    "init": 0.9,
+                    "start": {
+                        "value": 0,
+                        "spline": ""
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1.2,
+                            "y": 1.4
+                        },
+                        "spline": "EASE_IN"
+                    }
+                },
+                "particleDuration": 0.4,
+                "type": "COPY_SPRITE"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}
