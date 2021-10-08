@@ -580,5 +580,175 @@
                 "cost": 3333
             }
         ]
+    },
+
+    "el-observer-trade": {
+        "name": {
+            "en_US": "Classy Weapons"
+        },
+        "order": 90,
+        "area": "rhombus-sqr",
+        "options": [
+            {
+                "get":[
+                    {
+                        "id": "el-fixed-sword",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "el-shard-sword",
+                        "amount": 1
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 9999999
+            },
+            {
+                "get":[
+                    {
+                        "id": "el-fixed-shield",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "el-shard-shield",
+                        "amount": 1
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 9999999
+            },
+            {
+                "get":[
+                    {
+                        "id": "el-fixed-gauntlet",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "el-shard-gauntlet",
+                        "amount": 1
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 9999999
+            },
+            {
+                "get":[
+                    {
+                        "id": "el-fixed-deck",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "el-shard-deck",
+                        "amount": 1
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 9999999
+            },
+            {
+                "get":[
+                    {
+                        "id": "el-fixed-chakram",
+                        "amount": 1
+                    }
+                ],
+                "require":[
+                    {
+                        "id": "el-shard-chakram",
+                        "amount": 1
+                    },
+                    {
+                        "id": "458",
+                        "amount": 3
+                    },
+                    {
+                        "id":"459",
+                        "amount": 3
+                    },
+                    {
+                        "id": "461",
+                        "amount": 3
+                    },
+                    {
+                        "id": "462",
+                        "amount": 3
+                    }
+                ],
+                "scale": 1,
+                "cost": 9999999
+            }
+        ]
     }
 }
