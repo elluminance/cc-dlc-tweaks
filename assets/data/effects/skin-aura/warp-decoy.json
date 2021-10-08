@@ -69,6 +69,7 @@
                 "keySpline": "EASE_IN_OUT",
                 "collision": false,
                 "anim": "TELEPORT_RIPPLE",
+                "moveWithTarget": 1,
                 "type": "OFFSET_PARTICLE_CIRCLE"
             },
             {
@@ -95,6 +96,7 @@
                     }
                 },
                 "particleDuration": 0.4,
+                "moveWithTarget": 1,
                 "type": "COPY_SPRITE"
             },
             {
