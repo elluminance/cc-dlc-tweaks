@@ -148,10 +148,10 @@
         "order": 1,
         "customItem": "el-fixed-shield",
         "name": {
-            "en_US": "Repaired Shield"
+            "en_US": "Unwavering Aegis"
         },
         "description": {
-            "en_US": "A fixed shield that will have a cool description later. \\i[ascended]"
+            "en_US": "An unbreakable shield perfect for those who desire the power to protect the world. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -163,15 +163,18 @@
         "noCount": false,
         "params": {
             "elemFactor": [
-                1,
-                1,
-                1,
-                1
+                1.15,
+                1.15,
+                1.15,
+                1.15
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 20,
+            "defense": 250,
+            "hp": 400 
         },
-        "properties": {},
+        "properties": {
+            "PERFECT_GUARD_WINDOW": 1.75
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -216,10 +219,10 @@
         "order": 1,
         "customItem": "el-fixed-deck",
         "name": {
-            "en_US": "Repaired Deck"
+            "en_US": "Trickster's Suits"
         },
         "description": {
-            "en_US": "A fixed deck that will have a cool description later. \\i[ascended]"
+            "en_US": "Highly enchanted cards capable of magic unparalleled to anything else. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -236,10 +239,12 @@
                 1,
                 1
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 105,
+            "focus": 150
         },
-        "properties": {},
+        "properties": {
+            "COND_EFFECT_ALL": 1.2
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -253,7 +258,7 @@
             "en_US": "Repaired Chakrams"
         },
         "description": {
-            "en_US": "A fixed sword that will have a cool description later. \\i[ascended]"
+            "en_US": "A fixed pair of chakrams that will have a cool description later. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
