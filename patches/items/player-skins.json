@@ -168,7 +168,7 @@
             "en_US": "Health Aura"
         },
         "description": {
-            "en_US": "Changes color based on current HP."
+            "en_US": "Changes color based on your current HP."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -228,7 +228,7 @@
             "en_US": "Decoy Aura"
         },
         "description": {
-            "en_US": "Truly embrace the power of Warp Decoy to become one yourself."
+            "en_US": "Embrace the power of Warp Decoy to become a decoy yourself."
         },
         "type": "TOGGLE",
         "rarity": 0,

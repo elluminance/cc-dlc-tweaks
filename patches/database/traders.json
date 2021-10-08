@@ -421,6 +421,30 @@
                     }
                 ],
                 "cost": 50000
+            },
+            {
+                "get": [
+                    {
+                    "id": "el-effect-decoy",
+                    "amount": 1
+                    }
+                ],
+                "require": [
+                    {
+                        "id": "464",
+                        "amount": 6
+                    },{
+                        "id": "629",
+                        "amount": 3
+                    },{
+                        "id": "633",
+                        "amount": 3
+                    },{
+                        "id": "182",
+                        "amount": 4
+                    }
+                ],
+                "cost": 50000
             }
         ],
         "area": "rhombus-sqr"
