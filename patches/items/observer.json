@@ -1,6 +1,6 @@
 [
     {
-        "order": 23,
+        "order": 39.95,
         "customItem": "el-shard-sword",
         "name": {
             "en_US": "Sword Shard"
@@ -22,7 +22,7 @@
         }
     },
     {
-        "order": 23,
+        "order": 39.96,
         "customItem": "el-shard-shield",
         "name": {
             "en_US": "Shield Shard"
@@ -44,7 +44,7 @@
         }
     },
     {
-        "order": 23,
+        "order": 39.97,
         "customItem": "el-shard-gauntlet",
         "name": {
             "en_US": "Gauntlet Shard"
@@ -66,7 +66,7 @@
         }
     },
     {
-        "order": 23,
+        "order": 39.98,
         "customItem": "el-shard-deck",
         "name": {
             "en_US": "Deck Shard"
@@ -88,7 +88,7 @@
         }
     },
     {
-        "order": 23,
+        "order": 39.99,
         "customItem": "el-shard-chakram",
         "name": {
             "en_US": "Chakram Shard"
@@ -111,7 +111,7 @@
     },
 
     {
-        "order": 1,
+        "order": 17.95,
         "customItem": "el-fixed-sword",
         "name": {
             "en_US": "Repaired Sword"
@@ -145,7 +145,7 @@
         "isScalable": true
     },
     {
-        "order": 1,
+        "order": 17.96,
         "customItem": "el-fixed-shield",
         "name": {
             "en_US": "Unwavering Aegis"
@@ -185,7 +185,7 @@
         "isScalable": true
     },
     {
-        "order": 1,
+        "order": 17.97,
         "customItem": "el-fixed-gauntlet",
         "name": {
             "en_US": "Cosmic Claws"
@@ -208,10 +208,12 @@
                 1,
                 1
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 138,
+            "focus": 84
         },
-        "properties": {},
+        "properties": {
+
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -219,7 +221,7 @@
         "isScalable": true
     },
     {
-        "order": 1,
+        "order": 17.98,
         "customItem": "el-fixed-deck",
         "name": {
             "en_US": "Trickster's Suits"
@@ -255,13 +257,13 @@
         "isScalable": true
     },
     {
-        "order": 1,
+        "order": 17.99,
         "customItem": "el-fixed-chakram",
         "name": {
             "en_US": "Light and Dark"
         },
         "description": {
-            "en_US": "Two chakrams that when together, embody the power of balance. \\i[ascended]"
+            "en_US": "Two chakrams that together embody the power of perfect balance. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -281,7 +283,12 @@
             "attack": 139,
             "defense": 83
         },
-        "properties": {},
+        "properties": {
+            "OVERHEAT_REDUCTION": 1.2,
+            "SP_REGEN": 1.1,
+            "RANGED_DMG": 1.2,
+            "MELEE_DMG": 1.2
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
