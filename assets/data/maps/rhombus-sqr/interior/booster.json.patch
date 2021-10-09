@@ -25,7 +25,7 @@
                     "reactType": "FIXED_POS",
                     "face": "NORTH",
                     "hidden": false,
-                    "condition": "plot.line >= 40000 && (stat.items.448 >= 1) && (stat.items.449 >= 1) && (stat.items.450 >= 1) && (stat.items.451 >= 1) && (stat.items.452 >= 1) && (stat.items.453 >= 1) && (stat.items.dlctweaks-beach-booster >= 1) && (stat.items.dlctweaks-final-dng-booster >= 1)",
+                    "condition": "plot.line >= 48500 && (stat.items.448 >= 1) && (stat.items.449 >= 1) && (stat.items.450 >= 1) && (stat.items.451 >= 1) && (stat.items.452 >= 1) && (stat.items.453 >= 1) && (stat.items.dlctweaks-beach-booster >= 1) && (stat.items.dlctweaks-final-dng-booster >= 1)",
                     "config": "normal",
                     "event": {
                         "quest": [
@@ -127,8 +127,48 @@
                                 }
                             },
                             {
+                                "type": "SET_MSG_EXPRESSION",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
                                 "message": {
-                                    "en_US": "To obtain it, you may use this core and other materials obtained from boosters to receive your ultimate prize."
+                                    "en_US": "However, it is important to note that \\c[1]enemies will not have any unique drops from using the Ascended Booster\\c[0]."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "The good news is that enemies will still drop gems \\c[3]as though they were boosted with a standard area booster\\c[0]."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "To obtain it, you may use this core, along with gems obtained from boosted enemies to receive your prize."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Happy hunting, seeker!"
                                 },
                                 "autoContinue": false,
                                 "type": "SHOW_MSG",
@@ -185,6 +225,14 @@
                     "hidden": false,
                     "condition": "plot.line >= 40000",
                     "config": "normal",
+                    "event": {}
+                },
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "NORTH",
+                    "hidden": false,
+                    "condition": "plot.line >= 48500",
+                    "config": "normal",
                     "event": {
                         "trade": {
                             "trader": "booster-beach"
@@ -211,6 +259,14 @@
                     "face": "NORTH",
                     "hidden": false,
                     "condition": "plot.line >= 40000",
+                    "config": "normal",
+                    "event": {}
+                },
+                {
+                    "reactType": "FIXED_POS",
+                    "face": "NORTH",
+                    "hidden": false,
+                    "condition": "plot.line >= 48500",
                     "config": "normal",
                     "event": {
                         "trade": {
