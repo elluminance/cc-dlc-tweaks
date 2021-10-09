@@ -121,7 +121,7 @@
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 150000,
+        "cost": 0,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
@@ -155,7 +155,7 @@
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 150000,
+        "cost": 0,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
@@ -173,7 +173,10 @@
             "hp": 400 
         },
         "properties": {
-            "PERFECT_GUARD_WINDOW": 1.75
+            "PERFECT_GUARD_WINDOW": 1.5,
+            "GUARD_STRENGTH": 1.3,
+            "GUARD_SP": 1.15,
+            "DASH_INVINC": 0.9
         },
         "effect": {
             "sheet": "drops",
@@ -185,14 +188,14 @@
         "order": 1,
         "customItem": "el-fixed-gauntlet",
         "name": {
-            "en_US": "Repaired Gauntlets"
+            "en_US": "Cosmic Claws"
         },
         "description": {
-            "en_US": "A fixed gauntlet that will have a cool description later. \\i[ascended]"
+            "en_US": "Gauntlets with retractable claws that can punch with the power of the stars. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 150000,
+        "cost": 0,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
@@ -222,11 +225,11 @@
             "en_US": "Trickster's Suits"
         },
         "description": {
-            "en_US": "A standard deck of cards enchanted to be capable of magic unparalleled to anything else. \\i[ascended]"
+            "en_US": "A once standard deck of cards enchanted to be capable of incredible magic. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 150000,
+        "cost": 0,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
@@ -239,11 +242,11 @@
                 1,
                 1
             ],
-            "attack": 105,
+            "attack": 125,
             "focus": 150
         },
         "properties": {
-            "COND_EFFECT_ALL": 1.2
+            "COND_EFFECT_ALL": 1.25
         },
         "effect": {
             "sheet": "drops",
@@ -255,14 +258,14 @@
         "order": 1,
         "customItem": "el-fixed-chakram",
         "name": {
-            "en_US": "Repaired Chakrams"
+            "en_US": "Light and Dark"
         },
         "description": {
-            "en_US": "A fixed pair of chakrams that will have a cool description later. \\i[ascended]"
+            "en_US": "Two chakrams that when together, embody the power of balance. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 150000,
+        "cost": 0,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
