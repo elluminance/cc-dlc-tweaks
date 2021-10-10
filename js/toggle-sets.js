@@ -72,7 +72,6 @@ sc.EnemyDisplayGui.inject({
 
 sc.EnemyPageGeneralInfo.inject({
     setData(a, d, f, g){
-        //console.log({a})
         const ascBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster");
         let oldBoostedLevel;
         if(d){
