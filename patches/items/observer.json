@@ -114,10 +114,10 @@
         "order": 17.95,
         "customItem": "el-fixed-sword",
         "name": {
-            "en_US": "Repaired Sword"
+            "en_US": "Dreamer's Edge"
         },
         "description": {
-            "en_US": "A fixed sword that will have a cool description later. \\i[ascended]"
+            "en_US": "A powerful blade that can be reshaped by one's will. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -134,10 +134,14 @@
                 1,
                 1
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 151,
+            "defense": 56,
+            "focus": 53
         },
-        "properties": {},
+        "properties": {
+            "CROSS_COUNTER": 1.1,
+            "ASSAULT": 1.5
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -168,9 +172,9 @@
                 1.15,
                 1.15
             ],
-            "attack": 10,
-            "defense": 200,
-            "hp": 400 
+            "attack": 30,
+            "defense": 156,
+            "hp": 304
         },
         "properties": {
             "PERFECT_GUARD_WINDOW": 1.5,
@@ -202,19 +206,18 @@
         "noCount": false,
         "params": {
             "elemFactor": [
-                1,
-                1,
-                1,
-                1
+                0.9,
+                0.9,
+                0.9,
+                0.9
             ],
-            "attack": 158,
-            "focus": 95
+            "attack": 172,
+            "focus": 61
         },
         "properties": {
             "MOMENTUM": 1.05,
             "BREAK_DMG": 1.15,
-            "CROSS_COUNTER": 1.1,
-            "BERSERK": 1.2
+            "BERSERK": 1.3
         },
         "effect": {
             "sheet": "drops",
@@ -229,7 +232,7 @@
             "en_US": "Trickster's Suits"
         },
         "description": {
-            "en_US": "A once standard deck of cards enchanted to be capable of incredible magic. \\i[ascended]"
+            "en_US": "A deck of cards that have been enchanted to be capable of incredible magic. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -246,13 +249,13 @@
                 1,
                 1
             ],
-            "attack": 115,
-            "focus": 140
+            "attack": 114,
+            "focus": 134
         },
         "properties": {
-            "CRITICAL_DMG": 1.4,
-            "COND_EFFECT_ALL": 1.25,
-            "SP_REGEN": 1.2
+            "COND_EFFECT_ALL": 1.3,
+            "SP_REGEN": 1.2,
+            "HP_REGEN": 1.1
         },
         "effect": {
             "sheet": "drops",
@@ -284,14 +287,15 @@
                 1,
                 1
             ],
-            "attack": 110,
-            "defense": 30,
-            "focus": 110
+            "attack": 126,
+            "defense": 42,
+            "focus": 85
         },
         "properties": {
-            "OVERHEAT_REDUCTION": 1.25,
-            "RANGED_DMG": 1.2,
-            "MELEE_DMG": 1.2
+            "OVERHEAT_REDUCTION": 1.2,
+            "RANGED_DMG": 1.15,
+            "MELEE_DMG": 1.15,
+            "CRITICAL_DMG": 1.4
         },
         "effect": {
             "sheet": "drops",
