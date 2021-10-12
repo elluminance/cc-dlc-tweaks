@@ -183,6 +183,7 @@
     },
 
     "daikon-scale-trade": {
+        "noTrack": true,
         "name": {
             "en_US": "Best Weapon Trader"
         },
@@ -602,24 +603,24 @@
                         "amount": 1
                     },
                     {
-                        "id": "458",
+                        "id": "192",
+                        "amount": 6
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 4
+                    },
+                    {
+                        "id":"464",
                         "amount": 3
                     },
                     {
-                        "id":"459",
-                        "amount": 3
-                    },
-                    {
-                        "id": "461",
-                        "amount": 3
-                    },
-                    {
-                        "id": "462",
+                        "id": "465",
                         "amount": 3
                     }
                 ],
                 "scale": 1,
-                "cost": 9999999
+                "cost": 200000
             },
             {
                 "get":[
@@ -634,15 +635,15 @@
                         "amount": 1
                     },
                     {
-                        "id": "458",
-                        "amount": 3
+                        "id": "192",
+                        "amount": 6
                     },
                     {
-                        "id":"459",
-                        "amount": 3
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 5
                     },
                     {
-                        "id": "461",
+                        "id":"457",
                         "amount": 3
                     },
                     {
@@ -651,7 +652,7 @@
                     }
                 ],
                 "scale": 1,
-                "cost": 9999999
+                "cost": 200000
             },
             {
                 "get":[
@@ -666,24 +667,24 @@
                         "amount": 1
                     },
                     {
-                        "id": "458",
+                        "id": "192",
+                        "amount": 6
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id":"461",
                         "amount": 3
                     },
                     {
-                        "id":"459",
-                        "amount": 3
-                    },
-                    {
-                        "id": "461",
-                        "amount": 3
-                    },
-                    {
-                        "id": "462",
+                        "id": "459",
                         "amount": 3
                     }
                 ],
                 "scale": 1,
-                "cost": 9999999
+                "cost": 200000
             },
             {
                 "get":[
@@ -698,24 +699,24 @@
                         "amount": 1
                     },
                     {
-                        "id": "458",
+                        "id": "192",
+                        "amount": 6
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id":"463",
                         "amount": 3
                     },
                     {
-                        "id":"459",
-                        "amount": 3
-                    },
-                    {
-                        "id": "461",
-                        "amount": 3
-                    },
-                    {
-                        "id": "462",
+                        "id": "dlctweaks-trade-beach-gem",
                         "amount": 3
                     }
                 ],
                 "scale": 1,
-                "cost": 9999999
+                "cost": 200000
             },
             {
                 "get":[
@@ -730,24 +731,24 @@
                         "amount": 1
                     },
                     {
+                        "id": "192",
+                        "amount": 6
+                    },
+                    {
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 5
+                    },
+                    {
+                        "id":"460",
+                        "amount": 3
+                    },
+                    {
                         "id": "458",
-                        "amount": 3
-                    },
-                    {
-                        "id":"459",
-                        "amount": 3
-                    },
-                    {
-                        "id": "461",
-                        "amount": 3
-                    },
-                    {
-                        "id": "462",
                         "amount": 3
                     }
                 ],
                 "scale": 1,
-                "cost": 9999999
+                "cost": 200000
             }
         ]
     }

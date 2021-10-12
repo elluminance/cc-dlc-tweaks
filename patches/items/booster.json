@@ -187,10 +187,10 @@
         "order": 23,
         "customItem": "dlctweaks-trade-final-dng-gem",
         "name": {
-            "en_US": "Opal"
+            "en_US": "Onyx"
         },
         "description": {
-            "en_US": "A rare rainbow gem only found when fighting strong adversaries."
+            "en_US": "A rare black gem only found when fighting strong adversaries."
         },
         "type": "TRADE",
         "rarity": 3,

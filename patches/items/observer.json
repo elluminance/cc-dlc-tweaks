@@ -139,8 +139,9 @@
             "focus": 53
         },
         "properties": {
-            "CROSS_COUNTER": 1.1,
-            "ASSAULT": 1.5
+            "MELEE_DMG": 1.15,
+            "ASSAULT": 1.35,
+            "STUN_THRESHOLD": 1.02
         },
         "effect": {
             "sheet": "drops",
@@ -293,8 +294,7 @@
         },
         "properties": {
             "OVERHEAT_REDUCTION": 1.2,
-            "RANGED_DMG": 1.15,
-            "MELEE_DMG": 1.15,
+            "CROSS_COUNTER": 1.1,
             "CRITICAL_DMG": 1.4
         },
         "effect": {
