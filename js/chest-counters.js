@@ -133,9 +133,7 @@ sc.STATS_BUILD[sc.STATS_CATEGORY.EXPLORATION].chestAres.getSettings = area => {
         displayName: sc.map.getAreaName(area, false, true),
         map: "chests",
         stat: area,
-        max: () => {
-            return sc.map.areas[area].chests + getExtraChests(area)
-        }
+        max: () => (sc.map.areas[area].chests + getExtraChests(area))
     }
 }
 
