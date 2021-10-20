@@ -1,6 +1,6 @@
 [{
     "type": "ENTER",
-    "index": ["entities", 730, "settings"]
+    "index": ["entities", 222, "settings"]
 },{
     "type": "SET_KEY",
     "index": "map",
@@ -10,13 +10,17 @@
     "index": "condition",
     "content": "true"
 },{
+    "type": "SET_KEY",
+    "index": "name",
+    "content": "el-shop"
+},{
     "type": "EXIT",
     "count": 2
 },
 
 {
     "type": "ENTER",
-    "index": [ 951, "settings", "propConfig"]
+    "index": [ 798, "settings", "propConfig"]
 },{
     "type": "SET_KEY",
     "index": "name",
