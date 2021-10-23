@@ -1,0 +1,80 @@
+[
+    {
+        "order": 53.10,
+        "customItem": "el-cons-cookie-1",
+        "name": {
+            "en_US": "Choc. Chip Cookie"
+        },
+        "description": {
+            "en_US": "A classic cookie - you can't go wrong with plain chocolate chips."
+        },
+        "type": "CONS",
+        "cost": 100,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "CRITICAL_DMG-1"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "el_COOKIE_S"
+    },
+    {
+        "order": 53.11,
+        "customItem": "el-cons-cookie-2",
+        "name": {
+            "en_US": "Sugar Cookie"
+        },
+        "description": {
+            "en_US": "A delicious treat, covered with frosting and sprinkles."
+        },
+        "type": "CONS",
+        "cost": 100,
+        "level": 1,
+        "icon": "item-items",
+        "time": 70,
+        "stats": [
+            "CRITICAL_DMG-2"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "el_COOKIE_M"
+    },{
+        "order": 53.12,
+        "customItem": "el-cons-cookie-3",
+        "name": {
+            "en_US": "Gingerbread Man"
+        },
+        "description": {
+            "en_US": "It may be shaped like a person, but it completely lacks a soul."
+        },
+        "type": "CONS",
+        "cost": 100,
+        "level": 1,
+        "icon": "item-items",
+        "time": 90,
+        "stats": [
+            "CRITICAL_DMG-3"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "el_COOKIE_L"
+    }
+
+]
