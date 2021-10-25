@@ -1,0 +1,17 @@
+[{
+    "type": "ENTER",
+    "index": "proxies"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/misc/ctron-proxies.json"
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "actions"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/misc/ctron-arts.json"
+},{
+    "type": "EXIT"
+}]

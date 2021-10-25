@@ -1,0 +1,497 @@
+{
+    "NEUTRAL": {
+        "GUARD_SPECIAL1": {
+            "name": {
+                "en_US": "BUFF H3X!",
+                "zh_CN": "\u589e\u5f3a\u5492\uff01",
+                "ja_JP": "\u30d8\u30ad\u30b5\u30fb\u30d0\u30d5",
+                "ko_KR": "\ubc84\ud504 H3X!",
+                "langUid": 101,
+                "de_DE": "BUFF H3X!",
+                "zh_TW": "\u589e\u5f37\u5492\uff01"
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "kind": "RANDOM",
+                    "includeSelf": false,
+                    "type": "SET_PARTY_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeNeutral"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "posType": "SELF",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "buffHax",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 1,
+                    "type": "WAIT"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.15,
+                    "type": "WAIT"
+                }
+            ]
+        }
+    },
+
+    "HEAT": {
+        "GUARD_SPECIAL1": {
+            "name": {
+                "en_US": "Heat Buff"
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "kind": "RANDOM",
+                    "includeSelf": false,
+                    "type": "SET_PARTY_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeHeat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "posType": "SELF",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "buffHeat",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 1,
+                    "type": "WAIT"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.15,
+                    "type": "WAIT"
+                }
+            ]
+        }
+    },
+
+    "COLD": {
+        "GUARD_SPECIAL1": {
+            "name": {
+                "en_US": "Cold Buff"
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "kind": "RANDOM",
+                    "includeSelf": false,
+                    "type": "SET_PARTY_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeCold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "posType": "SELF",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "buffCold",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 1,
+                    "type": "WAIT"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.15,
+                    "type": "WAIT"
+                }
+            ]
+        }
+    },
+
+    "SHOCK": {
+        "GUARD_SPECIAL1": {
+            "name": {
+                "en_US": "Shock Buff"
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "kind": "RANDOM",
+                    "includeSelf": false,
+                    "type": "SET_PARTY_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeShock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "posType": "SELF",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "buffShock",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 1,
+                    "type": "WAIT"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.15,
+                    "type": "WAIT"
+                }
+            ]
+        }
+    },
+
+    "WAVE": {
+        "GUARD_SPECIAL1": {
+            "name": {
+                "en_US": "Wave Buff"
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "kind": "RANDOM",
+                    "includeSelf": false,
+                    "type": "SET_PARTY_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeWave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "posType": "SELF",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "buffWave",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 1,
+                    "type": "WAIT"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.15,
+                    "type": "WAIT"
+                }
+            ]
+        }
+    }
+}

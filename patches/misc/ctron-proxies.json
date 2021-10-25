@@ -1,0 +1,330 @@
+{
+    "buffHeat": {
+        "copyOwnerAnims": false,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "target": "TARGET",
+                "type": "ADD_ACTION_BUFF",
+                "stats": [
+                    "HEAT-RES-3",
+                    "COLD-RES-3",
+                    "SHOCK-RES-3",
+                    "WAVE-RES-3"
+                ]
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Align": "CENTER",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffTrailHeat"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "duration": -1,
+                "target": "TARGET",
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffHeat"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "time": 5,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "invisible": false,
+        "hp": 0,
+        "stickToSource": "OWNER",
+        "stickFaceAlign": false,
+        "group": "buff",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 16
+        },
+        "config": {},
+        "type": "GENERIC"
+    },
+    "buffCold": {
+        "copyOwnerAnims": false,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "target": "TARGET",
+                "type": "ADD_ACTION_BUFF",
+                "stats": [
+                    "HEAT-RES-3",
+                    "COLD-RES-3",
+                    "SHOCK-RES-3",
+                    "WAVE-RES-3"
+                ]
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Align": "CENTER",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffTrailCold"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "duration": -1,
+                "target": "TARGET",
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffCold"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "time": 5,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "invisible": false,
+        "hp": 0,
+        "stickToSource": "OWNER",
+        "stickFaceAlign": false,
+        "group": "buff",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 16
+        },
+        "config": {},
+        "type": "GENERIC"
+    },
+    "buffShock": {
+        "copyOwnerAnims": false,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "target": "TARGET",
+                "type": "ADD_ACTION_BUFF",
+                "stats": [
+                    "HEAT-RES-3",
+                    "COLD-RES-3",
+                    "SHOCK-RES-3",
+                    "WAVE-RES-3"
+                ]
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Align": "CENTER",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffTrailShock"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "duration": -1,
+                "target": "TARGET",
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffShock"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "time": 5,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "invisible": false,
+        "hp": 0,
+        "stickToSource": "OWNER",
+        "stickFaceAlign": false,
+        "group": "buff",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 16
+        },
+        "config": {},
+        "type": "GENERIC"
+    },
+    "buffWave": {
+        "copyOwnerAnims": false,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "target": "TARGET",
+                "type": "ADD_ACTION_BUFF",
+                "stats": [
+                    "HEAT-RES-3",
+                    "COLD-RES-3",
+                    "SHOCK-RES-3",
+                    "WAVE-RES-3"
+                ]
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Align": "CENTER",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffTrailWave"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "duration": -1,
+                "target": "TARGET",
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffWave"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "time": 5,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "invisible": false,
+        "hp": 0,
+        "stickToSource": "OWNER",
+        "stickFaceAlign": false,
+        "group": "buff",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 16
+        },
+        "config": {},
+        "type": "GENERIC"
+    }
+}
