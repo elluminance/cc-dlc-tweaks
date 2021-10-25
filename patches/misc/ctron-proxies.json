@@ -322,5 +322,182 @@
         },
         "config": {},
         "type": "GENERIC"
+    },
+
+    "spellTriggerHeat": {
+        "effects": "ball",
+        "effectKeys": {
+            "trail": "ballTrailHexaSlowHeat"
+        },
+        "speed": 550,
+        "maxBounce": 0,
+        "timer": 1,
+        "trail": true,
+        "multiHit": false,
+        "noLightGlow": false,
+        "type": "BALL",
+        "animation": {
+            "name": "default",
+            "sheet": {
+                "src": "media\/entity\/balls\/default.png",
+                "offX": 192,
+                "offY": 24,
+                "width": 24,
+                "height": 24
+            },
+            "renderMode": "lighter",
+            "time": 0.05,
+            "repeat": true,
+            "frames": [
+                0
+            ]
+        },
+        "attack": {
+            "type": "LIGHT",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+        },
+        "timeBoni": null,
+        "behaviors": [
+            {
+                "type": "FOLLOW_TARGET",
+                "steerDegree": 0.4
+            }
+        ]
+    },
+    "spellTriggerCold": {
+        "effects": "ball",
+        "effectKeys": {
+            "trail": "ballTrailHexaSlowCold"
+        },
+        "speed": 550,
+        "maxBounce": 0,
+        "timer": 1,
+        "trail": true,
+        "multiHit": false,
+        "noLightGlow": false,
+        "type": "BALL",
+        "animation": {
+            "name": "default",
+            "sheet": {
+                "src": "media\/entity\/balls\/default.png",
+                "offX": 192,
+                "offY": 48,
+                "width": 24,
+                "height": 24
+            },
+            "renderMode": "lighter",
+            "time": 0.05,
+            "repeat": true,
+            "frames": [
+                0
+            ]
+        },
+        "attack": {
+            "type": "LIGHT",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+        },
+        "timeBoni": null,
+        "behaviors": [
+            {
+                "type": "FOLLOW_TARGET",
+                "steerDegree": 0.4
+            }
+        ]
+    },
+    "spellTriggerShock": {
+        "effects": "ball",
+        "effectKeys": {
+            "trail": "ballTrailHexaSlowShock"
+        },
+        "speed": 550,
+        "maxBounce": 0,
+        "timer": 1,
+        "trail": true,
+        "multiHit": false,
+        "noLightGlow": false,
+        "type": "BALL",
+        "animation": {
+            "name": "default",
+            "sheet": {
+                "src": "media\/entity\/balls\/default.png",
+                "offX": 192,
+                "offY": 72,
+                "width": 24,
+                "height": 24
+            },
+            "renderMode": "lighter",
+            "time": 0.05,
+            "repeat": true,
+            "frames": [
+                0
+            ]
+        },
+        "attack": {
+            "type": "LIGHT",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+        },
+        "timeBoni": null,
+        "behaviors": [
+            {
+                "type": "FOLLOW_TARGET",
+                "steerDegree": 0.4
+            }
+        ]
+    },
+    "spellTriggerWave": {
+        "effects": "ball",
+        "effectKeys": {
+            "trail": "ballTrailHexaSlowWave"
+        },
+        "speed": 550,
+        "maxBounce": 0,
+        "timer": 1,
+        "trail": true,
+        "multiHit": false,
+        "noLightGlow": false,
+        "type": "BALL",
+        "animation": {
+            "name": "default",
+            "sheet": {
+                "src": "media\/entity\/balls\/default.png",
+                "offX": 192,
+                "offY": 96,
+                "width": 24,
+                "height": 24
+            },
+            "renderMode": "lighter",
+            "time": 0.05,
+            "repeat": true,
+            "frames": [
+                0
+            ]
+        },
+        "attack": {
+            "type": "LIGHT",
+            "element": "NEUTRAL",
+            "damageFactor": 0,
+            "reverse": false,
+            "guardable": "",
+            "skillBonus": "RANGED_DMG"
+        },
+        "timeBoni": null,
+        "behaviors": [
+            {
+                "type": "FOLLOW_TARGET",
+                "steerDegree": 0.4
+            }
+        ]
     }
 }

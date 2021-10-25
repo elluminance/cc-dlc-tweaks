@@ -1,0 +1,248 @@
+[{
+    "type": "ENTER",
+    "index": ["ANIMS", "SUB"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "name": "HEXA_HEAT",
+        "sheet": {
+            "src": "media\/entity\/effects\/particles1.png",
+            "offX": 0,
+            "offY": 72,
+            "width": 16,
+            "height": 16
+        },
+        "renderMode": "lighter",
+        "time": 0.15,
+        "repeat": false,
+        "frames": [
+            1
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "name": "HEXA_COLD",
+        "sheet": {
+            "src": "media\/entity\/effects\/particles1.png",
+            "offX": 0,
+            "offY": 72,
+            "width": 16,
+            "height": 16
+        },
+        "renderMode": "lighter",
+        "time": 0.15,
+        "repeat": false,
+        "frames": [
+            2
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "name": "HEXA_SHOCK",
+        "sheet": {
+            "src": "media\/entity\/effects\/particles1.png",
+            "offX": 0,
+            "offY": 72,
+            "width": 16,
+            "height": 16
+        },
+        "renderMode": "lighter",
+        "time": 0.15,
+        "repeat": false,
+        "frames": [
+            3
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "name": "HEXA_WAVE",
+        "sheet": {
+            "src": "media\/entity\/effects\/particles1.png",
+            "offX": 0,
+            "offY": 72,
+            "width": 16,
+            "height": 16
+        },
+        "renderMode": "lighter",
+        "time": 0.15,
+        "repeat": false,
+        "frames": [
+            4
+        ]
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": "EFFECTS"
+},{
+    "type": "SET_KEY",
+    "index": "ballTrailHexaSlowHeat",
+    "content": [
+        {
+            "useTargetAngle": true,
+            "keepAngleSync": false,
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "spline": ""
+                }
+            },
+            "pScale": {
+                "init": {
+                    "x": 1,
+                    "y": 1
+                },
+                "start": {
+                    "value": {
+                        "x": 0.5,
+                        "y": 0.5
+                    },
+                    "spline": ""
+                }
+            },
+            "particleDuration": 0.5,
+            "anim": "HEXA_HEAT",
+            "type": "PLAY_ANIM"
+        },
+        {
+            "time": 0.016,
+            "type": "WAIT"
+        }
+    ]
+},{
+    "type": "SET_KEY",
+    "index": "ballTrailHexaSlowCold",
+    "content": [
+        {
+            "useTargetAngle": true,
+            "keepAngleSync": false,
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "spline": ""
+                }
+            },
+            "pScale": {
+                "init": {
+                    "x": 1,
+                    "y": 1
+                },
+                "start": {
+                    "value": {
+                        "x": 0.5,
+                        "y": 0.5
+                    },
+                    "spline": ""
+                }
+            },
+            "particleDuration": 0.5,
+            "anim": "HEXA_COLD",
+            "type": "PLAY_ANIM"
+        },
+        {
+            "time": 0.016,
+            "type": "WAIT"
+        }
+    ]
+},{
+    "type": "SET_KEY",
+    "index": "ballTrailHexaSlowShock",
+    "content": [
+        {
+            "useTargetAngle": true,
+            "keepAngleSync": false,
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "spline": ""
+                }
+            },
+            "pScale": {
+                "init": {
+                    "x": 1,
+                    "y": 1
+                },
+                "start": {
+                    "value": {
+                        "x": 0.5,
+                        "y": 0.5
+                    },
+                    "spline": ""
+                }
+            },
+            "particleDuration": 0.5,
+            "anim": "HEXA_SHOCK",
+            "type": "PLAY_ANIM"
+        },
+        {
+            "time": 0.016,
+            "type": "WAIT"
+        }
+    ]
+},{
+    "type": "SET_KEY",
+    "index": "ballTrailHexaSlowWave",
+    "content": [
+        {
+            "useTargetAngle": true,
+            "keepAngleSync": false,
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "spline": ""
+                }
+            },
+            "pScale": {
+                "init": {
+                    "x": 1,
+                    "y": 1
+                },
+                "start": {
+                    "value": {
+                        "x": 0.5,
+                        "y": 0.5
+                    },
+                    "spline": ""
+                }
+            },
+            "particleDuration": 0.5,
+            "anim": "HEXA_WAVE",
+            "type": "PLAY_ANIM"
+        },
+        {
+            "time": 0.016,
+            "type": "WAIT"
+        }
+    ]
+},{
+    "type": "EXIT"
+}]

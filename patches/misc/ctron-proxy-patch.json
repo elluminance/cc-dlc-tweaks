@@ -7,4 +7,31 @@
     "content": "hexBuff"
 },{
     "type": "EXIT"
+},{
+    "type": "FOR_IN",
+    "keyword": {
+        "1": "__PROXY__",
+        "2": "__EFFECT__"
+    },
+    "values": [
+        {"1": "magicMissibleHeat", "2": "magicMissileHeat"},
+        {"1": "magicMissibleIce", "2": "magicMissileCold"},
+        {"1": "magicMissibleBolt", "2": "magicMissileShock"},
+        {"1": "magicMissibleWave", "2": "magicMissileWave"}
+    ],
+    "body": [
+        {
+            "type": "ENTER",
+            "index": ["__PROXY__", "action", 1, "effect"]
+        },
+        {
+            "type": "SET_KEY",
+            "index": "name",
+            "content": "__EFFECT__"
+        },
+        {
+            "type": "EXIT",
+            "count": 4
+        }
+    ]
 }]

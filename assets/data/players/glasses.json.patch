@@ -16,5 +16,8 @@
     "type": "INCLUDE",
     "src": "mod:patches/misc/ctron-arts.json"
 },{
+    "type": "INCLUDE",
+    "src": "mod:patches/misc/ctron-art-patch.json"
+},{
     "type": "EXIT"
 }]
