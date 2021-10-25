@@ -5,6 +5,9 @@
     "type": "INCLUDE",
     "src": "mod:patches/misc/ctron-proxies.json"
 },{
+    "type": "INCLUDE",
+    "src": "mod:patches/misc/ctron-proxy-patch.json"
+},{
     "type": "EXIT"
 },{
     "type": "ENTER",

@@ -11,16 +11,16 @@ Object.assign(sc.STAT_CHANGE_SETTINGS,{
     "CRITICAL_DMG-2": {
         change: sc.STAT_CHANGE_TYPE.MODIFIER,
         type: sc.STAT_PARAM_TYPE.CRITICAL_DMG,
-        value: 0.3,
+        value: 0.4,
         icon: "stat-critical-dmg",
         grade: "stat-rank-2"
     },
     "CRITICAL_DMG-3": {
         change: sc.STAT_CHANGE_TYPE.MODIFIER,
         type: sc.STAT_PARAM_TYPE.CRITICAL_DMG,
-        value: 0.3,
+        value: 0.6,
         icon: "stat-critical-dmg",
-        grade: "stat-rank-2"
+        grade: "stat-rank-3"
     },
 
     "DASH_INVINC-1": {

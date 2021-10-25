@@ -71,7 +71,7 @@
                 },
                 {
                     "sticking": false,
-                    "group": "buff",
+                    "group": "hexBuff",
                     "type": "REMOVE_PROXIES"
                 },
                 {
@@ -169,7 +169,7 @@
                 },
                 {
                     "sticking": false,
-                    "group": "buff",
+                    "group": "hexBuff",
                     "type": "REMOVE_PROXIES"
                 },
                 {
@@ -267,7 +267,7 @@
                 },
                 {
                     "sticking": false,
-                    "group": "buff",
+                    "group": "hexBuff",
                     "type": "REMOVE_PROXIES"
                 },
                 {
@@ -365,7 +365,7 @@
                 },
                 {
                     "sticking": false,
-                    "group": "buff",
+                    "group": "hexBuff",
                     "type": "REMOVE_PROXIES"
                 },
                 {
@@ -463,7 +463,7 @@
                 },
                 {
                     "sticking": false,
-                    "group": "buff",
+                    "group": "hexBuff",
                     "type": "REMOVE_PROXIES"
                 },
                 {

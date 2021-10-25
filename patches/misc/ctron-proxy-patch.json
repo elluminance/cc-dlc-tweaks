@@ -1,0 +1,10 @@
+[{
+    "type": "ENTER",
+    "index": "buffHax"
+},{
+    "type": "SET_KEY",
+    "index": "group",
+    "content": "hexBuff"
+},{
+    "type": "EXIT"
+}]
