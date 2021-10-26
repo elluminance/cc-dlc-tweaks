@@ -145,4 +145,27 @@
     "src": "mod:/patches/database/commonEvents.json"
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": "shops"
+},{
+    "type": "FOR_IN",
+    "keyword": "__VALUE__",
+    "values": ["rookieHarborItems", "basinVendingMachines","basinItems", "sapphireItems", "rhombusItems1", "homestedtItems"],
+    "body": [
+        {
+            "type": "ENTER",
+            "index": ["__VALUE__", "pages", 0, "content"]
+        },{
+            "type": "ADD_ARRAY_ELEMENT",
+            "content": {"item": "el-cons-cookie-1", "condition": "plot.line >= 16900"}
+        },{
+            "type": "EXIT",
+            "count": 4
+        }
+    ]
+},{
+    "type": "EXIT"
 }]

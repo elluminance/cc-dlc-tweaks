@@ -673,7 +673,7 @@
                 },
                 "moveWithTarget": 1,
                 "particleDuration": 0.25,
-                "anim": "HEXA_HEAT",
+                "anim": "HEXA_COLD",
                 "type": "OFFSET_PARTICLE_CIRCLE"
             },
             {
@@ -708,7 +708,7 @@
                 },
                 "moveWithTarget": 1,
                 "particleDuration": 0.25,
-                "anim": "HEXA_HEAT",
+                "anim": "HEXA_COLD",
                 "type": "OFFSET_PARTICLE_CIRCLE"
             },
             {
@@ -757,7 +757,7 @@
                 },
                 "moveWithTarget": 1,
                 "particleDuration": 0.5,
-                "anim": "HEXA_HEAT",
+                "anim": "HEXA_COLD",
                 "type": "OFFSET_PARTICLE_CIRCLE"
             },
             {
@@ -802,7 +802,7 @@
                 },
                 "moveWithTarget": 1,
                 "particleDuration": 0.5,
-                "anim": "HEXA_HEAT",
+                "anim": "HEXA_COLD",
                 "type": "OFFSET_PARTICLE_CIRCLE"
             }
         ],

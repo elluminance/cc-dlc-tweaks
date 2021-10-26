@@ -6,6 +6,7 @@
 	"prestart": "prestart.js",
 	"ccmodDependencies": {
         "crosscode": ">=1.4.2",
-        "item-api": ">=0.4.2"
+        "item-api": ">=0.4.2",
+		"food-api": ">=1.1.0"
 	}
 }

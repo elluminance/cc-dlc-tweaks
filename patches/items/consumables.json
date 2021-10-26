@@ -9,7 +9,7 @@
             "en_US": "A classic cookie - you can't go wrong with plain chocolate chips."
         },
         "type": "CONS",
-        "cost": 100,
+        "cost": 500,
         "level": 1,
         "icon": "item-items",
         "time": 50,
@@ -35,7 +35,7 @@
             "en_US": "A delicious treat, covered with frosting and sprinkles."
         },
         "type": "CONS",
-        "cost": 100,
+        "cost": 1250,
         "level": 1,
         "icon": "item-items",
         "time": 70,
@@ -60,7 +60,7 @@
             "en_US": "It may be shaped like a person, but it completely lacks a soul."
         },
         "type": "CONS",
-        "cost": 100,
+        "cost": 4000,
         "level": 1,
         "icon": "item-items",
         "time": 90,
