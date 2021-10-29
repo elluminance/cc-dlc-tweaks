@@ -1,6 +1,6 @@
 [
     {
-        "order": 53.10,
+        "order": 16.10,
         "customItem": "el-cons-cookie-1",
         "name": {
             "en_US": "Choc. Chip Cookie"
@@ -14,9 +14,9 @@
         "icon": "item-items",
         "time": 50,
         "stats": [
-            "CRITICAL_DMG-1"
+            "EL-CRITICAL_DMG-1"
         ],
-        "rarity": 2,
+        "rarity": 1,
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -26,7 +26,7 @@
         "foodSprite": "el_COOKIE_S"
     },
     {
-        "order": 53.11,
+        "order": 16.11,
         "customItem": "el-cons-cookie-2",
         "name": {
             "en_US": "Sugar Cookie"
@@ -40,9 +40,9 @@
         "icon": "item-items",
         "time": 70,
         "stats": [
-            "CRITICAL_DMG-2"
+            "EL-CRITICAL_DMG-2"
         ],
-        "rarity": 2,
+        "rarity": 1,
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -51,13 +51,13 @@
         "noTrack": false,
         "foodSprite": "el_COOKIE_M"
     },{
-        "order": 53.12,
+        "order": 16.12,
         "customItem": "el-cons-cookie-3",
         "name": {
             "en_US": "Gingerbread Man"
         },
         "description": {
-            "en_US": "It may be shaped like a person, but it completely lacks a soul."
+            "en_US": "It may be shaped like a person, but it definitely is not one."
         },
         "type": "CONS",
         "cost": 4000,
@@ -65,9 +65,9 @@
         "icon": "item-items",
         "time": 90,
         "stats": [
-            "CRITICAL_DMG-3"
+            "EL-CRITICAL_DMG-3"
         ],
-        "rarity": 2,
+        "rarity": 1,
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -75,6 +75,112 @@
         "useSpeed": 1,
         "noTrack": false,
         "foodSprite": "el_COOKIE_L"
+    },
+    
+    {
+        "order": 16.13,
+        "customItem": "el-cons-flash-step-1",
+        "name": {
+            "en_US": "Flash Step Food 1"
+        },
+        "description": {
+            "en_US": "makes you ZOOM"
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "EL-DASH_INVINC-1"
+        ],
+        "rarity": 1,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "FALLBACK"
+    },{
+        "order": 16.14,
+        "customItem": "el-cons-flash-step-2",
+        "name": {
+            "en_US": "Flash Step Food 2"
+        },
+        "description": {
+            "en_US": "makes you ZOOOOM"
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 70,
+        "stats": [
+            "EL-DASH_INVINC-2"
+        ],
+        "rarity": 1,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "FALLBACK"
+    },{
+        "order": 16.15,
+        "customItem": "el-cons-flash-step-3",
+        "name": {
+            "en_US": "Flash Step Food 3"
+        },
+        "description": {
+            "en_US": "makes you ZOOOOOOM"
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 90,
+        "stats": [
+            "EL-DASH_INVINC-3"
+        ],
+        "rarity": 1,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false,
+        "foodSprite": "FALLBACK"
+    },
+    
+    {
+        "order": 53.12,
+        "customItem": "el-cons-molotov",
+        "name": {
+            "en_US": "Molotov Cocktail"
+        },
+        "description": {
+            "en_US": "An explosive brew that fills you with incredible energy. \\c[1]Slow\\c[0]."
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 30,
+        "stats": [
+            "EL-CRITICAL_DMG-3",
+            "EL-MOMENTUM-1",
+            "EL-COND_EFFECT_ALL-2",
+            "EL-DEFENSE-MINUS-2"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 2,
+        "noTrack": false,
+        "foodSprite": "FALLBACK"
     }
-
 ]
