@@ -108,6 +108,7 @@ sc.Arena.inject({
         let cups = {}, cup;
         this.trackedCups.forEach(a => {
             cup = this.cups[a];
+            // if the cup is a custom cup, move it to the end of the list.
             cups[a] = {order: cup.data.data.core.type.search("CUSTOM") == -1 ? cup.order : (cup.order + 1e7)}
         })
         if(sorted){

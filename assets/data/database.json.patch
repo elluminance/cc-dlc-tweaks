@@ -77,6 +77,30 @@
     "type": "EXIT"
 },
 
+{
+    "type": "ENTER",
+    "index": "quests"
+},{
+    "type": "FOR_IN",
+    "values": ["ape-battle", "bg-3-goat_final", "monks-3-jump_challenge_3", "monks-jump_3_bonus", "monks-jump_3_time",
+               "monks-jump_3_frosty", "console-xbox-1", "bakiTrader-3-brewing_ghosts_1", "console-pc-1", "jungleGuard-3-papagang_goats_1", 
+               "jungleTrader-3-shad_fridge_1", "jungleGreens-3-escort_2", "console-playstation-1", "seizui-quest", "autobahn", "tremor-1", 
+               "rhg-4-maritime_smuggle_2", "console-switch-1"],
+    "keyword": "__VALUE__",
+    "body":[
+        {
+            "type": "ENTER",
+            "index": "__VALUE__"
+        },{
+            "type": "SET_KEY",
+            "index": "extension"
+        },{
+            "type": "EXIT"
+        }
+    ]
+},{
+    "type": "EXIT"
+},
 
 {
     "type": "ENTER",
