@@ -15,3 +15,5 @@ import "./js/trophy-icons.js"
 import "./js/vars.js"
 
 import "./js/food.js"
+
+import "./js/modifier.js"

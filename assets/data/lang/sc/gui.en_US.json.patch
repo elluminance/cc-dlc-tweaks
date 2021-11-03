@@ -1,5 +1,15 @@
 {
     "labels": {
+        "menu": {
+            "equip": {
+                "modifier": {
+                    "EL_RISKTAKER": "Risktaker"
+                },
+                "descriptions": {
+                    "EL_RISKTAKER": "Increases the amount of damage dealt and taken."
+                }
+            }
+        },
         "arena": {
             "bonuses": {
                 "INTERROGATION_HITS": "Let less than \\c[3][!] clones hit C'tron\\c[0]"

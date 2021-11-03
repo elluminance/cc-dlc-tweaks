@@ -146,5 +146,79 @@
         },
         "noTrack": false,
         "isScalable": true
+    },
+    {
+        "customItem": "el-scaled-tiara",
+        "order": 12.01,
+        "name": {
+            "en_US": "Inviolable Tiara"
+        },
+        "description": {
+            "en_US": "Royal headgear so sturdy that not even the largest impact could dent. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 71,
+        "icon": "item-helm",
+        "equipType": "HEAD",
+        "params": {
+            "elemFactor": [
+                1.15,
+                1.15,
+                1.15,
+                1.15
+            ],
+            "hp": 456,
+            "defense": 43,
+            "focus": 133
+        },
+        "properties": {
+            "OVERHEAT_REDUCTION": 1.25,
+            "RANGED_DMG": 1.15
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
+    },
+    {
+        "customItem": "el-risktaker-plate",
+        "order": 12,
+        "name": {
+            "en_US": "Risktaker's Top"
+        },
+        "description": {
+            "en_US": "'Chestplate' that sacrifices defense in order to have incredible offensive capability. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 71,
+        "icon": "item-belt",
+        "equipType": "TORSO",
+        "params": {
+            "elemFactor": [
+                0.9,
+                0.9,
+                0.9,
+                0.9
+            ],
+            "attack": 70,
+            "focus": 133
+        },
+        "properties": {
+            "EL_RISKTAKER": 1.2,
+            "BERSERK": 1.4,
+            "HP_REGEN": 0.75
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
     }
 ]

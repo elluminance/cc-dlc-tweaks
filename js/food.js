@@ -34,7 +34,7 @@ Object.assign(sc.STAT_CHANGE_SETTINGS,{
     "EL-DASH_INVINC-2": {
         change: sc.STAT_CHANGE_TYPE.MODIFIER,
         type: sc.STAT_PARAM_TYPE.DASH_INVINC,
-        value: 0.2,
+        value: 0.3,
         icon: "stat-dash-invinc",
         grade: "stat-rank-2"
     },
@@ -42,7 +42,7 @@ Object.assign(sc.STAT_CHANGE_SETTINGS,{
     "EL-DASH_INVINC-3": {
         change: sc.STAT_CHANGE_TYPE.MODIFIER,
         type: sc.STAT_PARAM_TYPE.DASH_INVINC,
-        value: 0.3,
+        value: 0.6,
         icon: "stat-dash-invinc",
         grade: "stat-rank-3"
     },
