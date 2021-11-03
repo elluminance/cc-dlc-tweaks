@@ -63,10 +63,18 @@ Object.assign(sc.STAT_CHANGE_SETTINGS,{
         grade: "stat-rank-2"
     },
 
+    "EL-RISKTAKER-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_RISKTAKER,
+        value: 0.15,
+        icon: "stat-el-risktaker",
+        grade: "stat-rank-2"
+    },
+
     "EL-DEFENSE-MINUS-2": {
         change: sc.STAT_CHANGE_TYPE.STATS,
         type: sc.STAT_PARAM_TYPE.DEFENSE,
-        value: 0.25,
+        value: 0.75,
         negative: true,
         icon: "stat-defense",
         grade: "stat-rank-down-3"

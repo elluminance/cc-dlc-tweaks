@@ -167,11 +167,11 @@
         "cost": 4000,
         "level": 1,
         "icon": "item-items",
-        "time": 30,
+        "time": 50,
         "stats": [
             "EL-CRITICAL_DMG-3",
             "EL-MOMENTUM-1",
-            "EL-COND_EFFECT_ALL-2",
+            "EL-RISKTAKER-2",
             "EL-DEFENSE-MINUS-2"
         ],
         "rarity": 2,
