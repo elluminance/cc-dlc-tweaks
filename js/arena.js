@@ -109,7 +109,9 @@ sc.Arena.inject({
         this.trackedCups.forEach(a => {
             cup = this.cups[a];
             // if the cup is a custom cup, move it to the end of the list.
-            cups[a] = {order: cup.data.data.core.type.search("CUSTOM") == -1 ? cup.order : (cup.order + 1e7)}
+            // also... i *hate* having to deal with this stupid method of null checking
+            // ?. my beloved
+            cups[a] = {order: (cup || cup.data || cup.data.data || cup.data.data.core || cup.data.data.core.type.search("CUSTOM")) !== -1 ? cup.order : (cup.order + 1e7)}
         })
         if(sorted){
             let a = Object.keys(cups);
