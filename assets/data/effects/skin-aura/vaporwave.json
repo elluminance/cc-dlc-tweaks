@@ -43,7 +43,7 @@
                 "type": "COPY_SPRITE"
             },
             {
-                "time": 0.055,
+                "time": 0.033,
                 "type": "WAIT"
             },
             {
