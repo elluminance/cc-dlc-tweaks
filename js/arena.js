@@ -104,14 +104,11 @@ sc.Arena.inject({
     },
 
     getTotalDefaultCups(sorted){
-        //return this.parent()
         let cups = {};
         this.trackedCups.forEach(a => {
-            let cup = this.cups[a];
-            if(!cup) return;
-            let order = cup.order || 0;
-
-            cups[a] = {order: (cup.data.data.core.type.search("CUSTOM") === -1) ? order : (order + 1e7)}
+            let order = sc.arena.cups[a].order || 1e7;
+            if(this.isCupCustom(a)) order += 1e7;
+            cups[a] = {order}
         })
         if(sorted){
             let a = {}
