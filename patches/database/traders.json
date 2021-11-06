@@ -217,13 +217,38 @@
         "area": "autumn-area"
     },
 
-    "rhombus-dlctweaks-gear1":{
+    "el-gear-1":{
         "name": {
             "en_US": "Rhombus Elite Extras"
         },
         "noTrack": true,
         "order": 65,
         "options": [
+            {
+                "get": [{
+                    "id": "el-scaled-tiara",
+                    "amount": 1
+                }],
+                "require": [
+                    {
+                        "id": "192",
+                        "amount": 7
+                    },{
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 6
+                    },{
+                        "id":  "dlctweaks-trade-warm-gem",
+                        "amount": 3
+                    },{
+                        "id": "382",
+                        "amount": 4
+                    },{
+                        "id": "632",
+                        "amount": 5
+                    }
+                ],
+                "cost": 225000
+            },
             {
                 "get": [{
                     "id": 664,
@@ -234,15 +259,105 @@
                         "id": "511",
                         "amount": 1
                     },{
-                        "id": "dlctweaks-trade-beach-gem",
+                        "id": "dlctweaks-trade-final-dng-gem",
                         "amount": 5
                     },{
+                        "id": "565",
+                        "amount": 4
+                    },{
                         "id": "358",
-                        "amount": 1
+                        "amount": 2
                     }
                 ]
+            },
+            {
+                "get": [{
+                    "id": "dlctweaks-old-geta-scale",
+                    "amount": 1
+                }],
+                "require": [
+                    {
+                        "id": "192",
+                        "amount": 7
+                    },{
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 6
+                    },{
+                        "id":  "dlctweaks-trade-warm-gem",
+                        "amount": 3
+                    },{
+                        "id": "382",
+                        "amount": 4
+                    },{
+                        "id": "632",
+                        "amount": 5
+                    }
+                ],
+                "cost": 225000
+            },
+            {
+                "get": [{
+                    "id": "dlctweaks-lead-boots-scale",
+                    "amount": 1
+                }],
+                "require": [
+                    {
+                        "id": "192",
+                        "amount": 7
+                    },{
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 6
+                    },{
+                        "id":  "dlctweaks-trade-warm-gem",
+                        "amount": 3
+                    },{
+                        "id": "382",
+                        "amount": 4
+                    },{
+                        "id": "632",
+                        "amount": 5
+                    }
+                ],
+                "cost": 225000
             }
-        ]
+        ],
+        "area": "rhombus-sqr"
+    },
+
+    "el-gear-2":{
+        "name": {
+            "en_US": "Strange Gear Shop"
+        },
+        "noTrack": true,
+        "order": 65,
+        "options": [
+            {
+                "get": [{
+                    "id": "el-risktaker-plate",
+                    "amount": 1
+                }],
+                "require": [
+                    {
+                        "id": "192",
+                        "amount": 7
+                    },{
+                        "id": "dlctweaks-trade-beach-gem",
+                        "amount": 6
+                    },{
+                        "id":  "dlctweaks-trade-warm-gem",
+                        "amount": 3
+                    },{
+                        "id": "382",
+                        "amount": 4
+                    },{
+                        "id": "632",
+                        "amount": 5
+                    }
+                ],
+                "cost": 225000
+            }
+        ],
+        "area": "rhombus-sqr"
     },
 
     "el-aura-trade-1": {
