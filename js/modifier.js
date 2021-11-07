@@ -30,8 +30,8 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
 }
 
 //#region vampirism
-const lifestealCooldown = 0.2;
-const calcHealed = value => (value / 150)
+const lifestealCooldown = 0.1;
+const calcHealed = value => (value / 100)
 
 // this... is very hacky.
 // only works fully on the player.
@@ -40,21 +40,33 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot
     let attackDmgFactor = attackInfo.damageFactor.limit(0,4)
     let playerEntity = ig.game.playerEntity;
     
+    // if attack is shielded, reduce healing to half.
+    if(shieldResult == sc.SHIELD_RESULT.REGULAR){
+        attackDmgFactor *= 0.5;
+    // if attack is perfect guarded or neutralized, reduce to 0.
+    }else if(shieldResult){
+        attackDmgFactor = 0;
+    }
+
     let healEntity = amount => {
         const healAmount = attackerParams.getHealAmount({value: calcHealed(amount)});
-        //console.log(`Lifesteal activated for ${healAmount}`)
         sc.options.get("damage-numbers") && ig.ENTITY.HitNumber.spawnHealingNumber(playerEntity.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), playerEntity, healAmount);
         attackerParams.increaseHp(healAmount)
         
         attackerParams.el_lifestealTimer = lifestealCooldown;
         attackerParams.el_lifestealHealed = attackDmgFactor;
     }
-
+    
     if(attackerParams.getModifier("EL_LIFESTEAL")){
+        // if lifesteal cooldown is over,
+        // heal based on the damage factor.
         if(attackerParams.el_lifestealTimer <= 0){
             healEntity(attackDmgFactor)
+
+        // if lifesteal cooldown is not done, 
+        // but an attack did more than previously healed for
+        // heal for the difference.
         }else if(attackerParams.el_lifestealHealed < attackDmgFactor){
-            //healAmount = attackerParams.getHealAmount({value: calcHealed(attackDmgFactor)});
             healEntity(attackDmgFactor - attackerParams.el_lifestealHealed)
         }
     }
