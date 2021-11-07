@@ -184,6 +184,8 @@
         "noTrack": false,
         "isScalable": true
     },
+
+
     {
         "customItem": "el-risktaker-plate",
         "order": 12,
@@ -213,6 +215,41 @@
             "EL_RISKTAKER": 1.2,
             "BERSERK": 1.4,
             "HP_REGEN": 0.75
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
+    },
+    {
+        "customItem": "el-vampire-knives",
+        "order": 12,
+        "name": {
+            "en_US": "Vampire Knives"
+        },
+        "description": {
+            "en_US": "A set of throwing knives fit for one who lurk the night. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                0.85,
+                0.85,
+                0.85,
+                0.85
+            ],
+            "attack": 55,
+            "focus": 123
+        },
+        "properties": {
+            "EL_LIFESTEAL": 2
         },
         "effect": {
             "sheet": "",
