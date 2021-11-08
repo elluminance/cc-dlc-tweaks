@@ -240,16 +240,19 @@
         "equipType": "ARM",
         "params": {
             "elemFactor": [
-                0.85,
-                0.85,
-                0.85,
-                0.85
+                1,
+                1,
+                1,
+                1
             ],
-            "attack": 55,
-            "focus": 123
+            "hp": 346,
+            "attack": 69,
+            "focus": 97
         },
         "properties": {
-            "EL_LIFESTEAL": 2
+            "EL_LIFESTEAL": 2,
+            "SP_REGEN": 1.1,
+            "OVERHEAT_REDUCTION": 1.1
         },
         "effect": {
             "sheet": "",

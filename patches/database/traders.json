@@ -350,11 +350,36 @@
                         "id": "382",
                         "amount": 4
                     },{
-                        "id": "632",
+                        "id": "631",
                         "amount": 5
                     }
                 ],
                 "cost": 225000
+            },
+            {
+                "get": [{
+                    "id": "el-vampire-knives",
+                    "amount": 1
+                }],
+                "require": [
+                    {
+                        "id": "192",
+                        "amount": 5
+                    },{
+                        "id": "dlctweaks-trade-final-dng-gem",
+                        "amount": 6
+                    },{
+                        "id":  "457",
+                        "amount": 8
+                    },{
+                        "id": "632",
+                        "amount": 6
+                    },{
+                        "id": "246",
+                        "amount": 4
+                    }
+                ],
+                "cost": 200000
             }
         ],
         "area": "rhombus-sqr"
