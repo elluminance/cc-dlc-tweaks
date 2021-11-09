@@ -2,7 +2,11 @@
     "type": "ENTER",
     "index": ["floors", 1, "maps"]
 },{
+    "type": "COMMENT",
+    "value": "Note to other mod authors: NEVER DO THIS."
+},{
     "type": "ADD_ARRAY_ELEMENT",
+    "index": 28,
     "content": {
         "path": "rhombus-sqr.interior.el-shop-f1",
         "name": {
@@ -14,5 +18,50 @@
             "y": 0
         },
         "dungeon": ""
+    }
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "tiles"
+},{
+    "type": "FOR_IN",
+    "values": [
+        {"x": 66, "y": 49},
+        {"x": 67, "y": 49},
+        {"x": 68, "y": 49},
+        {"x": 66, "y": 50},
+        {"x": 67, "y": 50},
+        {"x": 68, "y": 50},
+        {"x": 66, "y": 51},
+        {"x": 67, "y": 51}
+    ],
+    "keyword": {"x": "__X__", "y": "__Y__"},
+    "body": [
+        {
+            "type": "ENTER",
+            "index": "__Y__"
+        },{
+            "type": "SET_KEY",
+            "index": "__X__",
+            "content": 28
+        },{
+            "type":"EXIT"
+        }
+    ]
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "connections"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "tx": 67,
+        "ty": 51,
+        "dir": "VERTICAL",
+        "size": 1,
+        "map1": 6,
+        "map2": 27
     }
 }]
