@@ -1,0 +1,8 @@
+[{
+    "type": "ENTER",
+    "index": ["entities", 783, "settings"]
+},{
+    "type": "SET_KEY",
+    "index": "blockEventCondition",
+    "content": "(party.size > 1) && !(party.size == 2 && party.has.Shizuka)"
+}]
