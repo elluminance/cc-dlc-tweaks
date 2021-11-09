@@ -246,13 +246,13 @@
                 1
             ],
             "hp": 346,
-            "attack": 69,
+            "attack": 79,
             "focus": 97
         },
         "properties": {
             "EL_LIFESTEAL": 2,
             "SP_REGEN": 1.1,
-            "OVERHEAT_REDUCTION": 1.1
+            "BERSERK": 0.85
         },
         "effect": {
             "sheet": "",
