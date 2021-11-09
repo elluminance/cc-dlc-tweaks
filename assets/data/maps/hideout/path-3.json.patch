@@ -1,0 +1,11 @@
+[{
+    "type": "ENTER",
+    "index": ["entities", 454, "settings", "npcStates", 5]
+},{
+    "type": "SET_KEY",
+    "index": "condition",
+    "content": "plot.line >= 48400 && !party.has.Shizuka"
+},{
+    "type": "EXIT",
+    "count": 5
+}]
