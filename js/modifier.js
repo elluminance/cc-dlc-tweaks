@@ -30,8 +30,8 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
 }
 
 //#region vampirism
-const lifestealCooldown = 0.1;
-const calcHealed = value => (value / 100)
+const lifestealCooldown = 0.2;
+const calcHealed = value => (value / 200)
 
 // this... is very hacky.
 // only works fully on the player.
@@ -47,6 +47,7 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot
     }else if(shieldResult){
         attackDmgFactor = 0;
     }
+    attackDmgFactor *= 1 + (Math.min(attackerParams.getModifier("HP_REGEN"), 1.5) / 2)
 
     let healEntity = amount => {
         const healAmount = attackerParams.getHealAmount({value: calcHealed(amount)});

@@ -7,8 +7,8 @@
                     "EL_LIFESTEAL": "Vampirism"
                 },
                 "descriptions": {
-                    "EL_RISKTAKER": "Increases the amount of damage dealt and taken.",
-                    "EL_LIFESTEAL": "\\c[1]Disables HP Regeneration in combat\\c[0], but dealing damage will restore HP relative to the attack's power."
+                    "EL_RISKTAKER": "Increases the amount of damage dealt and received.",
+                    "EL_LIFESTEAL": "\\c[1]Disables HP Regeneration in combat\\c[0], but dealing damage will restore HP relative to the attack's power. HP Regen increases damage healed."
                 }
             }
         },
