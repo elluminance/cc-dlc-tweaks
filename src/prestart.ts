@@ -10,11 +10,11 @@ import "./icon.js"
 
 import "./vars.js"
 
+import "./save-star.js"
+
+import "./trophy-icons.js"
+
 // to be typed
 import "./js/toggle-sets.js"
-
-import "./js/save-star.js"
-
-import "./js/trophy-icons.js"
 
 import "./js/modifier.js"

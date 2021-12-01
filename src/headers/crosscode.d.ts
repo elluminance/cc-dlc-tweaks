@@ -94,6 +94,7 @@ declare namespace sc {
         getEntityByName(name: string): ig.Entity
     }
 
+    //#region Arena
     interface ArenaCupOptions {
         order?: number,
         id?: string
@@ -139,7 +140,9 @@ declare namespace sc {
     }
 
     var ARENA_BONUS_OBJECTIVE: Dict<ArenaBonusObjective>
+    //#endregion Arena
 
+    //#region Stats
     interface StatsModel extends ig.GameAddon {
         set(this: this, stat: string, value: number): void
         setMax(this: this, stat: string, value: number): void
@@ -172,6 +175,27 @@ declare namespace sc {
 
     var STATS_BUILD: StatCategory[]
 
+    enum STAT_CHANGE_TYPE {
+        STATS,
+        MODIFIER,
+        HEAL
+    }
+
+    var STAT_PARAM_TYPE: {
+        [key: string]: {
+            key: string,
+            index?: number
+        }
+    }
+
+    interface StatChangeSetting {
+        change: sc.STAT_CHANGE_TYPE
+    }
+
+    var STAT_CHANGE_SETTINGS: Dict<StatChangeSetting>
+    //#endregion Stats
+
+    //#region Map
     namespace MapModel{
         interface Area {
             path: string
@@ -216,28 +240,9 @@ declare namespace sc {
 
     interface MapChestDisplayConstructor extends ImpactClass<MapChestDisplay>{}
 
-
     var MapChestDisplay: MapChestDisplayConstructor
     var MapWorldMap: MapWorldMapConstructor
-
-    enum STAT_CHANGE_TYPE {
-        STATS,
-        MODIFIER,
-        HEAL
-    }
-
-    var STAT_PARAM_TYPE: {
-        [key: string]: {
-            key: string,
-            index?: number
-        }
-    }
-
-    interface StatChangeSetting {
-        change: sc.STAT_CHANGE_TYPE
-    }
-
-    var STAT_CHANGE_SETTINGS: Dict<StatChangeSetting>
+    //#endregion Map
 
     interface PlayerModel extends ig.Class {
         skillPointsExtra: number[]
@@ -247,4 +252,47 @@ declare namespace sc {
     interface PlayerModelContructor extends ImpactClass<PlayerModel> {}
 
     var PlayerModel: PlayerModelContructor
+
+    interface SaveSlotButton{
+        chapter: SaveSlotChapter
+
+        setSave(this: this, a: any, b: any, c: any): void
+    }
+
+    interface SaveSlotChapter extends ig.GuiElementBase{
+        postgameStarGfx: ig.Image
+        postgameStar: ig.ImageGui
+        metaMarker: ig.ImageGui
+
+        init(this: this): void
+
+        showPostgameStar(this: this, dlcBeaten: boolean, gameBeaten: boolean): void
+    }
+
+    interface SaveSlotChapterConstructor extends ImpactClass<SaveSlotChapter> {}
+
+    var SaveSlotChapter: SaveSlotChapterConstructor
+
+    interface TrophyIcon { 
+        index: number
+        cat: "GENERAL" | "COMBAT" | "EXPLORATION"
+        hidden?: boolean,
+        sheet?: string
+        customIndex?: number
+    }
+
+    var TROPHY_ICONS: Dict<TrophyIcon>
+
+    interface TrophyIconGraphic extends ig.GuiElementBase {
+        customIcons: Dict<ig.Image>
+        icon: ig.ImageGui
+        ribbon: ig.ImageGui
+        points: sc.NumberGui
+        
+        init(this: this, icon: string, stars: number, points: number, f: any): void
+    }
+
+    interface TrophyIconGraphicConstructor extends ImpactClass<TrophyIconGraphic> {}
+
+    var TrophyIconGraphic: TrophyIconGraphicConstructor
 }
