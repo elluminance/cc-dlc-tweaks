@@ -2,8 +2,9 @@ import "./action-step.js"
 
 import "./arena.js"
 
+import "./chest-counters.js"
+
 // to be typed
-import "./js/chest-counters.js"
 
 import "./js/toggle-sets.js"
 

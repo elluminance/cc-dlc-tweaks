@@ -57,6 +57,12 @@ declare namespace ig {
 
     var vars: Vars
     var Vars: VarsConstructor
+
+    interface Extensions {
+        enabled: Dict<boolean>
+    }
+
+    var extensions: Extensions
 }
 
 declare namespace sc {
@@ -71,6 +77,17 @@ declare namespace sc {
         PLAYER,
         ENEMY,
         OTHER
+    }
+
+    enum STATS_CATEGORY {
+        GENERAL,
+        COMBAT,
+        ITEMS,
+        QUESTS,
+        EXPLORATION,
+        MISC,
+        LOG,
+        ARENA
     }
 
     interface CrossCode {
@@ -124,16 +141,80 @@ declare namespace sc {
     var ARENA_BONUS_OBJECTIVE: Dict<ArenaBonusObjective>
 
     interface StatsModel extends ig.GameAddon {
-        set(stat: string, value: number): void
-        setMax(stat: string, value: number): void
-        setMin(stat: string, value: number): void
+        set(this: this, stat: string, value: number): void
+        setMax(this: this, stat: string, value: number): void
+        setMin(this: this, stat: string, value: number): void
 
-        add(stat: string, value: number): void
-        subtract(stat: string, value: number): void
+        add(this: this, stat: string, value: number): void
+        subtract(this: this, stat: string, value: number): void
 
-        setMap(map: string, key: string, value: number): void
-        addMap(map: string, key: string, value: number): void
-        subMap(map: string, key: string, value: number): void
+        getMap(this: this, map: string, key: string): number
+        setMap(this: this, map: string, key: string, value: number): void
+        addMap(this: this, map: string, key: string, value: number): void
+        subMap(this: this, map: string, key: string, value: number): void
     }
     var stats: StatsModel
+
+    interface StatsModelConstructor extends ImpactClass<StatsModel> {}
+
+    var StatsModel: StatsModelConstructor
+
+    interface StatItem {
+        getSettings(a: string): any
+    }
+
+    interface StatCategory {
+        [key: string]: StatItem
+    }
+
+
+    var STATS_BUILD: StatCategory[]
+
+    namespace MapModel{
+        interface Area {
+            path: string
+            chests: number
+        }
+    }
+
+    interface MapModel {
+        currentArea: sc.MapModel.Area
+        getChestCount(this: this, key: string): number
+        getTotalChestsFound(this: this, asPercent: boolean): number
+        getTotalChests(this: this): number,
+        getVisitedArea(this: this, area: string): boolean
+        getAreaName(this: this, a: string, b: boolean, c: boolean): string
+    }
+
+    interface WorldmapAreaName extends ig.GuiElementBase{
+        gfx: ig.Image
+        name: sc.MapNameGui
+        hasText: boolean
+        setText(this: this, a: string, b?: any, c?: any): void
+    }
+    
+    interface MapNameGui extends ig.BoxGui{
+        
+    }
+
+    interface MapWorldMap {
+        areaName: WorldmapAreaName
+        _setAreaName(this: this, a: any): void
+    }
+
+    interface MapWorldMapConstructor extends ImpactClass<MapWorldMap>{}
+
+    interface MapChestDisplay{
+        max: sc.NumberGui
+        current: sc.NumberGui
+        _oldMax: number
+        _oldCount: number
+        update(this: this): void
+    }
+
+    interface MapChestDisplayConstructor extends ImpactClass<MapChestDisplay>{}
+
+
+    var MapChestDisplay: MapChestDisplayConstructor
+    var MapWorldMap: MapWorldMapConstructor
 }

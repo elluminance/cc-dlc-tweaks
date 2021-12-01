@@ -1,4 +1,4 @@
-function getAreaDLCChestCount(area) {
+function getAreaDLCChestCount(area: string): number {
     let count = 0;
     switch(area){
         case "rhombus-sqr":
@@ -42,7 +42,7 @@ function getAreaDLCChestCount(area) {
     return count;
 }
 
-function getExtraChests(area) {
+function getExtraChests(area: string): number {
     switch(area){
         case "rhombus-sqr":
             return ig.extensions.enabled["post-game"] ? 7 : 0
