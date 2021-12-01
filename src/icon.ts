@@ -18,7 +18,3 @@ sc.fontsystem.font.setMapping({
 sc.fontsystem.tinyFont.setMapping({
     "stat-el-risktaker": [tinyFontIndex, 0]
 })
-
-sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
-    key: "EL_RISKTAKER"
-};

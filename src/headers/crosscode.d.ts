@@ -155,7 +155,9 @@ declare namespace sc {
     }
     var stats: StatsModel
 
-    interface StatsModelConstructor extends ImpactClass<StatsModel> {}
+    interface StatsModelConstructor extends ImpactClass<StatsModel> {
+        new(): StatsModel
+    }
 
     var StatsModel: StatsModelConstructor
 
@@ -217,4 +219,32 @@ declare namespace sc {
 
     var MapChestDisplay: MapChestDisplayConstructor
     var MapWorldMap: MapWorldMapConstructor
+
+    enum STAT_CHANGE_TYPE {
+        STATS,
+        MODIFIER,
+        HEAL
+    }
+
+    var STAT_PARAM_TYPE: {
+        [key: string]: {
+            key: string,
+            index?: number
+        }
+    }
+
+    interface StatChangeSetting {
+        change: sc.STAT_CHANGE_TYPE
+    }
+
+    var STAT_CHANGE_SETTINGS: Dict<StatChangeSetting>
+
+    interface PlayerModel extends ig.Class {
+        skillPointsExtra: number[]
+        onVarAccess(this: this, a: any, b: string[]): any
+    }
+
+    interface PlayerModelContructor extends ImpactClass<PlayerModel> {}
+
+    var PlayerModel: PlayerModelContructor
 }
