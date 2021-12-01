@@ -1,26 +1,3 @@
-const arenaCups = [
-    "rookie-cup",
-    "seeker-cup",
-    "boss-cup",
-    "faction-cup-1",
-    "faction-cup-2",
-    "rookie-team-cup",
-    "faction-team-cup-1",
-    "console-cup-1",
-    "ancient-cup",
-    "ancient-boss-cup",
-    "ancient-team-cup",
-    "faction-cup-3",
-    "vermillion-cup",
-    "lily-cup",
-    "apollo-cup",
-    "shizuka-cup",
-    "kit-cup",
-    "guest-cup-1",
-    "sidwell",
-    "observers-cup",
-]
-
 sc.Arena.inject({
     trackedCups: [
         "rookie-cup",
@@ -64,6 +41,7 @@ sc.Arena.inject({
                 c = 1;
                 if (d.params.buffs.length > 0)
                     for (var d = d.params.buffs, f = 0, g = d.length; f < g; f++)
+                        //@ts-ignore
                         if (d[f] instanceof sc.ActionBuff && d[f].name == "sergeyHax") {
                             //c = e.attackerParams.getStat("attack", true) / e.attackerParams.getStat("attack", false);
                             break;
@@ -81,7 +59,7 @@ sc.Arena.inject({
     },
 
     getTotalArenaCompletion(){
-        var a, b;
+        var a: number, b: number;
         a = b = 0;
         this.trackedCups.forEach(cupName => {a += this.getCupCompletion(cupName); b++;})
         return a / b;
@@ -89,7 +67,7 @@ sc.Arena.inject({
 
     getTotalDefaultTrophies: function(a, c) {
         var d = 0, e = 0;
-        this.trackedCups.forEach(f => {
+        this.trackedCups.forEach((f: string) => {
             var g = this.getCupTrophy(f);
             if (this.isCupUnlocked(f))
                 if (a == 0) {
@@ -104,18 +82,18 @@ sc.Arena.inject({
     },
 
     getTotalDefaultCups(sorted){
-        let cups = {};
-        this.trackedCups.forEach(a => {
+        let cups: Dict<sc.ArenaCup> = {};
+        this.trackedCups!.forEach(a => {
             let order = sc.arena.cups[a].order || 1e7;
             if(this.isCupCustom(a)) order += 1e7;
             cups[a] = {order}
         })
         if(sorted){
-            let a = {}
+            let sortedCups: Dict<sc.ArenaCup> = {}
             Object.keys(cups)
-                  .sort((element1, element2) => (cups[element1].order - cups[element2].order))
-                  .forEach(key => void(a[key] = cups[key]))
-            return a;
+                  .sort((element1: string, element2: string) => (cups[element1]!.order - cups[element2]!.order))
+                  .forEach(key => void(sortedCups[key] = cups[key]))
+            return sortedCups;
         }
         return cups
     }
