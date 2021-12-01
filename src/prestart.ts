@@ -14,7 +14,7 @@ import "./save-star.js"
 
 import "./trophy-icons.js"
 
+import "./modifier.js"
+
 // to be typed
 import "./js/toggle-sets.js"
-
-import "./js/modifier.js"

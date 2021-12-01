@@ -2,6 +2,10 @@ interface Dict<T> {
     [a: string]: T
 }
 
+declare namespace Vec3 {
+    function create(): Vec3
+}
+
 declare namespace ig {
     namespace ACTION_STEP {
         interface EL_SET_TARGET extends ig.ActionStepBase {
@@ -63,6 +67,23 @@ declare namespace ig {
     }
 
     var extensions: Extensions
+
+    interface System {
+        ingameTick: number
+    }
+
+    namespace ENTITY {
+        interface Player extends sc.PlayerBaseEntity {
+            regenFactor: number
+            updateModelStats(this: this, a: any): void
+        }
+
+        interface HitNumber extends sc.HitNumberEntityBase{
+            spawnHealingNumber(pos: Vec3, entity: ig.Entity, healAmount: any): void
+        }
+
+        var HitNumber: HitNumber
+    }
 }
 
 declare namespace sc {
@@ -288,11 +309,56 @@ declare namespace sc {
         icon: ig.ImageGui
         ribbon: ig.ImageGui
         points: sc.NumberGui
-        
+
         init(this: this, icon: string, stars: number, points: number, f: any): void
     }
 
     interface TrophyIconGraphicConstructor extends ImpactClass<TrophyIconGraphic> {}
 
     var TrophyIconGraphic: TrophyIconGraphicConstructor
+
+    enum ATTACK_TYPE {
+        NONE,
+        LIGHT,
+        MEDIUM,
+        HEAVY,
+        MASSIVE,
+        BREAK
+    }
+
+    interface AttackInfo extends ig.Class {
+        type: sc.ATTACK_TYPE
+        attackerParams:  sc.CombatParams
+        damageFactor: number
+        defenseFactor: number
+        element: sc.ELEMENT
+        critFactor: number
+    }
+
+    interface CombatParams extends ig.Class {
+        el_lifestealTimer: number
+        el_lifestealHealed: number
+
+        getModifier(this: this, modifier: string): number
+        update(this: this, a: any): void
+    }
+
+    interface HitNumberEntityBase extends ig.Entity {
+
+    }
+
+    var DAMAGE_MODIFIER_FUNCS: {
+        [key: string]: (attackInfo: AttackInfo, damageFactor: number, combatantRoot: any, shieldResult: any, hitIgnore: any, params: sc.CombatParams) => {attackInfo: any, damageFactor: any, applyDamageCallback: any | null}
+    }
+
+    interface Modifier {
+        altSheet?: string
+        offX?: number
+        offY?: number
+        icon: number
+        order: number
+        noPercent: boolean
+    }
+
+    var MODIFIERS: Dict<Modifier>
 }
