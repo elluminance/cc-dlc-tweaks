@@ -52,4 +52,21 @@ declare namespace sc {
 
         showPostgameStar(this: this, dlcBeaten: boolean, gameBeaten: boolean): void
     }
+
+    namespace MapModel {
+        interface ExtraChests {
+            chestList: {
+                [area: string]: string[] 
+            }
+
+        }
+    }
+
+    interface MapModel {
+        extraChestList: {[area: string]: string[]}
+        getExtraFoundChests(this: this, area: string): number
+        getExtraAreaChests(this: this, area: string): number
+        getTotalExtraFoundChests(this: this): number
+        getTotalExtraChests(this: this): number
+    }
 }

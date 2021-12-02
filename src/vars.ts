@@ -13,7 +13,12 @@ sc.StatsModel.inject({
         // this may be a little big hacky of a workaround...
         // but it's the easiest way to make a trophy based on variables rather than stats
         if(b == "varValue") return ig.vars.get(a);
-        return this.parent(b, a);
+
+        let value = this.parent(b, a);
+        if (b === "chests") {
+            value += sc.map.getExtraFoundChests(a)
+        }
+        return value
     }
 })
 
