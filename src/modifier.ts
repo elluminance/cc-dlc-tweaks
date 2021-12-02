@@ -31,7 +31,7 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
 
 //#region vampirism
 const lifestealCooldown = 0.15;
-const calcHealed = value => (value / 200)
+const calcHealed = (value: number) => (value / 200)
 
 // this... is very hacky.
 // only works fully on the player.
@@ -51,7 +51,7 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot
 
     attackDmgFactor = 1.5 * Math.log1p(attackDmgFactor)
 
-    let healEntity = amount => {
+    let healEntity = (amount: number) => {
         const healAmount = attackerParams.getHealAmount({value: calcHealed(amount)});
         sc.options.get("damage-numbers") && ig.ENTITY.HitNumber.spawnHealingNumber(playerEntity.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), playerEntity, healAmount);
         attackerParams.increaseHp(healAmount)

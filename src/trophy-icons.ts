@@ -133,9 +133,9 @@ sc.TrophyIconGraphic.inject({
         if(iconIndex == -1){
             let customIndex = sc.TROPHY_ICONS[a].customIndex;
             this.removeChildGui(this.icon);
-            const imgSize = Math.floor(this.customIcons[sc.TROPHY_ICONS[a].sheet].width / 42);
+            const imgSize = Math.floor(this.customIcons[sc.TROPHY_ICONS[a].sheet!].width / 42);
 
-            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[a].sheet], customIndex % imgSize * 42, ~~(customIndex / imgSize) * 42, 42, 42);
+            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[a].sheet!], customIndex! % imgSize * 42, ~~(customIndex! / imgSize) * 42, 42, 42);
             this.addChildGui(this.icon);
             this.removeChildGui(this.ribbon);
             this.addChildGui(this.ribbon);

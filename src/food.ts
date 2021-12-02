@@ -1,6 +1,11 @@
+//@ts-ignore - can't be bothered to deal with foodapi right now
 foodAPI.register("el-mod","el-mod-foods.png",["el_COOKIE_S","el_COOKIE_M","el_COOKIE_L"])
 
-Object.assign(sc.STAT_CHANGE_SETTINGS,{
+sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
+    key: "EL_RISKTAKER"
+};
+
+Object.assign(sc.STAT_CHANGE_SETTINGS, {
     "EL-CRITICAL_DMG-1": {
         change: sc.STAT_CHANGE_TYPE.MODIFIER,
         type: sc.STAT_PARAM_TYPE.CRITICAL_DMG,

@@ -22,9 +22,13 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Install dependencies
-        run: sudo apt update; sudo apt install zip
+        run: sudo apt update; sudo apt install zip npm
+
+      - name: Compile
+        run: npm install; npm run build
+
       - name: Create archive
-        run: zip -q -r dlc-tweaks.ccmod assets js patches ccmod.json icon.png package.json prestart.js
+        run: zip -q -r dlc-tweaks.ccmod assets dist patches ccmod.json icon.png package.json
 
       - name: Get version
         id: get_version
