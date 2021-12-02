@@ -5,7 +5,7 @@ sc.EnemyBooster.inject({
         active: false,     // if ascended booster is enabled 
         skipCheck: false,  // skip check in cases such as turning off the booster to set level to normal value
         forceCheck: false, // force a check in cases such as a level up
-        calcLevel: enemyType => Math.max(sc.model.player.level, (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL))
+        calcLevel: (enemyType: sc.EnemyInfo) => Math.max(sc.model.player.level, (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL))
     },
 
     updateBoosterState(){
@@ -13,7 +13,10 @@ sc.EnemyBooster.inject({
         let ascendedBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster")
         if(this.ascendedBooster.forceCheck || (this.ascendedBooster.active != ascendedBooster)){
             this.ascendedBooster.active = ascendedBooster;
-            for (let entities = ig.game.getEntitiesByType(ig.ENTITY.Enemy), index = entities.length; index--;) this.updateEnemyBoostState(entities[index])
+            for (let entities = ig.game.getEntitiesByType(ig.ENTITY.Enemy), index = entities.length; index--;){ 
+                //@ts-ignore
+                this.updateEnemyBoostState(entities[index])
+            }
             this.ascendedBooster.forceCheck = false;
         }
     },
@@ -39,6 +42,7 @@ sc.EnemyBooster.inject({
 
     modelChanged(b, a){
         // chaining with && is a cursed art. it is a fun art, but still cursed.
+        //@ts-expect-error
         b instanceof sc.PlayerModel && a == sc.PLAYER_MSG.LEVEL_CHANGE && (this.ascendedBooster.forceCheck = true) && this.updateBoosterState();
         this.parent(b, a)
     }
@@ -101,10 +105,10 @@ sc.NewGamePlusModel.inject({
 
 //skin effect related
 
-function getSpecialColorHSV(hueAtMax, hueAtMin, rotPercent) {
+function getSpecialColorHSV(hueAtMax: number, hueAtMin: number, rotPercent: number): string {
     let newHue = Math.min(hueAtMin, hueAtMax) + Math.abs(hueAtMax - hueAtMin) * rotPercent
     
-    function hueToRGBValue(hue){
+    function hueToRGBValue(hue: number){
         hue = (hue + 360) % 360;
         let color = 0;
         if(hue < 60) color = (1/4) * hue
@@ -117,6 +121,16 @@ function getSpecialColorHSV(hueAtMax, hueAtMin, rotPercent) {
     let green = Math.floor(hueToRGBValue(newHue))
     let blue = Math.floor(hueToRGBValue(newHue - 120))
     return `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+}
+
+declare namespace ig.EFFECT_ENTRY{
+    interface COPY_SPRITE_SPECIAL_COLOR_EL extends EffectStepBase, EffectSettings{
+        init(this: this, type: any, settings: ig.EFFECT_ENTRY.EffectSettings): void
+    }
+
+    interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {}
+
+    var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
 }
 
 ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EffectStepBase.extend({
@@ -137,7 +151,6 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EffectStepBase.extend({
         this.offset = settings.offset || this.offset;
         this.noLighter = settings.noLighter || false
     },
-
     start(entity) {
         let color = "#FFF";
         switch(this.mode){

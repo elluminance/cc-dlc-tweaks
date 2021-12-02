@@ -2,6 +2,15 @@ interface Dict<T> {
     [a: string]: T
 }
 
+interface coordinates2D {
+    x: number
+    y: number
+}
+
+interface coordinates3D extends coordinates2D{
+    z: number
+}
+
 declare namespace Vec3 {
     function create(): Vec3
 }
@@ -26,14 +35,6 @@ declare namespace ig {
         interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS>{}
 
         var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
-    }
-    
-    interface coordinates2D {
-        x: number
-        y: number
-    }
-    interface coordinates3D extends coordinates2D{
-        z: number
     }
 
     interface ActionConstructor{
@@ -83,7 +84,56 @@ declare namespace ig {
         }
 
         var HitNumber: HitNumber
+
+        interface Enemy {
+            boosterState: sc.ENEMY_BOOSTER_STATE
+            enemyType: sc.EnemyInfo
+            setLevelOverride(newLevel: number | null): void
+        }
+
+        interface Effect {
+            target: any
+            spriteFilter: any
+
+            spawnParticle(a: ImpactClass<ig.Entity>, b: any, e: any, f?: any): void
+        }
     }
+
+    interface EffectStepBase extends Omit<StepBase, "start">{
+        particleData: any
+        
+        start(this: this, entity: ig.ENTITY.Effect): void
+    } 
+    type EffectStepBaseConstructor = StepBaseConstructor 
+    var EffectStepBase: EffectStepBaseConstructor
+
+    namespace EFFECT_ENTRY{
+        interface EffectSettings{
+            noLighter?: boolean,
+            offset?: Vec3,
+            fadeColor?: string | null
+            colorAlpha?: number | null
+            mode?: any
+        }        
+    }
+
+    interface Config extends ig.Class {
+        _data: any,
+        init(this: this, a: any): void
+        copy(): Config
+    }
+
+    interface ConfigConstructor extends ImpactClass<Config> {}
+
+    interface EffectConfig extends ig.Config {
+        init(this: this, c: any): void
+    }
+    
+    interface EffectConfigConstructor extends ImpactClass<EffectConfig> {
+        loadParticleData(this: this, a: any, b: ig.EFFECT_ENTRY.EffectSettings, d: any): ig.EFFECT_ENTRY.EffectSettings
+    }
+
+    var EffectConfig: EffectConfigConstructor
 }
 
 declare namespace sc {
@@ -113,6 +163,7 @@ declare namespace sc {
 
     interface CrossCode {
         getEntityByName(name: string): ig.Entity
+        getEntitiesByType(type: ImpactClass<ig.Entity>): ig.Entity[]
     }
 
     //#region Arena
@@ -267,7 +318,12 @@ declare namespace sc {
 
     interface PlayerModel extends ig.Class {
         skillPointsExtra: number[]
+        level: number
+        params: CombatParams
+
         onVarAccess(this: this, a: any, b: string[]): any
+        getToggleItemState(id: number | string): boolean
+        getParamAvgLevel(level: number): number
     }
 
     interface PlayerModelContructor extends ImpactClass<PlayerModel> {}
@@ -317,6 +373,8 @@ declare namespace sc {
 
     var TrophyIconGraphic: TrophyIconGraphicConstructor
 
+
+    //#region Attacks
     enum ATTACK_TYPE {
         NONE,
         LIGHT,
@@ -341,6 +399,8 @@ declare namespace sc {
 
         getModifier(this: this, modifier: string): number
         update(this: this, a: any): void
+        getHpFactor(): number
+        getRelativeSp(): number
     }
 
     interface HitNumberEntityBase extends ig.Entity {
@@ -361,4 +421,94 @@ declare namespace sc {
     }
 
     var MODIFIERS: Dict<Modifier>
+    //#endregion Attacks
+
+    interface NewGamePlusModel {
+        get(this: this, option: string): boolean
+    }
+
+    interface GameModel {
+        player: PlayerModel
+    }
+
+    interface EnemyInfo {
+        boostedLevel: number
+        boss: true
+    }
+
+    var MIN_BOOSTER_LEVEL: number
+
+    interface EnemyBooster extends ig.GameAddon{
+        boosted: boolean
+        ascendedBooster: {
+            active: boolean,
+            skipCheck: boolean,
+            forceCheck: false,
+            calcLevel(enemyType: sc.EnemyInfo): number,
+        }
+        
+        updateBoosterState(this: this): void
+        updateEnemyBoostState(this: this, enemy: ig.ENTITY.Enemy): void
+
+        modelChanged(this: this, source: any, message: any): void
+    }
+
+    interface EnemyBoosterConstructor extends ImpactClass<EnemyBooster>{}
+
+    var enemyBooster: EnemyBooster
+    var EnemyBooster: EnemyBoosterConstructor
+
+    enum ENEMY_BOOSTER_STATE {
+        NONE,
+        BOOSTABLE,
+        BOOSTED
+    }
+
+    interface EnemyInfoBox extends ig.BoxGui {
+        level: sc.NumberGui
+        enemy: EnemyInfo
+        setEnemy(this: this, b: any): void
+    }
+
+    interface EnemyInfoBoxConstructor extends ImpactClass<EnemyInfoBox> {}
+
+    var EnemyInfoBox: EnemyInfoBoxConstructor
+
+    interface EnemyEntryButton extends sc.ListBoxButton {
+        key: any,
+        level: sc.NumberGui
+
+        init(this: this, b: any, enemyKey: string, d: any): void
+    } 
+
+    interface EnemyEntryButtonConstructor extends ImpactClass<EnemyEntryButton> {}
+
+    var EnemyEntryButton: EnemyEntryButtonConstructor
+
+    interface EnemyDisplayGui extends ig.GuiElementBase{
+        init(this: this, b: any, a: any, d: any, c: any, e: any, isBoosted: boolean): void
+    }
+
+    interface EnemyDisplayGuiConstructor extends ImpactClass<EnemyDisplayGui>{}
+
+    var EnemyDisplayGui: EnemyDisplayGuiConstructor
+
+    interface EnemyPageGeneralInfo extends ig.GuiElementBase {
+        setData(this: this, a: any, b: any, f: any, g: any): void
+    }
+
+    interface EnemyPageGeneralInfoConstructor extends ImpactClass<EnemyPageGeneralInfo> {}
+
+    var EnemyPageGeneralInfo: EnemyPageGeneralInfoConstructor
+
+    interface Combat extends ig.GameAddon{
+        enemyDataList: Dict<EnemyInfo> 
+
+        canShowBoostedEntry(this: this, b: any, isBoss: boolean): boolean
+    }
+    
+    interface CombatConstructor extends ImpactClass<Combat> {}
+
+    var Combat: CombatConstructor
+    var combat: Combat
 }
