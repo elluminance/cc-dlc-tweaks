@@ -259,15 +259,21 @@ declare namespace sc {
         HEAL
     }
 
+    interface StatParamType {
+        key: string,
+        index?: number
+    }
+
     var STAT_PARAM_TYPE: {
-        [key: string]: {
-            key: string,
-            index?: number
-        }
+        [key: string]: StatParamType
     }
 
     interface StatChangeSetting {
-        change: sc.STAT_CHANGE_TYPE
+        change: STAT_CHANGE_TYPE
+        type: StatParamType
+        value: number
+        icon: string
+        grade: string
     }
 
     var STAT_CHANGE_SETTINGS: { [key: string]: StatChangeSetting }

@@ -1,66 +1,67 @@
 function getAreaDLCChestCount(area: string): number {
     let count = 0;
-    switch(area){
+    switch (area) {
         case "rhombus-sqr":
-            if(ig.extensions.enabled["post-game"]){
-                count += ig.vars.get("maps.rhombusSqr/centerS.chest_888") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/centerNe.chest_5") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/centerN.chest_197") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/centerNe.chest_437") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/centerNw.chest_251") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/centerW.chest_305") ? 1 : 0
-                count += ig.vars.get("maps.rhombusSqr/beachSw.chest_1096") ? 1 : 0
-            }
+            count += ig.vars.get("maps.rhombusSqr/centerS.chest_888") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/centerNe.chest_5") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/centerN.chest_197") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/centerNe.chest_437") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/centerNw.chest_251") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/centerW.chest_305") ? 1 : 0
+            count += ig.vars.get("maps.rhombusSqr/beachSw.chest_1096") ? 1 : 0
             break;
 
         case "bergen":
-            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.bergen/special/monksQuestcave3.chestGet") ? 1 : 0
+            count += ig.vars.get("maps.bergen/special/monksQuestcave3.chestGet") ? 1 : 0
             break;
 
         case "heat-area":
-            if(ig.extensions.enabled["scorpion-robo"]) count += ig.vars.get("maps.heat/lab/roomFinal.chest_89") ? 1 : 0
+            count += ig.vars.get("maps.heat/lab/roomFinal.chest_89") ? 1 : 0
             break;
-        // preparing for the future :)
+
         case "bergen-trails":
-            if(ig.extensions.enabled["snowman-tank"]) count += ig.vars.get("maps.bergenTrail/lab/roomFinal.chest_54") ? 1 : 0
+            count += ig.vars.get("maps.bergenTrail/lab/roomFinal.chest_54") ? 1 : 0
             break;
 
         case "autumn-fall":
-            if(ig.extensions.enabled["flying-hedgehag"]) count += ig.vars.get("maps.autumn/lab/roomFinal.chest_55") ? 1 : 0
+            count += ig.vars.get("maps.autumn/lab/roomFinal.chest_55") ? 1 : 0
             break;
 
         case "jungle":
-            if(ig.extensions.enabled["fish-gear"]) count += ig.vars.get("maps.jungle/lab/roomFinal.chest_59") ? 1 : 0
+            count += ig.vars.get("maps.jungle/lab/roomFinal.chest_59") ? 1 : 0
             break;
 
         // modded chests
         case "beach":
-            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.beach/temple.chest_2441");
+            count += ig.vars.get("maps.beach/temple.chest_2441");
+            break;
+
         case "final-dng":
-            if(ig.extensions.enabled["post-game"]) count += ig.vars.get("maps.finalDng/g/outdoor-01.chest_24410");
+            count += ig.vars.get("maps.finalDng/g/outdoor-01.chest_24410");
+            break;
     }
     return count;
 }
 
 function getExtraChests(area: string): number {
-    switch(area){
+    switch (area) {
         case "rhombus-sqr":
-            return ig.extensions.enabled["post-game"] ? 7 : 0
+            return 7
         case "bergen":
-            return ig.extensions.enabled["post-game"] ? 1 : 0
+            return 1
         case "heat-area":
-            return ig.extensions.enabled["scorpion-robo"] ? 1 : 0
+            return 1
         case "bergen-trails":
-            return ig.extensions.enabled["snowman-tank"] ? 1 : 0
+            return 1
         case "autumn-fall":
-            return ig.extensions.enabled["flying-hedgehag"] ? 1 : 0
+            return 1
         case "jungle":
-            return ig.extensions.enabled["fish-gear"] ? 1 : 0
-        
+            return 1
+
         case "beach":
-            return ig.extensions.enabled["post-game"] ? 1 : 0
+            return 1
         case "final-dng":
-            return ig.extensions.enabled["post-game"] ? 1 : 0
+            return 1
 
         default:
             return 0
@@ -68,9 +69,9 @@ function getExtraChests(area: string): number {
 }
 
 sc.StatsModel.inject({
-    getMap(b, a){
+    getMap(b, a) {
         let value = this.parent(b, a);
-        if(b === "chests") {
+        if (b === "chests") {
             value += getAreaDLCChestCount(a)
         }
         return value
@@ -78,16 +79,16 @@ sc.StatsModel.inject({
 })
 
 sc.MapWorldMap.inject({
-    _setAreaName(a){
+    _setAreaName(a) {
         this.parent(a)
         let area = a.area,
             chestCount = sc.stats.getMap("chests", a.key) ?? 0,
             totalChests = sc.map.getChestCount(a.key) ?? 0,
             chestString = ""
 
-        totalChests += getExtraChests(a.key) 
+        totalChests += getExtraChests(a.key)
 
-        if (totalChests != 0){
+        if (totalChests != 0) {
             chestString = chestCount >= totalChests ? ` \\c[3][${chestCount}/${totalChests}]\\c[0]` : ` [${chestCount}/${totalChests}]`
         }
         this.areaName.setText(ig.LangLabel.getText(area.name) + chestString);
@@ -96,13 +97,13 @@ sc.MapWorldMap.inject({
 
 sc.MapModel.inject({
     getTotalChestsFound(asPercent) {
-        let count = this.parent(false), 
+        let count = this.parent(false),
             total = this.getTotalChests();
-        if(ig.extensions.enabled["post-game"]){
-            count += sc.stats.getMap("chests", "evo-village") ?? 0
-            count += sc.stats.getMap("chests", "beach") ?? 0
-            count += sc.stats.getMap("chests", "final-dng") ?? 0
-        }
+
+        // count in postgame-exclusive areas
+        count += sc.stats.getMap("chests", "evo-village") ?? 0
+        count += sc.stats.getMap("chests", "beach") ?? 0
+        count += sc.stats.getMap("chests", "final-dng") ?? 0
 
         count += getAreaDLCChestCount("rhombus-sqr");
         count += getAreaDLCChestCount("bergen");
@@ -113,17 +114,13 @@ sc.MapModel.inject({
 
         count += getAreaDLCChestCount("beach");
         count += getAreaDLCChestCount("final-dng");
-        
-        return asPercent ? (count/total) : count
+
+        return asPercent ? (count / total) : count
     },
 
-    getTotalChests(){
+    getTotalChests() {
         // 7 (rhombus) + 1 (bergen) + 6 (homestedt) + 13 (azure) + 16 (ku'lero) = 43 total DLC chests
-        return this.parent() + ((ig.extensions.enabled["post-game"]) ? (43 + 2) : 0) + 
-               (ig.extensions.enabled["scorpion-robo"] ? 1 : 0) + 
-               (ig.extensions.enabled["snowman-tank"] ? 1 : 0) +
-               (ig.extensions.enabled["flying-hedgehag"] ? 1 : 0) +
-               (ig.extensions.enabled["fish-gear"] ? 1 : 0)
+        return this.parent() + 43 + 4 + 2
     }
 })
 
