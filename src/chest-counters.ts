@@ -81,8 +81,8 @@ sc.MapWorldMap.inject({
     _setAreaName(a){
         this.parent(a)
         let area = a.area,
-            chestCount = sc.stats.getMap("chests", a.key) || 0,
-            totalChests = sc.map.getChestCount(a.key) || 0,
+            chestCount = sc.stats.getMap("chests", a.key) ?? 0,
+            totalChests = sc.map.getChestCount(a.key) ?? 0,
             chestString = ""
 
         totalChests += getExtraChests(a.key) 
@@ -99,9 +99,9 @@ sc.MapModel.inject({
         let count = this.parent(false), 
             total = this.getTotalChests();
         if(ig.extensions.enabled["post-game"]){
-            count += sc.stats.getMap("chests", "evo-village") || 0
-            count += sc.stats.getMap("chests", "beach") || 0
-            count += sc.stats.getMap("chests", "final-dng") || 0
+            count += sc.stats.getMap("chests", "evo-village") ?? 0
+            count += sc.stats.getMap("chests", "beach") ?? 0
+            count += sc.stats.getMap("chests", "final-dng") ?? 0
         }
 
         count += getAreaDLCChestCount("rhombus-sqr");

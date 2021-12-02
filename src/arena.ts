@@ -82,14 +82,14 @@ sc.Arena.inject({
     },
 
     getTotalDefaultCups(sorted){
-        let cups: Dict<sc.ArenaCup> = {};
+        let cups: {[key: string]: sc.ArenaCup} = {};
         this.trackedCups!.forEach(a => {
             let order = sc.arena.cups[a].order || 1e7;
             if(this.isCupCustom(a)) order += 1e7;
             cups[a] = {order}
         })
         if(sorted){
-            let sortedCups: Dict<sc.ArenaCup> = {}
+            let sortedCups: {[key: string]: sc.ArenaCup} = {}
             Object.keys(cups)
                   .sort((element1: string, element2: string) => (cups[element1]!.order - cups[element2]!.order))
                   .forEach(key => void(sortedCups[key] = cups[key]))
@@ -111,9 +111,9 @@ sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
         return ig.vars.get("tmp.ctronHits") <= a._maxHits;
     },
     getText(a, b, c) {
-        return a.replace("[!]", !c ? b.value : `${ig.vars.get("tmp.ctronHits") || 0}\\i[slash-highlight]${b._maxHits}`)
+        return a.replace("[!]", !c ? b.value : `${ig.vars.get("tmp.ctronHits") ?? 0}\\i[slash-highlight]${b._maxHits}`)
     },
     getPoints(a, b) {
-        return (1 - ((ig.vars.get("tmp.ctronHits") || 0) / a._maxHits)).limit(0, 1) * b
+        return (1 - ((ig.vars.get("tmp.ctronHits") ?? 0) / a._maxHits)).limit(0, 1) * b
     }
 }

@@ -1,44 +1,10 @@
-interface Dict<T> {
-    [a: string]: T
-}
-
-interface coordinates2D {
-    x: number
-    y: number
-}
-
-interface coordinates3D extends coordinates2D{
-    z: number
-}
-
 declare namespace Vec3 {
     function create(): Vec3
 }
 
 declare namespace ig {
-    namespace ACTION_STEP {
-        interface EL_SET_TARGET extends ig.ActionStepBase {
-            name: string;
-        }
-        interface EL_SET_TARGET_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET> {
-
-        }
-        var EL_SET_TARGET: EL_SET_TARGET_CONSTRUCTOR;
-
-        
-
-        interface EL_SET_TARGET_POS extends ig.ActionStepBase {
-            newPos: coordinates3D
-            random: boolean
-            randRange: coordinates2D
-        }
-        interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS>{}
-
-        var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
-    }
-
-    interface ActionConstructor{
-        getVec3(a: coordinates3D, b: ig.ActorEntity, c: Vec3): Vec3
+    interface ActionConstructor {
+        getVec3(a: Vec3, b: ig.ActorEntity, c: Vec3): Vec3
     }
 
     interface ActorEntity {
@@ -46,28 +12,56 @@ declare namespace ig {
     }
 
     interface Vars extends ig.Class {
-        get(a: string): any
-        set(a: string, b: any): void
-        add(a: string, b: any): void
-        sub(a: string, b: any): void
-        mul(a: string, b: any): void
-        div(a: string, b: any): void
-        mod(a: string, b: any): void
-        and(a: string, b: any): void
-        or(a: string, b: any): void
-        xor(a: string, b: any): void
+        storage: {
+            map: { [key: string]: any }
+            maps: { [key: string]: any }
+            tmp: { [key: string]: any }
+            call: { [key: string]: any }
+            session: {
+                map: { [key: string]: any }
+                maps: { [key: string]: any }
+            }
+            plot: {
+                line: number
+                [key: string]: any
+            }
+            [key: string]: any
+        }
+
+        init(this: this): void
+
+        get(this: this, variable: string): any
+
+        setDefault(this: this, variable: string, value: any): void
+        set(this: this, variable: string, value: any): void
+        add(this: this, variable: string, value: any): void
+        sub(this: this, variable: string, value: any): void
+        mul(this: this, variable: string, value: any): void
+        div(this: this, variable: string, value: any): void
+        mod(this: this, variable: string, value: any): void
+        and(this: this, variable: string, value: any): void
+        or(this: this, variable: string, value: any): void
+        xor(this: this, variable: string, value: any): void
     }
 
-    interface VarsConstructor extends ImpactClass<Vars>{}
+    interface VarsConstructor extends ImpactClass<Vars> { }
 
     var vars: Vars
     var Vars: VarsConstructor
 
-    interface Extensions {
-        enabled: Dict<boolean>
+    interface ExtensionList extends SingleLoadable {
+
     }
 
-    var extensions: Extensions
+    interface ExtensionManager {
+        enabled: { [key: string]: boolean }
+        init(this: this): void
+    }
+
+    interface ExtensionManagerConstructor extends ImpactClass<ExtensionManager> { }
+
+    var ExtensionManager: ExtensionManagerConstructor
+    var extensions: ExtensionManager
 
     interface System {
         ingameTick: number
@@ -79,8 +73,8 @@ declare namespace ig {
             updateModelStats(this: this, a: any): void
         }
 
-        interface HitNumber extends sc.HitNumberEntityBase{
-            spawnHealingNumber(pos: Vec3, entity: ig.Entity, healAmount: any): void
+        interface HitNumber extends sc.HitNumberEntityBase {
+            spawnHealingNumber(this: this, pos: Vec3, entity: ig.Entity, healAmount: any): void
         }
 
         var HitNumber: HitNumber
@@ -88,47 +82,48 @@ declare namespace ig {
         interface Enemy {
             boosterState: sc.ENEMY_BOOSTER_STATE
             enemyType: sc.EnemyInfo
-            setLevelOverride(newLevel: number | null): void
+            setLevelOverride(this: this, newLevel: number | null): void
         }
 
         interface Effect {
             target: any
             spriteFilter: any
 
-            spawnParticle(a: ImpactClass<ig.Entity>, b: any, e: any, f?: any): void
+            spawnParticle(this: this, a: ImpactClass<ig.Entity>, b: any, e: any, f?: any): void
         }
     }
 
-    interface EffectStepBase extends Omit<StepBase, "start">{
-        particleData: any
-        
+    interface EffectStepBase extends Omit<StepBase, "start"> {
+        particleData: EFFECT_ENTRY.EffectSettings
+
         start(this: this, entity: ig.ENTITY.Effect): void
-    } 
-    type EffectStepBaseConstructor = StepBaseConstructor 
+    }
+    type EffectStepBaseConstructor = StepBaseConstructor
     var EffectStepBase: EffectStepBaseConstructor
 
-    namespace EFFECT_ENTRY{
-        interface EffectSettings{
+    namespace EFFECT_ENTRY {
+        interface EffectSettings {
+            particleDuration: number
             noLighter?: boolean,
             offset?: Vec3,
             fadeColor?: string | null
             colorAlpha?: number | null
             mode?: any
-        }        
+        }
     }
 
     interface Config extends ig.Class {
         _data: any,
         init(this: this, a: any): void
-        copy(): Config
+        copy(this: this): Config
     }
 
-    interface ConfigConstructor extends ImpactClass<Config> {}
+    interface ConfigConstructor extends ImpactClass<Config> { }
 
     interface EffectConfig extends ig.Config {
         init(this: this, c: any): void
     }
-    
+
     interface EffectConfigConstructor extends ImpactClass<EffectConfig> {
         loadParticleData(this: this, a: any, b: ig.EFFECT_ENTRY.EffectSettings, d: any): ig.EFFECT_ENTRY.EffectSettings
     }
@@ -162,8 +157,8 @@ declare namespace sc {
     }
 
     interface CrossCode {
-        getEntityByName(name: string): ig.Entity
-        getEntitiesByType(type: ImpactClass<ig.Entity>): ig.Entity[]
+        getEntityByName(this: this, name: string): ig.Entity
+        getEntitiesByType(this: this, type: ImpactClass<ig.Entity>): ig.Entity[]
     }
 
     //#region Arena
@@ -176,10 +171,9 @@ declare namespace sc {
         order: number
     }
 
-    interface Arena extends ig.GameAddon{
+    interface Arena extends ig.GameAddon {
         active: boolean
-        trackedCups: string[]
-        cups: Dict<ArenaCup>
+        cups: { [key: string]: ArenaCup }
 
         init(this: this): void
         registerCup(this: this, a: string, b: ArenaCupOptions): void
@@ -190,28 +184,29 @@ declare namespace sc {
         getTotalDefaultTrophies(this: this, a: number, c: boolean): number
         getCupTrophy(this: this, a: string): number
         isCupUnlocked(this: this, a: string): boolean
-        getTotalDefaultCups(this: this, sorted: boolean): Dict<ArenaCup>
+        getTotalDefaultCups(this: this, sorted: boolean): { [key: string]: ArenaCup }
         isCupCustom(this: this, cupName: string): boolean
         isEnemyBlocked(this: this, a: any): boolean
     }
 
-    interface ArenaConstructor extends ImpactClass<Arena> {}
-    
+    interface ArenaConstructor extends ImpactClass<Arena> { }
+
     var Arena: ArenaConstructor
     var arena: Arena
 
     interface ArenaBonusObjective {
-        _type: string,
+        _type: "Integer" | "EMPTY",
+        _prefix?: "seconds" | "value" | "target"
         order: number,
         displayRangePoints: boolean,
 
         init(a: any, b: any): void
         check(a: any): boolean
         getText(a: string, b: any, c: boolean): string
-        getPoints(a: any, b: any): number
+        getPoints?(a: any, b: any): number
     }
 
-    var ARENA_BONUS_OBJECTIVE: Dict<ArenaBonusObjective>
+    var ARENA_BONUS_OBJECTIVE: { [key: string]: ArenaBonusObjective }
     //#endregion Arena
 
     //#region Stats
@@ -223,10 +218,10 @@ declare namespace sc {
         add(this: this, stat: string, value: number): void
         subtract(this: this, stat: string, value: number): void
 
-        getMap(this: this, map: string, key: string): number
-        setMap(this: this, map: string, key: string, value: number): void
-        addMap(this: this, map: string, key: string, value: number): void
-        subMap(this: this, map: string, key: string, value: number): void
+        getMap(this: this, map: string, stat: string): number
+        setMap(this: this, map: string, stat: string, value: number): void
+        addMap(this: this, map: string, stat: string, value: number): void
+        subMap(this: this, map: string, stat: string, value: number): void
     }
     var stats: StatsModel
 
@@ -235,15 +230,26 @@ declare namespace sc {
     }
 
     var StatsModel: StatsModelConstructor
+    namespace Stats {
+        type StatItemType = "Percent" | "Separator" | "Time" | "KeyValue" | "KeyCurMax" | "List" | "Logs"
 
-    interface StatItem {
-        getSettings(a: string): any
+        interface StatItem {
+            type?: StatItemType
+            subtype?: StatItemType
+            displayName?: string
+            highlight?: {
+                min: number
+            } | boolean
+            group?: string
+            stat?: string
+            map?: string
+            max(): number
+            getSettings?(a: string): StatItem | null
+        }
     }
-
     interface StatCategory {
-        [key: string]: StatItem
+        [key: string]: Stats.StatItem
     }
-
 
     var STATS_BUILD: StatCategory[]
 
@@ -264,11 +270,11 @@ declare namespace sc {
         change: sc.STAT_CHANGE_TYPE
     }
 
-    var STAT_CHANGE_SETTINGS: Dict<StatChangeSetting>
+    var STAT_CHANGE_SETTINGS: { [key: string]: StatChangeSetting }
     //#endregion Stats
 
     //#region Map
-    namespace MapModel{
+    namespace MapModel {
         interface Area {
             path: string
             chests: number
@@ -281,18 +287,18 @@ declare namespace sc {
         getTotalChestsFound(this: this, asPercent: boolean): number
         getTotalChests(this: this): number,
         getVisitedArea(this: this, area: string): boolean
-        getAreaName(this: this, a: string, b: boolean, c: boolean): string
+        getAreaName(this: this, a?: string, b?: boolean, c?: boolean): string
     }
 
-    interface WorldmapAreaName extends ig.GuiElementBase{
+    interface WorldmapAreaName extends ig.GuiElementBase {
         gfx: ig.Image
         name: sc.MapNameGui
         hasText: boolean
         setText(this: this, a: string, b?: any, c?: any): void
     }
-    
-    interface MapNameGui extends ig.BoxGui{
-        
+
+    interface MapNameGui extends ig.BoxGui {
+
     }
 
     interface MapWorldMap {
@@ -300,9 +306,9 @@ declare namespace sc {
         _setAreaName(this: this, a: any): void
     }
 
-    interface MapWorldMapConstructor extends ImpactClass<MapWorldMap>{}
+    interface MapWorldMapConstructor extends ImpactClass<MapWorldMap> { }
 
-    interface MapChestDisplay{
+    interface MapChestDisplay {
         max: sc.NumberGui
         current: sc.NumberGui
         _oldMax: number
@@ -310,7 +316,7 @@ declare namespace sc {
         update(this: this): void
     }
 
-    interface MapChestDisplayConstructor extends ImpactClass<MapChestDisplay>{}
+    interface MapChestDisplayConstructor extends ImpactClass<MapChestDisplay> { }
 
     var MapChestDisplay: MapChestDisplayConstructor
     var MapWorldMap: MapWorldMapConstructor
@@ -322,46 +328,39 @@ declare namespace sc {
         params: CombatParams
 
         onVarAccess(this: this, a: any, b: string[]): any
-        getToggleItemState(id: number | string): boolean
-        getParamAvgLevel(level: number): number
+        getToggleItemState(this: this, id: number | string): boolean
+        getParamAvgLevel(this: this, level: number): number
     }
 
-    interface PlayerModelContructor extends ImpactClass<PlayerModel> {}
+    interface PlayerModelContructor extends ImpactClass<PlayerModel> { }
 
     var PlayerModel: PlayerModelContructor
 
-    interface SaveSlotButton{
+    interface SaveSlotButton {
         chapter: SaveSlotChapter
 
         setSave(this: this, a: any, b: any, c: any): void
     }
 
-    interface SaveSlotChapter extends ig.GuiElementBase{
-        postgameStarGfx: ig.Image
-        postgameStar: ig.ImageGui
+    interface SaveSlotChapter extends ig.GuiElementBase {
         metaMarker: ig.ImageGui
 
         init(this: this): void
-
-        showPostgameStar(this: this, dlcBeaten: boolean, gameBeaten: boolean): void
     }
 
-    interface SaveSlotChapterConstructor extends ImpactClass<SaveSlotChapter> {}
+    interface SaveSlotChapterConstructor extends ImpactClass<SaveSlotChapter> { }
 
     var SaveSlotChapter: SaveSlotChapterConstructor
 
-    interface TrophyIcon { 
+    interface TrophyIcon {
         index: number
         cat: "GENERAL" | "COMBAT" | "EXPLORATION"
-        hidden?: boolean,
-        sheet?: string
-        customIndex?: number
+        hidden?: boolean
     }
 
-    var TROPHY_ICONS: Dict<TrophyIcon>
+    var TROPHY_ICONS: { [key: string]: TrophyIcon }
 
     interface TrophyIconGraphic extends ig.GuiElementBase {
-        customIcons: Dict<ig.Image>
         icon: ig.ImageGui
         ribbon: ig.ImageGui
         points: sc.NumberGui
@@ -369,7 +368,7 @@ declare namespace sc {
         init(this: this, icon: string, stars: number, points: number, f: any): void
     }
 
-    interface TrophyIconGraphicConstructor extends ImpactClass<TrophyIconGraphic> {}
+    interface TrophyIconGraphicConstructor extends ImpactClass<TrophyIconGraphic> { }
 
     var TrophyIconGraphic: TrophyIconGraphicConstructor
 
@@ -386,7 +385,7 @@ declare namespace sc {
 
     interface AttackInfo extends ig.Class {
         type: sc.ATTACK_TYPE
-        attackerParams:  sc.CombatParams
+        attackerParams: sc.CombatParams
         damageFactor: number
         defenseFactor: number
         element: sc.ELEMENT
@@ -394,13 +393,10 @@ declare namespace sc {
     }
 
     interface CombatParams extends ig.Class {
-        el_lifestealTimer: number
-        el_lifestealHealed: number
-
         getModifier(this: this, modifier: string): number
         update(this: this, a: any): void
-        getHpFactor(): number
-        getRelativeSp(): number
+        getHpFactor(this: this): number
+        getRelativeSp(this: this): number
     }
 
     interface HitNumberEntityBase extends ig.Entity {
@@ -408,7 +404,7 @@ declare namespace sc {
     }
 
     var DAMAGE_MODIFIER_FUNCS: {
-        [key: string]: (attackInfo: AttackInfo, damageFactor: number, combatantRoot: any, shieldResult: any, hitIgnore: any, params: sc.CombatParams) => {attackInfo: any, damageFactor: any, applyDamageCallback: any | null}
+        [key: string]: (attackInfo: AttackInfo, damageFactor: number, combatantRoot: any, shieldResult: any, hitIgnore: any, params: sc.CombatParams) => { attackInfo: any, damageFactor: any, applyDamageCallback: any | null }
     }
 
     interface Modifier {
@@ -420,7 +416,7 @@ declare namespace sc {
         noPercent: boolean
     }
 
-    var MODIFIERS: Dict<Modifier>
+    var MODIFIERS: { [key: string]: Modifier }
     //#endregion Attacks
 
     interface NewGamePlusModel {
@@ -438,22 +434,16 @@ declare namespace sc {
 
     var MIN_BOOSTER_LEVEL: number
 
-    interface EnemyBooster extends ig.GameAddon{
+    interface EnemyBooster extends ig.GameAddon {
         boosted: boolean
-        ascendedBooster: {
-            active: boolean,
-            skipCheck: boolean,
-            forceCheck: false,
-            calcLevel(enemyType: sc.EnemyInfo): number,
-        }
-        
+
         updateBoosterState(this: this): void
         updateEnemyBoostState(this: this, enemy: ig.ENTITY.Enemy): void
 
         modelChanged(this: this, source: any, message: any): void
     }
 
-    interface EnemyBoosterConstructor extends ImpactClass<EnemyBooster>{}
+    interface EnemyBoosterConstructor extends ImpactClass<EnemyBooster> { }
 
     var enemyBooster: EnemyBooster
     var EnemyBooster: EnemyBoosterConstructor
@@ -470,7 +460,7 @@ declare namespace sc {
         setEnemy(this: this, b: any): void
     }
 
-    interface EnemyInfoBoxConstructor extends ImpactClass<EnemyInfoBox> {}
+    interface EnemyInfoBoxConstructor extends ImpactClass<EnemyInfoBox> { }
 
     var EnemyInfoBox: EnemyInfoBoxConstructor
 
@@ -479,17 +469,17 @@ declare namespace sc {
         level: sc.NumberGui
 
         init(this: this, b: any, enemyKey: string, d: any): void
-    } 
+    }
 
-    interface EnemyEntryButtonConstructor extends ImpactClass<EnemyEntryButton> {}
+    interface EnemyEntryButtonConstructor extends ImpactClass<EnemyEntryButton> { }
 
     var EnemyEntryButton: EnemyEntryButtonConstructor
 
-    interface EnemyDisplayGui extends ig.GuiElementBase{
+    interface EnemyDisplayGui extends ig.GuiElementBase {
         init(this: this, b: any, a: any, d: any, c: any, e: any, isBoosted: boolean): void
     }
 
-    interface EnemyDisplayGuiConstructor extends ImpactClass<EnemyDisplayGui>{}
+    interface EnemyDisplayGuiConstructor extends ImpactClass<EnemyDisplayGui> { }
 
     var EnemyDisplayGui: EnemyDisplayGuiConstructor
 
@@ -497,17 +487,17 @@ declare namespace sc {
         setData(this: this, a: any, b: any, f: any, g: any): void
     }
 
-    interface EnemyPageGeneralInfoConstructor extends ImpactClass<EnemyPageGeneralInfo> {}
+    interface EnemyPageGeneralInfoConstructor extends ImpactClass<EnemyPageGeneralInfo> { }
 
     var EnemyPageGeneralInfo: EnemyPageGeneralInfoConstructor
 
-    interface Combat extends ig.GameAddon{
-        enemyDataList: Dict<EnemyInfo> 
+    interface Combat extends ig.GameAddon {
+        enemyDataList: { [key: string]: EnemyInfo }
 
         canShowBoostedEntry(this: this, b: any, isBoss: boolean): boolean
     }
-    
-    interface CombatConstructor extends ImpactClass<Combat> {}
+
+    interface CombatConstructor extends ImpactClass<Combat> { }
 
     var Combat: CombatConstructor
     var combat: Combat

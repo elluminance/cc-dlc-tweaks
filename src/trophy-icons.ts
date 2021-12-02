@@ -127,15 +127,15 @@ sc.TrophyIconGraphic.inject({
         "dlc-tweaks": new ig.Image("media/gui/dlctweaks-trophies.png")
     },
 
-    init(a, b, e, f){
-        this.parent(a, b, e, f);
-        let iconIndex = f ? (sc.TROPHY_ICONS[a] || 0).index : 0;
+    init(icon, stars, points, f){
+        this.parent(icon, stars, points, f);
+        let iconIndex = f ? (sc.TROPHY_ICONS[icon] ?? 0).index : 0;
         if(iconIndex == -1){
-            let customIndex = sc.TROPHY_ICONS[a].customIndex;
+            let customIndex = sc.TROPHY_ICONS[icon].customIndex;
             this.removeChildGui(this.icon);
-            const imgSize = Math.floor(this.customIcons[sc.TROPHY_ICONS[a].sheet!].width / 42);
+            const imgSize = Math.floor(this.customIcons[sc.TROPHY_ICONS[icon].sheet!].width / 42);
 
-            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[a].sheet!], customIndex! % imgSize * 42, ~~(customIndex! / imgSize) * 42, 42, 42);
+            this.icon = new ig.ImageGui(this.customIcons[sc.TROPHY_ICONS[icon].sheet!], customIndex! % imgSize * 42, ~~(customIndex! / imgSize) * 42, 42, 42);
             this.addChildGui(this.icon);
             this.removeChildGui(this.ribbon);
             this.addChildGui(this.ribbon);
