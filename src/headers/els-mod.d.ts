@@ -41,7 +41,7 @@ declare namespace sc {
         ascendedBooster: {
             active: boolean,
             skipCheck: boolean,
-            forceCheck: false,
+            forceCheck: boolean,
             calcLevel(enemyType: sc.EnemyInfo): number,
         }
     }
@@ -51,15 +51,6 @@ declare namespace sc {
         postgameStar: ig.ImageGui
 
         showPostgameStar(this: this, dlcBeaten: boolean, gameBeaten: boolean): void
-    }
-
-    namespace MapModel {
-        interface ExtraChests {
-            chestList: {
-                [area: string]: string[] 
-            }
-
-        }
     }
 
     interface MapModel {

@@ -5,7 +5,7 @@ sc.EnemyBooster.inject({
         active: false,     // if ascended booster is enabled 
         skipCheck: false,  // skip check in cases such as turning off the booster to set level to normal value
         forceCheck: false, // force a check in cases such as a level up
-        calcLevel: (enemyType: sc.EnemyInfo) => Math.max(sc.model.player.level, (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL))
+        calcLevel: enemyType => Math.max(sc.model.player.level, (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL))
     },
 
     updateBoosterState(){
@@ -14,8 +14,7 @@ sc.EnemyBooster.inject({
         if(this.ascendedBooster.forceCheck || (this.ascendedBooster.active != ascendedBooster)){
             this.ascendedBooster.active = ascendedBooster;
             for (let entities = ig.game.getEntitiesByType(ig.ENTITY.Enemy), index = entities.length; index--;){ 
-                //@ts-ignore
-                this.updateEnemyBoostState(entities[index])
+                this.updateEnemyBoostState(entities[index] as ig.ENTITY.Enemy)
             }
             this.ascendedBooster.forceCheck = false;
         }
@@ -40,11 +39,13 @@ sc.EnemyBooster.inject({
         }
     },
 
-    modelChanged(b, a){
-        // chaining with && is a cursed art. it is a fun art, but still cursed.
-        //@ts-expect-error
-        b instanceof sc.PlayerModel && a == sc.PLAYER_MSG.LEVEL_CHANGE && (this.ascendedBooster.forceCheck = true) && this.updateBoosterState();
-        this.parent(b, a)
+    modelChanged(source, message){
+        //@ts-ignore
+        if(source instanceof sc.PlayerModel && message == sc.PLAYER_MSG.LEVEL_CHANGE){
+            this.ascendedBooster.forceCheck = true 
+            this.updateBoosterState()
+        }
+        this.parent(source, message)
     }
 })
 
