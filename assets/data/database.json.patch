@@ -51,9 +51,6 @@
     "type": "ENTER",
     "index": "traders"
 },{
-    "type": "IMPORT",
-    "src": "mod:/patches/database/traders.json"
-},{
     "type": "FOR_IN",
     "values":  ["glitchTrader","bakiBrewing_3","rhombusPostWeapon1","rhombusPostHead1",
                 "rhombusPostTorso1","rhombusPostFeet1","rhombusPostEquipAntique1",

@@ -17,3 +17,5 @@ import "./trophy-icons.js"
 import "./modifier.js"
 
 import "./toggle-sets.js"
+
+import "./trades.js"

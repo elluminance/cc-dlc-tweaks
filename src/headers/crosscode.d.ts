@@ -537,4 +537,69 @@ declare namespace sc {
 
     var Combat: CombatConstructor
     var combat: Combat
+
+    interface Inventory {
+        items: Inventory.Item[]
+        scalable: number[]
+
+        init(this: this): void
+        updateScaledEquipment(this: this, newLevel: number): void
+        getRaritySuffix(this: this, rarity: ITEMS_RARITY): string
+        getItemName(this: this, id: Inventory.ItemID): string
+        getItemIcon(this: this, id: Inventory.ItemID): string
+        getItemNameWithIcon(this: this, id: Inventory.ItemID): string
+    }
+
+    interface BaseMenu extends ig.GuiElementBase {
+        visible: boolean
+        transitions: ig.GuiHook.Transition
+        init(this: this): void
+        addObservers(this: this): void
+        removeObservers(this: this): void
+        showMenu(this: this): void
+        hideMenu(this: this): void
+        exitMenu(this: this): void
+    }
+    
+    interface BaseMenuConstructor extends ImpactClass<BaseMenu>{}
+
+    var BaseMenu: BaseMenuConstructor
+    
+    interface ShopMenu extends BaseMenu {
+        init(this: this): void
+    }
+
+    interface ShopMenuConstructor extends ShopMenu {}
+
+    var ShopMenu: ShopMenuConstructor
+
+    namespace TradeModel {
+        interface TradeItem {
+            id: Inventory.ItemID
+            amount: number
+        }
+
+        interface TradeOption {
+            get: TradeItem[]
+            require: TradeItem[]
+            scale?: number
+            cost?: number
+        }
+
+        interface Trader {
+            name: ig.LangLabel.Data
+            order: number
+            area: string
+            noTrack?: boolean
+            options: TradeOption[]
+            upgradeTo?: string
+            child?: string
+        }
+    }
+
+    interface TradeModel {
+        traders: {[key: string]: TradeModel.Trader}
+
+        init(this: this): void
+    }
 }
