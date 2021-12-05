@@ -27,7 +27,55 @@ const items: { [key: string]: { [key: string]: sc.Inventory.ItemID } } = {
         epicMetal: 192,
 
         antiqueToken: 499,
-    }
+    },
+
+    consumables: {
+        sandwich: 1,
+        hiSandwich: 27,
+        chefSandwich: 28,
+        megaSandwich: 40,
+        crossSandwich: 63,
+
+        greenLeafTea: 2,
+        sweetBerryTea: 3,
+        pepperNightTea: 79,
+
+        risingSuperStar: 382,
+    },
+    
+    kulero: {
+        antiqueOre: 563,
+        roseCone: 564,
+        saltyGrass: 565,
+
+        focusShard: 633,
+        burnedAsh: 610
+    },
+
+    azure: {
+        coreStone: 629,
+        wormBand: 630,
+        emberSack: 631,
+        razorTip: 632,
+    },
+
+    vermillion: {
+        infectedCell: 401,
+        elementalDNA: 402,
+    },
+
+    gaia: {
+        virusRoot: 254,
+    },
+
+    maroon: {
+        rainbowGem: 176,
+        lucidShard: 182,
+    },
+
+    autumnsFall:{
+        crimsonDragonfly: 246,
+    },
 }
 
 // numeric item ids suck. why not just... "cheat" the system?
@@ -72,7 +120,8 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 ],
                 scale: 1,
                 cost: 400000
-            }],
+            }
+        ],
         area: "rhombus-sqr"
     },
     "booster-beach": {
@@ -134,11 +183,11 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         amount: 1
                     },
                     {
-                        id: 563,
+                        id: items.kulero.antiqueOre,
                         amount: 5
                     },
                     {
-                        id: 565,
+                        id: items.kulero.saltyGrass,
                         amount: 5
                     },
                     {
@@ -168,7 +217,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
             {
                 get: [
                     {
-                        id: 330,
+                        id: 330, // excalibro
                         amount: 1
                     }
                 ],
@@ -198,7 +247,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 ],
                 require: [
                     {
-                        id: 330,
+                        id: 330, // excalibro
                         amount: 1
                     },
                     {
@@ -227,32 +276,36 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
             en_US: "Best Weapon Trader"
         },
         order: 100,
-        options: [{
-            get: [{
-                id: "dlctweaks-daikon-scale",
-                amount: 1
-            }],
-            require: [
-                {
-                    id: 57,
-                    amount: 1
-                }, {
-                    id: items.general.veggieSet,
-                    amount: 10
-                }, {
-                    id: 564,
-                    amount: 20
-                }, {
-                    id: 63,
-                    amount: 7
-                }, {
-                    id: 79,
-                    amount: 15
-                }
-            ],
-            scale: 1,
-            cost: 69420
-        }],
+        options: [
+            {
+                get: [
+                    {
+                        id: "dlctweaks-daikon-scale",
+                        amount: 1
+                    }
+                ],
+                require: [
+                    {
+                        id: 57, // daikon
+                        amount: 1
+                    }, {
+                        id: items.general.veggieSet,
+                        amount: 10
+                    }, {
+                        id: items.kulero.roseCone,
+                        amount: 20
+                    }, {
+                        id: items.consumables.crossSandwich,
+                        amount: 7
+                    }, {
+                        id: items.consumables.pepperNightTea,
+                        amount: 15
+                    }
+                ],
+                scale: 1,
+                cost: 69420
+            }
+        ],
         area: "autumn-area"
     },
 
@@ -264,10 +317,12 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
         order: 65,
         options: [
             {
-                get: [{
-                    id: "el-scaled-tiara",
-                    amount: 1
-                }],
+                get: [
+                    {
+                        id: "el-scaled-tiara",
+                        amount: 1
+                    }
+                ],
                 require: [
                     {
                         id: items.general.antiqueToken,
@@ -279,29 +334,31 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.warmGem,
                         amount: 4
                     }, {
-                        id: 633,
+                        id: items.kulero.focusShard,
                         amount: 7
                     }, {
-                        id: 176,
+                        id: items.maroon.rainbowGem,
                         amount: 5
                     }
                 ],
                 cost: 225000
             },
             {
-                get: [{
-                    id: 664,
-                    amount: 1
-                }],
+                get: [
+                    {
+                        id: 664, // infinity+2 bag
+                        amount: 1
+                    }
+                ],
                 require: [
                     {
-                        id: 511,
+                        id: 511, // infinity+1 bag
                         amount: 1
                     }, {
                         id: items.gems.onyx,
                         amount: 5
                     }, {
-                        id: 565,
+                        id: items.kulero.saltyGrass,
                         amount: 4
                     }, {
                         id: 358,
@@ -310,10 +367,12 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 ]
             },
             {
-                get: [{
-                    id: "dlctweaks-old-geta-scale",
-                    amount: 1
-                }],
+                get: [
+                    {
+                        id: "dlctweaks-old-geta-scale",
+                        amount: 1
+                    }
+                ],
                 require: [
                     {
                         id: items.general.epicMetal,
@@ -325,20 +384,22 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.warmGem,
                         amount: 3
                     }, {
-                        id: 382,
+                        id: items.consumables.risingSuperStar,
                         amount: 4
                     }, {
-                        id: 632,
+                        id: items.azure.razorTip,
                         amount: 5
                     }
                 ],
                 cost: 225000
             },
             {
-                get: [{
-                    id: "dlctweaks-lead-boots-scale",
-                    amount: 1
-                }],
+                get: [
+                    {
+                        id: "dlctweaks-lead-boots-scale",
+                        amount: 1
+                    }
+                ],
                 require: [
                     {
                         id: items.general.epicMetal,
@@ -350,10 +411,10 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.warmGem,
                         amount: 3
                     }, {
-                        id: 382,
+                        id: items.consumables.risingSuperStar,
                         amount: 4
                     }, {
-                        id: 632,
+                        id: items.azure.razorTip,
                         amount: 5
                     }
                 ],
@@ -371,10 +432,12 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
         order: 65,
         options: [
             {
-                get: [{
+                get: [
+                    {
                     id: "el-risktaker-plate",
                     amount: 1
-                }],
+                    }
+                ],
                 require: [
                     {
                         id: items.general.epicMetal,
@@ -386,20 +449,22 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.warmGem,
                         amount: 3
                     }, {
-                        id: 382,
+                        id: items.consumables.risingSuperStar,
                         amount: 4
                     }, {
-                        id: 631,
+                        id: items.azure.emberSack,
                         amount: 5
                     }
                 ],
                 cost: 225000
             },
             {
-                get: [{
-                    id: "el-vampire-knives",
-                    amount: 1
-                }],
+                get: [
+                    {
+                        id: "el-vampire-knives",
+                        amount: 1
+                    }
+                ],
                 require: [
                     {
                         id: items.general.epicMetal,
@@ -411,10 +476,10 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.ruby,
                         amount: 8
                     }, {
-                        id: 632,
+                        id: items.azure.razorTip,
                         amount: 6
                     }, {
-                        id: 246,
+                        id: items.autumnsFall.crimsonDragonfly,
                         amount: 4
                     }
                 ],
@@ -449,10 +514,10 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.onyx,
                         amount: 3
                     }, {
-                        id: 176,
+                        id: items.maroon.rainbowGem,
                         amount: 5
                     }, {
-                        id: 182,
+                        id: items.maroon.lucidShard,
                         amount: 2
                     }
                 ],
@@ -476,7 +541,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: 80,
                         amount: 6
                     }, {
-                        id: 633,
+                        id: items.kulero.focusShard,
                         amount: 6
                     }
                 ],
@@ -497,10 +562,10 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.ruby,
                         amount: 8
                     }, {
-                        id: 79,
+                        id: items.consumables.pepperNightTea,
                         amount: 4
                     }, {
-                        id: 182,
+                        id: items.maroon.lucidShard,
                         amount: 5
                     }
                 ],
@@ -524,7 +589,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: 357,
                         amount: 4
                     }, {
-                        id: 182,
+                        id: items.maroon.lucidShard,
                         amount: 5
                     }
                 ],
@@ -539,16 +604,16 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 ],
                 require: [
                     {
-                        id: items.gems.diamond,
+                        id: items.gems.moonstone,
                         amount: 5
                     }, {
-                        id: 610,
+                        id: items.kulero.burnedAsh,
                         amount: 5
                     }, {
-                        id: 246,
+                        id: items.autumnsFall.crimsonDragonfly,
                         amount: 5
                     }, {
-                        id: 632,
+                        id: items.azure.razorTip,
                         amount: 2
                     }
                 ],
@@ -563,16 +628,16 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 ],
                 require: [
                     {
-                        id: items.gems.moonstone,
+                        id: items.gems.diamond,
                         amount: 5
                     }, {
-                        id: 610,
+                        id: items.kulero.burnedAsh,
                         amount: 5
                     }, {
-                        id: 246,
+                        id: items.autumnsFall.crimsonDragonfly,
                         amount: 5
                     }, {
-                        id: 629,
+                        id: items.azure.coreStone,
                         amount: 2
                     }
                 ],
@@ -590,13 +655,13 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.ruby,
                         amount: 8
                     }, {
-                        id: 401,
+                        id: items.vermillion.infectedCell,
                         amount: 4
                     }, {
-                        id: 402,
+                        id: items.vermillion.elementalDNA,
                         amount: 2
                     }, {
-                        id: 629,
+                        id: items.azure.coreStone,
                         amount: 2
                     }
                 ],
@@ -614,13 +679,13 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.gems.emerald,
                         amount: 6
                     }, {
-                        id: 629,
+                        id: items.azure.coreStone,
                         amount: 3
                     }, {
-                        id: 633,
+                        id: items.kulero.focusShard,
                         amount: 3
                     }, {
-                        id: 182,
+                        id: items.maroon.lucidShard,
                         amount: 4
                     }
                 ],
@@ -710,7 +775,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
             {
                 get: [
                     {
-                        id: 401,
+                        id: items.vermillion.infectedCell,
                         amount: 2
                     }
                 ],
@@ -719,7 +784,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.general.fruitSet,
                         amount: 1
                     }, {
-                        id: 254,
+                        id: items.gaia.virusRoot,
                         amount: 2
                     }
                 ]
@@ -727,7 +792,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
             {
                 get: [
                     {
-                        id: 401,
+                        id: items.vermillion.infectedCell,
                         amount: 2
                     }
                 ],
@@ -736,7 +801,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.general.veggieSet,
                         amount: 1
                     }, {
-                        id: 254,
+                        id: items.gaia.virusRoot,
                         amount: 2
                     }
                 ]
@@ -744,7 +809,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
             {
                 get: [
                     {
-                        id: 402,
+                        id: items.vermillion.elementalDNA,
                         amount: 1
                     }
                 ],
@@ -753,7 +818,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.general.spiceSet,
                         amount: 1
                     }, {
-                        id: 401,
+                        id: items.vermillion.infectedCell,
                         amount: 2
                     }
                 ],
