@@ -428,11 +428,25 @@ declare namespace sc {
         critFactor: number
     }
 
+    interface AttackInfoConstructor extends ImpactClass<AttackInfo> {}
+
+    var AttackInfo: AttackInfoConstructor
+
+    namespace CombatParams {
+        interface HealAmount {
+            value: number
+            absolute?: boolean
+        } 
+    }
+
     interface CombatParams extends ig.Class {
         getModifier(this: this, modifier: string): number
         update(this: this, a: any): void
         getHpFactor(this: this): number
         getRelativeSp(this: this): number
+        
+        getHealAmount(this: this, amount: CombatParams.HealAmount): number
+        increaseHp(this: this, amount: number): void
     }
 
     interface HitNumberEntityBase extends ig.Entity {
@@ -440,7 +454,9 @@ declare namespace sc {
     }
 
     var DAMAGE_MODIFIER_FUNCS: {
-        [key: string]: (attackInfo: AttackInfo, damageFactor: number, combatantRoot: any, shieldResult: any, hitIgnore: any, params: sc.CombatParams) => { attackInfo: any, damageFactor: any, applyDamageCallback: any | null }
+        [key: string]: (attackInfo: AttackInfo, damageFactor: number, combatantRoot: ig.ENTITY.Combatant,
+            shieldResult: SHIELD_RESULT, hitIgnore: boolean, params: sc.CombatParams) =>
+                { attackInfo: AttackInfo, damageFactor: number, applyDamageCallback: (() => void) | null }
     }
 
     interface Modifier {

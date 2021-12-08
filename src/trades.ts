@@ -405,17 +405,17 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.general.epicMetal,
                         amount: 7
                     }, {
-                        id: items.gems.aquamarine,
+                        id: items.gems.onyx,
                         amount: 6
                     }, {
-                        id: items.gems.warmGem,
-                        amount: 3
+                        id: items.azure.wormBand,
+                        amount: 5
                     }, {
-                        id: items.consumables.risingSuperStar,
+                        id: 282, // metal down
                         amount: 4
                     }, {
-                        id: items.azure.razorTip,
-                        amount: 5
+                        id: items.kulero.antiqueOre,
+                        amount: 3
                     }
                 ],
                 cost: 225000
@@ -1002,5 +1002,7 @@ sc.TradeModel.inject({
     init() {
         this.parent()
         Object.assign(this.traders, newTrades)
+
+        this.traders["basinEastExcalibro"].child = "basinEastExcalibruh"
     }
 })
