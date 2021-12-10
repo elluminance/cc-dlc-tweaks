@@ -189,4 +189,14 @@
     ]
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": "shops"
+},{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/shops.json"
+},{
+    "type": "EXIT"
 }]

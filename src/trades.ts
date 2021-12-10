@@ -66,6 +66,7 @@ const items: { [key: string]: { [key: string]: sc.Inventory.ItemID } } = {
 
     gaia: {
         virusRoot: 254,
+        elderWood: 251
     },
 
     maroon: {
@@ -75,6 +76,10 @@ const items: { [key: string]: { [key: string]: sc.Inventory.ItemID } } = {
 
     autumnsFall:{
         crimsonDragonfly: 246,
+    },
+
+    sapphireRidge: {
+        stickyWeb: 409,
     },
 }
 
@@ -378,16 +383,16 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         id: items.general.epicMetal,
                         amount: 7
                     }, {
-                        id: items.gems.aquamarine,
-                        amount: 6
-                    }, {
-                        id: items.gems.warmGem,
-                        amount: 3
-                    }, {
-                        id: items.consumables.risingSuperStar,
+                        id: items.gems.lapis,
                         amount: 4
                     }, {
-                        id: items.azure.razorTip,
+                        id: items.gems.garnet,
+                        amount: 4
+                    }, {
+                        id: items.sapphireRidge.stickyWeb,
+                        amount: 6
+                    }, {
+                        id: items.gaia.elderWood,
                         amount: 5
                     }
                 ],
