@@ -12,7 +12,7 @@ sc.StatsModel.inject({
     getMap(b, a) {
         // this may be a little bit hacky of a workaround...
         // but it's the easiest way to make a trophy based on variables rather than stats
-        if(b == "varValue") return ig.vars.get(a);
+        if(b == "varValue") return ig.vars.get(a) as number;
 
         let value = this.parent(b, a);
         if (b === "chests") {

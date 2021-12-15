@@ -16,6 +16,12 @@ declare namespace ig {
 
         var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
     }
+
+    namespace Vars.KnownVars {
+        interface plot {
+            completedPostGame?: boolean
+        }
+    }
 }
 
 declare namespace sc {
@@ -50,7 +56,7 @@ declare namespace sc {
         postgameStarGfx: ig.Image
         postgameStar: ig.ImageGui
 
-        showPostgameStar(this: this, dlcBeaten: boolean, gameBeaten: boolean): void
+        showPostgameStar(this: this, dlcBeaten: boolean | undefined, gameBeaten: boolean | undefined): void
     }
 
     interface MapModel {
