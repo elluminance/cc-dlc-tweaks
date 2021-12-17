@@ -1,5 +1,4 @@
-//@ts-ignore - can't be bothered to deal with foodapi right now
-foodAPI.register("el-mod","el-mod-foods.png",["el_COOKIE_S","el_COOKIE_M","el_COOKIE_L"])
+sc.foodAPI.register("el-mod","el-mod-foods.png",["el_COOKIE_S","el_COOKIE_M","el_COOKIE_L"])
 
 sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
     key: "EL_RISKTAKER"

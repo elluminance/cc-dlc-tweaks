@@ -12,7 +12,8 @@
     },
     "devDependencies": {
         "typescript": "^3.9.0",
-        "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs"
+        "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs",
+        "food-api": "el20202/crosscode-food-api"
     },
     "scripts": {
         "build": "tsc --build",

@@ -1,7 +1,20 @@
 declare namespace ig {
     namespace ACTION_STEP {
+        namespace ActionSettings {
+            interface EL_SET_TARGET {
+                name: string
+            }
+
+            interface EL_SET_TARGET_POS {
+                newPos: Vec3
+                random: boolean
+                randRange: Vec2
+            }
+        }
         interface EL_SET_TARGET extends ig.ActionStepBase {
             name: string;
+            init(this: this, settings: ActionSettings.EL_SET_TARGET): void
+            start(this: this, target: ig.ENTITY.Combatant): void
         }
         interface EL_SET_TARGET_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET> {
         }
@@ -11,6 +24,8 @@ declare namespace ig {
             newPos: Vec3
             random: boolean
             randRange: Vec2
+
+            init(this: this, settings: ActionSettings.EL_SET_TARGET_POS): void
         }
         interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS> { }
 

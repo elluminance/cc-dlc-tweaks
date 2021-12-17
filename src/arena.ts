@@ -41,7 +41,6 @@ sc.Arena.inject({
                 c = 1;
                 if (d.params.buffs.length > 0)
                     for (var d = d.params.buffs, f = 0, g = d.length; f < g; f++)
-                        //@ts-ignore
                         if (d[f] instanceof sc.ActionBuff && d[f].name == "sergeyHax") {
                             //c = e.attackerParams.getStat("attack", true) / e.attackerParams.getStat("attack", false);
                             break;

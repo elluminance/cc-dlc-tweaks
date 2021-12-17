@@ -1,5 +1,5 @@
 {
-    "include": ["src", "node_modules/ultimate-crosscode-typedefs/crosscode-ccloader-all.d.ts"],
+    "include": ["src", "node_modules/ultimate-crosscode-typedefs/crosscode-ccloader-all.d.ts", "node_modules/food-api/src/headers/food-api.d.ts"],
     "compilerOptions": {
       "outDir": "dist",
       "sourceMap": true,

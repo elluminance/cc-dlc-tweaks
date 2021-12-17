@@ -40,7 +40,6 @@ sc.EnemyBooster.inject({
     },
 
     modelChanged(source, message){
-        //@ts-ignore
         if(source instanceof sc.PlayerModel && message == sc.PLAYER_MSG.LEVEL_CHANGE){
             this.ascendedBooster.forceCheck = true 
             this.updateBoosterState()
