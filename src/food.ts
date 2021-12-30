@@ -1,4 +1,12 @@
-sc.foodAPI.register("el-mod","el-mod-foods.png",["el_COOKIE_S","el_COOKIE_M","el_COOKIE_L"])
+const newFoods = [
+    "el_COOKIE_S",
+    "el_COOKIE_M",
+    "el_COOKIE_L",
+    "el_HOT_DOG",
+    "el_HOT_GOD_WITH_JELLY"
+]
+
+sc.foodAPI.register("el-mod", "el-mod-foods.png", newFoods)
 
 sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
     key: "EL_RISKTAKER"
@@ -82,5 +90,37 @@ Object.assign(sc.STAT_CHANGE_SETTINGS, {
         negative: true,
         icon: "stat-defense",
         grade: "stat-rank-down-3"
+    },
+
+    "EL-ASSAULT-1": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.ASSAULT,
+        value: 0.25,
+        icon: "stat-assault",
+        grade: "stat-rank-1"
+    },
+
+    "EL-ASSAULT-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.ASSAULT,
+        value: 0.60,
+        icon: "stat-assault",
+        grade: "stat-rank-1"
+    },
+
+    "EL-BERSERK-1": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.BERSERK,
+        value: 0.15,
+        icon: "stat-berserk",
+        grade: "stat-rank-1"
+    },
+
+    "EL-BERSERK-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.BERSERK,
+        value: 0.30,
+        icon: "stat-assault",
+        grade: "stat-rank-1"
     }
 })

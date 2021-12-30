@@ -182,5 +182,60 @@
         "useSpeed": 2,
         "noTrack": false,
         "foodSprite": "FALLBACK"
+    },
+
+    {
+        "order": 16.16,
+        "customItem": "el-cons-hot-dog",
+        "name": {
+            "en_US": "Hot Dog"
+        },
+        "description": {
+            "en_US": "A classic tube of meat, stuck on some plain bun."
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "EL-ASSAULT-1",
+            "EL-BERSERK-1"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 2,
+        "noTrack": false,
+        "foodSprite": "el_HOT_DOG"
+    },
+    {
+        "order": 16.17,
+        "customItem": "el-cons-hot-god",
+        "name": {
+            "en_US": "Hot Dog with Jelly"
+        },
+        "description": {
+            "en_US": "Today, you put jelly on this hot dog. But... \\c[1]why?\\c[0]"
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "EL-ASSAULT-2",
+            "EL-BERSERK-1"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 2,
+        "noTrack": false,
+        "foodSprite": "el_HOT_GOD_WITH_JELLY"
     }
 ]

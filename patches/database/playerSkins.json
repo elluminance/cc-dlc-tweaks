@@ -92,7 +92,13 @@
         "autoAdd": false,
         "type": "Appearance",
         "settings": {
+            "noHide": true,
             "sheet": "player-skins.edgy-lea",
+            "anims": {
+                "player": "player-skins.edgy-lea",
+                "player-poses": "player-skins.edgy-lea-poses",
+                "player-weak": "player-skins.edgy-lea-weak"
+            },
             "fx": "skins.edgy-lea",
             "gui": "edgy-lea.png",
             "guiBounds": {
