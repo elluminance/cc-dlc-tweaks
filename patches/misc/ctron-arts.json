@@ -198,6 +198,93 @@
                     "type": "WAIT"
                 }
             ]
+        },
+
+        "ATTACK_SPECIAL1": {
+            "name": {
+                "en_US": "Tectonic Burst"
+            },
+            "description": {
+                "en_US": "Emit bursts of intense heat."
+            },
+            "dmgType": "",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": -1,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "spinShort"
+                },
+                {
+                    "value": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "followUp": "attackEndLoop",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "attackEnd"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "meleeHeat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "type": "SHOOT_PROXY_RANGE",
+                    "proxy": "tectonicBlast",
+                    "align": "BOTTOM",
+                    "startDistCollide": "NONE",
+                    "startDist": 64,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "angleVary": 0,
+                    "centralAngle": 0.333,
+                    "count": 3,
+                    "duration": 0,
+                    "group": "hexaArt",
+                    "circularArea": true,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                },
+                {
+                    "time": 0.7,
+                    "type": "WAIT"
+                }
+            ]
         }
     },
 
@@ -296,6 +383,19 @@
                     "type": "WAIT"
                 }
             ]
+        },
+
+        "ATTACK_SPECIAL1": {
+            "name": {
+                "en_US": "Iceshock"
+            },
+            "description": {
+                "en_US": "Deals magical ice damage to one enemy."
+            },
+            "dmgType": "MELEE",
+            "stunType": "",
+            "status": true,
+            "steps": []
         }
     },
 
