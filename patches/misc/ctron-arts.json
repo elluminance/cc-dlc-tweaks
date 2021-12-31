@@ -207,7 +207,7 @@
             "description": {
                 "en_US": "Emit bursts of intense heat."
             },
-            "dmgType": "",
+            "dmgType": "MELEE",
             "stunType": "",
             "status": false,
             "steps": [
@@ -390,12 +390,104 @@
                 "en_US": "Iceshock"
             },
             "description": {
-                "en_US": "Deals magical ice damage to one enemy."
+                "en_US": "Deals magical ice damage to one enemy.\nCan freeze enemies."
             },
             "dmgType": "MELEE",
             "stunType": "",
             "status": true,
-            "steps": []
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "value": true,
+                    "immediately": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "specialShoot"
+                },
+                {
+                    "value": false,
+                    "immediately": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "specialLoop"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "shootCold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "posType": "TARGET",
+                    "align": "BOTTOM",
+                    "type": "SET_HIT_PROXY",
+                    "proxy": "iceshock",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "iceshockTrigger",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 12
+                    }
+                },
+                {
+                    "time": 0.6,
+                    "type": "WAIT"
+                },
+                {
+                    "followUp": "idle",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.2,
+                    "type": "WAIT"
+                }
+            ]
         }
     },
 
