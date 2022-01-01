@@ -746,7 +746,7 @@
                 "flipLeftFace": false,
                 "wait": false,
                 "waitSkip": 0,
-                "actionDetached": false,
+                "actionDetached": true,
                 "fixPos": false,
                 "target": "TARGET",
                 "type": "SHOW_EFFECT",
@@ -805,7 +805,7 @@
             },
             {
                 "type": "WAIT",
-                "time": 0.3
+                "time": 0.4
             }
         ],
         "invisible": false,

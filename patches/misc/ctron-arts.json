@@ -209,7 +209,7 @@
             },
             "dmgType": "MELEE",
             "stunType": "",
-            "status": false,
+            "status": true,
             "steps": [
                 {
                     "type": "SET_PLAYER_ACTION_BLOCK",
@@ -390,10 +390,10 @@
                 "en_US": "Iceshock"
             },
             "description": {
-                "en_US": "Deals magical ice damage to one enemy.\nCan freeze enemies."
+                "en_US": "Deals magical ice damage to one enemy."
             },
             "dmgType": "MELEE",
-            "stunType": "",
+            "stunType": "LOCK",
             "status": true,
             "steps": [
                 {
@@ -585,6 +585,21 @@
                     "time": 0.15,
                     "type": "WAIT"
                 }
+            ]
+        },
+
+        "ATTACK_SPECIAL1": {
+            "name": {
+                "en_US": "Thunder Call"
+            },
+            "description": {
+                "en_US": "Summons multiple lightning bolts to damage nearby enemies."
+            },
+            "dmgType": "MELEE",
+            "stunType": "",
+            "status": true,
+            "steps": [
+                
             ]
         }
     },

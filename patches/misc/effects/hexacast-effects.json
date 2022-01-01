@@ -1334,7 +1334,7 @@
         },
         {
             "numParticles": 12,
-            "duration": 0.8,
+            "duration": 0.6,
             "centralAngle": 0.7,
             "startAngle": 0.5,
             "startDist": 32,
@@ -1373,13 +1373,13 @@
                 }
             },
             "moveWithTarget": 1,
-            "particleDuration": 0.5,
+            "particleDuration": 0.3,
             "anim": "HEXA_COLD",
             "type": "OFFSET_PARTICLE_CIRCLE"
         },
         {
             "numParticles": 12,
-            "duration": 0.8,
+            "duration": 0.6,
             "centralAngle": 0.7,
             "startAngle": 0,
             "startDist": 32,
@@ -1418,7 +1418,7 @@
                 }
             },
             "moveWithTarget": 1,
-            "particleDuration": 0.5,
+            "particleDuration": 0.3,
             "anim": "HEXA_COLD",
             "type": "OFFSET_PARTICLE_CIRCLE"
         }
@@ -1442,17 +1442,19 @@
             },
             "pScale": {
                 "init": {
-                    "x": 0.95,
-                    "y": 0.95
+                    "x": 0.7,
+                    "y": 0.7
                 },
-                "start": {
+                "end": {
                     "value": {
                         "x": 1,
                         "y": 1
                     },
+                    "time": 0.1,
                     "spline": "LINEAR"
                 }
             },
+            "moveWithTarget": 1,
             "angleVary": 0,
             "particleDuration": 0.3,
             "anim": "SNOWFLAKE",
@@ -1472,17 +1474,19 @@
             },
             "pScale": {
                 "init": {
-                    "x": 0.95,
-                    "y": 0.95
+                    "x": 0.7,
+                    "y": 0.7
                 },
-                "start": {
+                "end": {
                     "value": {
                         "x": 1,
                         "y": 1
                     },
+                    "time": 0.1,
                     "spline": "LINEAR"
                 }
             },
+            "moveWithTarget": 1,
             "angleVary": 0,
             "particleDuration": 0.225,
             "anim": "SNOWFLAKE",
@@ -1502,17 +1506,19 @@
             },
             "pScale": {
                 "init": {
-                    "x": 0.95,
-                    "y": 0.95
+                    "x": 0.7,
+                    "y": 0.7
                 },
-                "start": {
+                "end": {
                     "value": {
                         "x": 1,
                         "y": 1
                     },
+                    "time": 0.1,
                     "spline": "LINEAR"
                 }
             },
+            "moveWithTarget": 1,
             "angleVary": 0,
             "particleDuration": 0.15,
             "anim": "SNOWFLAKE",
@@ -1531,7 +1537,7 @@
             "moveDist": 18,
             "moveVariance": 0,
             "keySpline": "EASE_OUT",
-            "moveRotate": 0.15,
+            "moveRotate": 0.4,
             "inverse": false,
             "collision": false,
             "offset": {
@@ -1545,33 +1551,12 @@
                     "y": 0.3
                 }
             },
-            "moveWithTarget": 1,
-            "particleDuration": 0.4,
-            "cancelable": false,
-            "anim": "SNOWFLAKE",
-            "type": "OFFSET_PARTICLE_CIRCLE"
-        },
-        {
-            "numParticles": 6,
-            "duration": 0,
-            "centralAngle": 1,
-            "startDist": 8,
-            "random": false,
-            "moveDist": 18,
-            "moveVariance": 0,
-            "keySpline": "EASE_OUT",
-            "moveRotate": 0.15,
-            "inverse": false,
-            "collision": false,
-            "offset": {
-                "x": -20.78,
-                "y": -12,
-                "z": 0
-            },
-            "pScale": {
-                "init": {
-                    "x": 0.3,
-                    "y": 0.3
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "time": 0.6,
+                    "spline": "EASE_IN"
                 }
             },
             "moveWithTarget": 1,
@@ -1589,7 +1574,44 @@
             "moveDist": 18,
             "moveVariance": 0,
             "keySpline": "EASE_OUT",
-            "moveRotate": 0.25,
+            "moveRotate": 0.4,
+            "inverse": false,
+            "collision": false,
+            "offset": {
+                "x": -20.78,
+                "y": -12,
+                "z": 0
+            },
+            "pScale": {
+                "init": {
+                    "x": 0.3,
+                    "y": 0.3
+                }
+            },
+            "pAlpha": {
+                "init": 1,
+                "end": {
+                    "value": 0,
+                    "time": 0.6,
+                    "spline": "EASE_IN"
+                }
+            },
+            "moveWithTarget": 1,
+            "particleDuration": 0.4,
+            "cancelable": false,
+            "anim": "SNOWFLAKE",
+            "type": "OFFSET_PARTICLE_CIRCLE"
+        },
+        {
+            "numParticles": 6,
+            "duration": 0,
+            "centralAngle": 1,
+            "startDist": 8,
+            "random": false,
+            "moveDist": 18,
+            "moveVariance": 0,
+            "keySpline": "EASE_OUT",
+            "moveRotate": 0.4,
             "inverse": false,
             "collision": false,
             "offset": {
@@ -1608,7 +1630,7 @@
                 "end": {
                     "value": 0,
                     "time": 0.6,
-                    "spline": ""
+                    "spline": "EASE_IN"
                 }
             },
             "moveWithTarget": 1,
@@ -1619,7 +1641,7 @@
         },
         {
             "type": "WAIT",
-            "time": 0.3
+            "time": 0.6
         }
     ]
 }
