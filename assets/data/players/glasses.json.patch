@@ -3,10 +3,10 @@
     "index": "proxies"
 },{
     "type": "INCLUDE",
-    "src": "mod:patches/misc/ctron-proxies.json"
+    "src": "mod:patches/skills/ctron/proxies.json"
 },{
     "type": "INCLUDE",
-    "src": "mod:patches/misc/ctron-proxy-patch.json"
+    "src": "mod:patches/skills/ctron/proxy-patch.json"
 },{
     "type": "EXIT"
 },{
@@ -14,10 +14,10 @@
     "index": "actions"
 },{
     "type": "INCLUDE",
-    "src": "mod:patches/misc/ctron-arts.json"
+    "src": "mod:patches/skills/ctron/arts.json"
 },{
     "type": "INCLUDE",
-    "src": "mod:patches/misc/ctron-art-patch.json"
+    "src": "mod:patches/skills/ctron/art-patch.json"
 },{
     "type": "EXIT"
 }]

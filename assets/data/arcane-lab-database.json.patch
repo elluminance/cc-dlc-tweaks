@@ -1,0 +1,54 @@
+[{
+    "type": "ENTER",
+    "index": "customSkills"
+},{
+    "type": "SET_KEY",
+    "index": "elHexaIceshock",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_ICESHOCK",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Iceshock"
+        },
+        "description": {
+            "en_US": "Deals magical ice damage to one enemy."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 0
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "elHexaTectonicBurst",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_TECTONIC_BURST",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "HEAT",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Tectonic Burst"
+        },
+        "description": {
+            "en_US": "Emit concentrated bursts of intense heat."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 24
+        }
+    }
+},{
+    "type": "EXIT"
+}]
