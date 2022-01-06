@@ -40,18 +40,6 @@ declare namespace ig {
 }
 
 declare namespace sc {
-    interface Arena {
-        trackedCups: string[]
-    }
-
-    interface TrophyIcon {
-        sheet?: string
-        customIndex?: number
-    }
-
-    interface TrophyIconGraphic {
-        customIcons: { [key: string]: ig.Image }
-    }
 
     interface CombatParams {
         el_lifestealTimer: number
@@ -72,13 +60,5 @@ declare namespace sc {
         postgameStar: ig.ImageGui
 
         showPostgameStar(this: this, dlcBeaten: boolean | undefined, gameBeaten: boolean | undefined): void
-    }
-
-    interface MapModel {
-        extraChestList: {[area: string]: string[]}
-        getExtraFoundChests(this: this, area: string): number
-        getExtraAreaChests(this: this, area: string): number
-        getTotalExtraFoundChests(this: this): number
-        getTotalExtraChests(this: this): number
     }
 }

@@ -8,12 +8,14 @@
         "crosscode": ">=1.4.2",
         "item-api": ">=0.4.2",
         "food-api": ">=2.0.0",
-        "modifier-api": ">=0.1.0"
+        "modifier-api": ">=0.1.0",
+        "el-tweaks": ">=0.4.0"
     },
     "devDependencies": {
         "typescript": "^3.9.0",
         "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs",
-        "food-api": "el20202/crosscode-food-api"
+        "food-api": "el20202/crosscode-food-api",
+        "el-tweaks": "el20202/el-crosscode-tweaks"
     },
     "scripts": {
         "build": "tsc --build",

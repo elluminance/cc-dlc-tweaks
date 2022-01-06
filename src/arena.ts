@@ -1,30 +1,24 @@
 sc.Arena.inject({
-    trackedCups: [
-        "rookie-cup",
-        "seeker-cup",
-        "boss-cup",
-        "faction-cup-1",
-        "faction-cup-2",
-        "rookie-team-cup",
-        "faction-team-cup-1",
-        "console-cup-1",
-        "ancient-cup",
-        "ancient-boss-cup",
-        "ancient-team-cup",
-        "faction-cup-3",
-        "vermillion-cup",
-        "lily-cup",
-        "apollo-cup",
-        "shizuka-cup",
-        "kit-cup",
-        "guest-cup-1",
-    ],
-
     init(){
         this.parent()
+        this.trackedCups.push(
+            "console-cup-1",
+            "ancient-cup",
+            "ancient-boss-cup",
+            "ancient-team-cup",
+            "faction-cup-3",
+            "vermillion-cup",
+            "lily-cup",
+            "apollo-cup",
+            "shizuka-cup",
+            "kit-cup",
+            "guest-cup-1",
+            "sidwell", 
+            "observers-cup"
+        )
+
         this.registerCup('sidwell', {order: 100, id: "sidwell"});
         this.registerCup('observers-cup', {order: 1001, id: "observers-cup"});
-        this.trackedCups.push('sidwell', 'observers-cup');
     },
 
     /*
@@ -57,45 +51,7 @@ sc.Arena.inject({
         } else this.parent(a, b, c, d, e)
     },
 
-    getTotalArenaCompletion(){
-        var a: number, b: number;
-        a = b = 0;
-        this.trackedCups.forEach(cupName => {a += this.getCupCompletion(cupName); b++;})
-        return a / b;
-    },
-
-    getTotalDefaultTrophies: function(a, c) {
-        var d = 0, e = 0;
-        this.trackedCups.forEach((f: string) => {
-            var g = this.getCupTrophy(f);
-            if (this.isCupUnlocked(f))
-                if (a == 0) {
-                    d = d + g;
-                    e = e + 5
-                } else {
-                    g >= a && d++;
-                    e++
-                }
-        })
-        return c ? e : d
-    },
-
-    getTotalDefaultCups(sorted){
-        let cups: {[key: string]: sc.ArenaCup} = {};
-        this.trackedCups!.forEach(a => {
-            let order = sc.arena.cups[a].order || 1e7;
-            if(this.isCupCustom(a)) order += 1e7;
-            cups[a] = {order}
-        })
-        if(sorted){
-            let sortedCups: {[key: string]: sc.ArenaCup} = {}
-            Object.keys(cups)
-                  .sort((element1: string, element2: string) => (cups[element1]!.order - cups[element2]!.order))
-                  .forEach(key => void(sortedCups[key] = cups[key]))
-            return sortedCups;
-        }
-        return cups
-    }
+    
 })
 
 sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
