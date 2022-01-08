@@ -63,11 +63,90 @@
         "pages": [
             {
                 "title": {
-                    "en_US": "Consumables"
+                    "en_US": "Gems"
                 },
                 "content": [
                     {
-                        "item": "el-cons-cookie-1"
+                        "item": 457,
+                        "condition": "stat.items.448 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 458,
+                        "condition": "stat.items.449 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 459,
+                        "condition": "stat.items.450 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 460,
+                        "condition": "stat.items.450 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 461,
+                        "condition": "stat.items.451 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 462,
+                        "condition": "stat.items.451 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 463,
+                        "condition": "stat.items.452 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 464,
+                        "condition": "stat.items.452 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": 465,
+                        "condition": "stat.items.453 >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": "dlctweaks-trade-beach-gem",
+                        "condition": "stat.items.dlctweaks-beach-booster >= 1",
+                        "price": 125
+                    },
+                    {
+                        "item": "dlctweaks-trade-final-dng-gem",
+                        "condition": "stat.items.dlctweaks-final-dng-booster >= 1",
+                        "price": 125
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en_US": "Equipment"
+                },
+                "content": [
+                    {
+                        "item": "el-crystal-helmet",
+                        "price": 850
+                    },
+                    {
+                        "item": "el-crystal-sword",
+                        "price": 750
+                    },
+                    {
+                        "item": "el-crystal-bow",
+                        "price": 750
+                    },
+                    {
+                        "item": "el-crystal-plate",
+                        "price": 850
+                    },
+                    {
+                        "item": "el-crystal-boots",
+                        "price": 850
                     }
                 ]
             }

@@ -1,0 +1,35 @@
+[
+    {
+        "order": 12.99,
+        "customItem": "el-item-geode",
+        "name": {
+            "en_US": "Geode"
+        },
+        "description": {
+            "en_US": "A plain-looking hollow rock that holds incredible secrets."
+        },
+        "type": "TRADE",
+        "rarity": 3,
+        "cost": 1000,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": false,
+        "sources": [
+            {
+                "type": "OTHER",
+                "value": {
+                    "icon": "ENEMY",
+                    "text": {
+                        "en_US": "Enemies boosted with \\c[3]Ascended Booster\\c[0]"
+                    },
+                    "type": "ENEMY",
+                    "value": "hedgehog"
+                }
+            }
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }
+]

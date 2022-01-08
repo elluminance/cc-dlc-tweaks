@@ -40,6 +40,17 @@ ig.EVENT_STEP.OPEN_SHOP.inject({
     }
 })
 
+sc.ShopConfirmDialog.inject({
+    createList() {
+        this.parent();
+
+        if(sc.menu.shopGemCoinMode) {
+            this.buttons[0].submitSound = sc.BUTTON_SOUND.shop_cash;
+            this.notifyRaritySell = false;
+        }
+    }
+})
+
 sc.ShopConfirmEntry.inject({
     gemGfx: new ig.Image("media/gui/el-mod-gui.png"), 
     updateDrawables(b) {
@@ -149,7 +160,10 @@ sc.BOOSTER_GEMS = [
     464,
     465,
     "dlctweaks-trade-beach-gem",
-    "dlctweaks-trade-final-dng-gem",
+    "dlctweaks-trade-final-dng-gem"
+]
+
+const otherGems = [
     "dlctweaks-trade-warm-gem",
     "dlctweaks-trade-cool-gem",
 ]
@@ -163,11 +177,12 @@ sc.ShopListMenu.inject({
             this._prevSortType = c = c || sc.SORT_TYPE.ORDER;
             this.buttongroup.clear();
             this.list.clear(b);
-            var e = null,
-                e = null;
+            var e = null;
             if (sc.menu.shopSellMode) {
-                e = sc.SELL_PAGES[sc.menu.shopPage];
-                e = sc.BOOSTER_GEMS
+                e = [];
+                [...sc.BOOSTER_GEMS, ...otherGems].forEach(element => {
+                    if(sc.model.player.getItemAmount(element) >= 1) e.push(element)
+                })
             } else {
                 e = ig.database.get("shops")[sc.menu.shopID].pages;
                 e = ig.copy(e[sc.menu.shopPage].content);
@@ -182,8 +197,28 @@ sc.ShopListMenu.inject({
         } else this.parent(b, a, d, c)
     },
 
-    scrapSellList(b) {
-        this.parent(b)
+    scrapBuyList(b) {
+        if(sc.menu.shopGemCoinMode) {
+            for (var a = null, d = null, c = 0, e = 0, f = 0, g = 0, i = sc.model.player.getCrystalCoins() - sc.menu.getTotalCost(), j = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99, k = 0; k < b.length; k++)
+                if (!b[k].condition || (new ig.VarCondition(b[k].condition)).evaluate()) {
+                    f = b[k].item;
+                    d = sc.inventory.getItem(f);
+                    c = sc.model.player.getItemAmountWithEquip(f);
+                    a = 0;
+                    d.type == sc.ITEMS_TYPES.EQUIP && (a = d.level || 1);
+                    var e = b[k].price || d.cost,
+                        g = sc.menu.getItemQuantity(f, e),
+                        l = new ig.LangLabel(d.name),
+                        l = "\\i[" + (d.icon + sc.inventory.getRaritySuffix(d.rarity || 0) || "item-default") + "]" + ig.LangLabel.getText(d.name),
+                        d = ig.LangLabel.getText(d.description),
+                        a = new sc.ShopItemButton(l, f, d, c, e, a);
+                    g > 0 && a.setCountNumber(g, true);
+                    ig.database.get("shops")[sc.menu.shopID].maxOwn !=
+                        void 0 && (c = sc.stats.getMap("items", f));
+                    (i < e && !sc.menu.getItemQuantity(f, e) || c >= j) && a.setActive(false);
+                    this.list.addButton(a)
+                }
+        } else this.parent(b)
     },
 
     updateListEntries(b) {
@@ -192,13 +227,17 @@ sc.ShopListMenu.inject({
                 d = sc.model.player.getCrystalCoins(), 
                 c = sc.menu.getTotalCost(), 
                 d = d - c, c = this.list.getChildren(),
-                e = c.length, f = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99; 
+                e = c.length, maxOwn = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99; 
                 e--;) 
             {
                 var g = c[e].gui;
                 if (!sc.menu.shopSellMode) {
                     var h = sc.menu.getItemQuantity(g.data.id, g.price);
-                    a.getItemAmountWithEquip(g.data.id) >= f ? g.setActive(false) : !h && g.price > d ? g.setActive(false) : g.setActive(true)
+                    a.getItemAmountWithEquip(g.data.id) >= maxOwn 
+                        ? g.setActive(false) 
+                        : !h && g.price > d 
+                            ? g.setActive(false) 
+                            : g.setActive(true)
                 }
                 if (b) {
                     g.setCountNumber(0, true);
@@ -206,7 +245,7 @@ sc.ShopListMenu.inject({
                 }
             }
         } else this.parent(b)
-    }
+    },
 })
 
 sc.ShopPageCounter.inject({
@@ -226,8 +265,40 @@ sc.ShopPageCounter.inject({
 sc.ShopItemButton.inject({
     init(itemName, itemID, itemDescription, itemAmount, cost, itemEquipLevel) {
         if(sc.menu.shopGemCoinMode && sc.menu.shopSellMode) {
-            cost = (cost / 15).floor().limit(0, Infinity);
+            cost = Math.max((cost / 10).floor(), 0)
         }
         this.parent(itemName, itemID, itemDescription, itemAmount, cost, itemEquipLevel)
     }
 })
+
+sc.ShopQuantitySelect.inject({
+    show(a, b, c) {
+        this.parent(a, b, c);
+        
+        if (!this.active) return;
+        b = this._button.price
+        c = sc.menu.getItemQuantity(this._button.data.id, b)
+        
+        let d = c * b, 
+            e = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99;
+        if(sc.menu.shopGemCoinMode && !sc.menu.shopSellMode) {
+            var k = sc.model.player.getCrystalCoins();
+            this._max = Math.min(e || 99, (e || 99) - sc.model.player.getItemAmount(a.data.id));
+            this._max = Math.min(this._max, Math.floor(Math.max(0, k - sc.menu.getTotalCost() + d) / b))
+        }
+    }
+})
+
+
+// since injections don't work in this case, we'll just have to make do :P
+
+let getMaxBuyableOriginal = sc.ShopHelper.getMaxBuyable;
+
+sc.ShopHelper.getMaxBuyable = function(itemID, a, d, c) {
+    if (sc.menu.shopGemCoinMode && !sc.menu.shopSellMode) {
+        a = a * d;
+        let coins = sc.model.player.getCrystalCoins(),
+            b = Math.min(c || 99, (c || 99) - sc.model.player.getItemAmount(itemID));
+        return Math.min(b, Math.floor(Math.max(0, coins - sc.menu.getTotalCost() + a) / d))
+    } else return getMaxBuyableOriginal(itemID, a, d, c)
+}

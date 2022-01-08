@@ -115,10 +115,6 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                         amount: 3
                     },
                     {
-                        id: items.gems.aquamarine,
-                        amount: 7
-                    },
-                    {
                         id: items.gems.onyx,
                         amount: 7
                     }
@@ -710,7 +706,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 get: [
                     {
                         id: items.gems.warmGem,
-                        amount: 1
+                        amount: 2
                     }
                 ],
                 require: [
@@ -742,7 +738,7 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                 get: [
                     {
                         id: items.gems.coolGem,
-                        amount: 1
+                        amount: 2
                     }
                 ],
                 require: [
@@ -761,7 +757,11 @@ const newTrades: { [key: string]: sc.TradeModel.Trader } = {
                     {
                         id: items.gems.lapis,
                         amount: 3
-                    }
+                    },
+                    {
+                        id: items.gems.aquamarine,
+                        amount: 3
+                    },
                 ],
                 scale: 1,
                 cost: 2500
