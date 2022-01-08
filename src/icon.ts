@@ -12,6 +12,7 @@ sc.fontsystem.tinyFont.pushIconSet(buffIcons);
 sc.fontsystem.font.setMapping({
     "item-toggle-scale": [fontIndex, 0],
     "el-rainbow-text": [fontIndex, 1],
+    "el-gem-credits": [fontIndex, 2],
     "stat-el-risktaker": [fontIndex+1, 0]
 })
 

@@ -50,8 +50,6 @@ sc.Arena.inject({
             }
         } else this.parent(a, b, c, d, e)
     },
-
-    
 })
 
 sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {

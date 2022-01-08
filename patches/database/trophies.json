@@ -178,8 +178,8 @@
         "section": "ENEMIES",
         "category": "COMBAT",
         "stats": [{
-            "key": "combat",
-            "mapKey": "killavatar.apollo-4",
+            "key": "varValue",
+            "mapKey": "plot.apollo.rhombusLeaWin",
             "value": "1",
             "compare": "min"
         }]

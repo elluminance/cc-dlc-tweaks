@@ -599,7 +599,29 @@
             "stunType": "",
             "status": true,
             "steps": [
-                
+                {
+                    "type": "SHOOT_PROXY_RANGE",
+                    "proxy": "lightningBolt",
+                    "align": "BOTTOM",
+                    "startDistCollide": "NONE",
+                    "startDist": 64,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "angleVary": 0,
+                    "centralAngle": 0.333,
+                    "count": 3,
+                    "duration": 0,
+                    "group": "hexaArt",
+                    "circularArea": true,
+                    "uniformDir": 0,
+                    "delay": 0,
+                    "repeat": false,
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }
             ]
         }
     },

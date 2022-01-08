@@ -16,6 +16,13 @@
             "bonuses": {
                 "INTERROGATION_HITS": "Let less than \\c[3][!] clones hit C'tron\\c[0]"
             }
+        },
+        "shop": {
+            "crystals": "Crystals",
+
+            "sellPages": {
+                "gems": "Gems"
+            }
         }
     }
 }

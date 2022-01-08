@@ -49,5 +49,28 @@
                 ]
             }
         ]
+    },
+
+    "el-gemShop": {
+        "name": {
+            "en_US": "Crystal Shop"
+        },
+        "shopType": "CRYSTAL",
+        "sellScale": 0.1,
+        "content": [
+            []
+        ],
+        "pages": [
+            {
+                "title": {
+                    "en_US": "Consumables"
+                },
+                "content": [
+                    {
+                        "item": "el-cons-cookie-1"
+                    }
+                ]
+            }
+        ]
     }
 }

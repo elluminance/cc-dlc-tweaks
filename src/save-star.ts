@@ -6,7 +6,7 @@ sc.SaveSlotButton.inject({
 })
 
 sc.SaveSlotChapter.inject({
-    postgameStarGfx: new ig.Image("media/gui/postgame-star.png"),
+    postgameStarGfx: new ig.Image("media/gui/el-mod-gui.png"),
     postgameStar: null,
 
     init() {

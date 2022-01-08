@@ -19,3 +19,5 @@ import "./modifier.js"
 import "./toggle-sets.js"
 
 import "./trades.js"
+
+import "./shop.js"

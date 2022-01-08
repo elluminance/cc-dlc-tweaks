@@ -40,7 +40,6 @@ declare namespace ig {
 }
 
 declare namespace sc {
-
     interface CombatParams {
         el_lifestealTimer: number
         el_lifestealHealed: number
@@ -60,5 +59,13 @@ declare namespace sc {
         postgameStar: ig.ImageGui
 
         showPostgameStar(this: this, dlcBeaten: boolean | undefined, gameBeaten: boolean | undefined): void
+    }
+
+    interface MenuModel {
+        shopGemCoinMode: boolean
+    }
+
+    enum MENU_SHOP_TYPES {
+        CRYSTAL = "CRYSTALS"
     }
 }
