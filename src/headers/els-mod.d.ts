@@ -32,6 +32,26 @@ declare namespace ig {
         var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
     }
 
+    namespace EVENT_STEP {
+        namespace EventSettings {
+            interface OPEN_GEODES {
+                count?: number | "all"
+            }
+        }
+
+        interface OPEN_GEODES extends ig.EventStepBase {
+            count: number | "all"
+            init(this: this, settings: EventSettings.OPEN_GEODES): void
+            start(this: this): void
+        }
+
+        interface OPEN_GEODES_CONSTRUCTOR extends ImpactClass<OPEN_GEODES> {
+            new (settings: EventSettings.OPEN_GEODES): OPEN_GEODES
+        }
+
+        var OPEN_GEODES: OPEN_GEODES_CONSTRUCTOR
+    }
+
     namespace Vars.KnownVars {
         interface plot {
             completedPostGame?: boolean

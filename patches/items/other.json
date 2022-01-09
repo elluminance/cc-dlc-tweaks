@@ -9,7 +9,7 @@
             "en_US": "A plain-looking hollow rock that holds incredible secrets."
         },
         "type": "TRADE",
-        "rarity": 3,
+        "rarity": 4,
         "cost": 1000,
         "level": 1,
         "icon": "item-trade",
