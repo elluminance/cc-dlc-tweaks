@@ -87,6 +87,19 @@ sc.EnemyPageGeneralInfo.inject({
     }
 })
 
+const GeodeChance = 0.95
+
+sc.EnemyType.inject({
+    resolveItemDrops(enemy) {
+        this.parent(enemy);
+        if(sc.enemyBooster.ascendedBooster.active 
+          && sc.model.player.getCore(sc.PLAYER_CORE.ITEMS)
+          && enemy.boosterState == sc.ENEMY_BOOSTER_STATE.BOOSTED
+          && Math.random() <= GeodeChance
+        ) sc.ItemDropEntity.spawnDrops(enemy, ig.ENTITY_ALIGN.CENTER, ig.game.playerEntity, itemAPI.customItemToId["el-item-geode"], 1, sc.ITEM_DROP_TYPE.ENEMY)
+    }
+})
+
 //#endregion booster
 
 

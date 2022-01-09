@@ -60,5 +60,8 @@
     "type": "IMPORT",
     "src": "mod:patches/items/consumables.json"
 },{
+    "type": "IMPORT",
+    "src": "mod:patches/items/other.json"
+},{
     "type": "EXIT"
 }]
