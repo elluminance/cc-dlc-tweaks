@@ -87,16 +87,29 @@ sc.EnemyPageGeneralInfo.inject({
     }
 })
 
-const GeodeChance = 0.95
+const GeodeBaseChance = 0.03
 
 sc.EnemyType.inject({
-    resolveItemDrops(enemy) {
-        this.parent(enemy);
+    resolveItemDrops(enemyEntity) {
+        this.parent(enemyEntity);
         if(sc.enemyBooster.ascendedBooster.active 
           && sc.model.player.getCore(sc.PLAYER_CORE.ITEMS)
-          && enemy.boosterState == sc.ENEMY_BOOSTER_STATE.BOOSTED
-          && Math.random() <= GeodeChance
-        ) sc.ItemDropEntity.spawnDrops(enemy, ig.ENTITY_ALIGN.CENTER, ig.game.playerEntity, itemAPI.customItemToId["el-item-geode"], 1, sc.ITEM_DROP_TYPE.ENEMY)
+          && enemyEntity.boosterState == sc.ENEMY_BOOSTER_STATE.BOOSTED
+        ) {
+            let geodeChance = GeodeBaseChance
+            geodeChance *= sc.model.player.params.getModifier("DROP_CHANCE") + 1;
+            geodeChance *= sc.model.getCombatRankDropRate();
+            geodeChance *= sc.newgame.getDropRateMultiplier();
+
+            let foundItem = this.itemDrops.find(element => sc.BOOSTER_GEMS.includes(parseInt(element.item as string) || element.item));
+            if(foundItem) {
+                geodeChance *= ((foundItem.prob / 0.025).limit(0, 10) / 10) + 1
+            }
+
+            if(Math.random() <= geodeChance){
+                sc.ItemDropEntity.spawnDrops(enemyEntity, ig.ENTITY_ALIGN.CENTER, ig.game.playerEntity, itemAPI.customItemToId["el-item-geode"], 1, sc.ITEM_DROP_TYPE.ENEMY)
+            }
+        }
     }
 })
 
