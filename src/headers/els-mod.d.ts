@@ -50,7 +50,7 @@ declare namespace sc {
             active: boolean,
             skipCheck: boolean,
             forceCheck: boolean,
-            calcLevel(enemyType: sc.EnemyInfo): number,
+            calcLevel(enemyType: sc.EnemyType): number,
         }
     }
 
