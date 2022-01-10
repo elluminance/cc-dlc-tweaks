@@ -23,3 +23,5 @@ import "./trades.js"
 import "./shop.js"
 
 import "./event-step.js"
+
+import "./geode.js"

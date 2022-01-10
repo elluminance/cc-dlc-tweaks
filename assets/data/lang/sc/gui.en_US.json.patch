@@ -23,6 +23,11 @@
             "sellPages": {
                 "gems": "Gems"
             }
+        },
+
+        "geode": {
+            "title": "Geode Rewards",
+            "okay": "Okay"
         }
     }
 }

@@ -88,4 +88,20 @@ declare namespace sc {
     enum MENU_SHOP_TYPES {
         CRYSTAL = "CRYSTALS"
     }
+
+    enum NPC_EVENT_TYPE {
+        GEODE = "GEODE"
+    }
+
+    var MAP_INTERACT_ICONS: {[key: string]: sc.MapInteractIcon}
+
+    interface GeodeRewardsGui extends ig.BoxGui {
+        init(this: this): void
+    }
+
+    interface GeodeRewardsGuiConstructor extends ImpactClass<GeodeRewardsGui> {
+        new (): sc.GeodeRewardsGui
+    }
+
+    var GeodeRewardsGui: GeodeRewardsGuiConstructor
 }
