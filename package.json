@@ -3,7 +3,7 @@
     "version": "0.9.0-beta",
     "description": "Makes tweaks to \\c[3]CrossCode: A New Home\\c[0] along with adding some missing pieces!",
     "homepage": "https://github.com/EL20202/cc-dlc-tweaks",
-    "prestart": "dist/prestart.js",
+    "prestart": "prestart.js",
     "ccmodDependencies": {
         "crosscode": ">=1.4.2",
         "item-api": ">=0.4.2",

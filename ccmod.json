@@ -10,7 +10,7 @@
         "24": "icon.png"
     },
 
-    "prestart": "dist/prestart.js",
+    "prestart": "prestart.js",
 
     "dependencies": {
         "crosscode": ">=1.4.2",

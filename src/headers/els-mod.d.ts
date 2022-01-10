@@ -104,4 +104,6 @@ declare namespace sc {
     }
 
     var GeodeRewardsGui: GeodeRewardsGuiConstructor
+
+    var BOOSTER_GEMS: sc.Inventory.ItemID[]
 }
