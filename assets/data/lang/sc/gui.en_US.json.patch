@@ -32,9 +32,10 @@
         "geode": {
             "openTitle": "Open Geodes",
             "rewardTitle": "Geode Rewards",
-            "okay": "Okay",
+            "close": "Close",
             "geodeName": "Geodes:",
-            "openGeodes": "Open [!] Geode(s)"
+            "openGeodesSingular": "Open [!] Geode",
+            "openGeodesPlural": "Open [!] Geodes"
         }
     }
 }

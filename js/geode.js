@@ -94,12 +94,13 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
     geodeAmount: null,
     costText: null,
     costNumber: null,
-    
+    rewardGui: null,
+
     count: 0,
+    pricePerGeode: 750,
 
     init() {
         this.parent()
-        this.hook.zIndex = 9999999;
         this.hook.localAlpha = 0.8;
         this.hook.pauseGui = true;
         this.hook.size.x = ig.system.width;
@@ -150,7 +151,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
         }.bind(this));
         
         let xOffset = 0;
-
+        //#region value buttons
         this.buttons.bigDecrement = new sc.ButtonGui("-10", 32);
         this.buttons.bigDecrement.data = {
             type: "changeValue",
@@ -192,7 +193,8 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
         this.buttons.increment.setPos(xOffset, 60)
         this.buttongroup.addFocusGui(this.buttons.increment, 2, 0)
         this.content.addChildGui(this.buttons.increment);
-
+        //#endregion value buttons
+        
         this.openGeodesButton = new sc.ButtonGui(ig.lang.get("sc.gui.geode.openGeodes"))
         this.openGeodesButton.data = {
             type: "openGeodes"
@@ -203,6 +205,12 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
 
         this.msgBox = new sc.CenterBoxGui(this.content);
         this.msgBox.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER);
+
+        this.rewardGui = new sc.GeodeRewardsGui;
+        this.rewardGui.doStateTransition("HIDDEN", true);
+        this.msgBox.hook.zIndex + 1000
+        this.addChildGui(this.rewardGui);
+
         this.addChildGui(this.msgBox);
         this.doStateTransition("HIDDEN", true)
         this.incrementValue(1)
@@ -241,6 +249,9 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
             case "changeValue": 
                 this.incrementValue(button.data.value)
                 break;
+            case "openGeodes":
+                this.openGeodes();
+                break;
         }
     },
 
@@ -249,11 +260,16 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
         sc.menu.popMenu()
     },
 
+    getMaxGeodes() {
+        return Math.min(Math.floor(sc.model.player.credit / this.pricePerGeode), sc.model.player.getItemAmount("el-item-geode"));
+    },
+
     incrementValue(change) {
-        let credits = (sc.model.player.credits / 250).floor();
-        let itemCount = sc.model.player.getItemAmount("el-item-geode");
-        this.count = (this.count + change).limit(1, Math.min(itemCount, credits))
-        
+        this.count = (this.count + change).limit(1, this.getMaxGeodes())
+        this._updateCounters()
+    },
+
+    _updateCounters() {
         if(this.count <= 1) {
             this.buttons.decrement.setActive(false)
             this.buttons.bigDecrement.setActive(false)
@@ -262,7 +278,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
             this.buttons.bigDecrement.setActive(true)
         }
 
-        if(this.count >= itemCount) {
+        if(this.count >= this.getMaxGeodes()) {
             this.buttons.increment.setActive(false)
             this.buttons.bigIncrement.setActive(false)
         } else {
@@ -271,8 +287,45 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
         }
 
         this.geodeAmount.setNumber(this.count, true)
-        this.costNumber.setNumber(this.count * -250, true)
-        this.openGeodesButton.setText(ig.lang.get("sc.gui.geode.openGeodes").replace("[!]", this.count))
+        this.costNumber.setNumber(this.count * -this.pricePerGeode, true)
+        this.openGeodesButton.setText(ig.lang.get(this.count !== 1 ? "sc.gui.geode.openGeodesPlural" : "sc.gui.geode.openGeodesSingular").replace("[!]", this.count))
+        if(this.count == 0) this.openGeodesButton.setActive(false)
+    },
+
+    openGeodes() {
+        sc.model.player.removeCredit(this.count * this.pricePerGeode);
+        let itemsGiven = {}
+        let chance = 1, gemsGotten = 1;
+        sc.model.player.removeItem("el-item-geode", this.count);
+
+        let crystals = 0;
+
+        do {
+            chance = 1;
+            gemsGotten = 1;
+
+            while(chance >= Math.random()) {
+                let gem = sc.BOOSTER_GEMS.random()
+                if (itemsGiven[gem]) itemsGiven[gem]++
+                else itemsGiven[gem] = 1
+
+                gemsGotten++;
+                chance /= gemsGotten
+                chance *= 1.25
+            }
+
+            crystals += 60 + Math.random() * 40 
+            // basically, if you don't get many gems, you'll get slightly more crystals on average instead.
+            crystals += Math.random() * 30 * (1 - chance)
+            crystals = Math.floor(crystals)
+        } while(--this.count > 0)
+
+        this.rewardGui.setListItems(itemsGiven, crystals);
+        ig.gui.addGuiElement(this.rewardGui)
+        this.rewardGui.show();
+        this.count = 1;
+        // force it to update to the correct values
+        this.incrementValue(0);
     },
 
     modelChanged: function() {}
@@ -327,7 +380,7 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
         this.parent(
             ig.lang.get("sc.gui.geode.rewardTitle"), 
             null, 
-            [ig.lang.get("sc.gui.geode.okay")],
+            [ig.lang.get("sc.gui.geode.close")],
             this.onDialogCallback.bind(this)
         )
 
@@ -348,8 +401,13 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
         this.msgBox.setPos(0, -12);
         this.msgBox.resize();
 
-        this.listItems = items;
+        this.listItems = items || {};
         this.crystals = crystals || 0;
+    },
+
+    update: function() {
+        this.parent();
+        this.buttonInteract.isActive() && this.buttongroup.isActive() && (sc.control.menuScrollUp() ? this.list.scrollY(-17) : sc.control.menuScrollDown() && this.list.scrollY(17))
     },
 
     createList() {
@@ -363,24 +421,40 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
         guiItem.setPos(0, offset);
         offset += guiItem.hook.size.y;
         this.listContent.addChildGui(guiItem);
-        
-        for(let [itemID, count] of Object.entries(this.listItems)) {
-            item = sc.inventory.getItem(itemID);
-            itemName = `\\i[${item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default"}]${ig.LangLabel.getText(item.name)}`;
 
-            guiItem = new sc.GeodeRewardEntry(itemName, count, false)
-            guiItem.setPos(0, offset)
-            offset += guiItem.hook.size.y
+        if(this.listItems) {
+            for(let [itemID, count] of Object.entries(this.listItems)) {
+                item = sc.inventory.getItem(itemID);
+                itemName = `\\i[${item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default"}]${ig.LangLabel.getText(item.name)}`;
 
-            this.listContent.addChildGui(guiItem);
+                guiItem = new sc.GeodeRewardEntry(itemName, count, false)
+                guiItem.setPos(0, offset)
+                offset += guiItem.hook.size.y
+
+                this.listContent.addChildGui(guiItem);
+            }
         }
 
         this.listContent.hook.size.y = offset;
         this.list.recalculateScrollBars(true)
     },
 
-    onDialogCallback(b) {
-        console.log(b)
+    setListItems(items, crystals) {
+        this.listItems = items || {};
+        this.crystals = crystals || 0;
+    },
+
+    onDialogCallback() {
+        for(let [item, count] of Object.entries(this.listItems)){ 
+            sc.model.player.addItem(item, count, true)
+        }
+        sc.model.player.addCrystalCoins(this.crystals)
+        this.hide();
+    },
+
+    show() {
+        this.createList();
+        this.parent();
     }
 })
 
