@@ -69,57 +69,57 @@
                     {
                         "item": 457,
                         "condition": "stat.items.448 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 458,
                         "condition": "stat.items.449 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 459,
                         "condition": "stat.items.450 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 460,
                         "condition": "stat.items.450 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 461,
                         "condition": "stat.items.451 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 462,
                         "condition": "stat.items.451 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 463,
                         "condition": "stat.items.452 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 464,
                         "condition": "stat.items.452 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": 465,
                         "condition": "stat.items.453 >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": "dlctweaks-trade-beach-gem",
                         "condition": "stat.items.dlctweaks-beach-booster >= 1",
-                        "price": 150
+                        "price": 250
                     },
                     {
                         "item": "dlctweaks-trade-final-dng-gem",
                         "condition": "stat.items.dlctweaks-final-dng-booster >= 1",
-                        "price": 150
+                        "price": 250
                     }
                 ]
             },
@@ -130,23 +130,23 @@
                 "content": [
                     {
                         "item": "el-crystal-helmet",
-                        "price": 850
+                        "price": 1250
                     },
                     {
                         "item": "el-crystal-sword",
-                        "price": 750
+                        "price": 1150
                     },
                     {
                         "item": "el-crystal-bow",
-                        "price": 750
+                        "price": 1150
                     },
                     {
                         "item": "el-crystal-plate",
-                        "price": 850
+                        "price": 1250
                     },
                     {
                         "item": "el-crystal-boots",
-                        "price": 850
+                        "price": 1250
                     }
                 ]
             }

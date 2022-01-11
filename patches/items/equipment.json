@@ -286,10 +286,13 @@
                 1,
                 1
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 129,
+            "defense": 63,
+            "focus": 34
         },
-        "properties": {},
+        "properties": {
+            "RANGED_DMG": 1.15
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -320,10 +323,12 @@
                 1,
                 1
             ],
-            "attack": 139,
-            "defense": 83
+            "attack": 146,
+            "defense": 75
         },
-        "properties": {},
+        "properties": {
+            "MELEE_DMG": 1.15
+        },
         "effect": {
             "sheet": "drops",
             "name": "circle"
@@ -353,7 +358,9 @@
             "defense": 9,
             "focus": 214
         },
-        "properties": {},
+        "properties": {
+            "OVERHEAT_REDUCTION": 1.1
+        },
         "rarity": 6,
         "order": 1.01,
         "effect": {
@@ -384,10 +391,12 @@
                 1,
                 1
             ],
-            "hp": 1665,
-            "defense": 56
+            "hp": 1555,
+            "defense": 65
         },
-        "properties": {},
+        "properties": {
+            "STUN_THRESHOLD": 1.05
+        },
         "rarity": 6,
         "order": 1.01,
         "effect": {
@@ -401,10 +410,10 @@
     {
         "customItem": "el-crystal-boots",
         "name": {
-            "en_US": "Crystal Boots"
+            "en_US": "Crystal Slippers"
         },
         "description": {
-            "en_US": "Jagged boots that somehow make it easy to walk upon any and all terrain. \\i[ascended]"
+            "en_US": "Footwear that is likely not the safest for use in combat. \\i[ascended]"
         },
         "type": "EQUIP",
         "cost": 175000,
@@ -422,7 +431,9 @@
             "defense": 47,
             "focus": 64
         },
-        "properties": {},
+        "properties": {
+            "SP_REGEN": 1.1
+        },
         "rarity": 6,
         "order": 1.01,
         "effect": {
