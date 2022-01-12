@@ -165,7 +165,7 @@
         "order": 20,
         "customItem": "el-effect-hp",
         "name": {
-            "en_US": "Health Aura"
+            "en_US": "HP Aura"
         },
         "description": {
             "en_US": "Changes color based on your current HP."

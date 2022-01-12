@@ -25,7 +25,7 @@
             "en_US": "Disable XP"
         },
         "description": {
-            "en_US": "Disable the gaining of experience"
+            "en_US": "Disable the gaining of experience."
         },
         "type": "TOGGLE",
         "rarity": 0,

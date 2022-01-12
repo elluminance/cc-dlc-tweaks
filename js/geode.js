@@ -200,6 +200,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
             type: "openGeodes"
         }
         this.openGeodesButton.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_BOTTOM)
+        this.openGeodesButton.submitSound = sc.BUTTON_SOUND.shop_cash
         this.buttongroup.addFocusGui(this.openGeodesButton, 0, 1)
         this.content.addChildGui(this.openGeodesButton)
 

@@ -199,6 +199,7 @@ sc.ShopListMenu.inject({
 
     scrapBuyList(b) {
         if(sc.menu.shopGemCoinMode) {
+            let maxVal;
             for (var a = null, item = null, c = 0, e = 0, itemID = 0, g = 0, i = sc.model.player.getCrystalCoins() - sc.menu.getTotalCost(), j = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99, k = 0; k < b.length; k++)
                 if (!b[k].condition || (new ig.VarCondition(b[k].condition)).evaluate()) {
                     itemID = b[k].item;
@@ -214,11 +215,11 @@ sc.ShopListMenu.inject({
                         item = ig.LangLabel.getText(item.description),
                         a = new sc.ShopItemButton(l, itemID, item, c, e, a);
                     g > 0 && a.setCountNumber(g, true);
-                    if(ig.database.get("shops")[sc.menu.shopID].maxOwn != undefined || b[k].maxOwn != undefined){
+                    if((b[k].maxOwn || ig.database.get("shops")[sc.menu.shopID].maxOwn) != undefined){
                         c = sc.stats.getMap("items", itemID)
-                        a.data.maxOwn = b[k].maxOwn;
-                    }
-                    (i < e && !sc.menu.getItemQuantity(itemID, e) || c >= j) && a.setActive(false);
+                        maxVal = a.data.maxOwn = b[k].maxOwn;
+                    } else maxVal = 99;
+                    (i < e && !sc.menu.getItemQuantity(itemID, e) || c >= Math.min(maxVal, j)) && a.setActive(false);
                     this.list.addButton(a)
                 }
         } else this.parent(b)
@@ -251,7 +252,6 @@ sc.ShopListMenu.inject({
     },
 
     changeCount(changeValue) {
-        console.log("poop")
         if(sc.menu.shopGemCoinMode) {
             var a = this.getActiveElement();
             if (a && a.active && a.data && a.data.id) {
@@ -260,7 +260,6 @@ sc.ShopListMenu.inject({
                     e = a.price,
                     itemsInCart = sc.menu.getItemQuantity(c, e),
                     buyableItems = sc.ShopHelper.getMaxBuyable(c, itemsInCart, e, buyableItems);
-                console.log(buyableItems);
                 if (!(itemsInCart == 0 && changeValue == -1) && !(itemsInCart == buyableItems && changeValue == 1)) {
                     changeValue = Math.min(changeValue, buyableItems)
                     this.playSound(changeValue, true);

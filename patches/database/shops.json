@@ -38,14 +38,7 @@
                     "en_US": "Skins"
                 },
                 "content": [
-                    {
-                        "item": "el-edgy-lea-skin",
-                        "price": 50000
-                    },
-                    {
-                        "item": "el-ael-skin",
-                        "price": 50000
-                    }
+                    
                 ]
             }
         ]
@@ -130,23 +123,85 @@
                 "content": [
                     {
                         "item": "el-crystal-helmet",
-                        "price": 1250
+                        "price": 1250,
+                        "condition": "stat.items.568 >= 1 || plot.line >= 48000"
                     },
                     {
                         "item": "el-crystal-sword",
-                        "price": 1150
+                        "price": 1150,
+                        "condition": "stat.items.567 >= 1 || plot.line >= 48000"
                     },
                     {
                         "item": "el-crystal-bow",
-                        "price": 1150
+                        "price": 1150,
+                        "condition": "stat.items.567 >= 1 || plot.line >= 48000"
                     },
                     {
                         "item": "el-crystal-plate",
-                        "price": 1250
+                        "price": 1250,
+                        "condition": "stat.items.569 >= 1 || plot.line >= 48000"
                     },
                     {
                         "item": "el-crystal-boots",
-                        "price": 1250
+                        "price": 1250,
+                        "condition": "stat.items.570 >= 1 || plot.line >= 48000"
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en_US": "Auras + Skins"
+                },
+                "content": [
+                    {
+                        "item": "el-effect-rainbow",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-vaporwave",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-hp",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-sp",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-shadow",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-void",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-hax",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-decoy",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-edgy-lea-skin",
+                        "price": 1250,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-ael-skin",
+                        "price": 1250,
+                        "maxOwn": 1
                     }
                 ]
             }
