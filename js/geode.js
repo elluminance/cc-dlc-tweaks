@@ -466,7 +466,7 @@ sc.GeodeRewardEntry = ig.GuiElementBase.extend({
 
     init: function(itemName, amount, isGems) {
         this.parent();
-        this.isGems = isGems ?? false;
+        this.isGems = isGems || false;
 
         this.setSize(190, 17);
         this.item = new sc.TextGui(itemName);

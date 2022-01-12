@@ -28,7 +28,7 @@ jobs:
         run: npm install; npm run build
 
       - name: Create archive
-        run: zip -q -r dlc-tweaks.ccmod assets dist patches ccmod.json icon.png package.json
+        run: zip -q -r dlc-tweaks.ccmod assets dist js patches ccmod.json icon.png package.json
 
       - name: Get version
         id: get_version

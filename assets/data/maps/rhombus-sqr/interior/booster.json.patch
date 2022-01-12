@@ -135,7 +135,7 @@
                             },
                             {
                                 "message": {
-                                    "en_US": "However, it is important to note that \\c[1]enemies will not have any unique drops from using the Ascended Booster\\c[0]."
+                                    "en_US": "Enemies boosted from the ascended booster will have a chance to drop \\i[item-trade-unique]Geodes!"
                                 },
                                 "autoContinue": false,
                                 "type": "SHOW_MSG",
@@ -146,7 +146,18 @@
                             },
                             {
                                 "message": {
-                                    "en_US": "The good news is that enemies will still drop gems \\c[3]as though they were boosted with a standard area booster\\c[0]."
+                                    "en_US": "\\i[item-trade-unique]Geodes may be cracked open in the shop in the west of the shopping district, and can contain booster gems as well as a special currency called \\i[el-gem-credits]Crystals."
+                                },
+                                "autoContinue": false,
+                                "type": "SHOW_MSG",
+                                "person": {
+                                    "person": "advisors.man-tall-gray",
+                                    "expression": "DEFAULT"
+                                }
+                            },
+                            {
+                                "message": {
+                                    "en_US": "Enemies will also still drop gems \\c[3]as though they were boosted with a standard area booster\\c[0]."
                                 },
                                 "autoContinue": false,
                                 "type": "SHOW_MSG",
@@ -196,7 +207,7 @@
                     "reactType": "FIXED_POS",
                     "face": "NORTH",
                     "hidden": false,
-                    "condition": "plot.line >= 40000 && dlctweaks.ascendCoreGot",
+                    "condition": "plot.line >= 48500 && dlctweaks.ascendCoreGot",
                     "config": "normal",
                     "event": {
                         "trade": {
