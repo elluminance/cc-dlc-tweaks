@@ -22,10 +22,29 @@
         "order": 20,
         "customItem": "el-toggle-no-xp",
         "name": {
-            "en_US": "Disable XP"
+            "en_US": "Disable Growth"
         },
         "description": {
             "en_US": "Disable the gaining of experience."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    }, {
+        "order": 20,
+        "customItem": "el-toggle-dr-explosion",
+        "name": {
+            "en_US": "Explosive Enemies"
+        },
+        "description": {
+            "en_US": "Enemies will violently explode upon defeat with a \\c[3]super realistic\\c[0] explosion."
         },
         "type": "TOGGLE",
         "rarity": 0,

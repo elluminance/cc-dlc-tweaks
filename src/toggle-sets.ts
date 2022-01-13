@@ -224,3 +224,12 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EffectStepBase.extend({
         })
     }
 })
+
+ig.EffectSheet.inject({
+    spawnFixed(effectName, x, y, z, target, effectSettings) {
+        if(this.path === "combatant" && effectName === "boom_medium" && sc.model.player.getToggleItemState("el-toggle-dr-explosion")) {
+            effectName = "boom_medium_deltarune"
+        }
+        return this.parent(effectName, x, y, z, target, effectSettings)
+    }
+})

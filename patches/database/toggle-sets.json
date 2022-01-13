@@ -7,7 +7,7 @@
             "en_US": "Special"
         },
         "order": 25,
-        "color": "#880",
+        "color": "#550",
         "items": []
     }
 },{
@@ -19,6 +19,9 @@
 },{
     "type": "ADD_ARRAY_ELEMENT",
     "content": "el-toggle-no-xp"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": "el-toggle-dr-explosion"
 },{
     "type": "EXIT",
     "count": 2

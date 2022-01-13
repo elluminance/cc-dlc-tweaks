@@ -1,0 +1,66 @@
+[{
+    "type": "ENTER", 
+    "index": ["ANIMS", "SUB"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "name": "DR_EXPLOSION",
+        "sheet": {
+            "src": "media\/entity\/effects\/deltarune-explosion.png",
+            "width": 71,
+            "height": 100,
+            "xCount": 18
+        },
+        "time": 0.04,
+        "repeat": false,
+        "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        "offset": {
+            "x": 0,
+            "y": 30,
+            "z": 0
+        }
+    }
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": "EFFECTS"
+},{
+    "type": "SET_KEY",
+    "index": "boom_medium_deltarune",
+    "content": [
+        {
+            "scaleX": 0,
+            "scaleY": 1.5,
+            "duration": 0.2,
+            "type": "CHANGE_SCALE"
+        },
+        {
+            "alpha": 0,
+            "duration": 0.2,
+            "type": "CHANGE_ALPHA"
+        },
+        {
+            "sound": "media\/sound\/badexplosion.ogg",
+            "volume": 1,
+            "global": false,
+            "loop": false,
+            "fadeDuration": 0.05,
+            "type": "PLAY_SOUND"
+        },
+        {
+            "useTargetAngle": false,
+            "keepAngleSync": false,
+            "offset": {
+                "x": 0,
+                "z": 16,
+                "y": 0
+            },
+            "type": "PLAY_ANIM",
+            "anim": "DR_EXPLOSION"
+        }
+    ]
+},{
+    "type": "EXIT"
+}]

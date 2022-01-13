@@ -204,6 +204,28 @@
                         "maxOwn": 1
                     }
                 ]
+            },
+            {
+                "title": {
+                    "en_US": "Other Add-ons"
+                },
+                "content": [
+                    {
+                        "item": "el-toggle-one-hit-die",
+                        "price": 750,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-toggle-no-xp",
+                        "price": 750,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-toggle-dr-explosion",
+                        "price": 750,
+                        "maxOwn": 1
+                    }
+                ]
             }
         ]
     }
