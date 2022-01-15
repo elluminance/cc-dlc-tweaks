@@ -343,16 +343,17 @@ sc.SUB_MENU_INFO[sc.MENU_SUBMENU.GEODE_OPENING] = {
 sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
     transitions: {
         DEFAULT: {
-            state: {},
+            state: {
+                alpha: 1
+            },
             time: 0.2,
             timeFunction: KEY_SPLINES.EASE_OUT
         },
         HIDDEN: {
             state: {
                 alpha: 0,
-                scaleX: 0
             },
-            time: 0.2,
+            time: 0.4,
             timeFunction: KEY_SPLINES.EASE_IN
         }
     },
@@ -375,6 +376,11 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
     listContent: null,
 
     listItems: {},
+    listEntries: [],
+    done: false,
+    timer: 0,
+    currentIndex: 0,
+    listitemYOffset: 0,
     crystals: 0,
 
     init(items, crystals) {
@@ -408,7 +414,28 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
 
     update: function() {
         this.parent();
-        this.buttonInteract.isActive() && this.buttongroup.isActive() && (sc.control.menuScrollUp() ? this.list.scrollY(-17) : sc.control.menuScrollDown() && this.list.scrollY(17))
+        if(!this.done) {
+            if(this.timer <= 0) {
+                this.timer = 0.15;
+                let currentEntry = this.listEntries[this.currentIndex]
+                let guiItem = new sc.GeodeRewardEntry(currentEntry[0], currentEntry[1], false);
+                guiItem.setPos(0, this.listContent.hook.size.y)
+                this.listContent.hook.size.y += guiItem.hook.size.y;
+                this.listContent.addChildGui(guiItem);
+                guiItem.doStateTransition("HIDDEN", true);
+                guiItem.doStateTransition("DEFAULT")
+                
+                this.list.recalculateScrollBars(true);
+                this.list.setScrollY(this.listContent.hook.size.y, false, 0.15, KEY_SPLINES.LINEAR);
+                
+                this.currentIndex++;
+                if(this.currentIndex >= this.listEntries.length) this.done = true;
+            } else {
+                this.timer -= ig.system.tick;
+            }
+        } else{
+            this.buttonInteract.isActive() && this.buttongroup.isActive() && (sc.control.menuScrollUp() ? this.list.scrollY(-17) : sc.control.menuScrollDown() && this.list.scrollY(17))
+        }
     },
 
     createList() {
@@ -416,27 +443,21 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
         this.list.box.doScrollTransition(0, 0, 0);
         this.list.recalculateScrollBars();
 
-        let item, guiItem, offset = 0, itemName;
-
-        guiItem = new sc.GeodeRewardEntry(`\\i[el-gem-credits]${ig.lang.get("sc.gui.shop.crystals")}`, this.crystals, true)
-        guiItem.setPos(0, offset);
-        offset += guiItem.hook.size.y;
+        let guiItem = new sc.GeodeRewardEntry(`\\i[el-gem-credits]${ig.lang.get("sc.gui.shop.crystals")}`, this.crystals, true)
+        guiItem.setPos(0, 0);
+        this.listContent.hook.size.y = guiItem.hook.size.y;
         this.listContent.addChildGui(guiItem);
 
         if(this.listItems) {
-            for(let [itemID, count] of Object.entries(this.listItems)) {
-                item = sc.inventory.getItem(itemID);
-                itemName = `\\i[${item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default"}]${ig.LangLabel.getText(item.name)}`;
-
-                guiItem = new sc.GeodeRewardEntry(itemName, count, false)
-                guiItem.setPos(0, offset)
-                offset += guiItem.hook.size.y
-
-                this.listContent.addChildGui(guiItem);
-            }
+            this.listEntries = Object.entries(this.listItems).map(element => {
+                let item = sc.inventory.getItem(element[0]);
+                element[0] = `\\i[${item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default"}]${ig.LangLabel.getText(item.name)}`;
+                return element
+            })
+            this.timer = 0.2;
+            this.done = false;
+            this.currentIndex = 0;
         }
-
-        this.listContent.hook.size.y = offset;
         this.list.recalculateScrollBars(true)
     },
 
@@ -464,7 +485,20 @@ sc.GeodeRewardEntry = ig.GuiElementBase.extend({
     item: null,
     amount: null,
     isGems: false,
-
+    transitions: {
+        DEFAULT: {
+            state: {},
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        },
+        HIDDEN: {
+            state: {
+                alpha: 0
+            },
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        }
+    },
     init: function(itemName, amount, isGems) {
         this.parent();
         this.isGems = isGems || false;
