@@ -16,7 +16,16 @@ Object.assign(sc.MODIFIERS, {
         icon: -1,
         order: 0,
         noPercent: true
-    }
+    },
+
+    EL_GEODE_FINDER: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 24,
+        offY: 0,
+        icon: -1,
+        order: 0,
+        noPercent: false
+    },
 })
 //#endregion icons
 

@@ -99,6 +99,11 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
     count: 0,
     pricePerGeode: 750,
 
+    rareRewards: [
+        "el-geode-smasher",
+    ],
+    rareItemChance: 0.01,
+
     init() {
         this.parent()
         this.hook.localAlpha = 0.8;
@@ -287,6 +292,14 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
             this.buttons.bigIncrement.setActive(true)
         }
 
+        if(this.count <= 0) {
+            this.geodeAmount.setColor(sc.GUI_NUMBER_COLOR.GREY)
+            this.costNumber.setColor(sc.GUI_NUMBER_COLOR.GREY)
+        } else {
+            this.geodeAmount.setColor(sc.GUI_NUMBER_COLOR.WHITE)
+            this.costNumber.setColor(sc.GUI_NUMBER_COLOR.RED)
+        }
+
         this.geodeAmount.setNumber(this.count, true)
         this.costNumber.setNumber(this.count * -this.pricePerGeode, true)
         this.openGeodesButton.setText(ig.lang.get(this.count !== 1 ? "sc.gui.geode.openGeodesPlural" : "sc.gui.geode.openGeodesSingular").replace("[!]", this.count))
@@ -296,19 +309,29 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
     openGeodes() {
         sc.model.player.removeCredit(this.count * this.pricePerGeode);
         let itemsGiven = {}
-        let chance = 1, gemsGotten = 1;
+        let chance = 1, gemsGotten = 1, roll = 0;
         sc.model.player.removeItem("el-item-geode", this.count);
+
+        function addItem(itemID, isRare = false) {
+            if(itemsGiven[itemID]) itemsGiven[itemID].amount++;
+            else itemsGiven[itemID] = {
+                amount: 1,
+                isRare
+            }
+        }
 
         let crystals = 0;
 
         do {
             chance = 1;
             gemsGotten = 1;
-
-            while(chance >= Math.random()) {
-                let gem = sc.BOOSTER_GEMS.random()
-                if (itemsGiven[gem]) itemsGiven[gem]++
-                else itemsGiven[gem] = 1
+            
+            while(chance >= (roll = Math.random())) {
+                if(roll <= (chance * this.rareItemChance)) {
+                    addItem(this.rareRewards.random(), true)
+                } else {
+                    addItem(sc.BOOSTER_GEMS.random());
+                }
 
                 gemsGotten++;
                 chance /= gemsGotten
@@ -371,6 +394,9 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
             }
         }
     }),
+    sounds: {
+        getRareItem: new ig.Sound("media/sound/drops/drop-rare-silver.ogg", 1)
+    },
 
     list: null,
     listContent: null,
@@ -418,10 +444,12 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
             if(this.timer <= 0) {
                 this.timer = 0.15;
                 let currentEntry = this.listEntries[this.currentIndex]
-                let guiItem = new sc.GeodeRewardEntry(currentEntry[0], currentEntry[1], false);
+                let guiItem = new sc.GeodeRewardEntry(currentEntry[0], currentEntry[1].amount, false);
                 guiItem.setPos(0, this.listContent.hook.size.y)
                 this.listContent.hook.size.y += guiItem.hook.size.y;
                 this.listContent.addChildGui(guiItem);
+                console.log(currentEntry)
+                if(currentEntry[1].isRare) this.sounds.getRareItem.play()
                 guiItem.doStateTransition("HIDDEN", true);
                 guiItem.doStateTransition("DEFAULT")
                 
@@ -467,8 +495,8 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
     },
 
     onDialogCallback() {
-        for(let [item, count] of Object.entries(this.listItems)){ 
-            sc.model.player.addItem(item, count, true)
+        for(let [item, data] of Object.entries(this.listItems)){ 
+            sc.model.player.addItem(item, data.amount, true)
         }
         sc.model.player.addCrystalCoins(this.crystals)
         this.hide();

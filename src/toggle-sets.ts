@@ -128,6 +128,7 @@ sc.EnemyType.inject({
         ) {
             let geodeChance = getGeodeBaseDropRate(this.itemDrops)
             geodeChance *= sc.model.player.params.getModifier("DROP_CHANCE") + 1;
+            geodeChance *= sc.model.player.params.getModifier("EL_GEODE_FINDER") + 1;
             geodeChance *= sc.model.getCombatRankDropRate();
             geodeChance *= sc.newgame.getDropRateMultiplier();
 
