@@ -31,5 +31,25 @@
             "sheet": "",
             "name": null
         }
+    },
+    {
+        "order": 12.9,
+        "customItem": "el-hexacast-art-pass",
+        "name": {
+            "en_US": "Hexacast Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to Hexacast arts in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-key",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
     }
 ]

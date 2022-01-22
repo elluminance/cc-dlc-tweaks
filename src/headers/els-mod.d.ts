@@ -50,6 +50,14 @@ declare namespace ig {
         }
 
         var OPEN_GEODES: OPEN_GEODES_CONSTRUCTOR
+
+        interface OPEN_GEODE_MENU extends ig.EventStepBase {
+            init(): void
+            start(): void
+        }
+        interface OPEN_GEODE_MENU_CONSTRUCTOR extends ImpactClass<OPEN_GEODE_MENU> {}
+
+        var OPEN_GEODE_MENU: OPEN_GEODE_MENU_CONSTRUCTOR
     }
 
     namespace Vars.KnownVars {
@@ -93,6 +101,10 @@ declare namespace sc {
         GEODE = "GEODE"
     }
 
+    enum MENU_SUBMENU {
+        GEODE_OPENING  = "GEODE_OPENING"
+    }
+
     var MAP_INTERACT_ICONS: {[key: string]: sc.MapInteractIcon}
 
     interface GeodeRewardsGui extends ig.BoxGui {
@@ -106,4 +118,14 @@ declare namespace sc {
     var GeodeRewardsGui: GeodeRewardsGuiConstructor
 
     var BOOSTER_GEMS: sc.Inventory.ItemID[]
+
+    interface GeodeOpeningGui extends sc.BaseMenu {
+        ninepatch: ig.NinePatch
+
+        init(this: this): void
+    }
+
+    interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {}
+
+    var GeodeOpeningGui: GeodeRewardsGuiConstructor
 }

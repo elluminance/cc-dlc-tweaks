@@ -355,12 +355,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
     modelChanged: function() {}
 })
 
-sc.MENU_SUBMENU.GEODE_OPENING = "GEODE_OPENING"
-
-sc.SUB_MENU_INFO[sc.MENU_SUBMENU.GEODE_OPENING] = {
-    Clazz: sc.GeodeOpeningGui,
-    name: "geodeOpening"
-}
+sc.modUtils.registerMenu("GEODE_OPENING", sc.GeodeOpeningGui, "geodeOpening")
 
 // inspired mostly by sc.ShopConfirmDialog
 sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({

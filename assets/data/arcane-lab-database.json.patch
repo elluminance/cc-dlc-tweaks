@@ -12,7 +12,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Iceshock"
         },
@@ -36,7 +36,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Tectonic Burst"
         },
@@ -60,7 +60,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "MAGIC MISSILE",
             "zh_CN": "\u9b54\u6cd5\u98de\u5f39",
@@ -96,7 +96,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Heat Missile",
             "de_DE": "Heat Missile",
@@ -134,7 +134,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "true",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Cold Missile",
             "de_DE": "Cold Missile",
@@ -172,7 +172,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Shock Missile",
             "de_DE": "Shock Missile",
@@ -210,7 +210,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "true",
+        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Wave Missile",
             "de_DE": "Wave Missile",

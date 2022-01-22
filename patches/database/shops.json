@@ -226,6 +226,19 @@
                         "maxOwn": 1
                     }
                 ]
+            },
+            {
+                "title": {
+                    "en_US": "Miscellaneous"
+                },
+                "content": [
+                    {
+                        "item": "el-hexacast-art-pass",
+                        "price": 1250,
+                        "maxOwn": 1,
+                        "condition": "mod.arcane-labs.active"
+                    }
+                ]
             }
         ]
     }
