@@ -283,7 +283,7 @@
                     "attack": {
                         "type": "MASSIVE",
                         "element": "COLD",
-                        "damageFactor": 3,
+                        "damageFactor": 2.5,
                         "fly": "MASSIVE",
                         "reverse": false,
                         "stunSteps": [
@@ -294,7 +294,8 @@
                         ],
                         "guardable": "",
                         "skillBonus": "MELEE_DMG",
-                        "limiter": ""
+                        "limiter": "",
+                        "poisonChance": 1
                     },
                     "offset": {
                         "x": 0,

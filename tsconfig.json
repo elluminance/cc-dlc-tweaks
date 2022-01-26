@@ -1,18 +1,18 @@
 {
     "include": [
-      "src",
-      "node_modules/ultimate-crosscode-typedefs/crosscode-ccloader-all.d.ts", 
-      "node_modules/food-api/src/headers/food-api.d.ts",
-      "node_modules/el-tweaks/src/headers/el-tweaks.d.ts"
+        "src",
+        "node_modules/ultimate-crosscode-typedefs/crosscode-ccloader-all.d.ts",
+        "node_modules/food-api/src/headers/food-api.d.ts",
+        "node_modules/el-tweaks/src/headers/el-tweaks.d.ts"
     ],
     "compilerOptions": {
-      "outDir": "dist",
-      "sourceMap": true,
-      "strict": true,
-      "module": "ESNext",
-      "target": "ES2019",
-      "allowJs": true,
-      "forceConsistentCasingInFileNames": true,
-      "incremental": true
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "module": "ESNext",
+        "target": "ES2019",
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true
     }
-  }
+}

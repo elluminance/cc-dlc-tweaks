@@ -39,7 +39,7 @@
             "en_US": "Hexacast Art Pass"
         },
         "description": {
-            "en_US": "Allows one to switch to Hexacast arts in the \\c[3]Arcane Lab\\c[0]."
+            "en_US": "Allows one to switch to \\i[class-hexacast]Hexacast arts in the \\c[3]Arcane Lab\\c[0]."
         },
         "type": "KEY",
         "rarity": 0,

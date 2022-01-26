@@ -13,6 +13,12 @@ sc.fontsystem.font.setMapping({
     "item-toggle-scale": [fontIndex, 0],
     "el-rainbow-text": [fontIndex, 1],
     "el-gem-credits": [fontIndex, 2],
+    "class-triblader": [fontIndex, 3],
+    "class-quadroguard": [fontIndex, 4],
+    "class-pentafist": [fontIndex, 5],
+    "class-hexacast": [fontIndex, 6],
+    "class-spheromancer": [fontIndex, 7],
+
     "stat-el-risktaker": [fontIndex+1, 0]
 })
 
