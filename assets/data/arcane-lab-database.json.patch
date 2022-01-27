@@ -237,5 +237,29 @@
         }
     }
 },{
+    "type": "SET_KEY",
+    "index": "elSidwellTeleportPunch",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_SIDWELL_PUNCH",
+                "actionCheckKey": "DASH_SPECIAL2"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition":  "true",
+        "name": {
+            "en_US": "Phasing Fist"
+        },
+        "description": {
+            "en_US": "Punch an enemy to into a 3-part pummeling combo."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 0
+        }
+    }
+},{
     "type": "EXIT"
 }]

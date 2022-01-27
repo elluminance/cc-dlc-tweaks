@@ -1,0 +1,403 @@
+{
+    "proxies": {},
+
+    "actions": {
+        "NEUTRAL": {
+            "EL_SIDWELL_PUNCH": {
+                "name": {
+                    "en_US": "Phasing Fist"
+                },
+                "description": {
+                    "en_US": "Punch an enemy to into a 3-part pummeling combo."
+                },
+                "dmgType": "MELEE",
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "group": "trail",
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.shady",
+                            "name": "dashTrail"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "duration": -1,
+                        "rotOffset": {
+                            "x": 0,
+                            "y": -12
+                        },
+                        "align": "BOTTOM",
+                        "rotateFace": -1,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "group": "trail",
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.shady",
+                            "name": "dashDust"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "type": "SET_RELATIVE_SPEED",
+                        "value": 3.5
+                    },
+                    {
+                        "duration": 0.2,
+                        "rotOffset": {
+                            "x": 0,
+                            "y": -8
+                        },
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.shady",
+                            "name": "punchBBig"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "wait": false,
+                        "type": "SHOW_EXTERN_ANIM",
+                        "anim": {
+                            "sheet": "player-poses",
+                            "name": "drillSide"
+                        }
+                    },
+                    {
+                        "align": "FACE",
+                        "radius": 32,
+                        "yScale": 0,
+                        "zHeight": 32,
+                        "centralAngle": 1,
+                        "duration": 0.1,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": true,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "NEUTRAL",
+                            "damageFactor": 0.5,
+                            "fly": "MASSIVE++",
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "noIronStance": true,
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.2,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "time": 0.2,
+                        "cancelOnHit": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "visualType": "HEAVY",
+                            "damageFactor": 1,
+                            "skillBonus": "MELEE_DMG",
+                            "spFactor": 0,
+                            "stunSteps": [{
+                                "type": "START_LOCK"
+                            }, {
+                                "type": "BLOCK_XY"
+                            }]
+                        }
+                    },
+                    {
+                        "kind": "FIRST_HIT",
+                        "type": "SET_TEMP_TARGET"
+                    },
+                    {
+                        "group": "trail",
+                        "type": "CLEAR_EFFECTS"
+                    },
+                    {
+                        "type": "WAIT_UNTIL",
+                        "condition": "entity.hasTmpTarget",
+                        "maxTime": 0.2
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "punches",
+                        "value": 3
+                    },
+                    {
+                        "withElse": false,
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "thenStep": [
+                            {
+                                "name": "loop",
+                                "type": "LABEL"
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "TARGET",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "lockTarget",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "actionDetached": false,
+                                "type": "REMOVE_PLAYER_CAMERA_TARGET"
+                            },
+                            {
+                                "name": "pos",
+                                "searchType": "BEHIND",
+                                "distance": 20,
+                                "centralAngle": 0.5,
+                                "throwing": true,
+                                "type": "SET_ATTRIB_CLOSE_TARGET_POS"
+                            },
+                            {
+                                "duration": 0.4,
+                                "align": "BOTTOM",
+                                "rotateFace": 6,
+                                "flipLeftFace": true,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "enemies.shady",
+                                    "name": "glitchTeleport"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "type": "WAIT",
+                                "time": 0.033
+                            },
+                            {
+                                "attrib": "pos",
+                                "type": "TELEPORT_TO_ATTRIB_POS"
+                            },
+                            {
+                                "speed": "FASTER",
+                                "actionDetached": false,
+                                "onlyAfterRemove": false,
+                                "type": "ADD_PLAYER_CAMERA_TARGET"
+                            },
+                            {
+                                "value": false,
+                                "immediately": true,
+                                "type": "FACE_TO_TARGET"
+                            },
+                            {
+                                "wait": false,
+                                "viaWalkConfig": false,
+                                "type": "SHOW_ANIMATION",
+                                "anim": "preAttack"
+                            },
+                            {
+                                "type": "WAIT",
+                                "time": 0.15
+                            },
+                            {
+                                "wait": false,
+                                "viaWalkConfig": false,
+                                "type": "SHOW_ANIMATION",
+                                "anim": "dash"
+                            },
+                            {
+                                "value": 3,
+                                "type": "SET_ACCEL_SPEED"
+                            },
+                            {
+                                "type": "SET_RELATIVE_SPEED",
+                                "value": 3.5
+                            },
+                            {
+                                "min": 0,
+                                "max": 40,
+                                "maxTime": 0.6,
+                                "forceTime": false,
+                                "rotateSpeed": 0.2,
+                                "missReactTime": 0,
+                                "collideCancel": 1,
+                                "stopBeforeEdge": false,
+                                "type": "MOVE_TO_DISTANCE"
+                            },
+                            {
+                                "type": "SET_ATTRIB_BOOL",
+                                "name": "releaseLock",
+                                "value": true
+                            },
+                            {
+                                "duration": 0.1,
+                                "rotOffset": {
+                                    "x": 0,
+                                    "y": -8
+                                },
+                                "align": "BOTTOM",
+                                "rotateFace": 6,
+                                "flipLeftFace": true,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "enemies.shady",
+                                    "name": "punchBBig"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "wait": false,
+                                "viaWalkConfig": false,
+                                "type": "SHOW_ANIMATION",
+                                "anim": "attack1"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 24,
+                                "yScale": 0,
+                                "zHeight": 32,
+                                "centralAngle": 1,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": true,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "NEUTRAL",
+                                    "damageFactor": 3.25,
+                                    "fly": "MASSIVE+",
+                                    "reverse": false,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "noIronStance": true,
+                                    "limiter": ""
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "time": 0.033,
+                                "stopBeforeEdge": false,
+                                "type": "MOVE_FORWARD"
+                            },
+                            {
+                                "type": "WAIT",
+                                "time": 0.25
+                            },
+                            {
+                                "changeType": "sub",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "punches",
+                                "value": 1
+                            },
+                            {
+                                "withElse": false,
+                                "type": "IF",
+                                "condition": "entity.attrib.punches > 0",
+                                "thenStep": [
+                                    {
+                                        "name": "loop",
+                                        "type": "GOTO_LABEL"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "WAIT",
+                        "time": 0.1
+                    },
+                    {
+                        "actionDetached": false,
+                        "type": "REMOVE_PLAYER_CAMERA_TARGET"
+                    }
+                ]
+            }
+        }
+    }
+}

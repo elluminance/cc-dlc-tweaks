@@ -1,4 +1,7 @@
 [{
     "type": "INCLUDE",
     "src": "mod:patches/skills/lea/hexacast.json"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/skills/lea/sidwell.json"
 }]
