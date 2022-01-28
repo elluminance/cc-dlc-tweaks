@@ -13,6 +13,37 @@
                 "dmgType": "MELEE",
                 "steps": [
                     {
+                        "duration": 1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "group": "trail",
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.shady",
+                            "name": "punchCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preAttack"
+                    },
+                    {
+                        "type": "WAIT",
+                        "time": 1
+                    },
+                    {
                         "type": "SET_PLAYER_ACTION_BLOCK",
                         "blockData": {
                             "dash": -1,
@@ -131,7 +162,7 @@
                             "fly": "MASSIVE++",
                             "reverse": false,
                             "guardable": "",
-                            "skillBonus": "",
+                            "skillBonus": "MELEE_DMG",
                             "noIronStance": true,
                             "limiter": ""
                         },
@@ -142,9 +173,15 @@
                         }
                     },
                     {
-                        "time": 0.2,
-                        "stopBeforeEdge": false,
-                        "type": "MOVE_FORWARD"
+                        "searchType": "IN_VIEW",
+                        "ignoreCurrentTarget": false,
+                        "prevHitBehavior": "NONE",
+                        "type": "SET_CLOSE_TEMP_TARGET"
+                    },
+                    {
+                        "type": "NAVIGATE_TO_TARGET",
+                        "maxTime": 0.2,
+                        "distance": 0
                     },
                     {
                         "time": 0.2,
@@ -346,11 +383,11 @@
                                 "attack": {
                                     "type": "HEAVY",
                                     "element": "NEUTRAL",
-                                    "damageFactor": 3.25,
+                                    "damageFactor": 3,
                                     "fly": "MASSIVE+",
                                     "reverse": false,
                                     "guardable": "",
-                                    "skillBonus": "",
+                                    "skillBonus": "MELEE_DMG",
                                     "noIronStance": true,
                                     "limiter": ""
                                 },

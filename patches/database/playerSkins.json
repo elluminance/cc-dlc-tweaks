@@ -92,7 +92,7 @@
         "autoAdd": false,
         "type": "Appearance",
         "settings": {
-            "noHide": true,
+            "noHide": false,
             "sheet": "player-skins.edgy-lea",
             "anims": {
                 "player": "player-skins.edgy-lea",
