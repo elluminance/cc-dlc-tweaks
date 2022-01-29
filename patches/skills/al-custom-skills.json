@@ -336,7 +336,7 @@
         },
         "icon": {
             "src": "media/gui/el-mod-custom-skills.png",
-            "offY": 72,
+            "offY": 48,
             "offX": 72
         }
     },
@@ -357,7 +357,7 @@
         },
         "icon": {
             "src": "media/gui/el-mod-custom-skills.png",
-            "offY": 96,
+            "offY": 72,
             "offX": 72
         }
     },
@@ -401,6 +401,70 @@
             "src": "media/gui/el-mod-custom-skills.png",
             "offY": 72,
             "offX": 0
+        }
+    },
+
+    "elLilyColdShield": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_COLD_SHIELD",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Frozen Barrier"
+        },
+        "description": {
+            "en_US": "Summon a bolt of lightning to strike a single enemy. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 48
+        }
+    },
+    "elLilyFlurry": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_FLURRY",
+                "actionCheckKey": "THROW_SPECIAL2"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Frigid Flurry"
+        },
+        "description": {
+            "en_US": "Release a blast of frozen wind. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 48
+        }
+    },
+    "elLilyBlizzard": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_BLIZZARD",
+                "actionCheckKey": "THROW_SPECIAL3"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Everlasting Blizzard"
+        },
+        "description": {
+            "en_US": "Bring forth the wrath of the true power of ice. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 48
         }
     }
 }
