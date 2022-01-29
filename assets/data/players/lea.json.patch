@@ -4,4 +4,7 @@
 },{
     "type": "INCLUDE",
     "src": "mod:patches/skills/lea/sidwell.json"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/skills/lea/lily.json"
 }]

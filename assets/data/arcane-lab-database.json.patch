@@ -172,7 +172,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Shock Missile",
             "de_DE": "Shock Missile",
@@ -210,7 +210,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition":  "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
         "name": {
             "en_US": "Wave Missile",
             "de_DE": "Wave Missile",
@@ -247,7 +247,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition":  "true",
+        "activeCondition": "true",
         "name": {
             "en_US": "Phasing Fist"
         },
@@ -257,6 +257,102 @@
         "icon": {
             "src": "media/gui/el-mod-custom-skills.png",
             "offY": 48,
+            "offX": 0
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "elLilyWaveBubble",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_BUBBLES",
+                "actionCheckKey": "THROW_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Bubble Bonanza"
+        },
+        "description": {
+            "en_US": "Barrage baddies with a big bubble bonanza. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 96
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "elLilyWaveSuction",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_SUCTION",
+                "actionCheckKey": "GUARD_SPECIAL2"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Vacuum Force"
+        },
+        "description": {
+            "en_US": "Suck in enemies to then blast them away. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 96
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "elLilyWaveTornado",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_TORNADO",
+                "actionCheckKey": "THROW_SPECIAL3"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Teal Twister"
+        },
+        "description": {
+            "en_US": "Summon a tornado to decimate your foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 96
+        }
+    }
+},{
+    "type": "SET_KEY",
+    "index": "elLilyWaveAura",
+    "content": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_WAVE_AURA",
+                "actionCheckKey": "GUARD_SPECIAL3"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "true",
+        "name": {
+            "en_US": "Wave Aura"
+        },
+        "description": {
+            "en_US": "Suck in enemies to then blast them away. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
             "offX": 0
         }
     }
