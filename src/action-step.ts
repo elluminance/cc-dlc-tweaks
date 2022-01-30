@@ -37,3 +37,25 @@ ig.ACTION_STEP.EL_SET_TARGET_POS = ig.ActionStepBase.extend({
         target.setPos(b.x - c.size.x / 2, b.y - c.size.y / 2, b.z);
     }
 })
+
+ig.ACTION_STEP.EL_ELEMENT_IF = ig.ActionStepBase.extend({
+    branches: {},
+    init() {},
+    getBranchNames() {
+        return ["neutral", "heat", "cold", "shock", "wave"]
+    },
+    getNext(entity) {
+        switch(sc.combat.getElementMode(entity)) {
+            case sc.ELEMENT.NEUTRAL:
+                return this.branches.neutral
+            case sc.ELEMENT.HEAT:
+                return this.branches.heat
+            case sc.ELEMENT.COLD:
+                return this.branches.cold
+            case sc.ELEMENT.SHOCK:
+                return this.branches.shock
+            case sc.ELEMENT.WAVE:
+                return this.branches.wave
+        }
+    }
+})

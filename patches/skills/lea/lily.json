@@ -3171,37 +3171,23 @@
                     },
                     {
                         "type": "SET_RELATIVE_SPEED",
-                        "value": 0.9
+                        "value": 0.75
                     },
                     {
-                        "type": "IF",
-                        "condition": "entity.hasTmpTarget",
-                        "withElse": true,
-                        "thenStep": [
-                            {
-                                "minTime": 1.5,
-                                "maxTime": 1.5,
-                                "keepFaceDirection": false,
-                                "towardsRotate": 0.5,
-                                "towardMinDist": 48,
-                                "stopBeforeEdge": true,
-                                "type": "CIRCLE_TARGET"
-                            }
-                        ],
-                        "elseStep": [
-                            {
-                                "dir": {
-                                    "actorAttrib": "dashDir"
-                                },
-                                "time": 1.5,
-                                "stopBeforeEdge": false,
-                                "type": "MOVE_TO_DIR"
-                            },
-                            {
-                                "time": 1.5,
-                                "type": "PLAYER_ADJUST_FACE"
-                            }
-                        ]
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 2.5,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "time": 2.5,
+                        "type": "PLAYER_ADJUST_FACE"
+                    },
+                    {
+                        "time": 2.5,
+                        "type": "WAIT"
                     },
                     {
                         "type": "STOP_REPEATING_FORCE"

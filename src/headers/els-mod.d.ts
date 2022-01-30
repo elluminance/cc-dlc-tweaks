@@ -30,34 +30,16 @@ declare namespace ig {
         interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS> { }
 
         var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
-    }
 
-    namespace EVENT_STEP {
-        namespace EventSettings {
-            interface OPEN_GEODES {
-                count?: number | "all"
-            }
+        interface EL_ELEMENT_IF extends ig.ActionStepBase {
+            branches: Record<string, ig.ActionStepBase>;
+            init(this: this): void;
+            getBranchNames(this: this): string[];
+            getNext(this: this, entity: ig.ENTITY.Combatant): ig.ActionStepBase
         }
-
-        interface OPEN_GEODES extends ig.EventStepBase {
-            count: number | "all"
-            init(this: this, settings: EventSettings.OPEN_GEODES): void
-            start(this: this): void
-        }
-
-        interface OPEN_GEODES_CONSTRUCTOR extends ImpactClass<OPEN_GEODES> {
-            new (settings: EventSettings.OPEN_GEODES): OPEN_GEODES
-        }
-
-        var OPEN_GEODES: OPEN_GEODES_CONSTRUCTOR
-
-        interface OPEN_GEODE_MENU extends ig.EventStepBase {
-            init(): void
-            start(): void
-        }
-        interface OPEN_GEODE_MENU_CONSTRUCTOR extends ImpactClass<OPEN_GEODE_MENU> {}
-
-        var OPEN_GEODE_MENU: OPEN_GEODE_MENU_CONSTRUCTOR
+        
+        interface EL_ELEMENT_IF_CONSTRUCTOR extends ImpactClass<EL_ELEMENT_IF> {}
+        var EL_ELEMENT_IF: EL_ELEMENT_IF_CONSTRUCTOR;
     }
 
     namespace Vars.KnownVars {

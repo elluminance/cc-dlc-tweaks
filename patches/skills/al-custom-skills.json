@@ -41,6 +41,7 @@
             "offX": 24
         }
     },
+
     "elHexaMagicMissile": {
         "list": [
             {
@@ -213,6 +214,45 @@
             "offX": 96
         }
     },
+
+    "elHexaBaseThrow": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_THROW_NORMAL",
+                "actionCheckKey": "THROW"
+            },
+            {
+                "replaceTo": "EL_HEXA_THROW_NORMAL",
+                "actionCheckKey": "THROW_NORMAL"
+            },
+            {
+                "replaceTo": "EL_HEXA_THROW_NORMAL",
+                "actionCheckKey": "THROW_NORMAL_REV"
+            },
+            {
+                "replaceTo": "EL_HEXA_THROW_CHARGED",
+                "actionCheckKey": "THROW_CHARGED"
+            },
+            {
+                "replaceTo": "EL_HEXA_THROW_CHARGED_REV",
+                "actionCheckKey": "THROW_CHARGED_REV"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Hexacast VRPs"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 0
+        }
+    },
+
     "elSidwellTeleportPunch": {
         "list": [
             {
@@ -234,6 +274,7 @@
             "offX": 0
         }
     },
+
     "elLilyWaveBubble": {
         "list": [
             {

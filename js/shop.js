@@ -1,8 +1,6 @@
 // i honestly couldn't be bothered to do types for all of this :leaCheese:
 
-sc.MENU_SUBMENU.EL_CRYSTAL = "CRYSTAL_SHOP"
 sc.MENU_SHOP_TYPES.CRYSTAL = "CRYSTAL"
-
 
 sc.PlayerModel.inject({
     getCrystalCoins(){
