@@ -39,30 +39,29 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
 }
 
 //#region vampirism
-const lifestealCooldown = 0.15;
-const calcHealed = (value: number) => (value / 200)
+const lifestealCooldown = 0.1;
 
 // this... is very hacky.
 // only works fully on the player.
 sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot, shieldResult, hitIgnore, params) => {
     let attackerParams = combatantRoot.params;
-    let attackDmgFactor = attackInfo.damageFactor.limit(0,4)
+    let attackDmgFactor = attackInfo.damageFactor.limit(0,8)
     let playerEntity = ig.game.playerEntity;
     
-    // if attack is shielded, reduce healing to half.
+    // if attack is shielded, reduce healing to a quarter.
     if(shieldResult == sc.SHIELD_RESULT.REGULAR){
-        attackDmgFactor *= 0.5;
+        attackDmgFactor *= 0.25;
     // if attack is perfect guarded or neutralized, reduce to 0.
-    }else if(shieldResult){
+    }else if(shieldResult == sc.SHIELD_RESULT.NEUTRALIZE || shieldResult == sc.SHIELD_RESULT.PERFECT){
         attackDmgFactor = 0;
     }
-    attackDmgFactor *= 1 + (Math.min(attackerParams.getModifier("HP_REGEN"), 2) / 2)
+    attackDmgFactor *= 1 + attackerParams.getModifier("HP_REGEN")
 
-    attackDmgFactor = 1.5 * Math.log1p(attackDmgFactor)
+    attackDmgFactor = 1.25 * Math.log1p(attackDmgFactor)
 
     let healEntity = (amount: number) => {
-        const healAmount = attackerParams.getHealAmount({value: calcHealed(amount)});
-        sc.options.get("damage-numbers") && ig.ENTITY.HitNumber.spawnHealingNumber(playerEntity.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), playerEntity, healAmount);
+        const healAmount = attackerParams.getHealAmount({value: amount / 200});
+        sc.options.get("damage-numbers") && ig.ENTITY.HitNumber.spawnHealingNumber(combatantRoot.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), playerEntity, healAmount);
         attackerParams.increaseHp(healAmount)
         
         attackerParams.el_lifestealHealed = attackDmgFactor;
@@ -84,7 +83,7 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot
             attackerParams.el_lifestealTimer = (lifestealCooldown + attackerParams.el_lifestealTimer) / 2;
         }
     }
-    
+    console.log(attackerParams.el_lifestealTimer)
     return {attackInfo, damageFactor, applyDamageCallback: null}
 }
 
@@ -94,12 +93,7 @@ sc.CombatParams.inject({
 
     update(a){
         this.parent(a)
-
-        if(this.el_lifestealTimer > 0){
-            this.el_lifestealTimer -= ig.system.ingameTick;
-        }else{
-            this.el_lifestealHealed = 0; //reset this value to 0.
-        }
+        this.el_lifestealTimer -= ig.system.ingameTick;
     }
 })
 
