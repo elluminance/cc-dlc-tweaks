@@ -41,6 +41,27 @@
             "offX": 24
         }
     },
+    "elHexaShockBoltBringer": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_SHOCK_BOLT_BRINGER",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Bolt Bringer"
+        },
+        "description": {
+            "en_US": "Summon the power of lightning to damage foes in front of you. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 72
+        }
+    },
 
     "elHexaMagicMissile": {
         "list": [

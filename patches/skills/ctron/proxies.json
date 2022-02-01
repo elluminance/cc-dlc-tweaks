@@ -824,13 +824,35 @@
         "type": "GENERIC"
     },
 
-    "lightningBolt": {
+    "el-hexaLightningBolt": {
         "copyOwnerAnims": false,
-        "breakType": "NEVER",
+        "breakType": "COMBATANT",
         "action": [
             {
-                "value": 0,
-                "type": "SET_Z_GRAVITY_FACTOR"
+                "value": 1,
+                "type": "SET_AIR_FRICTION"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "PROXY_OWNER",
+                "target2Align": "CENTER",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "specials.shock",
+                    "name": "boldConnect"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
             },
             {
                 "duration": -1,
@@ -843,8 +865,8 @@
                 "fixPos": false,
                 "type": "SHOW_EFFECT",
                 "effect": {
-                    "sheet": "enemies.raid-enemies",
-                    "name": "trapShock"
+                    "sheet": "specials.shock",
+                    "name": "boldPre"
                 },
                 "offset": {
                     "x": 0,
@@ -853,8 +875,32 @@
                 }
             },
             {
-                "time": 1,
-                "type": "WAIT"
+                "value": 400,
+                "type": "SET_SPEED"
+            },
+            {
+                "value": 300,
+                "type": "SET_SPEED"
+            },
+            {
+                "duration": 0,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "specials.shock",
+                    "name": "boldPre2"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
             },
             {
                 "type": "CLEAR_EFFECTS"
@@ -876,8 +922,8 @@
                 "fixPos": false,
                 "type": "SHOW_EFFECT",
                 "effect": {
-                    "sheet": "enemies.raid-enemies",
-                    "name": "boomShock"
+                    "sheet": "specials.shock",
+                    "name": "boldSmall"
                 },
                 "offset": {
                     "x": 0,
@@ -887,11 +933,11 @@
             },
             {
                 "align": "BOTTOM",
-                "radius": 32,
+                "radius": 24,
                 "yScale": 0,
-                "zHeight": 32,
-                "centralAngle": 1,
-                "duration": 0.2,
+                "zHeight": 0,
+                "centralAngle": 0,
+                "duration": 0.1,
                 "expandRadius": 0,
                 "alwaysFull": true,
                 "clockwise": false,
@@ -905,11 +951,12 @@
                 "attack": {
                     "type": "HEAVY",
                     "element": "SHOCK",
-                    "damageFactor": 1,
+                    "damageFactor": 2,
                     "reverse": false,
-                    "status": 2,
-                    "guardable": "NEVER",
-                    "skillBonus": "RANGED_DMG",
+                    "status": 0.5,
+                    "hints": [],
+                    "guardable": "",
+                    "skillBonus": "MELEE_DMG",
                     "limiter": ""
                 },
                 "offset": {
@@ -919,14 +966,8 @@
                 }
             },
             {
-                "time": 0.5,
+                "time": 0.4,
                 "type": "WAIT"
-            },
-            {
-                "changeType": "set",
-                "type": "CHANGE_VAR_BOOL",
-                "varName": "tmp.shockFirstTime",
-                "value": true
             }
         ],
         "invisible": false,
@@ -934,13 +975,17 @@
         "stickToSource": "NONE",
         "stickFaceAlign": false,
         "group": "",
+        "startAnim": "",
+        "label": "lightning",
         "size": {
-            "x": 24,
-            "y": 24,
-            "z": 0
+            "x": 16,
+            "y": 16,
+            "z": 32
         },
         "config": {
-            "collType": "IGNORE"
+            "collType": "NONE",
+            "floatVariance": 0,
+            "flyHeight": 1
         },
         "type": "GENERIC"
     }

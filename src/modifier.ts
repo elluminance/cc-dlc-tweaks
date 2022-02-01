@@ -83,7 +83,6 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot
             attackerParams.el_lifestealTimer = (lifestealCooldown + attackerParams.el_lifestealTimer) / 2;
         }
     }
-    console.log(attackerParams.el_lifestealTimer)
     return {attackInfo, damageFactor, applyDamageCallback: null}
 }
 
