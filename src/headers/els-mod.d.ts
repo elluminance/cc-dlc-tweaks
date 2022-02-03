@@ -42,6 +42,15 @@ declare namespace ig {
         var EL_ELEMENT_IF: EL_ELEMENT_IF_CONSTRUCTOR;
     }
 
+    namespace EVENT_STEP {
+        interface OPEN_GEODE_MENU extends ig.EventStepBase {
+            init(this: this): void;
+            start(this: this): void;
+        }
+        interface OPEN_GEODE_MENU_CONSTRUCTOR extends ImpactClass<OPEN_GEODE_MENU> {}
+        var OPEN_GEODE_MENU: OPEN_GEODE_MENU_CONSTRUCTOR;
+    }
+
     namespace Vars.KnownVars {
         interface plot {
             completedPostGame?: boolean
@@ -50,6 +59,9 @@ declare namespace ig {
 }
 
 declare namespace sc {
+    interface PlayerModel {
+        addCrystalCoins(amount: number): void
+    }
     interface CombatParams {
         el_lifestealTimer: number
         el_lifestealHealed: number
@@ -87,27 +99,91 @@ declare namespace sc {
         GEODE_OPENING  = "GEODE_OPENING"
     }
 
-    var MAP_INTERACT_ICONS: {[key: string]: sc.MapInteractIcon}
+    var MAP_INTERACT_ICONS: Record<string, sc.MapInteractIcon>;
 
-    interface GeodeRewardsGui extends ig.BoxGui {
-        init(this: this): void
+    interface GeodeRewardsGui extends Omit<sc.ModalButtonInteract, "init"> {
+        sounds: Record<string, ig.Sound>;
+        ninepatch: ig.NinePatch;
+        list: sc.ScrollPane;
+        listContent: ig.GuiElementBase;
+        listItems: GeodeOpeningGui.ItemAmounts;
+        crystals: number;
+        timer: number;
+        done: boolean;
+        currentIndex: number;
+        listEntries: [string, GeodeOpeningGui.ItemAmount][]
+        listitemYOffset: number;
+
+        init(this: this, items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): void;
+        onDialogCallback(this: this): void;
+        createList(this: this): void;
+        setListItems(this: this, items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): void;
     }
 
     interface GeodeRewardsGuiConstructor extends ImpactClass<GeodeRewardsGui> {
-        new (): sc.GeodeRewardsGui
+        new (): sc.GeodeRewardsGui;
+        new (items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): sc.GeodeRewardsGui
     }
-
     var GeodeRewardsGui: GeodeRewardsGuiConstructor
+
+    interface GeodeRewardEntry extends ig.GuiElementBase {
+        gfx: ig.Image;
+        item: sc.TextGui;
+        amount: sc.NumberGui;
+        isGems: boolean;
+        transitions: Record<string, ig.GuiHook.Transition>;
+        init(this: this, itemName: string, amount: number, isGems: boolean): void;
+        updateDrawables(this: this, b: ig.GuiRenderer): void;
+    }
+    interface GeodeRewardEntryConstructor extends ImpactClass<GeodeRewardEntry> {
+        new (itemName: string, amount: number, isGems?: boolean): sc.GeodeRewardEntry;
+    }
+    var GeodeRewardEntry: GeodeRewardEntryConstructor
 
     var BOOSTER_GEMS: sc.Inventory.ItemID[]
 
-    interface GeodeOpeningGui extends sc.BaseMenu {
-        ninepatch: ig.NinePatch
+    namespace GeodeOpeningGui {
+        interface ItemAmount {
+            amount: number;
+            isRare?: boolean;
+        }
+        type ItemAmounts = Record<sc.Inventory.ItemID, ItemAmount>
+    }
 
-        init(this: this): void
+    interface GeodeOpeningGui extends sc.BaseMenu {
+        ninepatch: ig.NinePatch;
+        textGui: sc.TextGui;
+        geodeText: sc.TextGui;
+        geodeAmount: sc.NumberGui;
+        costText: sc.TextGui;
+        costNumber: sc.NumberGui;
+        buttonInteract: ig.ButtonInteractEntry;
+        content: ig.GuiElementBase;
+        buttongroup: sc.ButtonGroup;
+        buttons: {
+            increment: sc.ButtonGui;
+            decrement: sc.ButtonGui;
+            bigIncrement: sc.ButtonGui;
+            bigDecrement: sc.ButtonGui;
+        }
+        rewardGui: sc.GeodeRewardsGui;
+        openGeodesButton: sc.ButtonGui;
+        msgBox: sc.CenterBoxGui;
+        count: number;
+        pricePerGeode: number;
+        rareRewards: sc.Inventory.ItemID[];
+        rareItemChance: number;
+
+        init(this: this): void;
+        onButtonCallback(this: this, button: sc.ButtonGui): void;
+        incrementValue(this: this, number: number): void;
+        openGeodes(this: this): void;
+        getMaxGeodes(this: this): number;
+        _updateCounters(this: this): void;
+        onBackButtonPress(this: this): void;
     }
 
     interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {}
 
-    var GeodeOpeningGui: GeodeRewardsGuiConstructor
+    var GeodeOpeningGui: GeodeOpeningGuiConstructor
 }

@@ -24,4 +24,4 @@ import "./js/shop.js"
 
 import "./dist/event-step.js"
 
-import "./js/geode.js"
+import "./dist/geode.js"
