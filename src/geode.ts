@@ -455,7 +455,8 @@ sc.GeodeRewardsGui = sc.ModalButtonInteract.extend<sc.GeodeRewardsGuiConstructor
 
     createList() {
         this.listContent.removeAllChildren();
-        //this.list.box.doScrollTransition(0, 0, 0);
+        //@ts-ignore
+        this.list.box.doScrollTransition(0, 0, 0);
         this.list.recalculateScrollBars();
 
         let guiItem = new sc.GeodeRewardEntry(`\\i[el-gem-credits]${ig.lang.get("sc.gui.shop.crystals")}`, this.crystals, true)

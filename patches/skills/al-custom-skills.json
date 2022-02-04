@@ -62,6 +62,27 @@
             "offX": 72
         }
     },
+    "elHexaWaveBlast": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_WAVE_BLAST",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wave Blast"
+        },
+        "description": {
+            "en_US": "Charge up to release a big wave explosion. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 96
+        }
+    },
 
     "elHexaMagicMissile": {
         "list": [

@@ -3446,6 +3446,246 @@
                         "type": "WAIT"
                     }
                 ]
+            },
+
+            "EL_HEXA_WAVE_BLAST": {
+                "name": {
+                    "en_US": "Wave Blast"
+                },
+                "description": {
+                    "en_US": "Charge up to release a big wave explosion."
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": true,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "followUp": "specialLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "special"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 300,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.05,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.wave",
+                            "name": "elWaveCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": true,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.wave",
+                            "name": "elWaveSingleBoom"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "FACE",
+                        "radius": 40,
+                        "yScale": 0,
+                        "zHeight": 16,
+                        "centralAngle": 1,
+                        "duration": 0.1,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": true,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "WAVE",
+                            "damageFactor": 3,
+                            "fly": "MASSIVE++",
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 0.3,
+                            "hints": [
+                                "NO_PUZZLE"
+                            ],
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "FACE",
+                        "radius": 55,
+                        "yScale": 0,
+                        "zHeight": 16,
+                        "centralAngle": 1,
+                        "duration": 0.1,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": true,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "WAVE",
+                            "damageFactor": 2,
+                            "fly": "MASSIVE+",
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 0.2,
+                            "hints": [
+                                "NO_PUZZLE"
+                            ],
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "FACE",
+                        "radius": 70,
+                        "yScale": 0,
+                        "zHeight": 16,
+                        "centralAngle": 1,
+                        "duration": 0.1,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": true,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "WAVE",
+                            "damageFactor": 2,
+                            "fly": "MASSIVE",
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 0.2,
+                            "hints": [
+                                "NO_PUZZLE"
+                            ],
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "charge",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "startCharge"
+                    },
+                    {
+                        "time": 0.5,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0,
+                            "move": 0,
+                            "reaim": 0
+                        }
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preIdle"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
             }
         }
     }
