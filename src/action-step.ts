@@ -59,3 +59,17 @@ ig.ACTION_STEP.EL_ELEMENT_IF = ig.ActionStepBase.extend({
         }
     }
 })
+
+ig.ACTION_STEP.GOTO_LABEL_WHILE = ig.ActionStepBase.extend({
+    name: "",
+    condition: null,
+
+    init(settings) {
+        this.name = settings.name;
+        this.condition = new ig.VarCondition(settings.condition);
+    },
+
+    getJumpLabelName() {
+        return this.condition.evaluate() ? this.name : null;
+    }
+})

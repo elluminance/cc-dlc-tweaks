@@ -33,7 +33,7 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
     // apply increased damage on the offense.
     damageFactor *= 1 + attackInfo.attackerParams.getModifier("EL_RISKTAKER")
     // doubles incoming risktaker damage
-    damageFactor *= 1 + (params.getModifier("EL_RISKTAKER") * 2)
+    damageFactor *= 1 + Math.max((params.getModifier("EL_RISKTAKER") * 2), 0.5)
     
     return {attackInfo, damageFactor, applyDamageCallback: null}
 }

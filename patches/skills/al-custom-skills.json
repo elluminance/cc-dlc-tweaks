@@ -20,6 +20,27 @@
             "offX": 48
         }
     },
+    "elHexaSnowgrave": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_SNOWGRAVE",
+                "actionCheckKey": "ATTACK_SPECIAL3"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && false",
+        "name": {
+            "en_US": "\\c[1]NOT IMPLEMENTED\\c[0]"
+        },
+        "description": {
+            "en_US": "\\c[1]Fatal.\\c[0] (\\c[1]NOT IMPLEMENTED\\c[0]) \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 48
+        }
+    },
     "elHexaTectonicBurst": {
         "list": [
             {

@@ -6,4 +6,27 @@
     "src": "mod:patches/skills/al-custom-skills.json"
 },{
     "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": ["modifierCards", "positive"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "modifier": "EL_LIFESTEAL",
+        "noPercent": true,
+        "required": 7
+    }
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "both"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "modifier": "EL_RISKTAKER",
+        "amount": 0.02
+    }
 }]

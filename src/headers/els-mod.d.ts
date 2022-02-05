@@ -10,6 +10,11 @@ declare namespace ig {
                 random: boolean
                 randRange: Vec2
             }
+
+            interface GOTO_LABEL_WHILE {
+                name: string;
+                condition: string;
+            }
         }
         interface EL_SET_TARGET extends ig.ActionStepBase {
             name: string;
@@ -40,6 +45,16 @@ declare namespace ig {
         
         interface EL_ELEMENT_IF_CONSTRUCTOR extends ImpactClass<EL_ELEMENT_IF> {}
         var EL_ELEMENT_IF: EL_ELEMENT_IF_CONSTRUCTOR;
+
+        interface GOTO_LABEL_WHILE extends ig.ActionStepBase {
+            name: string;
+            condition: ig.VarCondition;
+
+            init(this: this, settings: ActionSettings.GOTO_LABEL_WHILE): void;
+            getJumpLabelName(this: this): string | null;
+        }
+        interface GOTO_LABEL_WHILE_CONSTRUCTOR extends ImpactClass<GOTO_LABEL_WHILE> {}
+        var GOTO_LABEL_WHILE: GOTO_LABEL_WHILE_CONSTRUCTOR
     }
 
     namespace EVENT_STEP {
