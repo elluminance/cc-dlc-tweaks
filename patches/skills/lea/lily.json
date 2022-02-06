@@ -3366,6 +3366,12 @@
                         }
                     },
                     {
+                        "searchType": "IN_VIEW",
+                        "ignoreCurrentTarget": false,
+                        "prevHitBehavior": "NONE",
+                        "type": "SET_CLOSE_TEMP_TARGET"
+                    },
+                    {
                         "min": 0,
                         "max": 16,
                         "maxTime": 1.7,
@@ -3454,6 +3460,12 @@
                         "forceTime": true,
                         "stopBeforeEdge": false,
                         "type": "MOVE_TO_DISTANCE"
+                    },
+                    {
+                        "searchType": "IN_VIEW",
+                        "ignoreCurrentTarget": false,
+                        "prevHitBehavior": "NONE",
+                        "type": "SET_CLOSE_TEMP_TARGET"
                     },
                     {
                         "duration": 0,
@@ -3546,6 +3558,12 @@
                             "y": 0,
                             "z": 0
                         }
+                    },
+                    {
+                        "searchType": "IN_VIEW",
+                        "ignoreCurrentTarget": false,
+                        "prevHitBehavior": "NONE",
+                        "type": "SET_CLOSE_TEMP_TARGET"
                     },
                     {
                         "min": 0,

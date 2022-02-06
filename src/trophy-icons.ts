@@ -121,5 +121,13 @@ sc.TROPHY_ICONS.FACILITY_X_KEY = {
     customIndex: 15
 }
 
+sc.TROPHY_ICONS.BOSS_LILY = {
+    index: -1,
+    cat: "GENERAL",
+    hidden: false,
+    sheet: "dlc-tweaks",
+    customIndex: 16,
+}
+
 
 sc.CUSTOM_TROPHY_SHEETS["dlc-tweaks"] = new ig.Image("media/gui/dlctweaks-trophies.png");

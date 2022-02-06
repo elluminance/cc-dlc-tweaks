@@ -552,5 +552,30 @@
             "value": "1",
             "compare": "min"
         }]
+    },
+
+    "el-kill-lily": {
+        "track": true,
+        "name": {
+            "en_US": "Flower Power"
+        },
+        "nameCond": "quest.seizui-quest.solved",
+        "description": {
+            "en_US": "Defeat Lily in a duel at \\c[3]Rhombus Square's Arena\\c[0]."
+        },
+        "descCond": "quest.seizui-quest.solved",
+        "order": 2050,
+        "icon": "BOSS_LILY",
+        "stars": "3",
+        "points": 50,
+        "progType": "ENEMY",
+        "section": "ENEMIES",
+        "category": "COMBAT",
+        "stats": [{
+            "key": "combat",
+            "mapKey": "killavatar.lily",
+            "value": "1",
+            "compare": "min"
+        }]
     }
 }
