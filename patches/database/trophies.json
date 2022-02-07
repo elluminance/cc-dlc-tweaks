@@ -731,20 +731,20 @@
         },
         "nameCond": "stat.arena.medals-got-4 >= 1",
         "description": {
-            "en_US": "Attain at least \\c[3]3\\c[0] True Platinum trophies in the Arena through Rush Mode."
+            "en_US": "Attain at least \\c[3]5 True Platinum trophies\\c[0] in the Arena through \\c[3]Rush Mode\\c[0]."
         },
         "descCond": "stat.arena.medals-got-4 >= 1",
-        "order": 2050,
+        "order": 70,
         "icon": "ARENA_TRUE_PLATINUM",
         "stars": "5",
-        "points": 300,
+        "points": 500,
         "progType": "VALUE",
         "section": "SPECIAL",
         "category": "GENERAL",
         "stats": [{
             "key": "varValue",
             "mapKey": "arena.totalTruePlatsNoIncludeNoRush",
-            "value": "3",
+            "value": "5",
             "compare": "min"
         }]
     }
