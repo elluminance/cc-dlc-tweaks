@@ -74,6 +74,14 @@ declare namespace ig {
 }
 
 declare namespace sc {
+    namespace Modifiers {
+        interface KnownModifers {
+            RISKTAKER: true;
+            LIFESTEAL: true;
+            EL_GEODE_FINDER: true;
+        }
+    }
+
     interface PlayerModel {
         addCrystalCoins(amount: number): void
     }
@@ -200,5 +208,5 @@ declare namespace sc {
 
     interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {}
 
-    var GeodeOpeningGui: GeodeOpeningGuiConstructor
+    var GeodeOpeningGui: GeodeOpeningGuiConstructor;
 }

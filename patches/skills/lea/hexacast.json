@@ -181,63 +181,6 @@
                     "type": "SET_SPEED"
                 },
                 {
-                    "align": "FACE",
-                    "radius": 40,
-                    "yScale": 0,
-                    "zHeight": 16,
-                    "centralAngle": 1,
-                    "duration": 0.1,
-                    "expandRadius": 0,
-                    "alwaysFull": true,
-                    "clockwise": false,
-                    "flipLeftFace": 0,
-                    "rectangular": false,
-                    "repeat": false,
-                    "uniformHitDir": true,
-                    "fixPos": false,
-                    "checkCollision": true,
-                    "type": "CIRCLE_ATTACK",
-                    "attack": {
-                        "type": "MASSIVE",
-                        "element": "COLD",
-                        "damageFactor": 0,
-                        "fly": "MASSIVE",
-                        "reverse": false,
-                        "stunSteps": [
-                            {
-                                "type": "BLOCK_XY"
-                            },
-                            {
-                                "type": "START_LOCK"
-                            },
-                            {
-                                "distance": 16,
-                                "speed": 200,
-                                "maxTime": 0,
-                                "type": "PULL"
-                            },
-                            {
-                                "accel": 1,
-                                "offZ": 8,
-                                "maxTime": 0,
-                                "type": "Z_PULL"
-                            }
-                        ],
-                        "status": 0,
-                        "hints": [
-                            "NO_PUZZLE"
-                        ],
-                        "guardable": "",
-                        "skillBonus": "MELEE_DMG",
-                        "limiter": ""
-                    },
-                    "offset": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                    }
-                },
-                {
                     "duration": 0,
                     "align": "BOTTOM",
                     "rotateFace": 0,
@@ -272,7 +215,7 @@
                     "attack": {
                         "type": "MASSIVE",
                         "element": "COLD",
-                        "damageFactor": 2.5,
+                        "damageFactor": 4.5,
                         "fly": "MASSIVE",
                         "reverse": false,
                         "stunSteps": [],
@@ -2523,6 +2466,1028 @@
                     },
                     {
                         "time": 0.4,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+
+            "EL_HEXA_ATTACK": {
+                "steps": [
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    }
+                ]
+            },
+            "EL_HEXA_ATTACK_REV": {
+                "steps": [
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    }
+                ]
+            },
+            "EL_HEXA_ATTACK_FINISHER": {
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": 0.8,
+                            "reaim": 0.9
+                        }
+                    },
+                    {
+                        "followUp": "specialLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "specialShoot"
+                    },
+                    {
+                        "duration": 0.5,
+                        "align": "FACE",
+                        "rotateFace": 8,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "shootCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": false,
+                        "immediately": true,
+                        "type": "FACE_TO_TARGET"
+                    },
+                    {
+                        "time": 0.05,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "type": "EL_ELEMENT_IF",
+                        "neutral": [
+                            {
+                                "duration": 0,
+                                "align": "FACE",
+                                "rotateFace": 8,
+                                "flipLeftFace": false,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "combat.hexacast",
+                                    "name": "meleeNeutral"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "NEUTRAL",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "NEUTRAL",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "NEUTRAL",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 48,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "NEUTRAL",
+                                    "damageFactor": 1.5,
+                                    "fly": "MASSIVE",
+                                    "spFactor": 1,
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "duration": 0,
+                                "align": "FACE",
+                                "rotateFace": 8,
+                                "flipLeftFace": false,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "combat.hexacast",
+                                    "name": "meleeHeat"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "HEAT",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "HEAT",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "HEAT",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 48,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "HEAT",
+                                    "damageFactor": 1.5,
+                                    "fly": "MASSIVE",
+                                    "spFactor": 1,
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            }
+                        ],
+                        "cold": [
+                            {
+                                "duration": 0,
+                                "align": "FACE",
+                                "rotateFace": 8,
+                                "flipLeftFace": false,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "combat.hexacast",
+                                    "name": "meleeCold"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "COLD",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "COLD",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "COLD",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 48,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "COLD",
+                                    "damageFactor": 1.5,
+                                    "fly": "MASSIVE",
+                                    "spFactor": 1,
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            }
+                        ],
+                        "shock": [
+                            {
+                                "duration": 0,
+                                "align": "FACE",
+                                "rotateFace": 8,
+                                "flipLeftFace": false,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "combat.hexacast",
+                                    "name": "meleeShock"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "SHOCK",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "SHOCK",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "SHOCK",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 48,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "SHOCK",
+                                    "damageFactor": 1.5,
+                                    "fly": "MASSIVE",
+                                    "spFactor": 1,
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            }
+                        ],
+                        "wave": [
+                            {
+                                "duration": 0,
+                                "align": "FACE",
+                                "rotateFace": 8,
+                                "flipLeftFace": false,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "combat.hexacast",
+                                    "name": "meleeWave"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "WAVE",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "WAVE",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 32,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "WAVE",
+                                    "damageFactor": 1,
+                                    "spFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "time": 0.05,
+                                "type": "WAIT"
+                            },
+                            {
+                                "align": "FACE",
+                                "radius": 48,
+                                "yScale": 0,
+                                "zHeight": 0,
+                                "centralAngle": 0.5,
+                                "duration": 0.1,
+                                "expandRadius": 0,
+                                "alwaysFull": true,
+                                "clockwise": false,
+                                "flipLeftFace": 0,
+                                "rectangular": false,
+                                "repeat": false,
+                                "uniformHitDir": false,
+                                "fixPos": false,
+                                "checkCollision": false,
+                                "type": "CIRCLE_ATTACK",
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "WAVE",
+                                    "damageFactor": 1.5,
+                                    "fly": "MASSIVE",
+                                    "spFactor": 1,
+                                    "guardable": "",
+                                    "skillBonus": ""
+                                },
+                                "skillBonus": "MELEE_DMG",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": -12
+                                }
+                            }
+                        ]
+                    },
+                    
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "specialPost"
+                    },
+                    {
+                        "value": 220,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "jumpHeight": "M",
+                        "wait": false,
+                        "ignoreSounds": true,
+                        "type": "JUMP"
+                    },
+                    {
+                        "time": 0.2,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_BACKWARD"
+                    },
+                    {
+                        "time": 0.05,
                         "type": "WAIT"
                     }
                 ]

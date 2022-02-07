@@ -105,7 +105,7 @@
         },
         "nameCond": "trophies.triggered.el-story-14",
         "description": {
-            "en_US": "Completed Chapter 14.\nThe end has finally come.",
+            "en_US": "Completed Chapter 14. The end has finally come.",
             "de_DE": "Kapitel 14 abgeschlossen.",
             "zh_CN": "\u5df2\u5b8c\u6210\u7b2c14\u7ae0\u3002",
             "ja_JP": "\u30c1\u30e3\u30d7\u30bf\u30fc14\u3092\u30af\u30ea\u30a2\u3059\u308b\u3002",
@@ -575,6 +575,176 @@
             "key": "combat",
             "mapKey": "killavatar.lily",
             "value": "1",
+            "compare": "min"
+        }]
+    },
+
+    "el-pet-collector": {
+        "track": true,
+        "name": {
+            "en_US": "Ultimate Zookeeper"
+        },
+        "description": {
+            "en_US": "Obtain all 21 pets."
+        },
+        "order": 1199,
+        "icon": "EL_ALL_PETS",
+        "stars": "5",
+        "points": 250,
+        "progType": "VALUE",
+        "section": "ITEMS",
+        "category": "GENERAL",
+        "stats": [
+            {
+                "key": "items",
+                "mapKey": 527,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 528,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 529,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 534,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 537,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 538,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 539,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 549,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 546,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 547,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 548,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 552,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 556,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 553,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 554,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 555,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 557,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 558,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 559,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 521,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 628,
+                "value": 1,
+                "compare": "min"
+            }
+        ]
+    },
+
+    "el-arena-true-plat": {
+        "track": true,
+        "name": {
+            "en_US": "Platinum Worthy"
+        },
+        "nameCond": "stat.arena.medals-got-4 >= 1",
+        "description": {
+            "en_US": "Attain at least \\c[3]3\\c[0] True Platinum trophies in the Arena through Rush Mode."
+        },
+        "descCond": "stat.arena.medals-got-4 >= 1",
+        "order": 2050,
+        "icon": "ARENA_TRUE_PLATINUM",
+        "stars": "5",
+        "points": 300,
+        "progType": "VALUE",
+        "section": "SPECIAL",
+        "category": "GENERAL",
+        "stats": [{
+            "key": "varValue",
+            "mapKey": "arena.totalTruePlatsNoIncludeNoRush",
+            "value": "3",
             "compare": "min"
         }]
     }

@@ -129,5 +129,20 @@ sc.TROPHY_ICONS.BOSS_LILY = {
     customIndex: 16,
 }
 
+sc.TROPHY_ICONS.EL_ALL_PETS = {
+    index: -1,
+    cat: "GENERAL",
+    hidden: false,
+    sheet: "dlc-tweaks",
+    customIndex: 17,
+}
+
+sc.TROPHY_ICONS.ARENA_TRUE_PLATINUM = {
+    index: -1,
+    cat: "GENERAL",
+    hidden: false,
+    sheet: "dlc-tweaks",
+    customIndex: 18,
+}
 
 sc.CUSTOM_TROPHY_SHEETS["dlc-tweaks"] = new ig.Image("media/gui/dlctweaks-trophies.png");

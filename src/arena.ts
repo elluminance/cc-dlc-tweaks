@@ -50,6 +50,22 @@ sc.Arena.inject({
             }
         } else this.parent(a, b, c, d, e)
     },
+
+    onVarAccess(varString, varParts) {
+        if(varParts[0] == "arena") {
+            switch(varParts[1]) {
+                case "totalTruePlatsNoIncludeNoRush":
+                    let num = 0;
+                    this.trackedCups.forEach(key => {
+                        if(this.getCupCoreAttrib(key, "noRush")
+                          && (this.getCupRounds(key).length < 2)) return;
+                        else if(this.getCupTrophy(key) === 5) num++;
+                    });
+                    return num;
+            }
+        }
+        return this.parent(varString, varParts)
+    }
 })
 
 sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
