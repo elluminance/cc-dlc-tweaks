@@ -1,11 +1,12 @@
 // i honestly couldn't be bothered to do types for all of this :leaCheese:
 
+//@ts-ignore
 sc.MENU_SHOP_TYPES.CRYSTAL = "CRYSTAL"
 
 sc.PlayerModel.inject({
     getCrystalCoins(){
-        let value;
-        if(!(value = ig.vars.get("dlctweaks.crystals"))) 
+        let value: number;
+        if(!(value = ig.vars.get("dlctweaks.crystals") ?? 0)) 
             ig.vars.set("dlctweaks.crystals", (value = 0))
         return value
     },
@@ -121,7 +122,7 @@ sc.ShopCart.inject({
         if(sc.menu.shopGemCoinMode){
             var a = b || 0;
             if (b == undefined) {
-                for (var b = sc.menu.shopCart, d = b.length; d--;) a = a + b[d].price * b[d].amount;
+                for (let cart = sc.menu.shopCart, d = cart.length; d--;) a = a + cart[d].price * cart[d].amount;
                 this.value.setNumber(-a)
             }
             b = 0;
@@ -135,7 +136,7 @@ sc.ShopCart.inject({
                 this.value.setNumber(-a)
             }
             this.rest.setNumber(b);
-            this.value.number.showPlus = sc.menu.shopSellMode && a;
+            this.value.number.showPlus = sc.menu.shopSellMode && !!a;
             if (b < 0) {
                 this.rest.number.setColor(sc.GUI_NUMBER_COLOR.RED);
                 this.checkout.setActive(false)
@@ -167,84 +168,96 @@ const otherGems = [
 ]
 
 sc.ShopListMenu.inject({
-    createBuyList(b, a, d, c) {
+    createBuyList(b, a, d, sortType) {
         if(sc.menu.shopGemCoinMode){
             b = b || false;
             a = a || false;
             d = d || false;
-            this._prevSortType = c = c || sc.SORT_TYPE.ORDER;
+            this._prevSortType = sortType = sortType || sc.SORT_TYPE.ORDER;
             this.buttongroup.clear();
             this.list.clear(b);
-            var e = null;
+            let buyItems: sc.ShopModel.ShopItem[] = [],
+                sellItems: sc.Inventory.ItemID[] = [];
             if (sc.menu.shopSellMode) {
-                e = [];
+                sellItems = [];
                 [...sc.BOOSTER_GEMS, ...otherGems].forEach(element => {
-                    if(sc.model.player.getItemAmount(element) >= 1) e.push(element)
+                    if(sc.model.player.getItemAmount(element) >= 1) sellItems.push(element)
                 })
             } else {
-                e = ig.database.get("shops")[sc.menu.shopID].pages;
-                e = ig.copy(e[sc.menu.shopPage].content);
-                sc.ShopHelper.sortList(e, c)
+                buyItems = ig.copy(ig.database.get("shops")[sc.menu.shopID].pages[sc.menu.shopPage].content);
+                sc.ShopHelper.sortList(buyItems, sortType)
             }
-            sc.menu.shopSellMode ? this.scrapSellList(e) : this.scrapBuyList(e);
+            sc.menu.shopSellMode ? this.scrapSellList(sellItems) : this.scrapBuyList(buyItems);
             if (b) {
                 a ? this.buttongroup.setCurrentFocus(0, 0) : this.buttongroup.focusCurrentButton(0, 0, false, d);
                 this.list.list.scrollToY(0, true)
             }
             this.getRepeaterValue()
-        } else this.parent(b, a, d, c)
+        } else this.parent(b, a, d, sortType)
     },
 
     scrapBuyList(b) {
         if(sc.menu.shopGemCoinMode) {
-            let maxVal;
-            for (var a = null, item = null, c = 0, e = 0, itemID = 0, g = 0, i = sc.model.player.getCrystalCoins() - sc.menu.getTotalCost(), j = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99, k = 0; k < b.length; k++)
+            let maxVal: number,
+                itemID: sc.Inventory.ItemID,
+                itemAmount: number,
+                item: sc.Inventory.Item,
+                maxOwn = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99,
+                itemEquipLevel: number,
+                moneyLeft = sc.model.player.getCrystalCoins() - sc.menu.getTotalCost(),
+                itemCost: number,
+                itemQuantity: number,
+                itemName: string,
+                itemDesc: string,
+                button: sc.ShopItemButton;
+            
+            for (var c = 0, k = 0; k < b.length; k++)
                 if (!b[k].condition || (new ig.VarCondition(b[k].condition)).evaluate()) {
                     itemID = b[k].item;
-                    item = sc.inventory.getItem(itemID);
-                    c = sc.model.player.getItemAmountWithEquip(itemID);
-                    a = 0;
-                    item.type == sc.ITEMS_TYPES.EQUIP && (a = item.level || 1);
+                    item = sc.inventory.getItem(itemID)!;
+                    itemAmount = sc.model.player.getItemAmountWithEquip(itemID);
+                    console.log({itemID, item, itemAmount});
+                    itemEquipLevel = 0;
+                    item.type == sc.ITEMS_TYPES.EQUIP && (itemEquipLevel = item.level || 1);
 
-                    var e = b[k].price || item.cost,
-                        g = sc.menu.getItemQuantity(itemID, e),
-                        l = new ig.LangLabel(item.name),
-                        l = "\\i[" + (item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default") + "]" + ig.LangLabel.getText(item.name),
-                        item = ig.LangLabel.getText(item.description),
-                        a = new sc.ShopItemButton(l, itemID, item, c, e, a);
-                    g > 0 && a.setCountNumber(g, true);
+                    itemCost = b[k].price || item.cost;
+                    itemQuantity = sc.menu.getItemQuantity(itemID, itemCost);
+                    itemName = "\\i[" + (item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default") + "]" + ig.LangLabel.getText(item.name);
+                    itemDesc = ig.LangLabel.getText(item.description);
+                    button = new sc.ShopItemButton(itemName, itemID, itemDesc, itemAmount, itemCost, itemEquipLevel);
+                    itemQuantity >= 0 && button.setCountNumber(itemQuantity, true);
                     if((b[k].maxOwn || ig.database.get("shops")[sc.menu.shopID].maxOwn) != undefined){
-                        c = sc.stats.getMap("items", itemID)
-                        maxVal = a.data.maxOwn = b[k].maxOwn;
+                        c = sc.stats.getMap("items", itemID.toString())
+                        maxVal = button.data.maxOwn = b[k].maxOwn!;
                     } else maxVal = 99;
-                    (i < e && !sc.menu.getItemQuantity(itemID, e) || c >= Math.min(maxVal, j)) && a.setActive(false);
-                    this.list.addButton(a)
+                    (moneyLeft < itemCost && !sc.menu.getItemQuantity(itemID, itemCost) || c >= Math.min(maxVal, maxOwn)) && button.setActive(false);
+                    this.list.addButton(button)
                 }
         } else this.parent(b)
     },
 
     updateListEntries(b) {
         if(sc.menu.shopGemCoinMode) {
-            for (var player = sc.model.player, 
-                d = sc.model.player.getCrystalCoins(), 
-                c = sc.menu.getTotalCost(), 
-                d = d - c, c = this.list.getChildren(),
+            let player = sc.model.player,
+                coins = sc.model.player.getCrystalCoins() - sc.menu.getTotalCost();
+            for (let c = this.list.getChildren(),
                 e = c.length, maxOwn = ig.database.get("shops")[sc.menu.shopID].maxOwn || 99; 
                 e--;
             ) {
+                //@ts-ignore
                 var g = c[e].gui;
                 if (!sc.menu.shopSellMode) {
                     var h = sc.menu.getItemQuantity(g.data.id, g.price);
                     ((player.getItemAmountWithEquip(g.data.id)) >= (g.data.maxOwn || maxOwn))
                         ? g.setActive(false) 
-                        : !h && g.price > d 
+                        : !h && g.price > coins 
                             ? g.setActive(false) 
                             : g.setActive(true)
                 }
                 if (b) {
                     g.setCountNumber(0, true);
-                    g.owned.setNumber(sc.menu.shopSellMode ? player.getItemAmount(g.data.id) : player.getItemAmountWithEquip(g.data.id))
                 }
+                g.owned.setNumber(sc.menu.shopSellMode ? player.getItemAmount(g.data.id) : player.getItemAmountWithEquip(g.data.id))
             }
         } else this.parent(b)
     },
@@ -264,6 +277,7 @@ sc.ShopListMenu.inject({
                     sc.menu.updateCart(c, itemsInCart + changeValue, e);
                     a.setCountNumber(itemsInCart + changeValue, itemsInCart == 0);
                     this.updateListEntries()
+                    
                 }
             }
         }else this.parent(changeValue)
@@ -290,6 +304,7 @@ sc.ShopItemButton.inject({
         if(sc.menu.shopGemCoinMode && sc.menu.shopSellMode) {
             cost = Math.max((cost / 10).floor(), 0)
         }
+        console.log(itemAmount);
         this.parent(itemName, itemID, itemDescription, itemAmount, cost, itemEquipLevel)
     }
 })

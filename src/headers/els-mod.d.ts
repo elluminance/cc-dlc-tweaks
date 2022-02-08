@@ -66,11 +66,17 @@ declare namespace ig {
         var OPEN_GEODE_MENU: OPEN_GEODE_MENU_CONSTRUCTOR;
     }
 
-    namespace Vars.KnownVars {
-        interface plot {
-            completedPostGame?: boolean
+    namespace Vars {
+        namespace KnownVars {
+            interface plot {
+                completedPostGame?: boolean
+            }
+        }
+        interface KnownVarStrings {
+            "dlctweaks.crystals": number;
         }
     }
+    
 }
 
 declare namespace sc {
@@ -83,7 +89,9 @@ declare namespace sc {
     }
 
     interface PlayerModel {
-        addCrystalCoins(amount: number): void
+        getCrystalCoins(): number;
+        addCrystalCoins(amount: number): void;
+        setCrystalCoins(amount: number): void;
     }
     interface CombatParams {
         el_lifestealTimer: number
@@ -114,6 +122,10 @@ declare namespace sc {
         CRYSTAL = "CRYSTALS"
     }
 
+    interface ShopConfirmEntry {
+        gemGfx: ig.Image;
+    }
+
     enum NPC_EVENT_TYPE {
         GEODE = "GEODE"
     }
@@ -124,6 +136,28 @@ declare namespace sc {
 
     var MAP_INTERACT_ICONS: Record<string, sc.MapInteractIcon>;
 
+    interface ShopCartEntry {
+        gemGfx: ig.Image;
+    }
+
+    namespace ShopModel {
+        interface ShopItem {
+            maxOwn?: number;
+        }
+    }
+
+    namespace ShopItemButton {
+        interface Data extends sc.ListBoxButton.Data {
+            maxOwn: number;
+        }
+    }
+
+    interface ShopItemButton {
+        data: sc.ShopItemButton.Data;
+        maxOwn: number;
+    }
+
+    //#region Geode
     interface GeodeRewardsGui extends Omit<sc.ModalButtonInteract, "init"> {
         sounds: Record<string, ig.Sound>;
         ninepatch: ig.NinePatch;
@@ -209,4 +243,5 @@ declare namespace sc {
     interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {}
 
     var GeodeOpeningGui: GeodeOpeningGuiConstructor;
+    //#endregion Geode
 }

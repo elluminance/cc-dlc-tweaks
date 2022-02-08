@@ -20,7 +20,7 @@ import "./dist/toggle-sets.js"
 
 import "./dist/trades.js"
 
-import "./js/shop.js"
+import "./dist/shop.js"
 
 import "./dist/event-step.js"
 
