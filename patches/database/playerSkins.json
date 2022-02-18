@@ -11,6 +11,20 @@
             }
         }
     },
+
+    "el-shokat": {
+        "id": "el-shokat",
+        "item": "el-pet-shokat",
+        "autoAdd": false,
+        "type": "Pet",
+        "settings": {
+            "animSheet": "pets.shokat",
+            "walkAnims": {
+                "idle": "idle",
+                "move": "move"
+            }
+        }
+    },
     
     "el-rainbow-aura": {
         "item": "el-effect-rainbow",

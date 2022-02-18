@@ -348,7 +348,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
 sc.modUtils.registerMenu("GEODE_OPENING", sc.GeodeOpeningGui, "geodeOpening")
 
 // inspired mostly by sc.ShopConfirmDialog
-sc.GeodeRewardsGui = sc.ModalButtonInteract.extend<sc.GeodeRewardsGuiConstructor>({
+sc.GeodeRewardsGui = sc.ModalButtonInteract.extend({
     transitions: {
         DEFAULT: {
             state: {

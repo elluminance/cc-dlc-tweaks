@@ -51,5 +51,25 @@
             "sheet": "",
             "name": null
         }
+    },
+    {
+        "order": 20,
+        "customItem": "el-pet-shokat",
+        "name": {
+            "en_US": "Shokat"
+        },
+        "description": {
+            "en_US": "A shockingly adorable little kitty who decided to follow you around."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
     }
 ]
