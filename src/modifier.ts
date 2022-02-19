@@ -26,6 +26,15 @@ Object.assign(sc.MODIFIERS, {
         order: 0,
         noPercent: false
     },
+
+    EL_TRANCE: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 36,
+        offY: 0,
+        icon: -1,
+        order: 0,
+        noPercent: true
+    }
 })
 //#endregion icons
 
@@ -100,6 +109,15 @@ ig.ENTITY.Player.inject({
     updateModelStats(a){
         this.parent(a)
         if(this.params.getModifier("EL_LIFESTEAL")) this.regenFactor = 0;
+        if(this.params.getModifier("EL_TRANCE")) this.regenFactor = 0;
+    },
+
+    update() {
+        this.parent();
+        if(this.params.getModifier("EL_TRANCE") && sc.combat.isInCombat(this) && this.params.getHpFactor() > 0.33) {
+            this.params.currentHp -= 1;
+            sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.HP_CHANGED, true);
+        }
     }
 })
 //#endregion vampirism
