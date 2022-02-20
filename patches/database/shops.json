@@ -233,6 +233,18 @@
                 },
                 "content": [
                     {
+                        "item": "el-neutral-art-pass",
+                        "price": 1250,
+                        "maxOwn": 1,
+                        "condition": "mod.arcane-labs.active"
+                    },
+                    {
+                        "item": "el-triblader-art-pass",
+                        "price": 1250,
+                        "maxOwn": 1,
+                        "condition": "mod.arcane-labs.active"
+                    },
+                    {
                         "item": "el-hexacast-art-pass",
                         "price": 1250,
                         "maxOwn": 1,

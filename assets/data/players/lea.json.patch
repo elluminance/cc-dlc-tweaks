@@ -3,6 +3,15 @@
     "src": "mod:patches/skills/lea/hexacast.json"
 },{
     "type": "INCLUDE",
+    "src": "mod:patches/skills/lea/triblader.json"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/skills/lea/quadroguard.json"
+},{
+    "type": "INCLUDE",
+    "src": "mod:patches/skills/lea/pentafist.json"
+},{
+    "type": "INCLUDE",
     "src": "mod:patches/skills/lea/sidwell.json"
 },{
     "type": "INCLUDE",

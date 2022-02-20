@@ -1,0 +1,901 @@
+{
+    "proxies": {
+        "el-triDefaultNeutral": {
+            "effects": "ball",
+            "speed": 550,
+            "maxBounce": 0,
+            "timer": 1,
+            "trail": false,
+            "multiHit": false,
+            "noLightGlow": false,
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 0,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    1
+                ]
+            },
+            "attack": {
+                "type": "LIGHT",
+                "element": "NEUTRAL",
+                "damageFactor": 0.6,
+                "reverse": false,
+                "spFactor": 1,
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": [],
+            "type": "BALL"
+        },
+        "el-triDefaultHeat": {
+            "effects": "ball-heat",
+            "speed": 550,
+            "maxBounce": 0,
+            "timer": 1,
+            "trail": false,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 24,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    1
+                ]
+            },
+            "attack": {
+                "type": "LIGHT",
+                "element": "HEAT",
+                "damageFactor": 0.6,
+                "reverse": false,
+                "spFactor": 1,
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triDefaultCold": {
+            "effects": "ball-cold",
+            "speed": 550,
+            "maxBounce": 0,
+            "timer": 1,
+            "trail": false,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 48,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    1
+                ]
+            },
+            "attack": {
+                "type": "LIGHT",
+                "element": "COLD",
+                "damageFactor": 0.6,
+                "reverse": false,
+                "spFactor": 1,
+                "guardable": "",
+                "skillBonus": "RANGED_DMG"
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triDefaultShock": {
+            "effects": "ball-shock",
+            "speed": 550,
+            "maxBounce": 0,
+            "timer": 1,
+            "trail": false,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 72,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    1
+                ]
+            },
+            "attack": {
+                "type": "LIGHT",
+                "element": "SHOCK",
+                "damageFactor": 0.6,
+                "reverse": false,
+                "spFactor": 1,
+                "guardable": "",
+                "skillBonus": "RANGED_DMG"
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triDefaultWave": {
+            "effects": "ball-wave",
+            "speed": 550,
+            "maxBounce": 0,
+            "timer": 1,
+            "trail": false,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 96,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    1
+                ]
+            },
+            "attack": {
+                "type": "LIGHT",
+                "element": "WAVE",
+                "damageFactor": 0.6,
+                "reverse": false,
+                "spFactor": 1,
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triChargedNeutral": {
+            "effects": "ball",
+            "speed": 600,
+            "maxBounce": 3,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 0,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "NEUTRAL",
+                "damageFactor": 1.3,
+                "reverse": false,
+                "spFactor": 1,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG"
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triChargedHeat": {
+            "effects": "ball-heat",
+            "speed": 600,
+            "maxBounce": 3,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 24,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "HEAT",
+                "damageFactor": 1.3,
+                "reverse": false,
+                "spFactor": 1,
+                "status": 1,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triChargedCold": {
+            "effects": "ball-cold",
+            "speed": 600,
+            "maxBounce": 3,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 48,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "COLD",
+                "damageFactor": 1.3,
+                "reverse": false,
+                "spFactor": 1,
+                "status": 1,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triChargedShock": {
+            "effects": "ball-shock",
+            "speed": 600,
+            "maxBounce": 3,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 72,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "SHOCK",
+                "damageFactor": 1.3,
+                "reverse": false,
+                "spFactor": 1,
+                "status": 1,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        },
+        "el-triChargedWave": {
+            "effects": "ball-wave",
+            "speed": 600,
+            "maxBounce": 3,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": false,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 216,
+                    "offY": 96,
+                    "width": 24,
+                    "height": 24
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "WAVE",
+                "damageFactor": 1.3,
+                "reverse": false,
+                "spFactor": 1,
+                "status": 1,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
+        }
+    },
+
+    "actions": {
+        "BASE": {
+            "EL_TRI_ATTACK": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.3,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "followUp": "attackEndRev",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "attackRev",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "sweepType": "TRIBLADER",
+                        "reversed": false,
+                        "faceCount": 6,
+                        "flipLeftFace": true,
+                        "type": "COMBAT_SWEEP"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 0.8,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "time": 0.45,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_ATTACK_REV": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.3,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        }
+                    },
+                    {
+                        "followUp": "attackEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attack"
+                    },
+                    {
+                        "sweepType": "TRIBLADER",
+                        "reversed": true,
+                        "faceCount": 6,
+                        "flipLeftFace": true,
+                        "type": "COMBAT_SWEEP"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 0.8,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "time": 0.45,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_ATTACK_FINISHER": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "charge": 0.3,
+                            "action": 0.8,
+                            "move": 0.8,
+                            "reaim": 0.9
+                        }
+                    },
+                    {
+                        "followUp": "attackEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackFinisher"
+                    },
+                    {
+                        "sweepType": "TRIBLADER_FINISHER",
+                        "reversed": false,
+                        "faceCount": 6,
+                        "flipLeftFace": true,
+                        "type": "COMBAT_SWEEP"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preIdle"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+
+            "EL_TRI_THROW_NORMAL": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.18,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        }
+                    },
+                    {
+                        "type": "EL_ELEMENT_IF",
+                        "neutral": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultNeutral"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultHeat"
+                            }
+                        ],
+                        "cold": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultCold"
+                            }
+                        ],
+                        "shock": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultShock"
+                            }
+                        ],
+                        "wave": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultWave"
+                            }
+                        ]
+                    },
+                    {
+                        "followUp": "throwEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "throwShort"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.4,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_THROW_NORMAL_REV": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.18,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        }
+                    },
+                    {
+                        "type": "EL_ELEMENT_IF",
+                        "neutral": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultNeutral"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultHeat"
+                            }
+                        ],
+                        "cold": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultCold"
+                            }
+                        ],
+                        "shock": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultShock"
+                            }
+                        ],
+                        "wave": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triDefaultWave"
+                            }
+                        ]
+                    },
+                    {
+                        "followUp": "throwEndRev",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "throwShortRev"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.4,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_THROW_CHARGED": {
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.2,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        }
+                    },
+                    {
+                        "type": "EL_ELEMENT_IF",
+                        "neutral": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedNeutral"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedHeat"
+                            }
+                        ],
+                        "cold": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedCold"
+                            }
+                        ],
+                        "shock": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedShock"
+                            }
+                        ],
+                        "wave": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedWave"
+                            }
+                        ]
+                    },
+                    {
+                        "followUp": "throwEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "throw"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.4,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_THROW_CHARGED_REV": {
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0.2,
+                            "move": 0.3,
+                            "reaim": 0.4
+                        }
+                    },
+                    {
+                        "type": "EL_ELEMENT_IF",
+                        "neutral": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedNeutral"
+                            }
+                        ],
+                        "heat": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedHeat"
+                            }
+                        ],
+                        "cold": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedCold"
+                            }
+                        ],
+                        "shock": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedShock"
+                            }
+                        ],
+                        "wave": [
+                            {
+                                "type": "SHOOT_PROXY_PLAYER",
+                                "startDist": 20,
+                                "proxy": "el-triChargedWave"
+                            }
+                        ]
+                    },
+                    {
+                        "followUp": "throwEndRev",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "throwRev"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.4,
+                        "type": "WAIT"
+                    }
+                ]
+            }
+        },
+
+        "NEUTRAL": {
+
+        },
+
+        "HEAT": {
+            
+        },
+
+        "COLD": {
+            
+        },
+
+        "SHOCK": {
+
+        },
+
+        "WAVE": {
+            
+        }
+    }
+}

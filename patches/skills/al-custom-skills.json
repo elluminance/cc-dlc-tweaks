@@ -345,6 +345,73 @@
         }
     },
 
+    "elTriBaseAttack": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_ATTACK",
+                "actionCheckKey": "ATTACK"
+            },
+            {
+                "replaceTo": "EL_TRI_ATTACK_REV",
+                "actionCheckKey": "ATTACK_REV"
+            },
+            {
+                "replaceTo": "EL_TRI_ATTACK_FINISHER",
+                "actionCheckKey": "ATTACK_FINISHER"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Triblader Attack"
+        },
+        "description": {
+            "en_US": "Attack enemies with a sword instead of chakrams. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 24
+        }
+    },
+    "elTriBaseThrow": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL",
+                "actionCheckKey": "THROW"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL",
+                "actionCheckKey": "THROW_NORMAL"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL_REV",
+                "actionCheckKey": "THROW_NORMAL_REV"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_CHARGED",
+                "actionCheckKey": "THROW_CHARGED"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_CHARGED_REV",
+                "actionCheckKey": "THROW_CHARGED_REV"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Triblader VRPs"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 0
+        }
+    },
+
     "elSidwellTeleportPunch": {
         "list": [
             {
