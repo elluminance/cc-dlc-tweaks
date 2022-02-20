@@ -216,7 +216,6 @@ sc.ShopListMenu.inject({
                     itemID = b[k].item;
                     item = sc.inventory.getItem(itemID)!;
                     itemAmount = sc.model.player.getItemAmountWithEquip(itemID);
-                    console.log({itemID, item, itemAmount});
                     itemEquipLevel = 0;
                     item.type == sc.ITEMS_TYPES.EQUIP && (itemEquipLevel = item.level || 1);
 
@@ -304,7 +303,6 @@ sc.ShopItemButton.inject({
         if(sc.menu.shopGemCoinMode && sc.menu.shopSellMode) {
             cost = Math.max((cost / 10).floor(), 0)
         }
-        console.log(itemAmount);
         this.parent(itemName, itemID, itemDescription, itemAmount, cost, itemEquipLevel)
     }
 })

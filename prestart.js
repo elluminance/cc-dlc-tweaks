@@ -25,3 +25,5 @@ import "./dist/shop.js"
 import "./dist/event-step.js"
 
 import "./dist/geode.js"
+
+import "./dist/player-config.js"

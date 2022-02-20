@@ -33,7 +33,7 @@
         }
     },
     {
-        "order": 12.9,
+        "order": 12.904,
         "customItem": "el-hexacast-art-pass",
         "name": {
             "en_US": "Hexacast Art Pass"
@@ -45,7 +45,127 @@
         "rarity": 0,
         "cost": 0,
         "level": 1,
-        "icon": "item-key",
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.903,
+        "customItem": "el-pentafist-art-pass",
+        "name": {
+            "en_US": "Pentafist Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to \\i[class-pentafist]Pentafist arts in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.901,
+        "customItem": "el-triblader-art-pass",
+        "name": {
+            "en_US": "Triblader Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to \\i[class-triblader]Triblader arts in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.902,
+        "customItem": "el-quadroguard-art-pass",
+        "name": {
+            "en_US": "Quadro. Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to \\i[class-quadroguard]Quadroguard arts in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.9,
+        "customItem": "el-neutral-art-pass",
+        "name": {
+            "en_US": "Neutral Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch \\i[element-neutral]Neutral arts regardless of branch in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.911,
+        "customItem": "el-lily-art-pass",
+        "name": {
+            "en_US": "Floral Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to \\i[class-hexacast]Lily's arts in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 2,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 12.912,
+        "customItem": "el-sidwell-art-pass",
+        "name": {
+            "en_US": "Shady Art Pass"
+        },
+        "description": {
+            "en_US": "Allows one to switch to special arts based on Sidwell's attacks in the \\c[3]Arcane Lab\\c[0]."
+        },
+        "type": "KEY",
+        "rarity": 2,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-circuit",
         "noTrack": true,
         "effect": {
             "sheet": "",
