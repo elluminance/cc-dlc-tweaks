@@ -3,6 +3,9 @@
     "index": "customSkills"
 },{
     "type": "INCLUDE",
+    "src": "mod:patches/skills/al-neutral-skills.json"
+},{
+    "type": "INCLUDE",
     "src": "mod:patches/skills/al-custom-skills.json"
 },{
     "type": "EXIT"

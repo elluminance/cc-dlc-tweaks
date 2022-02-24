@@ -385,6 +385,63 @@
             },
             "timeBoni": null,
             "behaviors": []
+        },
+
+        
+        "el-neutralMegaTri": {
+            "size": {
+                "x": 24,
+                "y": 24,
+                "z": 8
+            },
+            "effects": "combat.triblader",
+            "effectKeys": {
+                "bounce": "triProjetileBounce",
+                "wall": "triProjetileBounce",
+                "air": "triProjetileKill",
+                "trail": "triProjetile"
+            },
+            "speed": 800,
+            "maxBounce": 2,
+            "timer": 1.5,
+            "trail": true,
+            "multiHit": true,
+            "noLightGlow": false,
+            "type": "BALL",
+            "animation": {
+                "name": "default",
+                "gfxOffset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "sheet": {
+                    "src": "media\/entity\/balls\/default.png",
+                    "offX": 80,
+                    "offY": 168,
+                    "width": 16,
+                    "height": 16
+                },
+                "time": 0.05,
+                "repeat": true,
+                "frames": [
+                    0
+                ]
+            },
+            "attack": {
+                "type": "HEAVY",
+                "element": "NEUTRAL",
+                "damageFactor": 2.5,
+                "reverse": false,
+                "spFactor": 0,
+                "hints": [
+                    "CHARGED"
+                ],
+                "guardable": "",
+                "skillBonus": "RANGED_DMG",
+                "limiter": ""
+            },
+            "timeBoni": null,
+            "behaviors": []
         }
     },
 
@@ -431,7 +488,7 @@
                         "type": "MOVE_TO_DIR"
                     },
                     {
-                        "baseStrength": 0.8,
+                        "baseStrength": 1,
                         "type": "SPAWN_ASSAULT"
                     },
                     {
@@ -481,7 +538,7 @@
                         "type": "MOVE_TO_DIR"
                     },
                     {
-                        "baseStrength": 0.8,
+                        "baseStrength": 1,
                         "type": "SPAWN_ASSAULT"
                     },
                     {
@@ -545,7 +602,7 @@
                         "type": "MOVE_TO_DIR"
                     },
                     {
-                        "baseStrength": 2,
+                        "baseStrength": 2.5,
                         "type": "SPAWN_ASSAULT"
                     },
                     {
@@ -879,23 +936,1828 @@
         },
 
         "NEUTRAL": {
-
+            "EL_TRI_SHURIKEN": {
+                "name": {
+                    "en_US": "Speedy Shuriken"
+                },
+                "description": {
+                    "en_US": "Throw a fast spinning disk that hits multiple enemies."
+                },
+                "dmgType": "RANGED",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "proxy": "el-neutralMegaTri",
+                        "type": "SHOOT_PROXY_PLAYER"
+                    },
+                    {
+                        "followUp": "attack1End",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "spinShort",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.6,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_MELEE_1": {
+                "name": {
+                    "en_US": "Wirbelschlitzer",
+                    "de_DE": "Wirbelschlitzer",
+                    "zh_CN": "Wirbelschlitzer",
+                    "zh_TW": "Wirbelschlitzer",
+                    "ja_JP": "\u30ef\u30fc\u30d9\u30eb\u30fb\u30b7\u30e5\u30ea\u30c3\u30c4\u30a1\u30fc",
+                    "ko_KR": "\ube44\uc5b4\ubca8 \uc290\ub9ac\ucc98",
+                    "langUid": 35
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "charge": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "duration": 0.3,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "nSpecialCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "attackMirrEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackLong"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 64,
+                        "yScale": 0,
+                        "zHeight": 24,
+                        "centralAngle": 1.7,
+                        "startAngle": -0.35,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": false,
+                        "clockwise": false,
+                        "flipLeftFace": 6,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "NEUTRAL",
+                            "damageFactor": 3.2,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "nSpecialSweep"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_DASH_1": {
+                "name": {
+                    "en_US": "Erstschlag",
+                    "de_DE": "Erstschlag",
+                    "zh_CN": "Erstschlag",
+                    "zh_TW": "Erstschlag",
+                    "ja_JP": "\u30d5\u30a1\u30fc\u30b9\u30c8\u30ab\u30c3\u30c8",
+                    "ko_KR": "\ud37c\uc2a4\ud2b8 \ucef7",
+                    "langUid": 84
+                },
+                "dmgType": "MELEE",
+                "stunType": "LOCK",
+                "status": false,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 1.5,
+                            "action": 1.5,
+                            "move": 1.5,
+                            "reaim": 1.5
+                        }
+                    },
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": false,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPre"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dash"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 450,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": 0.5,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "dust",
+                            "name": "line"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 3,
+                            "z": 6
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "type": "SET_FACE_TO_DIR"
+                    },
+                    {
+                        "value": 0.4,
+                        "type": "SET_INVINCIBLE"
+                    },
+                    {
+                        "time": 0.4,
+                        "cancelOnHit": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "visualType": "HEAVY",
+                            "damageFactor": 1,
+                            "skillBonus": "MELEE_DMG",
+                            "spFactor": 0,
+                            "stunSteps": [
+                                {
+                                    "type": "START_LOCK"
+                                },
+                                {
+                                    "type": "BLOCK_XY"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPost"
+                    },
+                    {
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "time": 0.25,
+                        "type": "WAIT"
+                    },
+                    {
+                        "selectType": "PREVIOUSLY_HIT",
+                        "hitDir": "AWAY",
+                        "align": "BOTTOM",
+                        "hitCount": 1,
+                        "hitDelay": 0,
+                        "type": "DIRECT_HIT",
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "NEUTRAL",
+                            "damageFactor": 4.5,
+                            "fly": "MASSIVE+",
+                            "spFactor": 0,
+                            "stunSteps": [
+                                {
+                                    "type": "END_LOCK"
+                                }
+                            ],
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG"
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    }
+                ]
+            }
         },
 
         "HEAT": {
-            
+            "EL_TRI_MELEE_1": {
+                "name": {
+                    "en_US": "Flammenwirbler",
+                    "de_DE": "Flammenwirbler",
+                    "zh_CN": "Flammenwirbler<<A<<[JULY 9]",
+                    "zh_TW": "Flammenwirbler<<A<<[JULY 9]",
+                    "ja_JP": "\u30d5\u30e9\u30e1\u30f3\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc<<A<<[JULY 9]",
+                    "ko_KR": "\ud50c\ub77c\uba58 \ube44\uc5b4\ubca8<<A<<[JULY 9]",
+                    "langUid": 62
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "charge": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "attack2End",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "duration": 0.3,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "heatSpecialCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "attackMirrEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackLong"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 64,
+                        "yScale": 0,
+                        "zHeight": 24,
+                        "centralAngle": 1.7,
+                        "startAngle": -0.35,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": false,
+                        "clockwise": false,
+                        "flipLeftFace": 6,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "HEAT",
+                            "damageFactor": 3.2,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "CIRCLE_ATTACK"
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "heatSpecialSweep"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "preIdle",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_DASH_1": {
+                "name": {
+                    "en_US": "Feuersprint",
+                    "de_DE": "Feuersprint",
+                    "zh_CN": "Feuersprint",
+                    "zh_TW": "Feuersprint",
+                    "ja_JP": "\u30af\u30ea\u30e0\u30be\u30f3\u30b9\u30c8\u30e9\u30a4\u30af<<A<<[JULY 9]",
+                    "ko_KR": "\uc9c4\ud64d\uc0c9 \ud0c0\uaca9<<A<<[JULY 9]",
+                    "langUid": 106
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": true,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 1,
+                            "action": 0.9,
+                            "move": 1,
+                            "reaim": 1
+                        }
+                    },
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": false,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPre"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttack"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 450,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": 0.5,
+                        "align": "CENTER",
+                        "rotateFace": 8,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.heat",
+                            "name": "flameDash"
+                        }
+                    },
+                    {
+                        "duration": 0.5,
+                        "align": "CENTER",
+                        "rotateFace": 8,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.heat",
+                            "name": "flameDashCircle"
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "type": "SET_FACE_TO_DIR"
+                    },
+                    {
+                        "value": 0.4,
+                        "type": "SET_INVINCIBLE"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 32,
+                        "yScale": 0,
+                        "zHeight": 0,
+                        "centralAngle": 0,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "HEAT",
+                            "damageFactor": 3,
+                            "fly": "MASSIVE",
+                            "reverse": false,
+                            "spFactor": 0,
+                            "status": 1.25,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPost"
+                    },
+                    {
+                        "time": 0.1,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "value": 0.5,
+                        "type": "SET_FRICTION"
+                    },
+                    {
+                        "time": 0.5,
+                        "type": "WAIT"
+                    }
+                ]
+            }
         },
-
         "COLD": {
-            
+            "EL_TRI_MELEE_1": {
+                "name": {
+                    "en_US": "K\u00e4ltewirbler",
+                    "de_DE": "K\u00e4ltewirbler",
+                    "zh_CN": "K\u00e4ltewirbler<<A<<[JULY 9]",
+                    "zh_TW": "K\u00e4ltewirbler<<A<<[JULY 9]",
+                    "ja_JP": "\u30ab\u30eb\u30c6\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc<<A<<[JULY 9]",
+                    "ko_KR": "\ucf08\ud2b8 \ube44\uc5b4\ubca8<<A<<[JULY 9]",
+                    "langUid": 63
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "charge": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "attack2End",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "duration": 0.3,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "coldSpecialCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "attackMirrEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackLong"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 64,
+                        "yScale": 0,
+                        "zHeight": 24,
+                        "centralAngle": 1.7,
+                        "startAngle": -0.35,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": false,
+                        "clockwise": false,
+                        "flipLeftFace": 6,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "COLD",
+                            "damageFactor": 3.2,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "CIRCLE_ATTACK"
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "coldSpecialSweep"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "preIdle",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_DASH_1": {
+                "name": {
+                    "en_US": "Eisbahn",
+                    "de_DE": "Eisbahn",
+                    "zh_CN": "Eisbahn",
+                    "zh_TW": "Eisbahn",
+                    "ja_JP": "\u30a4\u30f3\u30c7\u30a3\u30b4\u30b9\u30c8\u30e9\u30a4\u30af<<A<<[JULY 9]",
+                    "ko_KR": "\ub0a8\uc0c9 \ud0c0\uaca9<<A<<[JULY 9]",
+                    "langUid": 118
+                },
+                "dmgType": "MIXED",
+                "stunType": "",
+                "status": true,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 1,
+                            "action": 0.9,
+                            "move": 1,
+                            "reaim": 1
+                        }
+                    },
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": false,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPre"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttack"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 450,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": 0.5,
+                        "align": "CENTER",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.cold",
+                            "name": "dashTrail"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "type": "SET_FACE_TO_DIR"
+                    },
+                    {
+                        "value": 0.4,
+                        "type": "SET_INVINCIBLE"
+                    },
+                    {
+                        "sticking": false,
+                        "group": "wall",
+                        "ignoreSelf": false,
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "centralAngle": 0,
+                        "angleVary": 0,
+                        "startDistCollide": false,
+                        "random": false,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "circularArea": false,
+                        "uniformDir": 0,
+                        "delay": 0,
+                        "repeat": true,
+                        "duration": 0.1,
+                        "count": 3,
+                        "type": "SHOOT_PROXY_RANGE",
+                        "proxy": "icicleSmall",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 24,
+                        "yScale": 0,
+                        "zHeight": 0,
+                        "centralAngle": 0,
+                        "duration": 0.5,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": true,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "COLD",
+                            "damageFactor": 1.5,
+                            "fly": "MEDIUM",
+                            "reverse": false,
+                            "spFactor": 0,
+                            "status": 1,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "collideCancel": 0.125,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPost"
+                    },
+                    {
+                        "time": 0.1,
+                        "collideCancel": 0.125,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "type": "STOP_REPEATING_FORCE"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "value": 0.5,
+                        "type": "SET_FRICTION"
+                    },
+                    {
+                        "time": 0.5,
+                        "type": "WAIT"
+                    }
+                ]
+            }
         },
-
         "SHOCK": {
-
+            "EL_TRI_MELEE_1": {
+                "name": {
+                    "en_US": "Schockwirbler",
+                    "de_DE": "Schockwirbler",
+                    "zh_CN": "Schockwirbler<<A<<[JULY 9]",
+                    "zh_TW": "Schockwirbler<<A<<[JULY 9]",
+                    "ja_JP": "\u30b7\u30e7\u30c3\u30af\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc<<A<<[JULY 9]",
+                    "ko_KR": "\uc1fc\ud06c \ube44\uc5b4\ubca8<<A<<[JULY 9]",
+                    "langUid": 64
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "charge": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "attack2End",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "duration": 0.3,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "shockSpecialCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "attackMirrEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackLong"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 64,
+                        "yScale": 0,
+                        "zHeight": 24,
+                        "centralAngle": 1.7,
+                        "startAngle": -0.35,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": false,
+                        "clockwise": false,
+                        "flipLeftFace": 6,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "SHOCK",
+                            "damageFactor": 3.2,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "CIRCLE_ATTACK"
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "shockSpecialSweep"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "preIdle",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_DASH_1": {
+                "name": {
+                    "en_US": "Donnerpfeil",
+                    "de_DE": "Donnerpfeil",
+                    "zh_CN": "Donnerpfeil",
+                    "zh_TW": "Donnerpfeil",
+                    "ja_JP": "\u30b5\u30f3\u30c0\u30fc\u30c0\u30fc\u30c4",
+                    "ko_KR": "\ucc9c\ub465 \ud654\uc0b4",
+                    "langUid": 138
+                },
+                "dmgType": "RANGED",
+                "stunType": "INTERRUPT",
+                "status": true,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": false,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPre"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttack"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 600,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2.5,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": -1,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "group": "dash",
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.shock",
+                            "name": "dashLightningTrail"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 12
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "type": "SET_FACE_TO_DIR"
+                    },
+                    {
+                        "value": 0.4,
+                        "type": "SET_INVINCIBLE"
+                    },
+                    {
+                        "changeType": "set",
+                        "attribName": "flash",
+                        "proxyOwner": false,
+                        "type": "SET_ATTRIB_NUMBER",
+                        "value": 0
+                    },
+                    {
+                        "changeType": "set",
+                        "attribName": "id",
+                        "proxyOwner": false,
+                        "type": "SET_ATTRIB_NUMBER",
+                        "value": 1
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "type": "SHOOT_PROXY",
+                        "proxy": "shockDashLine",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 32,
+                        "yScale": 0,
+                        "zHeight": 0,
+                        "centralAngle": 0,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "SHOCK",
+                            "damageFactor": 1,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "START_LOCK"
+                                },
+                                {
+                                    "type": "BLOCK_XY"
+                                }
+                            ],
+                            "status": 1,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "value": 0.001,
+                        "type": "SET_BOUNCINESS"
+                    },
+                    {
+                        "time": 0.3,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPost"
+                    },
+                    {
+                        "time": 0.1,
+                        "collideCancel": 0.125,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "type": "STOP_XY"
+                    },
+                    {
+                        "time": 0.2,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "CLEAR_STUN_LOCKED"
+                    },
+                    {
+                        "changeType": "set",
+                        "attribName": "flash",
+                        "proxyOwner": false,
+                        "type": "SET_ATTRIB_NUMBER",
+                        "value": 1
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.shock",
+                            "name": "dashLightningeEnd"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 12
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": 0,
+                            "move": 0,
+                            "reaim": 0
+                        }
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS"
+                    },
+                    {
+                        "time": 0.1,
+                        "type": "WAIT"
+                    }
+                ]
+            }
         },
-
         "WAVE": {
-            
+            "EL_TRI_MELEE_1": {
+                "name": {
+                    "en_US": "Wellenwirbler",
+                    "de_DE": "Wellenwirbler",
+                    "zh_CN": "Wellenwirbler<<A<<[JULY 9]",
+                    "zh_TW": "Wellenwirbler<<A<<[JULY 9]",
+                    "ja_JP": "\u30a6\u30a7\u30ec\u30f3\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc<<A<<[JULY 9]",
+                    "ko_KR": "\ubca8\ub80c \ube44\uc5b4\ubca8<<A<<[JULY 9]",
+                    "langUid": 61
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "blockData": {
+                            "dash": 0,
+                            "charge": -1,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        },
+                        "type": "SET_PLAYER_ACTION_BLOCK"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "attack2End",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "duration": 0.3,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "waveSpecialCharge"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "attackMirrEnd",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackLong"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 64,
+                        "yScale": 0,
+                        "zHeight": 24,
+                        "centralAngle": 1.7,
+                        "startAngle": -0.35,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": false,
+                        "clockwise": false,
+                        "flipLeftFace": 6,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "attack": {
+                            "type": "MASSIVE",
+                            "element": "WAVE",
+                            "damageFactor": 3.2,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "CIRCLE_ATTACK"
+                    },
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 6,
+                        "flipLeftFace": true,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "effect": {
+                            "sheet": "combat.triblader",
+                            "name": "waveSpecialSweep"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "type": "SHOW_EFFECT"
+                    },
+                    {
+                        "value": 200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 3,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "time": 0.15,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "value": 100,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "baseStrength": 2,
+                        "type": "SPAWN_ASSAULT"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.65,
+                        "type": "WAIT"
+                    },
+                    {
+                        "followUp": "idle",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "anim": "preIdle",
+                        "type": "SHOW_ANIMATION"
+                    },
+                    {
+                        "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+            "EL_TRI_DASH_1": {
+                "name": {
+                    "en_US": "Wellenritt",
+                    "de_DE": "Wellenritt",
+                    "zh_CN": "Wellenritt",
+                    "zh_TW": "Wellenritt",
+                    "ja_JP": "\u30f4\u30a7\u30eb\u30c0\u30f3\u30c8\u30fb\u30b9\u30c8\u30e9\u30a4\u30af",
+                    "ko_KR": "\ucd08\ub85d\uc0c9 \ud0c0\uaca9",
+                    "langUid": 154
+                },
+                "dmgType": "MELEE",
+                "stunType": "",
+                "status": true,
+                "steps": [
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 1,
+                            "action": 0.9,
+                            "move": 1,
+                            "reaim": 1
+                        }
+                    },
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": false,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPre"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttack"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 450,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2.5,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": -1,
+                        "align": "CENTER",
+                        "rotateFace": 8,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.wave",
+                            "name": "waveDashTrail"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "duration": -1,
+                        "align": "CENTER",
+                        "rotateFace": 8,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "group": "ripple",
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "specials.wave",
+                            "name": "waveDashRipple"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "type": "SET_FACE_TO_DIR"
+                    },
+                    {
+                        "value": 0.4,
+                        "type": "SET_INVINCIBLE"
+                    },
+                    {
+                        "posType": "SELF",
+                        "align": "BOTTOM",
+                        "type": "SET_HIT_PROXY",
+                        "proxy": "waveDashStun",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 32,
+                        "yScale": 0,
+                        "zHeight": 0,
+                        "centralAngle": 0,
+                        "duration": 0.4,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": false,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": true,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "NONE",
+                            "element": "WAVE",
+                            "damageFactor": 0,
+                            "reverse": false,
+                            "spFactor": 0,
+                            "status": 1,
+                            "guardable": "",
+                            "skillBonus": "MELEE_DMG"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.3,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dashAttackPost"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "time": 0.2,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_FORWARD"
+                    },
+                    {
+                        "group": "ripple",
+                        "type": "CLEAR_EFFECTS"
+                    },
+                    {
+                        "value": 0.5,
+                        "type": "SET_FRICTION"
+                    },
+                    {
+                        "time": 0.1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS"
+                    },
+                    {
+                        "time": 0.3,
+                        "type": "WAIT"
+                    }
+                ]
+            }
         }
     }
 }
