@@ -73,3 +73,24 @@ ig.ACTION_STEP.GOTO_LABEL_WHILE = ig.ActionStepBase.extend({
         return this.condition.evaluate() ? this.name : null;
     }
 })
+
+ig.ACTION_STEP.SET_TEMP_TARGET.inject({
+    init(settings) {
+        this.parent(settings);
+        if(settings.kind == "LAST_HIT") {
+            this.kind = function(combatant) {
+                return combatant.combo.hitCombatants.last();
+            }
+        }
+    }
+})
+
+ig.ACTION_STEP.SET_ATTRIB_CURRENT_POS = ig.ActionStepBase.extend({
+    init(settings) {
+        this.attrib = settings.attrib
+    },
+
+    start(entity) {
+        entity && entity.setAttribute(this.attrib, entity.getAlignedPos(ig.ENTITY_ALIGN.BOTTOM))
+    }
+})

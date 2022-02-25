@@ -15,6 +15,10 @@ declare namespace ig {
                 name: string;
                 condition: string;
             }
+
+            interface SET_ATTRIB_CURRENT_POS {
+                attrib: string;
+            }
         }
         interface EL_SET_TARGET extends ig.ActionStepBase {
             name: string;
@@ -55,6 +59,13 @@ declare namespace ig {
         }
         interface GOTO_LABEL_WHILE_CONSTRUCTOR extends ImpactClass<GOTO_LABEL_WHILE> {}
         var GOTO_LABEL_WHILE: GOTO_LABEL_WHILE_CONSTRUCTOR
+
+        interface SET_ATTRIB_CURRENT_POS extends ig.ActionStepBase {
+            attrib: string;
+            init(this: this, settings: ActionSettings.SET_ATTRIB_CURRENT_POS): void;
+        }
+        interface SET_ATTRIB_CURRENT_POS_CONSTRUCTOR extends ImpactClass<SET_ATTRIB_CURRENT_POS> {}
+        var SET_ATTRIB_CURRENT_POS: SET_ATTRIB_CURRENT_POS_CONSTRUCTOR
     }
 
     namespace EVENT_STEP {

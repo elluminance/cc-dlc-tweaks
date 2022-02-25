@@ -1,6 +1,5 @@
 {
     "proxies": {},
-
     "actions": {
         "NEUTRAL": {
             "EL_SIDWELL_PUNCH": {
@@ -8,7 +7,7 @@
                     "en_US": "Phasing Fist"
                 },
                 "description": {
-                    "en_US": "Punch an enemy to into a 3-part pummeling combo."
+                    "en_US": "Dash into an enemy to lock them into a 3-part pummeling combo."
                 },
                 "dmgType": "MELEE",
                 "steps": [
@@ -180,11 +179,11 @@
                     },
                     {
                         "type": "NAVIGATE_TO_TARGET",
-                        "maxTime": 0.2,
+                        "maxTime": 0.25,
                         "distance": 0
                     },
                     {
-                        "time": 0.2,
+                        "time": 0.25,
                         "cancelOnHit": true,
                         "orthoDirFactor": 0,
                         "ignoreLastHit": false,
@@ -196,37 +195,35 @@
                             "damageFactor": 1,
                             "skillBonus": "MELEE_DMG",
                             "spFactor": 0,
-                            "stunSteps": [{
-                                "type": "START_LOCK"
-                            }, {
-                                "type": "BLOCK_XY"
-                            }]
-                        }
-                    },
-                    {
-                        "kind": "FIRST_HIT",
-                        "type": "SET_TEMP_TARGET"
-                    },
-                    {
-                        "group": "trail",
-                        "type": "CLEAR_EFFECTS"
-                    },
-                    {
-                        "type": "WAIT_UNTIL",
-                        "condition": "entity.hasTmpTarget",
-                        "maxTime": 0.2
-                    },
-                    {
-                        "changeType": "set",
-                        "type": "SET_ATTRIB_NUMBER",
-                        "attribName": "punches",
-                        "value": 3
-                    },
-                    {
-                        "withElse": false,
-                        "type": "IF",
-                        "condition": "entity.hasTmpTarget",
-                        "thenStep": [
+                            "stunSteps": [
+                                {
+                                    "type": "START_LOCK"
+                                },
+                                {
+                                    "type": "BLOCK_XY"
+                                }
+                            ]
+                        },
+                        "withBranches": true,
+                        "hit": [
+                            {
+                                "type": "SET_ATTRIB_CURRENT_POS",
+                                "attrib": "oldPos"
+                            },
+                            {
+                                "kind": "LAST_HIT",
+                                "type": "SET_TEMP_TARGET"
+                            },
+                            {
+                                "group": "trail",
+                                "type": "CLEAR_EFFECTS"
+                            },
+                            {
+                                "changeType": "set",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "punches",
+                                "value": 3
+                            },
                             {
                                 "name": "loop",
                                 "type": "LABEL"
@@ -413,25 +410,54 @@
                                 "value": 1
                             },
                             {
-                                "withElse": false,
-                                "type": "IF",
-                                "condition": "entity.attrib.punches > 0",
-                                "thenStep": [
-                                    {
-                                        "name": "loop",
-                                        "type": "GOTO_LABEL"
-                                    }
-                                ]
+                                "type": "GOTO_LABEL_WHILE",
+                                "name": "loop",
+                                "condition": "entity.attrib.punches > 0"
+                            },
+                            {
+                                "duration": 0.4,
+                                "align": "BOTTOM",
+                                "rotateFace": 6,
+                                "flipLeftFace": true,
+                                "wait": false,
+                                "waitSkip": 0,
+                                "actionDetached": false,
+                                "fixPos": false,
+                                "type": "SHOW_EFFECT",
+                                "effect": {
+                                    "sheet": "enemies.shady",
+                                    "name": "glitchTeleport"
+                                },
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "type": "WAIT",
+                                "time": 0.033
+                            },
+                            {
+                                "attrib": "oldPos",
+                                "type": "TELEPORT_TO_ATTRIB_POS"
+                            },
+                            {
+                                "offsetX": 0,
+                                "offsetY": 0,
+                                "speed": "FASTEST",
+                                "transition": "EASE_OUT",
+                                "wait": false,
+                                "waitSkip": 0,
+                                "zoom": 1,
+                                "focusType": "SELF",
+                                "type": "FOCUS_CAMERA"
                             }
                         ]
                     },
                     {
                         "type": "WAIT",
                         "time": 0.1
-                    },
-                    {
-                        "actionDetached": false,
-                        "type": "REMOVE_PLAYER_CAMERA_TARGET"
                     }
                 ]
             }
