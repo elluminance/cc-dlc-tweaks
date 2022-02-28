@@ -1,3 +1,4 @@
+export default function() {
 const items: { [key: string]: { [key: string]: sc.Inventory.ItemID } } = {
     gems: {
         ruby: 457,
@@ -815,3 +816,4 @@ sc.TradeModel.inject({
         this.traders["basinEastExcalibro"].child = "basinEastExcalibruh"
     }
 })
+}

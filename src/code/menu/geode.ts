@@ -1,3 +1,4 @@
+export default function() {
 //#region NPC
 //@ts-ignore
 sc.NPC_EVENT_TYPE.GEODE = "GEODE"
@@ -539,3 +540,4 @@ sc.GeodeRewardEntry = ig.GuiElementBase.extend({
     }
 })
 //#endregion Geode GUI
+}

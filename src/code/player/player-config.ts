@@ -1,3 +1,4 @@
+export default function() {
 /*
  * this is just so Arcane Lab doesn't treat the vanilla neutral arts as 
  * being modded arts - simply just "copying" the vanilla data into an identical
@@ -15,3 +16,4 @@ sc.PlayerConfig.inject({
         }
     }
 })
+}

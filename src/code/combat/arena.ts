@@ -1,3 +1,4 @@
+export default function() {
 sc.Arena.inject({
     init(){
         this.parent()
@@ -85,4 +86,5 @@ sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
     getPoints(a, b) {
         return (1 - ((ig.vars.get("tmp.ctronHits") as number ?? 0) / a._maxHits)).limit(0, 1) * b
     }
+}
 }

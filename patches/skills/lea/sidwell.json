@@ -1,5 +1,45 @@
 {
-    "proxies": {},
+    "proxies": {
+        "el-sidwellLockTarget": {
+            "copyOwnerAnims": false,
+            "breakType": "ACTION",
+            "action": [
+                {
+                    "changeConnected": "PROXY_OWNER",
+                    "type": "SET_ATTRIB_BOOL",
+                    "name": "releaseLock",
+                    "value": false
+                },
+                {
+                    "target": "TARGET",
+                    "timeScale": 0.1,
+                    "logicTimeScale": 1,
+                    "moveXYScale": 1,
+                    "type": "ADD_TEMP_INFLUENCE"
+                },
+                {
+                    "type": "WAIT_UNTIL",
+                    "condition": "entity.ownerAttrib.releaseLock"
+                },
+                {
+                    "type": "CLEAR_TEMP_INFLUENCE"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "",
+            "startAnim": "",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        }
+    },
     "actions": {
         "NEUTRAL": {
             "EL_SIDWELL_PUNCH": {
@@ -232,7 +272,7 @@
                                 "align": "BOTTOM",
                                 "posType": "TARGET",
                                 "type": "SHOOT_PROXY",
-                                "proxy": "lockTarget",
+                                "proxy": "el-sidwellL",
                                 "offset": {
                                     "x": 0,
                                     "y": 0,

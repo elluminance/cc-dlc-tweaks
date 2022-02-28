@@ -1,3 +1,4 @@
+export default function() {
 /*
 * turns out there's no easy way to change an enemy target to an arbitrary entity via action steps.
 * there is an event step! but not an action step. y'know... the place that this would be useful.
@@ -94,3 +95,5 @@ ig.ACTION_STEP.SET_ATTRIB_CURRENT_POS = ig.ActionStepBase.extend({
         entity && entity.setAttribute(this.attrib, entity.getAlignedPos(ig.ENTITY_ALIGN.BOTTOM))
     }
 })
+
+}

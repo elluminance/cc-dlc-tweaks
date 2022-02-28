@@ -1,3 +1,4 @@
+export default function() {
 sc.TROPHY_ICONS.BOSS_APOLLO_4 = {
     index: -1,
     cat: "COMBAT",
@@ -146,3 +147,4 @@ sc.TROPHY_ICONS.ARENA_TRUE_PLATINUM = {
 }
 
 sc.CUSTOM_TROPHY_SHEETS["dlc-tweaks"] = new ig.Image("media/gui/dlctweaks-trophies.png");
+}

@@ -1,3 +1,4 @@
+export default function() {
 const icons = new ig.Font("media/font/els-mod-icons.png", 16, ig.MultiFont.ICON_START);
 
 const buffIcons = new ig.Font("media/font/icons-buff-el-mod.png", 8, ig.MultiFont.ICON_START);
@@ -41,3 +42,5 @@ sc.fontsystem.font.setMapping(fontMappings)
 sc.fontsystem.tinyFont.setMapping({
     "stat-el-risktaker": [tinyFontIndex, 0]
 })
+
+}

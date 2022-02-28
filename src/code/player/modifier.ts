@@ -1,3 +1,4 @@
+export default function() {
 //#region icons
 Object.assign(sc.MODIFIERS, {
     EL_RISKTAKER: {
@@ -121,3 +122,5 @@ ig.ENTITY.Player.inject({
     }
 })
 //#endregion vampirism
+
+}

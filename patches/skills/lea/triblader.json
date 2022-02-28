@@ -470,9 +470,9 @@
                     },
                     {
                         "sweepType": "TRIBLADER",
-                        "reversed": false,
-                        "faceCount": 6,
-                        "flipLeftFace": true,
+                        "reversed": true,
+                        "faceCount": 8,
+                        "flipLeftFace": false,
                         "type": "COMBAT_SWEEP"
                     },
                     {
@@ -520,9 +520,9 @@
                     },
                     {
                         "sweepType": "TRIBLADER",
-                        "reversed": true,
-                        "faceCount": 6,
-                        "flipLeftFace": true,
+                        "reversed": false,
+                        "faceCount": 8,
+                        "flipLeftFace": false,
                         "type": "COMBAT_SWEEP"
                     },
                     {
@@ -572,8 +572,8 @@
                     {
                         "sweepType": "TRIBLADER_FINISHER",
                         "reversed": false,
-                        "faceCount": 6,
-                        "flipLeftFace": true,
+                        "faceCount": 8,
+                        "flipLeftFace": false,
                         "type": "COMBAT_SWEEP"
                     },
                     {

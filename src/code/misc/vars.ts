@@ -1,3 +1,4 @@
+export default function() {
 sc.PlayerModel.inject({
     onVarAccess(a, b) {
         if (b[0] == "player") switch (b[1]) {
@@ -25,3 +26,4 @@ sc.StatsModel.inject({
 // yes, this is necessary. why is it necessary?
 // don't ask me. i am *just* as confused as you.
 ig.addGameAddon(() => (sc.stats = new sc.StatsModel))
+}

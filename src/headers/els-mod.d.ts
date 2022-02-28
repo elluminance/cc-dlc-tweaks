@@ -1,4 +1,14 @@
 declare namespace ig {
+    namespace EFFECT_ENTRY{
+        interface COPY_SPRITE_SPECIAL_COLOR_EL extends EffectStepBase, EffectSettings{
+            init(this: this, type: any, settings: ig.EFFECT_ENTRY.EffectSettings): void
+        }
+    
+        interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {}
+    
+        var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
+    }
+    
     namespace ACTION_STEP {
         namespace ActionSettings {
             interface EL_SET_TARGET {

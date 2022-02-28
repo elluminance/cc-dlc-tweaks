@@ -1,3 +1,4 @@
+export default function() {
 let extraChestList = {
     "rhombus-sqr": [
         "maps.rhombusSqr/centerS.chest_888",
@@ -47,3 +48,5 @@ sc.MapModel.inject({
         return this.areas[areaName].track
     }
 })
+
+}

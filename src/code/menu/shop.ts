@@ -1,3 +1,4 @@
+export default function() {
 // i honestly couldn't be bothered to do types for all of this :leaCheese:
 
 //@ts-ignore
@@ -337,4 +338,5 @@ sc.ShopHelper.getMaxBuyable = function(itemID, a, d, c) {
             b = Math.min(c || 99, (c || 99) - sc.model.player.getItemAmount(itemID));
         return Math.min(b, Math.floor(Math.max(0, coins - sc.menu.getTotalCost() + a) / d))
     } else return getMaxBuyableOriginal(itemID, a, d, c)
+}
 }
