@@ -520,7 +520,7 @@
 
     {
         "customItem": "el-thorn-ring",
-        "order": 12.02,
+        "order": 12.021,
         "name": {
             "en_US": "Thorn Ring"
         },
@@ -546,7 +546,43 @@
             "defense": 116
         },
         "properties": {
-            "EL_TRANCE": 2
+            "EL_TRANCE": 2,
+            "EL_COLD_BOOST": 1.25
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    }, {
+        "customItem": "el-freeze-ring",
+        "order": 12.02,
+        "name": {
+            "en_US": "Freeze Ring"
+        },
+        "description": {
+            "en_US": "A cold ring with a pretty snowglobe on top. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                0.85,
+                1.2,
+                1,
+                1
+            ],
+            "attack": 116,
+            "defense": 116
+        },
+        "properties": {
+            "EL_COLD_BOOST": 1.1
         },
         "effect": {
             "sheet": "drops",

@@ -1,3 +1,5 @@
+import { numberToElementName } from "../../helper-funcs.js"
+
 export default function() {
 //#region icons
 Object.assign(sc.MODIFIERS, {
@@ -35,7 +37,47 @@ Object.assign(sc.MODIFIERS, {
         icon: -1,
         order: 0,
         noPercent: true
-    }
+    },
+
+    EL_NEUTRAL_BOOST: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 48,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
+
+    EL_HEAT_BOOST: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 60,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
+    
+    EL_COLD_BOOST: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 72,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
+
+    EL_SHOCK_BOOST: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 84,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
+    
+    EL_WAVE_BOOST: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 96,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
 })
 //#endregion icons
 
@@ -122,5 +164,12 @@ ig.ENTITY.Player.inject({
     }
 })
 //#endregion vampirism
+
+// why write 5 functions when 1 function can do the trick? :)
+sc.DAMAGE_MODIFIER_FUNCS.EL_ELEMENT_BOOST = (attackInfo, damageFactor, combatantRoot, shieldResult, hitIgnore, params) => {
+    damageFactor *= 1 + combatantRoot.params.getModifier(`EL_${numberToElementName(attackInfo.element)}_BOOST`)
+
+    return {attackInfo, damageFactor, applyDamageCallback: null}
+}
 
 }

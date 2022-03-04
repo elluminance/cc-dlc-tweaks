@@ -1,5 +1,6 @@
-import { Mod } from "../node_modules/ultimate-crosscode-typedefs/modloader/mod";
+import { Mod, PluginClass } from "../node_modules/ultimate-crosscode-typedefs/modloader/mod";
 
+//#region prestart declarations
 import actionStep from "./code/steps/action-step.js"
 import arena from "./code/combat/arena.js"
 import chestCounters from "./code/menu/chest-counters.js"
@@ -17,10 +18,13 @@ import shop from "./code/menu/shop.js"
 import eventStep from "./code/steps/event-step.js"
 import geode from "./code/menu/geode.js"
 import playerConfig from "./code/player/player-config.js"
+//#endregion
 
+//#region poststart declarations
 import combatArt from "./code/player/combat-art.js"
+//#endregion
 
-export default class {
+export default class implements PluginClass {
     constructor(public mod: Mod) {}
 
     prestart() {
@@ -44,6 +48,6 @@ export default class {
     }
 
     poststart() {
-        combatArt();
+        //combatArt(); will enabled when needed
     }
 }
