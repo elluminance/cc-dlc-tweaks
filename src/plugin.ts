@@ -18,6 +18,7 @@ import shop from "./code/menu/shop.js"
 import eventStep from "./code/steps/event-step.js"
 import geode from "./code/menu/geode.js"
 import playerConfig from "./code/player/player-config.js"
+import statusEffect from "./code/combat/status-effect.js";
 //#endregion
 
 //#region poststart declarations
@@ -45,6 +46,7 @@ export default class implements PluginClass {
         eventStep();
         geode();
         playerConfig();
+        statusEffect();
     }
 
     poststart() {

@@ -27,7 +27,8 @@ let fontMappings: ig.MultiFont.Mapping = {
     "class-hexacast": [fontIndex, 6],
     "class-spheromancer": [fontIndex, 7],
 
-    "stat-el-risktaker": [fontIndex+1, 0]
+    "stat-el-risktaker": [fontIndex+1, 0],
+    "stat-aiming-speed": [fontIndex+1, 1]
 }
 
 let index = 0;
@@ -40,7 +41,8 @@ itemTypes.forEach(itemType => {
 sc.fontsystem.font.setMapping(fontMappings)
 
 sc.fontsystem.tinyFont.setMapping({
-    "stat-el-risktaker": [tinyFontIndex, 0]
+    "stat-el-risktaker": [tinyFontIndex, 0],
+    "stat-aiming-speed": [tinyFontIndex, 1]
 })
 
 }

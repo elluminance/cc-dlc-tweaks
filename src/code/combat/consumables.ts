@@ -4,13 +4,17 @@ const newFoods = [
     "el_COOKIE_M",
     "el_COOKIE_L",
     "el_HOT_DOG",
-    "el_HOT_GOD_WITH_JELLY"
+    "el_HOT_GOD_WITH_JELLY",
+    "el_ORANGE_JOE"
 ]
 
 sc.foodAPI.register("el-mod", "el-mod-foods.png", newFoods)
 
 sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
     key: "EL_RISKTAKER"
+};
+sc.STAT_PARAM_TYPE.AIM_SPEED = {
+    key: "AIM_SPEED"
 };
 
 Object.assign(sc.STAT_CHANGE_SETTINGS, {
@@ -123,6 +127,15 @@ Object.assign(sc.STAT_CHANGE_SETTINGS, {
         value: 0.30,
         icon: "stat-assault",
         grade: "stat-rank-1"
+    },
+
+    "EL-AIM_SPEED-MINUS-1": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.AIM_SPEED,
+        value: -0.35,
+        negative: true,
+        icon: "stat-aiming-speed",
+        grade: "stat-rank-down-1"
     }
 })
 }

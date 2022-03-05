@@ -209,7 +209,7 @@
                 0.85
             ],
             "attack": 55,
-            "focus": 123
+            "focus": 110
         },
         "properties": {
             "EL_RISKTAKER": 1.2,
@@ -554,7 +554,8 @@
             "name": "circle"
         },
         "isScalable": true
-    }, {
+    }, 
+    {
         "customItem": "el-freeze-ring",
         "order": 12.02,
         "name": {
@@ -583,6 +584,45 @@
         },
         "properties": {
             "EL_COLD_BOOST": 1.1
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-neutral-sweatshirt",
+        "order": 12.02,
+        "name": {
+            "en_US": "Gray Sweatshirt"
+        },
+        "description": {
+            "en_US": "For those who have no strong feelings one way or the other. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 70,
+        "icon": "item-belt",
+        "equipType": "TORSO",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1.1,
+                1.1,
+                1.1,
+                1.1
+            ],
+            "hp": 750,
+            "attack": 75,
+            "defense": 75,
+            "focus": 75
+        },
+        "properties": {
+            "EL_NEUTRAL_BOOST": 1.15,
+            "OVERHEAT_REDUCTION": 1.1
         },
         "effect": {
             "sheet": "drops",

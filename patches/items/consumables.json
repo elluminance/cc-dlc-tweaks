@@ -183,6 +183,33 @@
         "noTrack": false,
         "foodSprite": "FALLBACK"
     },
+    {
+        "order": 53.13,
+        "customItem": "el-cons-orange-joe",
+        "name": {
+            "en_US": "Orange Joe"
+        },
+        "description": {
+            "en_US": "A strange combination of orange juice and coffee. Few will drink this."
+        },
+        "type": "CONS",
+        "cost": 4000,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "EL-AIM_SPEED-MINUS-1",
+            "DASH-STEP-1",
+            "FOCUS-2"
+        ],
+        "rarity": 2,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "noTrack": false,
+        "foodSprite": "el_ORANGE_JOE"
+    },
 
     {
         "order": 16.16,
