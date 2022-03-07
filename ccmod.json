@@ -14,8 +14,11 @@
 
     "dependencies": {
         "crosscode": ">=1.4.2",
+        "ccloader": "^2.21.0",
+        "post-game": ">=1.4.2",
+
         "item-api": ">=0.4.2",
-		"food-api": ">=2.0.0",
+        "food-api": ">=2.0.0",
         "modifier-api": ">=0.1.0",
         "el-tweaks": ">=0.4.0",
         "mod-utils": ">=0.0.1"
