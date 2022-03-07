@@ -102,10 +102,18 @@ declare namespace ig {
 
 declare namespace sc {
     namespace Modifiers {
-        interface KnownModifers {
-            RISKTAKER: true;
-            LIFESTEAL: true;
+        interface KnownModifiers {
+            EL_RISKTAKER: true;
+            EL_LIFESTEAL: true;
             EL_GEODE_FINDER: true;
+            EL_COND_GUARD_ALL: true;
+            EL_TRANCE: true;
+            
+            EL_NEUTRAL_BOOST: true;
+            EL_HEAT_BOOST: true;
+            EL_COLD_BOOST: true;
+            EL_SHOCK_BOOST: true;
+            EL_WAVE_BOOST: true;
         }
     }
 

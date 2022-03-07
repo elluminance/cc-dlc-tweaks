@@ -5,7 +5,7 @@ export default function() {
 Object.assign(sc.MODIFIERS, {
     EL_RISKTAKER: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 0,
+        offX: 12 * 0,
         offY: 0,
         icon: -1,
         order: 0,
@@ -14,7 +14,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_LIFESTEAL: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 12,
+        offX: 12 * 1,
         offY: 0,
         icon: -1,
         order: 0,
@@ -23,7 +23,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_GEODE_FINDER: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 24,
+        offX: 12 * 2,
         offY: 0,
         icon: -1,
         order: 0,
@@ -32,7 +32,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_TRANCE: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 36,
+        offX: 12 * 3,
         offY: 0,
         icon: -1,
         order: 0,
@@ -41,7 +41,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_NEUTRAL_BOOST: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 48,
+        offX: 12 * 4,
         offY: 0,
         icon: -1,
         order: 0,
@@ -49,7 +49,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_HEAT_BOOST: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 60,
+        offX: 12 * 5,
         offY: 0,
         icon: -1,
         order: 0,
@@ -57,7 +57,7 @@ Object.assign(sc.MODIFIERS, {
     
     EL_COLD_BOOST: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 72,
+        offX: 12 * 6,
         offY: 0,
         icon: -1,
         order: 0,
@@ -65,7 +65,7 @@ Object.assign(sc.MODIFIERS, {
 
     EL_SHOCK_BOOST: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 84,
+        offX: 12 * 7,
         offY: 0,
         icon: -1,
         order: 0,
@@ -73,7 +73,15 @@ Object.assign(sc.MODIFIERS, {
     
     EL_WAVE_BOOST: {
         altSheet: "media/gui/modifiers/els-mod.png",
-        offX: 96,
+        offX: 12 * 8,
+        offY: 0,
+        icon: -1,
+        order: 0,
+    },
+
+    EL_COND_GUARD_ALL: {
+        altSheet: "media/gui/modifiers/els-mod.png",
+        offX: 12 * 9,
         offY: 0,
         icon: -1,
         order: 0,
