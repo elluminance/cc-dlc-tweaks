@@ -2,4 +2,51 @@
     "type": "SET_KEY",
     "index": "ignoreTaunts",
     "content": true
+},{
+    "type": "ENTER",
+    "index": "proxies"
+},{
+    "type": "FOR_IN",
+    "keyword": {
+        "proxy": "__PROXY__",
+        "index": "__INDEX__"
+    },
+    "values": [
+        {
+            "proxy": "playerHackFly",
+            "index": 9
+        },
+        {
+            "proxy": "playerHackFlyLight",
+            "index": 6
+        }
+    ],
+    "body": [
+        {
+            "type": "ENTER",
+            "index": ["__PROXY__", "action", "__INDEX__", "thenStep", 0]
+        },
+        {
+            "type": "SET_KEY",
+            "index": "name",
+            "content": "sergeyHaxSidwell"
+        },
+        {
+            "type": "EXIT",
+            "count": 2
+        },
+        {
+            "type": "ENTER",
+            "index": ["elseStep", 0]
+        },
+        {
+            "type": "SET_KEY",
+            "index": "name",
+            "content": "sergeyHaxSidwell"
+        },
+        {
+            "type": "EXIT",
+            "count": 5
+        }
+    ]
 }]

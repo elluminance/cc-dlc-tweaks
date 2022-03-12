@@ -29,5 +29,12 @@
     }
 },{
     "type": "EXIT",
-    "count": 3
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": ["HackBuff", "action", 0]
+},{
+    "type": "SET_KEY",
+    "index": "name",
+    "content": "sergeyHaxSidwell"
 }]

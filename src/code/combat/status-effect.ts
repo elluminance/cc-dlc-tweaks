@@ -5,10 +5,8 @@ export default function () {
                 factor = (value * this._getOffensiveFactor(attackInfo) / 12);
             
             parentValue /= factor;
-            console.log(parentValue);
 
             parentValue = Math.min(parentValue, 1 - defenderParams.getModifier(this.defenseModifier) - defenderParams.getModifier("EL_COND_GUARD_ALL"))
-            console.log(parentValue);
             return parentValue * factor;
         },
 

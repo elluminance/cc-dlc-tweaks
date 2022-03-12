@@ -38,12 +38,12 @@ sc.EnemyBooster.inject({
         }
     },
 
-    modelChanged(source, message){
+    modelChanged(source, message, data){
         if(source instanceof sc.PlayerModel && message == sc.PLAYER_MSG.LEVEL_CHANGE){
             this.ascendedBooster.forceCheck = true 
             this.updateBoosterState()
         }
-        this.parent(source, message)
+        this.parent(source, message, data)
     }
 })
 
@@ -52,16 +52,16 @@ sc.EnemyInfoBox.inject({
         const ascBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster");
         this.parent(b);
         if(this.enemy && ascBooster && sc.combat.canShowBoostedEntry(b, this.enemy.boss)){
-            this.level.setNumber(sc.enemyBooster.ascendedBooster.calcLevel(b))
+            this.level.setNumber(sc.enemyBooster.ascendedBooster.calcLevel(b as any))
         }
     }
 })
 
 sc.EnemyEntryButton.inject({
     init(b, a, d){
-        let enemyType = sc.combat.enemyDataList[a];
+        let enemyType = sc.combat.enemyDataList[a!];
         this.parent(b, a, d);
-        if(d >= 0 && sc.model.player.getToggleItemState("dlctweaks-ascended-booster") && sc.combat.canShowBoostedEntry(a, enemyType.boss)) {
+        if(d! >= 0 && sc.model.player.getToggleItemState("dlctweaks-ascended-booster") && sc.combat.canShowBoostedEntry(a!, enemyType.boss)) {
             this.level.setNumber(sc.enemyBooster.ascendedBooster.calcLevel(enemyType))
         }
     }

@@ -1,10 +1,18 @@
 declare namespace ig {
     namespace EFFECT_ENTRY{
-        interface COPY_SPRITE_SPECIAL_COLOR_EL extends EffectStepBase, EffectSettings{
-            init(this: this, type: any, settings: ig.EFFECT_ENTRY.EffectSettings): void
+        namespace EffectSettings {
+            interface COPY_SPRITE_SPECIAL_COLOR_EL extends COPY_SPRITE {
+                mode: string;
+            }
         }
-    
-        interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {}
+
+        interface COPY_SPRITE_SPECIAL_COLOR_EL extends ig.EFFECT_ENTRY.COPY_SPRITE {
+            init(this: this, type: any, settings: ig.EFFECT_ENTRY.EffectSettings.COPY_SPRITE_SPECIAL_COLOR_EL): void
+            mode: string;
+        }
+        
+        interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {
+        }
     
         var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
     }
@@ -97,24 +105,28 @@ declare namespace ig {
             "dlctweaks.crystals": number;
         }
     }
+
+    namespace Database {
+        interface ShopItem {
+            maxOwn?: number;
+        }
+    }
     
 }
 
 declare namespace sc {
-    namespace Modifiers {
-        interface KnownModifiers {
-            EL_RISKTAKER: true;
-            EL_LIFESTEAL: true;
-            EL_GEODE_FINDER: true;
-            EL_COND_GUARD_ALL: true;
-            EL_TRANCE: true;
-            
-            EL_NEUTRAL_BOOST: true;
-            EL_HEAT_BOOST: true;
-            EL_COLD_BOOST: true;
-            EL_SHOCK_BOOST: true;
-            EL_WAVE_BOOST: true;
-        }
+    interface MODIFIERS {
+        EL_RISKTAKER: sc.Modifier;
+        EL_LIFESTEAL: sc.Modifier;
+        EL_GEODE_FINDER: sc.Modifier;
+        EL_COND_GUARD_ALL: sc.Modifier;
+        EL_TRANCE: sc.Modifier;
+
+        EL_NEUTRAL_BOOST: sc.Modifier;
+        EL_HEAT_BOOST: sc.Modifier;
+        EL_COLD_BOOST: sc.Modifier;
+        EL_SHOCK_BOOST: sc.Modifier;
+        EL_WAVE_BOOST: sc.Modifier;
     }
 
     interface PlayerModel {
@@ -143,6 +155,10 @@ declare namespace sc {
         showPostgameStar(this: this, dlcBeaten: boolean | undefined, gameBeaten: boolean | undefined): void
     }
 
+    interface ARENA_BONUS_OBJECTIVE {
+        INTERROGATION_HITS: sc.Arena.ArenaBonusObjective;
+    }
+
     interface MenuModel {
         shopGemCoinMode: boolean
     }
@@ -167,12 +183,6 @@ declare namespace sc {
 
     interface ShopCartEntry {
         gemGfx: ig.Image;
-    }
-
-    namespace ShopModel {
-        interface ShopItem {
-            maxOwn?: number;
-        }
     }
 
     namespace ShopItemButton {
@@ -226,14 +236,14 @@ declare namespace sc {
     }
     var GeodeRewardEntry: GeodeRewardEntryConstructor
 
-    var BOOSTER_GEMS: sc.Inventory.ItemID[]
+    var BOOSTER_GEMS: sc.ItemID[]
 
     namespace GeodeOpeningGui {
         interface ItemAmount {
             amount: number;
             isRare?: boolean;
         }
-        type ItemAmounts = Record<sc.Inventory.ItemID, ItemAmount>
+        type ItemAmounts = Record<sc.ItemID, ItemAmount>
     }
 
     interface GeodeOpeningGui extends sc.BaseMenu {
@@ -257,7 +267,7 @@ declare namespace sc {
         msgBox: sc.CenterBoxGui;
         count: number;
         pricePerGeode: number;
-        rareRewards: sc.Inventory.ItemID[];
+        rareRewards: sc.ItemID[];
         rareItemChance: number;
 
         init(this: this): void;

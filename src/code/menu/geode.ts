@@ -27,10 +27,10 @@ ig.ENTITY.NPC.inject({
 sc.NpcState.inject({
     init(a, b) {
         this.parent(a, b)
-        if(a.event && a.event.geode) {
+        if((a as any).event && (a as any).event.geode) {
             let c = {
                 name: "NPC EVENT",
-                steps: a.event.geode
+                steps: (a as any).event.geode
             }
 
             this.npcEventObj = new ig.Event(c)
@@ -240,9 +240,9 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
     },
 
     onButtonCallback(button) {
-        switch(button.data.type) {
+        switch((button.data as any).type) {
             case "changeValue": 
-                this.incrementValue(button.data.value)
+                this.incrementValue((button.data as any).value)
                 break;
             case "openGeodes":
                 this.openGeodes();
@@ -301,7 +301,7 @@ sc.GeodeOpeningGui = sc.BaseMenu.extend({
         let chance = 1, gemsGotten = 1, roll = 0;
         sc.model.player.removeItem("el-item-geode", this.count);
 
-        function addItem(itemID: sc.Inventory.ItemID, isRare:boolean = false) {
+        function addItem(itemID: sc.ItemID, isRare:boolean = false) {
             if(itemsGiven[itemID]) itemsGiven[itemID].amount++;
             else itemsGiven[itemID] = {
                 amount: 1,

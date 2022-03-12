@@ -1,8 +1,8 @@
 export default function() {
 sc.SaveSlotButton.inject({
-    setSave(a, b, c) {
-        this.parent(a, b, c);
-        this.chapter.showPostgameStar(a?.vars?.storage?.plot?.completedPostGame, a?.vars?.storage?.plot?.metaSpace);
+    setSave(save, slot, skip) {
+        this.parent(save, slot, skip);
+        this.chapter.showPostgameStar(save?.vars?.storage?.plot?.completedPostGame as boolean, save?.vars?.storage?.plot?.metaSpace as boolean);
     }
 })
 

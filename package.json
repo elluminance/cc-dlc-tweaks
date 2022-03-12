@@ -18,7 +18,7 @@
         "mod-utils": ">=0.0.1"
     },
     "devDependencies": {
-        "typescript": "^3.9.0",
+        "typescript": "^4.6.2",
         "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs",
         "food-api": "el20202/crosscode-food-api",
         "el-tweaks": "el20202/el-crosscode-tweaks"
