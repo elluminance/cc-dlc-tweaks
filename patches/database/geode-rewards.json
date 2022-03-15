@@ -1,0 +1,36 @@
+{
+    "el-GeodeRewards": [
+        {
+            "items": [
+                457,
+                458,
+                459,
+                460,
+                461,
+                462,
+                463,
+                464,
+                465,
+                "dlctweaks-trade-beach-gem",
+                "dlctweaks-trade-final-dng-gem"
+            ],
+            "weight": 2500
+        },
+        {
+            "items": [
+                "el-geode-smasher"
+            ],
+            "weight": 25
+        },
+        {
+            "items": [
+                "el-crystal-helmet",
+                "el-crystal-sword",
+                "el-crystal-bow",
+                "el-crystal-plate",
+                "el-crystal-boots"
+            ],
+            "weight": 100
+        }
+    ]
+}

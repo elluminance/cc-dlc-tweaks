@@ -23,17 +23,17 @@
     "elHexaSnowgrave": {
         "list": [
             {
-                "replaceTo": "EL_HEXA_SNOWGRAVE",
+                "replaceTo": "EL_SNOWGRAVE",
                 "actionCheckKey": "ATTACK_SPECIAL3"
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && false",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && el.test.snowgrave",
         "name": {
-            "en_US": "\\c[1]NOT IMPLEMENTED\\c[0]"
+            "en_US": "Snowgrave"
         },
         "description": {
-            "en_US": "\\c[1]Fatal.\\c[0] (\\c[1]NOT IMPLEMENTED\\c[0]) \\i[class-hexacast]"
+            "en_US": "\\c[1]Fatal.\\c[0]"
         },
         "icon": {
             "src": "media/gui/el-mod-custom-skills.png",

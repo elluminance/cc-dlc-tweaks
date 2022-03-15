@@ -50,6 +50,6 @@ export default class implements PluginClass {
     }
 
     poststart() {
-        //combatArt(); will enabled when needed
+        combatArt(); //will enabled when needed
     }
 }

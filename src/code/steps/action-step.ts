@@ -97,4 +97,13 @@ export default function () {
         }
     })
 
+    ig.ACTION_STEP.SET_CLOSE_TEMP_TARGET.inject({
+        init(settings) {
+            this.parent(settings);
+
+            if(settings.searchType == "CUSTOM" && settings.customSearchType) {
+                this.searchType = settings.customSearchType;
+            }
+        }
+    })
 }

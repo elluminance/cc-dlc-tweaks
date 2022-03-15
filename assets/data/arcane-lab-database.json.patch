@@ -27,9 +27,26 @@
     "type": "ENTER",
     "index": "both"
 },{
-    "type": "ADD_ARRAY_ELEMENT",
-    "content": {
-        "modifier": "EL_RISKTAKER",
-        "amount": 0.02
-    }
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "modifier": "EL_RISKTAKER",
+            "amount": 0.02
+        },{
+            "modifier": "EL_NEUTRAL_BOOST",
+            "amount": 0.02
+        },{
+            "modifier": "EL_HEAT_BOOST",
+            "amount": 0.02
+        },{
+            "modifier": "EL_COLD_BOOST",
+            "amount": 0.02
+        },{
+            "modifier": "EL_SHOCK_BOOST",
+            "amount": 0.02
+        },{
+            "modifier": "EL_WAVE_BOOST",
+            "amount": 0.02
+        }
+    ]
 }]
