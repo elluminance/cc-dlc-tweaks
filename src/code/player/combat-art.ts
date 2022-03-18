@@ -35,7 +35,8 @@ export default function () {
             if (maxCharge === 3
                 && this.model.currentElementMode === sc.ELEMENT.COLD
                 && isSnowgraveEquipped()
-                && this.params.getSp() < (getSnowgraveCost())
+                && this.params.getSp() < getSnowgraveCost()
+                && actionKey.actionKey == "ATTACK_SPECIAL"
             ) {
                 console.log("snowgrave is equipped, not enough sp")
                 maxCharge = 2;

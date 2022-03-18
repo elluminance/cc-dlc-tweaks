@@ -4073,7 +4073,7 @@
                     "en_US": "Snowgrave"
                 },
                 "description": {
-                    "en_US": "Deals magical ice damage to one enemy."
+                    "en_US": "Deals fatal ice damage to all nearby enemies."
                 },
                 "dmgType": "MELEE",
                 "stunType": "LOCK",
