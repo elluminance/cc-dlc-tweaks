@@ -2,7 +2,7 @@
 
 export const snowgraveKey = "EL_SNOWGRAVE";
 
-export const isSnowgraveEquipped = () => sc.model.player.getActiveCombatArt(sc.ELEMENT.COLD, "ATTACK_SPECIAL3").name == snowgraveKey
+export const isSnowgraveEquipped = () => sc.model.player.getActiveCombatArt(sc.ELEMENT.COLD, "ATTACK_SPECIAL3")?.name == snowgraveKey
 
 export const getSnowgraveCost = () => sc.model.player.params.getModifier("EL_TRANCE") ? 16 : 32
 

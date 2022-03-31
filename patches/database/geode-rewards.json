@@ -14,13 +14,13 @@
                 "dlctweaks-trade-beach-gem",
                 "dlctweaks-trade-final-dng-gem"
             ],
-            "weight": 2500
+            "weight": 1500
         },
         {
             "items": [
                 "el-geode-smasher"
             ],
-            "weight": 25
+            "weight": 50
         },
         {
             "items": [
@@ -30,7 +30,7 @@
                 "el-crystal-plate",
                 "el-crystal-boots"
             ],
-            "weight": 100
+            "weight": 200
         }
     ]
 }

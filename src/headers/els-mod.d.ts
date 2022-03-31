@@ -110,16 +110,17 @@ declare global {
 
         namespace Database {
             interface Data {
-                "el-geodeRewards": GeodeReward;
+                "el-geodeRewards": ELGeodeReward[];
             }
             
             interface ShopItem {
                 maxOwn?: number;
             }
             
-            interface GeodeReward {
+            interface ELGeodeReward {
                 items: sc.ItemID[];
                 weight: number;
+                order: number;
             }
         }
     }
@@ -252,13 +253,15 @@ declare global {
             interface ItemAmount {
                 amount: number;
                 isRare?: boolean;
+                orderMult?: number;
             }
             type ItemAmounts = Record<sc.ItemID, ItemAmount>
 
             interface RewardEntry {
                 items: sc.ItemID[];
                 summedWeight: number;
-                isRare: boolean;
+                isRare?: boolean;
+                order: number;
             }
         }
 
@@ -284,6 +287,7 @@ declare global {
             count: number;
             pricePerGeode: number;
             rewardTable: GeodeOpeningGui.RewardEntry[];
+            totalWeight: number;
 
             init(this: this): void;
             onButtonCallback(this: this, button: sc.ButtonGui): void;

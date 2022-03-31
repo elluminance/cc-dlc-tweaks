@@ -112,7 +112,7 @@ export default function () {
             this.content.addChildGui(this.textGui);
             this.content.setSize(160, 110)
 
-            this.count = 0;
+            this.count = 1;
             this.geodeText = new sc.TextGui(`\\i[item-trade-unique]${ig.lang.get("sc.gui.geode.geodeName")}`);
             this.geodeText.setPos(0, 20);
             this.geodeAmount = new sc.NumberGui(99, {
@@ -212,7 +212,9 @@ export default function () {
 
             this.addChildGui(this.msgBox);
             this.doStateTransition("HIDDEN", true)
-            this.incrementValue(1)
+            this._updateCounters();
+
+            this.generateRewardTable();
         },
 
         showMenu() {
@@ -293,10 +295,10 @@ export default function () {
         openGeodes() {
             sc.model.player.removeCredit(this.count * this.pricePerGeode);
             let itemsGiven: sc.GeodeOpeningGui.ItemAmounts = {}
-            let chance = 1, gemsGotten = 1, roll = 0;
+            let chance = 1, itemsObtained = 1, roll = 0;
             sc.model.player.removeItem("el-item-geode", this.count);
 
-            function addItem(itemID: sc.ItemID, isRare: boolean = false) {
+            function addItem(itemID: sc.ItemID, isRare?: boolean, orderMult?: number) {
                 if (itemsGiven[itemID]) itemsGiven[itemID].amount++;
                 else itemsGiven[itemID] = {
                     amount: 1,
@@ -308,19 +310,26 @@ export default function () {
 
             do {
                 chance = 1;
-                gemsGotten = 1;
+                itemsObtained = 1;
 
                 while (chance >= (roll = Math.random())) {
-                    addItem(sc.BOOSTER_GEMS.random());
+                    let adjustedChance = roll * this.totalWeight;
+                    for (const entry of this.rewardTable) {
+                        if(entry.summedWeight >= adjustedChance) {
+                            let item = entry.items.random();
+                            addItem(item, false, entry.order);
+                            break;
+                        }
+                    }
 
-                    gemsGotten++;
-                    chance /= gemsGotten
+                    itemsObtained++;
+                    chance /= itemsObtained
                     chance *= 1.25
                 }
 
-                crystals += 60 + Math.random() * 40
-                // basically, if you don't get many gems, you'll get slightly more crystals on average instead.
-                crystals += Math.random() * 30 * (1 - chance)
+                crystals += 40 + Math.random() * 25
+                // basically, if you don't get many gems/items, you'll get a little more crystals on average instead.
+                crystals += Math.random() * 40 * chance
                 crystals = Math.floor(crystals)
             } while (--this.count > 0)
 
@@ -330,13 +339,25 @@ export default function () {
             this.rewardGui.show();
             this.count = 1;
             // force it to update to the correct values
-            this.incrementValue(0);
+            this._updateCounters();
         },
 
         modelChanged() { },
 
         generateRewardTable() {
+            this.rewardTable = [];
+            let allRewards = ig.database.get("el-geodeRewards");
 
+            let runningWeight = 0;
+            for(const entry of allRewards) {
+                runningWeight += entry.weight;
+                this.rewardTable.push({
+                    items: entry.items,
+                    summedWeight: runningWeight,
+                    order: entry.order
+                })
+            }
+            this.totalWeight = runningWeight;
         }
     })
 
@@ -425,13 +446,17 @@ export default function () {
             this.parent();
             if (!this.done) {
                 if (this.timer <= 0) {
+                    if (this.currentIndex >= this.listEntries.length) {
+                        this.done = true;
+                        return;
+                    }
                     this.timer = 0.15;
                     let currentEntry = this.listEntries[this.currentIndex]
                     let guiItem = new sc.GeodeRewardEntry(currentEntry[0], currentEntry[1].amount, false);
                     guiItem.setPos(0, this.listContent.hook.size.y)
                     this.listContent.hook.size.y += guiItem.hook.size.y;
                     this.listContent.addChildGui(guiItem);
-                    console.log(currentEntry)
+
                     if (currentEntry[1].isRare) this.sounds.getRareItem.play()
                     guiItem.doStateTransition("HIDDEN", true);
                     guiItem.doStateTransition("DEFAULT")
@@ -440,12 +465,11 @@ export default function () {
                     this.list.setScrollY(this.listContent.hook.size.y, false, 0.15, KEY_SPLINES.LINEAR);
 
                     this.currentIndex++;
-                    if (this.currentIndex >= this.listEntries.length) this.done = true;
                 } else {
                     this.timer -= ig.system.tick;
                 }
             } else {
-                this.buttonInteract.isActive() && this.buttongroup.isActive() && (sc.control.menuScrollUp() ? this.list.scrollY(-17) : sc.control.menuScrollDown() && this.list.scrollY(17))
+                this.buttonInteract.isActive() && this.buttongroup.isActive() && (sc.control.menuScrollUp() ? this.list.scrollY(-8) : sc.control.menuScrollDown() && this.list.scrollY(8))
             }
         },
 
@@ -461,7 +485,21 @@ export default function () {
             this.listContent.addChildGui(guiItem);
 
             if (this.listItems) {
-                this.listEntries = Object.entries(this.listItems).map(element => {
+                this.listEntries = Object.entries(this.listItems).sort((element1, element2) => {
+                    let item1 = sc.inventory.getItem(element1[0])!,
+                        item2 = sc.inventory.getItem(element2[0])!;
+                    function getMult(item: sc.Inventory.Item): number {
+                        switch(item.type) {
+                            case sc.ITEMS_TYPES.TRADE:  return 1;
+                            case sc.ITEMS_TYPES.CONS:   return 1e3;
+                            case sc.ITEMS_TYPES.EQUIP:  return 1e6;
+                            case sc.ITEMS_TYPES.KEY:    return 1e9;
+                            case sc.ITEMS_TYPES.TOGGLE: return 1e12;
+                            default: return 1e15;
+                        }
+                    }
+                    return item1.order * getMult(item1) - item2.order * getMult(item2) 
+                }).map(element => {
                     let item = sc.inventory.getItem(element[0])!;
                     element[0] = `\\i[${item.icon + sc.inventory.getRaritySuffix(item.rarity || 0) || "item-default"}]${ig.LangLabel.getText(item.name)}`;
                     return element
