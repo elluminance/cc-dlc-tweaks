@@ -2,14 +2,12 @@
     "type": "ENTER",
     "index":["toggle-sets","booster","items"]
 },{
-    "type":"ADD_ARRAY_ELEMENT",
-    "content": "dlctweaks-beach-booster"
-},{
-    "type":"ADD_ARRAY_ELEMENT",
-    "content": "dlctweaks-final-dng-booster"
-},{
-    "type":"ADD_ARRAY_ELEMENT",
-    "content": "dlctweaks-ascended-booster"
+    "type": "MERGE_CONTENT",
+    "content": [
+        "dlctweaks-beach-booster",
+        "dlctweaks-final-dng-booster",
+        "dlctweaks-ascended-booster"
+    ]
 },{
     "type":"EXIT",
     "count": 2
@@ -17,8 +15,18 @@
     "type": "ENTER",
     "index": ["aura", "items"]
 },{
-    "type": "IMPORT",
-    "src": "mod:patches/database/toggle-set-items/auras.json"
+    "type": "MERGE_CONTENT",
+    "content": [
+        "el-effect-rainbow",
+        "el-effect-vaporwave",
+        "el-effect-hp",
+        "el-effect-sp",
+        "el-effect-shadow",
+        "el-effect-void",
+        "el-effect-hax",
+        "el-effect-decoy",
+        "el-effect-shady"
+    ]
 },{
     "type": "EXIT",
     "count": 2
@@ -26,20 +34,39 @@
     "type": "ENTER",
     "index": ["pet", "items"]
 },{
-    "type": "IMPORT",
-    "src": "mod:patches/database/toggle-set-items/pets.json"
+    "type": "MERGE_CONTENT",
+    "content": [
+        "el-pet-shokat",
+        "el-pet-spinwell"
+    ]
 },{
     "type": "EXIT",
     "count": 2
 },{
-    "type": "INCLUDE",
-    "src": "mod:/patches/database/toggle-sets.json"
+    "type": "INIT_KEY",
+    "index": "el-special",
+    "content": {
+        "type": "MULTI",
+        "name": {
+            "en_US": "Special"
+        },
+        "order": 25,
+        "color": "#550",
+        "items": [
+            "el-toggle-one-hit-die",
+            "el-toggle-no-xp",
+            "el-toggle-dr-explosion"
+        ]
+    }
 },{
     "type": "ENTER",
     "index": ["skins", "items"]
 },{
-    "type": "IMPORT",
-    "src": "mod:/patches/database/toggle-set-items/skins.json"
+    "type": "MERGE_CONTENT",
+    "content": [
+        "el-edgy-lea-skin",
+        "el-ael-skin"
+    ]
 },{
     "type": "EXIT",
     "count": 2
