@@ -128,7 +128,7 @@ export default function () {
         },
         "booster-beach": {
             name: {
-                en_US: "Archipelago Master"
+                en_US: "Azure Archipelago Master"
             },
             order: 7,
             noTrack: false,
@@ -167,7 +167,7 @@ export default function () {
 
         "booster-final-dng": {
             name: {
-                en_US: "Ku'lero Master"
+                en_US: "Ku'lero Temple Master"
             },
             order: 8,
             noTrack: false,

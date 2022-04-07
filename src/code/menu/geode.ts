@@ -198,9 +198,10 @@ export default function () {
                 type: "openGeodes"
             }
             this.openGeodesButton.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_BOTTOM)
-            this.openGeodesButton.submitSound = sc.BUTTON_SOUND.shop_cash
-            this.buttongroup.addFocusGui(this.openGeodesButton, 0, 1)
-            this.content.addChildGui(this.openGeodesButton)
+            this.openGeodesButton.submitSound = sc.BUTTON_SOUND.shop_cash;
+            let i = 4;
+            while(i --> 0) this.buttongroup.addFocusGui(this.openGeodesButton, i, 1);
+            this.content.addChildGui(this.openGeodesButton);
 
             this.msgBox = new sc.CenterBoxGui(this.content);
             this.msgBox.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER);
@@ -257,11 +258,12 @@ export default function () {
         },
 
         incrementValue(change) {
-            this.count = (this.count + change).limit(1, this.getMaxGeodes())
+            this.count += change;
             this._updateCounters()
         },
 
         _updateCounters() {
+            this.count = this.count.limit(1, this.getMaxGeodes());
             if (this.count <= 1) {
                 this.buttons.decrement.setActive(false)
                 this.buttons.bigDecrement.setActive(false)

@@ -1,6 +1,6 @@
 [{
     "type": "ENTER",
-    "index": "EFFECTS"
+    "index": ["ANIMS", "SUB"]
 },{
     "type": "MERGE_CONTENT",
     "content": [
@@ -25,10 +25,11 @@
         }
     ]
 },{
-    "type": "EXIT"
+    "type": "EXIT",
+    "count": 2
 },{
     "type": "ENTER",
-    "index": ["ANIMS", "SUB"]
+    "index": "EFFECTS"
 },{
     "type": "MERGE_CONTENT",
     "content": {
