@@ -1,0 +1,23 @@
+{
+    "elDashAttack": {
+        "list": [
+            {
+                "replaceTo": "EL_DASH_ATTACK",
+                "actionCheckKey": "DASH"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Spiky Dash"
+        },
+        "description": {
+            "en_US": "Overcharge your dash to do a weak attack towards enemies in your way."
+        },
+        "icon": {
+            "src": "media/gui/circuit-icons.png",
+            "offY": 96,
+            "offX": 120
+        }
+    }
+}

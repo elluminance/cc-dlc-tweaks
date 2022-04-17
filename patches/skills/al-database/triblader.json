@@ -1,0 +1,347 @@
+{
+    "elTriBaseAttack": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_ATTACK",
+                "actionCheckKey": "ATTACK"
+            },
+            {
+                "replaceTo": "EL_TRI_ATTACK_REV",
+                "actionCheckKey": "ATTACK_REV"
+            },
+            {
+                "replaceTo": "EL_TRI_ATTACK_FINISHER",
+                "actionCheckKey": "ATTACK_FINISHER"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Triblader Attack"
+        },
+        "description": {
+            "en_US": "Attack enemies with a sword instead of chakrams. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 24
+        }
+    },
+    "elTriBaseThrow": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL",
+                "actionCheckKey": "THROW"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL",
+                "actionCheckKey": "THROW_NORMAL"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_NORMAL_REV",
+                "actionCheckKey": "THROW_NORMAL_REV"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_CHARGED",
+                "actionCheckKey": "THROW_CHARGED"
+            },
+            {
+                "replaceTo": "EL_TRI_THROW_CHARGED_REV",
+                "actionCheckKey": "THROW_CHARGED_REV"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Triblader VRPs"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 0
+        }
+    },
+
+    "elTriMelee1Neutral": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_MELEE_1",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wirbelschlitzer"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriDash1Neutral": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_DASH_1",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wirbelschlitzer"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriShuriken": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_SHURIKEN",
+                "actionCheckKey": "THROW_SPECIAL1"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Speedy Shuriken"
+        },
+        "description": {
+            "en_US": "Throw a fast spinning disk that hits multiple enemies. \\i[class-triblader]",
+            "de_DE": "Bek\u00e4mpfe damit die Dunkelheit.",
+            "zh_CN": "\u7528\u5b83\u6765\u653b\u51fb\u9ed1\u6697\u3002",
+            "ja_JP": "\u95c7\u306b\u5bfe\u3059\u308b\u653b\u6483\u3068\u3057\u3066\u4f7f\u308f\u308c\u308b\u3002",
+            "ko_KR": "\uc5b4\ub460\uc744 \uacf5\uaca9\ud558\ub294 \ub370 \uc0ac\uc6a9\ud569\ub2c8\ub2e4.",
+            "zh_TW": "\u7528\u5b83\u4f86\u653b\u64ca\u9ed1\u6697\u3002"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+
+    "elTriMelee1Heat": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_MELEE_1",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "HEAT",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Flammenwirbler",
+            "de_DE": "Flammenwirbler",
+            "zh_CN": "Flammenwirbler",
+            "zh_TW": "Flammenwirbler",
+            "ja_JP": "\u30d5\u30e9\u30e1\u30f3\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc",
+            "ko_KR": "\ud50c\ub77c\uba58 \ube44\uc5b4\ubca8"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriDash1Heat": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_DASH_1",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "HEAT",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Feuersprint",
+            "de_DE": "Feuersprint",
+            "zh_CN": "Feuersprint",
+            "zh_TW": "Feuersprint",
+            "ja_JP": "\u30af\u30ea\u30e0\u30be\u30f3\u30b9\u30c8\u30e9\u30a4\u30af",
+            "ko_KR": "\uc9c4\ud64d\uc0c9 \ud0c0\uaca9"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriMelee1Cold": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_MELEE_1",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "K\u00e4ltewirbler",
+            "de_DE": "K\u00e4ltewirbler",
+            "zh_CN": "K\u00e4ltewirbler",
+            "zh_TW": "K\u00e4ltewirbler",
+            "ja_JP": "\u30ab\u30eb\u30c6\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc",
+            "ko_KR": "\ucf08\ud2b8 \ube44\uc5b4\ubca8"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriDash1Cold": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_DASH_1",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Eisbahn",
+            "de_DE": "Eisbahn",
+            "zh_CN": "Eisbahn",
+            "zh_TW": "Eisbahn",
+            "ja_JP": "\u30a4\u30f3\u30c7\u30a3\u30b4\u30b9\u30c8\u30e9\u30a4\u30af",
+            "ko_KR": "\ub0a8\uc0c9 \ud0c0\uaca9"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriMelee1Shock": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_MELEE_1",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Schockwirbler",
+            "de_DE": "Schockwirbler",
+            "zh_CN": "Schockwirbler",
+            "zh_TW": "Schockwirbler",
+            "ja_JP": "\u30b7\u30e7\u30c3\u30af\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc",
+            "ko_KR": "\uc1fc\ud06c \ube44\uc5b4\ubca8"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriDash1Shock": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_DASH_1",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Donnerpfeil",
+            "de_DE": "Donnerpfeil",
+            "zh_CN": "Donnerpfeil",
+            "zh_TW": "Donnerpfeil",
+            "ja_JP": "\u30b5\u30f3\u30c0\u30fc\u30c0\u30fc\u30c4",
+            "ko_KR": "\ucc9c\ub465 \ud654\uc0b4"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriMelee1Wave": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_MELEE_1",
+                "actionCheckKey": "ATTACK_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wellenwirbler",
+            "de_DE": "Wellenwirbler",
+            "zh_CN": "Wellenwirbler",
+            "zh_TW": "Wellenwirbler",
+            "ja_JP": "\u30a6\u30a7\u30ec\u30f3\u30fb\u30ef\u30fc\u30d6\u30e9\u30fc",
+            "ko_KR": "\ubca8\ub80c \ube44\uc5b4\ubca8"
+            
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    },
+    "elTriDash1Wave": {
+        "list": [
+            {
+                "replaceTo": "EL_TRI_DASH_1",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wellenritt",
+            "de_DE": "Wellenritt",
+            "zh_CN": "Wellenritt",
+            "zh_TW": "Wellenritt",
+            "ja_JP": "\u30f4\u30a7\u30eb\u30c0\u30f3\u30c8\u30fb\u30b9\u30c8\u30e9\u30a4\u30af",
+            "ko_KR": "\ucd08\ub85d\uc0c9 \ud0c0\uaca9"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-triblader]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 0
+        }
+    }
+}

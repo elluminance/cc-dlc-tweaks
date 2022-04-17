@@ -1,0 +1,235 @@
+{
+    "elLilyWaveBubble": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_BUBBLES",
+                "actionCheckKey": "THROW_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Bubble Bonanza"
+        },
+        "description": {
+            "en_US": "Barrage baddies with a big bubble bonanza. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 96
+        }
+    },
+    "elLilyWaveSuction": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_SUCTION",
+                "actionCheckKey": "GUARD_SPECIAL2"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Vacuum Force"
+        },
+        "description": {
+            "en_US": "Suck in enemies to then blast them away. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 96
+        }
+    },
+    "elLilyWaveTornado": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_TORNADO",
+                "actionCheckKey": "THROW_SPECIAL3"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Teal Twister"
+        },
+        "description": {
+            "en_US": "Summon a tornado to decimate your foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 96
+        }
+    },
+    "elLilyWaveAura": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_WAVE_AURA",
+                "actionCheckKey": "GUARD_SPECIAL3"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wave Aura"
+        },
+        "description": {
+            "en_US": "Summon an aura that will periodically damage nearby foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 0
+        }
+    },
+
+    "elLilyThunderCall": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_THUNDER_CALL",
+                "actionCheckKey": "THROW_SPECIAL1"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Thunder Call"
+        },
+        "description": {
+            "en_US": "Summon a bolt of lightning to strike a single enemy. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 72
+        }
+    },
+    "elLilyGalvanicSphere": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_GALVANIC_SPHERE",
+                "actionCheckKey": "THROW_SPECIAL2"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Galvanic Sphere"
+        },
+        "description": {
+            "en_US": "Summon forth a sphere of lightning that electrocutes nearby foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 72
+        }
+    },
+    "elLilyStormChaser": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_STORM_CHASER",
+                "actionCheckKey": "THROW_SPECIAL3"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Storm Chaser"
+        },
+        "description": {
+            "en_US": "Shoot a ball of lightning that goes back and forth to attack nearby foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 72
+        }
+    },
+    "elLilyShockAura": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_SHOCK_AURA",
+                "actionCheckKey": "GUARD_SPECIAL2"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Lightning Aura"
+        },
+        "description": {
+            "en_US": "Summon an aura that zaps nearby foes. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 0
+        }
+    },
+
+    "elLilyColdShield": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_COLD_SHIELD",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Frozen Barrier"
+        },
+        "description": {
+            "en_US": "Summon a bolt of lightning to strike a single enemy. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 48
+        }
+    },
+    "elLilyFlurry": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_FLURRY",
+                "actionCheckKey": "THROW_SPECIAL2"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Frigid Flurry"
+        },
+        "description": {
+            "en_US": "Release a blast of frozen wind. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 72,
+            "offX": 48
+        }
+    },
+    "elLilyBlizzard": {
+        "list": [
+            {
+                "replaceTo": "EL_LILY_BLIZZARD",
+                "actionCheckKey": "THROW_SPECIAL3"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-lily-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Everlasting Blizzard"
+        },
+        "description": {
+            "en_US": "Bring forth the wrath of the true power of ice. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 96,
+            "offX": 48
+        }
+    }
+}

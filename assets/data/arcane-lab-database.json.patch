@@ -2,11 +2,23 @@
     "type": "ENTER",
     "index": "customSkills"
 },{
-    "type": "INCLUDE",
-    "src": "mod:patches/skills/al-neutral-skills.json"
-},{
-    "type": "INCLUDE",
-    "src": "mod:patches/skills/al-custom-skills.json"
+    "type": "FOR_IN",
+    "keyword": "__FILE__",
+    "values": [
+        "neutral-override",
+        "triblader",
+        "hexacast",
+
+        "lily",
+        "sidwell",
+        "other"
+    ],
+    "body": [
+        {
+            "type": "INCLUDE",
+            "src": "mod:patches/skills/al-database/__FILE__.json"
+        }
+    ]
 },{
     "type": "EXIT"
 },
@@ -15,12 +27,14 @@
     "type": "ENTER",
     "index": ["modifierCards", "positive"]
 },{
-    "type": "ADD_ARRAY_ELEMENT",
-    "content": {
-        "modifier": "EL_LIFESTEAL",
-        "noPercent": true,
-        "required": 7
-    }
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "modifier": "EL_LIFESTEAL",
+            "noPercent": true,
+            "required": 7
+        }
+    ]
 },{
     "type": "EXIT"
 },{

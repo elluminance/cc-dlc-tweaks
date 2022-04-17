@@ -27,7 +27,7 @@ sc.EnemyBooster.inject({
                 // set enemy levels to at minimum their standard boosted level, otherwise the player's level.
                 let ascendedLevel = this.ascendedBooster.calcLevel(enemy.enemyType);
                 // check if GoML is enabled, and boost enemies beyond what a booster would otherwise do.
-                enemy.setLevelOverride(sc.newgame.get("scale-enemies") ? sc.model.player.getParamAvgLevel(10) : ascendedLevel)
+                enemy.setLevelOverride(sc.newgame.get("scale-enemies") ? sc.model.player.getParamAvgLevel(14) : ascendedLevel)
                 enemy.boosterState = sc.ENEMY_BOOSTER_STATE.BOOSTED;
             } else {
                 enemy.boosterState = sc.ENEMY_BOOSTER_STATE.BOOSTABLE;

@@ -1,0 +1,140 @@
+{
+    "proxies": {
+
+    },
+    "actions": {
+        "BASE": {
+            "EL_DASH_ATTACK": {
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "volume": 0.9,
+                        "global": false,
+                        "loop": true,
+                        "type": "PLAY_SOUND",
+                        "sound": "media\/sound\/battle\/dash-3.ogg"
+                    },
+                    {
+                        "factor": 1,
+                        "type": "SET_PLAYER_INVINCIBLE"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "idle"
+                    },
+                    {
+                        "followUp": "aimMove",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "dash"
+                    },
+                    {
+                        "value": false,
+                        "type": "SET_JUMPING"
+                    },
+                    {
+                        "value": 3200,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "value": 2000,
+                        "type": "SET_ACCEL_SPEED"
+                    },
+                    {
+                        "align": "BOTTOM",
+                        "radius": 16,
+                        "yScale": 0,
+                        "zHeight": 16,
+                        "centralAngle": 1,
+                        "duration": 0.066,
+                        "expandRadius": 0,
+                        "alwaysFull": true,
+                        "clockwise": false,
+                        "flipLeftFace": 0,
+                        "rectangular": false,
+                        "repeat": true,
+                        "uniformHitDir": false,
+                        "fixPos": false,
+                        "checkCollision": false,
+                        "type": "CIRCLE_ATTACK",
+                        "attack": {
+                            "type": "LIGHT",
+                            "element": "SHOCK",
+                            "damageFactor": 0.5,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "BLOCK_XY"
+                                }
+                            ],
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "value": "IGNORE",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "duration": 0.2,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "dust",
+                            "name": "line"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 3,
+                            "z": 6
+                        }
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.05,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "value": "VIRTUAL",
+                        "type": "SET_COLL_TYPE"
+                    },
+                    {
+                        "dir": {
+                            "actorAttrib": "dashDir"
+                        },
+                        "time": 0.11,
+                        "stopBeforeEdge": false,
+                        "type": "MOVE_TO_DIR"
+                    },
+                    {
+                        "time": 0.2,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "STOP_REPEATING_FORCE"
+                    }
+                ]
+            }
+        }
+    }
+}
