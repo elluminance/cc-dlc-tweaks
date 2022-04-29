@@ -240,5 +240,25 @@
             "sheet": "",
             "name": null
         }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-dash",
+        "name": {
+            "en_US": "Dash Aura"
+        },
+        "description": {
+            "en_US": "Changes color based on number of dashes remaining."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
     }
 ]

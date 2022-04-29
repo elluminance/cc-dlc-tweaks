@@ -31,7 +31,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.rainbow"
+            "fx": "skin-aura.el.rainbow"
         }
     },
     "el-vaporwave-aura": {
@@ -39,7 +39,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.vaporwave"
+            "fx": "skin-aura.el.vaporwave"
         }
     },
     "el-hp-aura": {
@@ -47,7 +47,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.hp-scale"
+            "fx": "skin-aura.el.hp-scale"
         }
     },
     "el-sp-aura": {
@@ -55,7 +55,15 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.sp-scale"
+            "fx": "skin-aura.el.sp-scale"
+        }
+    },
+    "el-dash-aura": {
+        "item": "el-effect-dash",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.el.dash"
         }
     },
     "el-hax-aura": {
@@ -63,7 +71,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.hacker"
+            "fx": "skin-aura.el.hacker"
         }
     },
     "el-shadow-aura": {
@@ -71,7 +79,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.shadow-step"
+            "fx": "skin-aura.el.shadow-step"
         }
     },
     "el-void-aura": {
@@ -79,7 +87,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.void"
+            "fx": "skin-aura.el.void"
         }
     },
     "el-decoy-aura": {
@@ -87,7 +95,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.warp-decoy"
+            "fx": "skin-aura.el.warp-decoy"
         }
     },
     "el-shady-aura": {
@@ -96,7 +104,7 @@
         "autoAdd": false,
         "type": "Aura",
         "settings": {
-            "fx": "skin-aura.shady-aura"
+            "fx": "skin-aura.el.shady-aura"
         }
     },
 

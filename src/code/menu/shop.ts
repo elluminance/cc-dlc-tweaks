@@ -1,6 +1,4 @@
 export default function () {
-    // i honestly couldn't be bothered to do types for all of this :leaCheese:
-
     //@ts-ignore
     sc.MENU_SHOP_TYPES.CRYSTAL = "CRYSTAL"
 

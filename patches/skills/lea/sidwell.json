@@ -50,7 +50,12 @@
                     "en_US": "Dash into an enemy to lock them into a 3-part pummeling combo."
                 },
                 "dmgType": "MELEE",
+                "stunType": "LOCK",
                 "steps": [
+                    {
+                        "type": "SET_ATTRIB_CURRENT_POS",
+                        "attrib": "oldPos"
+                    },
                     {
                         "duration": 1,
                         "align": "BOTTOM",
@@ -232,7 +237,7 @@
                         "attack": {
                             "type": "MASSIVE",
                             "visualType": "HEAVY",
-                            "damageFactor": 1,
+                            "damageFactor": 2.5,
                             "skillBonus": "MELEE_DMG",
                             "spFactor": 0,
                             "stunSteps": [
@@ -246,10 +251,6 @@
                         },
                         "withBranches": true,
                         "hit": [
-                            {
-                                "type": "SET_ATTRIB_CURRENT_POS",
-                                "attrib": "oldPos"
-                            },
                             {
                                 "kind": "LAST_HIT",
                                 "type": "SET_TEMP_TARGET"
@@ -420,7 +421,7 @@
                                 "attack": {
                                     "type": "HEAVY",
                                     "element": "NEUTRAL",
-                                    "damageFactor": 3,
+                                    "damageFactor": 5.25,
                                     "fly": "MASSIVE+",
                                     "reverse": false,
                                     "guardable": "",

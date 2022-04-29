@@ -1,0 +1,68 @@
+{
+    "elPentaBaseAttack": {
+        "list": [
+            {
+                "replaceTo": "EL_PENTA_ATTACK",
+                "actionCheckKey": "ATTACK"
+            },
+            {
+                "replaceTo": "EL_PENTA_ATTACK_REV",
+                "actionCheckKey": "ATTACK_REV"
+            },
+            {
+                "replaceTo": "EL_PENTA_ATTACK_FINISHER",
+                "actionCheckKey": "ATTACK_FINISHER"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-pentafist-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Pentafist Attack"
+        },
+        "description": {
+            "en_US": "Attack enemies with your fists instead of chakrams. \\i[class-pentafist]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 24
+        }
+    },
+    "elPentaBaseThrow": {
+        "list": [
+            {
+                "replaceTo": "EL_PENTA_THROW_NORMAL",
+                "actionCheckKey": "THROW"
+            },
+            {
+                "replaceTo": "EL_PENTA_THROW_NORMAL",
+                "actionCheckKey": "THROW_NORMAL"
+            },
+            {
+                "replaceTo": "EL_PENTA_THROW_NORMAL_REV",
+                "actionCheckKey": "THROW_NORMAL_REV"
+            },
+            {
+                "replaceTo": "EL_PENTA_THROW_CHARGED",
+                "actionCheckKey": "THROW_CHARGED"
+            },
+            {
+                "replaceTo": "EL_PENTA_THROW_CHARGED_REV",
+                "actionCheckKey": "THROW_CHARGED_REV"
+            }
+        ],
+        "element": "BASE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Pentafist VRPs"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-pentafist]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 120,
+            "offX": 0
+        }
+    }
+}

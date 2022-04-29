@@ -783,7 +783,7 @@
             ]
         },
 
-        "EL_HEXA_WAVE_BLAST": {
+        "ATTACK_SPECIAL1": {
             "name": {
                 "en_US": "Wave Blast"
             },

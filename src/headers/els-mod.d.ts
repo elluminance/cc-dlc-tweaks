@@ -10,11 +10,11 @@ declare global {
             }
 
             interface COPY_SPRITE_SPECIAL_COLOR_EL extends ig.EFFECT_ENTRY.COPY_SPRITE {
-                init(this: this, type: any, settings: ig.EFFECT_ENTRY.EffectSettings.COPY_SPRITE_SPECIAL_COLOR_EL): void
                 mode: string;
             }
 
             interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {
+                new (type: any, settings: ig.EFFECT_ENTRY.EffectSettings.COPY_SPRITE_SPECIAL_COLOR_EL): COPY_SPRITE_SPECIAL_COLOR_EL
             }
 
             var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
@@ -43,10 +43,10 @@ declare global {
             }
             interface EL_SET_TARGET extends ig.ActionStepBase {
                 name: string;
-                init(this: this, settings: ActionSettings.EL_SET_TARGET): void
                 start(this: this, target: ig.ENTITY.Combatant): void
             }
             interface EL_SET_TARGET_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET> {
+                new (settings: ActionSettings.EL_SET_TARGET): EL_SET_TARGET
             }
             var EL_SET_TARGET: EL_SET_TARGET_CONSTRUCTOR;
 
@@ -55,30 +55,33 @@ declare global {
                 random: boolean
                 randRange: Vec2
 
-                init(this: this, settings: ActionSettings.EL_SET_TARGET_POS): void
+                init (this: this, settings: ActionSettings.EL_SET_TARGET_POS): void
             }
-            interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS> { }
+            interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS> {
+            }
 
             var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
 
             interface EL_ELEMENT_IF extends ig.ActionStepBase {
                 branches: Record<string, ig.ActionStepBase>;
-                init(this: this): void;
                 getBranchNames(this: this): string[];
                 getNext(this: this, entity: ig.ENTITY.Combatant): ig.ActionStepBase
             }
 
-            interface EL_ELEMENT_IF_CONSTRUCTOR extends ImpactClass<EL_ELEMENT_IF> { }
+            interface EL_ELEMENT_IF_CONSTRUCTOR extends ImpactClass<EL_ELEMENT_IF> {
+                new (): EL_ELEMENT_IF;
+            }
             var EL_ELEMENT_IF: EL_ELEMENT_IF_CONSTRUCTOR;
 
             interface GOTO_LABEL_WHILE extends ig.ActionStepBase {
                 name: string;
                 condition: ig.VarCondition;
 
-                init(this: this, settings: ActionSettings.GOTO_LABEL_WHILE): void;
                 getJumpLabelName(this: this): string | null;
             }
-            interface GOTO_LABEL_WHILE_CONSTRUCTOR extends ImpactClass<GOTO_LABEL_WHILE> { }
+            interface GOTO_LABEL_WHILE_CONSTRUCTOR extends ImpactClass<GOTO_LABEL_WHILE> {
+                new (settings: ActionSettings.GOTO_LABEL_WHILE): GOTO_LABEL_WHILE;
+            }
             var GOTO_LABEL_WHILE: GOTO_LABEL_WHILE_CONSTRUCTOR
 
             interface SET_ATTRIB_CURRENT_POS extends ig.ActionStepBase {
@@ -221,15 +224,13 @@ declare global {
             listEntries: [string, GeodeOpeningGui.ItemAmount][]
             listitemYOffset: number;
 
-            init(this: this, items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): void;
             onDialogCallback(this: this): void;
             createList(this: this): void;
             setListItems(this: this, items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): void;
         }
 
         interface GeodeRewardsGuiConstructor extends ImpactClass<GeodeRewardsGui> {
-            new(): sc.GeodeRewardsGui;
-            new(items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): sc.GeodeRewardsGui
+            new (items?: sc.GeodeOpeningGui.ItemAmounts, crystals?: number): sc.GeodeRewardsGui
         }
         var GeodeRewardsGui: GeodeRewardsGuiConstructor
 
@@ -239,7 +240,6 @@ declare global {
             amount: sc.NumberGui;
             isGems: boolean;
             transitions: Record<string, ig.GuiHook.Transition>;
-            init(this: this, itemName: string, amount: number, isGems: boolean): void;
             updateDrawables(this: this, b: ig.GuiRenderer): void;
         }
         interface GeodeRewardEntryConstructor extends ImpactClass<GeodeRewardEntry> {
@@ -289,7 +289,6 @@ declare global {
             rewardTable: GeodeOpeningGui.RewardEntry[];
             totalWeight: number;
 
-            init(this: this): void;
             onButtonCallback(this: this, button: sc.ButtonGui): void;
             incrementValue(this: this, number: number): void;
             openGeodes(this: this): void;
@@ -299,7 +298,9 @@ declare global {
             generateRewardTable(this: this): void;
         }
 
-        interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> { }
+        interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {
+            new (): GeodeOpeningGui
+        }
 
         var GeodeOpeningGui: GeodeOpeningGuiConstructor;
         //#endregion Geode
