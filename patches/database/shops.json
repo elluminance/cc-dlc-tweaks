@@ -1,49 +1,4 @@
 {
-    "el-strangeShop1": {
-        "name": {
-            "en_US": "Unusual Goods"
-        },
-        "shopType": "BUY_AND_SELL",
-        "sellScale": 1,
-        "content": [
-            []
-        ],
-        "pages": [
-            {
-                "title": {
-                    "en_US": "Consumables"
-                },
-                "content": [
-                    {
-                        "item": "el-cons-cookie-1"
-                    }
-                ]
-            }
-        ]
-    },
-
-    "el-strangeShop2": {
-        "name": {
-            "en_US": "Strange Skins"
-        },
-        "shopType": "BUY_AND_SELL",
-        "sellScale": 1,
-        "content": [
-            []
-        ],
-        "maxOwn": 1,
-        "pages": [
-            {
-                "title": {
-                    "en_US": "Skins"
-                },
-                "content": [
-                    
-                ]
-            }
-        ]
-    },
-
     "el-gemShop": {
         "name": {
             "en_US": "Crystal Shop"
@@ -185,6 +140,21 @@
                     },
                     {
                         "item": "el-effect-hax",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-decoy",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-dash",
+                        "price": 1000,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-custom-color",
                         "price": 1000,
                         "maxOwn": 1
                     },

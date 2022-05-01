@@ -107,6 +107,15 @@
             "fx": "skin-aura.el.shady-aura"
         }
     },
+    "el-custom-color-aura": {
+        "id": "el-custom-color-aura",
+        "item": "el-effect-custom-color",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.el.custom-color"
+        }
+    },
 
     "el-edgy-lea": {
         "id": "el-edgy-lea",

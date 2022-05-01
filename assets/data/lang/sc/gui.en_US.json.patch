@@ -54,6 +54,17 @@
             "geodeName": "Geodes:",
             "openGeodesSingular": "Open [!] Geode",
             "openGeodesPlural": "Open [!] Geodes"
+        },
+
+        "colorPicker": {
+            "title": "Color Picker",
+            "exit": "Exit",
+
+            "colors": {
+                "red": "Red",
+                "green": "Green",
+                "blue": "Blue"
+            }
         }
     }
 }

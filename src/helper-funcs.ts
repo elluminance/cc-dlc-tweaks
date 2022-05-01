@@ -8,6 +8,8 @@ export function numberToElementName(element: sc.ELEMENT) {
     }
 }
 
+export const rgbToString = (r: number, g: number, b: number) => `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+
 export function hueToRGBValue(hue: number){
     hue = (hue + 360) % 360;
     let color = 0;
@@ -23,5 +25,6 @@ export function getColorFromPercent(hueAtMax: number, hueAtMin: number, rotPerce
     let red = Math.floor(hueToRGBValue(newHue + 120))
     let green = Math.floor(hueToRGBValue(newHue))
     let blue = Math.floor(hueToRGBValue(newHue - 120))
-    return `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+    return rgbToString(red, green, blue);
 }
+

@@ -1,4 +1,4 @@
-import { getColorFromPercent } from "../../helper-funcs.js"
+import { getColorFromPercent, rgbToString } from "../../helper-funcs.js"
 
 export default function () {
     ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EFFECT_ENTRY.COPY_SPRITE.extend({
@@ -26,6 +26,11 @@ export default function () {
                     if (dashCount > maxDash || maxDash == 0) this.color = "#00beff";
                     else if (maxDash == 1 && dashCount == 1) this.color = "#ff0000";
                     else this.color = getColorFromPercent(300, 360, dashCount / maxDash)
+                    break;
+                case "customColor":
+                    let color: sc.EL_ModalColorPicker.Color = ig.vars.get("el.colors.customAura") as any
+                    if(color) this.color = rgbToString(color.red, color.green, color.blue);
+                    else this.color = "#fff"
                     break;
             }
             this.parent(entity)

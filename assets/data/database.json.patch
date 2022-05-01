@@ -26,6 +26,7 @@
         "el-effect-void",
         "el-effect-hax",
         "el-effect-decoy",
+        "el-effect-custom-color",
         "el-effect-shady"
     ]
 },{
