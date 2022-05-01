@@ -64,7 +64,9 @@
                 "red": "Red",
                 "green": "Green",
                 "blue": "Blue"
-            }
+            },
+
+            "aura": "Custom Aura Coloring"
         }
     }
 }

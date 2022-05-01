@@ -575,20 +575,11 @@
                                 "0": [
                                     {
                                         "type": "OPEN_EL_COLOR_PICKER",
-                                        "varPath": "el.colors.customAura"
+                                        "varPath": "el.colors.customAura",
+                                        "langLabel": "sc.gui.colorPicker.aura"
                                     }
                                 ],
                                 "1": [
-                                    {
-                                        "person": {
-                                            "person": "main.lea",
-                                            "expression": "SHAKE"
-                                        },
-                                        "message": {
-                                            "en_US": "[shakes head]"
-                                        },
-                                        "type": "SHOW_MSG"
-                                    }
                                 ],
                                 "type": "SHOW_CHOICE",
                                 "person": {

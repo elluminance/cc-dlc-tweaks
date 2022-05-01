@@ -110,57 +110,52 @@
                 "content": [
                     {
                         "item": "el-effect-rainbow",
-                        "price": 1000,
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
                         "item": "el-effect-vaporwave",
-                        "price": 1000,
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
                         "item": "el-effect-hp",
-                        "price": 1000,
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
                         "item": "el-effect-sp",
-                        "price": 1000,
-                        "maxOwn": 1
-                    },
-                    {
-                        "item": "el-effect-shadow",
-                        "price": 1000,
-                        "maxOwn": 1
-                    },
-                    {
-                        "item": "el-effect-void",
-                        "price": 1000,
-                        "maxOwn": 1
-                    },
-                    {
-                        "item": "el-effect-hax",
-                        "price": 1000,
-                        "maxOwn": 1
-                    },
-                    {
-                        "item": "el-effect-decoy",
-                        "price": 1000,
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
                         "item": "el-effect-dash",
-                        "price": 1000,
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
-                        "item": "el-effect-custom-color",
-                        "price": 1000,
+                        "item": "el-effect-shadow",
+                        "price": 750,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-void",
+                        "price": 750,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-hax",
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
                         "item": "el-effect-decoy",
-                        "price": 1000,
+                        "price": 750,
+                        "maxOwn": 1
+                    },
+                    {
+                        "item": "el-effect-custom-color",
+                        "price": 750,
                         "maxOwn": 1
                     },
                     {
@@ -203,6 +198,18 @@
                 },
                 "content": [
                     {
+                        "item": 487,
+                        "price": 400
+                    },
+                    {
+                        "item": 488,
+                        "price": 1700
+                    },
+                    {
+                        "item": 489,
+                        "price": 6500
+                    },
+                    {
                         "item": "el-neutral-art-pass",
                         "price": 1250,
                         "maxOwn": 1,
@@ -212,7 +219,7 @@
                         "item": "el-triblader-art-pass",
                         "price": 1250,
                         "maxOwn": 1,
-                        "condition": "mod.arcane-labs.active"
+                        "condition": "mod.arcane-labs.active && false"
                     },
                     {
                         "item": "el-hexacast-art-pass",
