@@ -167,6 +167,7 @@ declare global {
         interface PlayerModel {
             getCrystalCoins(): number;
             addCrystalCoins(amount: number): void;
+            subCrystalCoins(amount: number): void;
             setCrystalCoins(amount: number): void;
         }
         interface CombatParams {

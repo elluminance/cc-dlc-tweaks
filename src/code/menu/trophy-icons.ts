@@ -145,6 +145,22 @@ export default function () {
             hidden: false,
             sheet: "dlc-tweaks",
             customIndex: 18,
+        },
+
+        EL_ALL_AURAS: {
+            index: -1,
+            cat: "GENERAL",
+            hidden: false,
+            sheet: "dlc-tweaks",
+            customIndex: 19,
+        },
+
+        EL_BOOSTERS: {
+            index: -1,
+            cat: "COMBAT",
+            hidden: false,
+            sheet: "dlc-tweaks",
+            customIndex: 20,
         }
     })
 

@@ -160,6 +160,44 @@
         }],
         "section": "PLAYER"
     },
+    "player-level-04": {
+        "track": false,
+        "name": {
+            "en_US": "Ye 'ol Level Cap",
+            "de_DE": "Die gute alte Level-Grenze",
+            "zh_CN": "\u767b\u5cf0\u9020\u6781<<A<<[CHANGED 2017\/10\/10]",
+            "zh_TW": "\u767b\u5cf0\u9020\u6975<<A<<[CHANGED 2017\/10\/10]",
+            "ja_JP": "\u6614\u306a\u304c\u3089\u306e\u30ec\u30d9\u30eb\u30ad\u30e3\u30c3\u30d7<<A<<[CHANGED 2017\/11\/04]",
+            "ko_KR": "\uadf8\ub188\uc758 \ub808\ubca8 \uc81c\ud55c<<A<<[CHANGED 2017\/10\/17]",
+            "langUid": 13332
+        },
+        "description": {
+            "en_US": "Reach \\c[3]Level 99\\c[0]. Nothing can stop you now.",
+            "de_DE": "Erreiche \\c[3]Level 99\\c[0]. Jetzt kann dich nichts mehr aufhalten.",
+            "zh_CN": "\u8fbe\u5230\\c[3]99\u7ea7\\c[0]\u3002\u4f60\u5df2\u7ecf\u65e0\u654c\u4e86\u3002<<A<<[CHANGED 2017\/10\/10]",
+            "zh_TW": "\u9054\u5230\\c[3]99\u7d1a\\c[0]\u3002\u4f60\u5df2\u7d93\u7121\u6575\u4e86\u3002<<A<<[CHANGED 2017\/10\/10]",
+            "ja_JP": "\\c[3]\u30ec\u30d9\u30eb99\\c[0]\u306b\u9054\u3059\u308b\u3002\u3082\u3046\u8ab0\u306b\u3082\u541b\u3092\u6b62\u3081\u3089\u308c\u306a\u3044\u3002<<A<<[CHANGED 2017\/11\/04]",
+            "ko_KR": "\\c[3]\ub808\ubca8 99\\c[0] \ub2ec\uc131. \ub204\uad6c\ub3c4 \ub0a0 \ub9c9\uc9c0 \ubabb\ud574!<<A<<[CHANGED 2017\/10\/17]",
+            "langUid": 13333
+        },
+        "descCond": "trophies.triggered.player-level-03",
+        "order": 203,
+        "icon": "LEVEL",
+        "stars": "5",
+        "points": 200,
+        "progType": "VALUE",
+        "category": "GENERAL",
+        "stats": [
+            {
+                "0": " ",
+                "key": "player",
+                "mapKey": "level",
+                "value": "99",
+                "compare": "min"
+            }
+        ],
+        "section": "PLAYER"
+    },
 
     "el-kill-apollo-04": {
         "track": true,
@@ -561,7 +599,7 @@
         },
         "nameCond": "quest.seizui-quest.solved",
         "description": {
-            "en_US": "Defeat Lily in a duel at \\c[3]Rhombus Square's Arena\\c[0]."
+            "en_US": "Defeat \\c[3]Lily\\c[0] in a duel at \\c[3]Rhombus Square's Arena\\c[0]."
         },
         "descCond": "quest.seizui-quest.solved",
         "order": 2050,
@@ -590,7 +628,7 @@
         "order": 1199,
         "icon": "EL_ALL_PETS",
         "stars": "5",
-        "points": 250,
+        "points": 450,
         "progType": "VALUE",
         "section": "ITEMS",
         "category": "GENERAL",
@@ -747,5 +785,194 @@
             "value": "5",
             "compare": "min"
         }]
+    },
+
+    "el-aura-collector": {
+        "track": true,
+        "name": {
+            "en_US": "Ad-aura-ble"
+        },
+        "description": {
+            "en_US": "Obtain all auras."
+        },
+        "order": 1199,
+        "icon": "EL_ALL_AURAS",
+        "stars": "5",
+        "points": 350,
+        "progType": "VALUE",
+        "section": "ITEMS",
+        "category": "GENERAL",
+        "stats": [
+            {
+                "key": "items",
+                "mapKey": 519,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 520,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-rainbow",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-vaporwave",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-hp",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-sp",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-dash",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-shadow",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-void",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-hax",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-decoy",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-custom-color",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-shady",
+                "value": 1,
+                "compare": "min"
+            }
+        ]
+    },
+
+    "el-all-area-boosters": {
+        "track": true,
+        "name": {
+            "en_US": "Truly Boosted"
+        },
+        "description": {
+            "en_US": "Obtain all area boosters."
+        },
+        "order": 1199,
+        "icon": "EL_BOOSTERS",
+        "stars": "5",
+        "points": 300,
+        "progType": "VALUE",
+        "section": "ACTIONS",
+        "category": "COMBAT",
+        "stats": [
+            {
+                "key": "items",
+                "mapKey": 448,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 449,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 450,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 451,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 452,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": 453,
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "dlctweaks-beach-booster",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "dlctweaks-final-dng-booster",
+                "value": 1,
+                "compare": "min"
+            }
+        ]
+    },
+
+    "el-ascended-booster": {
+        "track": true,
+        "name": {
+            "en_US": "The One True Booster"
+        },
+        "description": {
+            "en_US": "Obtain the \\c[3]Ascended Booster\\c[0] - no booster could compare!"
+        },
+        "order": 1199,
+        "icon": "EL_BOOSTERS",
+        "stars": "5",
+        "points": 150,
+        "progType": "VALUE",
+        "section": "ACTIONS",
+        "category": "COMBAT",
+        "stats": [
+            {
+                "key": "items",
+                "mapKey": "dlctweaks-ascended-booster",
+                "value": 1,
+                "compare": "min"
+            }
+        ]
     }
 }

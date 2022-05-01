@@ -16,6 +16,11 @@ export default function () {
 
         addCrystalCoins(value) {
             ig.vars.add("dlctweaks.crystals", value)
+            sc.stats.addMap("player", "currency-crystals", value);
+        },
+
+        subCrystalCoins(value) {
+            ig.vars.sub("dlctweaks.crystals", value)
         }
     })
 
@@ -73,7 +78,7 @@ export default function () {
     sc.ShopMenu.inject({
         buyItems() {
             if (sc.menu.shopGemCoinMode) {
-                sc.model.player.addCrystalCoins(-sc.menu.getTotalCost())
+                sc.model.player.subCrystalCoins(-sc.menu.getTotalCost())
 
                 let value = 0;
                 sc.menu.shopCart.forEach(element => {

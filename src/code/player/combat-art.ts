@@ -38,7 +38,6 @@ export default function () {
                 && this.params.getSp() < getSnowgraveCost()
                 && actionKey.actionKey == "ATTACK_SPECIAL"
             ) {
-                console.log("snowgrave is equipped, not enough sp")
                 maxCharge = 2;
             }
             return maxCharge;
