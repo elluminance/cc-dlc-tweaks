@@ -1,0 +1,109 @@
+[{
+    "type": "ENTER",
+    "index": "entities"
+},{
+    "_comment": "when dealing with custom event steps, it's easier to just use patchsteps.",
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "type": "NPC",
+            "x": 256,
+            "y": 362,
+            "level": 0,
+            "settings": {
+                "mapId": 66,
+                "npcStates": [
+                    {
+                        "reactType": "FIXED_POS",
+                        "face": "EAST",
+                        "action": [],
+                        "hidden": false,
+                        "condition": "",
+                        "config": "normal",
+                        "event": {
+                            "geode": [
+                                {
+                                    "type": "OPEN_GEODE_MENU"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "characterName": "miners.male-brownshirt-white",
+                "name": "geode-cracker"
+            }
+        },
+        {
+            "type": "NPC",
+            "x": 169,
+            "y": 266,
+            "level": 0,
+            "settings": {
+                "mapId": 67,
+                "npcStates": [
+                    {
+                        "reactType": "FIXED_POS",
+                        "face": "EAST",
+                        "action": [],
+                        "hidden": false,
+                        "condition": "",
+                        "config": "normal",
+                        "event": [
+                            {
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "DEFAULT"
+                                },
+                                "type": "ADD_MSG_PERSON",
+                                "side": "RIGHT",
+                                "order": 0,
+                                "clearSide": false
+                            },
+                            {
+                                "0": [
+                                    {
+                                        "type": "OPEN_EL_COLOR_PICKER",
+                                        "varPath": "el.colors.customAura",
+                                        "title": {
+                                            "en_US": "Modify Aura Color"
+                                        }
+                                    }
+                                ],
+                                "1": [
+                                ],
+                                "type": "SHOW_CHOICE",
+                                "person": {
+                                    "person": "main.lea",
+                                    "expression": "DEFAULT"
+                                },
+                                "options": [
+                                    {
+                                        "label": {
+                                            "en_US": "Modify Aura Color"
+                                        }
+                                    },
+                                    {
+                                        "label": {
+                                            "en_US": "Cancel"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "reactType": "",
+                        "face": "",
+                        "action": [],
+                        "hidden": false,
+                        "condition": "false",
+                        "config": "normal",
+                        "event": []
+                    }
+                ],
+                "characterName": "advisors.man-tall-blonde",
+                "name": "dash-colorizer"
+            }
+        }
+    ]
+}]

@@ -60,6 +60,26 @@
             "name": null
         }
     },
+    {
+        "order": 14,
+        "customItem": "el-omori-lea-skin",
+        "name": {
+            "en_US": "Truly Monochrome"
+        },
+        "description": {
+            "en_US": "You've been this way for as long as you can remember..."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
 
     {
         "order": 20,

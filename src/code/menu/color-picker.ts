@@ -14,8 +14,9 @@ export default function () {
         colorSquare: null,
         
         init(varPath, label, callback) {
+            let text = label ? ig.LangLabel.getText(label) : ig.lang.get(label || "sc.gui.colorPicker.title");
             this.parent(
-                ig.lang.get(label || "sc.gui.colorPicker.title"), 
+                text,
                 null,
                 [ig.lang.get("sc.gui.colorPicker.exit")],
                 callback || (() => {})
@@ -126,15 +127,15 @@ export default function () {
 
     ig.EVENT_STEP.OPEN_EL_COLOR_PICKER = ig.EventStepBase.extend({
         varPath: "",
-        langLabel: "",
+        title: null,
 
         init(settings) {
             this.varPath = settings.varPath;
-            this.langLabel = settings.langLabel;
+            this.title = settings.title;
         },
 
         start(data) {
-            let gui = new sc.EL_ModalColorPicker(this.varPath, this.langLabel, () => {data.done = true;})
+            let gui = new sc.EL_ModalColorPicker(this.varPath, this.title, () => {data.done = true;})
             ig.gui.addGuiElement(gui);
             gui.show();
         },

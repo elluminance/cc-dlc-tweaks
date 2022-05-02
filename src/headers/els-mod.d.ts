@@ -108,7 +108,7 @@ declare global {
             namespace OPEN_EL_COLOR_PICKER {
                 interface Settings {
                     varPath: string;
-                    langLabel: string;
+                    title: ig.LangLabel.Data;
                 }
 
                 interface Data {
@@ -117,7 +117,7 @@ declare global {
             }
             interface OPEN_EL_COLOR_PICKER extends ig.EventStepBase {
                 varPath: string;
-                langLabel: string;
+                title: ig.LangLabel.Data;
 
                 start(this: this, data: OPEN_EL_COLOR_PICKER.Data): void;
                 run(this: this, data: OPEN_EL_COLOR_PICKER.Data): boolean;
@@ -368,7 +368,7 @@ declare global {
             onChange(this: this): void;
         }
         interface EL_ModalColorPickerConstructor extends ImpactClass<EL_ModalColorPicker> {
-            new (varPath: string, label?: string, callback?: () => void): EL_ModalColorPicker;
+            new (varPath: string, label?: ig.LangLabel.Data, callback?: () => void): EL_ModalColorPicker;
 
             Slider: EL_ModalColorPicker.SliderConstructor;
             ColorSquare: EL_ModalColorPicker.ColorSquareConstructor;

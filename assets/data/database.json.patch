@@ -67,7 +67,8 @@
     "type": "MERGE_CONTENT",
     "content": [
         "el-edgy-lea-skin",
-        "el-ael-skin"
+        "el-ael-skin",
+        "el-omori-lea-skin"
     ]
 },{
     "type": "EXIT",

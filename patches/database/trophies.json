@@ -161,7 +161,7 @@
         "section": "PLAYER"
     },
     "player-level-04": {
-        "track": false,
+        "track": true,
         "name": {
             "en_US": "Ye 'ol Level Cap",
             "de_DE": "Die gute alte Level-Grenze",
@@ -407,23 +407,45 @@
         "name": {
             "en_US": "The Final Trial"
         },
+        "nameCond": "trophies.triggered.el-kill-boss-gods",
         "description": {
-            "en_US": "\\c[3]Defeat \\v[combat.name.final\/god-neutral]\\c[0] in the \\v[area.final-dng.name]."
+            "en_US": "\\c[3]Defeat \\v[combat.name.final/god-neutral]\\c[0] and the other \\c[3]Gods of Shape\\c[0] in the \\v[area.final-dng.name]."
         },
         "descCond": "trophies.triggered.el-kill-boss-gods",
         "order": 250,
         "icon": "BOSS_GODS",
         "stars": "4",
         "points": 75,
+        "condition": "plot.line >= 48000",
         "progType": "ENEMY",
         "section": "ENEMIES",
         "category": "COMBAT",
-        "stats": [{
-            "key": "combat",
-            "mapKey": "killfinal.god-neutral",
-            "value": "1",
-            "compare": "min"
-        }]
+        "stats": [
+            {
+                "key": "combat",
+                "mapKey": "killfinal.god-heat",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "combat",
+                "mapKey": "killfinal.god-cold",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "combat",
+                "mapKey": "killfinal.god-shock",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "combat",
+                "mapKey": "killfinal.god-wave",
+                "value": "1",
+                "compare": "min"
+            }
+        ]
     },
     "el-kill-boss-sidwell": {
         "track": true,

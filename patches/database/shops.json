@@ -164,6 +164,11 @@
                         "maxOwn": 1
                     },
                     {
+                        "item": "el-omori-lea-skin",
+                        "price": 1250,
+                        "maxOwn": 1
+                    },
+                    {
                         "item": "el-ael-skin",
                         "price": 1250,
                         "maxOwn": 1
@@ -187,7 +192,7 @@
                     },
                     {
                         "item": "el-toggle-dr-explosion",
-                        "price": 750,
+                        "price": 1250,
                         "maxOwn": 1
                     }
                 ]
