@@ -285,7 +285,7 @@
         "order": 20,
         "customItem": "el-effect-custom-color",
         "name": {
-            "en_US": "Custom Color Aura"
+            "en_US": "Customizable Aura"
         },
         "description": {
             "en_US": "Leave a trail of whatever color you want!"

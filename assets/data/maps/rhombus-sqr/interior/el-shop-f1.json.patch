@@ -35,15 +35,15 @@
         },
         {
             "type": "NPC",
-            "x": 169,
-            "y": 266,
+            "x": 224,
+            "y": 324,
             "level": 0,
             "settings": {
                 "mapId": 67,
                 "npcStates": [
                     {
                         "reactType": "FIXED_POS",
-                        "face": "EAST",
+                        "face": "NORTH",
                         "action": [],
                         "hidden": false,
                         "condition": "",
@@ -65,7 +65,7 @@
                                         "type": "OPEN_EL_COLOR_PICKER",
                                         "varPath": "el.colors.customAura",
                                         "title": {
-                                            "en_US": "Modify Aura Color"
+                                            "en_US": "Custom Aura Color"
                                         }
                                     }
                                 ],
@@ -80,7 +80,8 @@
                                     {
                                         "label": {
                                             "en_US": "Modify Aura Color"
-                                        }
+                                        },
+                                        "activeCondition": "item.el-effect-custom-color.amountEquipped > 0"
                                     },
                                     {
                                         "label": {

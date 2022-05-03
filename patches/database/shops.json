@@ -105,7 +105,7 @@
             },
             {
                 "title": {
-                    "en_US": "Auras + Skins"
+                    "en_US": "Auras"
                 },
                 "content": [
                     {
@@ -157,7 +157,14 @@
                         "item": "el-effect-custom-color",
                         "price": 750,
                         "maxOwn": 1
-                    },
+                    }
+                ]
+            },
+            {
+                "title": {
+                    "en_US": "Skins"
+                },
+                "content": [
                     {
                         "item": "el-edgy-lea-skin",
                         "price": 1250,

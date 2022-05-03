@@ -1,4 +1,4 @@
-import { Mod, PluginClass } from "../node_modules/ultimate-crosscode-typedefs/modloader/mod";
+import type { Mod, PluginClass } from "../node_modules/ultimate-crosscode-typedefs/modloader/mod";
 
 //#region prestart declarations
 import actionStep from "./code/steps/action-step.js"
@@ -23,7 +23,7 @@ import colorPicker from "./code/menu/color-picker.js";
 //#endregion
 
 //#region poststart declarations
-import combatArt from "./code/player/combat-art.js"
+//import combatArt from "./code/player/combat-art.js"
 //#endregion
 
 export default class implements PluginClass {
@@ -52,6 +52,6 @@ export default class implements PluginClass {
     }
 
     poststart() {
-        combatArt(); //will enabled when needed
+        //combatArt();
     }
 }

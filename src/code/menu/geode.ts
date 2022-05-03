@@ -207,7 +207,6 @@ export default function () {
             this.msgBox.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER);
 
             this.rewardGui = new sc.GeodeRewardsGui;
-            //@ts-ignore
             this.rewardGui.doStateTransition("HIDDEN", true);
             this.addChildGui(this.rewardGui);
 
@@ -337,7 +336,6 @@ export default function () {
 
             this.rewardGui.setListItems(itemsGiven, crystals);
             ig.gui.addGuiElement(this.rewardGui);
-            //@ts-ignore
             this.rewardGui.show();
             this.count = 1;
             // force it to update to the correct values
@@ -414,7 +412,6 @@ export default function () {
         crystals: 0,
 
         init(items, crystals) {
-            //@ts-ignore
             this.parent(
                 ig.lang.get("sc.gui.geode.rewardTitle"),
                 null,
@@ -523,7 +520,6 @@ export default function () {
                 sc.model.player.addItem(item, data.amount, true)
             }
             sc.model.player.addCrystalCoins(this.crystals)
-            //@ts-ignore
             this.hide();
         },
 
@@ -569,8 +565,6 @@ export default function () {
             this.addChildGui(this.amount);
         },
         updateDrawables: function (b) {
-            //@ts-ignore
-            this.parent(b);
             b.addGfx(this.gfx, 132 + (this.isGems ? 0 : 24), 6, 560, 416, 8, 8);
         }
     })
