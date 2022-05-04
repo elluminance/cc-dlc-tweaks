@@ -20,6 +20,7 @@ import geode from "./code/menu/geode.js"
 import playerConfig from "./code/player/player-config.js"
 import statusEffect from "./code/combat/status-effect.js";
 import colorPicker from "./code/menu/color-picker.js";
+import hpBar from "./code/misc/hp-bar.js";
 //#endregion
 
 //#region poststart declarations
@@ -49,6 +50,7 @@ export default class implements PluginClass {
         playerConfig();
         statusEffect();
         colorPicker();
+        hpBar();
     }
 
     poststart() {
