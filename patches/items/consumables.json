@@ -264,5 +264,31 @@
         "useSpeed": 2,
         "noTrack": false,
         "foodSprite": "el_HOT_GOD_WITH_JELLY"
+    },
+
+    {
+        "order": 16.10,
+        "customItem": "el-test-overheal-sandwich",
+        "name": {
+            "en_US": "Test Sandwich"
+        },
+        "description": {
+            "en_US": "A sandwich, but better! \\c[2]Heals 10% of max HP\\c[0], and \\c[3]overheals up to 125%\\c[0]."
+        },
+        "type": "CONS",
+        "cost": 500,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "OVERHEAL-1"
+        ],
+        "rarity": 1,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 1,
+        "noTrack": false
     }
 ]

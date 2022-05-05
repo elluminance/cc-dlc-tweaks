@@ -2,8 +2,6 @@ import { getColorFromPercent } from "../../helper-funcs.js";
 
 export default function () {
     sc.HpHudBarGui.inject({
-
-
         updateDrawables(renderer) {
             this.parent(renderer);
 
@@ -15,7 +13,7 @@ export default function () {
                         isEmptyCurrent = (hpRatio - i < 0),
                         isFullTarget = (targetRatio - i >= 1) || (targetRatio % 1 == 0),
                         isEmptyTarget = (targetRatio - i) < 0,
-                        color = getColorFromPercent(210, 145, i),
+                        color = getColorFromPercent(245, 210, i - 1),
                         widthWhite: number,
                         widthColor: number,
                         useWhite = true;
@@ -31,7 +29,7 @@ export default function () {
                     for (let j = 0; j < this.height; j++) {
                         if (widthWhite && this.targetHp != this.currentHp) {
                             useWhite || renderer.addColor(color, j, j, widthWhite * this.width, 1)
-                            renderer.addColor("#fff", j, j, widthWhite * this.width, 1).setAlpha(useWhite ? 0.9 : 0.65)
+                            renderer.addColor("#fff", j, j, widthWhite * this.width, 1).setAlpha(useWhite ? 0.9 : 0.75)
                         }
                         renderer.addColor(color, j, j, widthColor * this.width, 1)
                     }

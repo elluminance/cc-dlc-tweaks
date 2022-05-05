@@ -128,6 +128,12 @@ declare global {
             let OPEN_EL_COLOR_PICKER: OPEN_EL_COLOR_PICKER_CONSTRUCTOR;
         }
 
+        namespace ENTITY {
+            interface Combatant {
+                overheal(this: this, value: number, maxHeal: number): void;
+            }
+        }
+
         interface KnownVars {
             "dlctweaks.crystals": number;
         }
@@ -171,8 +177,10 @@ declare global {
             setCrystalCoins(amount: number): void;
         }
         interface CombatParams {
-            el_lifestealTimer: number
-            el_lifestealHealed: number
+            el_lifestealTimer: number;
+            el_lifestealHealed: number;
+
+            increaseHpOverheal(this: this, amount: number, maxHeal: number): void;
         }
 
         interface EnemyBooster {
@@ -374,5 +382,9 @@ declare global {
             ColorSquare: EL_ModalColorPicker.ColorSquareConstructor;
         }
         let EL_ModalColorPicker: EL_ModalColorPickerConstructor;
+
+        interface StatChangeSettings {
+            overheal?: number;
+        } 
     }
 }
