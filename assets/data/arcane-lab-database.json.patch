@@ -32,8 +32,7 @@
     "content": [
         {
             "modifier": "EL_LIFESTEAL",
-            "noPercent": true,
-            "required": 7
+            "amount": 0.01
         }
     ]
 },{
@@ -49,7 +48,7 @@
             "amount": 0.02
         },{
             "modifier": "EL_NEUTRAL_BOOST",
-            "amount": 0.02
+            "amount": 0.03
         },{
             "modifier": "EL_HEAT_BOOST",
             "amount": 0.02

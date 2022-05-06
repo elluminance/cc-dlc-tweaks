@@ -250,7 +250,7 @@
             "focus": 97
         },
         "properties": {
-            "EL_LIFESTEAL": 2,
+            "EL_LIFESTEAL": 1.1,
             "SP_REGEN": 1.1,
             "BERSERK": 0.85
         },
