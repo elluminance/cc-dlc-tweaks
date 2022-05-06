@@ -2,24 +2,43 @@
     "type": "ENTER", 
     "index": ["ANIMS", "SUB"]
 },{
-    "type": "ADD_ARRAY_ELEMENT",
-    "content": {
-        "name": "DR_EXPLOSION",
-        "sheet": {
-            "src": "media\/entity\/effects\/deltarune-explosion.png",
-            "width": 71,
-            "height": 100,
-            "xCount": 18
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "name": "DR_EXPLOSION",
+            "sheet": {
+                "src": "media/entity/effects/deltarune-explosion.png",
+                "width": 71,
+                "height": 100,
+                "xCount": 18
+            },
+            "time": 0.04,
+            "repeat": false,
+            "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+            "offset": {
+                "x": 0,
+                "y": 30,
+                "z": 0
+            }
         },
-        "time": 0.04,
-        "repeat": false,
-        "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-        "offset": {
-            "x": 0,
-            "y": 30,
-            "z": 0
+        {
+            "name": "EL_LIFESTEAL_CIRCLE",
+            "sheet": {
+                "src": "media/entity/effects/el-mod-particle.png",
+                "width": 8,
+                "height": 8,
+                "xCount": 1
+            },
+            "time": 0.04,
+            "repeat": true,
+            "frames": [0],
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
         }
-    }
+    ]
 },{
     "type": "EXIT",
     "count": 2
@@ -27,40 +46,90 @@
     "type": "ENTER",
     "index": "EFFECTS"
 },{
-    "type": "SET_KEY",
-    "index": "boom_medium_deltarune",
-    "content": [
-        {
-            "scaleX": 0,
-            "scaleY": 1.5,
-            "duration": 0.2,
-            "type": "CHANGE_SCALE"
-        },
-        {
-            "alpha": 0,
-            "duration": 0.2,
-            "type": "CHANGE_ALPHA"
-        },
-        {
-            "sound": "media\/sound\/badexplosion.ogg",
-            "volume": 1,
-            "global": false,
-            "loop": false,
-            "fadeDuration": 0.05,
-            "type": "PLAY_SOUND"
-        },
-        {
-            "useTargetAngle": false,
-            "keepAngleSync": false,
-            "offset": {
-                "x": 0,
-                "z": 16,
-                "y": 0
+    "type": "MERGE_CONTENT",
+    "content": {
+        "boom_medium_deltarune": [
+            {
+                "scaleX": 0,
+                "scaleY": 1.5,
+                "duration": 0.2,
+                "type": "CHANGE_SCALE"
             },
-            "type": "PLAY_ANIM",
-            "anim": "DR_EXPLOSION"
-        }
-    ]
+            {
+                "alpha": 0,
+                "duration": 0.2,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "sound": "media\/sound\/badexplosion.ogg",
+                "volume": 1,
+                "global": false,
+                "loop": false,
+                "fadeDuration": 0.05,
+                "type": "PLAY_SOUND"
+            },
+            {
+                "useTargetAngle": false,
+                "keepAngleSync": false,
+                "offset": {
+                    "x": 0,
+                    "z": 16,
+                    "y": 0
+                },
+                "type": "PLAY_ANIM",
+                "anim": "DR_EXPLOSION"
+            }
+        ],
+
+        "el_lifesteal_steal": [
+            {
+                "duration": 0,
+                "numParticles": 4,
+                "flyType": "EXPAND_DASH",
+                "inverse": false,
+                "offRadiusZScale": 1,
+                "rotateMoveDir": "MOVE_DIR",
+                "pScale": {
+                    "init": {
+                        "x": 0.2,
+                        "y": 0.2
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "time": 0.2,
+                        "spline": "EASE_OUT"
+                    },
+                    "end": {
+                        "value": {
+                            "x": 0,
+                            "y": 4
+                        },
+                        "time": 0.2,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "pAlpha": {
+                    "init": 0.5
+                },
+                "particleDuration": 0.6,
+                "anim": "EL_LIFESTEAL_CIRCLE",
+                "offsetRadius": 16,
+                "offsetAngle": 1,
+                "phaseDurations": [
+                    0.5,
+                    0.5
+                ],
+                "type": "SHOOT_HOMING_PARTICLE"
+            }
+        ],
+
+        "el_lifesteal_aura": [
+
+        ]
+    }
 },{
     "type": "EXIT"
 }]

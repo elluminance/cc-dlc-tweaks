@@ -17,7 +17,7 @@
                 },
                 "descriptions": {
                     "EL_RISKTAKER": "Increases the amount of damage dealt and received.",
-                    "EL_LIFESTEAL": "\\c[1]Disables HP Regeneration in combat\\c[0], but dealing damage will restore HP relative to the attack's power. HP Regen increases damage healed.",
+                    "EL_LIFESTEAL": "\\c[1]Disables HP Regeneration in combat\\c[0], but dealing damage will steal a portion of the target's HP. HP Regen increases damage healed.",
                     "EL_GEODE_FINDER": "Increases the chance that an enemy will drop a Geode. Stacks with other item modifiers.",
                     "EL_TRANCE": "Wearer takes damage from the pain. Disables HP regeneration. Slowly drains HP to 1/3 of maximum while in combat. Halves cost of certain Cold arts.",
                     "EL_COND_GUARD_ALL": "Increases the resistance against \\c[3]Status Conditions\\c[0] and reduces their effects.",

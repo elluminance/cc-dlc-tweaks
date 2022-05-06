@@ -97,60 +97,38 @@ export default function () {
     }
 
     //#region vampirism
-    const lifestealCooldown = 0.1;
-
-    // this... is very hacky.
-    // only works fully on the player.
-    sc.DAMAGE_MODIFIER_FUNCS.EL_LIFESTEAL = (attackInfo, damageFactor, combatantRoot, shieldResult, hitIgnore, params) => {
-        let attackerParams = combatantRoot.params;
-        let attackDmgFactor = attackInfo.damageFactor.limit(0, 8)
-        let playerEntity = ig.game.playerEntity;
-
-        // if attack is shielded, reduce healing to a quarter.
-        if (shieldResult == sc.SHIELD_RESULT.REGULAR) {
-            attackDmgFactor *= 0.25;
-            // if attack is perfect guarded or neutralized, reduce to 0.
-        } else if (shieldResult == sc.SHIELD_RESULT.NEUTRALIZE || shieldResult == sc.SHIELD_RESULT.PERFECT) {
-            attackDmgFactor = 0;
-        }
-        attackDmgFactor *= 1 + attackerParams.getModifier("HP_REGEN")
-
-        attackDmgFactor = 1.25 * Math.log1p(attackDmgFactor)
-
-        let healEntity = (amount: number) => {
-            const healAmount = attackerParams.getHealAmount({ value: amount / 200 });
-            sc.options.get("damage-numbers") && ig.ENTITY.HitNumber.spawnHealingNumber(combatantRoot.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), playerEntity, healAmount);
-            attackerParams.increaseHp(healAmount)
-
-            attackerParams.el_lifestealHealed = attackDmgFactor;
-        }
-
-        if (attackerParams.getModifier("EL_LIFESTEAL")) {
-            // if lifesteal cooldown is over,
-            // heal based on the damage factor.
-            if (attackerParams.el_lifestealTimer <= 0) {
-                healEntity(attackDmgFactor)
-                attackerParams.el_lifestealTimer = lifestealCooldown;
-
-                // if lifesteal cooldown is not done, 
-                // but an attack did more than previously healed for
-                // heal for the difference.
-            } else if (attackerParams.el_lifestealHealed < attackDmgFactor) {
-                healEntity(attackDmgFactor - attackerParams.el_lifestealHealed)
-                // take the midpoint of the timer and the cooldown value
-                attackerParams.el_lifestealTimer = (lifestealCooldown + attackerParams.el_lifestealTimer) / 2;
-            }
-        }
-        return { attackInfo, damageFactor, applyDamageCallback: null }
-    }
-
     sc.CombatParams.inject({
-        el_lifestealTimer: 0,
-        el_lifestealHealed: 0,
+        getDamage(attackInfo, damageFactorMod, combatant, shieldResult, j) {
+            const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, j);
 
-        update(a) {
-            this.parent(a)
-            this.el_lifestealTimer -= ig.system.ingameTick;
+            let combatantParams = combatant.getCombatantRoot().params;
+            // the this.combatant !== combatant is simply to make sure that any self inflicted damage (i.e. jolt)
+            // does not trigger life steal. wouldn't make sense to steal from yourself, y'know?
+            if (combatantParams.getModifier("EL_LIFESTEAL") && (this.combatant !== combatant.getCombatantRoot())) {
+                let relativeDamage = damageResult.damage * 0.075;
+
+                if(sc.newgame.get("sergey-hax") && !ig.vars.get("g.newgame.ignoreSergeyHax")) relativeDamage /= 4096
+
+                // avoid division by 0
+                relativeDamage = relativeDamage !== 0 ? relativeDamage / Math.log1p(relativeDamage) : 0; 
+                relativeDamage *= 1 + combatantParams.getModifier("HP_REGEN").limit(-1, 1)
+                relativeDamage = Math.min(combatantParams.getStat("hp") / 10, relativeDamage);
+                let healAmount = this.getHealAmount({value: relativeDamage, absolute: true});
+                if(sc.options.get("damage-numbers")) {
+                    ig.ENTITY.HitNumber.spawnHealingNumber(combatant.getCombatantRoot().getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), combatant.getCombatantRoot(), healAmount);
+                }
+                this.increaseHp(healAmount)
+
+                //@ts-ignore
+                combatant.getCombatantRoot().effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
+                    {
+                        target2: this.combatant,
+                        target2Align: ig.ENTITY_ALIGN['CENTER'],
+                        align: ig.ENTITY_ALIGN['CENTER']
+                    }
+                );
+            }
+            return damageResult;
         }
     })
 
