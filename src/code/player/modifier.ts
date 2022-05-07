@@ -97,8 +97,9 @@ export default function () {
 
     //#region vampirism
     const lifestealCooldown = 1/5;
-    // this constant ensures that (0.9^(a*t) - 1) = 1 at max cooldown
-    const vampirismConstant = Math.log(2) / (Math.log(0.9) * lifestealCooldown) 
+    const cooldownPower = 3;
+    const cooldownConstant = lifestealCooldown ** -cooldownPower;
+    const lifestealMultiplier = 0.04;
 
     sc.CombatParams.inject({
         el_lifestealHealed: 0,
@@ -112,24 +113,24 @@ export default function () {
         getDamage(attackInfo, damageFactorMod, combatant, shieldResult, j) {
             const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, j);
 
-            let combatantParams = combatant.getCombatantRoot().params,
+            let rootCombatant = combatant.getCombatantRoot(),
+                combatantParams = rootCombatant.params,
                 lifesteal = combatantParams.getModifier("EL_LIFESTEAL");
-            // the this.combatant !== combatant is simply to make sure that any self inflicted damage (i.e. jolt)
+            // the this.combatant !== rootCombatant is simply to make sure that any self inflicted damage (i.e. jolt)
             // does not trigger life steal. wouldn't make sense to steal from yourself, y'know?
-            if (lifesteal > 0 && (this.combatant !== combatant.getCombatantRoot())) {
-                let relativeDamage = damageResult.damage * 0.05;
+            if (lifesteal > 0 && (this.combatant !== rootCombatant)) {
+                let relativeDamage = damageResult.damage * lifestealMultiplier;
 
                 if (sc.newgame.get("sergey-hax") 
                  && !ig.vars.get("g.newgame.ignoreSergeyHax") 
-                 && combatant.getCombatantRoot().isPlayer
+                 && rootCombatant.isPlayer
                 ) relativeDamage /= 4096
 
                 // avoid division by 0
                 relativeDamage = relativeDamage !== 0 ? relativeDamage / Math.log1p(relativeDamage) : 0; 
-                relativeDamage *= 1 + combatantParams.getModifier("HP_REGEN").limit(-1, 2) / 2;
                 relativeDamage *= 1 + lifesteal;
-                relativeDamage = Math.min(combatantParams.getStat("hp") / 10, relativeDamage);
-                let adjustedHealth = Math.abs(combatantParams.el_lifestealHealed * (0.9 ** (vampirismConstant * combatantParams.el_lifestealTimer) - 1));
+                relativeDamage = Math.min(combatantParams.getStat("hp") / 20, relativeDamage);
+                let adjustedHealth = combatantParams.el_lifestealHealed * (1 - cooldownConstant * (this.el_lifestealTimer ** cooldownPower));
                 if ((combatantParams.el_lifestealTimer > 0) && (relativeDamage > adjustedHealth)) {
                     combatantParams.el_lifestealHealed = relativeDamage;
                     relativeDamage -= adjustedHealth;
@@ -144,8 +145,8 @@ export default function () {
                     
                     if(sc.options.get("damage-numbers")) {
                         ig.ENTITY.HitNumber.spawnHealingNumber(
-                            combatant.getCombatantRoot().getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), 
-                            combatant.getCombatantRoot(), 
+                            rootCombatant.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), 
+                            rootCombatant, 
                             healAmount
                         );
                     }
@@ -153,7 +154,7 @@ export default function () {
                     this.increaseHp(healAmount)
     
                     //@ts-ignore
-                    combatant.getCombatantRoot().effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
+                    rootCombatant.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
                         {
                             target2: this.combatant,
                             target2Align: ig.ENTITY_ALIGN['CENTER'],
