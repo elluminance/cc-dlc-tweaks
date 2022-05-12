@@ -10,8 +10,8 @@ export default function() {
     })
 
     ig.ENTITY.Combatant.inject({
-        overheal(value, maxHeal) {
-            let amount = this.params.getHealAmount({value}),
+        overheal(healInfo, maxHeal) {
+            let amount = this.params.getHealAmount(healInfo),
                 hitPos = this.getAlignedPos(ig.ENTITY_ALIGN.CENTER);
             
             this.params.increaseHpOverheal(amount, maxHeal);
@@ -19,8 +19,8 @@ export default function() {
             if (sc.options.get("damage-numbers")) {
                 ig.ENTITY.HitNumber.spawnHealingNumber(hitPos, this, amount);
             }
-            //@ts-expect-error - onHeal() only exists on the player entity, not on all combatants.
-            this.onHeal && this.onHeal({value}, amount)
+            
+            this.onHeal && this.onHeal(healInfo, amount)
         }
     })
 
@@ -29,7 +29,7 @@ export default function() {
             if(settings.overheal) {
                 let player = ig.game.playerEntity,
                     healValue = (settings.value - 1) * (1 + player.params.getModifier('ITEM_BOOST'));
-                player.overheal(healValue, settings.overheal);
+                player.overheal({value: healValue}, settings.overheal);
             } else this.parent(settings)
         }
     })

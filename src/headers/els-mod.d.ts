@@ -130,7 +130,7 @@ declare global {
 
         namespace ENTITY {
             interface Combatant {
-                overheal(this: this, value: number, maxHeal: number): void;
+                overheal(this: this, value: sc.HealInfo.Settings, maxHeal: number): void;
             }
         }
 
@@ -385,6 +385,10 @@ declare global {
 
         interface StatChangeSettings {
             overheal?: number;
-        } 
+        }
+
+        interface HpHudBarGui {
+            hasOverheal: boolean;
+        }
     }
 }

@@ -2,12 +2,23 @@ import { getColorFromPercent } from "../../helper-funcs.js";
 
 export default function () {
     sc.HpHudBarGui.inject({
+        hasOverheal: false,
+
+        update() {
+            this.parent()
+
+            if(this.hasOverheal && (Math.max(this.targetHp, this.currentHp) < this.maxHp)) {
+                this.hasOverheal = false;
+            } else if (this.targetHp > this.maxHp) {
+                this.hasOverheal = true;
+            }
+        },
         updateDrawables(renderer) {
             this.parent(renderer);
 
             let hpRatio = this.currentHp / this.maxHp,
                 targetRatio = this.targetHp / this.maxHp;
-            if (hpRatio > 1 || targetRatio > 1) {
+            if (this.hasOverheal && (hpRatio > 1 || targetRatio > 1)) {
                 for (let i = 1; i < hpRatio; i++) {
                     let isFullCurrent = (hpRatio - i >= 1) || (hpRatio % 1 == 0),
                         isEmptyCurrent = (hpRatio - i < 0),

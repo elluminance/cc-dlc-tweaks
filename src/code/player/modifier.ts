@@ -121,15 +121,33 @@ export default function () {
             if (lifesteal > 0 && (this.combatant !== rootCombatant)) {
                 let relativeDamage = damageResult.damage * lifestealMultiplier;
 
-                if (sc.newgame.get("sergey-hax") 
-                 && !ig.vars.get("g.newgame.ignoreSergeyHax") 
-                 && rootCombatant.isPlayer
-                ) relativeDamage /= 4096
+                
+                if(rootCombatant.isPlayer) {
+                    /*
+                     * helps compensate for glass cannons doing significantly more damage
+                     * by reducing the relative amount of HP regained if your attack is
+                     * significantly higher than your max HP
+                     */
+                    relativeDamage *= Math.min(combatantParams.getStat("hp", true) / (10 * combatantParams.getStat("attack", true)), 4);
 
-                // avoid division by 0
+                    // undoes NG+ sergey hax
+                    if (sc.newgame.get("sergey-hax") && !ig.vars.get("g.newgame.ignoreSergeyHax")) {
+                        relativeDamage /= 4096;
+                    }
+
+                    // undoes normal sergey hax
+                    if(combatantParams.buffs.some(buff => buff instanceof sc.ActionBuff && buff.name == "sergeyHax")) {
+                        relativeDamage *= combatantParams.getStat("attack", true) / combatantParams.getStat("attack", true)
+                    }
+                }
+
+                // avoid division by 0, while scaling the damage dealt logarithmically
                 relativeDamage = relativeDamage !== 0 ? relativeDamage / Math.log1p(relativeDamage) : 0; 
                 relativeDamage *= 1 + lifesteal;
+                
+                // caps lifesteal healing at 5% max HP
                 relativeDamage = Math.min(combatantParams.getStat("hp") / 20, relativeDamage);
+
                 let adjustedHealth = combatantParams.el_lifestealHealed * (1 - cooldownConstant * (this.el_lifestealTimer ** cooldownPower));
                 if ((combatantParams.el_lifestealTimer > 0) && (relativeDamage > adjustedHealth)) {
                     combatantParams.el_lifestealHealed = relativeDamage;
@@ -141,7 +159,7 @@ export default function () {
                 }
                 relativeDamage = Math.floor(relativeDamage);
                 if(relativeDamage > 0) {
-                    let healAmount = this.getHealAmount({value: relativeDamage, absolute: true});
+                    let healAmount = this.getHealAmount(new sc.HealInfo(this, {value: relativeDamage, absolute: true}));
                     
                     if(sc.options.get("damage-numbers")) {
                         ig.ENTITY.HitNumber.spawnHealingNumber(
@@ -153,15 +171,13 @@ export default function () {
                     
                     this.increaseHp(healAmount)
     
-                    //@ts-ignore
                     rootCombatant.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
                         {
                             target2: this.combatant,
-                            target2Align: ig.ENTITY_ALIGN['CENTER'],
-                            align: ig.ENTITY_ALIGN['CENTER']
+                            target2Align: ig.ENTITY_ALIGN.CENTER,
+                            align: ig.ENTITY_ALIGN.CENTER
                         }
                     );
-                    //@ts-ignore
                     this.combatant.effects.death.spawnOnTarget("el_lifesteal_aura", this.combatant);
                     
                     combatantParams.el_lifestealTimer = lifestealCooldown;

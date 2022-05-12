@@ -261,43 +261,7 @@
         "noTrack": false,
         "isScalable": true
     },
-    {
-        "customItem": "el-dealmaker",
-        "order": 12,
-        "name": {
-            "en_US": "Vampire Knives"
-        },
-        "description": {
-            "en_US": "Enigmatic pink and yellow glasses that simply make you feel like a big shot. \\i[ascended]"
-        },
-        "type": "EQUIP",
-        "rarity": 6,
-        "cost": 2,
-        "level": 71,
-        "icon": "item-sword",
-        "equipType": "ARM",
-        "params": {
-            "elemFactor": [
-                1,
-                1,
-                1,
-                1
-            ],
-            "hp": 346,
-            "attack": 79,
-            "focus": 97
-        },
-        "properties": {
-            "MONEY_PLUS": 1.3
-        },
-        "effect": {
-            "sheet": "",
-            "name": null
-        },
-        "noTrack": false,
-        "isScalable": true
-    },
-
+    
     {
         "customItem": "el-crystal-bow",
         "order": 1.01,
@@ -323,8 +287,8 @@
                 1
             ],
             "attack": 129,
-            "defense": 63,
-            "focus": 34
+            "defense": 34,
+            "focus": 63
         },
         "properties": {
             "RANGED_DMG": 1.15
@@ -520,7 +484,7 @@
 
     {
         "customItem": "el-thorn-ring",
-        "order": 12.021,
+        "order": 12.0221,
         "name": {
             "en_US": "Thorn Ring"
         },
@@ -543,7 +507,7 @@
                 1
             ],
             "attack": 116,
-            "defense": 116
+            "focus": 116
         },
         "properties": {
             "EL_TRANCE": 2,
@@ -557,12 +521,12 @@
     }, 
     {
         "customItem": "el-freeze-ring",
-        "order": 12.02,
+        "order": 12.0222,
         "name": {
             "en_US": "Freeze Ring"
         },
         "description": {
-            "en_US": "A pretty ring with a little snowglobe on top. \\i[ascended]"
+            "en_US": "A chilling blue ring with a little snowglobe on top. \\i[ascended]"
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -579,12 +543,128 @@
                 1,
                 1
             ],
-            "attack": 116,
-            "defense": 26,
-            "focus": 45
+            "hp": 250,
+            "attack": 121,
+            "defense": 35,
+            "focus": 25
         },
         "properties": {
-            "EL_COLD_BOOST": 1.15
+            "EL_COLD_BOOST": 1.15,
+            "EL_HEAT_BOOST": 0.9
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-heat-ring",
+        "order": 12.0211,
+        "name": {
+            "en_US": "Flame Ring"
+        },
+        "description": {
+            "en_US": "A warm red ring that spews powerful flames. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1.2,
+                0.85,
+                1,
+                1
+            ],
+            "attack": 136,
+            "defense": 25,
+            "focus": 60
+        },
+        "properties": {
+            "EL_HEAT_BOOST": 1.15,
+            "EL_COLD_BOOST": 0.9
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-shock-ring",
+        "order": 12.0231,
+        "name": {
+            "en_US": "Jolt Ring"
+        },
+        "description": {
+            "en_US": "A charged purple ring that emits little sparks when touched. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1.2,
+                0.85
+            ],
+            "attack": 111,
+            "defense": 25,
+            "focus": 75
+        },
+        "properties": {
+            "EL_SHOCK_BOOST": 1.15,
+            "EL_WAVE_BOOST": 0.9
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-wave-ring",
+        "order": 12.0241,
+        "name": {
+            "en_US": "Warp Ring"
+        },
+        "description": {
+            "en_US": "A strange green ring that seems to teleport from one finger to another. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                0.85,
+                1.2
+            ],
+            "hp": 500,
+            "attack": 111,
+            "focus": 60
+        },
+        "properties": {
+            "EL_WAVE_BOOST": 1.15,
+            "EL_SHOCK_BOOST": 0.9
         },
         "effect": {
             "sheet": "drops",
@@ -616,13 +696,13 @@
                 1.1,
                 1.1
             ],
-            "hp": 750,
-            "attack": 75,
-            "defense": 75,
-            "focus": 75
+            "hp": 560,
+            "attack": 56,
+            "defense": 56,
+            "focus": 56
         },
         "properties": {
-            "EL_NEUTRAL_BOOST": 1.15,
+            "EL_NEUTRAL_BOOST": 1.2,
             "OVERHEAT_REDUCTION": 1.1
         },
         "effect": {
