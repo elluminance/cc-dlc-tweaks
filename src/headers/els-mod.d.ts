@@ -128,12 +128,6 @@ declare global {
             let OPEN_EL_COLOR_PICKER: OPEN_EL_COLOR_PICKER_CONSTRUCTOR;
         }
 
-        namespace ENTITY {
-            interface Combatant {
-                overheal(this: this, value: sc.HealInfo.Settings, maxHeal: number): void;
-            }
-        }
-
         interface KnownVars {
             "dlctweaks.crystals": number;
         }
@@ -153,6 +147,12 @@ declare global {
                 order: number;
             }
         }
+
+        namespace ENTITY {
+            interface Combatant {
+                ignoreOverheal?: boolean;
+            }
+        }
     }
 
     namespace sc {
@@ -162,6 +162,7 @@ declare global {
             EL_GEODE_FINDER: sc.Modifier;
             EL_COND_GUARD_ALL: sc.Modifier;
             EL_TRANCE: sc.Modifier;
+            EL_OVERHEAL: sc.Modifier;
 
             EL_NEUTRAL_BOOST: sc.Modifier;
             EL_HEAT_BOOST: sc.Modifier;
@@ -180,7 +181,7 @@ declare global {
             el_lifestealTimer: number;
             el_lifestealHealed: number;
 
-            increaseHpOverheal(this: this, amount: number, maxHeal: number): void;
+            increaseHpOverheal(this: this, amount: number, maxOverheal: number): void;
         }
 
         interface EnemyBooster {
@@ -389,6 +390,16 @@ declare global {
 
         interface HpHudBarGui {
             hasOverheal: boolean;
+        }
+
+        namespace HealInfo {
+            interface Settings {
+                overheal?: number;
+            }
+        }
+        
+        interface HealInfo {
+            overheal?: number;
         }
     }
 }

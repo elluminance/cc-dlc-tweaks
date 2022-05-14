@@ -36,25 +36,14 @@ sc.Arena.inject({
             }
         }
         return this.parent(varString, varParts)
+    },
+
+    startRound() {
+        if(!this.runtime.rush || this.runtime.rush && this.runtime.currentRound == 0){
+            ig.game.playerEntity.ignoreOverheal = true;
+        }
+        this.parent();
+        ig.game.playerEntity.ignoreOverheal = false;
     }
 })
-
-sc.ARENA_BONUS_OBJECTIVE.INTERROGATION_HITS = {
-    _type: "EMPTY",
-    order: 1E5,
-    displayRangePoints: true,
-
-    init: function(a, b) {
-        b._maxHits = a.value;
-    },
-    check: function(a) {
-        return ig.vars.get("tmp.ctronHits") as number <= a._maxHits;
-    },
-    getText(a, b, c) {
-        return a.replace("[!]", !c ? b.value : `${ig.vars.get("tmp.ctronHits") ?? 0}\\i[slash-highlight]${b._maxHits}`)
-    },
-    getPoints(a, b) {
-        return (1 - ((ig.vars.get("tmp.ctronHits") as number ?? 0) / a._maxHits)).limit(0, 1) * b
-    }
-}
 }

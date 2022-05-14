@@ -1,7 +1,7 @@
 export default function() {
     sc.CombatParams.inject({
-        increaseHpOverheal(amount, maxHeal) {
-            let maxhp = Math.round(maxHeal * this.getStat("hp"));
+        increaseHpOverheal(amount, maxOverheal) {
+            let maxhp = Math.round((1 + maxOverheal) * this.getStat("hp"));
             // basically, if you already are above the maximum HP you could overheal, then do nothing. 
             if(this.currentHp > maxhp) return;
             this.currentHp = Math.min(maxhp, this.currentHp + amount);
@@ -10,17 +10,27 @@ export default function() {
     })
 
     ig.ENTITY.Combatant.inject({
-        overheal(healInfo, maxHeal) {
-            let amount = this.params.getHealAmount(healInfo),
-                hitPos = this.getAlignedPos(ig.ENTITY_ALIGN.CENTER);
-            
-            this.params.increaseHpOverheal(amount, maxHeal);
+        ignoreOverheal: false,
 
-            if (sc.options.get("damage-numbers")) {
-                ig.ENTITY.HitNumber.spawnHealingNumber(hitPos, this, amount);
-            }
+        heal(healInfo, hideNumbers) {
+            let {params} = this,
+                {overheal} = healInfo;
             
-            this.onHeal && this.onHeal(healInfo, amount)
+            overheal = Math.max(overheal ?? 0, 0);
+
+            if(params && !params.isDefeated()) {
+                let totalHealValue = params.getHealAmount(healInfo),
+                    normalHeal = Math.min(totalHealValue, Math.max(params.getStat("hp") * (1 + overheal) - params.currentHp, 0)),
+                    overhealValue = (totalHealValue - normalHeal) / (overheal ? 2 : 4),
+                    value = Math.ceil(normalHeal + overhealValue);
+                params.increaseHpOverheal(value, !this.ignoreOverheal ? params.getModifier("EL_OVERHEAL") + overheal : 0);
+                
+                sc.arena.onCombatantHeal(this, value);
+                if (sc.options.get("damage-numbers") && !hideNumbers) {
+                    ig.ENTITY.HitNumber.spawnHealingNumber(this.getAlignedPos(ig.ENTITY_ALIGN.CENTER), this, value);
+                }
+                this.onHeal && this.onHeal(healInfo, value)
+            }
         }
     })
 
@@ -29,7 +39,7 @@ export default function() {
             if(settings.overheal) {
                 let player = ig.game.playerEntity,
                     healValue = (settings.value - 1) * (1 + player.params.getModifier('ITEM_BOOST'));
-                player.overheal({value: healValue}, settings.overheal);
+                player.heal({value: healValue, overheal: settings.overheal});
             } else this.parent(settings)
         }
     })
@@ -39,6 +49,6 @@ export default function() {
         type: sc.STAT_PARAM_TYPE.HEAL,
         value: 1.1,
         icon: "stat-default",
-        overheal: 1.25
+        overheal: 0.25
     }
 }

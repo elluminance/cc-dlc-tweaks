@@ -19,12 +19,12 @@ export default function () {
             let hpRatio = this.currentHp / this.maxHp,
                 targetRatio = this.targetHp / this.maxHp;
             if (this.hasOverheal && (hpRatio > 1 || targetRatio > 1)) {
-                for (let i = 1; i < hpRatio; i++) {
+                for (let i = Math.max(Math.floor(hpRatio) - 2, 1); i < hpRatio; i++) {
                     let isFullCurrent = (hpRatio - i >= 1) || (hpRatio % 1 == 0),
                         isEmptyCurrent = (hpRatio - i < 0),
                         isFullTarget = (targetRatio - i >= 1) || (targetRatio % 1 == 0),
                         isEmptyTarget = (targetRatio - i) < 0,
-                        color = getColorFromPercent(245, 210, i - 1),
+                        color = getColorFromPercent(270, 210, i - 1),
                         widthWhite: number,
                         widthColor: number,
                         useWhite = true;

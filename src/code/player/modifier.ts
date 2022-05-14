@@ -28,6 +28,22 @@ export default function () {
             noPercent: false
         },
 
+        EL_COND_GUARD_ALL: {
+            altSheet: "media/gui/modifiers/els-mod.png",
+            offX: 12 * 9,
+            offY: 0,
+            icon: -1,
+            order: 0,
+        },
+
+        EL_OVERHEAL: {
+            altSheet: "media/gui/modifiers/els-mod.png",
+            offX: 12 * 10,
+            offY: 0,
+            icon: -1,
+            order: 0,
+        },
+
         EL_TRANCE: {
             altSheet: "media/gui/modifiers/els-mod.png",
             offX: 12 * 3,
@@ -72,14 +88,6 @@ export default function () {
         EL_WAVE_BOOST: {
             altSheet: "media/gui/modifiers/els-mod.png",
             offX: 12 * 8,
-            offY: 0,
-            icon: -1,
-            order: 0,
-        },
-
-        EL_COND_GUARD_ALL: {
-            altSheet: "media/gui/modifiers/els-mod.png",
-            offX: 12 * 9,
             offY: 0,
             icon: -1,
             order: 0,
@@ -159,18 +167,8 @@ export default function () {
                 }
                 relativeDamage = Math.floor(relativeDamage);
                 if(relativeDamage > 0) {
-                    let healAmount = this.getHealAmount(new sc.HealInfo(this, {value: relativeDamage, absolute: true}));
-                    
-                    if(sc.options.get("damage-numbers")) {
-                        ig.ENTITY.HitNumber.spawnHealingNumber(
-                            rootCombatant.getAlignedPos(ig.ENTITY_ALIGN.CENTER, Vec3.create()), 
-                            rootCombatant, 
-                            healAmount
-                        );
-                    }
-                    
-                    this.increaseHp(healAmount)
-    
+                    rootCombatant.heal({value: relativeDamage, absolute: true})
+
                     rootCombatant.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
                         {
                             target2: this.combatant,

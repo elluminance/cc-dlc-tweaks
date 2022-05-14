@@ -35,12 +35,12 @@
             },
             "customCode": true,
             "camFocus": "PLAYER_SPAWN",
-            "platPoints": 275000,
+            "platPoints": 240000,
             "coins": 0,
             "objective": {
                 "en_US": "\\c[1]This information has been redacted.\\c[0]"
             },
-            "points": 220000,
+            "points": 200000,
             "type": "DEFAULT",
             "medal": 0,
             "waves": [],
@@ -48,18 +48,13 @@
             "bonuses": [
                 {
                     "type": "TIME",
-                    "seconds": 420,
-                    "points": 25000
+                    "seconds": 240,
+                    "points": 30000
                 },
                 {
                     "type": "HIT_COUNTER",
                     "value": 10,
                     "points": 15000
-                },
-                {
-                    "type": "INTERROGATION_HITS",
-                    "value": 3,
-                    "points": 30000
                 }
             ],
             "spawn": "PLAYER_SPAWN"
