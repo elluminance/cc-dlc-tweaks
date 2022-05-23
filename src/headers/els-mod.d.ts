@@ -406,15 +406,18 @@ declare global {
         interface DynamicBuff extends sc.StatChange {
             active: boolean;
             name: string;
-            changeStat(statChanges: string[]): void;
+            time: number;
+            timer: number;
+            changeStat(statChanges: string[], resetTimer?: number | boolean): void;
         }
         interface DynamicBuffConstructor extends ImpactClass<DynamicBuff> {
-            new (name: string, statChanges: string[]): sc.DynamicBuff;
+            new (statChanges: string[], name: string,  time?: number, customTimerColor?: string): sc.DynamicBuff;
         }
         let DynamicBuff: DynamicBuffConstructor;
 
         interface StatChange {
             buffHudEntry?: sc.BuffHudEntry;
+            customTimerColor?: string;
         }
         interface BuffHudEntry {
             textGui: sc.TextGui;

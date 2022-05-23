@@ -239,14 +239,15 @@ export default function () {
                 this.el_tricksterTimer -= ig.system.tick;
                 if(this.el_tricksterTimer <= 0) {
 
-                    this.el_tricksterTimer = 5;
+                    this.el_tricksterTimer = 11.11;
                     if(this.el_tricksterBuff) {
                         let tempHp = this.getStat("hp") - this.currentHp;
-                        this.el_tricksterBuff.changeStat(generateTricksterBuffs());
+                        this.el_tricksterBuff.changeStat(generateTricksterBuffs(), true);
                         this.currentHp = this.getStat("hp") - tempHp;
                         sc.Model.notifyObserver(this, sc.COMBAT_PARAM_MSG.STATS_CHANGED)
                     } else {
-                        this.el_tricksterBuff = new sc.DynamicBuff("trickster", generateTricksterBuffs());
+                        // 'b' in hexadecimal is '11'. in other words, the green component is 11,11. if you're gonna make a reference - go 111% of the way
+                        this.el_tricksterBuff = new sc.DynamicBuff(generateTricksterBuffs(), "trickster", 11.11, "#00BB00"); 
                         this.addBuff(this.el_tricksterBuff);
                     }
                 }
@@ -333,7 +334,13 @@ export default function () {
             this.el_tricksterTimer = 0;
             this.el_lifestealTimer = 0;
             this.el_lifestealHealed = 0;
-        }
+        },
+
+        removeAllBuffs() {
+            this.el_tricksterTimer = 0;
+            this.el_tricksterBuff = undefined;
+            this.parent();
+        },
     })
 
     //@ts-expect-error enums do not like being assigned values
@@ -351,6 +358,14 @@ export default function () {
             this.textGui.setText(iconString);
             this.hook.size.x = this.textGui.hook.size.x + 6;
             sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.BUFF_CHANGED);
+        },
+
+        updateDrawables(renderer) {
+            this.parent(renderer);
+            if (this.buff.hasTimer && this.buff.customTimerColor) {
+                let ratio = Math.ceil(this.buff.getTimeFactor() * 8);
+                if (ratio > 0) renderer.addColor(this.buff.customTimerColor, this.hook.size.x - 4, this.hook.size.y - 1 - ratio, 2, ratio);
+            }
         }
     })
 
@@ -363,18 +378,34 @@ export default function () {
 
     sc.DynamicBuff = sc.StatChange.extend({
         active: true,
-        init(name, statChanges) {
+        hasTimer: false,
+        customTimerColor: "",
+        time: 0,
+        timer: 0,
+
+        init(statChanges, name, time, color) {
             this.name = name;
             this.parent(statChanges);
-            //this.iconString = genBuffString(statChanges);
+            if(time) {
+                this.time = this.timer = time;
+                this.hasTimer = true;
+                if(color) this.customTimerColor = color;
+            }
         },
         update() {
+            if(this.timer > 0) {
+                this.timer -= ig.system.tick;
+                if(this.timer <= 0) this.timer = 0;
+            }
             return !this.active;
         },
         getTimeFactor() {
-            return this.active ? 1 : 0;
+            return this.active ? this.hasTimer ? this.timer / this.time : 1 : 0;
         },
-        changeStat(statChanges) {
+        reset(time) {
+            this.timer = this.time = time;
+        },
+        changeStat(statChanges, resetTimer) {
             this.params = {
                 hp: 1,
                 attack: 1,
@@ -384,8 +415,9 @@ export default function () {
             },
             this.modifiers = {};
             //@ts-ignore
-            this.init(this.name, statChanges);
-
+            this.init(statChanges, this.name);
+            //@ts-ignore stupid "this" context nobody likes you "this" context
+            resetTimer && this.reset(typeof resetTimer == "boolean" ? this.time : resetTimer)
             this.buffHudEntry?.setIcon(this.iconString!);
         },
     })
