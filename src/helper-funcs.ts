@@ -30,9 +30,20 @@ export function getColorFromPercent(hueAtMax: number, hueAtMin: number, rotPerce
 
 const rankRegex = /stat-(?:rank|level)(-down)?-(\d+)/
 export function genBuffString(buffList: string[]) {
-    buffList.sort((a, b) => {
-        let a_match = sc.STAT_CHANGE_SETTINGS[a]?.grade?.match(rankRegex),
-            b_match = sc.STAT_CHANGE_SETTINGS[b]?.grade?.match(rankRegex);
+    let buffIcons: Record<string, string[]> = {}
+    buffList.forEach(value => {
+        let statSetting = sc.STAT_CHANGE_SETTINGS[value];
+        if(statSetting.change == sc.STAT_CHANGE_TYPE.HEAL) return;
+        
+        if(!buffIcons[statSetting.grade!]) buffIcons[statSetting.grade!] = [];
+        
+        buffIcons[statSetting.grade!].push(statSetting.icon ?? "stat-default")
+    })
+
+    let buffString = "";
+    Object.keys(buffIcons).sort((a, b) => {
+        let a_match = a.match(rankRegex),
+            b_match = b.match(rankRegex);
 
         let a_val: number, b_val: number;
         if (a_match) {
@@ -42,19 +53,9 @@ export function genBuffString(buffList: string[]) {
             b_val = parseInt(b_match[2]) * (b_match[1] ? -1 : 1);
         } else b_val = 0;
         return b_val - a_val
+    }).forEach(grade => {
+        buffIcons[grade].forEach(value => {buffString += `\\i[${value}]`})
+        buffString += `\\i[${grade}]`
     })
-
-    let buffString = "",
-        currentGrade = "";
-    for(let item of buffList.map(value => sc.STAT_CHANGE_SETTINGS[value])) {
-        if(!item.icon || item.change === sc.STAT_CHANGE_TYPE.HEAL) continue;
-        if(currentGrade && currentGrade != item.grade) {
-            buffString += `\\i[${currentGrade}]`
-        }
-        if(item.grade) currentGrade = item.grade;
-        buffString += `\\i[${item.icon}]`;
-    }
-    if(currentGrade) buffString += `\\i[${currentGrade}]`;
-
     return buffString;
 }

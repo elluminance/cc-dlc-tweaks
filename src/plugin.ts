@@ -22,6 +22,7 @@ import statusEffect from "./code/combat/status-effect.js";
 import colorPicker from "./code/menu/color-picker.js";
 import hpBar from "./code/misc/hp-bar.js";
 import overhealing from "./code/combat/overhealing.js";
+import inventory from "./code/player/inventory.js";
 //#endregion
 
 //#region poststart declarations
@@ -53,6 +54,7 @@ export default class implements PluginClass {
         colorPicker();
         hpBar();
         overhealing();
+        inventory();
     }
 
     poststart() {

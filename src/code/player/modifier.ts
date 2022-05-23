@@ -202,15 +202,25 @@ export default function () {
         "DASH-STEP-MINUS-1",
     ]
 
-
-    //todo: make sure no conflicting buffs are returned
     function generateTricksterBuffs() {
         // generate an integer between 1-4 (inclusive)
-        let i = Math.round(1 + Math.random() * 3),
-            bufflist: string[] = [];
+        let i = Math.random(),
+            bufflist: string[] = [],
+            buff: string;
+        
+        if(i <= 0.15) {
+            i = 1;
+        } else if(i <= 0.6) {
+            i = 2;
+        } else if(i <= 0.9) {
+            i = 3;
+        } else i = 4;
 
         while(i --> 0) {
-            bufflist.push(sc.EL_TRICKSTER_STAT_CHANGES.random());
+            do {
+                buff = sc.EL_TRICKSTER_STAT_CHANGES.random();
+            } while (bufflist.find(value => sc.STAT_CHANGE_SETTINGS[buff].type === sc.STAT_CHANGE_SETTINGS[value].type))
+            bufflist.push(buff);
         }
 
         return bufflist;
@@ -356,7 +366,7 @@ export default function () {
         init(name, statChanges) {
             this.name = name;
             this.parent(statChanges);
-            this.iconString = genBuffString(statChanges);
+            //this.iconString = genBuffString(statChanges);
         },
         update() {
             return !this.active;
