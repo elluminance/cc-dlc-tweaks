@@ -1,0 +1,13 @@
+[{
+    "type": "IMPORT",
+    "src": "mod:patches/items/equipment/vanilla.json"
+},{
+    "type": "IMPORT",
+    "src": "mod:patches/items/equipment/custom.json"
+},{
+    "type": "IMPORT",
+    "src": "mod:patches/items/equipment/elemental.json"
+},{
+    "type": "IMPORT",
+    "src": "mod:patches/items/equipment/geode.json"
+}]

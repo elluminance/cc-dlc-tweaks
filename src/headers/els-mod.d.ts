@@ -163,6 +163,7 @@ declare global {
             EL_COND_GUARD_ALL: sc.Modifier;
             EL_TRANCE: sc.Modifier;
             EL_OVERHEAL: sc.Modifier;
+            EL_TRICKSTER: sc.Modifier;
 
             EL_NEUTRAL_BOOST: sc.Modifier;
             EL_HEAT_BOOST: sc.Modifier;
@@ -177,9 +178,12 @@ declare global {
             subCrystalCoins(amount: number): void;
             setCrystalCoins(amount: number): void;
         }
+        let EL_TRICKSTER_STAT_CHANGES: string[];
         interface CombatParams {
             el_lifestealTimer: number;
             el_lifestealHealed: number;
+            el_tricksterTimer: number;
+            el_tricksterBuff?: sc.DynamicBuff;
 
             increaseHpOverheal(this: this, amount: number, maxOverheal: number): void;
         }
@@ -386,10 +390,7 @@ declare global {
 
         interface StatChangeSettings {
             overheal?: number;
-        }
-
-        interface HpHudBarGui {
-            hasOverheal: boolean;
+            absoluteHeal?: boolean;
         }
 
         namespace HealInfo {
@@ -400,6 +401,28 @@ declare global {
         
         interface HealInfo {
             overheal?: number;
+        }
+
+        interface DynamicBuff extends sc.StatChange {
+            active: boolean;
+            name: string;
+            changeStat(statChanges: string[]): void;
+        }
+        interface DynamicBuffConstructor extends ImpactClass<DynamicBuff> {
+            new (name: string, statChanges: string[]): sc.DynamicBuff;
+        }
+        let DynamicBuff: DynamicBuffConstructor;
+
+        interface StatChange {
+            buffHudEntry?: sc.BuffHudEntry;
+        }
+        interface BuffHudEntry {
+            textGui: sc.TextGui;
+            setIcon(this: this, iconString: string): void;
+        }
+
+        enum COMBAT_PARAM_MSG {
+            BUFF_CHANGED,
         }
     }
 }

@@ -1,4 +1,4 @@
-import { numberToElementName } from "../../helper-funcs.js"
+import { genBuffString, numberToElementName } from "../../helper-funcs.js"
 
 export default function () {
     Object.assign(sc.MODIFIERS, {
@@ -44,6 +44,15 @@ export default function () {
             order: 0,
         },
 
+        EL_TRICKSTER: {
+            altSheet: "media/gui/modifiers/els-mod.png",
+            offX: 12 * 11,
+            offY: 0,
+            icon: -1,
+            order: 0,
+            noPercent: true,
+        },
+
         EL_TRANCE: {
             altSheet: "media/gui/modifiers/els-mod.png",
             offX: 12 * 3,
@@ -52,6 +61,8 @@ export default function () {
             order: 0,
             noPercent: true
         },
+
+
 
         EL_NEUTRAL_BOOST: {
             altSheet: "media/gui/modifiers/els-mod.png",
@@ -103,19 +114,141 @@ export default function () {
         return { attackInfo, damageFactor, applyDamageCallback: null }
     }
 
-    //#region vampirism
+    //#region
     const lifestealCooldown = 1/5;
     const cooldownPower = 3;
     const cooldownConstant = lifestealCooldown ** -cooldownPower;
     const lifestealMultiplier = 0.04;
 
+    sc.EL_TRICKSTER_STAT_CHANGES = [
+        "HP-1",
+        "HP-2",
+        "EL-HP-MINUS-1",
+        "EL-HP-MINUS-2",
+
+        "ATTACK-1",
+        "ATTACK-2",
+        "EL-ATTACK-MINUS-1",
+        "EL-ATTACK-MINUS-2",
+
+        "DEFENSE-1",
+        "DEFENSE-2",
+        "EL-DEFENSE-MINUS-1",
+        "EL-DEFENSE-MINUS-2",
+
+        "FOCUS-1",
+        "FOCUS-2",
+        "EL-FOCUS-MINUS-1",
+        "EL-FOCUS-MINUS-2",
+
+        "EL-CRITICAL_DMG-1",
+        "EL-CRITICAL_DMG-2",
+        "EL-CRITICAL_DMG-MINUS-1",
+        "EL-CRITICAL_DMG-MINUS-2",
+
+        "EL-DASH_INVINC-1",
+        "EL-DASH_INVINC-2",
+        "EL-DASH_INVINC-MINUS-1",
+        "EL-DASH_INVINC-MINUS-2",
+
+        "EL-MOMENTUM-1",
+        "EL-MOMENTUM-2",
+        "EL-MOMENTUM-MINUS-1",
+        "EL-MOMENTUM-MINUS-2",
+
+        "EL-COND_EFFECT_ALL-1",
+        "EL-COND_EFFECT_ALL-2",
+        "EL-COND_EFFECT_ALL-MINUS-1",
+        "EL-COND_EFFECT_ALL-MINUS-2",
+
+        "EL-ASSAULT-1",
+        "EL-ASSAULT-2",
+        "EL-ASSAULT-MINUS-1",
+
+        "EL-BERSERK-1",
+        "EL-BERSERK-2",
+        "EL-BERSERK-MINUS-1",
+        "EL-BERSERK-MINUS-2",
+
+        "HEAT-RES-1",
+        "HEAT-RES-2",
+        "COLD-RES-1",
+        "COLD-RES-2",
+        "SHOCK-RES-1",
+        "SHOCK-RES-2",
+        "WAVE-RES-1",
+        "WAVE-RES-2",
+
+        "REGEN-1",
+        "REGEN-2",
+        "OVERHEAT-1",
+        "OVERHEAT-2",
+        "SP_REGEN-1",
+        "SP_REGEN-2",
+        "COND_HEALING-1",
+        "COND_HEALING-2",
+
+        "MELEE_DMG-1",
+        "MELEE_DMG-2",
+        "EL-MELEE_DMG-MINUS-1",
+        "EL-MELEE_DMG-MINUS-2",
+
+        "RANGED_DMG-1",
+        "RANGED_DMG-2",
+        "EL-RANGED_DMG-MINUS-1",
+        "EL-RANGED_DMG-MINUS-2",
+
+        "DASH-STEP-1",
+        "DASH-STEP-MINUS-1",
+    ]
+
+
+    //todo: make sure no conflicting buffs are returned
+    function generateTricksterBuffs() {
+        // generate an integer between 1-4 (inclusive)
+        let i = Math.round(1 + Math.random() * 3),
+            bufflist: string[] = [];
+
+        while(i --> 0) {
+            bufflist.push(sc.EL_TRICKSTER_STAT_CHANGES.random());
+        }
+
+        return bufflist;
+    }
+
     sc.CombatParams.inject({
         el_lifestealHealed: 0,
         el_lifestealTimer: 0,
+        el_tricksterTimer: 0,
+        el_tricksterBuff: null,
 
         update(inCombat) {
             this.parent(inCombat);
             this.el_lifestealTimer -= ig.system.tick;
+            if(this.getModifier("EL_TRICKSTER")) {
+                this.el_tricksterTimer -= ig.system.tick;
+                if(this.el_tricksterTimer <= 0) {
+
+                    this.el_tricksterTimer = 5;
+                    if(this.el_tricksterBuff) {
+                        let tempHp = this.getStat("hp") - this.currentHp;
+                        this.el_tricksterBuff.changeStat(generateTricksterBuffs());
+                        this.currentHp = this.getStat("hp") - tempHp;
+                        sc.Model.notifyObserver(this, sc.COMBAT_PARAM_MSG.STATS_CHANGED)
+                    } else {
+                        this.el_tricksterBuff = new sc.DynamicBuff("trickster", generateTricksterBuffs());
+                        this.addBuff(this.el_tricksterBuff);
+                    }
+                }
+            } else {
+                if(this.el_tricksterBuff) {
+                    this.el_tricksterBuff.active = false;
+                    this.removeBuff(this.el_tricksterBuff);
+                    sc.Model.notifyObserver(this, sc.COMBAT_PARAM_MSG.BUFF_REMOVED, this.el_tricksterBuff);
+                    this.el_tricksterBuff = undefined;
+                }
+                this.el_tricksterTimer = 0;
+            }
         },
 
         getDamage(attackInfo, damageFactorMod, combatant, shieldResult, j) {
@@ -182,7 +315,69 @@ export default function () {
                 }
             }
             return damageResult;
+        },
+
+        reset(maxSp) {
+            this.parent(maxSp);
+            this.el_tricksterBuff = undefined;
+            this.el_tricksterTimer = 0;
+            this.el_lifestealTimer = 0;
+            this.el_lifestealHealed = 0;
         }
+    })
+
+    //@ts-expect-error enums do not like being assigned values
+    sc.COMBAT_PARAM_MSG.BUFF_CHANGED = Math.max(...Object.values(sc.COMBAT_PARAM_MSG)) + 1;
+
+    sc.BuffHudEntry.inject({
+        init(buff, id, x) {
+            this.parent(buff, id, x);
+            this.buff.buffHudEntry = this;
+            //@ts-ignore
+            this.textGui = this.getChildGuiByIndex(0).gui
+        },
+
+        setIcon(iconString) {
+            this.textGui.setText(iconString);
+            this.hook.size.x = this.textGui.hook.size.x + 6;
+            sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.BUFF_CHANGED);
+        }
+    })
+
+    sc.BuffHudGui.inject({
+        modelChanged(model, message, data) {
+            this.parent(model, message, data);
+            if(message === sc.COMBAT_PARAM_MSG.BUFF_CHANGED) this.sortSlots();
+        }
+    })
+
+    sc.DynamicBuff = sc.StatChange.extend({
+        active: true,
+        init(name, statChanges) {
+            this.name = name;
+            this.parent(statChanges);
+            this.iconString = genBuffString(statChanges);
+        },
+        update() {
+            return !this.active;
+        },
+        getTimeFactor() {
+            return this.active ? 1 : 0;
+        },
+        changeStat(statChanges) {
+            this.params = {
+                hp: 1,
+                attack: 1,
+                defense: 1,
+                focus: 1,
+                elemFactor: [1, 1, 1, 1]
+            },
+            this.modifiers = {};
+            //@ts-ignore
+            this.init(this.name, statChanges);
+
+            this.buffHudEntry?.setIcon(this.iconString!);
+        },
     })
 
     ig.ENTITY.Player.inject({
@@ -200,7 +395,7 @@ export default function () {
             }
         }
     })
-    //#endregion vampirism
+    //#endregion
 
     // why write 5 functions when 1 function can do the trick? :)
     sc.DAMAGE_MODIFIER_FUNCS.EL_ELEMENT_BOOST = (attackInfo, damageFactor, combatantRoot, shieldResult, hitIgnore, params) => {

@@ -27,7 +27,7 @@ export default function() {
                 
                 sc.arena.onCombatantHeal(this, value);
                 if (sc.options.get("damage-numbers") && !hideNumbers) {
-                    ig.ENTITY.HitNumber.spawnHealingNumber(this.getAlignedPos(ig.ENTITY_ALIGN.CENTER), this, value);
+                    ig.ENTITY.HitNumber.spawnHealingNumber(this.getAlignedPos(ig.ENTITY_ALIGN.CENTER), this, totalHealValue);
                 }
                 this.onHeal && this.onHeal(healInfo, value)
             }
@@ -36,10 +36,18 @@ export default function() {
 
     sc.ItemConsumption.inject({
         runHealChange(settings) {
-            if(settings.overheal) {
-                let player = ig.game.playerEntity,
-                    healValue = (settings.value - 1) * (1 + player.params.getModifier('ITEM_BOOST'));
-                player.heal({value: healValue, overheal: settings.overheal});
+            let player = ig.game.playerEntity,
+                healInfo: sc.HealInfo.Settings = {value: (settings.value - 1)}
+            if(settings.overheal || settings.absoluteHeal) {
+                if(settings.absoluteHeal) {
+                    healInfo.value += 1;
+                    healInfo.absolute = true;
+                }
+                if(settings.overheal) {
+                    healInfo.overheal = settings.overheal;
+                }
+                healInfo.value *= 1 + player.params.getModifier('ITEM_BOOST');
+                player.heal(healInfo);
             } else this.parent(settings)
         }
     })
@@ -50,5 +58,12 @@ export default function() {
         value: 1.1,
         icon: "stat-default",
         overheal: 0.25
+    }
+    sc.STAT_CHANGE_SETTINGS["HEAL-ABS-1500"] = {
+        change: sc.STAT_CHANGE_TYPE.HEAL,
+        type: sc.STAT_PARAM_TYPE.HEAL,
+        value: 1500,
+        icon: "stat-default",
+        absoluteHeal: true,
     }
 }

@@ -1,0 +1,153 @@
+[
+    {
+        "customItem": "el-risktaker-plate",
+        "order": 12,
+        "name": {
+            "en_US": "Risktaker's Top"
+        },
+        "description": {
+            "en_US": "A swimsuit that sacrifices defense in order to have incredible offensive capability. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 71,
+        "icon": "item-belt",
+        "equipType": "TORSO",
+        "params": {
+            "elemFactor": [
+                0.85,
+                0.85,
+                0.85,
+                0.85
+            ],
+            "attack": 65,
+            "focus": 95
+        },
+        "properties": {
+            "EL_RISKTAKER": 1.2,
+            "BERSERK": 1.4,
+            "HP_REGEN": 0.75
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
+    },
+    {
+        "customItem": "el-vampire-knives",
+        "order": 12,
+        "name": {
+            "en_US": "Vampire Knives"
+        },
+        "description": {
+            "en_US": "A set of throwing knives fit for one who lurk the night. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 2,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 346,
+            "attack": 79,
+            "focus": 97
+        },
+        "properties": {
+            "EL_LIFESTEAL": 1.1,
+            "SP_REGEN": 1.1,
+            "BERSERK": 0.85
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": true
+    },
+    {
+        "customItem": "el-overheal-jacket",
+        "order": 12.1,
+        "name": {
+            "en_US": "Healer's Cloak"
+        },
+        "description": {
+            "en_US": "A cloak that forms a magical protection barrier. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 70,
+        "icon": "item-belt",
+        "equipType": "TORSO",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 1280,
+            "defense": 61,
+            "focus": 35
+        },
+        "properties": {
+            "EL_OVERHEAL": 1.5,
+            "HP_REGEN": 1.1
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-rings-of-zillyhi",
+        "order": 12.1,
+        "name": {
+            "en_US": "Rings of Zillyhi"
+        },
+        "description": {
+            "en_US": "Obnoxiously-colored chakrams forged by a mythical wizard in a far off land. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 70,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 1280,
+            "defense": 61,
+            "focus": 35
+        },
+        "properties": {
+            "EL_TRICKSTER": 2,
+            "EL_OVERHEAL": 1.2
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    }
+]

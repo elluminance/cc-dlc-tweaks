@@ -48,8 +48,8 @@
     "type": "IMPORT",
     "src": "mod:patches/items/observer.json"
 },{
-    "type": "IMPORT",
-    "src": "mod:patches/items/equipment.json"
+    "type": "INCLUDE",
+    "src": "mod:patches/items/equipment.json.patch"
 },{
     "type": "IMPORT",
     "src": "mod:patches/items/special-toggle-sets.json"

@@ -1,0 +1,221 @@
+[
+    {
+        "customItem": "el-crystal-bow",
+        "order": 1.01,
+        "name": {
+            "en_US": "Crystal Bow"
+        },
+        "description": {
+            "en_US": "A bow capable of shooting brilliant arrows. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 175000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 129,
+            "defense": 34,
+            "focus": 63
+        },
+        "properties": {
+            "RANGED_DMG": 1.15
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-crystal-sword",
+        "order": 1.01,
+        "name": {
+            "en_US": "Crystal Sword"
+        },
+        "description": {
+            "en_US": "A sharp, translucent blade made of solid crystal. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 175000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 146,
+            "defense": 75
+        },
+        "properties": {
+            "MELEE_DMG": 1.15
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-crystal-helmet",
+        "name": {
+            "en_US": "Crystal Helmet"
+        },
+        "description": {
+            "en_US": "A hard crystalline helmet, somehow perfect for all adventurers. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "cost": 175000,
+        "level": 71,
+        "icon": "item-helm",
+        "equipType": "HEAD",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "defense": 9,
+            "focus": 214
+        },
+        "properties": {
+            "OVERHEAT_REDUCTION": 1.1
+        },
+        "rarity": 6,
+        "order": 1.01,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": true,
+        "isScalable": true,
+        "noCount": false
+    },
+    {
+        "customItem": "el-crystal-plate",
+        "name": {
+            "en_US": "Crystal Plate"
+        },
+        "description": {
+            "en_US": "A jagged piece of armor made of the hardest gems known to humanity. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "cost": 175000,
+        "level": 71,
+        "icon": "item-belt",
+        "equipType": "TORSO",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 1555,
+            "defense": 65
+        },
+        "properties": {
+            "STUN_THRESHOLD": 1.05
+        },
+        "rarity": 6,
+        "order": 1.01,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": true,
+        "isScalable": true,
+        "noCount": false
+    },
+    {
+        "customItem": "el-crystal-boots",
+        "name": {
+            "en_US": "Crystal Slippers"
+        },
+        "description": {
+            "en_US": "Footwear that is likely not the safest for use in combat. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "cost": 175000,
+        "level": 71,
+        "icon": "item-shoe",
+        "equipType": "FEET",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 1115,
+            "defense": 47,
+            "focus": 64
+        },
+        "properties": {
+            "SP_REGEN": 1.1
+        },
+        "rarity": 6,
+        "order": 1.01,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": true,
+        "isScalable": true,
+        "noCount": false
+    },
+
+    {
+        "customItem": "el-geode-smasher",
+        "order": 12.01,
+        "name": {
+            "en_US": "Geode Smasher"
+        },
+        "description": {
+            "en_US": "A hammer that can open all sorts of things... but mostly rocks. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 225000,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "attack": 116,
+            "defense": 116
+        },
+        "properties": {
+            "EL_GEODE_FINDER": 1.1
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    }
+]
