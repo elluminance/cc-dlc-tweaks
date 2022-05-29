@@ -151,7 +151,7 @@
     
 
     {
-        "order": 22,
+        "order": 21.1,
         "customItem": "dlctweaks-trade-beach-gem",
         "name": {
             "en_US": "Aquamarine"
@@ -184,7 +184,7 @@
         }
     },
     {
-        "order": 23,
+        "order": 21.2,
         "customItem": "dlctweaks-trade-final-dng-gem",
         "name": {
             "en_US": "Onyx"
@@ -216,11 +216,44 @@
             "name": null
         }
     },
+    {
+        "order": 21.3,
+        "customItem": "el-arid-gem",
+        "name": {
+            "en_US": "Bloodstone"
+        },
+        "description": {
+            "en_US": "A rare black and red gem only found when fighting strong adversaries."
+        },
+        "type": "TRADE",
+        "rarity": 3,
+        "cost": 2000,
+        "level": 1,
+        "icon": "item-trade",
+        "noTrack": false,
+        "sources": [
+            {
+                "type": "OTHER",
+                "value": {
+                    "icon": "ENEMY",
+                    "text": {
+                        "en_US": "Boosted Enemies in \\c[3]\\v[area.arid.name]\\c[0]"
+                    },
+                    "type": "ENEMY",
+                    "value": "hedgehog"
+                }
+            }
+        ],
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
 
 
 
     {
-        "order": 11,
+        "order": 10.1,
         "customItem":"dlctweaks-beach-booster",
         "name": {
             "en_US": "Archipelago Booster"
@@ -242,7 +275,7 @@
         "noCount": false
     },
     {
-        "order": 12,
+        "order": 10.2,
         "customItem":"dlctweaks-final-dng-booster",
         "name": {
             "en_US": "Ku'lero Booster"
@@ -264,7 +297,29 @@
         "noCount": true
     },
     {
-        "order": 13,
+        "order": 10.3,
+        "customItem":"el-arid-booster",
+        "name": {
+            "en_US": "Wasteland Booster"
+        },
+        "description": {
+            "en_US": "Increases the levels of enemies in \\c[3]\\v[area.arid.name]\\c[0] and unlocks new loot drops."
+        },
+        "type": "TOGGLE",
+        "rarity": 2,
+        "cost": 1000,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "isScalable": false,
+        "noCount": true
+    },
+    {
+        "order": 10.4,
         "customItem":"dlctweaks-ascended-booster",
         "name": {
             "en_US": "Ascended Booster"
