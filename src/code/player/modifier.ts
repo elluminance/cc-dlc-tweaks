@@ -1,4 +1,4 @@
-import { genBuffString, numberToElementName } from "../../helper-funcs.js"
+import { numberToElementName } from "../../helper-funcs.js"
 
 export default function () {
     Object.assign(sc.MODIFIERS, {
@@ -238,7 +238,6 @@ export default function () {
             if(this.getModifier("EL_TRICKSTER")) {
                 this.el_tricksterTimer -= ig.system.tick;
                 if(this.el_tricksterTimer <= 0) {
-
                     this.el_tricksterTimer = 11.11;
                     if(this.el_tricksterBuff) {
                         let tempHp = this.getStat("hp") - this.currentHp;

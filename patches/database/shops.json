@@ -3,10 +3,60 @@
         "name": {
             "en_US": "Crystal Shop"
         },
-        "shopType": "CRYSTAL",
-        "sellScale": 0.1,
-        "content": [
-            []
+        "shopType": "BUY_AND_SELL",
+        "currency": "crystals",
+        "sellPages": [
+            {
+                "title": {
+                    "en_US": "Gems"
+                },
+                "content": [
+                    {
+                        "item": 457,
+                        "price": 125
+                    },
+                    {
+                        "item": 458,
+                        "price": 125
+                    },
+                    {
+                        "item": 459,
+                        "price": 125
+                    },
+                    {
+                        "item": 460,
+                        "price": 125
+                    },
+                    {
+                        "item": 461,
+                        "price": 125
+                    },
+                    {
+                        "item": 462,
+                        "price": 125
+                    },
+                    {
+                        "item": 463,
+                        "price": 125
+                    },
+                    {
+                        "item": 464,
+                        "price": 125
+                    },
+                    {
+                        "item": 465,
+                        "price": 125
+                    },
+                    {
+                        "item": "dlctweaks-trade-beach-gem",
+                        "price": 125
+                    },
+                    {
+                        "item": "dlctweaks-trade-final-dng-gem",
+                        "price": 125
+                    }
+                ]
+            }
         ],
         "pages": [
             {
