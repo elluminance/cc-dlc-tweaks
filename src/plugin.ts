@@ -19,7 +19,6 @@ import eventStep from "./code/steps/event-step.js"
 import geode from "./code/menu/geode.js"
 import playerConfig from "./code/player/player-config.js"
 import statusEffect from "./code/combat/status-effect.js";
-import colorPicker from "./code/menu/color-picker.js";
 import hpBar from "./code/misc/hp-bar.js";
 import overhealing from "./code/combat/overhealing.js";
 import inventory from "./code/player/inventory.js";
@@ -51,7 +50,6 @@ export default class implements PluginClass {
         geode();
         playerConfig();
         statusEffect();
-        colorPicker();
         hpBar();
         overhealing();
         inventory();
