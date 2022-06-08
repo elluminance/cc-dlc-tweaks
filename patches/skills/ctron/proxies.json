@@ -14,28 +14,6 @@
             },
             {
                 "duration": -1,
-                "align": "CENTER",
-                "rotateFace": 0,
-                "flipLeftFace": false,
-                "wait": false,
-                "waitSkip": 0,
-                "actionDetached": false,
-                "target2": "TARGET",
-                "target2Align": "CENTER",
-                "fixPos": false,
-                "type": "SHOW_EFFECT",
-                "effect": {
-                    "sheet": "combat.hexacast",
-                    "name": "buffTrailHeat"
-                },
-                "offset": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }
-            },
-            {
-                "duration": -1,
                 "target": "TARGET",
                 "align": "CENTER",
                 "rotateFace": 0,
@@ -56,7 +34,7 @@
                 }
             },
             {
-                "time": 7.5,
+                "time": 10,
                 "type": "WAIT"
             },
             {
@@ -95,28 +73,6 @@
             },
             {
                 "duration": -1,
-                "align": "CENTER",
-                "rotateFace": 0,
-                "flipLeftFace": false,
-                "wait": false,
-                "waitSkip": 0,
-                "actionDetached": false,
-                "target2": "TARGET",
-                "target2Align": "CENTER",
-                "fixPos": false,
-                "type": "SHOW_EFFECT",
-                "effect": {
-                    "sheet": "combat.hexacast",
-                    "name": "buffTrailCold"
-                },
-                "offset": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }
-            },
-            {
-                "duration": -1,
                 "target": "TARGET",
                 "align": "CENTER",
                 "rotateFace": 0,
@@ -137,7 +93,7 @@
                 }
             },
             {
-                "time": 7.5,
+                "time": 10,
                 "type": "WAIT"
             },
             {
@@ -176,28 +132,6 @@
             },
             {
                 "duration": -1,
-                "align": "CENTER",
-                "rotateFace": 0,
-                "flipLeftFace": false,
-                "wait": false,
-                "waitSkip": 0,
-                "actionDetached": false,
-                "target2": "TARGET",
-                "target2Align": "CENTER",
-                "fixPos": false,
-                "type": "SHOW_EFFECT",
-                "effect": {
-                    "sheet": "combat.hexacast",
-                    "name": "buffTrailShock"
-                },
-                "offset": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }
-            },
-            {
-                "duration": -1,
                 "target": "TARGET",
                 "align": "CENTER",
                 "rotateFace": 0,
@@ -218,7 +152,7 @@
                 }
             },
             {
-                "time": 7.5,
+                "time": 10,
                 "type": "WAIT"
             },
             {
@@ -257,28 +191,6 @@
             },
             {
                 "duration": -1,
-                "align": "CENTER",
-                "rotateFace": 0,
-                "flipLeftFace": false,
-                "wait": false,
-                "waitSkip": 0,
-                "actionDetached": false,
-                "target2": "TARGET",
-                "target2Align": "CENTER",
-                "fixPos": false,
-                "type": "SHOW_EFFECT",
-                "effect": {
-                    "sheet": "combat.hexacast",
-                    "name": "buffTrailWave"
-                },
-                "offset": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }
-            },
-            {
-                "duration": -1,
                 "target": "TARGET",
                 "align": "CENTER",
                 "rotateFace": 0,
@@ -299,7 +211,7 @@
                 }
             },
             {
-                "time": 7.5,
+                "time": 10,
                 "type": "WAIT"
             },
             {
@@ -323,7 +235,66 @@
         "config": {},
         "type": "GENERIC"
     },
-
+    "buffNeutral": {
+        "copyOwnerAnims": false,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "target": "TARGET",
+                "type": "ADD_ACTION_BUFF",
+                "stats": [
+                    "HEAT-RES-3",
+                    "COLD-RES-3",
+                    "SHOCK-RES-3",
+                    "WAVE-RES-3"
+                ]
+            },
+            {
+                "duration": -1,
+                "target": "TARGET",
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat.hexacast",
+                    "name": "buffHax"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "time": 10,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "invisible": false,
+        "hp": 0,
+        "stickToSource": "OWNER",
+        "stickFaceAlign": false,
+        "group": "buff",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 16
+        },
+        "config": {},
+        "type": "GENERIC"
+    },
     "spellTriggerHeat": {
         "effects": "ball",
         "effectKeys": {
@@ -610,14 +581,14 @@
         "type": "GENERIC"
     },
 
-    "iceshockTrigger": {
+    "el-iceshockTrigger": {
         "effects": "ball",
         "effectKeys": {
             "trail": "ballTrailHexaSlowCold"
         },
-        "speed": 550,
+        "speed": 850,
         "maxBounce": 0,
-        "timer": 0.2,
+        "timer": 0.15,
         "trail": true,
         "multiHit": false,
         "noLightGlow": false,
@@ -650,11 +621,11 @@
         "behaviors": [
             {
                 "type": "FOLLOW_TARGET",
-                "steerDegree": 0.6
+                "steerDegree": 1.5
             }
         ]
     },
-    "iceshock": {
+    "el-iceshock": {
         "copyOwnerAnims": false,
         "breakType": "NEVER",
         "action": [
@@ -683,63 +654,6 @@
                 "type": "SET_SPEED"
             },
             {
-                "align": "FACE",
-                "radius": 40,
-                "yScale": 0,
-                "zHeight": 16,
-                "centralAngle": 1,
-                "duration": 0.1,
-                "expandRadius": 0,
-                "alwaysFull": true,
-                "clockwise": false,
-                "flipLeftFace": 0,
-                "rectangular": false,
-                "repeat": false,
-                "uniformHitDir": true,
-                "fixPos": false,
-                "checkCollision": true,
-                "type": "CIRCLE_ATTACK",
-                "attack": {
-                    "type": "MASSIVE",
-                    "element": "COLD",
-                    "damageFactor": 0,
-                    "fly": "MASSIVE",
-                    "reverse": false,
-                    "stunSteps": [
-                        {
-                            "type": "BLOCK_XY"
-                        },
-                        {
-                            "type": "START_LOCK"
-                        },
-                        {
-                            "distance": 16,
-                            "speed": 200,
-                            "maxTime": 0,
-                            "type": "PULL"
-                        },
-                        {
-                            "accel": 1,
-                            "offZ": 8,
-                            "maxTime": 0,
-                            "type": "Z_PULL"
-                        }
-                    ],
-                    "status": 0,
-                    "hints": [
-                        "NO_PUZZLE"
-                    ],
-                    "guardable": "",
-                    "skillBonus": "MELEE_DMG",
-                    "limiter": ""
-                },
-                "offset": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 0
-                }
-            },
-            {
                 "duration": 0,
                 "align": "BOTTOM",
                 "rotateFace": 0,
@@ -765,37 +679,27 @@
                 "time": 0.4
             },
             {
-                "align": "FACE",
-                "radius": 40,
-                "yScale": 0,
-                "zHeight": 16,
-                "centralAngle": 1,
-                "duration": 0.1,
-                "expandRadius": 0,
-                "alwaysFull": true,
-                "clockwise": false,
-                "flipLeftFace": 0,
-                "rectangular": false,
-                "repeat": false,
-                "uniformHitDir": true,
-                "fixPos": false,
-                "checkCollision": true,
-                "type": "CIRCLE_ATTACK",
+                "selectType": "TARGET",
+                "hitDir": "TOWARD",
+                "align": "BOTTOM",
+                "hitCount": 1,
+                "hitDelay": 0,
+                "type": "DIRECT_HIT",
                 "attack": {
                     "type": "MASSIVE",
                     "element": "COLD",
-                    "damageFactor": 3,
+                    "damageFactor": 4.5,
                     "fly": "MASSIVE",
                     "reverse": false,
-                    "stunSteps": [
-                    ],
+                    "stunSteps": [],
                     "status": 2.5,
                     "hints": [
                         "NO_PUZZLE"
                     ],
                     "guardable": "",
                     "skillBonus": "MELEE_DMG",
-                    "limiter": ""
+                    "limiter": "",
+                    "poisonChance": 1
                 },
                 "offset": {
                     "x": 0,
@@ -951,9 +855,9 @@
                 "attack": {
                     "type": "HEAVY",
                     "element": "SHOCK",
-                    "damageFactor": 2,
+                    "damageFactor": 1,
                     "reverse": false,
-                    "status": 0.5,
+                    "status": 0.4,
                     "hints": [],
                     "guardable": "",
                     "skillBonus": "MELEE_DMG",

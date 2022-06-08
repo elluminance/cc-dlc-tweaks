@@ -1,58 +1,9 @@
+import "./els-mod/steps"
+
 export {}
 
 declare global {
     namespace ig {
-        namespace EFFECT_ENTRY {
-            namespace EffectSettings {
-                interface COPY_SPRITE_SPECIAL_COLOR_EL extends COPY_SPRITE {
-                    mode: string;
-                }
-            }
-
-            interface COPY_SPRITE_SPECIAL_COLOR_EL extends ig.EFFECT_ENTRY.COPY_SPRITE {
-                mode: string;
-            }
-
-            interface COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR extends ImpactClass<COPY_SPRITE_SPECIAL_COLOR_EL> {
-                new (type: any, settings: ig.EFFECT_ENTRY.EffectSettings.COPY_SPRITE_SPECIAL_COLOR_EL): COPY_SPRITE_SPECIAL_COLOR_EL
-            }
-
-            var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
-        }
-
-        namespace ACTION_STEP {
-            namespace ActionSettings {
-                interface EL_SET_TARGET_POS {
-                    newPos: Vec3
-                    random: boolean
-                    randRange: Vec2
-                }
-            }
-            
-
-            interface EL_SET_TARGET_POS extends ig.ActionStepBase {
-                newPos: Vec3
-                random: boolean
-                randRange: Vec2
-
-                init (this: this, settings: ActionSettings.EL_SET_TARGET_POS): void
-            }
-            interface EL_SET_TARGET_POS_CONSTRUCTOR extends ImpactClass<EL_SET_TARGET_POS> {
-            }
-
-            var EL_SET_TARGET_POS: EL_SET_TARGET_POS_CONSTRUCTOR;
-
-            
-        }
-
-        namespace EVENT_STEP {
-            interface OPEN_GEODE_MENU extends ig.EventStepBase {}
-            interface OPEN_GEODE_MENU_CONSTRUCTOR extends ImpactClass<OPEN_GEODE_MENU> {
-                new (): OPEN_GEODE_MENU
-            }
-            var OPEN_GEODE_MENU: OPEN_GEODE_MENU_CONSTRUCTOR;
-        }
-
         interface KnownVars {
             "dlctweaks.crystals": number;
         }

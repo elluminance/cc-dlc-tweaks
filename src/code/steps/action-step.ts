@@ -22,5 +22,16 @@ export default function () {
                 target.setPos(b.x - c.size.x / 2, b.y - c.size.y / 2, b.z);
             }
         }
+    });
+
+    ig.ACTION_STEP.EL_SET_PARTY_TEMP_TARGET_BY_INDEX = ig.ActionStepBase.extend({
+        init(settings) {
+            this.value = settings.value;
+        },
+        start(entity) {
+            let index = ig.Event.getExpressionValue(this.value) as number;
+            let target = !index ? ig.game.playerEntity : sc.party.getPartyMemberEntityByIndex(index-1);
+            entity.tmpTarget = target;
+        }
     })
 }

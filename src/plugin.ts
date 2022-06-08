@@ -22,6 +22,7 @@ import statusEffect from "./code/combat/status-effect.js";
 import hpBar from "./code/misc/hp-bar.js";
 import overhealing from "./code/combat/overhealing.js";
 import inventory from "./code/player/inventory.js";
+import combatantEntity from "./code/combat/combatant-entity.js";
 //#endregion
 
 //#region poststart declarations
@@ -53,6 +54,7 @@ export default class implements PluginClass {
         hpBar();
         overhealing();
         inventory();
+        combatantEntity();
     }
 
     poststart() {

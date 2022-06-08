@@ -269,6 +269,112 @@
         }
     },
 
+    "elHexaBuffHex": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_BUFF_H3X",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "BUFF H3X!"
+        },
+        "description": {
+            "en_US": "Grants supportive buffs to yourself and teammates. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 48
+        }
+    },
+    "elHexaBuffHeat": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_BUFF_HEAT",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "HEAT",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Heat Buff"
+        },
+        "description": {
+            "en_US": "Grants supportive buffs to yourself and teammates. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 48
+        }
+    },
+    "elHexaBuffCold": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_BUFF_COLD",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "COLD",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Cold Buff"
+        },
+        "description": {
+            "en_US": "Grants supportive buffs to yourself and teammates. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 48
+        }
+    },
+    "elHexaBuffShock": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_BUFF_SHOCK",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Shock Buff"
+        },
+        "description": {
+            "en_US": "Grants supportive buffs to yourself and teammates. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 48
+        }
+    },
+    "elHexaBuffWave": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_BUFF_WAVE",
+                "actionCheckKey": "GUARD_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Wave Buff"
+        },
+        "description": {
+            "en_US": "Grants supportive buffs to yourself and teammates. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 0,
+            "offX": 48
+        }
+    },
+
     "elHexaBaseThrow": {
         "list": [
             {

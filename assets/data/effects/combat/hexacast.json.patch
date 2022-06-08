@@ -44,7 +44,7 @@
                 "keySpline": "EASE_IN_OUT",
                 "collision": false,
                 "pAlpha": {
-                    "init": 1,
+                    "init": 0.6,
                     "end": {
                         "value": 0,
                         "time": 0.1,
@@ -140,7 +140,7 @@
                 "keySpline": "EASE_IN_OUT",
                 "collision": false,
                 "pAlpha": {
-                    "init": 1,
+                    "init": 0.6,
                     "end": {
                         "value": 0,
                         "time": 0.1,
@@ -236,7 +236,7 @@
                 "keySpline": "EASE_IN_OUT",
                 "collision": false,
                 "pAlpha": {
-                    "init": 1,
+                    "init": 0.6,
                     "end": {
                         "value": 0,
                         "time": 0.1,
@@ -332,7 +332,7 @@
                 "keySpline": "EASE_IN_OUT",
                 "collision": false,
                 "pAlpha": {
-                    "init": 1,
+                    "init": 0.6,
                     "end": {
                         "value": 0,
                         "time": 0.1,
@@ -1680,5 +1680,13 @@
         ]
     }
 },{
-    "type": "EXIT"
+    "type": "ENTER",
+    "index": ["buffHax", 0, "pAlpha"]
+},{
+    "type": "SET_KEY",
+    "index": "init",
+    "content": 0.6
+},{
+    "type": "EXIT",
+    "count": 4
 }]

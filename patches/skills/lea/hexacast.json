@@ -1690,9 +1690,9 @@
                     "attack": {
                         "type": "HEAVY",
                         "element": "SHOCK",
-                        "damageFactor": 2.75,
+                        "damageFactor": 1,
                         "reverse": false,
-                        "status": 0.5,
+                        "status": 0.4,
                         "hints": [],
                         "guardable": "",
                         "skillBonus": "MELEE_DMG",
@@ -1726,6 +1726,303 @@
                 "floatVariance": 0,
                 "flyHeight": 1
             },
+            "type": "GENERIC"
+        },
+
+        "el-hexa-buffNeutral": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "HEAT-RES-3",
+                        "COLD-RES-3",
+                        "SHOCK-RES-3",
+                        "WAVE-RES-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "buffHax"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "OWNER",
+            "stickFaceAlign": false,
+            "group": "buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "el-hexa-buffHeat": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "COLD-RES-3",
+                        "ATTACK-3",
+                        "MELEE_DMG-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "buffHeat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "OWNER",
+            "stickFaceAlign": false,
+            "group": "hexBuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "el-hexa-buffCold": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "HEAT-RES-3",
+                        "DEFENSE-3",
+                        "SPIKE_DMG-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "buffCold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "OWNER",
+            "stickFaceAlign": false,
+            "group": "hexBuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "el-hexa-buffShock": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "WAVE-RES-3",
+                        "FOCUS-3",
+                        "EL-CRITICAL_DMG-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "buffShock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "OWNER",
+            "stickFaceAlign": false,
+            "group": "hexBuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "el-hexa-buffWave": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "SHOCK-RES-3",
+                        "REGEN-3",
+                        "RANGED_DMG-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "buffWave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "OWNER",
+            "stickFaceAlign": false,
+            "group": "hexBuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
             "type": "GENERIC"
         }
     },
@@ -3620,6 +3917,166 @@
                         "type": "WAIT"
                     }
                 ]
+            },
+
+            "EL_HEXA_BUFF_H3X": {
+                "name": {
+                    "en_US": "BUFF H3X!",
+                    "zh_CN": "\u589e\u5f3a\u5492\uff01",
+                    "ja_JP": "\u30d8\u30ad\u30b5\u30fb\u30d0\u30d5",
+                    "ko_KR": "\ubc84\ud504 H3X!",
+                    "langUid": 101,
+                    "de_DE": "BUFF H3X!",
+                    "zh_TW": "\u589e\u5f37\u5492\uff01"
+                },
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "sticking": true,
+                        "group": "hexBuff",
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS",
+                        "group": "hexaBuff"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "buffParty",
+                        "value": 0
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    },
+                    {
+                        "followUp": "attackEndLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackEnd"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 6,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "meleeNeutral"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "LABEL",
+                        "name": "buff"
+                    },
+                    {
+                        "type": "EL_SET_PARTY_TEMP_TARGET_BY_INDEX",
+                        "value": {
+                            "varName": "entity.attrib.buffParty"
+                        }
+                    },
+                    {
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "hasElse": false,
+                        "thenStep": [
+                            {
+                                "type": "IF",
+                                "condition": "!entity.targetingSelf",
+                                "thenStep": [
+                                    {
+                                        "duration": 10,
+                                        "align": "CENTER",
+                                        "rotateFace": 0,
+                                        "flipLeftFace": false,
+                                        "wait": false,
+                                        "waitSkip": 0,
+                                        "actionDetached": true,
+                                        "group": "hexaBuff",
+                                        "target2": "TARGET",
+                                        "target2Align": "CENTER",
+                                        "fixPos": false,
+                                        "type": "SHOW_EFFECT",
+                                        "effect": {
+                                            "sheet": "combat.hexacast",
+                                            "name": "buffTrail"
+                                        },
+                                        "offset": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "SELF",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "el-hexa-buffNeutral",
+                                "group": "hexBuff",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "changeType": "add",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "buffParty",
+                                "value": 1
+                            },
+                            {
+                                "type": "GOTO_LABEL",
+                                "name": "buff"
+                            }
+                        ]
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "postShoot"
+                    },
+                    {
+                        "time": 0.15,
+                        "type": "WAIT"
+                    }
+                ]
             }
         },
         "HEAT": {
@@ -3828,6 +4285,159 @@
                     },
                     {
                         "time": 0.2,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+
+            "EL_HEXA_BUFF_HEAT": {
+                "name": {
+                    "en_US": "Heat Buff"
+                },
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "sticking": true,
+                        "group": "hexBuff",
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS",
+                        "group": "hexaBuff"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "buffParty",
+                        "value": 0
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    },
+                    {
+                        "followUp": "attackEndLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackEnd"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 6,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "meleeHeat"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "LABEL",
+                        "name": "buff"
+                    },
+                    {
+                        "type": "EL_SET_PARTY_TEMP_TARGET_BY_INDEX",
+                        "value": {
+                            "varName": "entity.attrib.buffParty"
+                        }
+                    },
+                    {
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "hasElse": false,
+                        "thenStep": [
+                            {
+                                "type": "IF",
+                                "condition": "!entity.targetingSelf",
+                                "thenStep": [
+                                    {
+                                        "duration": 10,
+                                        "align": "CENTER",
+                                        "rotateFace": 0,
+                                        "flipLeftFace": false,
+                                        "wait": false,
+                                        "waitSkip": 0,
+                                        "actionDetached": true,
+                                        "group": "hexaBuff",
+                                        "target2": "TARGET",
+                                        "target2Align": "CENTER",
+                                        "fixPos": false,
+                                        "type": "SHOW_EFFECT",
+                                        "effect": {
+                                            "sheet": "combat.hexacast",
+                                            "name": "buffTrailHeat"
+                                        },
+                                        "offset": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "SELF",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "el-hexa-buffHeat",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "changeType": "add",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "buffParty",
+                                "value": 1
+                            },
+                            {
+                                "type": "GOTO_LABEL",
+                                "name": "buff"
+                            }
+                        ]
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "postShoot"
+                    },
+                    {
+                        "time": 0.15,
                         "type": "WAIT"
                     }
                 ]
@@ -4177,6 +4787,159 @@
                         "type": "WAIT"
                     }
                 ]
+            },
+
+            "EL_HEXA_BUFF_COLD": {
+                "name": {
+                    "en_US": "Cold Buff"
+                },
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "sticking": true,
+                        "group": "hexBuff",
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS",
+                        "group": "hexaBuff"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "buffParty",
+                        "value": 0
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    },
+                    {
+                        "followUp": "attackEndLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackEnd"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 6,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "meleeCold"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "LABEL",
+                        "name": "buff"
+                    },
+                    {
+                        "type": "EL_SET_PARTY_TEMP_TARGET_BY_INDEX",
+                        "value": {
+                            "varName": "entity.attrib.buffParty"
+                        }
+                    },
+                    {
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "hasElse": false,
+                        "thenStep": [
+                            {
+                                "type": "IF",
+                                "condition": "!entity.targetingSelf",
+                                "thenStep": [
+                                    {
+                                        "duration": 10,
+                                        "align": "CENTER",
+                                        "rotateFace": 0,
+                                        "flipLeftFace": false,
+                                        "wait": false,
+                                        "waitSkip": 0,
+                                        "actionDetached": true,
+                                        "group": "hexaBuff",
+                                        "target2": "TARGET",
+                                        "target2Align": "CENTER",
+                                        "fixPos": false,
+                                        "type": "SHOW_EFFECT",
+                                        "effect": {
+                                            "sheet": "combat.hexacast",
+                                            "name": "buffTrailCold"
+                                        },
+                                        "offset": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "SELF",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "el-hexa-buffCold",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "changeType": "add",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "buffParty",
+                                "value": 1
+                            },
+                            {
+                                "type": "GOTO_LABEL",
+                                "name": "buff"
+                            }
+                        ]
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "postShoot"
+                    },
+                    {
+                        "time": 0.15,
+                        "type": "WAIT"
+                    }
+                ]
             }
         },
         "SHOCK": {
@@ -4366,18 +5129,18 @@
                         "proxy": "el-hexaLightningBolt",
                         "align": "BOTTOM",
                         "startDistCollide": "NONE",
-                        "startDist": 64,
+                        "startDist": 48,
                         "clockwise": false,
                         "flipLeftFace": 0,
                         "centralAngle": 0.33,
-                        "count": 6,
-                        "duration": 0.5,
+                        "count": 5,
+                        "duration": 0.3,
                         "group": "hexaArt",
                         "circularArea": true,
                         "uniformDir": 0,
                         "delay": 0,
                         "repeat": false,
-                        "random": true,
+                        "random": false,
                         "offset": {
                             "x": 0,
                             "y": 0,
@@ -4397,6 +5160,159 @@
                     },
                     {
                         "time": 0.2,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+
+            "EL_HEXA_BUFF_SHOCK": {
+                "name": {
+                    "en_US": "Shock Buff"
+                },
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "sticking": true,
+                        "group": "hexBuff",
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS",
+                        "group": "hexaBuff"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "buffParty",
+                        "value": 0
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    },
+                    {
+                        "followUp": "attackEndLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackEnd"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 6,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "meleeShock"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "LABEL",
+                        "name": "buff"
+                    },
+                    {
+                        "type": "EL_SET_PARTY_TEMP_TARGET_BY_INDEX",
+                        "value": {
+                            "varName": "entity.attrib.buffParty"
+                        }
+                    },
+                    {
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "hasElse": false,
+                        "thenStep": [
+                            {
+                                "type": "IF",
+                                "condition": "!entity.targetingSelf",
+                                "thenStep": [
+                                    {
+                                        "duration": 10,
+                                        "align": "CENTER",
+                                        "rotateFace": 0,
+                                        "flipLeftFace": false,
+                                        "wait": false,
+                                        "waitSkip": 0,
+                                        "actionDetached": true,
+                                        "group": "hexaBuff",
+                                        "target2": "TARGET",
+                                        "target2Align": "CENTER",
+                                        "fixPos": false,
+                                        "type": "SHOW_EFFECT",
+                                        "effect": {
+                                            "sheet": "combat.hexacast",
+                                            "name": "buffTrailShock"
+                                        },
+                                        "offset": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "SELF",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "el-hexa-buffShock",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "changeType": "add",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "buffParty",
+                                "value": 1
+                            },
+                            {
+                                "type": "GOTO_LABEL",
+                                "name": "buff"
+                            }
+                        ]
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "postShoot"
+                    },
+                    {
+                        "time": 0.15,
                         "type": "WAIT"
                     }
                 ]
@@ -4763,6 +5679,159 @@
                     },
                     {
                         "time": 0.05,
+                        "type": "WAIT"
+                    }
+                ]
+            },
+
+            "EL_HEXA_BUFF_WAVE": {
+                "name": {
+                    "en_US": "Wave Buff"
+                },
+                "dmgType": "",
+                "stunType": "",
+                "status": false,
+                "steps": [
+                    {
+                        "sticking": true,
+                        "group": "hexBuff",
+                        "type": "REMOVE_PROXIES"
+                    },
+                    {
+                        "type": "CLEAR_EFFECTS",
+                        "group": "hexaBuff"
+                    },
+                    {
+                        "type": "SET_PLAYER_ACTION_BLOCK",
+                        "blockData": {
+                            "dash": 0,
+                            "action": -1,
+                            "move": -1,
+                            "reaim": -1
+                        }
+                    },
+                    {
+                        "changeType": "set",
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "buffParty",
+                        "value": 0
+                    },
+                    {
+                        "wait": true,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinShort"
+                    },
+                    {
+                        "followUp": "attackEndLoop",
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "attackEnd"
+                    },
+                    {
+                        "value": 80,
+                        "type": "SET_SPEED"
+                    },
+                    {
+                        "duration": 0,
+                        "align": "FACE",
+                        "rotateFace": 6,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "combat.hexacast",
+                            "name": "meleeWave"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "LABEL",
+                        "name": "buff"
+                    },
+                    {
+                        "type": "EL_SET_PARTY_TEMP_TARGET_BY_INDEX",
+                        "value": {
+                            "varName": "entity.attrib.buffParty"
+                        }
+                    },
+                    {
+                        "type": "IF",
+                        "condition": "entity.hasTmpTarget",
+                        "hasElse": false,
+                        "thenStep": [
+                            {
+                                "type": "IF",
+                                "condition": "!entity.targetingSelf",
+                                "thenStep": [
+                                    {
+                                        "duration": 10,
+                                        "align": "CENTER",
+                                        "rotateFace": 0,
+                                        "flipLeftFace": false,
+                                        "wait": false,
+                                        "waitSkip": 0,
+                                        "actionDetached": true,
+                                        "group": "hexaBuff",
+                                        "target2": "TARGET",
+                                        "target2Align": "CENTER",
+                                        "fixPos": false,
+                                        "type": "SHOW_EFFECT",
+                                        "effect": {
+                                            "sheet": "combat.hexacast",
+                                            "name": "buffTrailWave"
+                                        },
+                                        "offset": {
+                                            "x": 0,
+                                            "y": 0,
+                                            "z": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "align": "BOTTOM",
+                                "posType": "SELF",
+                                "type": "SHOOT_PROXY",
+                                "proxy": "el-hexa-buffWave",
+                                "offset": {
+                                    "x": 0,
+                                    "y": 0,
+                                    "z": 0
+                                }
+                            },
+                            {
+                                "changeType": "add",
+                                "type": "SET_ATTRIB_NUMBER",
+                                "attribName": "buffParty",
+                                "value": 1
+                            },
+                            {
+                                "type": "GOTO_LABEL",
+                                "name": "buff"
+                            }
+                        ]
+                    },
+                    {
+                        "time": 1,
+                        "type": "WAIT"
+                    },
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "postShoot"
+                    },
+                    {
+                        "time": 0.15,
                         "type": "WAIT"
                     }
                 ]
