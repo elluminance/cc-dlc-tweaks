@@ -36,4 +36,15 @@
             "type": "EXIT"
         }
     ]
+},{
+    "type": "ENTER",
+    "index": ["flawless-apollo", "description"]
+},{
+    "type": "MERGE_CONTENT",
+    "content": {
+        "en_US": "Win \\c[3]the first 3 PvP Battles against Apollo without losing a single round\\c[0]. "
+    }
+},{
+    "type": "EXIT",
+    "count": 2
 }]

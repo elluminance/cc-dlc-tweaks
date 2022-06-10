@@ -996,5 +996,61 @@
                 "compare": "min"
             }
         ]
+    },
+
+    "el-truest-spheromancer": {
+        "track": true,
+        "name": {
+            "en_US": "Ultimate Duelist"
+        },
+        "description": {
+            "en_US": "Win \\c[3]all PvP Battles against Apollo, Shizuka, and Lily without ever losing a single round\\c[0]. "
+        },
+        "descCond": "trophies.triggered.flawless-apollo && trophies.triggered.el-kill-apollo-04 && trophies.triggered.kill-boss-shizuka && quest.seizui-quest.solved",
+        "order": 61,
+        "icon": "EL_ULTIMATE_DUELIST",
+        "stars": "5",
+        "points": 750,
+        "progType": "VALUE",
+        "section": "SPECIAL",
+        "category": "GENERAL",
+        "stats": [
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.apollo",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.apollo-2",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.apollo-3",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.apollo-4",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.shizuka",
+                "value": "1",
+                "compare": "min"
+            },
+            {
+                "key": "pvp",
+                "mapKey": "flawlessWin-avatar.lily",
+                "value": "1",
+                "compare": "min"
+            }
+        ]
     }
 }

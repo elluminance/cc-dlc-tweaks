@@ -161,6 +161,14 @@ export default function () {
             hidden: false,
             sheet: "dlc-tweaks",
             customIndex: 20,
+        },
+
+        EL_ULTIMATE_DUELIST: {
+            index: -1,
+            cat: "GENERAL",
+            hidden: false,
+            sheet: "dlc-tweaks",
+            customIndex: 22
         }
     })
 
