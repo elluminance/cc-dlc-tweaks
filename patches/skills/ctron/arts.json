@@ -918,6 +918,111 @@
                     "type": "WAIT"
                 }
             ]
+        },
+
+        "THROW_SPECIAL2": {
+            "name": {
+                "en_US": "Storm Caller"
+            },
+            "description": {
+                "en_US": "Summon a barrage of lightning bolts to strike near a hit foe."
+            },
+            "dmgType": "RANGED",
+            "stunType": "",
+            "status": true,
+            "steps": [
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": -1,
+                        "action": -1,
+                        "move": -1,
+                        "reaim": -1
+                    }
+                },
+                {
+                    "searchType": "IN_VIEW",
+                    "ignoreCurrentTarget": false,
+                    "prevHitBehavior": "NONE",
+                    "type": "SET_CLOSE_TEMP_TARGET"
+                },
+                {
+                    "value": true,
+                    "immediately": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": true,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "specialShoot"
+                },
+                {
+                    "value": false,
+                    "immediately": true,
+                    "type": "FACE_TO_TARGET"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "specialLoop"
+                },
+                {
+                    "value": 80,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "duration": 0,
+                    "align": "FACE",
+                    "rotateFace": 6,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "combat.hexacast",
+                        "name": "shootShock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "sticking": false,
+                    "group": "buff",
+                    "type": "REMOVE_PROXIES"
+                },
+                {
+                    "align": "BOTTOM",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "el-hexa-stormTrigger",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 12
+                    }
+                },
+                {
+                    "time": 0.6,
+                    "type": "WAIT"
+                },
+                {
+                    "followUp": "idle",
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "postShoot"
+                },
+                {
+                    "time": 0.2,
+                    "type": "WAIT"
+                }
+            ]
         }
     },
 

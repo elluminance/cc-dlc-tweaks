@@ -857,6 +857,9 @@
                 "type": "PLAY_SOUND"
             },
             {
+                "type": "LOOP_START"
+            },
+            {
                 "useTargetAngle": false,
                 "keepAngleSync": false,
                 "pScale": {
@@ -1048,6 +1051,13 @@
                 "particleDuration": 0.5,
                 "anim": "HEXA_SHOCK",
                 "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.8
+            },
+            {
+                "type": "LOOP_END"
             }
         ],
         "magicMissileWave": [

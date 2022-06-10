@@ -16,6 +16,22 @@ sc.STAT_PARAM_TYPE.EL_RISKTAKER = {
 sc.STAT_PARAM_TYPE.AIM_SPEED = {
     key: "AIM_SPEED"
 };
+sc.STAT_PARAM_TYPE.EL_NEUTRAL_BOOST = {
+    key: "EL_NEUTRAL_BOOST"
+};
+sc.STAT_PARAM_TYPE.EL_HEAT_BOOST = {
+    key: "EL_HEAT_BOOST"
+};
+sc.STAT_PARAM_TYPE.EL_COLD_BOOST = {
+    key: "EL_COLD_BOOST"
+};
+sc.STAT_PARAM_TYPE.EL_SHOCK_BOOST = {
+    key: "EL_SHOCK_BOOST"
+};
+sc.STAT_PARAM_TYPE.EL_WAVE_BOOST = {
+    key: "EL_WAVE_BOOST"
+};
+
 
 Object.assign(sc.STAT_CHANGE_SETTINGS, {
     "EL-CRITICAL_DMG-1": {
@@ -374,5 +390,56 @@ Object.assign(sc.STAT_CHANGE_SETTINGS, {
         icon: "stat-dash",
         grade: "stat-rank-down-1"
     },
+
+    "EL_NEUTRAL_BOOST-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_NEUTRAL_BOOST,
+        value: 0.2,
+        icon: "stat-el-neutral-boost",
+        grade: "stat-rank-2"
+    },
+    "EL_HEAT_BOOST-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_HEAT_BOOST,
+        value: 0.2,
+        icon: "stat-el-heat-boost",
+        grade: "stat-rank-2"
+    },
+    "EL_COLD_BOOST-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_COLD_BOOST,
+        value: 0.2,
+        icon: "stat-el-cold-boost",
+        grade: "stat-rank-2"
+    },
+    "EL_SHOCK_BOOST-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_SHOCK_BOOST,
+        value: 0.2,
+        icon: "stat-el-shock-boost",
+        grade: "stat-rank-2"
+    },
+    "EL_WAVE_BOOST-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.EL_WAVE_BOOST,
+        value: 0.2,
+        icon: "stat-el-wave-boost",
+        grade: "stat-rank-2"
+    },
+
+    "EL-STUN_THRESHOLD-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.STUN_THRESHOLD,
+        value: 0.08,
+        icon: "stat-stun-threshold",
+        grade: "stat-rank-2"
+    },
+    "EL-SPIKE_DMG-2": {
+        change: sc.STAT_CHANGE_TYPE.MODIFIER,
+        type: sc.STAT_PARAM_TYPE.SPIKE_DMG,
+        value: 0.3,
+        icon: "stat-spike-dmg",
+        grade: "stat-rank-2"
+    }
 })
 }

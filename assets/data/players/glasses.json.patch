@@ -17,7 +17,7 @@
     "src": "mod:patches/skills/ctron/arts.json"
 },{
     "type": "INCLUDE",
-    "src": "mod:patches/skills/ctron/art-patch.json"
+    "src": "mod:patches/skills/ctron/art-patch.json.patch"
 },{
     "type": "EXIT"
 }]

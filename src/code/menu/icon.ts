@@ -30,6 +30,11 @@ let fontMappings: ig.MultiFont.Mapping = {
     "stat-el-risktaker": [fontIndex+1, 0],
     "stat-aiming-speed": [fontIndex+1, 1],
     "stat-el-overheal":  [fontIndex+1, 2],
+    "stat-el-neutral-boost": [fontIndex+1, 3],
+    "stat-el-heat-boost": [fontIndex+1, 4],
+    "stat-el-cold-boost": [fontIndex+1, 5],
+    "stat-el-shock-boost": [fontIndex+1, 6],
+    "stat-el-wave-boost": [fontIndex+1, 7],
 }
 
 let index = 0;
@@ -44,7 +49,12 @@ sc.fontsystem.font.setMapping(fontMappings)
 sc.fontsystem.tinyFont.setMapping({
     "stat-el-risktaker": [tinyFontIndex, 0],
     "stat-aiming-speed": [tinyFontIndex, 1],
-    "stat-el-overheal":  [tinyFontIndex, 2]
+    "stat-el-overheal":  [tinyFontIndex, 2],
+    "stat-el-neutral-boost": [tinyFontIndex, 3],
+    "stat-el-heat-boost": [tinyFontIndex, 4],
+    "stat-el-cold-boost": [tinyFontIndex, 5],
+    "stat-el-shock-boost": [tinyFontIndex, 6],
+    "stat-el-wave-boost": [tinyFontIndex, 7],
 })
 
 }

@@ -235,6 +235,27 @@
             "offX": 72
         }
     },
+    "elHexaStormCaller": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_STORM_CALLER",
+                "actionCheckKey": "THROW_SPECIAL2"
+            }
+        ],
+        "element": "SHOCK",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "name": {
+            "en_US": "Storm Caller"
+        },
+        "description": {
+            "en_US": "Summon a barrage of lightning bolts to strike near a hit foe. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 72
+        }
+    },
     "elHexaWaveMissile": {
         "list": [
             {
