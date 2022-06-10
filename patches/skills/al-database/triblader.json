@@ -15,7 +15,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Triblader Attack"
         },
@@ -52,7 +52,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Triblader VRPs"
         },
@@ -74,7 +74,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wirbelschlitzer"
         },
@@ -95,7 +95,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wirbelschlitzer"
         },
@@ -116,7 +116,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Speedy Shuriken"
         },
@@ -143,7 +143,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Flammenwirbler",
             "de_DE": "Flammenwirbler",
@@ -169,7 +169,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Feuersprint",
             "de_DE": "Feuersprint",
@@ -195,7 +195,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "K\u00e4ltewirbler",
             "de_DE": "K\u00e4ltewirbler",
@@ -221,7 +221,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Eisbahn",
             "de_DE": "Eisbahn",
@@ -247,7 +247,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Schockwirbler",
             "de_DE": "Schockwirbler",
@@ -273,7 +273,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Donnerpfeil",
             "de_DE": "Donnerpfeil",
@@ -299,7 +299,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wellenwirbler",
             "de_DE": "Wellenwirbler",
@@ -326,7 +326,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "item.el-triblader-art-pass.amount >= 1",
+        "activeCondition": "item.el-triblader-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wellenritt",
             "de_DE": "Wellenritt",

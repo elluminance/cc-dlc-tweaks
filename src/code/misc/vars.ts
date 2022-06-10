@@ -3,7 +3,9 @@ export default function () {
         onVarAccess(a, b) {
             if (b[0] == "player") switch (b[1]) {
                 case "totalSkillPointsExtra":
-                    return (this.skillPointsExtra as unknown as number[]).reduce((c, d) => (c + d), 0)
+                    return (this.skillPointsExtra as unknown as number[]).reduce((c, d) => (c + d), 0);
+                case "model":
+                    return this.name
             }
             return this.parent(a, b)
         }

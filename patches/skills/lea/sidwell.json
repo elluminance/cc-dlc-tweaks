@@ -273,7 +273,7 @@
                                 "align": "BOTTOM",
                                 "posType": "TARGET",
                                 "type": "SHOOT_PROXY",
-                                "proxy": "el-sidwellL",
+                                "proxy": "el-sidwellLockTarget",
                                 "offset": {
                                     "x": 0,
                                     "y": 0,

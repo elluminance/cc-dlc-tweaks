@@ -7,7 +7,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Iceshock"
         },
@@ -28,7 +28,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && el.test.snowgrave",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && el.test.snowgrave && player.model == \"Lea\"",
         "name": {
             "en_US": "Snowgrave"
         },
@@ -49,7 +49,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Tectonic Burst"
         },
@@ -70,7 +70,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Bolt Bringer"
         },
@@ -91,7 +91,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wave Blast"
         },
@@ -113,7 +113,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "MAGIC MISSILE",
             "zh_CN": "\u9b54\u6cd5\u98de\u5f39",
@@ -144,7 +144,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Heat Missile",
             "de_DE": "Heat Missile",
@@ -177,7 +177,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Cold Missile",
             "de_DE": "Cold Missile",
@@ -210,7 +210,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Shock Missile",
             "de_DE": "Shock Missile",
@@ -243,7 +243,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Storm Caller"
         },
@@ -264,7 +264,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wave Missile",
             "de_DE": "Wave Missile",
@@ -298,7 +298,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "BUFF H3X!"
         },
@@ -319,7 +319,7 @@
             }
         ],
         "element": "HEAT",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Heat Buff"
         },
@@ -340,7 +340,7 @@
             }
         ],
         "element": "COLD",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Cold Buff"
         },
@@ -361,7 +361,7 @@
             }
         ],
         "element": "SHOCK",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Shock Buff"
         },
@@ -382,7 +382,7 @@
             }
         ],
         "element": "WAVE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Wave Buff"
         },
@@ -420,7 +420,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Hexacast VRPs"
         },
@@ -449,7 +449,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Hexacast Attack"
         },
@@ -460,6 +460,28 @@
             "src": "media/gui/el-mod-custom-skills.png",
             "offY": 120,
             "offX": 24
+        }
+    },
+
+    "elHexaDeadlyDecoy": {
+        "list": [
+            {
+                "replaceTo": "EL_HEXA_DEADLY_DOUBLE",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "WAVE",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
+        "name": {
+            "en_US": "Deadly Decoy"
+        },
+        "description": {
+            "en_US": "Use it to attack the darkness. \\i[class-hexacast]"
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 24,
+            "offX": 96
         }
     }
 }

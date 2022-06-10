@@ -7,7 +7,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Spin Dance",
             "de_DE": "Spin Dance",
@@ -38,7 +38,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Sphere Saw",
             "de_DE": "Sphere Saw",
@@ -69,7 +69,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Spiral Dance",
             "de_DE": "Spiral Dance",
@@ -102,7 +102,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Sphere Storm",
             "de_DE": "Sphere Storm",
@@ -136,7 +136,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Ball of Steel",
             "de_DE": "Ball of Steel",
@@ -169,7 +169,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Bullet Rain",
             "de_DE": "Bullet Rain",
@@ -202,7 +202,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Ball of Boomerang",
             "de_DE": "Ball of Boomerang",
@@ -235,7 +235,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Bullet Inferno",
             "de_DE": "Bullet Inferno",
@@ -269,7 +269,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Azure Strike",
             "de_DE": "Azure Strike",
@@ -302,7 +302,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "First Cut",
             "de_DE": "First Cut",
@@ -335,7 +335,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Azure Surge",
             "de_DE": "Azure Surge",
@@ -368,7 +368,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Final Showdown",
             "de_DE": "Final Showdown",
@@ -402,7 +402,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Proximity Blast",
             "de_DE": "Proximity Blast",
@@ -435,7 +435,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Guard Sphere",
             "de_DE": "Guard Sphere",
@@ -468,7 +468,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Vortex Blast",
             "de_DE": "Vortex Blast",
@@ -501,7 +501,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-neutral-art-pass.amount >= 1",
+        "activeCondition": "item.el-neutral-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Blade Sphere",
             "de_DE": "Blade Sphere",

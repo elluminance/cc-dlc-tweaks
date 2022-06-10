@@ -1251,5 +1251,143 @@
             "flyHeight": 1
         },
         "type": "GENERIC"
+    },
+
+    "el-hexaDeadlyDecoy": {
+        "copyOwnerAnims": true,
+        "breakType": "COMBATANT",
+        "action": [
+            {
+                "type": "SET_OWNER_REPLACE_TARGET"
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "specials.wave",
+                    "name": "dummyAura"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "idle"
+            },
+            {
+                "value": 0,
+                "type": "SET_SPEED"
+            },
+            {
+                "time": 4,
+                "cancelOnHit": true,
+                "orthoDirFactor": 0,
+                "ignoreLastHit": false,
+                "type": "TACKLE",
+                "attack": {
+                    "type": "MEDIUM",
+                    "element": "WAVE",
+                    "damageFactor": 0,
+                    "reverse": false,
+                    "spFactor": 0,
+                    "status": 1,
+                    "guardable": "",
+                    "skillBonus": "MELEE_DMG",
+                    "limiter": ""
+                }
+            },
+            {
+                "duration": 0,
+                "align": "FACE",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "fixPos": true,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "specials.wave",
+                    "name": "elWaveSingleBoom"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "align": "FACE",
+                "radius": 32,
+                "yScale": 0,
+                "zHeight": 16,
+                "centralAngle": 1,
+                "duration": 0.1,
+                "expandRadius": 0,
+                "alwaysFull": true,
+                "clockwise": false,
+                "flipLeftFace": 0,
+                "rectangular": false,
+                "repeat": false,
+                "uniformHitDir": true,
+                "fixPos": false,
+                "checkCollision": true,
+                "type": "CIRCLE_ATTACK",
+                "attack": {
+                    "type": "HEAVY",
+                    "element": "WAVE",
+                    "damageFactor": 2.5,
+                    "fly": "MASSIVE",
+                    "reverse": false,
+                    "stunSteps": [],
+                    "status": 0.3,
+                    "hints": [
+                        "NO_PUZZLE"
+                    ],
+                    "guardable": "",
+                    "skillBonus": "MELEE_DMG",
+                    "limiter": ""
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "type": "WAIT",
+                "time": 0.1
+            }
+        ],
+        "invisible": false,
+        "hp": 0.5,
+        "killEffect": {
+            "sheet": "specials.wave",
+            "name": "dummyAuraEnd"
+        },
+        "stickToSource": "NONE",
+        "stickFaceAlign": false,
+        "group": "",
+        "size": {
+            "x": 16,
+            "y": 16,
+            "z": 24
+        },
+        "config": {
+            "collType": "IGNORE"
+        },
+        "type": "GENERIC"
     }
 }

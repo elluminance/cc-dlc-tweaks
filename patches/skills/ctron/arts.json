@@ -1418,6 +1418,113 @@
                     "type": "WAIT"
                 }
             ]
+        },
+
+        "DASH_SPECIAL1": {
+            "name": {
+                "en_US": "Deadly Double"
+            },
+            "description": {
+                "en_US": "Leave a decoy that distracts enemies but explodes when attacked."
+            },
+            "dmgType": "MELEE",
+            "stunType": "",
+            "status": false,
+            "steps": [
+                {
+                    "value": "IGNORE",
+                    "type": "SET_COLL_TYPE"
+                },
+                {
+                    "type": "SET_PLAYER_ACTION_BLOCK",
+                    "blockData": {
+                        "dash": 0.15,
+                        "action": 0.3,
+                        "move": 0.3,
+                        "reaim": 0.3
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "type": "SHOOT_PROXY",
+                    "proxy": "el-hexaDeadlyDecoy",
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "dir": {
+                        "actorAttrib": "dashDir"
+                    },
+                    "type": "SET_FACE_TO_DIR"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "dash"
+                },
+                {
+                    "value": false,
+                    "type": "SET_JUMPING"
+                },
+                {
+                    "value": 400,
+                    "type": "SET_SPEED"
+                },
+                {
+                    "value": 2,
+                    "type": "SET_ACCEL_SPEED"
+                },
+                {
+                    "value": true,
+                    "type": "SET_FACE_FIX"
+                },
+                {
+                    "duration": -1,
+                    "align": "CENTER",
+                    "rotateFace": 8,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "specials.wave",
+                        "name": "waveDashTrail"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 0.2,
+                    "stopBeforeEdge": false,
+                    "type": "MOVE_FORWARD"
+                },
+                {
+                    "wait": false,
+                    "viaWalkConfig": false,
+                    "type": "SHOW_ANIMATION",
+                    "anim": "idle"
+                },
+                {
+                    "time": 0.1,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ]
         }
     }
 }

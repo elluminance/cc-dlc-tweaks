@@ -15,7 +15,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-pentafist-art-pass.amount >= 1",
+        "activeCondition": "item.el-pentafist-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Pentafist Attack"
         },
@@ -52,7 +52,7 @@
             }
         ],
         "element": "BASE",
-        "activeCondition": "item.el-hexacast-art-pass.amount >= 1",
+        "activeCondition": "item.el-hexacast-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Pentafist VRPs"
         },

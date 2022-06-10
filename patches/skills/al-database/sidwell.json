@@ -7,7 +7,7 @@
             }
         ],
         "element": "NEUTRAL",
-        "activeCondition": "item.el-sidwell-art-pass.amount >= 1",
+        "activeCondition": "item.el-sidwell-art-pass.amount >= 1 && player.model == \"Lea\"",
         "name": {
             "en_US": "Phasing Fist"
         },
