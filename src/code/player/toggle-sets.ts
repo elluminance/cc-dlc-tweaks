@@ -4,9 +4,11 @@ export default function () {
         get(b) {
             switch (b) {
                 case "lea-must-die":
-                    if (sc.model.player.getToggleItemState("el-toggle-one-hit-die")) return true
+                    if (sc.model.player.getToggleItemState("el-toggle-one-hit-die")) return true;
+                    break;
                 case "disable-exp":
                     if (sc.model.player.getToggleItemState("el-toggle-no-xp")) return true
+                    break;
             };
             return this.parent(b)
         }

@@ -2,7 +2,7 @@
     "elSidwellTeleportPunch": {
         "list": [
             {
-                "replaceTo": "EL_SIDWELL_PUNCH",
+                "replaceTo": "EL_SIDWELL_TELEPORT_PUNCH",
                 "actionCheckKey": "DASH_SPECIAL2"
             }
         ],
@@ -13,6 +13,49 @@
         },
         "description": {
             "en_US": "Punch an enemy to into a 3-part pummeling combo."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 0
+        }
+    },
+
+    "elSidwellLightningPunch": {
+        "list": [
+            {
+                "replaceTo": "EL_SIDWELL_LIGHTNING_PUNCH",
+                "actionCheckKey": "ATTACK_SPECIAL2"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-sidwell-art-pass.amount >= 1 && player.model == \"Lea\"",
+        "name": {
+            "en_US": "Lightning Punch"
+        },
+        "description": {
+            "en_US": "Punch an enemy to summon lightning to strike them 3 times."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 0
+        }
+    },
+    "elSidwellConePunch": {
+        "list": [
+            {
+                "replaceTo": "EL_SIDWELL_CONE_PUNCH",
+                "actionCheckKey": "THROW_SPECIAL2"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-sidwell-art-pass.amount >= 1 && player.model == \"Lea\"",
+        "name": {
+            "en_US": "Cone Jab"
+        },
+        "description": {
+            "en_US": "Shoot out a long line of cones through a big punch."
         },
         "icon": {
             "src": "media/gui/el-mod-custom-skills.png",

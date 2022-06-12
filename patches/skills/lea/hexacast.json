@@ -2478,7 +2478,8 @@
                         "stunSteps": [],
                         "status": 0.3,
                         "hints": [
-                            "NO_PUZZLE"
+                            "NO_PUZZLE",
+                            "CHARGED"
                         ],
                         "guardable": "",
                         "skillBonus": "MELEE_DMG",
