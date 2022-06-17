@@ -98,7 +98,7 @@
                 },
                 "particleDuration": 0.6,
                 "type": "COPY_SPRITE_SPECIAL_COLOR_EL",
-                "mode": "rainbow"
+                "mode": "pastel-rainbow"
             },
             {
                 "time": 0.05,
@@ -129,7 +129,7 @@
                 },
                 "particleDuration": 0.6,
                 "type": "COPY_SPRITE_SPECIAL_COLOR_EL",
-                "mode": "rainbow"
+                "mode": "pastel-rainbow"
             },
             {
                 "time": 0.05,

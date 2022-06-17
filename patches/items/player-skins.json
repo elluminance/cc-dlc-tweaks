@@ -103,6 +103,26 @@
     },
     {
         "order": 20,
+        "customItem": "el-effect-pastel-rainbow",
+        "name": {
+            "en_US": "Pastel Rainbow Aura"
+        },
+        "description": {
+            "en_US": "Taste the (pastel) \\i[el-rainbow-text]."
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
+    },
+    {
+        "order": 20,
         "customItem": "el-effect-vaporwave",
         "name": {
             "en_US": "Vaporwave Aura"

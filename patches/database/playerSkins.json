@@ -34,6 +34,14 @@
             "fx": "skin-aura.el.rainbow"
         }
     },
+    "el-pastel-rainbow-aura": {
+        "item": "el-effect-pastel-rainbow",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.el.pastel-rainbow"
+        }
+    },
     "el-vaporwave-aura": {
         "item": "el-effect-vaporwave",
         "autoAdd": false,

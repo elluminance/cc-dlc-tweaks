@@ -8,7 +8,19 @@ export function numberToElementName(element: sc.ELEMENT) {
     }
 }
 
-export const rgbToString = (r: number, g: number, b: number) => `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+export function rgbToString (r: number, g: number, b: number, max255 = false) {
+    if(max255) {
+        function to2DigStr(val: number) {
+            if(val < 16) {
+                return `0${val.toString(16)}`
+            } else return val.toString(16)
+        }
+        return `#${to2DigStr(r)}${to2DigStr(g)}${to2DigStr(b)}`
+    } else {
+        return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+    }
+
+}
 
 export function hueToRGBValue(hue: number){
     hue = (hue + 360) % 360;
@@ -26,6 +38,20 @@ export function getColorFromPercent(hueAtMax: number, hueAtMin: number, rotPerce
     let green = Math.floor(hueToRGBValue(newHue))
     let blue = Math.floor(hueToRGBValue(newHue - 120))
     return rgbToString(red, green, blue);
+}
+
+export function getColorFromPercentPlusSV(rotPercent: number, maxHue: number, minHue: number, saturation: number, value: number): string {
+    let newHue = Math.min(minHue, maxHue) + Math.abs(maxHue - minHue) * rotPercent
+
+    return hsv2rgbString(newHue, saturation, value)
+}
+
+export function hsv2rgb(h: number, s: number, v: number): [number, number, number] {                              
+  let f = (n: number,k=(n+h/60)%6) => Math.round((v - v*s*Math.max( Math.min(k,4-k,1), 0)) * 255);     
+  return [f(5),f(3),f(1)];
+}
+export function hsv2rgbString(h: number,s: number,v: number) {
+    return rgbToString(...hsv2rgb(h, s, v), true);
 }
 
 const rankRegex = /stat-(?:rank|level)(-down)?-(\d+)/

@@ -2088,10 +2088,11 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "HEAT-RES-3",
-                        "COLD-RES-3",
-                        "SHOCK-RES-3",
-                        "WAVE-RES-3"
+                        "EL_NEUTRAL_BOOST-2",
+                        "ATTACK-1",
+                        "DEFENSE-1",
+                        "FOCUS-1",
+                        "HP-1"
                     ]
                 },
                 {
@@ -2148,9 +2149,10 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "COLD-RES-3",
-                        "ATTACK-3",
-                        "MELEE_DMG-3"
+                        "EL_HEAT_BOOST-2",
+                        "ATTACK-2",
+                        "EL-ASSAULT-2",
+                        "MELEE_DMG-2"
                     ]
                 },
                 {
@@ -2190,7 +2192,7 @@
             "hp": 0,
             "stickToSource": "OWNER",
             "stickFaceAlign": false,
-            "group": "hexBuff",
+            "group": "buff",
             "size": {
                 "x": 16,
                 "y": 16,
@@ -2207,9 +2209,10 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "HEAT-RES-3",
-                        "DEFENSE-3",
-                        "SPIKE_DMG-3"
+                        "EL_COLD_BOOST-2",
+                        "DEFENSE-2",
+                        "EL-STUN_THRESHOLD-2",
+                        "EL-SPIKE_DMG-2"
                     ]
                 },
                 {
@@ -2249,7 +2252,7 @@
             "hp": 0,
             "stickToSource": "OWNER",
             "stickFaceAlign": false,
-            "group": "hexBuff",
+            "group": "buff",
             "size": {
                 "x": 16,
                 "y": 16,
@@ -2266,9 +2269,10 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "WAVE-RES-3",
-                        "FOCUS-3",
-                        "EL-CRITICAL_DMG-3"
+                        "EL_SHOCK_BOOST-2",
+                        "FOCUS-2",
+                        "EL-DASH_INVINC-2",
+                        "EL-CRITICAL_DMG-2"
                     ]
                 },
                 {
@@ -2308,7 +2312,7 @@
             "hp": 0,
             "stickToSource": "OWNER",
             "stickFaceAlign": false,
-            "group": "hexBuff",
+            "group": "buff",
             "size": {
                 "x": 16,
                 "y": 16,
@@ -2325,9 +2329,10 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "SHOCK-RES-3",
-                        "REGEN-3",
-                        "RANGED_DMG-3"
+                        "EL_WAVE_BOOST-2",
+                        "HP-2",
+                        "REGEN-2",
+                        "RANGED_DMG-2"
                     ]
                 },
                 {
@@ -2367,7 +2372,7 @@
             "hp": 0,
             "stickToSource": "OWNER",
             "stickFaceAlign": false,
-            "group": "hexBuff",
+            "group": "buff",
             "size": {
                 "x": 16,
                 "y": 16,

@@ -23,4 +23,209 @@
 },{
     "type": "EXIT",
     "count": 2
+},{
+    "type": "ENTER",
+    "index": "EFFECTS"
+},{
+    "type": "MERGE_CONTENT",
+    "content": {
+        "el-fakeTeleportInvisible": [
+            {
+                "numParticles": 5,
+                "duration": 0,
+                "centralAngle": 1,
+                "startDist": 4,
+                "uniformRandom": 1,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 12
+                },
+                "moveDist": 8,
+                "moveVariance": 4,
+                "moveDuration": 0.01,
+                "keySpline": "EASE_OUT",
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "randFlip": true,
+                "anim": "CYBER_DOT2",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "color": "#00ffff",
+                "noLighter": true,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1.3,
+                            "y": 1.1
+                        },
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "particleDuration": 0.4,
+                "type": "COPY_SPRITE"
+            },
+            {
+                "color": "#ff00ff",
+                "fadeColor": "#ff00ff",
+                "offset": {
+                    "x": 0,
+                    "y": 8,
+                    "z": 8
+                },
+                "noLighter": true,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 1,
+                        "y": 1
+                    }
+                },
+                "particleDuration": 0.4,
+                "type": "COPY_SPRITE"
+            },
+            {
+                "alpha": 0,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "time": 0.05,
+                "type": "WAIT"
+            },
+            {
+                "volume": 1.4,
+                "global": false,
+                "loop": false,
+                "sound": "media\/sound\/designer\/designer-disappear.ogg",
+                "type": "PLAY_SOUND"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.175
+            },
+            {
+                "numParticles": 5,
+                "duration": 0,
+                "centralAngle": 1,
+                "startDist": 4,
+                "uniformRandom": 1,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 12
+                },
+                "moveDist": 8,
+                "moveVariance": 4,
+                "moveDuration": 0.01,
+                "keySpline": "EASE_OUT",
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "randFlip": true,
+                "moveWithTarget": 1,
+                "anim": "CYBER_DOT2",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "alpha": 1,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "color": "#00ffff",
+                "alpha": 1,
+                "duration": 0.15,
+                "keepDuration": 0,
+                "noLighter": false,
+                "type": "FLASH_COLOR"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.2
+            }
+        ],
+
+        "el-fakeTeleportTrail": [
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "numParticles": 3,
+                "duration": 0,
+                "centralAngle": 1,
+                "startDist": 8,
+                "uniformRandom": 1,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 12
+                },
+                "moveDist": 8,
+                "moveVariance": 4,
+                "moveDuration": 0.05,
+                "keySpline": "EASE_OUT",
+                "collision": false,
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 0.75,
+                        "y": 0.75
+                    },
+                    "start": {
+                        "value": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "randFlip": true,
+                "anim": "CYBER_DOT",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.025
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
 }]

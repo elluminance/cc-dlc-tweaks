@@ -24,6 +24,10 @@ declare global {
             interface Combatant {
                 ignoreOverheal?: boolean;
             }
+
+            interface Player {
+                auraColorStep: number;
+            }
         }
     }
 
@@ -44,12 +48,7 @@ declare global {
             EL_WAVE_BOOST: sc.Modifier;
         }
 
-        interface PlayerModel {
-            getCrystalCoins(): number;
-            addCrystalCoins(amount: number): void;
-            subCrystalCoins(amount: number): void;
-            setCrystalCoins(amount: number): void;
-        }
+
         let EL_TRICKSTER_STAT_CHANGES: string[];
         interface CombatParams {
             el_lifestealTimer: number;
@@ -58,6 +57,7 @@ declare global {
             el_tricksterBuff?: sc.DynamicBuff;
 
             increaseHpOverheal(this: this, amount: number, maxOverheal: number): void;
+            modifyBuff(this: this, buffName: sc.StatChange, statChangeSettings: string[], resetTimer?: boolean): boolean;
         }
 
         interface EnemyBooster {

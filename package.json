@@ -8,7 +8,7 @@
 
     "ccmodDependencies": {
         "crosscode": ">=1.4.2",
-        "ccloader": "^2.21.0",
+        "ccloader": "^2.22.0",
         "post-game": ">=1.4.2",
 
         "item-api": ">=0.4.2",

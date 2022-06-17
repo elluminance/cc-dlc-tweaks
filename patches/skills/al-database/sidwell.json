@@ -62,5 +62,26 @@
             "offY": 48,
             "offX": 0
         }
+    },
+    "elSidwellCloneSummon": {
+        "list": [
+            {
+                "replaceTo": "EL_SIDWELL_CLONE",
+                "actionCheckKey": "DASH_SPECIAL1"
+            }
+        ],
+        "element": "NEUTRAL",
+        "activeCondition": "item.el-sidwell-art-pass.amount >= 1 && player.model == \"Lea\"",
+        "name": {
+            "en_US": "clone thing"
+        },
+        "description": {
+            "en_US": "Shoot out a long line of cones through a big punch."
+        },
+        "icon": {
+            "src": "media/gui/el-mod-custom-skills.png",
+            "offY": 48,
+            "offX": 0
+        }
     }
 }

@@ -19,6 +19,7 @@
     "type": "MERGE_CONTENT",
     "content": [
         "el-effect-rainbow",
+        "el-effect-pastel-rainbow",
         "el-effect-vaporwave",
         "el-effect-hp",
         "el-effect-sp",

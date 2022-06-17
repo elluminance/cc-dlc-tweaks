@@ -519,7 +519,7 @@ export default function () {
             for (let [item, data] of Object.entries(this.listItems)) {
                 sc.model.player.addItem(item, data.amount, true)
             }
-            sc.model.player.addCrystalCoins(this.crystals)
+            sc.modUtils.currencies["crystals"].add(this.crystals)
             this.hide();
         },
 
