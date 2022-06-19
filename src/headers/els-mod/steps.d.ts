@@ -52,6 +52,18 @@ declare global {
                 new (settings: EL_SET_PARTY_TEMP_TARGET_BY_INDEX.Settings): EL_SET_PARTY_TEMP_TARGET_BY_INDEX;
             }
             var EL_SET_PARTY_TEMP_TARGET_BY_INDEX: EL_SET_PARTY_TEMP_TARGET_BY_INDEX_CONSTRUCTOR
+
+            namespace ADD_ACTION_BUFF {
+                interface Settings {
+                    customColor?: string;
+                    timer?: number;
+                }
+            }
+
+            interface ADD_ACTION_BUFF {
+                customColor?: string;
+                timer?: number;
+            }
         }
 
         namespace EVENT_STEP {

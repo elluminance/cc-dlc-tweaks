@@ -24,6 +24,7 @@ import overhealing from "./code/combat/overhealing.js";
 import inventory from "./code/player/inventory.js";
 import combatantEntity from "./code/combat/combatant-entity.js";
 import proxyEntity from "./code/combat/proxy.js"
+import buff from "./code/combat/buffs.js";
 //#endregion
 
 //#region poststart declarations
@@ -57,6 +58,7 @@ export default class implements PluginClass {
         inventory();
         combatantEntity();
         proxyEntity();
+        buff();
     }
 
     poststart() {

@@ -800,11 +800,6 @@
                     "type": "WAIT"
                 },
                 {
-                    "sticking": false,
-                    "group": "wall",
-                    "type": "REMOVE_PROXIES"
-                },
-                {
                     "align": "BOTTOM",
                     "centralAngle": 1,
                     "angleVary": 0,
@@ -2093,7 +2088,9 @@
                         "DEFENSE-1",
                         "FOCUS-1",
                         "HP-1"
-                    ]
+                    ],
+                    "timer": 10,
+                    "customColor": "#BB00FF"
                 },
                 {
                     "duration": -1,
@@ -2153,7 +2150,9 @@
                         "ATTACK-2",
                         "EL-ASSAULT-2",
                         "MELEE_DMG-2"
-                    ]
+                    ],
+                    "timer": 10,
+                    "customColor": "#BB00FF"
                 },
                 {
                     "duration": -1,
@@ -2213,7 +2212,9 @@
                         "DEFENSE-2",
                         "EL-STUN_THRESHOLD-2",
                         "EL-SPIKE_DMG-2"
-                    ]
+                    ],
+                    "timer": 10,
+                    "customColor": "#BB00FF"
                 },
                 {
                     "duration": -1,
@@ -2273,7 +2274,9 @@
                         "FOCUS-2",
                         "EL-DASH_INVINC-2",
                         "EL-CRITICAL_DMG-2"
-                    ]
+                    ],
+                    "timer": 10,
+                    "customColor": "#BB00FF"
                 },
                 {
                     "duration": -1,
@@ -2333,7 +2336,9 @@
                         "HP-2",
                         "REGEN-2",
                         "RANGED_DMG-2"
-                    ]
+                    ],
+                    "timer": 10,
+                    "customColor": "#BB00FF"
                 },
                 {
                     "duration": -1,
@@ -4430,7 +4435,7 @@
                 "steps": [
                     {
                         "sticking": true,
-                        "group": "hexBuff",
+                        "group": "buff",
                         "type": "REMOVE_PROXIES"
                     },
                     {
@@ -4795,7 +4800,7 @@
                 "steps": [
                     {
                         "sticking": true,
-                        "group": "hexBuff",
+                        "group": "buff",
                         "type": "REMOVE_PROXIES"
                     },
                     {
@@ -5294,7 +5299,7 @@
                 "steps": [
                     {
                         "sticking": true,
-                        "group": "hexBuff",
+                        "group": "buff",
                         "type": "REMOVE_PROXIES"
                     },
                     {
@@ -5670,7 +5675,7 @@
                 "steps": [
                     {
                         "sticking": true,
-                        "group": "hexBuff",
+                        "group": "buff",
                         "type": "REMOVE_PROXIES"
                     },
                     {
@@ -6289,7 +6294,7 @@
                 "steps": [
                     {
                         "sticking": true,
-                        "group": "hexBuff",
+                        "group": "buff",
                         "type": "REMOVE_PROXIES"
                     },
                     {

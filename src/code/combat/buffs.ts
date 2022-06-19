@@ -87,4 +87,37 @@ export default function() {
             this.buffHudEntry?.setIcon(this.iconString!);
         },
     })
+
+    ig.ACTION_STEP.ADD_ACTION_BUFF.inject({
+        init(settings) {
+            this.parent(settings);
+            this.timer = settings.timer;
+            this.customColor = settings.customColor;
+        },
+        start(target) {
+            this.parent(target);
+
+            let targetEntity = this.target(target as ig.ENTITY.Combatant);
+            if(targetEntity) {
+                let buff = targetEntity.params.buffs.last() as sc.ActionBuff;
+                if(this.timer) {
+                    buff.timer = buff.time = this.timer;
+                    buff.hasTimer = true;
+                };
+                if(this.customColor) buff.customTimerColor = this.customColor;
+            }
+        }
+    })
+
+    sc.ActionBuff.inject({
+        update() {
+            if(this.hasTimer) {
+                if(this.time > 0) this.time -= ig.system.tick;
+            }
+            return this.parent();
+        },
+        getTimeFactor() {
+            return (this.active && this.hasTimer) ? this.time / this.timer : this.parent();
+        }
+    })
 }

@@ -11,7 +11,9 @@
                     "ATTACK-2",
                     "EL-ASSAULT-2",
                     "MELEE_DMG-2"
-                ]
+                ],
+                "timer": 10,
+                "customColor": "#BB00FF"
             },
             {
                 "duration": -1,
@@ -50,7 +52,7 @@
         "hp": 0,
         "stickToSource": "OWNER",
         "stickFaceAlign": false,
-        "group": "hexBuff",
+        "group": "buff",
         "size": {
             "x": 16,
             "y": 16,
@@ -71,7 +73,9 @@
                     "DEFENSE-2",
                     "EL-STUN_THRESHOLD-2",
                     "EL-SPIKE_DMG-2"
-                ]
+                ],
+                "timer": 10,
+                "customColor": "#BB00FF"
             },
             {
                 "duration": -1,
@@ -110,7 +114,7 @@
         "hp": 0,
         "stickToSource": "OWNER",
         "stickFaceAlign": false,
-        "group": "hexBuff",
+        "group": "buff",
         "size": {
             "x": 16,
             "y": 16,
@@ -131,7 +135,9 @@
                     "FOCUS-2",
                     "EL-DASH_INVINC-2",
                     "EL-CRITICAL_DMG-2"
-                ]
+                ],
+                "timer": 10,
+                "customColor": "#BB00FF"
             },
             {
                 "duration": -1,
@@ -170,7 +176,7 @@
         "hp": 0,
         "stickToSource": "OWNER",
         "stickFaceAlign": false,
-        "group": "hexBuff",
+        "group": "buff",
         "size": {
             "x": 16,
             "y": 16,
@@ -191,7 +197,9 @@
                     "HP-2",
                     "REGEN-2",
                     "RANGED_DMG-2"
-                ]
+                ],
+                "timer": 10,
+                "customColor": "#BB00FF"
             },
             {
                 "duration": -1,
@@ -230,7 +238,7 @@
         "hp": 0,
         "stickToSource": "OWNER",
         "stickFaceAlign": false,
-        "group": "hexBuff",
+        "group": "buff",
         "size": {
             "x": 16,
             "y": 16,
@@ -252,7 +260,9 @@
                     "DEFENSE-1",
                     "FOCUS-1",
                     "HP-1"
-                ]
+                ],
+                "timer": 10,
+                "customColor": "#BB00FF"
             },
             {
                 "duration": -1,

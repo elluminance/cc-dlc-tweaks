@@ -235,6 +235,10 @@ declare global {
             buffHudEntry?: sc.BuffHudEntry;
             customTimerColor?: string;
         }
+        interface ActionBuff {
+            timer: number;
+            time: number;
+        }
         interface BuffHudEntry {
             textGui: sc.TextGui;
             setIcon(this: this, iconString: string): void;
