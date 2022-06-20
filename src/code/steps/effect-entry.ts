@@ -50,4 +50,16 @@ export default function () {
             this.parent(entity)
         }
     })
+
+    ig.EFFECT_ENTRY.SET_MODE_AURA_HIDE = ig.EffectStepBase.extend({
+        setHide: false,
+
+        init(type, settings) {
+            this.setHide = settings.setHide;
+        },
+
+        start(entity) {
+            (entity.target as ig.ENTITY.Combatant).hideModeAura = this.setHide;
+        }
+    })
 }

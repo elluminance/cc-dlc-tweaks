@@ -1,0 +1,51 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": []
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "type": "SET_MODE_AURA_HIDE",
+                "setHide": true
+            },
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "scaleX": 0,
+                "scaleY": 0,
+                "duration": 0,
+                "type": "CHANGE_SCALE"
+            },
+            {
+                "alpha": 0,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.2
+            },
+            {
+                "type": "LOOP_END"
+            },
+            {
+                "type": "SET_MODE_AURA_HIDE",
+                "setHide": false
+            },
+            {
+                "scaleX": 1,
+                "scaleY": 1,
+                "duration": 0,
+                "type": "CHANGE_SCALE"
+            },
+            {
+                "alpha": 1,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            }
+        ]
+    }
+}

@@ -124,6 +124,15 @@
             "fx": "skin-aura.el.custom-color"
         }
     },
+    "el-invisible-aura": {
+        "id": "el-invisible-aura",
+        "item": "el-effect-invisible-aura",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.el.invisible"
+        }
+    },
 
     "el-edgy-lea": {
         "id": "el-edgy-lea",

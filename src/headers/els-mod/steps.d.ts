@@ -17,7 +17,21 @@ declare global {
                 new (type: any, settings: ig.EFFECT_ENTRY.EffectSettings.COPY_SPRITE_SPECIAL_COLOR_EL): COPY_SPRITE_SPECIAL_COLOR_EL
             }
 
-            var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR
+            var COPY_SPRITE_SPECIAL_COLOR_EL: COPY_SPRITE_SPECIAL_COLOR_EL_CONSTRUCTOR;
+
+
+            namespace SET_MODE_AURA_HIDE {
+                interface Settings {
+                    setHide: boolean;
+                }
+            }
+            interface SET_MODE_AURA_HIDE extends ig.EffectStepBase {
+                setHide: boolean;
+            }
+            interface SET_MODE_AURA_HIDE_CONSTRUCTOR extends ImpactClass<SET_MODE_AURA_HIDE> {
+                new (type: unknown, settings: SET_MODE_AURA_HIDE.Settings): SET_MODE_AURA_HIDE;
+            }
+            var SET_MODE_AURA_HIDE: SET_MODE_AURA_HIDE_CONSTRUCTOR;
         }
 
         namespace ACTION_STEP {

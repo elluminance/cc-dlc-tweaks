@@ -320,5 +320,25 @@
             "sheet": "",
             "name": null
         }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-invisible-aura",
+        "name": {
+            "en_US": "Invisible Aura"
+        },
+        "description": {
+            "en_US": "Turn yourself invisible! Yet, somehow, everything else can still see you!"
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
     }
 ]

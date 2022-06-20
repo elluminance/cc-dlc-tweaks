@@ -25,6 +25,7 @@ import inventory from "./code/player/inventory.js";
 import combatantEntity from "./code/combat/combatant-entity.js";
 import proxyEntity from "./code/combat/proxy.js"
 import buff from "./code/combat/buffs.js";
+import combatModel from "./code/combat/combat-model.js"
 //#endregion
 
 //#region poststart declarations
@@ -59,6 +60,7 @@ export default class implements PluginClass {
         combatantEntity();
         proxyEntity();
         buff();
+        combatModel();
     }
 
     poststart() {
