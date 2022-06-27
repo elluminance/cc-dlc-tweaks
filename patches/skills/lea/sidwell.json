@@ -407,7 +407,7 @@
                     "attack": {
                         "type": "MEDIUM",
                         "element": "NEUTRAL",
-                        "damageFactor": 1.5,
+                        "damageFactor": 2.5,
                         "reverse": false,
                         "guardable": "",
                         "skillBonus": "RANGED_DMG",

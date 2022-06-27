@@ -25,14 +25,18 @@ sc.Arena.inject({
     onVarAccess(varString, varParts) {
         if(varParts[0] == "arena") {
             switch(varParts[1]) {
-                case "totalTruePlatsNoIncludeNoRush":
-                    let num = 0;
-                    this.trackedCups.forEach(key => {
-                        if(this.getCupCoreAttrib(key, "noRush")
-                          && (this.getCupRounds(key).length < 2)) return;
-                        else if(this.getCupTrophy(key) === 5) num++;
-                    });
-                    return num;
+                case "totalTruePlatsExcludeNoRush":
+                    return this.trackedCups.filter(cupName => (
+                        (!this.getCupCoreAttrib(cupName, "noRush")) // check the cup isn't set to noRush
+                        && (this.getCupRounds(cupName).length >= 2) // and that the cup has more than 1 round
+                        && (this.getCupTrophy(cupName) === sc.ARENA_MEDALS_TROPHIES.TRUE_PLATIN) // and that the player has gotten a true platinum trophy
+                    )).length;
+            }
+            if(this.cups[varParts[1]]) {
+                switch(varParts[2]) {
+                    case "trophy":
+                        return this.getCupTrophy(varParts[1]);
+                }
             }
         }
         return this.parent(varString, varParts)

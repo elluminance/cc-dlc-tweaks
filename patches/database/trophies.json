@@ -803,7 +803,7 @@
         "category": "GENERAL",
         "stats": [{
             "key": "varValue",
-            "mapKey": "arena.totalTruePlatsNoIncludeNoRush",
+            "mapKey": "arena.totalTruePlatsExcludeNoRush",
             "value": "5",
             "compare": "min"
         }]
@@ -840,6 +840,12 @@
             {
                 "key": "items",
                 "mapKey": "el-effect-rainbow",
+                "value": 1,
+                "compare": "min"
+            },
+            {
+                "key": "items",
+                "mapKey": "el-effect-pastel-rainbow",
                 "value": 1,
                 "compare": "min"
             },

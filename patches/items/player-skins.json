@@ -340,5 +340,25 @@
             "sheet": "",
             "name": null
         }
+    },
+    {
+        "order": 20,
+        "customItem": "el-effect-booster-aura",
+        "name": {
+            "en_US": "Booster Aura"
+        },
+        "description": {
+            "en_US": "Feel as though you are "
+        },
+        "type": "TOGGLE",
+        "rarity": 0,
+        "cost": 0,
+        "level": 1,
+        "icon": "item-toggle",
+        "noTrack": true,
+        "effect": {
+            "sheet": "",
+            "name": null
+        }
     }
 ]

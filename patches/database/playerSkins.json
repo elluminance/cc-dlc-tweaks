@@ -133,6 +133,15 @@
             "fx": "skin-aura.el.invisible"
         }
     },
+    "el-booster-aura": {
+        "id": "el-booster-aura",
+        "item": "el-effect-booster-aura",
+        "autoAdd": false,
+        "type": "Aura",
+        "settings": {
+            "fx": "skin-aura.el.booster"
+        }
+    },
 
     "el-edgy-lea": {
         "id": "el-edgy-lea",

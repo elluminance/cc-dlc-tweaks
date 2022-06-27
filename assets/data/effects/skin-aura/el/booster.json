@@ -1,0 +1,86 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": [
+            {
+                "name": "BOOST",
+                "sheet": {
+                    "src": "media\/entity\/effects\/particles1.png  ",
+                    "xCount": 2,
+                    "offX": 112,
+                    "offY": 80,
+                    "width": 16,
+                    "height": 16
+                },
+                "guiSprites": true,
+                "renderMode": "source-over",
+                "time": 0.05,
+                "flipY": false,
+                "frames": [
+                    0
+                ]
+            }
+        ]
+    },
+    "EFFECTS": {
+        "aura": [
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_START"
+            },
+            {
+                "numParticles": 3,
+                "duration": 1,
+                "circular": false,
+                "xScale": 0.6,
+                "yScale": 0.6,
+                "moveZDist": 12,
+                "offset": {
+                    "x": 0,
+                    "y": 32,
+                    "z": 32
+                },
+                "pAlpha": {
+                    "init": 0.9
+                },
+                "pScale": {
+                    "init": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "start": {
+                        "value": {
+                            "x": 1,
+                            "y": 1
+                        },
+                        "time": 0.2,
+                        "spline": "EASE_OUT"
+                    },
+                    "end": {
+                        "value": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "time": 0.2,
+                        "spline": "EASE_IN"
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": 0.5,
+                "anim": "BOOST",
+                "type": "PLAY_ANIMS_OVER_ENTITY"
+            },
+            {
+                "time": 0.7,
+                "type": "WAIT"
+            },
+            {
+                "type": "LOOP_END"
+            }
+        ]
+    }
+}
