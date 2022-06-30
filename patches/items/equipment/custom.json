@@ -21,8 +21,10 @@
                 0.85,
                 0.85
             ],
+            "hp": 455,
             "attack": 65,
-            "focus": 95
+            "defense": 40,
+            "focus": 75
         },
         "properties": {
             "EL_RISKTAKER": 1.2,
@@ -47,7 +49,7 @@
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 2,
+        "cost": 175000,
         "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
@@ -58,8 +60,8 @@
                 1,
                 1
             ],
-            "hp": 346,
-            "attack": 79,
+            "hp": 351,
+            "attack": 89,
             "focus": 97
         },
         "properties": {
@@ -85,8 +87,8 @@
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 0,
-        "level": 70,
+        "cost": 200000,
+        "level": 71,
         "icon": "item-belt",
         "equipType": "TORSO",
         "noTrack": true,
@@ -123,8 +125,8 @@
         },
         "type": "EQUIP",
         "rarity": 6,
-        "cost": 0,
-        "level": 70,
+        "cost": 175000,
+        "level": 71,
         "icon": "item-sword",
         "equipType": "ARM",
         "noTrack": true,
@@ -137,12 +139,51 @@
                 1
             ],
             "hp": 1280,
-            "defense": 61,
+            "attack": 61,
             "focus": 35
         },
         "properties": {
             "EL_TRICKSTER": 2,
             "EL_OVERHEAL": 1.2
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+    {
+        "customItem": "el-fluorite-octet",
+        "order": 12.1,
+        "name": {
+            "en_US": "Fluorite Octet"
+        },
+        "description": {
+            "en_US": "A set of 8 blue dice that grant you all the luck. All of it. \\i[ascended]"
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 71,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1.08,
+                1.08,
+                1.08,
+                1.08
+            ],
+            "hp": 488,
+            "attack": 48,
+            "focus": 88
+        },
+        "properties": {
+            "CRITICAL_DMG": 1.8,
+            "EL_CRIT_BOOST": 2,
+            "EL_LUCKY_STRIKER": 2
         },
         "effect": {
             "sheet": "drops",

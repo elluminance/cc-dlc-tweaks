@@ -53,6 +53,22 @@ export default function () {
             noPercent: true,
         },
 
+        EL_CRIT_BOOST: {
+            altSheet: "media/gui/modifiers/els-mod.png",
+            offX: 12 * 0,
+            offY: 12,
+            icon: -1,
+            order: 0,
+        },
+        EL_LUCKY_STRIKER: {
+            altSheet: "media/gui/modifiers/els-mod.png",
+            offX: 12 * 1,
+            offY: 12,
+            icon: -1,
+            order: 0,
+            noPercent: true,
+        },
+
         EL_TRANCE: {
             altSheet: "media/gui/modifiers/els-mod.png",
             offX: 12 * 3,
@@ -259,12 +275,16 @@ export default function () {
             }
         },
 
-        getDamage(attackInfo, damageFactorMod, combatant, shieldResult, j) {
-            const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, j);
-
+        getDamage(attackInfo, damageFactorMod, combatant, shieldResult, hitIgnore) {
             let rootCombatant = combatant.getCombatantRoot(),
                 combatantParams = rootCombatant.params,
-                lifesteal = combatantParams.getModifier("EL_LIFESTEAL");
+                critFactor_old = attackInfo.critFactor;
+            if(!ig.perf.skipDmgModifiers) attackInfo.critFactor *= (1 + combatantParams.getModifier("EL_CRIT_BOOST"));
+            const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, hitIgnore);
+            attackInfo.critFactor = critFactor_old;
+
+            let lifesteal = combatantParams.getModifier("EL_LIFESTEAL");
+            //#region lifesteal
             // the this.combatant !== rootCombatant is simply to make sure that any self inflicted damage (i.e. jolt)
             // does not trigger life steal. wouldn't make sense to steal from yourself, y'know?
             if (lifesteal > 0 && (this.combatant !== rootCombatant)) {
@@ -322,6 +342,13 @@ export default function () {
                     combatantParams.el_lifestealTimer = lifestealCooldown;
                 }
             }
+            //#endregion lifesteal
+
+            //#region critical
+            if(!ig.perf.skipDmgModifiers && !damageResult.critical && combatantParams.getModifier("EL_LUCKY_STRIKER")) {
+                damageResult.damage = Math.round(damageResult.damage / 8);
+            }
+            //#endregion critical
             return damageResult;
         },
 

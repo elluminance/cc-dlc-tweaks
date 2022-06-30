@@ -40,6 +40,8 @@ declare global {
             EL_TRANCE: sc.Modifier;
             EL_OVERHEAL: sc.Modifier;
             EL_TRICKSTER: sc.Modifier;
+            EL_CRIT_BOOST: sc.Modifier;
+            EL_LUCKY_STRIKER: sc.Modifier;
 
             EL_NEUTRAL_BOOST: sc.Modifier;
             EL_HEAT_BOOST: sc.Modifier;

@@ -10,6 +10,8 @@
                     "EL_COND_GUARD_ALL": "Status Guard",
                     "EL_OVERHEAL": "Overheal",
                     "EL_TRICKSTER": "Trickster",
+                    "EL_CRIT_BOOST": "Crit Booster",
+                    "EL_LUCKY_STRIKER": "Lucky Striker",
 
                     "EL_NEUTRAL_BOOST": "Neutr. Boost",
                     "EL_HEAT_BOOST": "Heat Boost",
@@ -25,6 +27,8 @@
                     "EL_COND_GUARD_ALL": "Increases the resistance against \\c[3]Status Conditions\\c[0] and reduces their effects.",
                     "EL_OVERHEAL": "Allows normal methods of healing to go beyond 100% HP with reduced efficacy.",
                     "EL_TRICKSTER": "Grants buffs and debuffs at random.",
+                    "EL_CRIT_BOOST": "Increases the chance for a critical hit.",
+                    "EL_LUCKY_STRIKER": "Non-critical hits will deal 1/8 of the original damage.",
 
                     "EL_NEUTRAL_BOOST": "Increases damage dealt by \\c[3]Neutral\\c[0] attacks.",
                     "EL_HEAT_BOOST": "Increases damage dealt by \\c[3]Heat\\c[0] attacks.",

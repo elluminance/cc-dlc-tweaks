@@ -30,11 +30,6 @@
     "EFFECTS": {
         "aura": [
             {
-                "alpha": 0.7,
-                "duration": 0,
-                "type": "CHANGE_ALPHA"
-            },
-            {
                 "size": "L",
                 "fadeIn": 0.1,
                 "fadeOut": 0.1,
@@ -53,6 +48,11 @@
             },
             {
                 "type": "LOOP_START"
+            },
+            {
+                "alpha": 0.7,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
             },
             {
                 "numParticles": 1,
@@ -105,6 +105,11 @@
             },
             {
                 "type": "LOOP_END"
+            },
+            {
+                "alpha": 1,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
             }
         ]
     }
