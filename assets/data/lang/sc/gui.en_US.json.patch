@@ -39,7 +39,8 @@
             },
 
             "menu-titles": {
-                "geodeOpening": "Geode Opening"
+                "geodeOpening": "Geode Opening",
+                "el-gemEquip": "Gem Equipping"
             }
         },
         "shop": {
@@ -57,6 +58,11 @@
             "geodeName": "Geodes:",
             "openGeodesSingular": "Open [!] Geode",
             "openGeodesPlural": "Open [!] Geodes"
-        }        
+        },
+
+        "el-gems": {
+            "gem-equip-button": "To Gems",
+            "gem-equip-button-description": "View and equip Gems to power up even further!"
+        }
     }
 }

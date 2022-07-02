@@ -6,6 +6,7 @@ const buffIconsLarge = new ig.Font("media/font/icons-buff-large-el-mod.png", 16,
 
 const itemIcons = new ig.Font("media/font/el-mod-item-icons.png", 16, ig.MultiFont.ICON_START);
 
+
 const fontIndex = sc.fontsystem.font.iconSets.length;
 const tinyFontIndex = sc.fontsystem.tinyFont.iconSets.length;
 sc.fontsystem.font.pushIconSet(icons);
@@ -17,24 +18,40 @@ sc.fontsystem.tinyFont.pushIconSet(buffIcons);
 const itemTypes = ["item-toggle", "item-circuit"]
 const itemRarities = ["", "-normal", "-rare", "-legend", "-unique", "-backer", "-scale"]
 
-let fontMappings: ig.MultiFont.Mapping = {
-    "item-toggle-scale":  [fontIndex, 0],
-    "el-rainbow-text":    [fontIndex, 1],
-    "el-gem-credits":     [fontIndex, 2],
-    "class-triblader":    [fontIndex, 3],
-    "class-quadroguard":  [fontIndex, 4],
-    "class-pentafist":    [fontIndex, 5],
-    "class-hexacast":     [fontIndex, 6],
-    "class-spheromancer": [fontIndex, 7],
+let i = 0;
 
-    "stat-el-risktaker": [fontIndex+1, 0],
-    "stat-aiming-speed": [fontIndex+1, 1],
-    "stat-el-overheal":  [fontIndex+1, 2],
-    "stat-el-neutral-boost": [fontIndex+1, 3],
-    "stat-el-heat-boost": [fontIndex+1, 4],
-    "stat-el-cold-boost": [fontIndex+1, 5],
-    "stat-el-shock-boost": [fontIndex+1, 6],
-    "stat-el-wave-boost": [fontIndex+1, 7],
+let fontMappings: ig.MultiFont.Mapping = {
+    "item-toggle-scale":    [fontIndex, i++],
+    "el-rainbow-text":      [fontIndex, i++],
+    "el-gem-credits":       [fontIndex, i++],
+    "class-triblader":      [fontIndex, i++],
+    "class-quadroguard":    [fontIndex, i++],
+    "class-pentafist":      [fontIndex, i++],
+    "class-hexacast":       [fontIndex, i++],
+    "class-spheromancer":   [fontIndex, i++],
+
+    "el-gem-blank-white":   [fontIndex, i++],
+    "el-gem-ruby":          [fontIndex, i++],
+    "el-gem-garnet":        [fontIndex, i++],
+    "el-gem-diamond":       [fontIndex, i++],
+    "el-gem-moonstone":     [fontIndex, i++],
+    "el-gem-citrine":       [fontIndex, i++],
+    "el-gem-topaz":         [fontIndex, i++],
+    "el-gem-amethyst":      [fontIndex, i++],
+    "el-gem-emerald":       [fontIndex, i++],
+    "el-gem-lapis-lazuli":  [fontIndex, i++],
+    "el-gem-aquamarine":    [fontIndex, i++],
+    "el-gem-onyx":          [fontIndex, i++],
+
+
+    "stat-el-risktaker":    [fontIndex+1, i=0],
+    "stat-aiming-speed":    [fontIndex+1, i++],
+    "stat-el-overheal":     [fontIndex+1, i++],
+    "stat-el-neutral-boost":[fontIndex+1, i++],
+    "stat-el-heat-boost":   [fontIndex+1, i++],
+    "stat-el-cold-boost":   [fontIndex+1, i++],
+    "stat-el-shock-boost":  [fontIndex+1, i++],
+    "stat-el-wave-boost":   [fontIndex+1, i++],
 }
 
 let index = 0;

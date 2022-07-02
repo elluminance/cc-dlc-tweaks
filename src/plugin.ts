@@ -26,6 +26,8 @@ import combatantEntity from "./code/combat/combatant-entity.js";
 import proxyEntity from "./code/combat/proxy.js"
 import buff from "./code/combat/buffs.js";
 import combatModel from "./code/combat/combat-model.js"
+
+import gemCore from "./code/gems/core.js"
 //#endregion
 
 //#region poststart declarations
@@ -61,6 +63,8 @@ export default class implements PluginClass {
         proxyEntity();
         buff();
         combatModel();
+
+        gemCore();
     }
 
     poststart() {
