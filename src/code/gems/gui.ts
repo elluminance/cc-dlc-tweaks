@@ -1,23 +1,15 @@
 export default function() {
-    function GemTypeToIcon(gemType: sc.EL_GEM_TYPES) {
-        switch(gemType) {
-            case sc.EL_GEM_TYPES.RUBY:      return "\\i[el-gem-ruby]";
-            case sc.EL_GEM_TYPES.GARNET:    return "\\i[el-gem-garnet]";
-            case sc.EL_GEM_TYPES.DIAMOND:   return "\\i[el-gem-diamond]";
-            case sc.EL_GEM_TYPES.MOONSTONE: return "\\i[el-gem-moonstone]";
-            case sc.EL_GEM_TYPES.CITRINE:   return "\\i[el-gem-citrine]";
-            case sc.EL_GEM_TYPES.TOPAZ:     return "\\i[el-gem-topaz]";
-            case sc.EL_GEM_TYPES.AMETHYST:  return "\\i[el-gem-amethyst]";
-            case sc.EL_GEM_TYPES.EMERALD:   return "\\i[el-gem-emerald]";
-            case sc.EL_GEM_TYPES.LAPIS_LAZULI:return "\\i[el-gem-lapis-lazuli]";
-            case sc.EL_GEM_TYPES.AQUAMARINE:return "\\i[el-gem-aquamarine]";
-            case sc.EL_GEM_TYPES.ONXY:      return "\\i[el-gem-onyx]";
-        }
-    }
-    
     sc.EL_GemButton = sc.ButtonGui.extend({
+        level: 0,
         init(gemType, level, text) {
-            this.parent(`${GemTypeToIcon(gemType)}${text}`, 150, true, sc.BUTTON_TYPE.ITEM)
+            this.parent(`${sc.EL_GemHelper.gemColorToIcon[gemType ?? sc.EL_GEM_COLOR.DEFAULT]}${text}`, 150, true, sc.BUTTON_TYPE.ITEM)
+            this.level = level;
+
+            if(this.level > 0) {
+                this.textChild.setDrawCallback((_width, height) => {
+                    sc.EL_GemHelper.drawGemLevel(this.level, height)
+                })
+            }
         }
     })
 
@@ -30,7 +22,7 @@ export default function() {
             this.parent(a, b)
         }
     })
-    
+
     sc.EquipBodyPartContainer.inject({
         init(globalButtons) {
             this.parent(globalButtons);
@@ -89,11 +81,12 @@ export default function() {
             ig.interact.setBlockDelay(0.2);
             this.doStateTransition("DEFAULT")
             this.rightPanel.showMenu();
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_TYPES.RUBY, 0, "Attack Plus"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_TYPES.EMERALD, 0, "Max HP Plus"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_TYPES.AMETHYST, 0, "Focus Plus"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_TYPES.LAPIS_LAZULI, 0, "Defense Plus"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_TYPES.MOONSTONE, 0, "Momentum III"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.RUBY, 1, "Attack Plus I"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.EMERALD, 2, "Max HP Plus II"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.MOONSTONE, 3, "Momentum III"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.LAPIS_LAZULI, 4, "Defense Plus IV"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.LAPIS_LAZULI, 5, "Defense Plus V"));
+            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.AMETHYST, 6, "Focus Plus VI"));
             sc.menu.buttonInteract.pushButtonGroup(this.rightPanel.list.buttonGroup)
         },
 

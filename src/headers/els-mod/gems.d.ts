@@ -1,8 +1,28 @@
 export {};
 
 declare global {
+    namespace ig {
+        namespace Database {
+            interface Data {
+                gemTypes: ""
+            }
+
+            namespace EL_Gems {
+                interface GemTypes {
+                    type: "PARAM" | "MODIFIER";
+                    stat: string;
+                    gemType: keyof typeof sc.EL_GEM_COLOR;
+                    values: number[];
+                    cost: number[];
+                }
+            }
+            interface EL_Gems {
+
+            }
+        }
+    }
     namespace sc {
-        enum EL_GEM_TYPES {
+        enum EL_GEM_COLOR {
             DEFAULT = 0,
             RUBY = 1,
             GARNET = 2,
@@ -17,6 +37,12 @@ declare global {
             ONXY = 11,
         }
 
+        interface EL_GemHelper {
+            gemColorToIcon: Record<EL_GEM_COLOR, string>;
+            drawGemLevel(level: number, height: number): void;
+        }
+        var EL_GemHelper: EL_GemHelper;
+
         //#region GUI
         interface EquipBodyPartContainer {
             gemButton: sc.ButtonGui;
@@ -27,9 +53,12 @@ declare global {
         }
 
         interface EL_GemButton extends sc.ButtonGui {
+            gemColor: sc.EL_GEM_COLOR;
+            level: number;
+            name: string;
         }
         interface EL_GemButtonConstructor extends ImpactClass<EL_GemButton> {
-            new (gemType: sc.EL_GEM_TYPES, level: number, text: string): EL_GemButton;
+            new (gemType: sc.EL_GEM_COLOR, level: number, text: string): EL_GemButton;
         }
         var EL_GemButton: EL_GemButtonConstructor;
 

@@ -1,0 +1,34 @@
+{
+    "el-gems": {
+        "gemTypes": [
+            {
+                "type": "PARAM",
+                "stat": "maxhp",
+                "gemType": "EMERALD",
+                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
+                "cost": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "type": "PARAM",
+                "stat": "attack",
+                "gemType": "RUBY",
+                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
+                "cost": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "type": "PARAM",
+                "stat": "defense",
+                "gemType": "LAPIS_LAZULI",
+                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
+                "cost": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "type": "PARAM",
+                "stat": "focus",
+                "gemType": "AMETHYST",
+                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
+                "cost": [1, 3, 6, 10, 15, 20]
+            }
+        ]
+    }
+}
