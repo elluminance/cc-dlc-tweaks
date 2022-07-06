@@ -62,7 +62,19 @@
 
         "el-gems": {
             "gem-equip-button": "To Gems",
-            "gem-equip-button-description": "View and equip Gems to power up even further!"
+            "gem-equip-button-description": "View and equip Gems to power up even further!",
+            "special-gem-names": {
+                "STAT_MAXHP": "HP Up",
+                "STAT_ATTACK": "Attack Up",
+                "STAT_DEFENSE": "Defense Up",
+                "STAT_FOCUS": "Focus Up",
+
+                "NEUTRAL_RESIST": "Neutral Armor",
+                "HEAT_RESIST": "Heat Armor",
+                "COLD_RESIST": "Cold Armor",
+                "SHOCK_RESIST": "Shock Armor",
+                "WAVE_RESIST": "Wave Armor"
+            }
         }
     }
 }

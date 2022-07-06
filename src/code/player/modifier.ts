@@ -276,8 +276,8 @@ export default function () {
         },
 
         getDamage(attackInfo, damageFactorMod, combatant, shieldResult, hitIgnore) {
-            let rootCombatant = combatant.getCombatantRoot(),
-                combatantParams = rootCombatant.params,
+            let combatantRoot = combatant.getCombatantRoot(),
+                combatantParams = combatantRoot.params,
                 critFactor_old = attackInfo.critFactor;
             if(!ig.perf.skipDmgModifiers) attackInfo.critFactor *= (1 + combatantParams.getModifier("EL_CRIT_BOOST"));
             const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, hitIgnore);
@@ -287,11 +287,11 @@ export default function () {
             //#region lifesteal
             // the this.combatant !== rootCombatant is simply to make sure that any self inflicted damage (i.e. jolt)
             // does not trigger life steal. wouldn't make sense to steal from yourself, y'know?
-            if (lifesteal > 0 && (this.combatant !== rootCombatant)) {
+            if (lifesteal > 0 && (this.combatant !== combatantRoot)) {
                 let relativeDamage = damageResult.damage * lifestealMultiplier;
 
                 
-                if(rootCombatant.isPlayer) {
+                if(combatantRoot.isPlayer) {
                     /*
                      * helps compensate for glass cannons doing significantly more damage
                      * by reducing the relative amount of HP regained if your attack is
@@ -328,9 +328,9 @@ export default function () {
                 }
                 relativeDamage = Math.floor(relativeDamage);
                 if(relativeDamage > 0) {
-                    rootCombatant.heal({value: relativeDamage, absolute: true})
+                    combatantRoot.heal({value: relativeDamage, absolute: true})
 
-                    rootCombatant.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
+                    combatantRoot.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
                         {
                             target2: this.combatant,
                             target2Align: ig.ENTITY_ALIGN.CENTER,
@@ -349,6 +349,15 @@ export default function () {
                 damageResult.damage = Math.round(damageResult.damage / 8);
             }
             //#endregion critical
+
+            //#region gems
+            if(!ig.perf.skipDmgModifiers && this.elGemBonuses) {
+                let factor = this.elGemBonuses.params.elemFactor[attackInfo.element] || 1;
+                damageResult.damage *= factor;
+                damageResult.damage = Math.round(damageResult.damage);
+                damageResult.elementalDef *= factor;
+            }
+            //#endregion gems
             return damageResult;
         },
 

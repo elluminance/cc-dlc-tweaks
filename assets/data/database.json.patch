@@ -238,4 +238,7 @@
 {
     "type": "INCLUDE",
     "src": "mod:/patches/database/geode-rewards.json"
+    },{
+    "type": "INCLUDE",
+    "src": "mod:/patches/database/gems.json"
 }]

@@ -4,25 +4,39 @@ declare global {
     namespace ig {
         namespace Database {
             interface Data {
-                gemTypes: ""
+                "el-gems": EL_Gems;
             }
 
             namespace EL_Gems {
-                interface GemTypes {
-                    type: "PARAM" | "MODIFIER";
+                interface GemType {
                     stat: string;
-                    gemType: keyof typeof sc.EL_GEM_COLOR;
-                    values: number[];
-                    cost: number[];
+                    gemColor: keyof typeof el.GEM_COLORS;
+                    valueIncrease?: number;
+                    values?: number[];
+                    costs: number[];
                 }
             }
             interface EL_Gems {
-
+                gemTypes: EL_Gems.GemType[];
             }
         }
     }
     namespace sc {
-        enum EL_GEM_COLOR {
+        interface EquipBodyPartContainer {
+            gemButton: sc.ButtonGui;
+        }
+
+        enum MENU_SUBMENU {
+            EL_GEM_EQUIP = "EL_GEM_EQUIP"
+        }
+
+        interface CombatParams {
+            elGemBonuses?: el.GemDatabase.ParamBonuses;
+        }
+    }
+
+    namespace el {
+        enum GEM_COLORS {
             DEFAULT = 0,
             RUBY = 1,
             GARNET = 2,
@@ -37,32 +51,72 @@ declare global {
             ONXY = 11,
         }
 
-        interface EL_GemHelper {
-            gemColorToIcon: Record<EL_GEM_COLOR, string>;
-            drawGemLevel(level: number, height: number): void;
+        interface GemHelper {
+            gemColorToIcon: Record<el.GEM_COLORS, string>;
         }
-        var EL_GemHelper: EL_GemHelper;
+        var GemHelper: GemHelper;
+
+        namespace GemDatabase {
+            interface GemEntry {
+                stat: string;
+                gemColor: el.GEM_COLORS;
+                values: number[];
+                costs: number[];
+            }
+
+            interface Gem {
+                gemRoot: GemEntry;
+                level: number;
+            }
+
+            namespace ParamBonuses {
+                interface Params {
+                    hp: number,
+                    attack: number,
+                    defense: number,
+                    focus: number,
+                    elemFactor: number[];
+                }
+            }
+            interface ParamBonuses {
+                params: ParamBonuses.Params;
+                modifiers: Record<string, number>;
+            }
+        }
+        interface GemDatabase extends ig.Class {
+            guiImage: ig.Image;
+            gems: GemDatabase.GemEntry[];
+            gemInventory: el.GemDatabase.Gem[];
+            equippedGems: el.GemDatabase.Gem[];
+            activeBonuses: el.GemDatabase.ParamBonuses;
+
+            gemColorToIcon(this: this, color: el.GEM_COLORS): string;
+            drawGemLevel(this: this, level: number, height: number): void;
+            addGem(this: this, gemRoot: GemDatabase.GemEntry | string, level: number): void;
+            removeGem(this: this, gem: GemDatabase.Gem): void;
+            compileGemBonuses(this: this): void;
+            getGemName(this: this, gem: GemDatabase.Gem): string;
+            equipGem(this: this, gem: GemDatabase.Gem): boolean;
+            dequipGemByIndex(this: this, index: number): el.GemDatabase.Gem | undefined;
+        }
+        interface GemDatabaseConstructor extends ImpactClass<GemDatabase> {
+            new (): GemDatabase;
+        } 
+        var GemDatabase: GemDatabaseConstructor;
+        var gemDatabase: GemDatabase;
 
         //#region GUI
-        interface EquipBodyPartContainer {
-            gemButton: sc.ButtonGui;
-        }
-
-        enum MENU_SUBMENU {
-            EL_GEM_EQUIP = "EL_GEM_EQUIP"
-        }
-
-        interface EL_GemButton extends sc.ButtonGui {
-            gemColor: sc.EL_GEM_COLOR;
+        interface GemButton extends sc.ButtonGui {
+            gemColor: el.GEM_COLORS;
             level: number;
             name: string;
         }
-        interface EL_GemButtonConstructor extends ImpactClass<EL_GemButton> {
-            new (gemType: sc.EL_GEM_COLOR, level: number, text: string): EL_GemButton;
+        interface GemButtonConstructor extends ImpactClass<GemButton> {
+            new (gem: el.GemDatabase.Gem): GemButton;
         }
-        var EL_GemButton: EL_GemButtonConstructor;
+        var GemButton: GemButtonConstructor;
 
-        namespace EL_GemEquipMenu {
+        namespace GemEquipMenu {
             interface RightPanel extends sc.ItemListBox {
                 buttonInteract: ig.ButtonInteractEntry;
 
@@ -74,16 +128,17 @@ declare global {
             }
         }
 
-        interface EL_GemEquipMenu extends sc.BaseMenu {
-            rightPanel: sc.EL_GemEquipMenu.RightPanel;
+        interface GemEquipMenu extends sc.BaseMenu {
+            rightPanel: el.GemEquipMenu.RightPanel;
             buttonInteract: ig.ButtonInteractEntry;
         }
-        interface EL_GemEquipMenuConstructor extends ImpactClass<EL_GemEquipMenu> {
-            new (): sc.EL_GemEquipMenu;
+        interface GemEquipMenuConstructor extends ImpactClass<GemEquipMenu> {
+            new (): el.GemEquipMenu;
 
-            RightPanel: EL_GemEquipMenu.RightPanelConstructor;
+            RightPanel: GemEquipMenu.RightPanelConstructor;
         }
-        var EL_GemEquipMenu: EL_GemEquipMenuConstructor;
+        var GemEquipMenu: GemEquipMenuConstructor;
         //#endregion GUI
+
     }
 }

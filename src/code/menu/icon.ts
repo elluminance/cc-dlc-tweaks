@@ -21,7 +21,6 @@ const itemRarities = ["", "-normal", "-rare", "-legend", "-unique", "-backer", "
 let i = 0;
 
 let fontMappings: ig.MultiFont.Mapping = {
-    "item-toggle-scale":    [fontIndex, i++],
     "el-rainbow-text":      [fontIndex, i++],
     "el-gem-credits":       [fontIndex, i++],
     "class-triblader":      [fontIndex, i++],

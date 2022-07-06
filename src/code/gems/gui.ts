@@ -1,13 +1,13 @@
 export default function() {
-    sc.EL_GemButton = sc.ButtonGui.extend({
+    el.GemButton = sc.ButtonGui.extend({
         level: 0,
-        init(gemType, level, text) {
-            this.parent(`${sc.EL_GemHelper.gemColorToIcon[gemType ?? sc.EL_GEM_COLOR.DEFAULT]}${text}`, 150, true, sc.BUTTON_TYPE.ITEM)
-            this.level = level;
+        init(gem) {
+            this.parent(el.gemDatabase.getGemName(gem), 150, true, sc.BUTTON_TYPE.ITEM)
+            this.level = gem.level;
 
             if(this.level > 0) {
                 this.textChild.setDrawCallback((_width, height) => {
-                    sc.EL_GemHelper.drawGemLevel(this.level, height)
+                    el.gemDatabase.drawGemLevel(this.level, height)
                 })
             }
         }
@@ -59,7 +59,7 @@ export default function() {
         }
     })
 
-    sc.EL_GemEquipMenu = sc.BaseMenu.extend({
+    el.GemEquipMenu = sc.BaseMenu.extend({
         rightPanel: null,
         buttonInteract: null,
 
@@ -70,9 +70,7 @@ export default function() {
             this.hook.size.x = ig.system.width;
             this.hook.size.y = ig.system.height;
 
-            this.buttonInteract = new ig.ButtonInteractEntry;
-
-            this.rightPanel = new sc.EL_GemEquipMenu.RightPanel(this.buttonInteract);
+            this.rightPanel = new el.GemEquipMenu.RightPanel(sc.menu.buttonInteract);
             this.addChildGui(this.rightPanel);
         },
 
@@ -81,23 +79,18 @@ export default function() {
             ig.interact.setBlockDelay(0.2);
             this.doStateTransition("DEFAULT")
             this.rightPanel.showMenu();
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.RUBY, 1, "Attack Plus I"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.EMERALD, 2, "Max HP Plus II"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.MOONSTONE, 3, "Momentum III"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.LAPIS_LAZULI, 4, "Defense Plus IV"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.LAPIS_LAZULI, 5, "Defense Plus V"));
-            this.rightPanel.addButton(new sc.EL_GemButton(sc.EL_GEM_COLOR.AMETHYST, 6, "Focus Plus VI"));
             sc.menu.buttonInteract.pushButtonGroup(this.rightPanel.list.buttonGroup)
         },
 
         hideMenu() {
             this.doStateTransition("HIDDEN")
             this.rightPanel.hideMenu();
-            sc.menu.buttonInteract.removeButtonGroup(this.rightPanel.list.buttonGroup)
+            sc.menu.buttonInteract.removeButtonGroup(this.rightPanel.list.buttonGroup);
+            ig.interact.removeEntry(this.buttonInteract);
         }
     })
 
-    sc.EL_GemEquipMenu.RightPanel = sc.ItemListBox.extend({
+    el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
         init(buttonInteract) {
             this.buttonInteract = buttonInteract;
 
@@ -120,6 +113,8 @@ export default function() {
                     timeFunction: KEY_SPLINES.LINEAR
                 }
             };
+            //@ts-ignore
+            window.ffff = this;
         },
 
         showMenu() {
@@ -134,8 +129,8 @@ export default function() {
             //@ts-ignore stupid "this" context
             this.parent(gui);
             gui.hook.pos.x += 1;
-        }
+        },
     })
 
-    sc.modUtils.registerMenu("EL_GEM_EQUIP", sc.EL_GemEquipMenu, "el-gemEquip")
+    sc.modUtils.registerMenu("EL_GEM_EQUIP", el.GemEquipMenu, "el-gemEquip")
 }

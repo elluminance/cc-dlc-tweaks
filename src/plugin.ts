@@ -35,7 +35,14 @@ import gemCore from "./code/gems/core.js"
 //#endregion
 
 export default class implements PluginClass {
-    constructor(public mod: Mod) {}
+    constructor(public mod: Mod) {
+
+    }
+
+    preload() {
+        //@ts-ignore
+        if(!window.el) window.el = {};
+    }
 
     prestart() {
         actionStep();
@@ -68,6 +75,7 @@ export default class implements PluginClass {
     }
 
     poststart() {
+        el.gemDatabase = new el.GemDatabase;
         //combatArt();
     }
 }

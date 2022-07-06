@@ -2,32 +2,59 @@
     "el-gems": {
         "gemTypes": [
             {
-                "type": "PARAM",
-                "stat": "maxhp",
-                "gemType": "EMERALD",
-                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
-                "cost": [1, 3, 6, 10, 15, 20]
+                "stat": "STAT_MAXHP",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.02,
+                "costs": [1, 3, 6, 10, 15, 20]
             },
             {
-                "type": "PARAM",
-                "stat": "attack",
-                "gemType": "RUBY",
-                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
-                "cost": [1, 3, 6, 10, 15, 20]
+                "stat": "STAT_ATTACK",
+                "gemColor": "RUBY",
+                "valueIncrease": 0.02,
+                "costs": [1, 3, 6, 10, 15, 20]
             },
             {
-                "type": "PARAM",
-                "stat": "defense",
-                "gemType": "LAPIS_LAZULI",
-                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
-                "cost": [1, 3, 6, 10, 15, 20]
+                "stat": "STAT_DEFENSE",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.02,
+                "costs": [1, 3, 6, 10, 15, 20]
             },
             {
-                "type": "PARAM",
-                "stat": "focus",
-                "gemType": "AMETHYST",
-                "values": [0.04, 0.08, 0.12, 0.16, 0.20, 0.25],
-                "cost": [1, 3, 6, 10, 15, 20]
+                "stat": "STAT_FOCUS",
+                "gemColor": "AMETHYST",
+                "valueIncrease": 0.02,
+                "costs": [1, 3, 6, 10, 15, 20]
+            },
+
+            {
+                "stat": "NEUTRAL_RESIST",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "stat": "HEAT_RESIST",
+                "gemColor": "MOONSTONE",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "stat": "COLD_RESIST",
+                "gemColor": "GARNET",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "stat": "SHOCK_RESIST",
+                "gemColor": "CITRINE",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 20]
+            },
+            {
+                "stat": "WAVE_RESIST",
+                "gemColor": "TOPAZ",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 20]
             }
         ]
     }
