@@ -126,16 +126,52 @@ declare global {
             interface RightPanelConstructor extends ImpactClass<RightPanel> {
                 new (buttonInteract: ig.ButtonInteractEntry): RightPanel;
             }
+
+            namespace EquippedGemsPanel {
+                namespace Entry {
+                    interface GemIcon {
+                        gfx: ig.Image;
+                        x: number;
+                        y: number;
+                    }
+                }
+
+                interface Entry extends ig.FocusGui {
+                    mainText: sc.TextGui;
+                    effectText: sc.TextGui;
+                    gfx: ig.Image;
+                    ninepatch: ig.NinePatch;
+                    colorNinepatch: Partial<Record<el.GEM_COLORS, ig.NinePatch>>;
+                    gemIcons: Partial<Record<el.GEM_COLORS, Entry.GemIcon>>;
+                    gem: el.GemDatabase.Gem;
+                }
+                interface EntryConstructor extends ImpactClass<Entry> {
+                    new (gem: el.GemDatabase.Gem): Entry;
+                }
+            }
+            interface EquippedGemsPanel extends sc.MenuPanel {
+                buttonGroup: sc.ButtonGroup;
+                test: EquippedGemsPanel.Entry;
+            }
+            interface EquippedGemsPanelConstructor extends ImpactClass<EquippedGemsPanel> {
+                new (buttonInteract: ig.ButtonInteractEntry): EquippedGemsPanel;
+
+                Entry: EquippedGemsPanel.EntryConstructor
+            }
         }
 
         interface GemEquipMenu extends sc.BaseMenu {
             rightPanel: el.GemEquipMenu.RightPanel;
+            centerPanel: el.GemEquipMenu.EquippedGemsPanel;
             buttonInteract: ig.ButtonInteractEntry;
         }
         interface GemEquipMenuConstructor extends ImpactClass<GemEquipMenu> {
             new (): el.GemEquipMenu;
 
+            //TODO: give these better names
             RightPanel: GemEquipMenu.RightPanelConstructor;
+            EquippedGemsPanel: GemEquipMenu.EquippedGemsPanelConstructor;
+            LeftPanel: void;
         }
         var GemEquipMenu: GemEquipMenuConstructor;
         //#endregion GUI

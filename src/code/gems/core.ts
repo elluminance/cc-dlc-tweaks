@@ -3,10 +3,6 @@ import gemDatabase from "./gem-database.js";
 import params from "./params.js"
 
 export default function() {
-    gemDatabase();
-    gui();
-    params();
-
     el.GEM_COLORS = {
         DEFAULT: 0,
         RUBY: 1,
@@ -21,4 +17,8 @@ export default function() {
         AQUAMARINE: 10,
         ONXY: 11,
     }
+
+    gemDatabase();
+    gui();
+    params();
 }

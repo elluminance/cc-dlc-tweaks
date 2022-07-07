@@ -1,11 +1,11 @@
-export default function() {
+export default function () {
     el.GemButton = sc.ButtonGui.extend({
         level: 0,
         init(gem) {
             this.parent(el.gemDatabase.getGemName(gem), 150, true, sc.BUTTON_TYPE.ITEM)
             this.level = gem.level;
 
-            if(this.level > 0) {
+            if (this.level > 0) {
                 this.textChild.setDrawCallback((_width, height) => {
                     el.gemDatabase.drawGemLevel(this.level, height)
                 })
@@ -61,6 +61,7 @@ export default function() {
 
     el.GemEquipMenu = sc.BaseMenu.extend({
         rightPanel: null,
+        centerPanel: null,
         buttonInteract: null,
 
         init() {
@@ -71,7 +72,10 @@ export default function() {
             this.hook.size.y = ig.system.height;
 
             this.rightPanel = new el.GemEquipMenu.RightPanel(sc.menu.buttonInteract);
+            this.centerPanel = new el.GemEquipMenu.EquippedGemsPanel(sc.menu.buttonInteract);
+
             this.addChildGui(this.rightPanel);
+            this.addChildGui(this.centerPanel);
         },
 
         showMenu() {
@@ -129,6 +133,296 @@ export default function() {
             //@ts-ignore stupid "this" context
             this.parent(gui);
             gui.hook.pos.x += 1;
+        },
+    })
+
+    el.GemEquipMenu.EquippedGemsPanel = sc.MenuPanel.extend({
+        buttonGroup: null,
+
+        init(buttonInteract) {
+            this.parent(sc.MenuPanelType.SQUARE);
+            this.setSize(200, 240);
+            this.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER)
+            this.buttonGroup = new sc.ButtonGroup;
+            this.test = new el.GemEquipMenu.EquippedGemsPanel.Entry({ gemRoot: { "stat": "HEAT_RESIST", "gemColor": 4, "values": [0.05, 0.1, 0.15, 0.2, 0.25, 0.3], "costs": [1, 3, 6, 10, 15, 20] }, "level": 6 });
+            this.addChildGui(this.test);
+            this.buttonGroup.addFocusGui(this.test);
+            buttonInteract.addParallelGroup(this.buttonGroup);
+        }
+    })
+
+    const ENTRY_SIZE = 32;
+    const mainGuiGfx = new ig.Image("media/gui/el-mod-gui.png");
+
+    el.GemEquipMenu.EquippedGemsPanel.Entry = ig.FocusGui.extend({
+        mainText: null,
+        effectText: null,
+        gfx: mainGuiGfx,
+        ninepatch: new ig.NinePatch("media/gui/el-mod-gui.png", {
+            top: 18,
+            height: 2,
+            bottom: 8,
+
+            left: 8,
+            width: 16,
+            right: 8,
+
+            offsets: {
+                default: {
+                    x: 0,
+                    y: 24
+                },
+                focus: {
+                    x: 32,
+                    y: 24
+                },
+                inactive: {
+                    x: 64,
+                    y: 24
+                }
+            }
+        }),
+        // yes, i know i could use a single ninepatch with multiple "modes"
+        // but this makes it easier for mod devs to add their own gems if they wanted
+        colorNinepatch: {
+            [el.GEM_COLORS.RUBY]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32,
+                        y: 52,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.GARNET]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16,
+                        y: 52,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.DIAMOND]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 2,
+                        y: 52,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.MOONSTONE]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 3,
+                        y: 52,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.CITRINE]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 4,
+                        y: 52,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.TOPAZ]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 5,
+                        y: 52,
+                    }
+                }
+            }),
+
+            [el.GEM_COLORS.AMETHYST]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32,
+                        y: 52 + 16,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.EMERALD]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16,
+                        y: 52 + 16,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.LAPIS_LAZULI]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 2,
+                        y: 52 + 16,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.AQUAMARINE]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 3,
+                        y: 52 + 16,
+                    }
+                }
+            }),
+            [el.GEM_COLORS.ONXY]: new ig.NinePatch("media/gui/el-mod-gui.png", {
+                top: 7,
+                height: 2,
+                bottom: 7,
+
+                left: 7,
+                width: 2,
+                right: 7,
+
+                offsets: {
+                    default: {
+                        x: 32 + 16 * 4,
+                        y: 52 + 16,
+                    }
+                }
+            }),
+        },
+        gemIcons: {
+            [el.GEM_COLORS.DEFAULT]: { gfx: mainGuiGfx, x: 11 * 0, y: 12 },
+            [el.GEM_COLORS.RUBY]: { gfx: mainGuiGfx, x: 11 * 1, y: 12 },
+            [el.GEM_COLORS.GARNET]: { gfx: mainGuiGfx, x: 11 * 2, y: 12 },
+            [el.GEM_COLORS.DIAMOND]: { gfx: mainGuiGfx, x: 11 * 3, y: 12 },
+            [el.GEM_COLORS.MOONSTONE]: { gfx: mainGuiGfx, x: 11 * 4, y: 12 },
+            [el.GEM_COLORS.CITRINE]: { gfx: mainGuiGfx, x: 11 * 5, y: 12 },
+            [el.GEM_COLORS.TOPAZ]: { gfx: mainGuiGfx, x: 11 * 6, y: 12 },
+            [el.GEM_COLORS.AMETHYST]: { gfx: mainGuiGfx, x: 11 * 7, y: 12 },
+            [el.GEM_COLORS.EMERALD]: { gfx: mainGuiGfx, x: 11 * 8, y: 12 },
+            [el.GEM_COLORS.LAPIS_LAZULI]: { gfx: mainGuiGfx, x: 11 * 9, y: 12 },
+            [el.GEM_COLORS.AQUAMARINE]: { gfx: mainGuiGfx, x: 11 * 10, y: 12 },
+            [el.GEM_COLORS.ONXY]: { gfx: mainGuiGfx, x: 11 * 11, y: 12 },
+        },
+
+        init(gem) {
+            this.parent();
+            this.gem = gem;
+
+            this.gem = {
+                gemRoot: {
+                    gemColor: el.GEM_COLORS.AQUAMARINE,
+                    values: [],
+                    costs: [],
+                    stat: "",
+                },
+                level: 3
+            }
+            this.setSize(200, ENTRY_SIZE);
+            this.mainText = new sc.TextGui(el.gemDatabase.getGemName(this.gem));
+
+            this.effectText = new sc.TextGui("\\c[4]whatever\\c[0]", {
+                font: sc.fontsystem.smallFont,
+            });
+            this.effectText.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_BOTTOM);
+            this.effectText.setPos(8, 2)
+
+            this.addChildGui(this.effectText);
+        },
+
+        updateDrawables(renderer) {
+            const gemColor = this.gem.gemRoot.gemColor;
+            const gemIcon = this.gemIcons[gemColor] ?? this.gemIcons[el.GEM_COLORS.DEFAULT]!
+            
+            // main background
+            this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, this.focus ? "focus" : "default");
+
+            // colors the button
+            renderer.addTransform().setAlpha(0.15)
+            this.colorNinepatch[gemColor]?.drawComposite(renderer, this.hook.size.x, this.hook.size.y, "default", "lighter")
+            renderer.undoTransform();
+
+            // adds the gem slot
+            renderer.addGfx(this.gfx, 6, ENTRY_SIZE / 2 - 8, 96 + (this.focus ? 16 : 0), 24, 16, 16);
+            
+            // adds the gem icon
+            renderer.addGfx(gemIcon.gfx, 8, ENTRY_SIZE / 2 - 6, gemIcon.x, gemIcon.y, 11, 11)
+
+            // adds the gem level
+            if (this.gem.level) renderer.addGfx(this.gfx, 14, ENTRY_SIZE / 2 + 2, 23 + 8 * (this.gem.level - 1), 0, 7, 5)
         },
     })
 
