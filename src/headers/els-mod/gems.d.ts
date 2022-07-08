@@ -65,7 +65,7 @@ declare global {
             }
 
             interface Gem {
-                gemRoot: GemEntry;
+                gemRoot: string;
                 level: number;
             }
 
@@ -85,19 +85,25 @@ declare global {
         }
         interface GemDatabase extends ig.Class {
             guiImage: ig.Image;
-            gems: GemDatabase.GemEntry[];
+            gems: Record<string, GemDatabase.GemEntry>;
             gemInventory: el.GemDatabase.Gem[];
             equippedGems: el.GemDatabase.Gem[];
             activeBonuses: el.GemDatabase.ParamBonuses;
 
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;
-            addGem(this: this, gemRoot: GemDatabase.GemEntry | string, level: number): void;
+
+            getGemRoot(this: this, gem: el.GemDatabase.Gem): el.GemDatabase.GemEntry;
+            getGemName(this: this, gem: GemDatabase.Gem): string;
+            getGemStatBonusString(this: this, gem: GemDatabase.Gem, includeValue?: boolean): string;
+            getGemCost(this: this, gem: el.GemDatabase.Gem): number;
+            
+            addGem(this: this, gemRoot: string, level: number): void;
             removeGem(this: this, gem: GemDatabase.Gem): void;
             compileGemBonuses(this: this): void;
-            getGemName(this: this, gem: GemDatabase.Gem): string;
             equipGem(this: this, gem: GemDatabase.Gem): boolean;
             dequipGemByIndex(this: this, index: number): el.GemDatabase.Gem | undefined;
+
         }
         interface GemDatabaseConstructor extends ImpactClass<GemDatabase> {
             new (): GemDatabase;
@@ -139,18 +145,22 @@ declare global {
                 interface Entry extends ig.FocusGui {
                     mainText: sc.TextGui;
                     effectText: sc.TextGui;
+                    costText: sc.TextGui;
                     gfx: ig.Image;
                     ninepatch: ig.NinePatch;
                     colorNinepatch: Partial<Record<el.GEM_COLORS, ig.NinePatch>>;
                     gemIcons: Partial<Record<el.GEM_COLORS, Entry.GemIcon>>;
                     gem: el.GemDatabase.Gem;
+
+                    updateText(this: this): void;
                 }
                 interface EntryConstructor extends ImpactClass<Entry> {
-                    new (gem: el.GemDatabase.Gem): Entry;
+                    new (gem?: el.GemDatabase.Gem): Entry;
                 }
             }
             interface EquippedGemsPanel extends sc.MenuPanel {
                 buttonGroup: sc.ButtonGroup;
+                equipButtons: EquippedGemsPanel.Entry[]; 
                 test: EquippedGemsPanel.Entry;
             }
             interface EquippedGemsPanelConstructor extends ImpactClass<EquippedGemsPanel> {

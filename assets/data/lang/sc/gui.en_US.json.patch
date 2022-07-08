@@ -74,6 +74,23 @@
                 "COLD_RESIST": "Cold Armor",
                 "SHOCK_RESIST": "Shock Armor",
                 "WAVE_RESIST": "Wave Armor"
+            },
+
+            "special-stat-names": {
+                "STAT_MAXHP": "Max HP",
+                "STAT_ATTACK": "Attack",
+                "STAT_DEFENSE": "Defense",
+                "STAT_FOCUS": "Focus",
+
+                "NEUTRAL_RESIST": "Neutral Resistance",
+                "HEAT_RESIST": "Heat Resistance",
+                "COLD_RESIST": "Cold Resistance",
+                "SHOCK_RESIST": "Shock Resistance",
+                "WAVE_RESIST": "Wave Resistance"
+            },
+
+            "equip-entry": {
+                "cost-text": "Cost: [!]"
             }
         }
     }

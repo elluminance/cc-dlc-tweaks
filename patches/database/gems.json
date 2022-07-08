@@ -1,61 +1,61 @@
 {
     "el-gems": {
-        "gemTypes": [
-            {
+        "gemTypes": {
+            "MAXHP": {
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
                 "valueIncrease": 0.02,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
                 "valueIncrease": 0.02,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
                 "valueIncrease": 0.02,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
                 "valueIncrease": 0.02,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
 
-            {
+            "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "DIAMOND",
                 "valueIncrease": 0.05,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
                 "valueIncrease": 0.05,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
                 "gemColor": "GARNET",
                 "valueIncrease": 0.05,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
                 "gemColor": "CITRINE",
                 "valueIncrease": 0.05,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
-            {
+            "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
                 "gemColor": "TOPAZ",
                 "valueIncrease": 0.05,
                 "costs": [1, 3, 6, 10, 15, 20]
             }
-        ]
+        }
     }
 }

@@ -15,7 +15,7 @@ type Gem = el.GemDatabase.Gem;
 export default function () {
     el.GemDatabase = ig.Class.extend({
         guiImage: new ig.Image("media/gui/el-mod-gui.png"),
-        gems: [],
+        gems: {},
         gemInventory: [],
         equippedGems: [],
         activeBonuses: {
@@ -33,12 +33,12 @@ export default function () {
             let gemInfo = ig.database.get("el-gems");
 
             let values: number[];
-            for(const gemType of gemInfo.gemTypes) {
+            Object.entries(gemInfo.gemTypes).forEach(([key, gemType]) => {
                 if(gemType.values) {
                     if(gemType.values.length >= 6) values = gemType.values;
                     else {
                         ig.warn(`Warning: Gem entry for ${gemType.stat} found with less than 6 values! Skipping...`);
-                        continue;
+                        return;
                     };
                 } else if(gemType.valueIncrease) {
                     values = Array(6).fill(0).map(
@@ -46,16 +46,16 @@ export default function () {
                     );
                 } else {
                     ig.warn(`Warning: Gem entry for ${gemType.stat} found with missing values/valueIncrease! Skipping...`);
-                    continue;
+                    return;
                 };
 
-                this.gems.push({
+                this.gems[key] ={
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
                     costs: gemType.costs,
-                })
-            }
+                }
+            })
         },
         //#region Helper Functions
         gemColorToIcon(color) {
@@ -79,10 +79,15 @@ export default function () {
             this.guiImage.draw(6, height - 7, 23 + 8 * (level - 1), 0, 7, 5)
         },
 
+        getGemRoot(gem) {
+            return this.gems[gem.gemRoot];
+        },
+
         getGemName(gem) {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
                 statPart = "",
-                statName = gem.gemRoot.stat;
+                gemRoot = this.getGemRoot(gem),
+                statName = gemRoot.stat;
             
             if(statName in specialLangEntries) {
                 statPart = specialLangEntries[statName]
@@ -92,14 +97,36 @@ export default function () {
             
             return `${statPart} ${integerToRomanNumeral(gem.level)}`;
         },
+
+        getGemStatBonusString(gem, includeValue) {
+            let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-stat-names");
+            let workingString = "";
+            const gemRoot = this.getGemRoot(gem);
+            const gemStat = gemRoot.stat;
+            
+            if(gemStat in specialLangEntries) {
+                workingString = specialLangEntries[gemStat];
+            } else {
+                workingString = ig.lang.get(`sc.menu.equip.modifier.${gemStat}`);
+            };
+
+            if(includeValue) {
+                if(!sc.MODIFIERS[gemStat as keyof sc.MODIFIERS]?.noPercent) {
+                    workingString += ` +${Math.round(gemRoot.values[gem.level-1] * 100)}%`
+                } else {
+                    workingString += ` +${gemRoot.values[gem.level-1]}`
+                }
+            }
+            return workingString;
+        },
+
+        getGemCost(gem) {
+            return this.getGemRoot(gem).costs[gem.level-1];
+        },
         //#endregion
 
         //if gemRoot is a string, it will find the gem that matches that stat.
         addGem(gemRoot, level) {
-            if (typeof gemRoot === "string") {
-                gemRoot = this.gems.find(gemEntry => gemEntry.stat == gemRoot)!;
-            }
-            if(!gemRoot) return;
             
             level ??= 1;
 
@@ -128,7 +155,7 @@ export default function () {
             };
 
             for(const gem of this.equippedGems) {
-                const root = gem.gemRoot;
+                const root = this.getGemRoot(gem);
                 const gemLevel = gem.level - 1;
                 
                 switch(root.stat) {
@@ -176,8 +203,9 @@ export default function () {
         },
 
         equipGem(gem) {
+            const gemRoot = this.getGemRoot(gem);
             if(this.equippedGems.find(
-                equip => gem.gemRoot.stat == equip.gemRoot.stat
+                equip => gemRoot.stat == gemRoot.stat
             )) return false;
 
             this.equippedGems.push(gem);

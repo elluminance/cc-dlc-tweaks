@@ -4,14 +4,19 @@ const icons = new ig.Font("media/font/els-mod-icons.png", 16, ig.MultiFont.ICON_
 const buffIcons = new ig.Font("media/font/icons-buff-el-mod.png", 8, ig.MultiFont.ICON_START);
 const buffIconsLarge = new ig.Font("media/font/icons-buff-large-el-mod.png", 16, ig.MultiFont.ICON_START);
 
+const smallIcons = new ig.Font("media/font/els-mod-icons-small.png", 14, ig.MultiFont.ICON_START);
+
 const itemIcons = new ig.Font("media/font/el-mod-item-icons.png", 16, ig.MultiFont.ICON_START);
 
 
 const fontIndex = sc.fontsystem.font.iconSets.length;
+const smallFontIndex = sc.fontsystem.smallFont.iconSets.length;
 const tinyFontIndex = sc.fontsystem.tinyFont.iconSets.length;
 sc.fontsystem.font.pushIconSet(icons);
 sc.fontsystem.font.pushIconSet(buffIconsLarge);
 sc.fontsystem.font.pushIconSet(itemIcons);
+
+sc.fontsystem.smallFont.pushIconSet(smallIcons);
 
 sc.fontsystem.tinyFont.pushIconSet(buffIcons);
 
@@ -62,6 +67,10 @@ itemTypes.forEach(itemType => {
 })
 
 sc.fontsystem.font.setMapping(fontMappings)
+
+sc.fontsystem.smallFont.setMapping({
+    "el-gray-arrow": [smallFontIndex, 0],
+})
 
 sc.fontsystem.tinyFont.setMapping({
     "stat-el-risktaker": [tinyFontIndex, 0],
