@@ -15,7 +15,8 @@ export default function() {
         EMERALD: 8,
         LAPIS_LAZULI: 9,
         AQUAMARINE: 10,
-        ONXY: 11,
+        ONYX: 11,
+        BLOODSTONE: 12,
     }
 
     gemDatabase();

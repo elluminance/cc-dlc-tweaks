@@ -46,6 +46,7 @@ let fontMappings: ig.MultiFont.Mapping = {
     "el-gem-lapis-lazuli":  [fontIndex, i++],
     "el-gem-aquamarine":    [fontIndex, i++],
     "el-gem-onyx":          [fontIndex, i++],
+    "el-gem-bloodstone":    [fontIndex, i++],
     "el-gem-default":       [fontIndex, i++],
 
 

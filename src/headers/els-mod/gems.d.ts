@@ -48,7 +48,8 @@ declare global {
             EMERALD = 8,
             LAPIS_LAZULI = 9,
             AQUAMARINE = 10,
-            ONXY = 11,
+            ONYX = 11,
+            BLOODSTONE = 12,
         }
 
         interface GemHelper {
@@ -150,8 +151,9 @@ declare global {
                     ninepatch: ig.NinePatch;
                     colorNinepatch: Partial<Record<el.GEM_COLORS, ig.NinePatch>>;
                     gemIcons: Partial<Record<el.GEM_COLORS, Entry.GemIcon>>;
-                    gem: el.GemDatabase.Gem;
+                    gem?: el.GemDatabase.Gem;
 
+                    setGem(this: this, gem?: el.GemDatabase.Gem): void;
                     updateText(this: this): void;
                 }
                 interface EntryConstructor extends ImpactClass<Entry> {
@@ -162,6 +164,9 @@ declare global {
                 buttonGroup: sc.ButtonGroup;
                 equipButtons: EquippedGemsPanel.Entry[]; 
                 test: EquippedGemsPanel.Entry;
+
+                updateGemEntries(this: this): void;
+                show(this: this): void;
             }
             interface EquippedGemsPanelConstructor extends ImpactClass<EquippedGemsPanel> {
                 new (buttonInteract: ig.ButtonInteractEntry): EquippedGemsPanel;

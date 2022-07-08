@@ -70,7 +70,8 @@ export default function () {
                 case el.GEM_COLORS.EMERALD: return "\\i[el-gem-emerald]";
                 case el.GEM_COLORS.LAPIS_LAZULI: return "\\i[el-gem-lapis-lazuli]";
                 case el.GEM_COLORS.AQUAMARINE: return "\\i[el-gem-aquamarine]";
-                case el.GEM_COLORS.ONXY: return "\\i[el-gem-onyx]";
+                case el.GEM_COLORS.ONYX: return "\\i[el-gem-onyx]";
+                case el.GEM_COLORS.BLOODSTONE: return "\\i[el-gem-bloodstone]";
                 default: return "\\i[el-gem-default]";
             }
         },
@@ -121,7 +122,7 @@ export default function () {
         },
 
         getGemCost(gem) {
-            return this.getGemRoot(gem).costs[gem.level-1];
+            return this.getGemRoot(gem)!.costs[gem.level-1];
         },
         //#endregion
 
@@ -205,7 +206,7 @@ export default function () {
         equipGem(gem) {
             const gemRoot = this.getGemRoot(gem);
             if(this.equippedGems.find(
-                equip => gemRoot.stat == gemRoot.stat
+                equip => this.getGemRoot(equip).stat == gemRoot.stat
             )) return false;
 
             this.equippedGems.push(gem);
