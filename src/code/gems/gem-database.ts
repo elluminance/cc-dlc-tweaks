@@ -33,6 +33,8 @@ export default function () {
             let gemInfo = ig.database.get("el-gems");
 
             let values: number[];
+            ig.storage.register(this);
+
             Object.entries(gemInfo.gemTypes).forEach(([key, gemType]) => {
                 if(gemType.values) {
                     if(gemType.values.length >= 6) values = gemType.values;
@@ -57,6 +59,7 @@ export default function () {
                 }
             })
         },
+
         //#region Helper Functions
         gemColorToIcon(color) {
             switch(color) {
@@ -127,6 +130,7 @@ export default function () {
         },
         //#endregion
 
+        //#region Gem Inventory
         createGem(gemRoot, level) {
             level ??= 1;
 
@@ -222,6 +226,26 @@ export default function () {
             this.compileGemBonuses();
             sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
             return this.equippedGems.splice(index, 1)[0];
+        },
+        //#endregion
+        
+        //#region Storage
+        onStorageSave(savefile) {
+            if(!savefile.vars.storage.el) savefile.vars.storage.el = {};
+            savefile.vars.storage.el.gems = {
+                inventory: this.gemInventory,
+                equipped: this.equippedGems,
+            };
+        },
+
+        onStoragePreLoad(savefile) {
+            const gemData = {...savefile.vars.storage?.el?.gems} as const;
+
+            this.gemInventory = gemData?.inventory ?? [];
+            this.equippedGems = gemData?.equipped ?? [];
+            
+            this.compileGemBonuses();
         }
+        //#endregion
     })
 }

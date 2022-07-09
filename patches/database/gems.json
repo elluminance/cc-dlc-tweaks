@@ -10,19 +10,19 @@
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
-                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
                 "costs": [2, 5, 9, 14, 20, 27]
             },
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
                 "costs": [2, 5, 9, 14, 20, 27]
             },
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
-                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
                 "costs": [2, 5, 9, 14, 20, 27]
             },
 

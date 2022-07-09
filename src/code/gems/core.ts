@@ -33,6 +33,5 @@ export default function() {
         el.gemDatabase.createGem("DEFENSE", 2);
         el.gemDatabase.createGem("FOCUS", 3);
         el.gemDatabase.createGem("FOCUS", 1);
-
     }
 }

@@ -84,7 +84,7 @@ declare global {
                 modifiers: Record<string, number>;
             }
         }
-        interface GemDatabase extends ig.Class {
+        interface GemDatabase extends ig.Class, ig.Storage.Listener {
             guiImage: ig.Image;
             gems: Record<string, GemDatabase.GemEntry>;
             gemInventory: el.GemDatabase.Gem[];
