@@ -4,16 +4,6 @@ export default function () {
     const MAX_GEMS = 7;
     const mainGuiGfx = new ig.Image("media/gui/el-mod-gui.png");
 
-    let temp = [
-        { gemRoot: "ATTACK", level: 3 },
-        { gemRoot: "DEFENSE", level: 1 },
-        { gemRoot: "FOCUS", level: 5 },
-        { gemRoot: "MAXHP", level: 4 },
-        { gemRoot: "NEUTRAL_RESISTANCE", level: 1 },
-        { gemRoot: "HEAT_RESISTANCE", level: 2 },
-        { gemRoot: "COLD_RESISTANCE", level: 6 },
-    ]
-
     el.GemButton = sc.ButtonGui.extend({
         level: 0,
         init(gem) {
@@ -193,12 +183,13 @@ export default function () {
 
         init(buttonInteract) {
             this.parent(sc.MenuPanelType.SQUARE);
-            this.setSize(202, (ENTRY_SIZE + 1) * MAX_GEMS + 1);
+            this.setSize(204, (ENTRY_SIZE + 1) * MAX_GEMS + 20);
             this.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER)
             this.buttonGroup = new sc.ButtonGroup;
-            let offset = 1, button: el.GemEquipMenu.EquippedGemsPanel.Entry;
+
+            let offset = 2, button: el.GemEquipMenu.EquippedGemsPanel.Entry;
             for (let i = 0; i < 7; i++) {
-                button = new el.GemEquipMenu.EquippedGemsPanel.Entry(temp[i]);
+                button = new el.GemEquipMenu.EquippedGemsPanel.Entry();
                 button.setPos(0, offset);
                 button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
                 button.id = i;
@@ -209,12 +200,37 @@ export default function () {
                 this.addChildGui(button);
             }
             buttonInteract.addParallelGroup(this.buttonGroup);
+
+            let line = new sc.LineGui(this.hook.size.x);
+            line.setPos(0, offset + 1);
+            this.addChildGui(line);
+
+            this.costValues = new sc.TextGui("99/99", {font: sc.fontsystem.smallFont});
+            this.costValues.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_BOTTOM);
+            this.costValues.setPos(2, 0)
+
+            this.costText = new sc.TextGui(ig.lang.get("sc.gui.el-gems.gui-gem-cost"), {
+                font: sc.fontsystem.smallFont,
+            })
+            this.costText.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_BOTTOM);
+            this.costText.setPos(4 + this.costValues.hook.size.x, 0)
+
+            this.addChildGui(this.costValues);
+            this.addChildGui(this.costText);
         },
 
         updateGemEntries() {
             this.equipButtons.forEach((entry, index) => {
-                entry.setGem(el.gemDatabase.equippedGems[index])
+                if(index >= el.gemDatabase.maxSlots) {
+                    entry.setActive(false);
+                    entry.setGem();
+                } else {
+                    entry.setActive(true);
+                    entry.setGem(el.gemDatabase.equippedGems[index])
+                }
             })
+
+            this.costValues.setText(`${el.gemDatabase.getTotalGemCosts()}/${el.gemDatabase.maxPower}`);
         },
 
         show() {
@@ -509,7 +525,11 @@ export default function () {
         },
 
         updateText() {
-            if (this.gem) {
+            if (!this.active) {
+                this.mainText.setText("");
+                this.effectText.setText("");
+                this.costText.setText("");
+            } else if (this.gem) {
                 this.mainText.setText(el.gemDatabase.getGemName(this.gem));
                 this.effectText.setText(`\\c[4]\\i[el-gray-arrow]${el.gemDatabase.getGemStatBonusString(this.gem, true)}`);
                 this.costText.setText(`${ig.lang.get("sc.gui.el-gems.equip-entry.cost-text").replace("[!]", el.gemDatabase.getGemCost(this.gem).toString())}`);
@@ -531,9 +551,9 @@ export default function () {
             let gemIcon = this.gemIcons[gemColor!] ?? this.gemIcons[el.GEM_COLORS.DEFAULT]!
 
             // main background
-            this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, this.focus ? "focus" : "default");
+            this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, this.active ? (this.focus ? "focus" : "default") : "inactive");
 
-            if (this.gem) {
+            if (this.active && this.gem) {
                 // colors the button
                 renderer.addTransform().setAlpha(0.15)
                 this.colorNinepatch[gemColor!]?.drawComposite(renderer, this.hook.size.x, this.hook.size.y, "default", "lighter")
@@ -541,9 +561,9 @@ export default function () {
             }
 
             // adds the gem slot
-            renderer.addGfx(this.gfx, 6, this.hook.size.y / 2 - 8, 96 + (this.focus ? 16 : 0), 24, 16, 16);
+            renderer.addGfx(this.gfx, 6, this.hook.size.y / 2 - 8, 96 + (this.active ? (this.focus ? 16 : 0) : 32), 24, 16, 16);
 
-            if (this.gem) {
+            if (this.active && this.gem) {
                 // adds the gem icon
                 renderer.addGfx(gemIcon.gfx, 8, this.hook.size.y / 2 - 6, gemIcon.x, gemIcon.y, 11, 11)
 
@@ -559,6 +579,10 @@ export default function () {
                 el.gemDatabase.addGem(this.gem);
                 sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED)
             }
+        },
+
+        canPlayFocusSounds() {
+            return this.active;
         }
     })
 

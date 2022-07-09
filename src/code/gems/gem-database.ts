@@ -28,6 +28,8 @@ export default function () {
             },
             modifiers: {}
         },
+        maxPower: 99,
+        maxSlots: 3,
 
         init() {
             let gemInfo = ig.database.get("el-gems");
@@ -51,7 +53,7 @@ export default function () {
                     return;
                 };
 
-                this.gems[key] ={
+                this.gems[key] = {
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
@@ -128,12 +130,20 @@ export default function () {
         getGemCost(gem) {
             return this.getGemRoot(gem)!.costs[gem.level-1];
         },
+
+        getTotalGemCosts() {
+            return this.equippedGems.reduce((value, gem) => value + this.getGemCost(gem), 0);
+        },
         //#endregion
 
         //#region Gem Inventory
         createGem(gemRoot, level) {
             level ??= 1;
-
+            
+            if(!(gemRoot in this.gems)) {
+                console.warn(`Unknown gem ${gemRoot}!`);
+                return;
+            }
             let newGem: Gem = {
                 gemRoot,
                 level
@@ -215,6 +225,13 @@ export default function () {
             if(this.equippedGems.find(
                 equip => this.getGemRoot(equip).stat == gemRoot.stat
             )) return false;
+
+            if (this.equippedGems.length >= this.maxSlots) {
+                return false;
+            }
+            if((this.getTotalGemCosts() + this.getGemCost(gem)) > this.maxPower) {
+                return false;
+            }
 
             this.equippedGems.push(gem);
             this.compileGemBonuses();

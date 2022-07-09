@@ -90,6 +90,8 @@ declare global {
             gemInventory: el.GemDatabase.Gem[];
             equippedGems: el.GemDatabase.Gem[];
             activeBonuses: el.GemDatabase.ParamBonuses;
+            maxPower: number;
+            maxSlots: number;
 
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;
@@ -98,6 +100,7 @@ declare global {
             getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean): string;
             getGemStatBonusString(this: this, gem: GemDatabase.Gem, includeValue?: boolean): string;
             getGemCost(this: this, gem: el.GemDatabase.Gem): number;
+            getTotalGemCosts(this: this): number;
             
             createGem(this: this, gemRoot: string, level: number): void;
             addGem(this: this, gem: el.GemDatabase.Gem): void;
@@ -166,8 +169,9 @@ declare global {
             }
             interface EquippedGemsPanel extends sc.MenuPanel, sc.Model.Observer {
                 buttonGroup: sc.ButtonGroup;
-                equipButtons: EquippedGemsPanel.Entry[]; 
-                test: EquippedGemsPanel.Entry;
+                equipButtons: EquippedGemsPanel.Entry[];
+                costText: sc.TextGui;
+                costValues: sc.TextGui;
 
                 updateGemEntries(this: this): void;
                 show(this: this): void;

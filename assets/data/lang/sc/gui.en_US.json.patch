@@ -63,6 +63,8 @@
         "el-gems": {
             "gem-equip-button": "To Gems",
             "gem-equip-button-description": "View and equip Gems to power up even further!",
+            "gui-gem-cost": "Power:",
+
             "special-gem-names": {
                 "STAT_MAXHP": "HP Up",
                 "STAT_ATTACK": "Attack Up",
