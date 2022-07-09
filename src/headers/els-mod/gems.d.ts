@@ -95,11 +95,12 @@ declare global {
             drawGemLevel(this: this, level: number, height: number): void;
 
             getGemRoot(this: this, gem: el.GemDatabase.Gem): el.GemDatabase.GemEntry;
-            getGemName(this: this, gem: GemDatabase.Gem): string;
+            getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean): string;
             getGemStatBonusString(this: this, gem: GemDatabase.Gem, includeValue?: boolean): string;
             getGemCost(this: this, gem: el.GemDatabase.Gem): number;
             
-            addGem(this: this, gemRoot: string, level: number): void;
+            createGem(this: this, gemRoot: string, level: number): void;
+            addGem(this: this, gem: el.GemDatabase.Gem): void;
             removeGem(this: this, gem: GemDatabase.Gem): void;
             compileGemBonuses(this: this): void;
             equipGem(this: this, gem: GemDatabase.Gem): boolean;
@@ -124,11 +125,12 @@ declare global {
         var GemButton: GemButtonConstructor;
 
         namespace GemEquipMenu {
-            interface RightPanel extends sc.ItemListBox {
+            interface RightPanel extends sc.ItemListBox, sc.Model.Observer {
                 buttonInteract: ig.ButtonInteractEntry;
 
                 showMenu(this: this): void;
                 hideMenu(this: this): void;
+                _addListItems(this: this): void;
             }
             interface RightPanelConstructor extends ImpactClass<RightPanel> {
                 new (buttonInteract: ig.ButtonInteractEntry): RightPanel;
@@ -152,6 +154,8 @@ declare global {
                     colorNinepatch: Partial<Record<el.GEM_COLORS, ig.NinePatch>>;
                     gemIcons: Partial<Record<el.GEM_COLORS, Entry.GemIcon>>;
                     gem?: el.GemDatabase.Gem;
+                    id: number;
+                    dequipSound: ig.Sound;
 
                     setGem(this: this, gem?: el.GemDatabase.Gem): void;
                     updateText(this: this): void;
@@ -160,13 +164,14 @@ declare global {
                     new (gem?: el.GemDatabase.Gem): Entry;
                 }
             }
-            interface EquippedGemsPanel extends sc.MenuPanel {
+            interface EquippedGemsPanel extends sc.MenuPanel, sc.Model.Observer {
                 buttonGroup: sc.ButtonGroup;
                 equipButtons: EquippedGemsPanel.Entry[]; 
                 test: EquippedGemsPanel.Entry;
 
                 updateGemEntries(this: this): void;
                 show(this: this): void;
+                hide(this: this): void;
             }
             interface EquippedGemsPanelConstructor extends ImpactClass<EquippedGemsPanel> {
                 new (buttonInteract: ig.ButtonInteractEntry): EquippedGemsPanel;

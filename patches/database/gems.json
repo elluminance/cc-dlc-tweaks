@@ -4,32 +4,32 @@
             "MAXHP": {
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
-                "valueIncrease": 0.02,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "costs": [2, 5, 9, 14, 20, 27]
             },
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
-                "valueIncrease": 0.02,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "costs": [2, 5, 9, 14, 20, 27]
             },
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.02,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "costs": [2, 5, 9, 14, 20, 27]
             },
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
-                "valueIncrease": 0.02,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "valueIncrease": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
+                "costs": [2, 5, 9, 14, 20, 27]
             },
 
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.05,
+                "valueIncrease": 0.04,
                 "costs": [1, 3, 6, 10, 15, 20]
             },
             "HEAT_RESISTANCE": {

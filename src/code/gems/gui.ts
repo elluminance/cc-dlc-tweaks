@@ -17,7 +17,7 @@ export default function () {
     el.GemButton = sc.ButtonGui.extend({
         level: 0,
         init(gem) {
-            this.parent(el.gemDatabase.getGemName(gem), 150, true, sc.BUTTON_TYPE.ITEM)
+            this.parent(el.gemDatabase.getGemName(gem, true), 150, true, sc.BUTTON_TYPE.ITEM)
             this.level = gem.level;
 
             if (this.level > 0) {
@@ -96,15 +96,19 @@ export default function () {
         showMenu() {
             sc.menu.moveLeaSprite(0, 0, sc.MENU_LEA_STATE.HIDDEN, true);
             ig.interact.setBlockDelay(0.2);
-            this.doStateTransition("DEFAULT")
+            this.doStateTransition("DEFAULT");
+
             this.rightPanel.showMenu();
             this.centerPanel.show();
+
             sc.menu.buttonInteract.pushButtonGroup(this.rightPanel.list.buttonGroup)
         },
 
         hideMenu() {
-            this.doStateTransition("HIDDEN")
+            this.doStateTransition("HIDDEN");
             this.rightPanel.hideMenu();
+            this.centerPanel.hide();
+
             sc.menu.buttonInteract.removeButtonGroup(this.rightPanel.list.buttonGroup);
             ig.interact.removeEntry(this.buttonInteract);
         }
@@ -133,22 +137,53 @@ export default function () {
                     timeFunction: KEY_SPLINES.LINEAR
                 }
             };
-            //@ts-ignore
-            window.ffff = this;
         },
 
         showMenu() {
             this.doStateTransition("DEFAULT");
+            this._addListItems();
+            sc.Model.addObserver(sc.menu, this);
         },
 
         hideMenu() {
             this.doStateTransition("HIDDEN");
+            sc.Model.removeObserver(sc.menu, this)
+        },
+
+        modelChanged(model, message, data) {
+            if(model == sc.menu) {
+                switch (message) {
+                    case sc.MENU_EVENT.EQUIP_CHANGED: 
+                        this._addListItems();
+                        break;
+                }
+            }
         },
 
         addButton(gui) {
             //@ts-ignore stupid "this" context
             this.parent(gui);
             gui.hook.pos.x += 1;
+        },
+
+        _addListItems() {
+            this.list.clear();
+            el.gemDatabase.gemInventory.forEach(gem => {
+                let button = new el.GemButton(gem);
+                button.submitSound = undefined;
+
+                button.onButtonPress = () => {
+                    let equipped = el.gemDatabase.equipGem(gem);
+                    if(equipped) {
+                        el.gemDatabase.removeGem(gem);
+                        sc.BUTTON_SOUND.submit.play();
+                    } else {
+                        sc.BUTTON_SOUND.denied.play();
+                    }
+                    sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
+                }
+                this.addButton(button);
+            })
         },
     })
 
@@ -161,20 +196,18 @@ export default function () {
             this.setSize(202, (ENTRY_SIZE + 1) * MAX_GEMS + 1);
             this.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_CENTER)
             this.buttonGroup = new sc.ButtonGroup;
-            //this.test = new el.GemEquipMenu.EquippedGemsPanel.Entry();
             let offset = 1, button: el.GemEquipMenu.EquippedGemsPanel.Entry;
             for (let i = 0; i < 7; i++) {
                 button = new el.GemEquipMenu.EquippedGemsPanel.Entry(temp[i]);
                 button.setPos(0, offset);
                 button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
+                button.id = i;
                 offset += button.hook.size.y + 1;
 
                 this.equipButtons.push(button);
                 this.buttonGroup.addFocusGui(button);
                 this.addChildGui(button);
             }
-            //this.addChildGui(this.test);
-            //this.buttonGroup.addFocusGui(this.test);
             buttonInteract.addParallelGroup(this.buttonGroup);
         },
 
@@ -185,8 +218,23 @@ export default function () {
         },
 
         show() {
+            sc.Model.addObserver(sc.menu, this);
             this.updateGemEntries();
-        }
+        },
+
+        hide() {
+            sc.Model.removeObserver(sc.menu, this)
+        },
+
+        modelChanged(model, message) {
+            if (model == sc.menu) {
+                switch (message) {
+                    case sc.MENU_EVENT.EQUIP_CHANGED:
+                        this.updateGemEntries();
+                        break;
+                }
+            }
+        },
     })
 
 
@@ -195,6 +243,7 @@ export default function () {
         effectText: null,
         costText: null,
         gfx: mainGuiGfx,
+        dequipSound: sc.BUTTON_SOUND.submit,
         ninepatch: new ig.NinePatch("media/gui/el-mod-gui.png", {
             top: 18,
             height: 2,
@@ -502,6 +551,15 @@ export default function () {
                 if (this.gem.level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (this.gem.level - 1), 0, 7, 5)
             }
         },
+
+        onButtonPress() {
+            if(this.gem) {
+                this.dequipSound.play();
+                el.gemDatabase.dequipGemByIndex(this.id);
+                el.gemDatabase.addGem(this.gem);
+                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED)
+            }
+        }
     })
 
     sc.modUtils.registerMenu("EL_GEM_EQUIP", el.GemEquipMenu, "el-gemEquip")

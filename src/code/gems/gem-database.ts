@@ -84,11 +84,12 @@ export default function () {
             return this.gems[gem.gemRoot];
         },
 
-        getGemName(gem) {
+        getGemName(gem, withIcon) {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
                 statPart = "",
                 gemRoot = this.getGemRoot(gem),
-                statName = gemRoot.stat;
+                statName = gemRoot.stat,
+                icon = withIcon ? this.gemColorToIcon(gemRoot.gemColor) : "";
             
             if(statName in specialLangEntries) {
                 statPart = specialLangEntries[statName]
@@ -96,7 +97,7 @@ export default function () {
                 statPart = ig.lang.get(`sc.menu.equip.modifier.${statName}`)
             }
             
-            return `${statPart} ${integerToRomanNumeral(gem.level)}`;
+            return `${icon}${statPart} ${integerToRomanNumeral(gem.level)}`;
         },
 
         getGemStatBonusString(gem, includeValue) {
@@ -126,9 +127,7 @@ export default function () {
         },
         //#endregion
 
-        //if gemRoot is a string, it will find the gem that matches that stat.
-        addGem(gemRoot, level) {
-            
+        createGem(gemRoot, level) {
             level ??= 1;
 
             let newGem: Gem = {
@@ -137,6 +136,10 @@ export default function () {
             };
 
             this.gemInventory.push(newGem);
+        },
+
+        addGem(gem) {
+            this.gemInventory.push(gem);
         },
 
         removeGem(gem) {
@@ -216,8 +219,8 @@ export default function () {
         },
         
         dequipGemByIndex(index) {
-            sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
             this.compileGemBonuses();
+            sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
             return this.equippedGems.splice(index, 1)[0];
         }
     })
