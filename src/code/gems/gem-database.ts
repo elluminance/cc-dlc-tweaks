@@ -93,10 +93,12 @@ export default function () {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
                 statPart = "",
                 gemRoot = this.getGemRoot(gem),
-                statName = gemRoot.stat,
-                icon = withIcon ? this.gemColorToIcon(gemRoot.gemColor) : "";
+                statName = gemRoot?.stat,
+                icon = withIcon ? this.gemColorToIcon(gemRoot?.gemColor) : "";
             
-            if(statName in specialLangEntries) {
+            if(!statName) {
+                statPart = "Unknown Gem"
+            } else if(statName in specialLangEntries) {
                 statPart = specialLangEntries[statName]
             } else {
                 statPart = ig.lang.get(`sc.menu.equip.modifier.${statName}`)
@@ -109,8 +111,13 @@ export default function () {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-stat-names");
             let workingString = "";
             const gemRoot = this.getGemRoot(gem);
+
+            if(!gemRoot) {
+                return "Unknown Stat +0%";
+            }
+
             const gemStat = gemRoot.stat;
-            
+
             if(gemStat in specialLangEntries) {
                 workingString = specialLangEntries[gemStat];
             } else {
@@ -128,7 +135,7 @@ export default function () {
         },
 
         getGemCost(gem) {
-            return this.getGemRoot(gem)!.costs[gem.level-1];
+            return this.getGemRoot(gem)?.costs[gem.level-1] || 0;
         },
 
         getTotalGemCosts() {
@@ -149,7 +156,7 @@ export default function () {
                 level
             };
 
-            this.gemInventory.push(newGem);
+            this.addGem(newGem);
         },
 
         addGem(gem) {
@@ -175,7 +182,9 @@ export default function () {
             for(const gem of this.equippedGems) {
                 const root = this.getGemRoot(gem);
                 const gemLevel = gem.level - 1;
-                
+
+                if(!root) continue;
+
                 switch(root.stat) {
                     case "STAT_MAXHP":
                         bonuses.params.hp += root.values[gemLevel];
@@ -223,7 +232,7 @@ export default function () {
         equipGem(gem) {
             const gemRoot = this.getGemRoot(gem);
             if(this.equippedGems.find(
-                equip => this.getGemRoot(equip).stat == gemRoot.stat
+                equip => this.getGemRoot(equip)?.stat == gemRoot?.stat
             )) return false;
 
             if (this.equippedGems.length >= this.maxSlots) {
@@ -249,10 +258,10 @@ export default function () {
         //#region Storage
         onStorageSave(savefile) {
             if(!savefile.vars.storage.el) savefile.vars.storage.el = {};
-            savefile.vars.storage.el.gems = {
+            Object.assign(savefile.vars.storage.el.gems, {
                 inventory: this.gemInventory,
                 equipped: this.equippedGems,
-            };
+            });
         },
 
         onStoragePreLoad(savefile) {

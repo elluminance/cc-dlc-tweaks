@@ -547,8 +547,8 @@ export default function () {
 
         updateDrawables(renderer) {
             let gemRoot = this.gem ? el.gemDatabase.getGemRoot(this.gem) : undefined;
-            let gemColor = this.gem ? gemRoot!.gemColor : undefined;
-            let gemIcon = this.gemIcons[gemColor!] ?? this.gemIcons[el.GEM_COLORS.DEFAULT]!
+            let gemColor = (this.gem && gemRoot) ? gemRoot.gemColor : undefined;
+            let gemIcon = this.gemIcons[gemColor || el.GEM_COLORS.DEFAULT]! ?? this.gemIcons[el.GEM_COLORS.DEFAULT]!;
 
             // main background
             this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, this.active ? (this.focus ? "focus" : "default") : "inactive");
@@ -565,7 +565,7 @@ export default function () {
 
             if (this.active && this.gem) {
                 // adds the gem icon
-                renderer.addGfx(gemIcon.gfx, 8, this.hook.size.y / 2 - 6, gemIcon.x, gemIcon.y, 11, 11)
+                renderer.addGfx(gemIcon.gfx, 8, this.hook.size.y / 2 - 6, gemIcon!.x, gemIcon!.y, 11, 11)
 
                 // adds the gem level
                 if (this.gem.level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (this.gem.level - 1), 0, 7, 5)
