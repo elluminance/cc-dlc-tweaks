@@ -41,6 +41,14 @@
             "menu-titles": {
                 "geodeOpening": "Geode Opening",
                 "el-gemEquip": "Gem Equipping"
+            },
+
+            "sort": {
+                "el-gem-cost": "Cost",
+
+                "des": {
+                    "el-gem-cost": "Sorts gems by power cost. Highest first."
+                }
             }
         },
         "shop": {
@@ -64,8 +72,11 @@
             "gem-equip-button": "To Gems",
             "gem-equip-button-description": "View and equip Gems to power up even further!",
             "gui-gem-cost": "Power:",
+            "cost-heading": "Cost",
 
             "special-gem-names": {
+                "UNKNOWN": "Unknown Gem",
+
                 "STAT_MAXHP": "HP Up",
                 "STAT_ATTACK": "Attack Up",
                 "STAT_DEFENSE": "Defense Up",
@@ -79,6 +90,8 @@
             },
 
             "special-stat-names": {
+                "UNKNOWN": "No Stat",
+
                 "STAT_MAXHP": "Max HP",
                 "STAT_ATTACK": "Attack",
                 "STAT_DEFENSE": "Defense",

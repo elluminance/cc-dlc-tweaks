@@ -15,7 +15,15 @@ type Gem = el.GemDatabase.Gem;
 export default function () {
     el.GemDatabase = ig.Class.extend({
         guiImage: new ig.Image("media/gui/el-mod-gui.png"),
-        gems: {},
+        gems: {
+            FALLBACK: {
+                stat: "UNKNOWN",
+                costs: [0,0,0,0,0,0],
+                gemColor: el.GEM_COLORS.DEFAULT,
+                values: [0,0,0,0,0,0],
+                order: 100000    
+            }
+        },
         gemInventory: [],
         equippedGems: [],
         activeBonuses: {
@@ -57,6 +65,7 @@ export default function () {
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
+                    order: gemType.order,
                     costs: gemType.costs,
                 }
             })
@@ -86,10 +95,10 @@ export default function () {
         },
 
         getGemRoot(gem) {
-            return this.gems[gem.gemRoot];
+            return this.gems[gem.gemRoot] ?? this.gems["FALLBACK"];
         },
 
-        getGemName(gem, withIcon) {
+        getGemName(gem, withIcon, excludeLevel) {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
                 statPart = "",
                 gemRoot = this.getGemRoot(gem),
@@ -104,17 +113,13 @@ export default function () {
                 statPart = ig.lang.get(`sc.menu.equip.modifier.${statName}`)
             }
             
-            return `${icon}${statPart} ${integerToRomanNumeral(gem.level)}`;
+            return excludeLevel ? `${icon}${statPart}` : `${icon}${statPart} ${integerToRomanNumeral(gem.level)}`;
         },
 
         getGemStatBonusString(gem, includeValue) {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-stat-names");
             let workingString = "";
             const gemRoot = this.getGemRoot(gem);
-
-            if(!gemRoot) {
-                return "Unknown Stat +0%";
-            }
 
             const gemStat = gemRoot.stat;
 
@@ -140,6 +145,54 @@ export default function () {
 
         getTotalGemCosts() {
             return this.equippedGems.reduce((value, gem) => value + this.getGemCost(gem), 0);
+        },
+
+        sortGems(sortMethod) {
+            let invCopy = [...this.gemInventory]
+            switch(sortMethod) {
+                case el.GEM_SORT_TYPE.ORDER: 
+                    invCopy.sort((a, b) => {
+                        let gemA = this.getGemRoot(a);
+                        let gemB = this.getGemRoot(b);
+                        
+                        if (gemA == gemB) {
+                            return b.level - a.level;
+                        } else if (gemA.order == gemB.order) {
+                            return this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
+                        } else {
+                            return gemA.order - gemB.order;
+                        }
+                    })
+                    break;
+                case el.GEM_SORT_TYPE.LEVEL:
+                    invCopy.sort((a, b) => {
+                        let result = b.level - a.level;
+                        if(result == 0) {
+                            result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
+                        }
+                        return b.level - a.level;
+                    })    
+                    break;
+                case el.GEM_SORT_TYPE.NAME:
+                    invCopy.sort((a, b) => {
+                        let nameA = this.getGemName(a, false, true),
+                            nameB = this.getGemName(b, false, true),
+                            result = nameA.localeCompare(nameB);
+                        if (result == 0) result = b.level - a.level;
+                        return result;
+                    })
+                    break;
+                case el.GEM_SORT_TYPE.COST:
+                    invCopy.sort((a, b) => {
+                        let result = this.getGemCost(b) - this.getGemCost(a);
+                        if(result == 0) {
+                            result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
+                        }
+                        return result;
+                    })
+            }
+
+            return invCopy;
         },
         //#endregion
 

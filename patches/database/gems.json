@@ -5,56 +5,65 @@
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
+                "costs": [2, 5, 9, 14, 20, 27],
+                "order": 0
             },
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
+                "costs": [2, 5, 9, 14, 20, 27],
+                "order": 1
             },
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
+                "costs": [2, 5, 9, 14, 20, 27],
+                "order": 2
             },
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
+                "costs": [2, 5, 9, 14, 20, 27],
+                "order": 3
             },
 
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "DIAMOND",
                 "valueIncrease": 0.04,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "costs": [1, 3, 6, 10, 15, 20],
+                "order": 4
             },
             "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "costs": [1, 3, 6, 10, 15, 20],
+                "order": 5
             },
             "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
                 "gemColor": "GARNET",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "costs": [1, 3, 6, 10, 15, 20],
+                "order": 6
             },
             "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
                 "gemColor": "CITRINE",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "costs": [1, 3, 6, 10, 15, 20],
+                "order": 7
             },
             "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
                 "gemColor": "TOPAZ",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20]
+                "costs": [1, 3, 6, 10, 15, 20],
+                "order": 8
             }
         }
     }

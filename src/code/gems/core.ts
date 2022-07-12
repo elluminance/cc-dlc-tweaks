@@ -19,6 +19,13 @@ export default function() {
         BLOODSTONE: 12,
     }
 
+    el.GEM_SORT_TYPE = {
+        ORDER: 1,
+        LEVEL: 2,
+        NAME: 3,
+        COST: 4,
+    }
+
     gemDatabase();
     gui();
     params();
