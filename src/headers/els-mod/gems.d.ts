@@ -144,7 +144,7 @@ declare global {
 
                 showMenu(this: this): void;
                 hideMenu(this: this): void;
-                _addListItems(this: this): void;
+                _addListItems(this: this, refocus?: boolean): void;
             }
             interface RightPanelConstructor extends ImpactClass<InventoryPanel> {
                 new (buttonInteract: ig.ButtonInteractEntry): InventoryPanel;

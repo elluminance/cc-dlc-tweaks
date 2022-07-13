@@ -284,18 +284,28 @@ export default function () {
 
         equipGem(gem) {
             const gemRoot = this.getGemRoot(gem);
-            if(this.equippedGems.find(
+            let matchIndex = this.equippedGems.findIndex(
                 equip => this.getGemRoot(equip)?.stat == gemRoot?.stat
-            )) return false;
-
-            if (this.equippedGems.length >= this.maxSlots) {
-                return false;
-            }
-            if((this.getTotalGemCosts() + this.getGemCost(gem)) > this.maxPower) {
+            );
+            
+            if (matchIndex == -1 && this.equippedGems.length >= this.maxSlots) {
                 return false;
             }
 
-            this.equippedGems.push(gem);
+            let newCost = this.getTotalGemCosts() + this.getGemCost(gem);
+            if(matchIndex !== -1) {
+                newCost -= this.getGemCost(this.equippedGems[matchIndex]);
+            }
+            if(newCost > this.maxPower) {
+                return false;
+            }
+
+            if(matchIndex == -1) {
+                this.equippedGems.push(gem);
+            } else {
+                this.gemInventory.push(this.equippedGems[matchIndex]);
+                this.equippedGems[matchIndex] = gem;
+            }
             this.compileGemBonuses();
             sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
             return true;

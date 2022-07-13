@@ -325,7 +325,7 @@ export default function () {
             if(model == sc.menu) {
                 switch (message) {
                     case sc.MENU_EVENT.EQUIP_CHANGED: 
-                        this._addListItems();
+                        this._addListItems(true);
                         break;
                     case sc.MENU_EVENT.SORT_LIST:
                         this.sortMethod = (data as any).data.sortType;
@@ -341,8 +341,14 @@ export default function () {
             gui.hook.pos.x += 1;
         },
 
-        _addListItems() {
-            this.list.clear();
+        _addListItems(refocus) {
+            let lastIndex = 0;
+            let toScroll = 0
+            if(refocus) {
+                lastIndex = this.list.buttonGroup.current.y;
+                toScroll = -this.list.box.hook.scroll.y;
+            }
+            this.list.clear(refocus);
             let gemList = el.gemDatabase.sortGems(this.sortMethod);
             gemList.forEach(gem => {
                 let button = new el.GemButton(gem, true);
@@ -361,6 +367,10 @@ export default function () {
 
                 this.addButton(button);
             })
+
+            if(refocus) {
+                this.list.scrollToY(toScroll, true);
+            }
         },
     })
 
@@ -453,7 +463,7 @@ export default function () {
                 }
             })
 
-            this.costValues.setText(`${el.gemDatabase.getTotalGemCosts()}/${el.gemDatabase.maxPower}`);
+            this.costValues.setText(`${el.gemDatabase.maxPower - el.gemDatabase.getTotalGemCosts()}/${el.gemDatabase.maxPower}`);
         },
 
         show() {
@@ -750,6 +760,7 @@ export default function () {
 
         updateText() {
             if (!this.active) {
+                delete this.annotation;
                 this.mainText.setText("");
                 this.effectText.setText("");
                 this.costText.setText("");
@@ -769,6 +780,7 @@ export default function () {
                     }
                 }
             } else {
+                delete this.annotation;
                 this.mainText.setText("");
                 this.effectText.setText("");
                 this.costText.setText(`\\c[4]${ig.lang.get("sc.gui.el-gems.equip-entry.cost-text")}`.replace("[!]", "-"))

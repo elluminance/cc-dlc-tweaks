@@ -64,7 +64,19 @@
                                 "Welcome to the Gem Equipping Menu!",
                                 "......",
                                 "This is where you can look at the Gems you have collected and then equip them to boost your stats!",
-                                ""
+                                "......",
+                                "On the right panel, you can click on a gem to equip it.",
+                                "On the left panel, you can see your currently equipped gems, as well as the bonus stats they provide you. You can click to remove them.",
+                                "......",
+                                "You may only have one gem of a type enabled at a time - there is no stacking buffs for the same stat/modifier!"
+                            ]
+                        },
+                        {
+                            "title": "About Gem Power",
+                            "content": [
+                                "\\c[3]Gem Power\\c[0] is a measure of your ability to use powerful gems. The more powerful the gem, the more costly it is to equip it.",
+                                "Every gem has a cost associated with it. This can be seen both on the inventory panel, as well as the corner of a currently filled gem slot.",
+                                "By raising your maximum \\c[3]Gem Power\\c[0], you can equip better and better gems!"
                             ]
                         }
                     ],
@@ -96,7 +108,7 @@
         "el-gems": {
             "gem-equip-button": "To Gems",
             "gem-equip-button-description": "View and equip Gems to power up even further!",
-            "gui-gem-cost": "Power:",
+            "gui-gem-cost": "Remaining Power:",
             "cost-heading": "Cost",
 
             "special-gem-names": {
