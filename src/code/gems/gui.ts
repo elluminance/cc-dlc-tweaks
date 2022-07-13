@@ -5,6 +5,48 @@ export default function () {
     const mainGuiGfx = new ig.Image("media/gui/el-mod-gui.png");
     const vanillaGuiGfx = new ig.Image("media/gui/buttons.png")
 
+    function getStatLangString(stat: string) {
+        let titlePath: string, descPath: string;
+        
+        switch(stat) {
+            case "STAT_HP":
+                descPath = titlePath = "maxhp";
+                break;
+            case "STAT_ATTACK":
+                descPath = titlePath = "atk";
+                break;
+            case "STAT_DEFENSE":
+                descPath = titlePath = "def";
+                break;
+            case "STAT_FOCUS":
+                descPath = titlePath = "foc";
+                break;
+            case "NEUTRAL_RESIST":
+                descPath = titlePath = "neutral";
+                break;
+            case "HEAT_RESIST":
+                descPath = titlePath = "heat";
+                break;
+            case "COLD_RESIST":
+                descPath = titlePath = "cold";
+                break;
+            case "SHOCK_RESIST":
+                descPath = titlePath = "shock";
+                break;
+            case "WAVE_RESIST":
+                descPath = titlePath = "wave";
+                break;
+            default:
+                titlePath = `modifier.${stat}`;
+                descPath = stat;
+                break;
+        }
+        return {
+            title: `sc.gui.menu.equip.${titlePath}`,
+            description: `sc.gui.menu.equip.descriptions.${descPath}`,
+        }
+    }
+
     el.GemButton = sc.ButtonGui.extend({
         gem: null,
         costNumber: null,
@@ -111,12 +153,11 @@ export default function () {
 
             this.rightPanel = new el.GemEquipMenu.RightPanel(sc.menu.buttonInteract);
             this.leftPanel = new el.GemEquipMenu.EquippedGemsPanel(sc.menu.buttonInteract);
-            
+
             this.addChildGui(this.rightPanel);
             this.addChildGui(this.leftPanel);
 
             //#region Hotkeys
-
             this.sortMenu = new sc.SortMenu(this.onSort.bind(this));
             this.sortMenu.addButton("auto", el.GEM_SORT_TYPE.ORDER, 0);
             this.sortMenu.addButton("name", el.GEM_SORT_TYPE.NAME, 1);
@@ -141,6 +182,28 @@ export default function () {
             };
             this.sortHotkey.onButtonPress = this.onSortPress.bind(this);
             this.updateSortText(ig.lang.get("sc.gui.menu.sort.auto"));
+
+            this.helpHotkey = new sc.ButtonGui(`\\i[help]${ig.lang.get("sc.gui.menu.hotkeys.help")}`, void 0, true, sc.BUTTON_TYPE.SMALL);
+            this.helpHotkey.keepMouseFocus = true;
+            this.helpHotkey.hook.transitions = {
+                DEFAULT: {
+                    state: {},
+                    time: 0.2,
+                    timeFunction: KEY_SPLINES.EASE
+                },
+                HIDDEN: {
+                    state: {
+                        offsetY: -this.sortHotkey.hook.size.y
+                    },
+                    time: 0.2,
+                    timeFunction: KEY_SPLINES.LINEAR
+                }
+            };
+            this.helpHotkey.onButtonPress = this.onHelpPress.bind(this);
+
+            this.helpGui = new sc.HelpScreen(this, ig.lang.get("sc.gui.menu.help-texts.el-gem-equip.title"), ig.lang.get("sc.gui.menu.help-texts.el-gem-equip.pages"), this.commitHotkeys.bind(this), true);
+            this.helpGui.hook.zIndex = 15E4;
+            this.helpGui.hook.pauseGui = true;
             //#endregion
 
         },
@@ -164,6 +227,8 @@ export default function () {
             this.leftPanel.hide();
 
             sc.menu.buttonInteract.removeButtonGroup(this.rightPanel.list.buttonGroup);
+            sc.menu.buttonInteract.removeGlobalButton(this.sortHotkey);
+            sc.menu.buttonInteract.removeGlobalButton(this.helpHotkey);
             ig.interact.removeEntry(this.buttonInteract);
         },
 
@@ -185,10 +250,22 @@ export default function () {
             }
         },
 
+        onHelpPress() {
+            sc.menu.removeHotkeys();
+            ig.gui.addGuiElement(this.helpGui);
+            this.helpGui.openMenu();
+        },
+
         addHotkeys() {
             sc.menu.buttonInteract.addGlobalButton(this.sortHotkey, sc.control.menuHotkeyHelp3);
+            sc.menu.buttonInteract.addGlobalButton(this.helpHotkey, sc.control.menuHotkeyHelp);
+            this.commitHotkeys();
+        },
+
+        commitHotkeys() {
             sc.menu.addHotkey(() => this.sortHotkey);
-            sc.menu.commitHotkeys()
+            sc.menu.addHotkey(() => this.helpHotkey);
+            sc.menu.commitHotkeys();            
         },
 
         updateSortText(text) {
@@ -281,6 +358,7 @@ export default function () {
                     }
                     sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
                 }
+
                 this.addButton(button);
             })
         },
@@ -322,7 +400,7 @@ export default function () {
                 offset += button.hook.size.y + 1;
 
                 this.equipButtons.push(button);
-                this.buttonGroup.addFocusGui(button);
+                this.buttonGroup.addFocusGui(button, -1, i);
                 this.addChildGui(button);
             }
             buttonInteract.addParallelGroup(this.buttonGroup);
@@ -340,6 +418,25 @@ export default function () {
             })
             this.costText.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_BOTTOM);
             this.costText.setPos(4 + this.costValues.hook.size.x, 0)
+
+            this.costText.annotation = {
+                content: {
+                    title: "sc.gui.menu.help-texts.el-gem-equip.gem-power.title",
+                    description: "sc.gui.menu.help-texts.el-gem-equip.gem-power.description"
+                },
+                size: {
+                    x: this.costValues.hook.size.x + this.costText.hook.size.x + 5,
+                    y: 14,
+                },
+                offset: {
+                    x: -2,
+                    y: -1
+                },
+                index: {
+                    x: 0,
+                    y: 7
+                }
+            }
 
             this.addChildGui(this.costValues);
             this.addChildGui(this.costText);
@@ -380,7 +477,6 @@ export default function () {
             }
         },
     })
-
 
     el.GemEquipMenu.EquippedGemsPanel.Entry = ig.FocusGui.extend({
         mainText: null,
@@ -661,6 +757,17 @@ export default function () {
                 this.mainText.setText(el.gemDatabase.getGemName(this.gem));
                 this.effectText.setText(`\\c[4]\\i[el-gray-arrow]${el.gemDatabase.getGemStatBonusString(this.gem, true)}`);
                 this.costText.setText(`${ig.lang.get("sc.gui.el-gems.equip-entry.cost-text").replace("[!]", el.gemDatabase.getGemCost(this.gem).toString())}`);
+                this.annotation = {
+                    content: getStatLangString(el.gemDatabase.getGemRoot(this.gem).stat),
+                    size: {
+                        x: "dyn",
+                        y: "dyn"
+                    },
+                    index: {
+                        x: this.id,
+                        y: 0,
+                    }
+                }
             } else {
                 this.mainText.setText("");
                 this.effectText.setText("");

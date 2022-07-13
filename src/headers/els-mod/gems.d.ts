@@ -202,12 +202,15 @@ declare global {
             sortHotkey: sc.ButtonGui;
             sortMenu: sc.SortMenu;
             helpHotkey: sc.ButtonGui;
+            helpGui: sc.HelpScreen;
 
             onSort(this: this, button: ig.FocusGui): void;
             onSortPress(this: this): void;
+            onHelpPress(this: this): void;
+            createHelpGui(this: this): void;
             updateSortText(this: this, textPath: string): void;
             addHotkeys(this: this): void;
-            onHotkeySortCheck(this: this): boolean;
+            commitHotkeys(this: this): void;
         }
         interface GemEquipMenuConstructor extends ImpactClass<GemEquipMenu> {
             new (): el.GemEquipMenu;

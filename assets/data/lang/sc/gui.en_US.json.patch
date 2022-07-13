@@ -2,6 +2,8 @@
     "labels": {
         "menu": {
             "equip": {
+                "neutral": "Neutral Resistance",
+
                 "modifier": {
                     "EL_RISKTAKER": "Risktaker",
                     "EL_LIFESTEAL": "Vampirism",
@@ -20,6 +22,8 @@
                     "EL_WAVE_BOOST": "Wave Boost"
                 },
                 "descriptions": {
+                    "neutral": "Resistance against the neutral element. The higher the number the less damage you take from neutral attacks.",
+
                     "EL_RISKTAKER": "Increases the amount of damage dealt and received.",
                     "EL_LIFESTEAL": "\\c[1]Disables HP Regeneration in combat\\c[0], but dealing damage will steal a portion of the target's HP.",
                     "EL_GEODE_FINDER": "Increases the chance that an enemy will drop a Geode. Stacks with other item modifiers.",
@@ -48,6 +52,27 @@
 
                 "des": {
                     "el-gem-cost": "Sorts gems by power cost. Highest first."
+                }
+            },
+
+            "help-texts": {
+                "el-gem-equip": {
+                    "title": "Gem Equipping",
+                    "pages": [
+                        {
+                            "content": [
+                                "Welcome to the Gem Equipping Menu!",
+                                "......",
+                                "This is where you can look at the Gems you have collected and then equip them to boost your stats!",
+                                ""
+                            ]
+                        }
+                    ],
+
+                    "gem-power": {
+                        "title": "Gem Power",
+                        "description": "Controls how much Gem Power one has for equipping gems."
+                    }
                 }
             }
         },
