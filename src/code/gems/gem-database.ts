@@ -15,7 +15,7 @@ type Gem = el.GemDatabase.Gem;
 export default function () {
     el.GemDatabase = ig.Class.extend({
         guiImage: new ig.Image("media/gui/el-mod-gui.png"),
-        gems: {
+        gemRoots: {
             FALLBACK: {
                 stat: "UNKNOWN",
                 costs: [0,0,0,0,0,0],
@@ -61,7 +61,7 @@ export default function () {
                     return;
                 };
 
-                this.gems[key] = {
+                this.gemRoots[key] = {
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
@@ -95,7 +95,7 @@ export default function () {
         },
 
         getGemRoot(gem) {
-            return this.gems[gem.gemRoot] ?? this.gems["FALLBACK"];
+            return this.gemRoots[gem.gemRoot] ?? this.gemRoots["FALLBACK"];
         },
 
         getGemName(gem, withIcon, excludeLevel) {
@@ -200,7 +200,7 @@ export default function () {
         createGem(gemRoot, level) {
             level ??= 1;
             
-            if(!(gemRoot in this.gems)) {
+            if(!(gemRoot in this.gemRoots)) {
                 console.warn(`Unknown gem ${gemRoot}!`);
                 return;
             }
@@ -316,6 +316,23 @@ export default function () {
             sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
             return this.equippedGems.splice(index, 1)[0];
         },
+
+        canEquipGem(gem) {
+            if(!gem) return false;
+            if(!(gem.gemRoot in this.gemRoots)) return false;
+
+            let gemMatch = this.equippedGems.find(equip => equip.gemRoot == gem.gemRoot);
+
+            if(gemMatch) {
+                if(gemMatch.level == gem.level) return false;
+                let costDiff = this.getTotalGemCosts() - this.getGemCost(gemMatch);
+                if((costDiff + this.getGemCost(gem)) > this.maxPower) return false;
+            } else {
+                if(this.equippedGems.length >= this.maxSlots) return false;
+            }
+
+            return true;
+        },
         //#endregion
         
         //#region Storage
@@ -333,6 +350,15 @@ export default function () {
             this.gemInventory = gemData?.inventory ?? [];
             this.equippedGems = gemData?.equipped ?? [];
             
+            let i = 0;
+
+            while (i < this.equippedGems.length) {
+                console.log(i);
+                if(!(this.equippedGems[i].gemRoot in this.gemRoots)) {
+                    this.gemInventory.push(...this.equippedGems.splice(i, 1));
+                } else i++;
+            }
+
             this.compileGemBonuses();
         }
         //#endregion

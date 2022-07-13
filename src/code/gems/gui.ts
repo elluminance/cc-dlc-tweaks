@@ -354,9 +354,11 @@ export default function () {
                 let button = new el.GemButton(gem, true);
                 button.submitSound = undefined;
 
+                button.setActive(el.gemDatabase.canEquipGem(gem));
+
                 button.onButtonPress = () => {
                     let equipped = el.gemDatabase.equipGem(gem);
-                    if(equipped) {
+                    if(button.active && equipped) {
                         el.gemDatabase.removeGem(gem);
                         sc.BUTTON_SOUND.submit.play();
                     } else {

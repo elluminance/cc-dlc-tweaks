@@ -93,7 +93,7 @@ declare global {
         }
         interface GemDatabase extends ig.Class, ig.Storage.Listener {
             guiImage: ig.Image;
-            gems: Record<string, GemDatabase.GemRoot>;
+            gemRoots: Record<string, GemDatabase.GemRoot>;
             gemInventory: el.GemDatabase.Gem[];
             equippedGems: el.GemDatabase.Gem[];
             activeBonuses: el.GemDatabase.ParamBonuses;
@@ -103,20 +103,20 @@ declare global {
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;
 
-            getGemRoot(this: this, gem: el.GemDatabase.Gem): el.GemDatabase.GemRoot;
+            getGemRoot(this: this, gem: GemDatabase.Gem): GemDatabase.GemRoot;
             getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean, excludeLevel?: boolean): string;
-            getGemStatBonusString(this: this, gem: GemDatabase.Gem, includeValue?: boolean): string;
-            getGemCost(this: this, gem: el.GemDatabase.Gem): number;
+            getGemStatBonusString(this: this, gem: el.GemDatabase.Gem, includeValue?: boolean): string;
+            getGemCost(this: this, gem: GemDatabase.Gem): number;
             getTotalGemCosts(this: this): number;
             sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): GemDatabase.Gem[];
             
             createGem(this: this, gemRoot: string, level: number): void;
-            addGem(this: this, gem: el.GemDatabase.Gem): void;
+            addGem(this: this, gem: GemDatabase.Gem): void;
             removeGem(this: this, gem: GemDatabase.Gem): void;
             compileGemBonuses(this: this): void;
             equipGem(this: this, gem: GemDatabase.Gem): boolean;
-            dequipGemByIndex(this: this, index: number): el.GemDatabase.Gem | undefined;
-
+            dequipGemByIndex(this: this, index: number): GemDatabase.Gem | undefined;
+            canEquipGem(this: this, gem: GemDatabase.Gem): boolean;
         }
         interface GemDatabaseConstructor extends ImpactClass<GemDatabase> {
             new (): GemDatabase;

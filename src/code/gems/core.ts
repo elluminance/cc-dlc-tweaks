@@ -29,16 +29,4 @@ export default function() {
     gemDatabase();
     gui();
     params();
-
-    //@ts-ignore
-    el.addDebugGems = () => {
-        el.gemDatabase.createGem("MAXHP", 5);
-        el.gemDatabase.createGem("MAXHP", 6);
-        el.gemDatabase.createGem("ATTACK", 3);
-        el.gemDatabase.createGem("ATTACK", 6);
-        el.gemDatabase.createGem("DEFENSE", 4);
-        el.gemDatabase.createGem("DEFENSE", 2);
-        el.gemDatabase.createGem("FOCUS", 3);
-        el.gemDatabase.createGem("FOCUS", 1);
-    }
 }
