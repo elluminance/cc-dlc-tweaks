@@ -44,7 +44,7 @@ export default function () {
 
             let values: number[];
             ig.storage.register(this);
-
+            let order = 0;
             Object.entries(gemInfo.gemTypes).forEach(([key, gemType]) => {
                 if(gemType.values) {
                     if(gemType.values.length >= 6) values = gemType.values;
@@ -52,7 +52,7 @@ export default function () {
                         ig.warn(`Warning: Gem entry for ${gemType.stat} found with less than 6 values! Skipping...`);
                         return;
                     };
-                } else if(gemType.valueIncrease) {
+                } else if(gemType.valueIncrease != undefined) {
                     values = Array(6).fill(0).map(
                         (_, index) => ((index + 1) * gemType.valueIncrease!)
                     );
@@ -65,7 +65,7 @@ export default function () {
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
-                    order: gemType.order,
+                    order: gemType.order ?? order++,
                     costs: gemType.costs,
                 }
             })
@@ -110,7 +110,7 @@ export default function () {
             } else if(statName in specialLangEntries) {
                 statPart = specialLangEntries[statName]
             } else {
-                statPart = ig.lang.get(`sc.menu.equip.modifier.${statName}`)
+                statPart = ig.lang.get(`sc.gui.menu.equip.modifier.${statName}`)
             }
             
             return excludeLevel ? `${icon}${statPart}` : `${icon}${statPart} ${integerToRomanNumeral(gem.level)}`;
@@ -126,7 +126,7 @@ export default function () {
             if(gemStat in specialLangEntries) {
                 workingString = specialLangEntries[gemStat];
             } else {
-                workingString = ig.lang.get(`sc.menu.equip.modifier.${gemStat}`);
+                workingString = ig.lang.get(`sc.gui.menu.equip.modifier.${gemStat}`);
             };
 
             if(includeValue) {
@@ -353,7 +353,6 @@ export default function () {
             let i = 0;
 
             while (i < this.equippedGems.length) {
-                console.log(i);
                 if(!(this.equippedGems[i].gemRoot in this.gemRoots)) {
                     this.gemInventory.push(...this.equippedGems.splice(i, 1));
                 } else i++;

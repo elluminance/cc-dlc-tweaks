@@ -5,70 +5,405 @@
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27],
-                "order": 0
+                "costs": [2, 5, 9, 14, 20, 27]
             },
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27],
-                "order": 1
+                "costs": [2, 5, 9, 14, 20, 27 ]
             },
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27],
-                "order": 2
+                "costs": [2, 5, 9, 14, 20, 27]
             },
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
                 "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27],
-                "order": 3
+                "costs": [2, 5, 9, 14, 20, 27]
             },
 
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "DIAMOND",
                 "valueIncrease": 0.04,
-                "costs": [1, 3, 6, 10, 15, 20],
-                "order": 4
+                "costs": [1, 3, 6, 10, 14, 20]
             },
             "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20],
-                "order": 5
+                "costs": [1, 3, 6, 10, 14, 20]
             },
             "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
-                "gemColor": "GARNET",
+                "gemColor": "CITRINE",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20],
-                "order": 6
+                "costs": [1, 3, 6, 10, 14, 20]
             },
             "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
-                "gemColor": "CITRINE",
+                "gemColor": "TOPAZ",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20],
-                "order": 7
+                "costs": [1, 3, 6, 10, 14, 20]
             },
             "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
+                "gemColor": "GARNET",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 14, 20]
+            },
+
+            "MELEE_DMG": {
+                "stat": "MELEE_DMG",
+                "gemColor": "MOONSTONE",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "RANGED_DMG": {
+                "stat": "RANGED_DMG",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "CRITICAL_DMG": {
+                "stat": "CRITICAL_DMG",
+                "gemColor": "TOPAZ",
+                "valueIncrease": 0.06,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "BREAK_DMG": {
+                "stat": "BREAK_DMG",
+                "gemColor": "AQUAMARINE",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "BERSERK": {
+                "stat": "BERSERK",
+                "gemColor": "GARNET",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "CROSS_COUNTER": {
+                "stat": "CROSS_COUNTER",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 14, 20]
+            },
+            "MOMENTUM": {
+                "stat": "MOMENTUM",
+                "gemColor": "ONYX",
+                "valueIncrease": 0.02,
+                "costs": [4, 9, 15, 21, 28, 35]
+            },
+
+            "ASSAULT": {
+                "stat": "ASSAULT",
+                "gemColor": "RUBY",
+                "valueIncrease": 0.15,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+
+            "DASH_INVINC": {
+                "stat": "DASH_INVINC",
+                "gemColor": "AMETHYST",
+                "valueIncrease": 0.1,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+
+            "GUARD_SP": {
+                "stat": "GUARD_SP",
+                "gemColor": "MOONSTONE",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "PERFECT_GUARD_WINDOW": {
+                "stat": "PERFECT_GUARD_WINDOW",
+                "gemColor": "AQUAMARINE",
+                "valueIncrease": [0.2, 0.4, 0.6, 0.75, 0.9, 1],
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "SPIKE_DMG": {
+                "stat": "SPIKE_DMG",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.08,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "GUARD_STRENGTH": {
+                "stat": "GUARD_STRENGTH",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+
+            "HP_REGEN": {
+                "stat": "HP_REGEN",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "SP_REGEN": {
+                "stat": "SP_REGEN",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "OVERHEAT_REDUCTION": {
+                "stat": "OVERHEAT_REDUCTION",
+                "gemColor": "CITRINE",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 14, 20]
+            },
+
+            "AIM_SPEED": {
+                "stat": "AIM_SPEED",
+                "gemColor": "MOONSTONE",
+                "valueIncrease": 0.15,
+                "costs": [1, 3, 6, 10, 14, 20]
+            },
+            "AIM_STABILITY": {
+                "stat": "AIM_STABILITY",
+                "gemColor": "AMETHYST",
+                "valueIncrease": 0.15,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "AIMING_MOVEMENT": {
+                "stat": "AIMING_MOVEMENT",
+                "gemColor": "AQUAMARINE",
+                "values": [0.1, 0.2, 0.27, 0.35, 0.43, 0.5],
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "KNOCKBACK": {
+                "stat": "KNOCKBACK",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            
+            "STUN_THRESHOLD": {
+                "stat": "STUN_THRESHOLD",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+
+            "XP_PLUS": {
+                "stat": "XP_PLUS",
+                "gemColor": "CITRINE",
+                "valueIncrease": 0.15,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "DROP_CHANCE": {
+                "stat": "DROP_CHANCE",
+                "gemColor": "ONYX",
+                "valueIncrease": 0.1,
+                "costs": [3, 6, 10, 15, 22, 28]
+            },
+            "MONEY_PLUS": {
+                "stat": "MONEY_PLUS",
+                "gemColor": "AQUAMARINE",
+                "valueIncrease": 0.1,
+                "costs": [3, 6, 10, 15, 22, 28]
+            },
+
+            "ITEM_BOOST": {
+                "stat": "ITEM_BOOST",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.1,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+
+            "COND_HEALING": {
+                "stat": "COND_HEALING",
+                "gemColor": "AQUAMARINE",
+                "valueIncrease": 0.05,
+                "costs": [3, 6, 10, 15, 22, 28]
+            },
+
+            "COND_EFFECT_ALL": {
+                "stat": "COND_EFFECT_ALL",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "COND_EFFECT_HEAT": {
+                "stat": "COND_EFFECT_HEAT",
+                "gemColor": "RUBY",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_EFFECT_COLD": {
+                "stat": "COND_EFFECT_COLD",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_EFFECT_SHOCK": {
+                "stat": "COND_EFFECT_SHOCK",
+                "gemColor": "AMETHYST",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_EFFECT_WAVE": {
+                "stat": "COND_EFFECT_WAVE",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+
+            "EL_COND_GUARD_ALL": {
+                "stat": "EL_COND_GUARD_ALL",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "COND_GUARD_HEAT": {
+                "stat": "COND_GUARD_HEAT",
+                "gemColor": "MOONSTONE",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_GUARD_COLD": {
+                "stat": "COND_GUARD_COLD",
+                "gemColor": "CITRINE",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_GUARD_SHOCK": {
+                "stat": "COND_GUARD_SHOCK",
                 "gemColor": "TOPAZ",
                 "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 20],
-                "order": 8
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+            "COND_GUARD_WAVE": {
+                "stat": "COND_GUARD_WAVE",
+                "gemColor": "GARNET",
+                "valueIncrease": 0.05,
+                "costs": [1, 3, 6, 10, 15, 22]
+            },
+
+
+            "EL_RISKTAKER": {
+                "stat": "EL_RISKTAKER",
+                "gemColor": "ONYX",
+                "valueIncrease": 0.05,
+                "costs": [3, 6, 10, 15, 22, 28]
+            },
+            "EL_LIFESTEAL": {
+                "stat": "EL_LIFESTEAL",
+                "gemColor": "BLOODSTONE",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "EL_OVERHEAL": {
+                "stat": "EL_OVERHEAL",
+                "gemColor": "AQUAMARINE",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "EL_CRIT_BOOST": {
+                "stat": "EL_CRIT_BOOST",
+                "gemColor": "BLOODSTONE",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+
+            "EL_NEUTRAL_BOOST": {
+                "stat": "EL_NEUTRAL_BOOST",
+                "gemColor": "DIAMOND",
+                "valueIncrease": 0.05,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "EL_HEAT_BOOST": {
+                "stat": "EL_HEAT_BOOST",
+                "gemColor": "RUBY",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "EL_COLD_BOOST": {
+                "stat": "EL_COLD_BOOST",
+                "gemColor": "LAPIS_LAZULI",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "EL_SHOCK_BOOST": {
+                "stat": "EL_SHOCK_BOOST",
+                "gemColor": "AMETHYST",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
+            },
+            "EL_WAVE_BOOST": {
+                "stat": "EL_WAVE_BOOST",
+                "gemColor": "EMERALD",
+                "valueIncrease": 0.04,
+                "costs": [2, 5, 9, 13, 18, 24]
             }
         },
 
         "uniqueGems": {
-            
+            "APPETITE": {
+                "stat": "APPETITE",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "ITEM_GUARD": {
+                "stat": "ITEM_GUARD",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "ONCE_MORE": {
+                "stat": "ONCE_MORE",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "DASH_STEP": {
+                "stat": "DASH_STEP",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "PERFECT_GUARD_RESET": {
+                "stat": "PERFECT_GUARD_RESET",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "GUARD_AREA": {
+                "stat": "GUARD_AREA",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "RANK_PLANTS": {
+                "stat": "RANK_PLANTS",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "SPIDER_SLOW_DOWN_GUARD": {
+                "stat": "SPIDER_SLOW_DOWN_GUARD",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "BEGONE_ICE": {
+                "stat": "BEGONE_ICE",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            },
+            "EL_TRICKSTER": {
+                "stat": "EL_TRICKSTER",
+                "gemColor": "DEFAULT",
+                "valueIncrease": 0,
+                "costs": [0, 0, 0, 0, 0, 0]
+            }
         }
     }
 }

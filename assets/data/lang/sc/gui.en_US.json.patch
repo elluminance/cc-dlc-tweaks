@@ -123,7 +123,14 @@
                 "HEAT_RESIST": "Heat Armor",
                 "COLD_RESIST": "Cold Armor",
                 "SHOCK_RESIST": "Shock Armor",
-                "WAVE_RESIST": "Wave Armor"
+                "WAVE_RESIST": "Wave Armor",
+
+                "COND_GUARD_HEAT": "Burn Protect",
+                "COND_GUARD_COLD": "Chill Protect",
+                "COND_GUARD_SHOCK": "Jolt Protect",
+                "COND_GUARD_WAVE": "Mark Protect",
+
+                "EL_NEUTRAL_BOOST": "Neutral Boost"
             },
 
             "special-stat-names": {

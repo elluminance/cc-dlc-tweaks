@@ -776,6 +776,10 @@ export default function () {
                         x: "dyn",
                         y: "dyn"
                     },
+                    offset: {
+                        x: 0,
+                        y: -1,
+                    },
                     index: {
                         x: this.id,
                         y: 0,
