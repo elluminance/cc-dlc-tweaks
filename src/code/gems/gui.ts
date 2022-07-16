@@ -50,6 +50,7 @@ export default function () {
     el.GemButton = sc.ButtonGui.extend({
         gem: null,
         costNumber: null,
+        gemLevel: 0,
 
         init(gem, showCost) {
             this.showCost = showCost!;
@@ -68,11 +69,9 @@ export default function () {
                 this.addChildGui(this.costNumber);
             }
 
-            if (this.gem.level > 0) {
-                this.textChild.setDrawCallback((_width, height) => {
-                    el.gemDatabase.drawGemLevel(this.gem.level, height)
-                })
-            }
+            this.textChild.setDrawCallback((_width, height) => {
+                el.gemDatabase.drawGemLevel(el.gemDatabase.getGemLevel(gem), height)
+            })
         },
 
         updateDrawables(renderer) {
@@ -820,8 +819,9 @@ export default function () {
                 // adds the gem icon
                 renderer.addGfx(gemIcon.gfx, 8, this.hook.size.y / 2 - 6, gemIcon!.x, gemIcon!.y, 11, 11)
 
+                let level = el.gemDatabase.getGemLevel(this.gem)
                 // adds the gem level
-                if (this.gem.level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (this.gem.level - 1), 0, 7, 5)
+                if(level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (level == -1 ? 6 : level - 1), 0, 7, 5)
             }
         },
 

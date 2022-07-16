@@ -145,7 +145,10 @@
                 "HEAT_RESIST": "Heat Resistance",
                 "COLD_RESIST": "Cold Resistance",
                 "SHOCK_RESIST": "Shock Resistance",
-                "WAVE_RESIST": "Wave Resistance"
+                "WAVE_RESIST": "Wave Resistance",
+
+                "DASH_STEP": "Extra Dash(es)",
+                "APPETITE": "Buff Slot(s)"
             },
 
             "equip-entry": {

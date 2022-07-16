@@ -4,7 +4,7 @@ export default function() {
             let parentValue = this.parent(key, noHack);
             
             if(this.elGemBonuses && typeof parentValue == "number") {
-                parentValue = Math.round(parentValue as number * (this.elGemBonuses.params[key as "hp" | "attack" | "defense" | "focus"] ?? 1)) 
+                parentValue = Math.round(parentValue * (this.elGemBonuses.params[key as "hp" | "attack" | "defense" | "focus"] ?? 1)) 
             }
 
             return parentValue;
@@ -13,7 +13,7 @@ export default function() {
         getModifier(modifier) {
             let parentValue = this.parent(modifier);
             if(this.elGemBonuses) {
-                parentValue += el.gemDatabase.activeBonuses.modifiers[modifier] || 0;
+                parentValue += this.elGemBonuses.modifiers[modifier] || 0;
             }
             return parentValue;
         },

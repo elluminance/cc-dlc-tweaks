@@ -1,16 +1,19 @@
 export function integerToRomanNumeral(num: number) {
     switch(num) {
-        case 1: return "I";
-        case 2: return "II";
-        case 3: return "III";
-        case 4: return "IV";
-        case 5: return "V";
-        case 6: return "VI";
-        default: return num.toString();
+        case 1: return " I";
+        case 2: return " II";
+        case 3: return " III";
+        case 4: return " IV";
+        case 5: return " V";
+        case 6: return " VI";
+        case -1: return "";
+        default: return " " + num.toString();
     }
 }
 
 type Gem = el.GemDatabase.Gem;
+type GemRootStandard = el.GemDatabase.GemRootStandard;
+type GemRootUnique = el.GemDatabase.GemRootUnique;
 
 export default function () {
     el.GemDatabase = ig.Class.extend({
@@ -18,24 +21,15 @@ export default function () {
         gemRoots: {
             FALLBACK: {
                 stat: "UNKNOWN",
-                costs: [0,0,0,0,0,0],
                 gemColor: el.GEM_COLORS.DEFAULT,
+                costs: [0,0,0,0,0,0],
                 values: [0,0,0,0,0,0],
-                order: 100000    
+                order: 100000,
+                numberStyle: "NONE",
             }
         },
         gemInventory: [],
         equippedGems: [],
-        activeBonuses: {
-            params: {
-                hp: 1,
-                attack: 1,
-                defense: 1,
-                focus: 1,
-                elemFactor: [1, 1, 1, 1]
-            },
-            modifiers: {}
-        },
         maxPower: 99,
         maxSlots: 3,
 
@@ -65,8 +59,26 @@ export default function () {
                     stat: gemType.stat,
                     gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                     values,
+                    numberStyle: gemType.numberStyle ?? "PERCENT",
                     order: gemType.order ?? order++,
                     costs: gemType.costs,
+                    langLabel: gemType.langLabel,
+                    statLangLabel: gemType.statLangLabel,
+                }
+            })
+
+            Object.entries(gemInfo.uniqueGems).forEach(([key, gemType]) => {
+                this.gemRoots[key] = {
+                    stat: gemType.stat,
+                    gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
+                    isUniqueGem: true,
+                    order: gemType.order ?? order++,
+                    value: gemType.value,
+                    cost: gemType.cost,
+                    numberStyle: gemType.numberStyle ?? "NONE",
+                    levelOverride: gemType.levelOverride ?? -1,
+                    langLabel: gemType.langLabel,
+                    statLangLabel: gemType.statLangLabel,
                 }
             })
         },
@@ -91,7 +103,7 @@ export default function () {
         },
 
         drawGemLevel(level, height) {
-            this.guiImage.draw(6, height - 7, 23 + 8 * (level - 1), 0, 7, 5)
+            this.guiImage.draw(6, height - 7, 23 + 8 * (level == -1 ? 6 : (level - 1)), 0, 7, 5)
         },
 
         getGemRoot(gem) {
@@ -100,20 +112,31 @@ export default function () {
 
         getGemName(gem, withIcon, excludeLevel) {
             let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
-                statPart = "",
+                workingString = "",
                 gemRoot = this.getGemRoot(gem),
-                statName = gemRoot?.stat,
-                icon = withIcon ? this.gemColorToIcon(gemRoot?.gemColor) : "";
-            
-            if(!statName) {
-                statPart = "Unknown Gem"
+                statName = gemRoot?.stat;
+
+            if(withIcon) workingString = this.gemColorToIcon(gemRoot?.gemColor);
+
+            if(gemRoot.langLabel) {
+                if(typeof gemRoot.langLabel == "string") {
+                    workingString += ig.lang.get(gemRoot.langLabel)
+                } else {
+                    workingString += ig.LangLabel.getText(gemRoot.langLabel);
+                }
+            } else if(!statName) {
+                workingString += "Unknown Gem"
             } else if(statName in specialLangEntries) {
-                statPart = specialLangEntries[statName]
+                workingString += specialLangEntries[statName]
             } else {
-                statPart = ig.lang.get(`sc.gui.menu.equip.modifier.${statName}`)
+                workingString += ig.lang.get(`sc.gui.menu.equip.modifier.${statName}`)
             }
-            
-            return excludeLevel ? `${icon}${statPart}` : `${icon}${statPart} ${integerToRomanNumeral(gem.level)}`;
+
+            if(!excludeLevel) {
+                workingString += integerToRomanNumeral(this.getGemLevel(gem));
+            }
+
+            return workingString;
         },
 
         getGemStatBonusString(gem, includeValue) {
@@ -123,32 +146,74 @@ export default function () {
 
             const gemStat = gemRoot.stat;
 
-            if(gemStat in specialLangEntries) {
+            if (gemRoot.statLangLabel) {
+                if(typeof gemRoot.statLangLabel == "string") {
+                    workingString = ig.lang.get(gemRoot.statLangLabel)
+                } else {
+                    workingString = ig.LangLabel.getText(gemRoot.statLangLabel);
+                }
+            } else if(gemStat in specialLangEntries) {
                 workingString = specialLangEntries[gemStat];
             } else {
                 workingString = ig.lang.get(`sc.gui.menu.equip.modifier.${gemStat}`);
             };
 
             if(includeValue) {
-                if(!sc.MODIFIERS[gemStat as keyof sc.MODIFIERS]?.noPercent) {
-                    workingString += ` +${Math.round(gemRoot.values[gem.level-1] * 100)}%`
-                } else {
-                    workingString += ` +${gemRoot.values[gem.level-1]}`
+                let value = this.getGemStatBonus(gem);
+
+                switch(gemRoot.numberStyle) {
+                    case "PERCENT":
+                        workingString += ` +${(this.getGemStatBonus(gem) * 100).round(1)}%`;
+                        break;
+                    case "PERCENT_PREFIX": 
+                        workingString = `+${(this.getGemStatBonus(gem) * 100).round(1)}% ${workingString}`;
+                        break;
+                    case "NUMBER":
+                        workingString += ` +${value}`
+                        break;
+                    case "NUMBER_PREFIX":
+                        workingString = `+${value} ${workingString}`;
+                        break;
+                    case "PREFIX_PLUS":
+                        workingString = "+" + workingString;
+                        break;
                 }
             }
             return workingString;
         },
 
         getGemCost(gem) {
-            return this.getGemRoot(gem)?.costs[gem.level-1] || 0;
+            const root = this.getGemRoot(gem);
+            if((root as GemRootUnique).isUniqueGem) {
+                return (root as GemRootUnique).cost;
+            } else {
+                return (root as GemRootStandard)?.costs[gem.level-1] || 0;
+            }
         },
 
         getTotalGemCosts() {
             return this.equippedGems.reduce((value, gem) => value + this.getGemCost(gem), 0);
         },
 
+        getGemStatBonus(gem) {
+            const root = this.getGemRoot(gem);
+
+            if((root as GemRootUnique).isUniqueGem) {
+                return (root as GemRootUnique).value;
+            } else {
+                return (root as GemRootStandard).values[gem.level - 1];
+            }
+        },
+        
+        getGemLevel(gem) {
+            let gemRoot = this.getGemRoot(gem) as GemRootUnique;
+            if(gemRoot.levelOverride != undefined) return gemRoot.levelOverride;
+            return gem.level;
+        },
+
         sortGems(sortMethod) {
-            let invCopy = [...this.gemInventory]
+            let invCopy = [...this.gemInventory];
+
             switch(sortMethod) {
                 case el.GEM_SORT_TYPE.ORDER: 
                     invCopy.sort((a, b) => {
@@ -166,11 +231,11 @@ export default function () {
                     break;
                 case el.GEM_SORT_TYPE.LEVEL:
                     invCopy.sort((a, b) => {
-                        let result = b.level - a.level;
+                        let result = Math.max(this.getGemLevel(b), 0) - Math.max(this.getGemLevel(a), 0);
                         if(result == 0) {
                             result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
                         }
-                        return b.level - a.level;
+                        return result;
                     })    
                     break;
                 case el.GEM_SORT_TYPE.NAME:
@@ -234,43 +299,42 @@ export default function () {
 
             for(const gem of this.equippedGems) {
                 const root = this.getGemRoot(gem);
-                const gemLevel = gem.level - 1;
+                const statBonus = this.getGemStatBonus(gem);
 
                 if(!root) continue;
 
                 switch(root.stat) {
                     case "STAT_MAXHP":
-                        bonuses.params.hp += root.values[gemLevel];
+                        bonuses.params.hp += statBonus;
                         break;
                     case "STAT_ATTACK":
-                        bonuses.params.attack += root.values[gemLevel];
+                        bonuses.params.attack += statBonus;
                         break;
                     case "STAT_DEFENSE":
-                        bonuses.params.defense += root.values[gemLevel];
+                        bonuses.params.defense += statBonus;
                         break;
                     case "STAT_FOCUS":
-                        bonuses.params.focus += root.values[gemLevel];
+                        bonuses.params.focus += statBonus;
                         break;
                     case "NEUTRAL_RESIST":
-                        bonuses.params.elemFactor[0] -= root.values[gemLevel];
+                        bonuses.params.elemFactor[0] -= statBonus;
                         break;
                     case "HEAT_RESIST":
-                        bonuses.params.elemFactor[1] -= root.values[gemLevel];
+                        bonuses.params.elemFactor[1] -= statBonus;
                         break;
                     case "COLD_RESIST":
-                        bonuses.params.elemFactor[2] -= root.values[gemLevel];
+                        bonuses.params.elemFactor[2] -= statBonus;
                         break;
                     case "SHOCK_RESIST": 
-                        bonuses.params.elemFactor[3] -= root.values[gemLevel];
+                        bonuses.params.elemFactor[3] -= statBonus;
                         break;
                     case "WAVE_RESIST": 
-                        bonuses.params.elemFactor[4] -= root.values[gemLevel];
+                        bonuses.params.elemFactor[4] -= statBonus;
                         break;
                     default:
                         if(root.stat in sc.MODIFIERS){
-                            if(!(root.stat in bonuses.modifiers)) bonuses.modifiers[root.stat] = 1;
-
-                            bonuses.modifiers[root.stat] += root.values[gemLevel]
+                            if(!(root.stat in bonuses.modifiers)) bonuses.modifiers[root.stat] = 0;
+                            bonuses.modifiers[root.stat] += statBonus
                         }
                         break;
                 }
@@ -319,12 +383,14 @@ export default function () {
 
         canEquipGem(gem) {
             if(!gem) return false;
+            //checks that the gem is valid
             if(!(gem.gemRoot in this.gemRoots)) return false;
-
-            let gemMatch = this.equippedGems.find(equip => equip.gemRoot == gem.gemRoot);
-
+            
+            const gemRoot = this.getGemRoot(gem)
+            //finds gems of the same stat
+            let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped).stat == gemRoot.stat));
+            
             if(gemMatch) {
-                if(gemMatch.level == gem.level) return false;
                 let costDiff = this.getTotalGemCosts() - this.getGemCost(gemMatch);
                 if((costDiff + this.getGemCost(gem)) > this.maxPower) return false;
             } else {
@@ -353,6 +419,7 @@ export default function () {
             let i = 0;
 
             while (i < this.equippedGems.length) {
+                // Removes invalid gems and adds to inventory
                 if(!(this.equippedGems[i].gemRoot in this.gemRoots)) {
                     this.gemInventory.push(...this.equippedGems.splice(i, 1));
                 } else i++;

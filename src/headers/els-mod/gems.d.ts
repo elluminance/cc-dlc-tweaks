@@ -8,17 +8,30 @@ declare global {
             }
 
             namespace EL_Gems {
-                interface GemType {
+                interface GemTypeBase {
                     stat: string;
                     gemColor: keyof typeof el.GEM_COLORS;
+                    order?: number;
+                    numberStyle?: el.GemDatabase.GemNumberStyle;
+                    langLabel?: ig.LangLabel.Data;
+                    statLangLabel?: ig.LangLabel.Data;
+                }
+
+                interface StandardGemType extends GemTypeBase {
                     valueIncrease?: number;
                     values?: number[];
                     costs: number[];
-                    order: number;
+                }
+
+                interface UniqueGemType extends GemTypeBase {
+                    value: number;
+                    cost: number;
+                    levelOverride?: number;
                 }
             }
             interface EL_Gems {
-                gemTypes: EL_Gems.GemType[];
+                gemTypes: Record<string, EL_Gems.StandardGemType>;
+                uniqueGems: Record<string, EL_Gems.UniqueGemType>;
             }
         }
     }
@@ -58,19 +71,37 @@ declare global {
             NAME,
             COST,
         }
+
         interface GemHelper {
             gemColorToIcon: Record<el.GEM_COLORS, string>;
         }
         var GemHelper: GemHelper;
 
         namespace GemDatabase {
-            interface GemRoot {
+            type GemNumberStyle = "PERCENT" | "NUMBER" | "NONE" | "PREFIX_PLUS" | "NUMBER_PREFIX" | "PERCENT_PREFIX";
+
+            interface GemRootBase {
                 stat: string;
                 gemColor: el.GEM_COLORS;
+                order: number;
+                numberStyle: GemNumberStyle;
+                langLabel?: string | ig.LangLabel.Data;
+                statLangLabel?: string | ig.LangLabel.Data;
+            }
+            
+            interface GemRootStandard extends GemRootBase{
                 values: number[];
                 costs: number[];
-                order: number;
             }
+
+            interface GemRootUnique extends GemRootBase {
+                isUniqueGem: boolean;
+                cost: number;
+                value: number;
+                levelOverride: number;
+            }
+
+            type GemRoot = GemRootStandard | GemRootUnique; 
             
             interface Gem {
                 gemRoot: string;
@@ -106,7 +137,9 @@ declare global {
             getGemRoot(this: this, gem: GemDatabase.Gem): GemDatabase.GemRoot;
             getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean, excludeLevel?: boolean): string;
             getGemStatBonusString(this: this, gem: el.GemDatabase.Gem, includeValue?: boolean): string;
+            getGemStatBonus(this: this, gem: GemDatabase.Gem): number;
             getGemCost(this: this, gem: GemDatabase.Gem): number;
+            getGemLevel(this: this, gem: GemDatabase.Gem): number;
             getTotalGemCosts(this: this): number;
             sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): GemDatabase.Gem[];
             
@@ -128,6 +161,7 @@ declare global {
         //#region GUI
         interface GemButton extends sc.ButtonGui {
             gem: el.GemDatabase.Gem;
+            gemLevel: number;
             showCost: boolean;
             costNumber: sc.NumberGui;
         }
