@@ -54,14 +54,22 @@ declare global {
 
 
         let EL_TRICKSTER_STAT_CHANGES: string[];
+        namespace CombatParams {
+            interface LifestealInfo {
+                amount: number;
+                timer: number;
+            }
+        }
         interface CombatParams {
             el_lifestealTimer: number;
             el_lifestealHealed: number;
             el_tricksterTimer: number;
             el_tricksterBuff?: sc.DynamicBuff;
+            lifestealStash: CombatParams.LifestealInfo[];
 
             increaseHpOverheal(this: this, amount: number, maxOverheal: number): void;
-            modifyBuff(this: this, buffName: sc.StatChange, statChangeSettings: string[], resetTimer?: boolean): boolean;
+            modifyDynamicBuff(this: this, buffName: sc.StatChange, statChangeSettings: string[], resetTimer?: boolean): boolean;
+            updateLifesteal(this: this): void;
         }
 
         interface EnemyBooster {

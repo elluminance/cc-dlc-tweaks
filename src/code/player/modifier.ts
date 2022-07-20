@@ -131,10 +131,10 @@ export default function () {
     }
 
     //#region
-    const lifestealCooldown = 1/5;
+    const lifestealCooldown = 1/3;
     const cooldownPower = 3;
     const cooldownConstant = lifestealCooldown ** -cooldownPower;
-    const lifestealMultiplier = 0.04;
+    const lifestealMultiplier = 0.02;
 
     sc.EL_TRICKSTER_STAT_CHANGES = [
         "HP-1",
@@ -247,16 +247,18 @@ export default function () {
         el_lifestealTimer: 0,
         el_tricksterTimer: 0,
         el_tricksterBuff: null,
+        lifestealStash: [],
 
         update(inCombat) {
             this.parent(inCombat);
+            this.updateLifesteal();
             this.el_lifestealTimer -= ig.system.tick;
             if(this.getModifier("EL_TRICKSTER")) {
                 this.el_tricksterTimer -= ig.system.tick;
                 if(this.el_tricksterTimer <= 0) {
                     this.el_tricksterTimer = 11.11;
                     if(this.el_tricksterBuff) {
-                        this.modifyBuff(this.el_tricksterBuff, generateTricksterBuffs(), true);
+                        this.modifyDynamicBuff(this.el_tricksterBuff, generateTricksterBuffs(), true);
                     } else {
                         // 'b' in hexadecimal is '11'. in other words, the green component is 11,11. if you're gonna make a reference - go 111% of the way
                         this.el_tricksterBuff = new sc.DynamicBuff(generateTricksterBuffs(), "trickster", 11.11, "#00BB00"); 
@@ -318,17 +320,20 @@ export default function () {
                 relativeDamage = Math.min(combatantParams.getStat("hp") / 20, relativeDamage);
 
                 let adjustedHealth = combatantParams.el_lifestealHealed * (1 - cooldownConstant * (this.el_lifestealTimer ** cooldownPower));
-                if ((combatantParams.el_lifestealTimer > 0) && (relativeDamage > adjustedHealth)) {
-                    combatantParams.el_lifestealHealed = relativeDamage;
+                if ((this.el_lifestealTimer > 0) && (relativeDamage > adjustedHealth)) {
+                    this.el_lifestealHealed = relativeDamage;
                     relativeDamage -= adjustedHealth;
-                } else if (combatantParams.el_lifestealTimer > 0) {
+                } else if (this.el_lifestealTimer > 0) {
                     relativeDamage = 0;
                 } else {
                     combatantParams.el_lifestealHealed = relativeDamage;
                 }
                 relativeDamage = Math.floor(relativeDamage);
                 if(relativeDamage > 0) {
-                    combatantRoot.heal({value: relativeDamage, absolute: true})
+                    combatantParams.lifestealStash.push({
+                        amount: relativeDamage,
+                        timer: 0.6,
+                    })
 
                     combatantRoot.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
                         {
@@ -339,7 +344,7 @@ export default function () {
                     );
                     this.combatant.effects.death.spawnOnTarget("el_lifesteal_aura", this.combatant);
                     
-                    combatantParams.el_lifestealTimer = lifestealCooldown;
+                    this.el_lifestealTimer = lifestealCooldown;
                 }
             }
             //#endregion lifesteal
@@ -373,6 +378,19 @@ export default function () {
             this.el_tricksterTimer = 0;
             this.el_tricksterBuff = undefined;
             this.parent();
+        },
+
+        updateLifesteal() {
+            let i = 0;
+            while(i < this.lifestealStash.length) {
+                let lifestealInfo = this.lifestealStash[i];
+                lifestealInfo.timer -= ig.system.tick;
+
+                if(lifestealInfo.timer < 0) {
+                    this.combatant.heal({value: lifestealInfo.amount, absolute: true})
+                    this.lifestealStash.splice(i, 1);
+                } else i++;
+            }
         },
     })
 

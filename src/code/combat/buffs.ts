@@ -3,7 +3,7 @@ export default function() {
     sc.COMBAT_PARAM_MSG.BUFF_CHANGED = Math.max(...Object.values(sc.COMBAT_PARAM_MSG)) + 1;
 
     sc.CombatParams.inject({
-        modifyBuff(buff, statChangeSettings, resetTimer) {
+        modifyDynamicBuff(buff, statChangeSettings, resetTimer) {
             if(!(buff instanceof sc.DynamicBuff)) return false;
             let tempHp = this.getStat("hp") - this.currentHp;
             buff.changeStat(statChangeSettings, resetTimer)

@@ -198,7 +198,7 @@
                 "costs": [2, 5, 9, 13, 18, 24],
 
                 "statLangLabel": {
-                    "en_US": "XP Gain"
+                    "en_US": "EXP Gained"
                 }
             },
             "DROP_CHANCE": {
@@ -334,31 +334,56 @@
                 "stat": "EL_NEUTRAL_BOOST",
                 "gemColor": "DIAMOND",
                 "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "costs": [2, 5, 9, 13, 18, 24],
+
+                "numberStyle": "PERCENT_PREFIX",
+                "statLangLabel": {
+                    "en_US": "Neutral Damage"
+                }
             },
             "EL_HEAT_BOOST": {
                 "stat": "EL_HEAT_BOOST",
                 "gemColor": "RUBY",
                 "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "costs": [2, 5, 9, 13, 18, 24],
+
+                "numberStyle": "PERCENT_PREFIX",
+                "statLangLabel": {
+                    "en_US": "Heat Damage"
+                }
             },
             "EL_COLD_BOOST": {
                 "stat": "EL_COLD_BOOST",
                 "gemColor": "LAPIS_LAZULI",
                 "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "costs": [2, 5, 9, 13, 18, 24],
+
+                "numberStyle": "PERCENT_PREFIX",
+                "statLangLabel": {
+                    "en_US": "Cold Damage"
+                }
             },
             "EL_SHOCK_BOOST": {
                 "stat": "EL_SHOCK_BOOST",
                 "gemColor": "AMETHYST",
                 "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "costs": [2, 5, 9, 13, 18, 24],
+
+                "numberStyle": "PERCENT_PREFIX",
+                "statLangLabel": {
+                    "en_US": "Shock Damage"
+                }
             },
             "EL_WAVE_BOOST": {
                 "stat": "EL_WAVE_BOOST",
                 "gemColor": "EMERALD",
                 "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "costs": [2, 5, 9, 13, 18, 24],
+
+                "numberStyle": "PERCENT_PREFIX",
+                "statLangLabel": {
+                    "en_US": "Wave Damage"
+                }
             }
         },
 
@@ -395,7 +420,7 @@
             },
             "ONCE_MORE": {
                 "langLabel": {
-                    "en_US": "Unbeatable"
+                    "en_US": "Second Wind"
                 },
                 "stat": "ONCE_MORE",
                 "gemColor": "CITRINE",
@@ -446,7 +471,7 @@
                 "stat": "SPIDER_SLOW_DOWN_GUARD",
                 "gemColor": "AMETHYST",
                 "value": 1,
-                "cost": 12
+                "cost": 15
             },
             "BEGONE_ICE": {
                 "stat": "BEGONE_ICE",
