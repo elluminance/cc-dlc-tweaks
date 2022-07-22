@@ -62,10 +62,11 @@ declare global {
         }
         interface CombatParams {
             el_lifestealTimer: number;
-            el_lifestealHealed: number;
+            el_lifestealStash: CombatParams.LifestealInfo[];
+            el_lifestealObj?: CombatParams.LifestealInfo;
+
             el_tricksterTimer: number;
             el_tricksterBuff?: sc.DynamicBuff;
-            lifestealStash: CombatParams.LifestealInfo[];
 
             increaseHpOverheal(this: this, amount: number, maxOverheal: number): void;
             modifyDynamicBuff(this: this, buffName: sc.StatChange, statChangeSettings: string[], resetTimer?: boolean): boolean;

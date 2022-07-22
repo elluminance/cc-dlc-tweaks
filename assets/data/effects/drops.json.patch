@@ -1,0 +1,151 @@
+[{
+    "type": "ENTER",
+    "index": ["ANIMS", "SUB"]
+},{
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "name": "EL_LIFESTEAL_CIRCLE",
+            "sheet": {
+                "src": "media/entity/effects/el-mod-particle.png",
+                "width": 8,
+                "height": 8,
+                "xCount": 1
+            },
+            "time": 0.04,
+            "repeat": true,
+            "frames": [0],
+            "offset": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            }
+        }
+    ]
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": "EFFECTS"
+},{
+    "type": "MERGE_CONTENT",
+    "content": {
+        "healingLifesteal": [
+            {
+                "numParticles": 7,
+                "duration": 0.1,
+                "centralAngle": 1,
+                "startDist": 8,
+                "random": true,
+                "particleRotate": true,
+                "useTargetAngle": true,
+                "moveDist": 24,
+                "keySpline": "EASE_OUT",
+                "moveRotate": 0,
+                "inverse": false,
+                "collision": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                },
+                "pAlpha": {
+                    "init": 1,
+                    "end": {
+                        "value": 0,
+                        "time": 0.15,
+                        "spline": ""
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 0.7,
+                        "y": 0.7
+                    },
+                    "end": {
+                        "value": {
+                            "x": 0,
+                            "y": 1
+                        },
+                        "time": 0.1,
+                        "spline": ""
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": 0.2,
+                "anim": "EL_LIFESTEAL_CIRCLE",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "volume": 1,
+                "global": false,
+                "loop": false,
+                "speed": 1.5,
+                "sound": "media\/sound\/move\/heal.ogg",
+                "type": "PLAY_SOUND"
+            },
+            {
+                "color": "#55FF77",
+                "alpha": 0.6,
+                "duration": 0.2,
+                "keepDuration": 0,
+                "noLighter": false,
+                "type": "FLASH_COLOR"
+            },
+            {
+                "size": "L",
+                "fadeIn": 0,
+                "fadeOut": 0.2,
+                "duration": 0,
+                "glow": false,
+                "type": "LIGHT"
+            },
+            {
+                "numParticles": 2,
+                "duration": 0.4,
+                "centralAngle": 1,
+                "random": true,
+                "startDist": 8,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                },
+                "moveDist": 8,
+                "moveVariance": 0,
+                "keySpline": "EASE_OUT",
+                "moveRotate": -0.2,
+                "normalMoveDist": 12,
+                "collision": false,
+                "moveWithTarget": 0.4,
+                "particleDuration": 0.4,
+                "anim": "GREEN_GLOW",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "numParticles": 2,
+                "duration": 0.4,
+                "clockwise": true,
+                "centralAngle": 1,
+                "random": true,
+                "startDist": 8,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                },
+                "moveDist": 8,
+                "moveVariance": 0,
+                "keySpline": "EASE_OUT",
+                "moveRotate": -0.2,
+                "normalMoveDist": 12,
+                "collision": false,
+                "moveWithTarget": 0.4,
+                "particleDuration": 0.4,
+                "anim": "GREEN_GLOW",
+                "type": "OFFSET_PARTICLE_CIRCLE"
+            }
+        ]
+    }
+}]

@@ -131,10 +131,8 @@ export default function () {
     }
 
     //#region
-    const lifestealCooldown = 1/3;
-    const cooldownPower = 3;
-    const cooldownConstant = lifestealCooldown ** -cooldownPower;
-    const lifestealMultiplier = 0.02;
+    const lifestealAuraCooldown = 0.2;
+    const lifestealMultiplier = 0.04;
 
     sc.EL_TRICKSTER_STAT_CHANGES = [
         "HP-1",
@@ -243,11 +241,11 @@ export default function () {
     }
 
     sc.CombatParams.inject({
-        el_lifestealHealed: 0,
         el_lifestealTimer: 0,
+        el_lifestealStash: [],
+
         el_tricksterTimer: 0,
         el_tricksterBuff: null,
-        lifestealStash: [],
 
         update(inCombat) {
             this.parent(inCombat);
@@ -285,8 +283,23 @@ export default function () {
             const damageResult = this.parent(attackInfo, damageFactorMod, combatant, shieldResult, hitIgnore);
             attackInfo.critFactor = critFactor_old;
 
-            let lifesteal = combatantParams.getModifier("EL_LIFESTEAL");
+            //#region critical
+            if(!ig.perf.skipDmgModifiers && !damageResult.critical && combatantParams.getModifier("EL_LUCKY_STRIKER")) {
+                damageResult.damage = Math.round(damageResult.damage / 8);
+            }
+            //#endregion critical
+
+            //#region gems
+            if(!ig.perf.skipDmgModifiers && this.elGemBonuses) {
+                let factor = this.elGemBonuses.params.elemFactor[attackInfo.element] || 1;
+                damageResult.damage *= factor;
+                damageResult.damage = Math.round(damageResult.damage);
+                damageResult.elementalDef *= factor;
+            }
+            //#endregion gems
+
             //#region lifesteal
+            let lifesteal = combatantParams.getModifier("EL_LIFESTEAL");
             // the this.combatant !== rootCombatant is simply to make sure that any self inflicted damage (i.e. jolt)
             // does not trigger life steal. wouldn't make sense to steal from yourself, y'know?
             if (lifesteal > 0 && (this.combatant !== combatantRoot)) {
@@ -305,64 +318,43 @@ export default function () {
                     if (sc.newgame.get("sergey-hax") && !ig.vars.get("g.newgame.ignoreSergeyHax")) {
                         relativeDamage /= 4096;
                     }
-
-                    // undoes normal sergey hax
-                    if(combatantParams.buffs.some(buff => buff instanceof sc.ActionBuff && buff.name == "sergeyHax")) {
-                        relativeDamage *= combatantParams.getStat("attack", true) / combatantParams.getStat("attack", true)
-                    }
+                }
+                // undoes normal sergey hax
+                if(combatantParams.buffs.some(buff => buff instanceof sc.ActionBuff && buff.name == "sergeyHax")) {
+                    relativeDamage *= combatantParams.getStat("attack", true) / combatantParams.getStat("attack", false)
                 }
 
                 // avoid division by 0, while scaling the damage dealt logarithmically
-                relativeDamage = relativeDamage !== 0 ? relativeDamage / Math.log1p(relativeDamage) : 0; 
                 relativeDamage *= 1 + lifesteal;
                 
-                // caps lifesteal healing at 5% max HP
-                relativeDamage = Math.min(combatantParams.getStat("hp") / 20, relativeDamage);
+                // caps lifesteal healing at 2% max HP
+                relativeDamage =  Math.floor(Math.min(combatantParams.getStat("hp") / 50, relativeDamage));
 
-                let adjustedHealth = combatantParams.el_lifestealHealed * (1 - cooldownConstant * (this.el_lifestealTimer ** cooldownPower));
-                if ((this.el_lifestealTimer > 0) && (relativeDamage > adjustedHealth)) {
-                    this.el_lifestealHealed = relativeDamage;
-                    relativeDamage -= adjustedHealth;
-                } else if (this.el_lifestealTimer > 0) {
-                    relativeDamage = 0;
-                } else {
-                    combatantParams.el_lifestealHealed = relativeDamage;
-                }
-                relativeDamage = Math.floor(relativeDamage);
                 if(relativeDamage > 0) {
-                    combatantParams.lifestealStash.push({
-                        amount: relativeDamage,
-                        timer: 0.6,
-                    })
-
-                    combatantRoot.effects.death.spawnOnTarget("el_lifesteal_steal", combatant,
-                        {
-                            target2: this.combatant,
-                            target2Align: ig.ENTITY_ALIGN.CENTER,
-                            align: ig.ENTITY_ALIGN.CENTER
+                    // checks if a lifesteal has occured very recently to "condense" many very close hits into one to avoid number spam
+                    // for example - things like assault that hit very close to each other.
+                    if(this.el_lifestealTimer <= 0) {
+                        this.el_lifestealObj = {
+                            amount: relativeDamage,
+                            timer: 0.6,
                         }
-                    );
-                    this.combatant.effects.death.spawnOnTarget("el_lifesteal_aura", this.combatant);
-                    
-                    this.el_lifestealTimer = lifestealCooldown;
+                        combatantParams.el_lifestealStash.push(this.el_lifestealObj);
+
+                        sc.combat.effects.combatant.spawnOnTarget("el_lifesteal_steal", combatantRoot,
+                            {
+                                target2: this.combatant,
+                                target2Align: ig.ENTITY_ALIGN.CENTER,
+                                align: ig.ENTITY_ALIGN.CENTER
+                            }
+                        );
+                        this.combatant.effects.death.spawnOnTarget("el_lifesteal_aura", this.combatant);
+                        this.el_lifestealTimer = lifestealAuraCooldown;
+                    } else {
+                        this.el_lifestealObj && (this.el_lifestealObj.amount += relativeDamage); 
+                    }
                 }
             }
             //#endregion lifesteal
-
-            //#region critical
-            if(!ig.perf.skipDmgModifiers && !damageResult.critical && combatantParams.getModifier("EL_LUCKY_STRIKER")) {
-                damageResult.damage = Math.round(damageResult.damage / 8);
-            }
-            //#endregion critical
-
-            //#region gems
-            if(!ig.perf.skipDmgModifiers && this.elGemBonuses) {
-                let factor = this.elGemBonuses.params.elemFactor[attackInfo.element] || 1;
-                damageResult.damage *= factor;
-                damageResult.damage = Math.round(damageResult.damage);
-                damageResult.elementalDef *= factor;
-            }
-            //#endregion gems
             return damageResult;
         },
 
@@ -371,7 +363,6 @@ export default function () {
             this.el_tricksterBuff = undefined;
             this.el_tricksterTimer = 0;
             this.el_lifestealTimer = 0;
-            this.el_lifestealHealed = 0;
         },
 
         removeAllBuffs() {
@@ -382,13 +373,16 @@ export default function () {
 
         updateLifesteal() {
             let i = 0;
-            while(i < this.lifestealStash.length) {
-                let lifestealInfo = this.lifestealStash[i];
+            while(i < this.el_lifestealStash.length) {
+                let lifestealInfo = this.el_lifestealStash[i];
                 lifestealInfo.timer -= ig.system.tick;
 
                 if(lifestealInfo.timer < 0) {
+                    let amount = lifestealInfo.amount;
+                    amount = amount !== 0 ? amount / Math.log1p(amount) : 0;
+                    sc.combat.effects.heal.spawnOnTarget("healingLifesteal", this.combatant);
                     this.combatant.heal({value: lifestealInfo.amount, absolute: true})
-                    this.lifestealStash.splice(i, 1);
+                    this.el_lifestealStash.splice(i, 1);
                 } else i++;
             }
         },
@@ -399,7 +393,7 @@ export default function () {
     ig.ENTITY.Player.inject({
         updateModelStats(a) {
             this.parent(a)
-            if (this.params.getModifier("EL_LIFESTEAL") > 0) this.regenFactor = 0;
+            if (this.params.getModifier("EL_LIFESTEAL") > 0) this.regenFactor /= 5;
             if (this.params.getModifier("EL_TRANCE")) this.regenFactor = 0;
         },
 
