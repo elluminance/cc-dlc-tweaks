@@ -3063,8 +3063,8 @@
                         "type": "SET_PLAYER_ACTION_BLOCK",
                         "blockData": {
                             "dash": 0,
-                            "action": 1,
-                            "move": 1,
+                            "action": -1,
+                            "move": -1,
                             "reaim": -1
                         }
                     },
@@ -3080,9 +3080,9 @@
                         "radius": 0,
                         "yScale": 1,
                         "zHeight": 16,
-                        "centralAngle": 0.1,
+                        "centralAngle": 0.2,
                         "duration": 0.05,
-                        "expandRadius": 150,
+                        "expandRadius": 140,
                         "alwaysFull": true,
                         "clockwise": false,
                         "flipLeftFace": 0,
@@ -3094,11 +3094,12 @@
                         "type": "CIRCLE_ATTACK",
                         "attack": {
                             "type": "LIGHT",
+                            "fly": "LIGHTER",
                             "element": "COLD",
                             "damageFactor": 0.4,
                             "reverse": false,
                             "spFactor": 0,
-                            "status": 1,
+                            "status": 0.2,
                             "guardable": "",
                             "skillBonus": "RANGED_DMG",
                             "limiter": ""
@@ -3154,7 +3155,7 @@
                         "value": 0.75
                     },
                     {
-                        "time": 2,
+                        "time": 1.25,
                         "type": "PLAYER_ADJUST_FACE"
                     },
 
@@ -3168,7 +3169,7 @@
                         "type": "CLEAR_ANIMATION"
                     },
                     {
-                        "time": 0.5,
+                        "time": 0.1,
                         "type": "WAIT"
                     }
                 ]

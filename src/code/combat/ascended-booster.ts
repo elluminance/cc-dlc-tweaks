@@ -72,7 +72,19 @@ sc.EnemyDisplayGui.inject({
         this.parent(b, a, d, c, e, sc.model.player.getToggleItemState("dlctweaks-ascended-booster") || f);
     }
 })
-
+sc.BOOSTER_GEMS = [
+    457,
+    458,
+    459,
+    460,
+    461,
+    462,
+    463,
+    464,
+    465,
+    "dlctweaks-trade-beach-gem",
+    "dlctweaks-trade-final-dng-gem"
+]
 function getGeodeBaseDropRate(itemDrops: sc.EnemyType.ItemDrop[]): number {
     let geodeChance = 0.03
 

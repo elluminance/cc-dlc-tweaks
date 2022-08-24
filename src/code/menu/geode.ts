@@ -12,10 +12,6 @@ export default function () {
     )
 
     ig.ENTITY.NPC.inject({
-        init(a, b, c, d) {
-            this.parent(a, b, c, d);
-        },
-
         setMapInteractIcon(a) {
             this.parent(a)
             if (a.npcEventType == sc.NPC_EVENT_TYPE.GEODE) {

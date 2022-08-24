@@ -268,7 +268,7 @@
 
     {
         "order": 16.10,
-        "customItem": "el-test-overheal-sandwich",
+        "customItem": "el-overheal-sandwich",
         "name": {
             "en_US": "Test Sandwich"
         },
@@ -289,6 +289,31 @@
             "name": "circle"
         },
         "useSpeed": 1,
+        "noTrack": false
+    },
+    {
+        "order": 16.10,
+        "customItem": "el-test-overheal-sandwich",
+        "name": {
+            "en_US": "Overheal Test Item"
+        },
+        "description": {
+            "en_US": "\\c[1]Normal people should not have access to this :)\\c[1]"
+        },
+        "type": "CONS",
+        "cost": 0,
+        "level": 1,
+        "icon": "item-items",
+        "time": 50,
+        "stats": [
+            "OVERHEAL-TEST"
+        ],
+        "rarity": 6,
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "useSpeed": 3,
         "noTrack": false
     }
 ]

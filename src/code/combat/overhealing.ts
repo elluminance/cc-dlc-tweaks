@@ -52,18 +52,27 @@ export default function() {
         }
     })
 
-    sc.STAT_CHANGE_SETTINGS["OVERHEAL-1"] = {
-        change: sc.STAT_CHANGE_TYPE.HEAL,
-        type: sc.STAT_PARAM_TYPE.HEAL,
-        value: 1.1,
-        icon: "stat-default",
-        overheal: 0.25
-    }
-    sc.STAT_CHANGE_SETTINGS["HEAL-ABS-1500"] = {
-        change: sc.STAT_CHANGE_TYPE.HEAL,
-        type: sc.STAT_PARAM_TYPE.HEAL,
-        value: 1500,
-        icon: "stat-default",
-        absoluteHeal: true,
-    }
+    Object.assign(sc.STAT_CHANGE_SETTINGS, {
+        "OVERHEAL-1": {
+            change: sc.STAT_CHANGE_TYPE.HEAL,
+            type: sc.STAT_PARAM_TYPE.HEAL,
+            value: 1.1,
+            icon: "stat-default",
+            overheal: 0.25
+        },
+        "OVERHEAL-TEST": {
+            change: sc.STAT_CHANGE_TYPE.HEAL,
+            type: sc.STAT_PARAM_TYPE.HEAL,
+            value: 2,
+            icon: "stat-default",
+            overheal: 1e100,
+        },
+        "HEAL-ABS-1500": {
+            change: sc.STAT_CHANGE_TYPE.HEAL,
+            type: sc.STAT_PARAM_TYPE.HEAL,
+            value: 1500,
+            icon: "stat-default",
+            absoluteHeal: true,
+        }
+    })
 }
