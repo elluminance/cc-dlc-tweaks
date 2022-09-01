@@ -67,6 +67,34 @@ declare global {
             }
             var EL_SET_PARTY_TEMP_TARGET_BY_INDEX: EL_SET_PARTY_TEMP_TARGET_BY_INDEX_CONSTRUCTOR
 
+
+            namespace ADD_ARENA_SCORE {
+                interface Settings {
+                    scoreType: keyof sc.ARENA_SCORE_TYPES;
+                }
+            }
+            interface ADD_ARENA_SCORE extends ig.ActionStepBase {
+                scoreType: keyof sc.ARENA_SCORE_TYPES;
+            }
+            interface ADD_ARENA_SCORE_CONSTRUCTOR extends ImpactClass<ADD_ARENA_SCORE> {
+                new (settings: ADD_ARENA_SCORE.Settings): ADD_ARENA_SCORE;
+            }
+            var ADD_ARENA_SCORE: ADD_ARENA_SCORE_CONSTRUCTOR;
+
+            namespace SET_ENEMY_LEVEL {
+                interface Settings {
+                    level: number | ig.Vars.VarObject;
+                }
+            }
+            interface SET_ENEMY_LEVEL extends ig.ActionStepBase {
+                level: number | ig.Vars.VarObject;
+            }
+            interface SET_ENEMY_LEVEL_CONSTRUCTOR extends ImpactClass<SET_ENEMY_LEVEL> {
+                new (settings: SET_ENEMY_LEVEL.Settings): SET_ENEMY_LEVEL;
+            }
+            var SET_ENEMY_LEVEL: SET_ENEMY_LEVEL_CONSTRUCTOR;
+
+            //#region Vanilla Overrides
             namespace ADD_ACTION_BUFF {
                 interface Settings {
                     customColor?: string;
@@ -78,6 +106,7 @@ declare global {
                 customColor?: string;
                 timer?: number;
             }
+            //#endregion
         }
 
         namespace EVENT_STEP {

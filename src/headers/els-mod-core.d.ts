@@ -34,6 +34,10 @@ declare global {
     }
 
     namespace sc {
+        interface ARENA_SCORE_TYPES {
+            EL_CTRON_CLONE_HIT: sc.ArenaScoreType;
+        }
+
         interface MODIFIERS {
             EL_RISKTAKER: sc.Modifier;
             EL_LIFESTEAL: sc.Modifier;

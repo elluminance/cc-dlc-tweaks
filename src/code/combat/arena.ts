@@ -50,4 +50,10 @@ sc.Arena.inject({
         ig.game.playerEntity.ignoreOverheal = false;
     }
 })
+
+sc.ARENA_SCORE_TYPES.EL_CTRON_CLONE_HIT = {
+    order: 3,
+    points: -5000,
+    asMali: true,
+}
 }

@@ -49,4 +49,23 @@
             "count": 5
         }
     ]
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": ["actions", "Appear"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "type": "IF",
+        "condition": "tmp.sidwell-arena",
+        "thenStep": [
+            {
+                "type": "SET_ENEMY_LEVEL",
+                "level": {
+                    "varName": "arena.enemyLevel"
+                }
+            }
+        ]
+    }
 }]

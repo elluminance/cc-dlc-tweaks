@@ -18,7 +18,7 @@
         "condition": "plot.completedPostGame",
         "difficulty": "5",
         "noRush": true,
-        "level": 75,
+        "level": 90,
         "banner": {
             "src": "media\/gui\/sidwell-arena-banner.png",
             "offX": 0,
@@ -35,12 +35,12 @@
             },
             "customCode": true,
             "camFocus": "PLAYER_SPAWN",
-            "platPoints": 240000,
+            "platPoints": 300000,
             "coins": 0,
             "objective": {
                 "en_US": "\\c[1]This information has been redacted.\\c[0]"
             },
-            "points": 200000,
+            "points": 250000,
             "type": "DEFAULT",
             "medal": 0,
             "waves": [],

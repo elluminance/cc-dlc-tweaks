@@ -34,4 +34,35 @@ export default function () {
             entity.tmpTarget = target;
         }
     })
+
+    ig.ACTION_STEP.ADD_ARENA_SCORE = ig.ActionStepBase.extend({
+        scoreType: null,
+
+        init(settings) {
+            this.scoreType = settings.scoreType;
+        },
+
+        start() {
+            if(this.scoreType) sc.arena.addScore(this.scoreType);
+        }
+    })
+
+    ig.ACTION_STEP.SET_ENEMY_LEVEL = ig.ActionStepBase.extend({
+        level: null,
+
+        init(settings) {
+            this.level = settings.level;
+        },
+
+        start(entity) {
+            if(!(entity instanceof ig.ENTITY.Enemy)) {
+                ig.warn("Cannot set level of non-enemy");
+                return;
+            }
+            
+            let level = ig.Event.getExpressionValue(this.level) as number | undefined;
+            
+            entity.setLevelOverride(level);
+        }
+    })
 }

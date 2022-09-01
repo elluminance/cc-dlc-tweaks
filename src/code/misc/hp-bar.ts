@@ -29,7 +29,7 @@ function genColor(index: number) {
     if(index < DEFAULT_COLORS.length) {
         return DEFAULT_COLORS[index];
     } else {
-        //returns a hex color string of the form #RRGGBB. y'know, like standard RGB.
+        //returns a random hex color string of the form #RRGGBB. y'know, like standard RGB.
         return `#${(
               ((COLOR_SEED_R * index + COLOR_SEED_G + COLOR_SEED_B) % 0xff << 16)
             + ((COLOR_SEED_G * index + COLOR_SEED_R + COLOR_SEED_B) % 0xff << 8 )

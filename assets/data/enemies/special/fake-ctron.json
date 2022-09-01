@@ -132,6 +132,16 @@
             },
             {
                 "type": "IF",
+                "condition": "tmp.ctronHits > 0",
+                "thenStep": [
+                    {
+                        "type": "ADD_ARENA_SCORE",
+                        "scoreType": "EL_CTRON_CLONE_HIT"
+                    }
+                ]
+            },
+            {
+                "type": "IF",
                 "condition": "tmp.debugSidwell",
                 "withElse": false,
                 "thenStep": [

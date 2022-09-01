@@ -403,11 +403,10 @@ export default function () {
         
         //#region Storage
         onStorageSave(savefile) {
-            if(!savefile.vars.storage.el) savefile.vars.storage.el = {};
-            Object.assign(savefile.vars.storage.el.gems, {
-                inventory: this.gemInventory,
-                equipped: this.equippedGems,
-            });
+            if(!savefile.vars.storage?.el) savefile.vars.storage.el = {gems: {}};
+
+            savefile.vars.storage.el.gems.inventory = this.gemInventory;
+            savefile.vars.storage.el.gems.equipped = this.equippedGems;
         },
 
         onStoragePreLoad(savefile) {

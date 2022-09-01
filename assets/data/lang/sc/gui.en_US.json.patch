@@ -1,5 +1,11 @@
 {
     "labels": {
+        "arena": {
+            "scoreTypes": {
+                "EL_CTRON_CLONE_HIT": "Interrogation Hits"
+            }
+        },
+
         "menu": {
             "equip": {
                 "neutral": "Neutral Resistance",
