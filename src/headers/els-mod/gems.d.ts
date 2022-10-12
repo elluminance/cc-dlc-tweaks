@@ -122,7 +122,7 @@ declare global {
                 modifiers: Record<string, number>;
             }
         }
-        interface GemDatabase extends ig.Class, ig.Storage.Listener {
+        interface GemDatabase extends ig.Class, ig.Storage.Listener, ig.Vars.Accessor {
             guiImage: ig.Image;
             gemRoots: Record<string, GemDatabase.GemRoot>;
             gemInventory: el.GemDatabase.Gem[];
@@ -130,11 +130,15 @@ declare global {
             activeBonuses: el.GemDatabase.ParamBonuses;
             maxPower: number;
             maxSlots: number;
+            enabled: boolean;
+            bonusSlots: number;
+            bonusPower: number;
 
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;
 
             getGemRoot(this: this, gem: GemDatabase.Gem): GemDatabase.GemRoot;
+            getGemRootName(this: this, gemRoot: string | el.GemDatabase.GemRoot, withColor?: boolean): string;
             getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean, excludeLevel?: boolean): string;
             getGemStatBonusString(this: this, gem: el.GemDatabase.Gem, includeValue?: boolean): string;
             getGemStatBonus(this: this, gem: GemDatabase.Gem): number;
@@ -142,6 +146,8 @@ declare global {
             getGemLevel(this: this, gem: GemDatabase.Gem): number;
             getTotalGemCosts(this: this): number;
             sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): GemDatabase.Gem[];
+            
+            _validateData(this: this): void;
             
             createGem(this: this, gemRoot: string, level: number): void;
             addGem(this: this, gem: GemDatabase.Gem): void;

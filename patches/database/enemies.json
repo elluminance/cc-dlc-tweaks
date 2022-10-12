@@ -1,4 +1,76 @@
 [{
+    "type": "MERGE_CONTENT",
+    "content": {
+        "el-rhombus-lab.multi-starfish": {
+            "name": {
+                "en_US": "Echinomultus"
+            },
+            "track": true,
+            "order": 4000,
+            "area": "beach",
+            "kills": 10,
+            "anim": false,
+            "extra": false,
+            "category": "ANIMALS",
+            "species": {
+                "en_US": "Chimeric Sea Star"
+            },
+            "level": 81,
+            "boostedLevel": 0,
+            "params": {
+                "hp": 52000,
+                "attack": 650,
+                "defense": 670,
+                "focus": 625,
+                "elemFactor": [
+                    0.9,
+                    0.9,
+                    0.9,
+                    0.9
+                ],
+                "statusInflict": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "statusEffect": [
+                    1,
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "credit": 1325,
+            "exp": 42,
+            "itemDrops": [
+                {
+                    "item": "629",
+                    "prob": 0.12,
+                    "min": 1,
+                    "max": 1,
+                    "rank": "D"
+                },
+                {
+                    "item": "40",
+                    "prob": 0.04,
+                    "min": 1,
+                    "max": 1,
+                    "rank": "A"
+                }
+            ],
+            "boss": false,
+            "descriptions": [
+                {
+                    "text": {
+                        "en_US": "A genetically modified \\c[3]Echino\\c[0] with the DNA of the 4 primary breeds combined together with the goal of creating the \"perfect starfish\". While Echinos are generally known to congregate into large groups, the \\c[3]Echinomultus\\c[0] generally prefers to seek isolation due to their heightened aggression."
+                    },
+                    "condition": ""
+                }
+            ]
+        }
+    }
+},{
     "type": "ENTER",
     "index": "beach.sea-star-cold"
 },{

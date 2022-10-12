@@ -24,5 +24,19 @@
         "type": {
             "type": "FORCE_UPDATE"
         }
+    },
+
+    "el-gem-fixing": {
+        "frequency": "ALWAYS",
+        "repeat": "REPEAT",
+        "eventType": "CUTSCENE",
+        "overrideSideMessage": false,
+        "type": {
+            "type": "CALL"
+        },
+
+        "event": [
+
+        ]
     }
 }

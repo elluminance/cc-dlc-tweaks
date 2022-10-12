@@ -125,12 +125,19 @@ export default function () {
                 sc.menu.pushMenu(sc.MENU_SUBMENU.EL_GEM_EQUIP);
             }
             this.buttonGroup.addFocusGui(this.gemButton, 0, 6)
-            this.addChildGui(this.gemButton)
         },
 
         _moveButtons(bodypart) {
             this.parent(bodypart);
             this.gemButton.doStateTransition(bodypart === sc.MENU_EQUIP_BODYPART.NONE ? "DEFAULT" : "HIDDEN");
+        },
+
+        showMenu() {
+            this.parent();
+
+            if(el.gemDatabase.enabled) {
+                this.addChildGui(this.gemButton)
+            }
         }
     })
     //#endregion

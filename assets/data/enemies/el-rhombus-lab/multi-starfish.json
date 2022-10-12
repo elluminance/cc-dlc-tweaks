@@ -1,0 +1,2319 @@
+{
+    "level": 81,
+    "params": {
+        "hp": 52000,
+        "attack": 650,
+        "defense": 670,
+        "focus": 625,
+        "elemFactor": [
+            0.9,
+            0.9,
+            0.9,
+            0.9
+        ],
+        "statusInflict": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "statusEffect": [
+            1,
+            1,
+            1,
+            1
+        ]
+    },
+    "credit": 2500,
+    "exp": 42,
+    "maxSp": 8,
+    "enduranceScale": 1,
+    "healDropRate": 0,
+    "boss": false,
+    "bossOrder": 0,
+    "padding": {
+        "x": 2,
+        "y": 2
+    },
+    "material": "ORGANIC",
+    "aiGroup": "seastars",
+    "aiLearnType": "REGULAR",
+    "itemDrops": [
+        {
+            "item": "629",
+            "prob": 0.12,
+            "min": 1,
+            "max": 1,
+            "rank": "D"
+        },
+        {
+            "item": "40",
+            "prob": 0.04,
+            "min": 1,
+            "max": 1,
+            "rank": "A"
+        }
+    ],
+    "targetDetect": {
+        "detectDistance": 120,
+        "loseDistance": 320,
+        "notifyNeighbourRadius": 100
+    },
+    "hpBreaks": [],
+    "size": {
+        "x": 16,
+        "y": 16,
+        "z": 24
+    },
+    "anims": "enemies.el-rhombus-lab.starfish",
+    "defaultState": "IDLE",
+    "walkConfigs": {
+        "normal": {
+            "idle": "idle",
+            "move": "move",
+            "damage": "damage",
+            "jump": "jump",
+            "fall": "fall"
+        },
+        "weak": {
+            "idle": "damage",
+            "damage": "damage"
+        },
+        "hidden": {
+            "idle": "resting",
+            "jump": "jump",
+            "fall": "fall"
+        }
+    },
+    "_wm": {
+        "attributes": {
+            "hidden": {
+                "_type": "Boolean",
+                "_info": "If true: starfish is on ground."
+            }
+        }
+    },
+    "walkAnims": "normal",
+    "airFriction": 1,
+    "weight": 100,
+    "maxVel": 180,
+    "jumpingEnabled": true,
+    "floatHeight": 4,
+    "shadow": 20,
+    "floatVariance": 2,
+    "floatMaxSpeed": 100,
+    "floatAccel": 2,
+    "flyKeepHeight": true,
+    "hitStable": "LIGHT",
+    "faceToTarget": true,
+    "annotate": {
+        "active": "NONE",
+        "passive": "NONE",
+        "weapon": "ANY",
+        "element": "HEAT",
+        "extra": []
+    },
+    "DOCTYPE": "ENEMY",
+    "trackers": {
+        "weakRegen": {
+            "target": 3,
+            "initRandom": 0,
+            "resetRandom": 0,
+            "noStateReset": false,
+            "noAssist": false,
+            "type": "TIME"
+        }
+    },
+    "states": {
+        "IDLE": {
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "HAS_TARGET"
+                        }
+                    ],
+                    "postSwitchState": "DEFAULT"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "!SPAWN_POINT_DISTANCE",
+                            "max": 64
+                        }
+                    ],
+                    "action": "MoveToSpawnPoint"
+                },
+                {
+                    "req": [
+                        {
+                            "name": "hidden",
+                            "negated": false,
+                            "type": "ATTRIB_IS_TRUE"
+                        }
+                    ],
+                    "preSwitchState": "HIDDEN"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "RANDOM",
+                            "max": 0.3
+                        }
+                    ],
+                    "action": "MoveRandom"
+                },
+                {
+                    "action": "Idle"
+                }
+            ]
+        },
+        "DEFAULT": {
+            "enabledReactions": [
+                "GUARD_COUNTER"
+            ],
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "type": "!HAS_TARGET"
+                        }
+                    ],
+                    "postSwitchState": "IDLE"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "!TARGET_REACHABLE",
+                            "distance": 200
+                        }
+                    ],
+                    "action": "Adjust"
+                },
+                {
+                    "action": "Special",
+                    "frequency": "SOMETIMES"
+                },
+                {
+                    "action": "Attack",
+                    "frequency": "NORMAL"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "!TARGET_REACHABLE",
+                            "distance": 120
+                        }
+                    ],
+                    "action": "Adjust"
+                },
+                {
+                    "action": "BattleIdle"
+                }
+            ]
+        },
+        "HIDDEN": {
+            "seamlessStates": [],
+            "walkAnims": "hidden",
+            "weight": -1,
+            "collType": "TRIGGER",
+            "floatHeight": 0,
+            "shadow": 0,
+            "damageFactor": 0.1,
+            "aggression": "PEACEFUL",
+            "analyzable": false,
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "HAS_TARGET"
+                        }
+                    ],
+                    "action": "WakeUp",
+                    "postSwitchState": "DEFAULT"
+                },
+                {
+                    "action": "Idle"
+                }
+            ]
+        },
+        "WEAK": {
+            "walkAnims": "weak",
+            "floatHeight": 0,
+            "damageFactor": 1.5,
+            "annotate": {
+                "active": "NONE",
+                "passive": "WEAK",
+                "weapon": "ANY",
+                "element": "COLD",
+                "extra": []
+            },
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "TRACKER_READY",
+                            "name": "weakRegen"
+                        }
+                    ],
+                    "preSwitchState": "DEFAULT"
+                }
+            ]
+        },
+        "PASSIVE_INVIS": {
+            "weight": -1,
+            "hitIgnore": true,
+            "aggression": "PEACEFUL",
+            "annotate": {
+                "active": "NONE",
+                "passive": "IMMUNE",
+                "weapon": "ANY",
+                "element": "ANY",
+                "extra": []
+            },
+            "choices": []
+        }
+    },
+    "proxies": {
+        "trail_heat": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.beach",
+                        "name": "el_heat_trail"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "radius": 12,
+                    "yScale": 0,
+                    "zHeight": 16,
+                    "centralAngle": 1,
+                    "duration": 0.1,
+                    "expandRadius": 0,
+                    "alwaysFull": true,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "rectangular": false,
+                    "repeat": true,
+                    "uniformHitDir": false,
+                    "fixPos": false,
+                    "checkCollision": false,
+                    "type": "CIRCLE_ATTACK",
+                    "attack": {
+                        "type": "LIGHT",
+                        "element": "HEAT",
+                        "damageFactor": 0.02,
+                        "reverse": false,
+                        "hints": [],
+                        "guardable": "NEVER",
+                        "skillBonus": "",
+                        "limiter": ""
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "type": "WAIT",
+                    "time": 2
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "NONE",
+            "stickFaceAlign": false,
+            "group": "trail",
+            "timeDisconnect": true,
+            "startAnim": "",
+            "size": {
+                "x": 12,
+                "y": 12,
+                "z": 0
+            },
+            "config": {
+                "zGravityFactor": 0
+            },
+            "type": "GENERIC"
+        },
+        "trail_cold": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.beach",
+                        "name": "el_cold_trail"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "radius": 12,
+                    "yScale": 0,
+                    "zHeight": 16,
+                    "centralAngle": 1,
+                    "duration": 0.1,
+                    "expandRadius": 0,
+                    "alwaysFull": true,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "rectangular": false,
+                    "repeat": true,
+                    "uniformHitDir": false,
+                    "fixPos": false,
+                    "checkCollision": false,
+                    "type": "CIRCLE_ATTACK",
+                    "attack": {
+                        "type": "LIGHT",
+                        "element": "COLD",
+                        "damageFactor": 0.02,
+                        "reverse": false,
+                        "hints": [],
+                        "guardable": "NEVER",
+                        "skillBonus": "",
+                        "limiter": ""
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "type": "WAIT",
+                    "time": 2
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "NONE",
+            "stickFaceAlign": false,
+            "group": "trail",
+            "timeDisconnect": true,
+            "startAnim": "",
+            "size": {
+                "x": 12,
+                "y": 12,
+                "z": 0
+            },
+            "config": {
+                "zGravityFactor": 0
+            },
+            "type": "GENERIC"
+        },
+        "trail_shock": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.beach",
+                        "name": "el_shock_trail"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "radius": 12,
+                    "yScale": 0,
+                    "zHeight": 16,
+                    "centralAngle": 1,
+                    "duration": 0.1,
+                    "expandRadius": 0,
+                    "alwaysFull": true,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "rectangular": false,
+                    "repeat": true,
+                    "uniformHitDir": false,
+                    "fixPos": false,
+                    "checkCollision": false,
+                    "type": "CIRCLE_ATTACK",
+                    "attack": {
+                        "type": "LIGHT",
+                        "element": "SHOCK",
+                        "damageFactor": 0.02,
+                        "reverse": false,
+                        "hints": [],
+                        "guardable": "NEVER",
+                        "skillBonus": "",
+                        "limiter": ""
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "type": "WAIT",
+                    "time": 2
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "NONE",
+            "stickFaceAlign": false,
+            "group": "trail",
+            "timeDisconnect": true,
+            "startAnim": "",
+            "size": {
+                "x": 12,
+                "y": 12,
+                "z": 0
+            },
+            "config": {
+                "zGravityFactor": 0
+            },
+            "type": "GENERIC"
+        },
+        "trail_wave": {
+            "copyOwnerAnims": false,
+            "breakType": "COMBATANT",
+            "action": [
+                {
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.beach",
+                        "name": "el_wave_trail"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "align": "BOTTOM",
+                    "radius": 12,
+                    "yScale": 0,
+                    "zHeight": 16,
+                    "centralAngle": 1,
+                    "duration": 0.1,
+                    "expandRadius": 0,
+                    "alwaysFull": true,
+                    "clockwise": false,
+                    "flipLeftFace": 0,
+                    "rectangular": false,
+                    "repeat": true,
+                    "uniformHitDir": false,
+                    "fixPos": false,
+                    "checkCollision": false,
+                    "type": "CIRCLE_ATTACK",
+                    "attack": {
+                        "type": "LIGHT",
+                        "element": "WAVE",
+                        "damageFactor": 0.02,
+                        "reverse": false,
+                        "hints": [],
+                        "guardable": "NEVER",
+                        "skillBonus": "",
+                        "limiter": ""
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "type": "WAIT",
+                    "time": 2
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "NONE",
+            "stickFaceAlign": false,
+            "group": "trail",
+            "timeDisconnect": true,
+            "startAnim": "",
+            "size": {
+                "x": 12,
+                "y": 12,
+                "z": 0
+            },
+            "config": {
+                "zGravityFactor": 0
+            },
+            "type": "GENERIC"
+        }
+    },
+    "actions": {
+        "Idle": [
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "BattleIdle": [
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "minTime": 0.2,
+                "maxTime": 0.4,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "MoveToSpawnPoint": [
+            {
+                "value": 0.5,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 3,
+                "maxDistance": 16,
+                "precise": false,
+                "type": "NAVIGATE_TO_SPAWN_POINT"
+            }
+        ],
+        "MoveRandom": [
+            {
+                "value": 0.5,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": false,
+                "type": "SET_JUMPING"
+            },
+            {
+                "minTime": 0.3,
+                "maxTime": 0.5,
+                "dirChanges": 0,
+                "stopBeforeEdge": true,
+                "type": "MOVE_RANDOM"
+            },
+            {
+                "minTime": 1,
+                "maxTime": 2,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "Adjust": [
+            {
+                "value": 0.75,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 1,
+                "forceTime": false,
+                "distance": 100,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "precise": false,
+                "stayBehind": false,
+                "type": "NAVIGATE_TO_TARGET"
+            }
+        ],
+        "GetClose": [
+            {
+                "value": 0.9,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "MEDIUM",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "distance": 60,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "precise": false,
+                "stayBehind": false,
+                "type": "NAVIGATE_TO_TARGET"
+            }
+        ],
+        "Attack": [
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_SetElement"
+            },
+            {
+                "active": "PRE_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 0.9,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "MEDIUM",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "moveDist": 80,
+                "targetDistGoal": 120,
+                "throwing": false,
+                "avoidSideway": false,
+                "planOnly": false,
+                "direction": null,
+                "type": "NAVIGATE_RANGE_TARGET"
+            },
+            {
+                "value": 1.2,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "dust",
+                    "name": "large"
+                }
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.beach",
+                    "name": "star_spin"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "stateReset": false,
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_ShowCharge"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preAttack-heat"
+                    }
+                ],
+                "1": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preAttack-cold"
+                    }
+                ],
+                "2": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preAttack-shock"
+                    }
+                ],
+                "3": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "preAttack-wave"
+                    }
+                ]
+            },
+            {
+                "value": 0.3,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "time": 1,
+                "stopBeforeEdge": true,
+                "type": "MOVE_BACKWARD"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "value": 1.35,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": 550,
+                "type": "SET_SPEED"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "dust",
+                    "name": "line"
+                }
+            },
+            {
+                "volume": 0.9,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/enemies\/hedgehog\/hedgehog-spin-out-long.ogg"
+            },
+            {
+                "volume": 0.8,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/dash-2.ogg"
+            },
+            {
+                "value": "IGNORE",
+                "type": "SET_COLL_TYPE"
+            },
+            {
+                "value": false,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinToWin-heat"
+                    }
+                ],
+                "1": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinToWin-cold"
+                    }
+                ],
+                "2": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinToWin-shock"
+                    }
+                ],
+                "3": [
+                    {
+                        "wait": false,
+                        "viaWalkConfig": false,
+                        "type": "SHOW_ANIMATION",
+                        "anim": "spinToWin-wave"
+                    }
+                ]
+            },
+            {
+                "stateReset": false,
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_DoAttack"
+            },
+            {
+                "active": "POST_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": 50,
+                "type": "SET_SPEED"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "idle"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            }
+        ],
+        "Special": [
+            {
+                "active": "PRE_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 0.7,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "MEDIUM",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "moveDist": 80,
+                "targetDistGoal": 120,
+                "throwing": false,
+                "avoidSideway": false,
+                "planOnly": false,
+                "direction": null,
+                "type": "NAVIGATE_RANGE_TARGET"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "dust",
+                    "name": "large"
+                }
+            },
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "duration": 1.5,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.beach",
+                    "name": "star_charge_MULTI"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "preAttack-multi"
+            },
+            {
+                "volume": 0.9,
+                "global": false,
+                "loop": false,
+                "speed": 0.9,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/enemies\/hedgehog\/hedgehog-spin-in.ogg"
+            },
+            {
+                "value": 0.2,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "time": 1.5,
+                "stopBeforeEdge": true,
+                "type": "MOVE_BACKWARD"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "value": 1.2,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": 500,
+                "type": "SET_SPEED"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "dust",
+                    "name": "line"
+                }
+            },
+            {
+                "volume": 0.9,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/enemies\/hedgehog\/hedgehog-spin-out-long.ogg"
+            },
+            {
+                "volume": 0.8,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/dash-2.ogg"
+            },
+            {
+                "value": "IGNORE",
+                "type": "SET_COLL_TYPE"
+            },
+            {
+                "value": false,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "type": "SET_ATTRIB_NUMBER",
+                "attribName": "special_attacks",
+                "changeType": "set",
+                "value": 0
+            },
+            {
+                "type": "LABEL",
+                "name": "preAttack"
+            },
+            {
+                "type": "SET_ATTRIB_NUMBER",
+                "attribName": "special_attacks",
+                "changeType": "add",
+                "value": 1
+            },
+            {
+                "stateReset": false,
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_DoSpecialAttack"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.2
+            },
+            {
+                "value": false,
+                "type": "FACE_TO_TARGET",
+                "immediately": true
+            },
+            {
+                "type": "GOTO_LABEL_WHILE",
+                "condition": "entity.attrib.special_attacks < 2",
+                "name": "preAttack"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.2
+            },
+            {
+                "active": "POST_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": 50,
+                "type": "SET_SPEED"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "idle"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            }
+        ],
+        "BlockCounter": [
+            {
+                "duration": 0,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat",
+                    "name": "flashShort"
+                }
+            },
+            {
+                "flyLevel": "MASSIVE",
+                "breaking": false,
+                "stable": false,
+                "wait": true,
+                "type": "DO_DAMAGE_MOVEMENT"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "_ShowCharge": [
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"HEAT\"",
+                "thenStep": [
+                    {
+                        "duration": 1.5,
+                        "align": "CENTER",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": true,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_charge_HEAT"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"COLD\"",
+                "thenStep": [
+                    {
+                        "duration": 1.5,
+                        "align": "CENTER",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": true,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_charge_COLD"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"SHOCK\"",
+                "thenStep": [
+                    {
+                        "duration": 1.5,
+                        "align": "CENTER",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": true,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_charge_SHOCK"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"WAVE\"",
+                "thenStep": [
+                    {
+                        "duration": 1.5,
+                        "align": "CENTER",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": true,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_charge_WAVE"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                ]
+            }
+        ],
+        "_DoAttack": [
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"HEAT\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "HEAT",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_HEAT"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.6,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "HEAT",
+                            "damageFactor": 1,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "BLOCK_XY"
+                                },
+                                {
+                                    "type": "START_LOCK"
+                                }
+                            ],
+                            "status": 5,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        },
+                        "hit": [
+                            {
+                                "value": 0,
+                                "type": "SET_Z_VEL"
+                            },
+                            {
+                                "type": "STOP_XY"
+                            },
+                            {
+                                "value": 0,
+                                "type": "SET_Z_GRAVITY_FACTOR"
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "volume": 0.5,
+                                "global": false,
+                                "loop": false,
+                                "speed": 1.5,
+                                "fadeDuration": 0.1,
+                                "type": "PLAY_SOUND",
+                                "sound": "media\/sound\/battle\/special\/neutral-screw.ogg"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 4,
+                                "hitDelay": 0.1,
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "HEAT",
+                                    "damageFactor": 0.2,
+                                    "defenseFactor": 1,
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            },
+                            {
+                                "time": 0.5,
+                                "type": "WAIT"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 1,
+                                "hitDelay": 0,
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "HEAT",
+                                    "damageFactor": 0.6,
+                                    "defenseFactor": 1,
+                                    "fly": "MASSIVE",
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "END_LOCK"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            }
+                        ],
+                        "missed": []
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"COLD\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "COLD",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_COLD"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.6,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "COLD",
+                            "damageFactor": 1,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "BLOCK_XY"
+                                },
+                                {
+                                    "type": "START_LOCK"
+                                }
+                            ],
+                            "status": 5,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        },
+                        "hit": [
+                            {
+                                "value": 0,
+                                "type": "SET_Z_VEL"
+                            },
+                            {
+                                "type": "STOP_XY"
+                            },
+                            {
+                                "value": 0,
+                                "type": "SET_Z_GRAVITY_FACTOR"
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "volume": 0.5,
+                                "global": false,
+                                "loop": false,
+                                "speed": 1.5,
+                                "fadeDuration": 0.1,
+                                "type": "PLAY_SOUND",
+                                "sound": "media\/sound\/battle\/special\/neutral-screw.ogg"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 4,
+                                "hitDelay": 0.1,
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "COLD",
+                                    "damageFactor": 0.2,
+                                    "defenseFactor": 1,
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            },
+                            {
+                                "time": 0.5,
+                                "type": "WAIT"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 1,
+                                "hitDelay": 0,
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "COLD",
+                                    "damageFactor": 0.6,
+                                    "defenseFactor": 1,
+                                    "fly": "MASSIVE",
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "END_LOCK"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            }
+                        ],
+                        "missed": []
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"SHOCK\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "SHOCK",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_SHOCK"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.6,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "SHOCK",
+                            "damageFactor": 1,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "BLOCK_XY"
+                                },
+                                {
+                                    "type": "START_LOCK"
+                                }
+                            ],
+                            "status": 5,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        },
+                        "hit": [
+                            {
+                                "value": 0,
+                                "type": "SET_Z_VEL"
+                            },
+                            {
+                                "type": "STOP_XY"
+                            },
+                            {
+                                "value": 0,
+                                "type": "SET_Z_GRAVITY_FACTOR"
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "volume": 0.5,
+                                "global": false,
+                                "loop": false,
+                                "speed": 1.5,
+                                "fadeDuration": 0.1,
+                                "type": "PLAY_SOUND",
+                                "sound": "media\/sound\/battle\/special\/neutral-screw.ogg"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 4,
+                                "hitDelay": 0.1,
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "SHOCK",
+                                    "damageFactor": 0.2,
+                                    "defenseFactor": 1,
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            },
+                            {
+                                "time": 0.5,
+                                "type": "WAIT"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 1,
+                                "hitDelay": 0,
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "SHOCK",
+                                    "damageFactor": 0.6,
+                                    "defenseFactor": 1,
+                                    "fly": "MASSIVE",
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "END_LOCK"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            }
+                        ],
+                        "missed": []
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"WAVE\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "WAVE",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_WAVE"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "time": 0.6,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": true,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "WAVE",
+                            "damageFactor": 1,
+                            "reverse": false,
+                            "stunSteps": [
+                                {
+                                    "type": "BLOCK_XY"
+                                },
+                                {
+                                    "type": "START_LOCK"
+                                }
+                            ],
+                            "status": 5,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        },
+                        "hit": [
+                            {
+                                "value": 0,
+                                "type": "SET_Z_VEL"
+                            },
+                            {
+                                "type": "STOP_XY"
+                            },
+                            {
+                                "value": 0,
+                                "type": "SET_Z_GRAVITY_FACTOR"
+                            },
+                            {
+                                "time": 0.1,
+                                "type": "WAIT"
+                            },
+                            {
+                                "volume": 0.5,
+                                "global": false,
+                                "loop": false,
+                                "speed": 1.5,
+                                "fadeDuration": 0.1,
+                                "type": "PLAY_SOUND",
+                                "sound": "media\/sound\/battle\/special\/neutral-screw.ogg"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 4,
+                                "hitDelay": 0.1,
+                                "attack": {
+                                    "type": "LIGHT",
+                                    "element": "WAVE",
+                                    "damageFactor": 0.2,
+                                    "defenseFactor": 1,
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "BLOCK_XY"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            },
+                            {
+                                "time": 0.5,
+                                "type": "WAIT"
+                            },
+                            {
+                                "selectType": "STUN_LOCKED",
+                                "hitDir": "AWAY",
+                                "align": "BOTTOM",
+                                "hitCount": 1,
+                                "hitDelay": 0,
+                                "attack": {
+                                    "type": "HEAVY",
+                                    "element": "WAVE",
+                                    "damageFactor": 0.6,
+                                    "defenseFactor": 1,
+                                    "fly": "MASSIVE",
+                                    "reverse": false,
+                                    "spFactor": 1,
+                                    "critFactor": 1,
+                                    "stunSteps": [
+                                        {
+                                            "type": "END_LOCK"
+                                        }
+                                    ],
+                                    "status": 5,
+                                    "guardable": "",
+                                    "skillBonus": "",
+                                    "limiter": ""
+                                },
+                                "type": "DIRECT_HIT",
+                                "": "BLOCK_XY"
+                            }
+                        ],
+                        "missed": []
+                    }
+                ]
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "idle"
+            },
+            {
+                "jumpHeight": "M",
+                "wait": false,
+                "ignoreSounds": false,
+                "type": "JUMP"
+            },
+            {
+                "time": 0.05,
+                "stopBeforeEdge": false,
+                "type": "MOVE_BACKWARD"
+            },
+            {
+                "time": 0.1,
+                "type": "WAIT"
+            }
+        ],
+        "_DoSpecialAttack": [
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_SetElement"
+            },
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "spinToWin-multi"
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"HEAT\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "HEAT",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.05,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_HEAT"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY_RANGE",
+                        "proxy": "trail_heat",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "align": "BOTTOM",
+                        "centralAngle": 1,
+                        "startDist": 0,
+                        "startDistAdd": 0,
+                        "count": 1,
+                        "duration": 0.04,
+                        "offsetArea": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "repeat": true
+                    },
+                    {
+                        "time": 0.4,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": false,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "rotateSpeed": 0.1,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "HEAT",
+                            "damageFactor": 2,
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 1.25,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"COLD\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "COLD",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_COLD"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY_RANGE",
+                        "proxy": "trail_cold",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "align": "BOTTOM",
+                        "centralAngle": 1,
+                        "startDist": 0,
+                        "startDistAdd": 0,
+                        "count": 1,
+                        "duration": 0.04,
+                        "offsetArea": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "repeat": true
+                    },
+                    {
+                        "time": 0.4,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": false,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "rotateSpeed": 0.1,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "COLD",
+                            "damageFactor": 2,
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 1.25,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"SHOCK\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "SHOCK",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_SHOCK"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY_RANGE",
+                        "proxy": "trail_shock",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "align": "BOTTOM",
+                        "centralAngle": 1,
+                        "startDist": 0,
+                        "startDistAdd": 0,
+                        "count": 1,
+                        "duration": 0.04,
+                        "offsetArea": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "repeat": true
+                    },
+                    {
+                        "time": 0.4,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": false,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "rotateSpeed": 0.1,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "SHOCK",
+                            "damageFactor": 2,
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 1.25,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "withElse": false,
+                "type": "IF",
+                "condition": "entity.attrib.element == \"WAVE\"",
+                "thenStep": [
+                    {
+                        "active": "ATTACK",
+                        "element": "WAVE",
+                        "type": "CHANGE_ENEMY_ANNOTATION"
+                    },
+                    {
+                        "duration": 0.4,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "fixPos": false,
+                        "rotateSpeed": 0.1,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.beach",
+                            "name": "star_trail_WAVE"
+                        },
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY_RANGE",
+                        "proxy": "trail_wave",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "align": "BOTTOM",
+                        "centralAngle": 1,
+                        "startDist": 0,
+                        "startDistAdd": 0,
+                        "count": 1,
+                        "duration": 0.04,
+                        "offsetArea": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "repeat": true
+                    },
+                    {
+                        "time": 0.4,
+                        "missReactTime": 0,
+                        "cancelOnHit": true,
+                        "withBranches": false,
+                        "orthoDirFactor": 0,
+                        "ignoreLastHit": false,
+                        "collideSlip": false,
+                        "rotateSpeed": 0.1,
+                        "type": "TACKLE",
+                        "attack": {
+                            "type": "HEAVY",
+                            "element": "WAVE",
+                            "damageFactor": 2,
+                            "reverse": false,
+                            "stunSteps": [],
+                            "status": 1.25,
+                            "guardable": "",
+                            "skillBonus": "",
+                            "limiter": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "STOP_REPEATING_FORCE"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "idle"
+            },
+            {
+                "jumpHeight": "M",
+                "wait": false,
+                "ignoreSounds": false,
+                "type": "JUMP"
+            },
+            {
+                "time": 0.05,
+                "stopBeforeEdge": false,
+                "type": "MOVE_BACKWARD"
+            },
+            {
+                "time": 0.1,
+                "type": "WAIT"
+            }
+        ],
+        "WakeUp": [
+            {
+                "wait": true,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "wakeUp"
+            },
+            {
+                "jumpHeight": "L",
+                "wait": true,
+                "ignoreSounds": false,
+                "type": "JUMP"
+            }
+        ],
+        "_SetElement": [
+            {
+                "type": "SELECT_RANDOM",
+                "options": [
+                    {
+                        "count": 1,
+                        "weight": 1,
+                        "activeCondition": "entity.attrib.element != \"HEAT\""
+                    },
+                    {
+                        "count": 1,
+                        "weight": 1,
+                        "activeCondition": "entity.attrib.element != \"COLD\""
+                    },
+                    {
+                        "count": 1,
+                        "weight": 1,
+                        "activeCondition": "entity.attrib.element != \"SHOCK\""
+                    },
+                    {
+                        "count": 1,
+                        "weight": 1,
+                        "activeCondition": "entity.attrib.element != \"WAVE\""
+                    }
+                ],
+                "0_0": [
+                    {
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "HEAT"
+                    }
+                ],
+                "1_0": [
+                    {
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "COLD"
+                    }
+                ],
+                "2_0": [
+                    {
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "SHOCK"
+                    }
+                ],
+                "3_0": [
+                    {
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "WAVE"
+                    }
+                ]
+            }
+        ]
+    },
+    "reactions": {
+        "GUARD_COUNTER": {
+            "preSwitchState": "WEAK",
+            "action": "BlockCounter",
+            "conditions": [],
+            "type": "GUARD_COUNTER"
+        }
+    },
+    "meta": {
+        "species": {
+            "en_US": "Chimeric Sea Star"
+        },
+        "category": "ANIMALS",
+        "descriptions": [
+            {
+                "text": {
+                    "en_US": "A genetically modified \\c[3]Echino\\c[0] with the DNA of the 4 primary breeds combined together with the goal of creating the \"perfect starfish\". While Echinos are generally known to congregate into large groups, the \\c[3]Echinomultus\\c[0] generally prefers to seek isolation due to their heightened aggression."
+                },
+                "condition": ""
+            }
+        ]
+    }
+}

@@ -32,6 +32,9 @@ export default function () {
         equippedGems: [],
         maxPower: 99,
         maxSlots: 3,
+        enabled: false,
+        bonusPower: 0,
+        bonusSlots: 0,
 
         init() {
             let gemInfo = ig.database.get("el-gems");
@@ -67,6 +70,8 @@ export default function () {
                 }
             })
 
+            order = 10000;
+
             Object.entries(gemInfo.uniqueGems).forEach(([key, gemType]) => {
                 this.gemRoots[key] = {
                     stat: gemType.stat,
@@ -81,6 +86,50 @@ export default function () {
                     statLangLabel: gemType.statLangLabel,
                 }
             })
+
+            ig.vars.registerVarAccessor("el-gems", this)
+        },
+
+        _validateData() {
+            this.maxSlots = Math.min(3 + this.bonusSlots, 7);
+            this.maxPower = Math.floor(sc.model.player.level / 2) + this.bonusPower;
+
+            let i = 0, powerSum = 0;
+            let removedGems: Gem[] = []; 
+            while (i < this.equippedGems.length) {
+                powerSum += this.getGemCost(this.equippedGems[i]);
+                if(
+                    //removes excess gems
+                    i >= this.maxSlots
+                    //removes invalid gems
+                    && !(this.equippedGems[i].gemRoot in this.gemRoots)
+                    //removes gems over the limit
+                    && powerSum <= this.maxPower
+                ) {
+                    removedGems.push(this.dequipGemByIndex(i)!);
+                } else i++;
+            }
+
+            this.compileGemBonuses();
+        },
+
+        onVarAccess(_path, keys) {
+            if(keys[0] == "el-gems") {
+                switch(keys[1]) {
+                    case "active": return this.enabled;
+
+                    default:
+                        if(keys[1] in this.gemRoots) {
+                            switch(keys[2]) {
+                                case "name":
+                                    return this.getGemRootName(keys[1], true);
+                                case "nameWithIcon":
+                                    return this.getGemRootName(keys[1], true);
+                            }
+                        }
+                        break;
+                }
+            }
         },
 
         //#region Helper Functions
@@ -110,27 +159,39 @@ export default function () {
             return this.gemRoots[gem.gemRoot] ?? this.gemRoots["FALLBACK"];
         },
 
-        getGemName(gem, withIcon, excludeLevel) {
-            let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names"),
-                workingString = "",
-                gemRoot = this.getGemRoot(gem),
-                statName = gemRoot?.stat;
+        getGemRootName(gemRoot, withIcon) {
+            let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names");
+            
+            if(typeof gemRoot === "string") {
+                gemRoot = this.gemRoots[gemRoot] ?? this.gemRoots["FALLBACK"];
+            }
 
-            if(withIcon) workingString = this.gemColorToIcon(gemRoot?.gemColor);
-
+            let workingString = withIcon ? this.gemColorToIcon(gemRoot.gemColor) : "";
+            
             if(gemRoot.langLabel) {
                 if(typeof gemRoot.langLabel == "string") {
                     workingString += ig.lang.get(gemRoot.langLabel)
                 } else {
                     workingString += ig.LangLabel.getText(gemRoot.langLabel);
                 }
-            } else if(!statName) {
+            } else if(!gemRoot.stat) {
                 workingString += "Unknown Gem"
-            } else if(statName in specialLangEntries) {
-                workingString += specialLangEntries[statName]
+            } else if(gemRoot.stat in specialLangEntries) {
+                workingString += specialLangEntries[gemRoot.stat]
             } else {
-                workingString += ig.lang.get(`sc.gui.menu.equip.modifier.${statName}`)
+                workingString += ig.lang.get(`sc.gui.menu.equip.modifier.${gemRoot.stat}`)
             }
+
+            return workingString;
+        },
+
+        getGemName(gem, withIcon, excludeLevel) {
+            let workingString = "",
+                gemRoot = this.getGemRoot(gem);
+
+            if(withIcon) workingString = this.gemColorToIcon(gemRoot?.gemColor);
+
+            workingString += this.getGemRootName(gemRoot, withIcon);
 
             if(!excludeLevel) {
                 workingString += integerToRomanNumeral(this.getGemLevel(gem));
@@ -395,6 +456,7 @@ export default function () {
                 if((costDiff + this.getGemCost(gem)) > this.maxPower) return false;
             } else {
                 if(this.equippedGems.length >= this.maxSlots) return false;
+                if((this.getTotalGemCosts() + this.getGemCost(gem)) > this.maxPower) return false;
             }
 
             return true;
@@ -403,28 +465,28 @@ export default function () {
         
         //#region Storage
         onStorageSave(savefile) {
-            if(!savefile.vars.storage?.el) savefile.vars.storage.el = {gems: {}};
+            if(!savefile.vars.storage?.el) savefile.vars.storage.el = {};
 
-            savefile.vars.storage.el.gems.inventory = this.gemInventory;
-            savefile.vars.storage.el.gems.equipped = this.equippedGems;
+            Object.assign(savefile.vars.storage.el, {
+                inventory: this.gemInventory,
+                equipped: this.equippedGems,
+
+                enabled: this.enabled,
+                bonusSlots: 0,
+                bonusPower: 0,
+            })
         },
 
         onStoragePreLoad(savefile) {
-            const gemData = {...savefile.vars.storage?.el?.gems} as const;
+            const gemData = {...savefile.vars?.storage?.el?.gems} as const;
 
             this.gemInventory = gemData?.inventory ?? [];
             this.equippedGems = gemData?.equipped ?? [];
+            this.enabled = gemData?.enabled ?? false;
+            this.bonusSlots = gemData?.bonusSlots ?? 0;
+            this.bonusPower = gemData?.bonusPower ?? 0;
             
-            let i = 0;
-
-            while (i < this.equippedGems.length) {
-                // Removes invalid gems and adds to inventory
-                if(!(this.equippedGems[i].gemRoot in this.gemRoots)) {
-                    this.gemInventory.push(...this.equippedGems.splice(i, 1));
-                } else i++;
-            }
-
-            this.compileGemBonuses();
+            this._validateData();
         }
         //#endregion
     })

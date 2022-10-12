@@ -132,7 +132,7 @@
             },
             {
                 "type": "IF",
-                "condition": "tmp.ctronHits > 0",
+                "condition": "tmp.ctronHits > 3",
                 "thenStep": [
                     {
                         "type": "ADD_ARENA_SCORE",

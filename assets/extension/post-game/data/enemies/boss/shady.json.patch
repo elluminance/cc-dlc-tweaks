@@ -94,8 +94,8 @@
             {
                 "type": "CHANGE_VAR_NUMBER",
                 "varName": "tmp.ctronHits",
-                "changeType": "sub",
-                "value": 3
+                "changeType": "set",
+                "value": 0
             },
             {
                 "type": "WAIT",

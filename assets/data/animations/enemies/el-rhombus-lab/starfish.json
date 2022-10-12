@@ -1,0 +1,228 @@
+{
+    "DOCTYPE": "MULTI_DIR_ANIMATION",
+    "namedSheets": {
+        "default": {
+            "src": "media/entity/enemy/el-rhombus-lab/multi-starfish.png",
+            "xCount": 5,
+            "offX": 0,
+            "offY": 0,
+            "width": 32,
+            "height": 32
+        },
+        "spin": {
+            "src": "media/entity/enemy/el-rhombus-lab/multi-starfish.png",
+            "xCount": 5,
+            "offX": 160,
+            "offY": 0,
+            "width": 32,
+            "height": 32
+        }
+    },
+    "shapeType": "Y_FLAT",
+    "SUB": [
+        {
+            "sheet": "default",
+            "dirs": "1",
+            "flipX": [0],
+            "tileOffsets": [0],
+            "SUB": [
+                {
+                    "name": "idle",
+                    "time": 0.1,
+                    "repeat": true,
+                    "frames": [
+                        10, 11, 12, 13, 14
+                    ]
+                },
+                {
+                    "name": "move",
+                    "time": 0.1,
+                    "repeat": true,
+                    "frames": [
+                        10, 11, 12, 13, 14
+                    ]
+                },
+                {
+                    "name": "damage",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [8, 8],
+                    "framesSpriteOffset": [1, 0, 0, 0]
+                },
+                {
+                    "name": "preAttack-multi",
+                    "time": 0.03,
+                    "repeat": true,
+                    "frames": [
+                        10, 11, 12, 13, 14
+                    ]
+                },
+                {
+                    "name": "preAttack-heat",
+                    "time": 0.03,
+                    "repeat": true,
+                    "frames": [
+                        15, 16, 17, 18, 19
+                    ]
+                },
+                {
+                    "name": "preAttack-cold",
+                    "time": 0.03,
+                    "repeat": true,
+                    "frames": [
+                        20, 21, 22, 23, 24
+                    ]
+                },
+                {
+                    "name": "preAttack-shock",
+                    "time": 0.03,
+                    "repeat": true,
+                    "frames": [
+                        25, 26, 27, 28, 29
+                    ]
+                },
+                {
+                    "name": "preAttack-wave",
+                    "time": 0.03,
+                    "repeat": true,
+                    "frames": [
+                        30, 31, 32, 33, 34
+                    ]
+                },
+                {
+                    "name": "resting",
+                    "shapeType": "Z_FLAT",
+                    "time": 0.1,
+                    "repeat": true,
+                    "frames": [
+                        0
+                    ]
+                },
+                {
+                    "name": "wakeUp",
+                    "time": 0.05,
+                    "repeat": false,
+                    "frames": [
+                        0, 1, 2, 3
+                    ]
+                },
+                {
+                    "name": "jump",
+                    "time": 0.1,
+                    "repeat": true,
+                    "frames": [
+                        7
+                    ]
+                },
+                {
+                    "name": "fall",
+                    "time": 0.1,
+                    "repeat": true,
+                    "frames": [
+                        6
+                    ]
+                }
+            ]
+        },
+        {
+            "sheet": "spin",
+            "dirs": "6",
+            "flipX": [
+                0, 0, 0, 1, 1, 1
+            ],
+            "tileOffsets": [
+                0, 5, 10, 10, 5, 0
+            ],
+            "SUB": [
+                {
+                    "name": "spinToWin-heat",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [
+                        1, 2, 3, 4
+                    ]
+                }
+            ]
+        },
+        {
+            "sheet": "spin",
+            "dirs": "6",
+            "flipX": [
+                0, 0, 0, 1, 1, 1
+            ],
+            "tileOffsets": [
+                0, 15, 20, 20, 15, 0
+            ],
+            "SUB": [
+                {
+                    "name": "spinToWin-cold",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [
+                        1, 2, 3, 4
+                    ]
+                }
+            ]
+        },
+        {
+            "sheet": "spin",
+            "dirs": "6",
+            "flipX": [
+                0, 0, 0, 1, 1, 1
+            ],
+            "tileOffsets": [
+                0, 25, 30, 30, 25, 0
+            ],
+            "SUB": [
+                {
+                    "name": "spinToWin-shock",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [
+                        1, 2, 3, 4
+                    ]
+                }
+            ]
+        },
+        {
+            "sheet": "spin",
+            "dirs": "6",
+            "flipX": [
+                0, 0, 0, 1, 1, 1
+            ],
+            "tileOffsets": [
+                0, 35, 40, 40, 35, 0
+            ],
+            "SUB": [
+                {
+                    "name": "spinToWin-wave",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [
+                        1, 2, 3, 4
+                    ]
+                }
+            ]
+        },
+        {
+            "sheet": "spin",
+            "dirs": "6",
+            "flipX": [
+                0, 0, 0, 1, 1, 1
+            ],
+            "tileOffsets": [
+                0, 45, 50, 50, 45, 0
+            ],
+            "SUB": [
+                {
+                    "name": "spinToWin-multi",
+                    "time": 0.05,
+                    "repeat": true,
+                    "frames": [
+                        1, 2, 3, 4
+                    ]
+                }
+            ]
+        }
+    ]
+}
