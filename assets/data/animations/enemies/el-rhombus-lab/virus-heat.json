@@ -1,0 +1,110 @@
+{
+    "DOCTYPE": "MULTI_DIR_ANIMATION",
+    "namedSheets": {
+        "heat": {
+            "src": "media/entity/enemy/el-rhombus-lab/virus.png",
+            "xCount": 8,
+            "offX": 0,
+            "offY": 0,
+            "width": 24,
+            "height": 32
+        }
+    },
+    "shapeType": "Y_FLAT",
+    "SUB": [
+        {
+            "sheet": "heat",
+            "SUB": [
+                {
+                    "dirs": "1",
+                    "flipX": [0],
+                    "tileOffsets": [0],
+                    "SUB": [
+                        {
+                            "name": "idle",
+                            "time": 0.15,
+                            "repeat": true,
+                            "frames": [0, 1, 2, 3]
+                        },
+                        {
+                            "name": "jump",
+                            "time": 0.1,
+                            "frames": [4]
+                        },
+                        {
+                            "name": "fall",
+                            "time": 0.1,
+                            "frames": [5]
+                        },
+                        {
+                            "name": "land",
+                            "time": 0.1,
+                            "frames": [6]
+                        },
+                        {
+                            "name": "grab",
+                            "time": 0.05,
+                            "repeat": true,
+                            "frames": [7,7],
+                            "framesGfxOffset": [
+                                0,0,1,0
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "dirs": "6",
+                    "flipX": [0,0,0,1,1,1],
+                    "tileOffsets": [8,16,24,24,16,8],
+                    "SUB": [
+                        {
+                            "name": "move",
+                            "time": 0.1,
+                            "repeat": true,
+                            "frames": [0,1,2,3]
+                        },
+                        {
+                            "name": "charge",
+                            "time": 0.1,
+                            "repeat": false,
+                            "frames": [4,5]
+                        },
+                        {
+                            "name": "attack",
+                            "time": 0.1,
+                            "repeat": false,
+                            "frames": [6]
+                        },
+                        {
+                            "name": "postAttack",
+                            "time": 0.1,
+                            "repeat": false,
+                            "frames": [7]
+                        },
+                        {
+                            "name": "damage",
+                            "time": 0.1,
+                            "repeat": true,
+                            "frames": [7,7],
+                            "framesGfxOffset": [0,0,1,0]
+                        },
+                        {
+                            "name": "chargeBack",
+                            "flipX": [1,1,1,0,0,0],
+                            "tileOffsets": [24,16,8,8,16,24],
+                            "time": 0.1,
+                            "repeat": false,
+                            "frames": [4,5]
+                        },
+                        {
+                            "name": "dash",
+                            "time": 0.1,
+                            "repeat": false,
+                            "frames": [5]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

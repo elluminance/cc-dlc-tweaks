@@ -1,0 +1,173 @@
+[{
+    "type": "ENTER",
+    "index": ["actions","GetEnchanted"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 10,
+    "content": {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.collab.var.element == 3.1",
+        "thenStep": [
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 6
+                },
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusShockEnchant"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 6
+                }
+            },
+            {
+                "time": 0.75,
+                "type": "WAIT"
+            },
+            {
+                "name": "enchant",
+                "type": "SET_ATTRIB_STRING",
+                "value": "EL_SHOCK"
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "group": "enchant",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusShockShield"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -6
+                }
+            }
+        ]
+    }
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 10,
+    "content": {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.collab.var.element == 3.1",
+        "thenStep": [
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "target2": "TARGET",
+                "target2Offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 6
+                },
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusWaveEnchant"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 6
+                }
+            },
+            {
+                "time": 0.75,
+                "type": "WAIT"
+            },
+            {
+                "name": "enchant",
+                "type": "SET_ATTRIB_STRING",
+                "value": "EL_WAVE"
+            },
+            {
+                "duration": -1,
+                "align": "CENTER",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "group": "enchant",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusWaveShield"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": -6
+                }
+            }
+        ]
+    }
+},{
+    "type": "EXIT"
+},
+
+{
+    "type": "ENTER",
+    "index": ["EnchantBreak"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "withElse": false,
+        "type": "IF",
+        "condition": "entity.attrib.enchant == \"EL_SHOCK\"",
+        "thenStep": [
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "group": "anti",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusAntiWave"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 6
+                }
+            }
+        ]
+    }
+}]

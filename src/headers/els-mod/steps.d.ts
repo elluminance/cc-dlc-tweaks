@@ -106,6 +106,10 @@ declare global {
                 customColor?: string;
                 timer?: number;
             }
+            
+            interface SET_TEMP_TARGET_CONSTRUCTOR {
+                CustomTargetFunctions: Record<string, SET_TEMP_TARGET.TargetFunction>
+            }
             //#endregion
         }
 

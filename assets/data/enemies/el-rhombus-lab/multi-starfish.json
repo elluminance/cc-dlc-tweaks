@@ -85,14 +85,6 @@
             "fall": "fall"
         }
     },
-    "_wm": {
-        "attributes": {
-            "hidden": {
-                "_type": "Boolean",
-                "_info": "If true: starfish is on ground."
-            }
-        }
-    },
     "walkAnims": "normal",
     "airFriction": 1,
     "weight": 100,
@@ -110,7 +102,6 @@
         "active": "NONE",
         "passive": "NONE",
         "weapon": "ANY",
-        "element": "HEAT",
         "extra": []
     },
     "DOCTYPE": "ENEMY",
@@ -171,7 +162,8 @@
         },
         "DEFAULT": {
             "enabledReactions": [
-                "GUARD_COUNTER"
+                "GUARD_COUNTER",
+                "VIRUS_BUFF"
             ],
             "choices": [
                 {
@@ -247,7 +239,6 @@
                 "active": "NONE",
                 "passive": "WEAK",
                 "weapon": "ANY",
-                "element": "COLD",
                 "extra": []
             },
             "choices": [
@@ -272,6 +263,16 @@
                 "passive": "IMMUNE",
                 "weapon": "ANY",
                 "element": "ANY",
+                "extra": []
+            },
+            "choices": []
+        },
+
+        "BUFF": {
+            "annotate": {
+                "active": "NONE",
+                "passive": "IMMUNE",
+                "weapon": "ANY",
                 "extra": []
             },
             "choices": []
@@ -690,6 +691,10 @@
         ],
         "Attack": [
             {
+                "type": "DISABLE_REACTION",
+                "reaction": "VIRUS_BUFF"
+            },
+            {
                 "type": "DO_ENEMY_ACTION_INLINE",
                 "actionName": "_SetElement"
             },
@@ -933,9 +938,17 @@
             {
                 "time": 0.2,
                 "type": "WAIT"
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "VIRUS_BUFF"
             }
         ],
         "Special": [
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "VIRUS_BUFF"
+            },
             {
                 "active": "PRE_ATTACK",
                 "type": "CHANGE_ENEMY_ANNOTATION"
@@ -1090,6 +1103,11 @@
                 "value": 1
             },
             {
+                "type": "SET_ATTRIB_BOOL",
+                "name": "hitTarget",
+                "value": false
+            },
+            {
                 "stateReset": false,
                 "type": "DO_ENEMY_ACTION_INLINE",
                 "actionName": "_DoSpecialAttack"
@@ -1105,7 +1123,7 @@
             },
             {
                 "type": "GOTO_LABEL_WHILE",
-                "condition": "entity.attrib.special_attacks < 2",
+                "condition": "!entity.attrib.hitTarget && entity.attrib.special_attacks < 2",
                 "name": "preAttack"
             },
             {
@@ -1137,6 +1155,10 @@
             {
                 "time": 0.2,
                 "type": "WAIT"
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "VIRUS_BUFF"
             }
         ],
         "BlockCounter": [
@@ -1321,6 +1343,7 @@
                         "ignoreLastHit": false,
                         "collideSlip": false,
                         "type": "TACKLE",
+                        "rotateSpeed": 0.6,
                         "attack": {
                             "type": "HEAVY",
                             "element": "HEAT",
@@ -1467,6 +1490,7 @@
                         "ignoreLastHit": false,
                         "collideSlip": false,
                         "type": "TACKLE",
+                        "rotateSpeed": 0.6,
                         "attack": {
                             "type": "HEAVY",
                             "element": "COLD",
@@ -1613,6 +1637,7 @@
                         "ignoreLastHit": false,
                         "collideSlip": false,
                         "type": "TACKLE",
+                        "rotateSpeed": 0.6,
                         "attack": {
                             "type": "HEAVY",
                             "element": "SHOCK",
@@ -1759,6 +1784,7 @@
                         "ignoreLastHit": false,
                         "collideSlip": false,
                         "type": "TACKLE",
+                        "rotateSpeed": 0.6,
                         "attack": {
                             "type": "HEAVY",
                             "element": "WAVE",
@@ -1956,11 +1982,19 @@
                         "time": 0.4,
                         "missReactTime": 0,
                         "cancelOnHit": true,
-                        "withBranches": false,
+                        "withBranches": true,
+                        "hit": [
+                            {
+                                "type": "SET_ATTRIB_BOOL",
+                                "name": "hitTarget",
+                                "value": true
+                            }
+                        ],
+                        "missed": [],
                         "orthoDirFactor": 0,
                         "ignoreLastHit": false,
                         "collideSlip": false,
-                        "rotateSpeed": 0.1,
+                        "rotateSpeed": 0.2,
                         "type": "TACKLE",
                         "attack": {
                             "type": "HEAVY",
@@ -2030,11 +2064,17 @@
                         "time": 0.4,
                         "missReactTime": 0,
                         "cancelOnHit": true,
-                        "withBranches": false,
+                        "withBranches": true,
+                        "hit": [{
+                            "type": "SET_ATTRIB_BOOL",
+                            "name": "hitTarget",
+                            "value": true
+                        }],
+                        "missed": [],
                         "orthoDirFactor": 0,
                         "ignoreLastHit": false,
                         "collideSlip": false,
-                        "rotateSpeed": 0.1,
+                        "rotateSpeed": 0.2,
                         "type": "TACKLE",
                         "attack": {
                             "type": "HEAVY",
@@ -2104,11 +2144,17 @@
                         "time": 0.4,
                         "missReactTime": 0,
                         "cancelOnHit": true,
-                        "withBranches": false,
+                        "withBranches": true,
+                        "hit": [{
+                            "type": "SET_ATTRIB_BOOL",
+                            "name": "hitTarget",
+                            "value": true
+                        }],
+                        "missed": [],
                         "orthoDirFactor": 0,
                         "ignoreLastHit": false,
                         "collideSlip": false,
-                        "rotateSpeed": 0.1,
+                        "rotateSpeed": 0.2,
                         "type": "TACKLE",
                         "attack": {
                             "type": "HEAVY",
@@ -2179,11 +2225,17 @@
                         "time": 0.4,
                         "missReactTime": 0,
                         "cancelOnHit": true,
-                        "withBranches": false,
+                        "withBranches": true,
+                        "hit": [{
+                            "type": "SET_ATTRIB_BOOL",
+                            "name": "hitTarget",
+                            "value": true
+                        }],
+                        "missed": [],
                         "orthoDirFactor": 0,
                         "ignoreLastHit": false,
                         "collideSlip": false,
-                        "rotateSpeed": 0.1,
+                        "rotateSpeed": 0.2,
                         "type": "TACKLE",
                         "attack": {
                             "type": "HEAVY",
@@ -2292,6 +2344,56 @@
                     }
                 ]
             }
+        ],
+
+        "GetVirusBuff": [
+            {
+                "value": "MASSIVE",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "type": "WAIT_UNTIL",
+                "condition": "entity.collab.var.gather"
+            },
+            {
+                "type": "SET_TEMP_TARGET",
+                "kind": "COLLAB_ENTITY"
+            },
+            {
+                "entityType": "SELF",
+                "type": "SET_COLLAB_ENTITY"
+            },
+            {
+                "value": 1.5,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 2,
+                "forceTime": false,
+                "distance": 80,
+                "planOnly": false,
+                "targetType": "TARGET",
+                "precise": false,
+                "type": "NAVIGATE_TO_TARGET"
+            },
+            {
+                "value": 0,
+                "type": "SET_DAMAGE_FACTOR"
+            },
+            {
+                "passive": "IMMUNE",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "varName": "ready",
+                "changeType": "set",
+                "type": "CHANGE_COLLAB_VAR",
+                "value": 1
+            },
+            {
+                "type": "WAIT_UNTIL",
+                "condition": "entity.collab.var.done"
+            }
         ]
     },
     "reactions": {
@@ -2300,6 +2402,20 @@
             "action": "BlockCounter",
             "conditions": [],
             "type": "GUARD_COUNTER"
+        },
+
+        "VIRUS_BUFF": {
+            "collabKey": "virusBuff",
+            "action": "GetVirusBuff",
+            "conditions": [
+                {
+                    "type": "!HAS_PROXY",
+                    "group": "virus_buff"
+                }
+            ],
+            "type": "COLLAB",
+            "preSwitchState": "BUFF",
+            "postSwitchState": "IDLE"
         }
     },
     "meta": {

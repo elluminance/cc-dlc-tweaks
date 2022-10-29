@@ -222,13 +222,6 @@
         }
     ]
 },{
-    "type": "EXIT"
-},
-
-{
-    "type": "ENTER",
-    "index": "shops"
-},{
     "type": "IMPORT",
     "src": "mod:/patches/database/shops.json"
 },{
@@ -236,9 +229,19 @@
 },
 
 {
+    "type":"ENTER",
+    "index": "areas"
+},{
+    "type": "IMPORT",
+    "src": "mod:/patches/database/areas.json"
+},{
+    "type": "EXIT"
+},
+
+{
     "type": "INCLUDE",
     "src": "mod:/patches/database/geode-rewards.json"
-    },{
+},{
     "type": "INCLUDE",
     "src": "mod:/patches/database/gems.json"
 }]

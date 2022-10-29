@@ -35,6 +35,42 @@ export default function () {
         }
     })
 
+    ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions ??= {}
+
+    let vec3_tmp = Vec3.create();
+    let vec2_tmp = Vec2.create();
+
+    ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions["NEARBY_ALLY"] = (combatant) => {
+        let entityPos = combatant.getAlignedPos(ig.ENTITY_ALIGN.BOTTOM, vec3_tmp);
+        let c = Math.PI * 0.5;
+        let entities = ig.game.getEntitiesInCircle(entityPos, ig.system.width / 2, 1, 32, combatant.face, -c / 2, c / 2, combatant)
+        let d = 0;
+        let e = entities.length; 
+        let curClosestEntity: ig.ENTITY.Combatant | null = null;
+        for (;e--;) {
+            let f = entities[e];
+            if ((f instanceof ig.ENTITY.Combatant) && f.party == (combatant as ig.ENTITY.Combatant).party) {
+                let g = ig.CollTools.getDistVec2(combatant.coll, f.coll, vec2_tmp),
+                    h = Vec2.angle(combatant.face, g),
+                    len = Vec2.length(g) + h * 1E3;
+                if (!curClosestEntity || len < d) {
+                    curClosestEntity = f;
+                    d = len
+                }
+            }
+        }
+        return curClosestEntity!
+    }
+    ig.ACTION_STEP.SET_TEMP_TARGET.inject({
+        init(settings) {
+            this.parent(settings);
+
+            if(settings.kind in ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions) {
+                this.kind = ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions[settings.kind];
+            }
+        }
+    })
+
     ig.ACTION_STEP.ADD_ARENA_SCORE = ig.ActionStepBase.extend({
         scoreType: null,
 

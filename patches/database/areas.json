@@ -1,0 +1,18 @@
+{
+    "el-rhombus-lab": {
+        "name": {
+            "en_US": "??????"
+        },
+        "description": {
+            "en_US": "??????"
+        },
+        "areaType": "DUNGEON",
+        "order": 300,
+        "track": false,
+        "chests": 6,
+        "position": {
+            "x": 296,
+            "y": 253
+        }
+    }
+}

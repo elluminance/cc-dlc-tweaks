@@ -74,6 +74,62 @@
             "frames": [
                 0, 1, 2, 3, 4
             ]
+        },
+        {
+            "name": "EL_SMALL_HEAT_CORE",
+            "sheet": {
+                "src": "media/entity/effects/heat.png",
+                "offX": 288,
+                "offY": 0,
+                "width": 16,
+                "height": 16
+            },
+            "guiSprites": false,
+            "renderMode": "source-over",
+            "time": 0.05,
+            "flipY": false,
+            "frames": [
+                0, 1, 2, 3
+            ],
+            "repeat": true
+        },
+        {
+            "name": "EL_SMALL_SHOCK_CORE",
+            "sheet": {
+                "src": "media/entity/effects/el-mod-particle.png",
+                "xCount": 4,
+                "offX": 0,
+                "offY": 18,
+                "width": 12,
+                "height": 12
+            },
+            "guiSprites": false,
+            "renderMode": "source-over",
+            "time": 0.05,
+            "flipY": false,
+            "frames": [
+                0, 1, 2, 3
+            ],
+            "repeat": true
+        },
+        {
+            "name": "EL_SMALL_WAVE_CORE",
+            "sheet": {
+                "src": "media/entity/effects/el-mod-particle.png",
+                "xCount": 4,
+                "offX": 0,
+                "offY": 30,
+                "width": 12,
+                "height": 12
+            },
+            "guiSprites": false,
+            "renderMode": "source-over",
+            "time": 0.05,
+            "flipY": false,
+            "frames": [
+                0, 1, 2, 3
+            ],
+            "repeat": true
         }
     ]
 },{
@@ -447,10 +503,26 @@
 
         "el_heat_trail": [
             {
+                "useTargetAngle": false,
+                "keepAngleSync": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "pAlpha": {
+                    "init": 0.5
+                },
+                "moveWithTarget": 1,
+                "particleDuration": -1,
+                "anim": "EL_SMALL_HEAT_CORE",
+                "type": "PLAY_ANIM"
+            },
+            {
                 "type": "LOOP_START"
             },
             {
-                "numParticles": 2,
+                "numParticles": 3,
                 "duration": 0.2,
                 "centralAngle": 1,
                 "startDist": 4,
@@ -543,8 +615,29 @@
         ],
         "el_shock_trail": [
             {
+                "useTargetAngle": false,
+                "keepAngleSync": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "pAlpha": {
+                    "init": 0.25,
+                    "start": {
+                        "value": 0.25,
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": -1,
+                "anim": "EL_SMALL_SHOCK_CORE",
+                "type": "PLAY_ANIM"
+            },
+            {
                 "type": "LOOP_START"
             },
+
             {
                 "numParticles": 2,
                 "duration": 0.2,
@@ -580,6 +673,10 @@
                 },
                 "anim": "SPARK1",
                 "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.05
             },
             {
                 "numParticles": 2,
@@ -618,6 +715,10 @@
                 "type": "OFFSET_PARTICLE_CIRCLE"
             },
             {
+                "type": "WAIT",
+                "time": 0.05
+            },
+            {
                 "numParticles": 2,
                 "duration": 0.2,
                 "centralAngle": 1,
@@ -652,6 +753,10 @@
                 },
                 "anim": "SPARK3",
                 "type": "OFFSET_PARTICLE_CIRCLE"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.05
             },
             {
                 "numParticles": 2,
@@ -698,6 +803,26 @@
             }
         ],
         "el_wave_trail": [
+            {
+                "useTargetAngle": false,
+                "keepAngleSync": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "pAlpha": {
+                    "init": 0.25,
+                    "start": {
+                        "value": 0.25,
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": -1,
+                "anim": "EL_SMALL_WAVE_CORE",
+                "type": "PLAY_ANIM"
+            },
             {
                 "type": "LOOP_START"
             },
