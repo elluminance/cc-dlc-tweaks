@@ -23,7 +23,7 @@
         "descriptions": [
             {
                 "text": {
-                    "en_US": "A modified version of the \\v[combat.name.arid/virus-heat] that "
+                    "en_US": "A \\c[3]Virus\\c[0] capable harnessing the power of Wave, which it uses \\c[3]to temporarily increase an enemy's maximum HP\\c[0], or \\c[1]use it against you to lower yours\\c[0]! However, them doing that requires them to lower their shields - meaning it's a perfect time to hit them with a charged shot to knock them off balance!"
                 },
                 "condition": ""
             }

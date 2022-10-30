@@ -1,0 +1,67 @@
+[{
+    "customItem": "el.starfish-drop",
+    "order": 159,
+    "name": {
+        "en_US": "Overloaded Core"
+    },
+    "description": {
+        "en_US": "An oddly pulsating rainbow stone that looks somewhat like an eye."
+    },
+    "type": "TRADE",
+    "rarity": 1,
+    "cost": 6000,
+    "level": 1,
+    "icon": "item-trade",
+    "noTrack": true,
+    "noCount": false,
+    "sources": [
+        {
+            "type": "ENEMY",
+            "value": "el-rhombus-lab.multi-starfish"
+        }
+    ],
+    "isScalable": false,
+    "effect": {
+        "sheet": "drops",
+        "name": "circle"
+    }
+},{
+    "customItem": "el.virus-dx-drop",
+    "order": 159,
+    "name": {
+        "en_US": "Elemental Nucleus"
+    },
+    "description": {
+        "en_US": "The core of an elemental virus. It contains the raw essence of the 4 elements."
+    },
+    "type": "TRADE",
+    "rarity": 1,
+    "cost": 6000,
+    "level": 1,
+    "icon": "item-trade",
+    "noTrack": true,
+    "noCount": false,
+    "sources": [
+        {
+            "type": "ENEMY",
+            "value": "el-rhombus-lab.virus-heat"
+        },
+        {
+            "type": "ENEMY",
+            "value": "el-rhombus-lab.virus-cold"
+        },
+        {
+            "type": "ENEMY",
+            "value": "el-rhombus-lab.virus-shock"
+        },
+        {
+            "type": "ENEMY",
+            "value": "el-rhombus-lab.virus-wave"
+        }
+    ],
+    "isScalable": false,
+    "effect": {
+        "sheet": "drops",
+        "name": "circle"
+    }
+}]

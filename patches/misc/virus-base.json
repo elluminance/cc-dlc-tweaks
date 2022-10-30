@@ -1,10 +1,10 @@
 {
     "level": 81,
     "params": {
-        "hp": 23750,
-        "attack": 606,
-        "defense": 588,
-        "focus": 623,
+        "hp": 25000,
+        "attack": 610,
+        "defense": 595,
+        "focus": 625,
         "elemFactor": [
             0,
             0,
@@ -15,7 +15,7 @@
     "credit": 2000,
     "exp": 35,
     "maxSp": 8,
-    "enduranceScale": 2,
+    "enduranceScale": 1.2,
     "healDropRate": 0,
     "boss": false,
     "bossOrder": 0,
@@ -25,15 +25,22 @@
     "aiLearnType": "IMMEDIATELY",
     "itemDrops": [
         {
-            "item": "401",
+            "item": "el.virus-dx-drop",
             "prob": 0.2,
             "min": 1,
             "max": 1,
             "rank": "D"
         },
         {
+            "item": "401",
+            "prob": 0.15,
+            "min": 1,
+            "max": 1,
+            "rank": "D"
+        },
+        {
             "item": "402",
-            "prob": 0.12,
+            "prob": 0.08,
             "min": 1,
             "max": 1,
             "rank": "D"
@@ -519,7 +526,7 @@
                 },
                 {
                     "text": {
-                        "en_US": "HP Regen Up!"
+                        "en_US": "Max HP Up!"
                     },
                     "mode": "LINE_FILL",
                     "color": "RED",
@@ -532,7 +539,7 @@
                     "target": "TARGET",
                     "type": "ADD_ACTION_BUFF",
                     "stats": [
-                        "REGEN-2"
+                        "HP-3"
                     ]
                 },
                 {
@@ -1421,6 +1428,21 @@
                         "z": 8
                     }
                 }]
+            },
+            {
+                "duration": 1.5,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "charge",
+                    "name": "light"
+                }
             },
             {
                 "wait": false,

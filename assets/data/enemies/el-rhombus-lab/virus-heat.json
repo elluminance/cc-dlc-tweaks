@@ -23,7 +23,7 @@
         "descriptions": [
             {
                 "text": {
-                    "en_US": "A modified version of the \\v[combat.name.arid/virus-heat] that "
+                    "en_US": "A modified \\c[3]Heat Virus\\c[0] that's said to have originally come from some \\c[3]far off wasteland\\c[0]. It seems that somewhere along the line though that \\c[3]they lost their ability to multiply\\c[0] like their original counterparts could.\nHowever, they have gained the ability to \\c[3]temporarily increase their ally's Attack\\c[0] while \\c[1]also being able to lower yours\\c[0], so be careful! A well aimed charged shot should be able to knock them off balance while they have their shields down!"
                 },
                 "condition": ""
             }
