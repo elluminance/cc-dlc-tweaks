@@ -1,0 +1,33 @@
+[{
+    "type": "IMPORT",
+    "src": "mod:patches/misc/virus-base.json"
+},{
+    "type": "ENTER",
+    "index": "params"
+},{
+    "type": "SET_KEY",
+    "index": "elemFactor",
+    "content": [
+        0.5,
+        1.5,
+        1,
+        1
+    ]
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": ["states", "DEFAULT", "choices"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "index": 0,
+    "content": {
+        "req": [
+            {
+                "negated": false,
+                "type": "ENTERED_STATE"
+            }
+        ],
+        "action": "setHeat"
+    }
+}]

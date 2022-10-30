@@ -1,0 +1,2416 @@
+{
+    "level": 81,
+    "params": {
+        "hp": 23750,
+        "attack": 606,
+        "defense": 588,
+        "focus": 623,
+        "elemFactor": [
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    "credit": 2000,
+    "exp": 35,
+    "maxSp": 8,
+    "enduranceScale": 2,
+    "healDropRate": 0,
+    "boss": false,
+    "bossOrder": 0,
+
+    "material": "METAL",
+    "aiGroup": "virus",
+    "aiLearnType": "IMMEDIATELY",
+    "itemDrops": [
+        {
+            "item": "401",
+            "prob": 0.2,
+            "min": 1,
+            "max": 1,
+            "rank": "D"
+        },
+        {
+            "item": "402",
+            "prob": 0.12,
+            "min": 1,
+            "max": 1,
+            "rank": "D"
+        }
+    ],
+    "targetDetect": {
+        "detectDistance": 120,
+        "loseDistance": 320,
+        "notifyNeighbourRadius": 100
+    },
+    "hpBreaks": [],
+
+    "defaultState": "IDLE",
+    "walkConfigs": {
+        "normal": {
+            "idle": "idle",
+            "move": "move",
+            "damage": "damage",
+            "jump": "jump",
+            "fall": "fall"
+        },
+        "weak": {
+            "idle": "land",
+            "damage": "damage"
+        }
+    },
+    "_wm": null,
+    "walkAnims": "normal",
+    "weight": 100,
+    "maxVel": 180,
+    "jumpingEnabled": true,
+    "shadow": 20,
+    "hitStable": "LIGHT",
+    "annotate": {
+        "active": "NONE",
+        "passive": "NONE",
+        "weapon": "ANY",
+        "element": "COLD",
+        "extra": []
+    },
+    "DOCTYPE": "ENEMY",
+    "trackers": {
+        "weakRegen": {
+            "target": 5,
+            "initRandom": 0,
+            "resetRandom": 0,
+            "noStateReset": false,
+            "noAssist": false,
+            "type": "TIME"
+        },
+        "move": {
+            "target": 1,
+            "initRandom": 0,
+            "resetRandom": 0.25,
+            "noStateReset": false,
+            "type": "TIME"
+        },
+        "buffReady": {
+            "target": 5,
+            "initRandom": 0,
+            "resetRandom": 0,
+            "noStateReset": false,
+            "type": "TIME"
+        },
+        "debuffReady": {
+            "target": 10,
+            "initRandom": 1,
+            "resetRandom": 0,
+            "noStateReset": false,
+            "type": "TIME"
+        }
+    },
+    "states": {
+        "IDLE": {
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "type": "HAS_TARGET"
+                        }
+                    ],
+                    "postSwitchState": "DEFAULT"
+                },
+                {
+                    "req": [
+                        {
+                            "name": "shield",
+                            "negated": false,
+                            "type": "HAS_SHIELD"
+                        }
+                    ],
+                    "action": "ClearShield"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "!SPAWN_POINT_DISTANCE",
+                            "max": 64
+                        }
+                    ],
+                    "action": "MoveToSpawnPoint"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "RANDOM",
+                            "max": 0.3
+                        }
+                    ],
+                    "action": "MoveRandom"
+                },
+                {
+                    "action": "Idle"
+                }
+            ]
+        },
+        "DEFAULT": {
+            "enabledReactions": [
+                "SHIELD_BREAK"
+            ],
+            "annotate": {
+                "active": "NONE",
+                "passive": "IMMUNE",
+                "weapon": "ANY",
+                "element": "ANY",
+                "extra": []
+            },
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "type": "!HAS_TARGET"
+                        }
+                    ],
+                    "postSwitchState": "IDLE"
+                },
+                {
+                    "req": [
+                        {
+                            "name": "shield",
+                            "type": "!HAS_SHIELD"
+                        }
+                    ],
+                    "action": "InitShield",
+                    "ignoreStun": true
+                },
+                {
+                    "req": [
+                        {
+                            "distance": 240,
+                            "throwing": false,
+                            "type": "!TARGET_REACHABLE"
+                        }
+                    ],
+                    "action": "Adjust"
+                },
+                {
+                    "action": "Dash",
+                    "frequency": "RARE"
+                },
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "TRACKER_READY",
+                            "name": "debuffReady"
+                        }
+                    ],
+                    "action": "Grab",
+                    "frequency": "SOMETIMES"
+                },
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "TRACKER_READY",
+                            "name": "buffReady"
+                        }
+                    ],
+                    "action": "BuffAlly",
+                    "frequency": "SOMETIMES",
+                    "collab": {
+                        "breakType": "INITIATOR",
+                        "initiatorLabel": "master",
+                        "participants": [
+                            {
+                                "0": " ",
+                                "collabKey": "virusBuff",
+                                "label": "",
+                                "min": 1,
+                                "max": 1,
+                                "acceptStunned": false
+                            }
+                        ]
+                    }
+                },
+                {
+                    "req": [
+                        {
+                            "min": 0,
+                            "max": 120,
+                            "negated": false,
+                            "type": "TARGET_DISTANCE"
+                        }
+                    ],
+                    "action": "Adjust"
+                },
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "TRACKER_READY",
+                            "name": "move"
+                        }
+                    ],
+                    "action": "MoveSideways"
+                },
+                {
+                    "action": "BattleIdle"
+                }
+            ]
+        },
+        "WEAK": {
+            "walkAnims": "weak",
+            "damageFactor": 1,
+            "annotate": {
+                "active": "NONE",
+                "passive": "WEAK",
+                "weapon": "ANY",
+                "element": "COLD",
+                "extra": []
+            },
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "TRACKER_READY",
+                            "name": "weakRegen"
+                        }
+                    ],
+                    "action": "WeakEnd",
+                    "preSwitchState": "DEFAULT",
+                    "ignoreStun": true
+                }
+            ]
+        },
+        "PASSIVE_INVIS": {
+            "weight": -1,
+            "hitIgnore": true,
+            "aggression": "PEACEFUL",
+            "annotate": {
+                "active": "NONE",
+                "passive": "IMMUNE",
+                "weapon": "ANY",
+                "element": "ANY",
+                "extra": []
+            },
+            "choices": []
+        }
+    },
+    "proxies": {
+        "buffHeat": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Attack Up!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "ATTACK-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusBuffHeat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "buffCold": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Defense Up!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "DEFENSE-3"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusBuffCold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "buffShock": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Focus Up!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "FOCUS-3",
+                        "EL-CRITICAL_DMG-2"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusBuffShock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "buffWave": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "HP Regen Up!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "REGEN-2"
+                    ]
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusBuffWave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "debuffHeat": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Attack Down!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "EL-ATTACK-MINUS-2"
+                    ],
+                    "timer": 10,
+                    "customColor": "#EE0000"
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusDebuffHeat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_debuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "debuffCold": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Defense Down!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "EL-DEFENSE-MINUS-2"
+                    ],
+                    "timer": 10,
+                    "customColor": "#EE0000"
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusDebuffCold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_debuff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "debuffShock": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "Focus Down!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "EL-FOCUS-MINUS-2"
+                    ],
+                    "timer": 10,
+                    "customColor": "#EE0000"
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusDebuffShock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        },
+        "debuffWave": {
+            "copyOwnerAnims": false,
+            "breakType": "NEVER",
+            "action": [
+                {
+                    "type": "CONNECT_PROXY_TO_TARGET"
+                },
+                {
+                    "text": {
+                        "en_US": "HP Down!"
+                    },
+                    "mode": "LINE_FILL",
+                    "color": "RED",
+                    "actionDetached": false,
+                    "hideOutsideOfScreen": false,
+                    "type": "SHOW_AR_MSG",
+                    "time": 1
+                },
+                {
+                    "target": "TARGET",
+                    "type": "ADD_ACTION_BUFF",
+                    "stats": [
+                        "EL-HP-MINUS-2"
+                    ],
+                    "timer": 10,
+                    "customColor": "#EE0000"
+                },
+                {
+                    "duration": -1,
+                    "target": "TARGET",
+                    "align": "CENTER",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.el-rhombus-lab",
+                        "name": "virusDebuffWave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                },
+                {
+                    "time": 10,
+                    "type": "WAIT"
+                },
+                {
+                    "type": "CLEAR_EFFECTS"
+                },
+                {
+                    "time": 0.4,
+                    "type": "WAIT"
+                }
+            ],
+            "invisible": false,
+            "hp": 0,
+            "stickToSource": "TARGET",
+            "stickFaceAlign": false,
+            "group": "virus_buff",
+            "size": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+            },
+            "config": {},
+            "type": "GENERIC"
+        }
+    },
+    "actions": {
+        "Idle": [
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "minTime": 0.1,
+                "maxTime": 0.3,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "BattleIdle": [
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "minTime": 0.2,
+                "maxTime": 0.4,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "MoveToSpawnPoint": [
+            {
+                "value": 0.5,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 3,
+                "maxDistance": 16,
+                "precise": false,
+                "type": "NAVIGATE_TO_SPAWN_POINT"
+            }
+        ],
+        "MoveRandom": [
+            {
+                "value": 0.3,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": false,
+                "type": "SET_JUMPING"
+            },
+            {
+                "minTime": 0.3,
+                "maxTime": 0.5,
+                "dirChanges": 0,
+                "stopBeforeEdge": true,
+                "type": "MOVE_RANDOM"
+            },
+            {
+                "minTime": 0.5,
+                "maxTime": 0.6,
+                "type": "WAIT_RANDOM"
+            }
+        ],
+        "Adjust": [
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 1,
+                "distance": 180,
+                "throwing": false,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "type": "NAVIGATE_ESCAPE_TARGET"
+            }
+        ],
+        "MoveSideways": [
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "maxTime": 1,
+                "distance": 120,
+                "distVariance": 60,
+                "keepDirection": false,
+                "throwing": false,
+                "planOnly": false,
+                "type": "NAVIGATE_SIDEWAYS_TARGET"
+            }
+        ],
+        "GetClose": [
+            {
+                "value": 0.7,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "MEDIUM",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "distance": 60,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "precise": false,
+                "stayBehind": false,
+                "type": "NAVIGATE_TO_TARGET"
+            }
+        ],
+        
+        "Dash": [
+            {
+                "active": "PRE_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "MASSIVE",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "distance": 120,
+                "throwing": true,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "type": "NAVIGATE_ESCAPE_TARGET"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeSmall-Heat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "1": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeSmall-Cold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "2": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeSmall-Shock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "3": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeSmall-Wave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }]
+            },
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "chargeBack"
+            },
+            {
+                "time": 1,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "dash"
+            },
+            {
+                "volume": 0.8,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/dash-2.ogg"
+            },
+            {
+                "value": "IGNORE",
+                "type": "SET_COLL_TYPE"
+            },
+            {
+                "value": false,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "value": 0.5,
+                "type": "SET_Z_GRAVITY_FACTOR"
+            },
+            {
+                "value": 600,
+                "type": "SET_SPEED"
+            },
+            {
+                "value": 2,
+                "type": "SET_ACCEL_SPEED"
+            },
+            {
+                "value": "HEAVY",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusDash"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                }
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "active": "ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [{
+                    "time": 0.4,
+                    "missReactTime": 0.1,
+                    "cancelOnHit": false,
+                    "withBranches": false,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "HEAVY",
+                        "element": "HEAT",
+                        "damageFactor": 1,
+                        "fly": "HEAVY",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    }
+                }],
+                "1": [{
+                    "time": 0.4,
+                    "missReactTime": 0.1,
+                    "cancelOnHit": false,
+                    "withBranches": false,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "HEAVY",
+                        "element": "COLD",
+                        "damageFactor": 1,
+                        "fly": "HEAVY",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    }
+                }],
+                "2": [{
+                    "time": 0.4,
+                    "missReactTime": 0.1,
+                    "cancelOnHit": false,
+                    "withBranches": false,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "HEAVY",
+                        "element": "SHOCK",
+                        "damageFactor": 1,
+                        "fly": "HEAVY",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    }
+                }],
+                "3": [{
+                    "time": 0.4,
+                    "missReactTime": 0.1,
+                    "cancelOnHit": false,
+                    "withBranches": false,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "HEAVY",
+                        "element": "WAVE",
+                        "damageFactor": 1,
+                        "fly": "HEAVY",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    }
+                }]
+            },
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "value": 0.4,
+                "type": "SET_FRICTION"
+            },
+            {
+                "value": 50,
+                "type": "SET_SPEED"
+            },
+            {
+                "active": "POST_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "time": 0.2,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "time": 0.3,
+                "type": "WAIT"
+            }
+        ],
+        "Grab": [
+            {
+                "active": "PRE_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": "LIGHT",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "maxTime": 0.5,
+                "forceTime": false,
+                "distance": 100,
+                "throwing": true,
+                "planOnly": false,
+                "targetType": "ENEMY",
+                "type": "NAVIGATE_ESCAPE_TARGET"
+            },
+            {
+                "value": 1,
+                "type": "SET_RELATIVE_SPEED"
+            },
+            {
+                "value": true,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "ClearShield"
+            },
+            {
+                "value": 0.25,
+                "type": "SET_DAMAGE_FACTOR"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeBig-Heat"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "1": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeBig-Cold"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "2": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeBig-Shock"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }],
+                "3": [{
+                    "duration": -1,
+                    "align": "BOTTOM",
+                    "rotateFace": 0,
+                    "flipLeftFace": false,
+                    "wait": false,
+                    "waitSkip": 0,
+                    "actionDetached": false,
+                    "fixPos": false,
+                    "type": "SHOW_EFFECT",
+                    "effect": {
+                        "sheet": "enemies.arid",
+                        "name": "virusChargeBig-Wave"
+                    },
+                    "offset": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 8
+                    }
+                }]
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "charge"
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "CHARGED_STUN"
+            },
+            {
+                "time": 1.5,
+                "type": "WAIT"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "attack"
+            },
+            {
+                "volume": 0.8,
+                "global": false,
+                "loop": false,
+                "type": "PLAY_SOUND",
+                "sound": "media\/sound\/battle\/dash-2.ogg"
+            },
+            {
+                "value": "IGNORE",
+                "type": "SET_COLL_TYPE"
+            },
+            {
+                "value": false,
+                "type": "FACE_TO_TARGET"
+            },
+            {
+                "value": 0.5,
+                "type": "SET_Z_GRAVITY_FACTOR"
+            },
+            {
+                "value": 400,
+                "type": "SET_SPEED"
+            },
+            {
+                "value": 120,
+                "type": "SET_Z_VEL"
+            },
+            {
+                "value": 1,
+                "type": "SET_AIR_FRICTION"
+            },
+            {
+                "active": "ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "value": "HEAVY",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemies.arid",
+                    "name": "virusDash"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                }
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "CHARGED_STUN"
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [{
+                    "time": 0.5,
+                    "cancelOnHit": true,
+                    "withBranches": true,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "MEDIUM",
+                        "element": "HEAT",
+                        "damageFactor": 0.8,
+                        "fly": "LIGHT",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    },
+                    "hit": [
+                        {
+                            "type": "DO_ENEMY_ACTION_INLINE",
+                            "actionName": "_GrabTackleHit"
+                        }
+                    ],
+                    "missed": [
+                        {
+                            "type": "DISABLE_REACTION",
+                            "reaction": "GUARD_COUNTER"
+                        },
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "charge"
+                        },
+                        {
+                            "value": 50,
+                            "type": "SET_SPEED"
+                        },
+                        {
+                            "time": 0.2,
+                            "stopBeforeEdge": false,
+                            "type": "MOVE_FORWARD"
+                        }
+                    ]
+                }],
+                "1": [{
+                    "time": 0.5,
+                    "cancelOnHit": true,
+                    "withBranches": true,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "MEDIUM",
+                        "element": "COLD",
+                        "damageFactor": 0.8,
+                        "fly": "LIGHT",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    },
+                    "hit": [
+                        {
+                            "type": "DO_ENEMY_ACTION_INLINE",
+                            "actionName": "_GrabTackleHit"
+                        }
+                    ],
+                    "missed": [
+                        {
+                            "type": "DISABLE_REACTION",
+                            "reaction": "GUARD_COUNTER"
+                        },
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "charge"
+                        },
+                        {
+                            "value": 50,
+                            "type": "SET_SPEED"
+                        },
+                        {
+                            "time": 0.2,
+                            "stopBeforeEdge": false,
+                            "type": "MOVE_FORWARD"
+                        }
+                    ]
+                }],
+                "2": [{
+                    "time": 0.5,
+                    "cancelOnHit": true,
+                    "withBranches": true,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "MEDIUM",
+                        "element": "SHOCK",
+                        "damageFactor": 0.8,
+                        "fly": "LIGHT",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    },
+                    "hit": [
+                        {
+                            "type": "DO_ENEMY_ACTION_INLINE",
+                            "actionName": "_GrabTackleHit"
+                        }
+                    ],
+                    "missed": [
+                        {
+                            "type": "DISABLE_REACTION",
+                            "reaction": "GUARD_COUNTER"
+                        },
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "charge"
+                        },
+                        {
+                            "value": 50,
+                            "type": "SET_SPEED"
+                        },
+                        {
+                            "time": 0.2,
+                            "stopBeforeEdge": false,
+                            "type": "MOVE_FORWARD"
+                        }
+                    ]
+                }],
+                "3": [{
+                    "time": 0.5,
+                    "cancelOnHit": true,
+                    "withBranches": true,
+                    "rotateSpeed": 0.3,
+                    "orthoDirFactor": 0,
+                    "ignoreLastHit": false,
+                    "collideSlip": false,
+                    "type": "TACKLE",
+                    "attack": {
+                        "type": "MEDIUM",
+                        "element": "WAVE",
+                        "damageFactor": 0.8,
+                        "fly": "LIGHT",
+                        "reverse": false,
+                        "guardable": "",
+                        "skillBonus": ""
+                    },
+                    "hit": [
+                        {
+                            "type": "DO_ENEMY_ACTION_INLINE",
+                            "actionName": "_GrabTackleHit"
+                        }
+                    ],
+                    "missed": [
+                        {
+                            "type": "DISABLE_REACTION",
+                            "reaction": "GUARD_COUNTER"
+                        },
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "charge"
+                        },
+                        {
+                            "value": 50,
+                            "type": "SET_SPEED"
+                        },
+                        {
+                            "time": 0.2,
+                            "stopBeforeEdge": false,
+                            "type": "MOVE_FORWARD"
+                        }
+                    ]
+                }]
+            }
+        ],
+
+        "_GrabTackleHit": [
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "GUARD_COUNTER"
+            },
+            {
+                "type": "CLEAR_EFFECTS"
+            },
+            {
+                "kind": "FIRST_HIT",
+                "type": "SET_TEMP_TARGET"
+            },
+            {
+                "target": "TARGET",
+                "timeScale": 1,
+                "logicTimeScale": 1,
+                "moveXYScale": 0.5,
+                "type": "ADD_TEMP_INFLUENCE"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "grab"
+            },
+            {
+                "target": "TARGET",
+                "align": "TOP",
+                "duration": 0.2,
+                "type": "STICK_TO_TARGET",
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [
+                    {
+                        "selectType": "TARGET",
+                        "hitDir": "TOWARD",
+                        "align": "CENTER",
+                        "hitCount": 3,
+                        "hitDelay": 0.2,
+                        "type": "DIRECT_HIT",
+                        "attack": {
+                            "type": "LIGHT",
+                            "element": "HEAT",
+                            "damageFactor": 0.3,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": ""
+                        }
+                    },
+                    {
+                        "target": "TARGET",
+                        "align": "TOP",
+                        "duration": 0.6,
+                        "type": "STICK_TO_TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "debuffHeat",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "1": [
+                    {
+                        "selectType": "TARGET",
+                        "hitDir": "TOWARD",
+                        "align": "CENTER",
+                        "hitCount": 3,
+                        "hitDelay": 0.2,
+                        "type": "DIRECT_HIT",
+                        "attack": {
+                            "type": "LIGHT",
+                            "element": "COLD",
+                            "damageFactor": 0.3,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": ""
+                        }
+                    },
+                    {
+                        "target": "TARGET",
+                        "align": "TOP",
+                        "duration": 0.6,
+                        "type": "STICK_TO_TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "debuffCold",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "2": [
+                    {
+                        "selectType": "TARGET",
+                        "hitDir": "TOWARD",
+                        "align": "CENTER",
+                        "hitCount": 3,
+                        "hitDelay": 0.2,
+                        "type": "DIRECT_HIT",
+                        "attack": {
+                            "type": "LIGHT",
+                            "element": "SHOCK",
+                            "damageFactor": 0.3,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": ""
+                        }
+                    },
+                    {
+                        "target": "TARGET",
+                        "align": "TOP",
+                        "duration": 0.6,
+                        "type": "STICK_TO_TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "debuffShock",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "3": [
+                    {
+                        "selectType": "TARGET",
+                        "hitDir": "TOWARD",
+                        "align": "CENTER",
+                        "hitCount": 3,
+                        "hitDelay": 0.2,
+                        "type": "DIRECT_HIT",
+                        "attack": {
+                            "type": "LIGHT",
+                            "element": "WAVE",
+                            "damageFactor": 0.3,
+                            "reverse": false,
+                            "guardable": "",
+                            "skillBonus": ""
+                        }
+                    },
+                    {
+                        "target": "TARGET",
+                        "align": "TOP",
+                        "duration": 0.6,
+                        "type": "STICK_TO_TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "debuffWave",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ]
+            },
+            {
+                "type": "CLEAR_TEMP_INFLUENCE"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "postAttack"
+            },
+            {
+                "value": 200,
+                "type": "SET_SPEED"
+            },
+            {
+                "value": 120,
+                "type": "SET_Z_VEL"
+            },
+            {
+                "value": 1,
+                "type": "SET_Z_GRAVITY_FACTOR"
+            },
+            {
+                "value": true,
+                "type": "SET_FACE_FIX"
+            },
+            {
+                "time": 0.3,
+                "stopBeforeEdge": false,
+                "type": "MOVE_BACKWARD"
+            },
+            {
+                "type": "WAIT_UNTIL_ON_GROUND"
+            },
+            {
+                "active": "POST_ATTACK",
+                "type": "CHANGE_ENEMY_ANNOTATION"
+            },
+            {
+                "wait": false,
+                "viaWalkConfig": false,
+                "type": "SHOW_ANIMATION",
+                "anim": "chargeBack"
+            },
+            {
+                "value": 50,
+                "type": "SET_SPEED"
+            },
+            {
+                "time": 0.2,
+                "stopBeforeEdge": false,
+                "type": "MOVE_BACKWARD"
+            }
+        ],
+
+        "BuffAlly": [
+            {
+                "value": -1,
+                "type": "SET_WEIGHT"
+            },
+            {
+                "value": "MASSIVE",
+                "type": "SET_HIT_STABLE"
+            },
+            {
+                "entityType": "SELF",
+                "type": "SET_COLLAB_ENTITY"
+            },
+            {
+                "varName": "gather",
+                "changeType": "set",
+                "type": "CHANGE_COLLAB_VAR",
+                "value": 1
+            },
+            {
+                "type": "WAIT_UNTIL",
+                "condition": "entity.collab.var.ready"
+            },
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "ClearShield"
+            },
+            {
+                "value": 0.25,
+                "type": "SET_DAMAGE_FACTOR"
+            },
+            {
+                "type": "ENABLE_REACTION",
+                "reaction": "CHARGED_STUN"
+            },
+            {
+                "text": {
+                    "en_US": "Applying Buff"
+                },
+                "mode": "LINE_FILL",
+                "color": "RED",
+                "actionDetached": false,
+                "hideOutsideOfScreen": false,
+                "type": "SHOW_AR_MSG",
+                "time": 1.5
+            },
+            {
+                "type": "SET_TEMP_TARGET",
+                "kind": "COLLAB_ENTITY"
+            },
+            {
+                "duration": 1.5,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "charge",
+                    "name": "light"
+                }
+            },
+            {
+                "type": "SELECT_FIRST",
+                "options": [
+                    "entity.attrib.element == \"HEAT\"",
+                    "entity.attrib.element == \"COLD\"",
+                    "entity.attrib.element == \"SHOCK\"",
+                    "entity.attrib.element == \"WAVE\""
+                ],
+                "0": [
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "target": "TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "target2": "SELF",
+                        "target2Offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.arid",
+                            "name": "virusHeatEnchant"
+                        }
+                    },
+                    {
+                        "time": 1.5,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "buffHeat",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "1": [
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "target": "TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "target2": "SELF",
+                        "target2Offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.arid",
+                            "name": "virusColdEnchant"
+                        }
+                    },
+                    {
+                        "time": 1.5,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "buffCold",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "2": [
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "target": "TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "target2": "SELF",
+                        "target2Offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.arid",
+                            "name": "virusShockEnchant"
+                        }
+                    },
+                    {
+                        "time": 1.5,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "buffShock",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ],
+                "3": [
+                    {
+                        "duration": -1,
+                        "align": "BOTTOM",
+                        "rotateFace": 0,
+                        "flipLeftFace": false,
+                        "wait": false,
+                        "waitSkip": 0,
+                        "actionDetached": false,
+                        "target": "TARGET",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "target2": "SELF",
+                        "target2Offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 6
+                        },
+                        "fixPos": false,
+                        "type": "SHOW_EFFECT",
+                        "effect": {
+                            "sheet": "enemies.arid",
+                            "name": "virusWaveEnchant"
+                        }
+                    },
+                    {
+                        "time": 1.5,
+                        "type": "WAIT"
+                    },
+                    {
+                        "type": "SHOOT_PROXY",
+                        "proxy": "buffWave",
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "posType": "TARGET"
+                    }
+                ]
+            },
+            {
+                "varName": "done",
+                "changeType": "set",
+                "type": "CHANGE_COLLAB_VAR",
+                "value": 1
+            },
+            {
+                "type": "DISABLE_REACTION",
+                "reaction": "CHARGED_STUN"
+            },
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "InitShield"
+            },
+            {
+                "noStateReset": false,
+                "type": "DO_ENEMY_ACTION",
+                "actionName": "Adjust"
+            }
+        ],
+
+        "BlockCounter": [
+            {
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "BreakShield"
+            },
+            {
+                "duration": 0,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": false,
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "combat",
+                    "name": "flashShort"
+                }
+            },
+            {
+                "flyLevel": "MASSIVE",
+                "breaking": false,
+                "stable": false,
+                "wait": true,
+                "type": "DO_DAMAGE_MOVEMENT"
+            },
+            {
+                "time": 0.4,
+                "type": "WAIT"
+            }
+        ],
+        "InitShield": [
+            {
+                "name": "shield",
+                "actionDetached": true,
+                "type": "ADD_SHIELD",
+                "shield": {
+                    "type": "DIRECTIONAL",
+                    "settings": {
+                        "baseFactor": 0.05,
+                        "strength": "BLOCK_ALL",
+                        "hitResist": "MASSIVE",
+                        "duration": -1,
+                        "range": 1,
+                        "back": false,
+                        "effect": {
+                            "sheet": "enemies.arid",
+                            "name": "virusMasterShield"
+                        },
+                        "fxOffset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": -3
+                        }
+                    }
+                }
+            },
+            {
+                "time": 0.3,
+                "type": "WAIT"
+            },
+            {
+                "forceValue": 1,
+                "type": "RESET_TRACKER",
+                "tracker": "enchantReady"
+            }
+        ],
+        "ClearShield": [
+            {
+                "name": "shield",
+                "type": "REMOVE_SHIELD"
+            }
+        ],
+        "BreakShield": [
+            {
+                "name": "shield",
+                "type": "REMOVE_SHIELD"
+            },
+            {
+                "duration": -1,
+                "align": "BOTTOM",
+                "rotateFace": 0,
+                "flipLeftFace": false,
+                "wait": false,
+                "waitSkip": 0,
+                "actionDetached": true,
+                "group": "weak",
+                "fixPos": false,
+                "type": "SHOW_EFFECT",
+                "effect": {
+                    "sheet": "enemy",
+                    "name": "angry2"
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                }
+            }
+        ],
+        "WeakEnd": [
+            {
+                "group": "weak",
+                "type": "CLEAR_EFFECTS"
+            }
+        ],
+        "setHeat": [
+            {
+                "type": "SET_ATTRIB_STRING",
+                "name": "element",
+                "value": "HEAT"
+            }
+        ],
+        "setCold": [
+            {
+                "type": "SET_ATTRIB_STRING",
+                "name": "element",
+                "value": "COLD"
+            }
+        ],
+        "setShock": [
+            {
+                "type": "SET_ATTRIB_STRING",
+                "name": "element",
+                "value": "SHOCK"
+            }
+        ],
+        "setWave": [
+            {
+                "type": "SET_ATTRIB_STRING",
+                "name": "element",
+                "value": "WAVE"
+            }
+        ]
+    },
+    "reactions": {
+        "GUARD_COUNTER": {
+            "preSwitchState": "WEAK",
+            "action": "BlockCounter",
+            "conditions": [],
+            "type": "GUARD_COUNTER"
+        },
+        "SHIELD_BREAK": {
+            "hitType": "REGULAR",
+            "preAction": "BreakShield",
+            "preSwitchState": "WEAK",
+            "blockFurtherHits": false,
+            "attackType": "MASSIVE",
+            "flyLevel": "MASSIVE",
+            "stunChange": "FORCE_STUN",
+            "alignFace": false,
+            "dramaticEffect": "BREAK",
+            "conditions": [
+                {
+                    "hint": "ANTIVIRUS",
+                    "negated": false,
+                    "type": "HAS_HINT"
+                }
+            ],
+            "ignoreFailed": false,
+            "type": "HIT_REACTION"
+        },
+        "CHARGED_STUN": {
+            "hitType": "REGULAR",
+            "preSwitchState": "WEAK",
+            "blockFurtherHits": false,
+            "damageFactor": 1,
+            "attackType": "MASSIVE",
+            "flyLevel": "",
+            "stunChange": "FORCE_STUN",
+            "alignFace": false,
+            "dramaticEffect": "BREAK",
+            "conditions": [
+                {
+                    "negated": false,
+                    "type": "BALL_CHARGE",
+                    "value": true
+                }
+            ],
+            "ignoreFailed": false,
+            "type": "HIT_REACTION"
+        }
+    }
+}
