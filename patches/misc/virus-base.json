@@ -158,9 +158,7 @@
             ]
         },
         "DEFAULT": {
-            "enabledReactions": [
-                "SHIELD_BREAK"
-            ],
+            "enabledReactions": [],
             "annotate": {
                 "active": "NONE",
                 "passive": "IMMUNE",
@@ -228,7 +226,7 @@
                         "participants": [
                             {
                                 "0": " ",
-                                "collabKey": "virusBuff",
+                                "collabKey": "el_VirusBuff",
                                 "label": "",
                                 "min": 1,
                                 "max": 1,
@@ -2393,26 +2391,6 @@
             "action": "BlockCounter",
             "conditions": [],
             "type": "GUARD_COUNTER"
-        },
-        "SHIELD_BREAK": {
-            "hitType": "REGULAR",
-            "preAction": "BreakShield",
-            "preSwitchState": "WEAK",
-            "blockFurtherHits": false,
-            "attackType": "MASSIVE",
-            "flyLevel": "MASSIVE",
-            "stunChange": "FORCE_STUN",
-            "alignFace": false,
-            "dramaticEffect": "BREAK",
-            "conditions": [
-                {
-                    "hint": "ANTIVIRUS",
-                    "negated": false,
-                    "type": "HAS_HINT"
-                }
-            ],
-            "ignoreFailed": false,
-            "type": "HIT_REACTION"
         },
         "CHARGED_STUN": {
             "hitType": "REGULAR",

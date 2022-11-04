@@ -7,6 +7,7 @@ import consumables from "./consumables.js"
 import overhealing from "./overhealing.js";
 import proxyEntity from "./proxy.js"
 import statusEffect from "./status-effect.js";
+import combatReactions from "./combat-reactions.js";
 
 export default function() {
     arena();
@@ -18,6 +19,7 @@ export default function() {
     proxyEntity();
     buff();
     combatModel();
+    combatReactions();
 
     sc.COMBAT_FLY_LEVEL["LIGHTER"] = {
         vel: 75,

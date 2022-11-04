@@ -2337,56 +2337,6 @@
                     }
                 ]
             }
-        ],
-
-        "GetVirusBuff": [
-            {
-                "value": "MASSIVE",
-                "type": "SET_HIT_STABLE"
-            },
-            {
-                "type": "WAIT_UNTIL",
-                "condition": "entity.collab.var.gather"
-            },
-            {
-                "type": "SET_TEMP_TARGET",
-                "kind": "COLLAB_ENTITY"
-            },
-            {
-                "entityType": "SELF",
-                "type": "SET_COLLAB_ENTITY"
-            },
-            {
-                "value": 1.5,
-                "type": "SET_RELATIVE_SPEED"
-            },
-            {
-                "maxTime": 2,
-                "forceTime": false,
-                "distance": 80,
-                "planOnly": false,
-                "targetType": "TARGET",
-                "precise": false,
-                "type": "NAVIGATE_TO_TARGET"
-            },
-            {
-                "value": 0,
-                "type": "SET_DAMAGE_FACTOR"
-            },
-            {
-                "passive": "IMMUNE",
-                "type": "CHANGE_ENEMY_ANNOTATION"
-            },
-            {
-                "varName": "ready",
-                "changeType": "set",
-                "type": "CHANGE_COLLAB_VAR",
-                "value": 1
-            },
-            {
-                "type": "WAIT_UNTIL",
-                "condition": "entity.collab.var.done"
-            }
         ]
     },
     "reactions": {
@@ -2398,17 +2348,7 @@
         },
 
         "VIRUS_BUFF": {
-            "collabKey": "virusBuff",
-            "action": "GetVirusBuff",
-            "conditions": [
-                {
-                    "type": "!HAS_PROXY",
-                    "group": "virus_buff"
-                }
-            ],
-            "type": "COLLAB",
-            "preSwitchState": "BUFF",
-            "postSwitchState": "IDLE"
+            "type": "EL_VIRUS_BUFF"
         }
     },
     "meta": {
