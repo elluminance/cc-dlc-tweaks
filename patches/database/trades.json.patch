@@ -1,0 +1,27 @@
+[{
+    "type": "ENTER",
+    "index": ["traders", "bakiWeapon1", "options"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "get": [{
+            "id": "el-bloody-dagger"
+        }],
+        "require": [{
+            "id": 190,
+            "amount": 8
+        },{
+            "id": 177,
+            "amount": 18
+        },{
+            "id": 181,
+            "amount": 8
+        },{
+            "id": 201,
+            "amount": 8
+        }]
+    }
+},{
+    "type": "EXIT",
+    "count": 3
+}]

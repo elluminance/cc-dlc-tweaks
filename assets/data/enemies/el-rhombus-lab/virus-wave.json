@@ -9,6 +9,9 @@
         "x": 4,
         "y": 4
     },
+    "annotate": {
+        "element": "SHOCK"
+    },
     "meta": {
         "species": {
             "en_US": "Unknown",

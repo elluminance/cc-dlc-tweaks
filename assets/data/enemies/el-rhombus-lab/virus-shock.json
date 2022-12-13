@@ -9,6 +9,9 @@
         "x": 4,
         "y": 4
     },
+    "annotate": {
+        "element": "WAVE"
+    },
     "meta": {
         "species": {
             "en_US": "Unknown",

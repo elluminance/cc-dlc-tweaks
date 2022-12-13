@@ -21,7 +21,7 @@ export default function() {
             if(params && !params.isDefeated()) {
                 let totalHealValue = params.getHealAmount(healInfo),
                     normalHeal = Math.min(totalHealValue, Math.max(params.getStat("hp") * (1 + overheal) - params.currentHp, 0)),
-                    overhealValue = (totalHealValue - normalHeal) / (overheal ? 2 : 4),
+                    overhealValue = (totalHealValue - normalHeal) / (overheal ? 1.5 : 2),
                     value = Math.ceil(normalHeal + overhealValue);
                 params.increaseHpOverheal(value, !this.ignoreOverheal ? params.getModifier("EL_OVERHEAL") + overheal : 0);
                 
@@ -29,7 +29,7 @@ export default function() {
                 if (sc.options.get("damage-numbers") && !hideNumbers) {
                     ig.ENTITY.HitNumber.spawnHealingNumber(this.getAlignedPos(ig.ENTITY_ALIGN.CENTER), this, totalHealValue);
                 }
-                this.onHeal && this.onHeal(healInfo, value)
+                this.onHeal?.(healInfo, value)
             }
         }
     })

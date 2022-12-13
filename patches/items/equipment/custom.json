@@ -1,5 +1,81 @@
 [
     {
+        "customItem": "el-bloody-dagger",
+        "order": 44,
+        "name": {
+            "en_US": "Bloody Blade"
+        },
+        "description": {
+            "en_US": "A magical dagger coated in some red substance after many years of use."
+        },
+        "type": "EQUIP",
+        "rarity": 2,
+        "cost": 20000,
+        "level": 31,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 69,
+            "attack": 32,
+            "focus": 16
+        },
+        "properties": {
+            "EL_LIFESTEAL": 1.07,
+            "SP_REGEN": 1.05
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": false
+    },
+    {
+        "customItem": "el-sanguine-saber",
+        "order": 73,
+        "name": {
+            "en_US": "Sanguine Saber"
+        },
+        "description": {
+            "en_US": "A sword that pulses with a sinister red energy."
+        },
+        "type": "EQUIP",
+        "rarity": 2,
+        "cost": 123000,
+        "level": 63,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 292,
+            "attack": 80,
+            "focus": 74
+        },
+        "properties": {
+            "EL_LIFESTEAL": 1.1,
+            "SP_REGEN": 1.15,
+            "BERSERK": 0.9
+        },
+        "effect": {
+            "sheet": "",
+            "name": null
+        },
+        "noTrack": false,
+        "isScalable": false
+    },
+
+    {
         "customItem": "el-risktaker-plate",
         "order": 12,
         "name": {
@@ -61,13 +137,13 @@
                 1
             ],
             "hp": 351,
-            "attack": 89,
-            "focus": 97
+            "attack": 97,
+            "focus": 89
         },
         "properties": {
             "EL_LIFESTEAL": 1.1,
-            "SP_REGEN": 1.1,
-            "BERSERK": 0.85
+            "SP_REGEN": 1.15,
+            "BERSERK": 0.9
         },
         "effect": {
             "sheet": "",
@@ -184,6 +260,84 @@
             "CRITICAL_DMG": 1.8,
             "EL_CRIT_BOOST": 2,
             "EL_LUCKY_STRIKER": 2
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": true
+    },
+
+
+    {
+        "customItem": "el-catalyst-scimitar",
+        "order": 70,
+        "name": {
+            "en_US": "Catalyst Scimitar"
+        },
+        "description": {
+            "en_US": "A flowery curved blade that grants the user incredible healing ability."
+        },
+        "type": "EQUIP",
+        "rarity": 2,
+        "cost": 0,
+        "level": 61,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                0.85,
+                1.15,
+                1,
+                1
+            ],
+            "hp": 673,
+            "attack": 69,
+            "defense": 37
+        },
+        "properties": {
+            "HP_REGEN": 1.2,
+            "EL_OVERHEAL": 1.3
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": false
+    },
+    {
+        "customItem": "el-anima-sword",
+        "order": 12.1,
+        "name": {
+            "en_US": "Anima Sword"
+        },
+        "description": {
+            "en_US": "A sword that allows the user to control unparalleled healing ability."
+        },
+        "type": "EQUIP",
+        "rarity": 6,
+        "cost": 0,
+        "level": 61,
+        "icon": "item-sword",
+        "equipType": "ARM",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                0.85,
+                1.15,
+                1,
+                1
+            ],
+            "hp": 673,
+            "attack": 69,
+            "defense": 37
+        },
+        "properties": {
+            "HP_REGEN": 1.2,
+            "EL_OVERHEAL": 1.5
         },
         "effect": {
             "sheet": "drops",

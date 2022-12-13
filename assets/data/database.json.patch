@@ -240,6 +240,11 @@
 
 {
     "type": "INCLUDE",
+    "src": "mod:/patches/database/trades.json.patch"
+},
+
+{
+    "type": "INCLUDE",
     "src": "mod:/patches/database/geode-rewards.json"
 },{
     "type": "INCLUDE",
