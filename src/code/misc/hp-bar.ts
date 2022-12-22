@@ -25,20 +25,20 @@ const COLOR_SEED_B = 17;
 function genColor(index: number) {
     //subtracts 1 so that it works with the array indexing
     index -= 1;
-    
-    if(index < DEFAULT_COLORS.length) {
+
+    if (index < DEFAULT_COLORS.length) {
         return DEFAULT_COLORS[index];
     } else {
         //returns a random hex color string of the form #RRGGBB. y'know, like standard RGB.
         return `#${(
-              ((COLOR_SEED_R * index + COLOR_SEED_G + COLOR_SEED_B) % 0xff << 16)
-            + ((COLOR_SEED_G * index + COLOR_SEED_R + COLOR_SEED_B) % 0xff << 8 )
+            ((COLOR_SEED_R * index + COLOR_SEED_G + COLOR_SEED_B) % 0xff << 16)
+            + ((COLOR_SEED_G * index + COLOR_SEED_R + COLOR_SEED_B) % 0xff << 8)
             + ((COLOR_SEED_B * index + COLOR_SEED_R + COLOR_SEED_G) % 0xff)
-        ).toString(16).padStart(6, "0")}`;        
+        ).toString(16).padStart(6, "0")}`;
     }
 }
 
-export function DrawHpBar(renderer: ig.GuiRenderer, currentValue: number, targetValue: number, maxValue: number, width: number, height: number, x = 0, y = 0): void { 
+export function DrawHpBar(renderer: ig.GuiRenderer, currentValue: number, targetValue: number, maxValue: number, width: number, height: number, x = 0, y = 0): void {
     let hpRatio = currentValue / maxValue,
         targetRatio = targetValue / maxValue,
         maxRatio = Math.max(hpRatio, targetRatio);
@@ -72,20 +72,18 @@ export function DrawHpBar(renderer: ig.GuiRenderer, currentValue: number, target
     }
 }
 
-export default function () {
-    sc.HpHudBarGui.inject({
-        updateDrawables(renderer) {
-            this.parent(renderer);
-            DrawHpBar(renderer, this.currentHp, this.targetHp, this.maxHp, this.width, this.height);
-        }
-    })
+sc.HpHudBarGui.inject({
+    updateDrawables(renderer) {
+        this.parent(renderer);
+        DrawHpBar(renderer, this.currentHp, this.targetHp, this.maxHp, this.width, this.height);
+    }
+})
 
-    sc.ItemStatusDefaultBar.inject({
-        updateDrawables(renderer) {
-            this.parent(renderer)
-            if(this.type === sc.MENU_BAR_TYPE.HP) {
-                DrawHpBar(renderer, this.currentValue, this.targetValue, this.maxValue, 119, 4, 2, 9)
-            }
+sc.ItemStatusDefaultBar.inject({
+    updateDrawables(renderer) {
+        this.parent(renderer)
+        if (this.type === sc.MENU_BAR_TYPE.HP) {
+            DrawHpBar(renderer, this.currentValue, this.targetValue, this.maxValue, 119, 4, 2, 9)
         }
-    })
-}
+    }
+})

@@ -1,15 +1,7 @@
-import chestCounters from "./chest-counters.js"
-import icon from "./icon.js"
-import saveStar from "./save-star.js"
-import trophyIcons from "./trophy-icons.js"
-import shop from "./shop.js"
-import geode from "./geode.js"
+import "./chest-counters.js";
+import "./icon.js";
+import "./save-star.js";
+import "./trophy-icons.js";
+import "./geode.js";
 
-export default function() {
-    chestCounters();
-    icon();
-    saveStar();
-    trophyIcons();
-    shop();
-    geode();
-}
+sc.modUtils.registerCurrency("crystals", "media/gui/el-mod-gui.png", 11, 0, "dlctweaks.crystals")

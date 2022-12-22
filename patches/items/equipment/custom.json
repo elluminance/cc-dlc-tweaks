@@ -181,7 +181,7 @@
             "focus": 35
         },
         "properties": {
-            "EL_OVERHEAL": 1.5,
+            "EL_OVERHEAL": 1.6,
             "HP_REGEN": 1.1
         },
         "effect": {
@@ -276,10 +276,10 @@
             "en_US": "Catalyst Scimitar"
         },
         "description": {
-            "en_US": "A flowery curved blade that grants the user incredible healing ability."
+            "en_US": "A flowery curved blade once wielded by a great feline healer."
         },
         "type": "EQUIP",
-        "rarity": 2,
+        "rarity": 3,
         "cost": 0,
         "level": 61,
         "icon": "item-sword",
@@ -299,7 +299,7 @@
         },
         "properties": {
             "HP_REGEN": 1.2,
-            "EL_OVERHEAL": 1.3
+            "EL_OVERHEAL": 1.4
         },
         "effect": {
             "sheet": "drops",
@@ -314,7 +314,7 @@
             "en_US": "Anima Sword"
         },
         "description": {
-            "en_US": "A sword that allows the user to control unparalleled healing ability."
+            "en_US": "A sword that allows the user to command unparalleled healing ability."
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -337,12 +337,51 @@
         },
         "properties": {
             "HP_REGEN": 1.2,
-            "EL_OVERHEAL": 1.5
+            "EL_OVERHEAL": 1.4
         },
         "effect": {
             "sheet": "drops",
             "name": "circle"
         },
         "isScalable": true
+    },
+
+    {
+        "customItem": "el-tulip-pin",
+        "order": 70,
+        "name": {
+            "en_US": "Tulip Pin"
+        },
+        "description": {
+            "en_US": "A pin depicting a white tulip. Simple, yet perfect."
+        },
+        "type": "EQUIP",
+        "rarity": 3,
+        "cost": 0,
+        "level": 53,
+        "icon": "item-helm",
+        "equipType": "HEAD",
+        "noTrack": true,
+        "noCount": false,
+        "params": {
+            "elemFactor": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "hp": 673,
+            "attack": 69,
+            "defense": 37
+        },
+        "properties": {
+            "EL_NEUTRAL_BOOST": 1.2,
+            "": 1
+        },
+        "effect": {
+            "sheet": "drops",
+            "name": "circle"
+        },
+        "isScalable": false
     }
 ]

@@ -1,4 +1,3 @@
-export default function() {
 sc.SaveSlotButton.inject({
     setSave(save, slot, skip) {
         this.parent(save, slot, skip);
@@ -38,4 +37,3 @@ sc.SaveSlotChapter.inject({
         this.metaMarker.doStateTransition((gameBeaten && !dlcBeaten) ? "DEFAULT" : "HIDDEN", true)
     }
 })
-}

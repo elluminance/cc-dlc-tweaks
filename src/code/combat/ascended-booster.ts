@@ -1,4 +1,3 @@
-export default function() {
 sc.EnemyBooster.inject({
     ascendedBooster: {
         active: false,     // if ascended booster is enabled 
@@ -149,4 +148,3 @@ sc.EnemyType.inject({
         }
     }
 })
-}

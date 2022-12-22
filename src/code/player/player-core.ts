@@ -1,11 +1,4 @@
-import modifier from "./modifier.js"
-import toggleSets from "./toggle-sets.js"
-import playerConfig from "./player-config.js"
-import inventory from "./inventory.js";
-
-export default function() {
-    modifier();
-    toggleSets();
-    playerConfig();
-    inventory();
-}
+import "./modifier.js"
+import "./toggle-sets.js"
+import "./player-config.js"
+import "./inventory.js";

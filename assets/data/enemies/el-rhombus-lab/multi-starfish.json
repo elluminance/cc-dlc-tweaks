@@ -331,7 +331,8 @@
                 },
                 {
                     "type": "WAIT",
-                    "time": 2
+                    "time": 2.5,
+                    "aggroTime": 5
                 }
             ],
             "invisible": false,
@@ -410,7 +411,8 @@
                 },
                 {
                     "type": "WAIT",
-                    "time": 2
+                    "time": 2.5,
+                    "aggroTime": 5
                 }
             ],
             "invisible": false,
@@ -489,7 +491,8 @@
                 },
                 {
                     "type": "WAIT",
-                    "time": 2
+                    "time": 2.5,
+                    "aggroTime": 5
                 }
             ],
             "invisible": false,
@@ -568,7 +571,8 @@
                 },
                 {
                     "type": "WAIT",
-                    "time": 2
+                    "time": 2.5,
+                    "aggroTime": 5
                 }
             ],
             "invisible": false,
@@ -820,8 +824,21 @@
                 "type": "SET_RELATIVE_SPEED"
             },
             {
-                "value": 550,
-                "type": "SET_SPEED"
+                "type": "IF",
+                "condition": "!newgame.harder-enemies",
+                "withElse": true,
+                "thenStep": [
+                    {
+                        "value": 550,
+                        "type": "SET_SPEED"
+                    }
+                ],
+                "elseStep": [
+                    {
+                        "value": 650,
+                        "type": "SET_SPEED"
+                    }
+                ]
             },
             {
                 "duration": -1,
@@ -862,44 +879,41 @@
             },
             {
                 "type": "SELECT_FIRST",
-                "options": [
-                    "entity.attrib.element == \"HEAT\"",
-                    "entity.attrib.element == \"COLD\"",
-                    "entity.attrib.element == \"SHOCK\"",
-                    "entity.attrib.element == \"WAVE\""
-                ],
-                "0": [
-                    {
-                        "wait": false,
-                        "viaWalkConfig": false,
-                        "type": "SHOW_ANIMATION",
-                        "anim": "spinToWin-heat"
-                    }
-                ],
-                "1": [
-                    {
-                        "wait": false,
-                        "viaWalkConfig": false,
-                        "type": "SHOW_ANIMATION",
-                        "anim": "spinToWin-cold"
-                    }
-                ],
-                "2": [
-                    {
-                        "wait": false,
-                        "viaWalkConfig": false,
-                        "type": "SHOW_ANIMATION",
-                        "anim": "spinToWin-shock"
-                    }
-                ],
-                "3": [
-                    {
-                        "wait": false,
-                        "viaWalkConfig": false,
-                        "type": "SHOW_ANIMATION",
-                        "anim": "spinToWin-wave"
-                    }
-                ]
+                "var": "entity.attrib.element",
+                "cases": {
+                    "HEAT": [
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "spinToWin-heat"
+                        }
+                    ],
+                    "COLD": [
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "spinToWin-cold"
+                        }
+                    ],
+                    "SHOCK": [
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "spinToWin-shock"
+                        }
+                    ],
+                    "WAVE": [
+                        {
+                            "wait": false,
+                            "viaWalkConfig": false,
+                            "type": "SHOW_ANIMATION",
+                            "anim": "spinToWin-wave"
+                        }
+                    ]
+                }
             },
             {
                 "stateReset": false,
@@ -1027,9 +1041,23 @@
                 "type": "SET_RELATIVE_SPEED"
             },
             {
-                "time": 1.5,
-                "stopBeforeEdge": true,
-                "type": "MOVE_BACKWARD"
+                "type": "IF",
+                "condition": "!newgame.harder-enemies",
+                "withElse": true,
+                "thenStep": [
+                    {
+                        "time": 1.5,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_BACKWARD"
+                    }
+                ],
+                "elseStep": [
+                    {
+                        "time": 1,
+                        "stopBeforeEdge": true,
+                        "type": "MOVE_BACKWARD"
+                    }
+                ]
             },
             {
                 "type": "CLEAR_EFFECTS"
@@ -1080,10 +1108,30 @@
                 "type": "FACE_TO_TARGET"
             },
             {
-                "type": "SET_ATTRIB_NUMBER",
-                "attribName": "special_attacks",
-                "changeType": "set",
-                "value": 0
+                "stateReset": false,
+                "type": "DO_ENEMY_ACTION_INLINE",
+                "actionName": "_SetElement"
+            },
+            {
+                "type": "IF",
+                "condition": "!newgame.harder-enemies",
+                "withElse": true,
+                "thenStep": [
+                    {
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "special_attacks",
+                        "changeType": "set",
+                        "value": 2
+                    }
+                ],
+                "elseStep": [
+                    {
+                        "type": "SET_ATTRIB_NUMBER",
+                        "attribName": "special_attacks",
+                        "changeType": "set",
+                        "value": 3
+                    }
+                ]
             },
             {
                 "type": "LABEL",
@@ -1092,7 +1140,7 @@
             {
                 "type": "SET_ATTRIB_NUMBER",
                 "attribName": "special_attacks",
-                "changeType": "add",
+                "changeType": "sub",
                 "value": 1
             },
             {
@@ -1107,7 +1155,8 @@
             },
             {
                 "type": "WAIT",
-                "time": 0.2
+                "time": 0.2,
+                "aggroTime": 0.15
             },
             {
                 "value": false,
@@ -1116,7 +1165,7 @@
             },
             {
                 "type": "GOTO_LABEL_WHILE",
-                "condition": "!entity.attrib.hitTarget && entity.attrib.special_attacks < 2",
+                "condition": "!entity.attrib.hitTarget && entity.attrib.special_attacks > 0",
                 "name": "preAttack"
             },
             {
@@ -1184,112 +1233,98 @@
         ],
         "_ShowCharge": [
             {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"HEAT\"",
-                "thenStep": [
-                    {
-                        "duration": 1.5,
-                        "align": "CENTER",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": true,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_charge_HEAT"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+                "type": "SWITCH_CASE",
+                "var": "entity.attrib.element",
+                "cases": {
+                    "HEAT": [
+                        {
+                            "duration": 1.5,
+                            "align": "CENTER",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": true,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_charge_HEAT"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"COLD\"",
-                "thenStep": [
-                    {
-                        "duration": 1.5,
-                        "align": "CENTER",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": true,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_charge_COLD"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+                    ],
+                    "COLD": [
+                        {
+                            "duration": 1.5,
+                            "align": "CENTER",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": true,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_charge_COLD"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"SHOCK\"",
-                "thenStep": [
-                    {
-                        "duration": 1.5,
-                        "align": "CENTER",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": true,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_charge_SHOCK"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+                    ],
+                    "SHOCK": [
+                        {
+                            "duration": 1.5,
+                            "align": "CENTER",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": true,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_charge_SHOCK"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"WAVE\"",
-                "thenStep": [
-                    {
-                        "duration": 1.5,
-                        "align": "CENTER",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": true,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_charge_WAVE"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+                    ],
+                    "WAVE": [
+                        {
+                            "duration": 1.5,
+                            "align": "CENTER",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": true,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_charge_WAVE"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         }
-                    }
-                ]
+                    ]
+                }
             }
         ],
         "_DoAttack": [
@@ -1910,7 +1945,7 @@
         "_DoSpecialAttack": [
             {
                 "type": "DO_ENEMY_ACTION_INLINE",
-                "actionName": "_SetElement"
+                "actionName": "_CycleElement"
             },
             {
                 "type": "DISABLE_REACTION",
@@ -1923,326 +1958,312 @@
                 "anim": "spinToWin-multi"
             },
             {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"HEAT\"",
-                "thenStep": [
-                    {
-                        "active": "ATTACK",
-                        "element": "HEAT",
-                        "type": "CHANGE_ENEMY_ANNOTATION"
-                    },
-                    {
-                        "duration": 0.05,
-                        "align": "BOTTOM",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": false,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_trail_HEAT"
+                "type": "SWITCH_CASE",
+                "var": "entity.attrib.element",
+                "cases": {
+                    "HEAT": [
+                        {
+                            "active": "ATTACK",
+                            "element": "HEAT",
+                            "type": "CHANGE_ENEMY_ANNOTATION"
                         },
-                        "offset": {
-                            "x": 0,
-                            "y": 0
+                        {
+                            "duration": 0.05,
+                            "align": "BOTTOM",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": false,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_trail_HEAT"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        {
+                            "type": "SHOOT_PROXY_RANGE",
+                            "proxy": "trail_heat",
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            "align": "BOTTOM",
+                            "centralAngle": 1,
+                            "startDist": 0,
+                            "startDistAdd": 0,
+                            "count": 1,
+                            "duration": 0.04,
+                            "offsetArea": {
+                                "x": 0,
+                                "y": 0
+                            },
+                            "repeat": true
+                        },
+                        {
+                            "time": 0.4,
+                            "missReactTime": 0,
+                            "cancelOnHit": true,
+                            "withBranches": true,
+                            "hit": [
+                                {
+                                    "type": "SET_ATTRIB_BOOL",
+                                    "name": "hitTarget",
+                                    "value": true
+                                }
+                            ],
+                            "missed": [],
+                            "orthoDirFactor": 0,
+                            "ignoreLastHit": false,
+                            "collideSlip": false,
+                            "rotateSpeed": 0.2,
+                            "type": "TACKLE",
+                            "attack": {
+                                "type": "HEAVY",
+                                "element": "HEAT",
+                                "damageFactor": 2,
+                                "reverse": false,
+                                "stunSteps": [],
+                                "status": 1.25,
+                                "guardable": "",
+                                "skillBonus": "",
+                                "limiter": ""
+                            }
                         }
-                    },
-                    {
-                        "type": "SHOOT_PROXY_RANGE",
-                        "proxy": "trail_heat",
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
+                    ],
+                    "COLD": [
+                        {
+                            "active": "ATTACK",
+                            "element": "COLD",
+                            "type": "CHANGE_ENEMY_ANNOTATION"
                         },
-                        "align": "BOTTOM",
-                        "centralAngle": 1,
-                        "startDist": 0,
-                        "startDistAdd": 0,
-                        "count": 1,
-                        "duration": 0.04,
-                        "offsetArea": {
-                            "x": 0,
-                            "y": 0
+                        {
+                            "duration": 0.4,
+                            "align": "BOTTOM",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": false,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_trail_COLD"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
                         },
-                        "repeat": true
-                    },
-                    {
-                        "time": 0.4,
-                        "missReactTime": 0,
-                        "cancelOnHit": true,
-                        "withBranches": true,
-                        "hit": [
-                            {
+                        {
+                            "type": "SHOOT_PROXY_RANGE",
+                            "proxy": "trail_cold",
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            "align": "BOTTOM",
+                            "centralAngle": 1,
+                            "startDist": 0,
+                            "startDistAdd": 0,
+                            "count": 1,
+                            "duration": 0.04,
+                            "offsetArea": {
+                                "x": 0,
+                                "y": 0
+                            },
+                            "repeat": true
+                        },
+                        {
+                            "time": 0.4,
+                            "missReactTime": 0,
+                            "cancelOnHit": true,
+                            "withBranches": true,
+                            "hit": [{
                                 "type": "SET_ATTRIB_BOOL",
                                 "name": "hitTarget",
                                 "value": true
+                            }],
+                            "missed": [],
+                            "orthoDirFactor": 0,
+                            "ignoreLastHit": false,
+                            "collideSlip": false,
+                            "rotateSpeed": 0.2,
+                            "type": "TACKLE",
+                            "attack": {
+                                "type": "HEAVY",
+                                "element": "COLD",
+                                "damageFactor": 2,
+                                "reverse": false,
+                                "stunSteps": [],
+                                "status": 1.25,
+                                "guardable": "",
+                                "skillBonus": "",
+                                "limiter": ""
                             }
-                        ],
-                        "missed": [],
-                        "orthoDirFactor": 0,
-                        "ignoreLastHit": false,
-                        "collideSlip": false,
-                        "rotateSpeed": 0.2,
-                        "type": "TACKLE",
-                        "attack": {
-                            "type": "HEAVY",
-                            "element": "HEAT",
-                            "damageFactor": 2,
-                            "reverse": false,
-                            "stunSteps": [],
-                            "status": 1.25,
-                            "guardable": "",
-                            "skillBonus": "",
-                            "limiter": ""
                         }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"COLD\"",
-                "thenStep": [
-                    {
-                        "active": "ATTACK",
-                        "element": "COLD",
-                        "type": "CHANGE_ENEMY_ANNOTATION"
-                    },
-                    {
-                        "duration": 0.4,
-                        "align": "BOTTOM",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": false,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_trail_COLD"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        }
-                    },
-                    {
-                        "type": "SHOOT_PROXY_RANGE",
-                        "proxy": "trail_cold",
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        },
-                        "align": "BOTTOM",
-                        "centralAngle": 1,
-                        "startDist": 0,
-                        "startDistAdd": 0,
-                        "count": 1,
-                        "duration": 0.04,
-                        "offsetArea": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "repeat": true
-                    },
-                    {
-                        "time": 0.4,
-                        "missReactTime": 0,
-                        "cancelOnHit": true,
-                        "withBranches": true,
-                        "hit": [{
-                            "type": "SET_ATTRIB_BOOL",
-                            "name": "hitTarget",
-                            "value": true
-                        }],
-                        "missed": [],
-                        "orthoDirFactor": 0,
-                        "ignoreLastHit": false,
-                        "collideSlip": false,
-                        "rotateSpeed": 0.2,
-                        "type": "TACKLE",
-                        "attack": {
-                            "type": "HEAVY",
-                            "element": "COLD",
-                            "damageFactor": 2,
-                            "reverse": false,
-                            "stunSteps": [],
-                            "status": 1.25,
-                            "guardable": "",
-                            "skillBonus": "",
-                            "limiter": ""
-                        }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"SHOCK\"",
-                "thenStep": [
-                    {
-                        "active": "ATTACK",
-                        "element": "SHOCK",
-                        "type": "CHANGE_ENEMY_ANNOTATION"
-                    },
-                    {
-                        "duration": 0.4,
-                        "align": "BOTTOM",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": false,
-                        "fixPos": false,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_trail_SHOCK"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        }
-                    },
-                    {
-                        "type": "SHOOT_PROXY_RANGE",
-                        "proxy": "trail_shock",
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        },
-                        "align": "BOTTOM",
-                        "centralAngle": 1,
-                        "startDist": 0,
-                        "startDistAdd": 0,
-                        "count": 1,
-                        "duration": 0.04,
-                        "offsetArea": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "repeat": true
-                    },
-                    {
-                        "time": 0.4,
-                        "missReactTime": 0,
-                        "cancelOnHit": true,
-                        "withBranches": true,
-                        "hit": [{
-                            "type": "SET_ATTRIB_BOOL",
-                            "name": "hitTarget",
-                            "value": true
-                        }],
-                        "missed": [],
-                        "orthoDirFactor": 0,
-                        "ignoreLastHit": false,
-                        "collideSlip": false,
-                        "rotateSpeed": 0.2,
-                        "type": "TACKLE",
-                        "attack": {
-                            "type": "HEAVY",
+                    ],
+                    "SHOCK": [
+                        {
+                            "active": "ATTACK",
                             "element": "SHOCK",
-                            "damageFactor": 2,
-                            "reverse": false,
-                            "stunSteps": [],
-                            "status": 1.25,
-                            "guardable": "",
-                            "skillBonus": "",
-                            "limiter": ""
+                            "type": "CHANGE_ENEMY_ANNOTATION"
+                        },
+                        {
+                            "duration": 0.4,
+                            "align": "BOTTOM",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": false,
+                            "fixPos": false,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_trail_SHOCK"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "SHOOT_PROXY_RANGE",
+                            "proxy": "trail_shock",
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            "align": "BOTTOM",
+                            "centralAngle": 1,
+                            "startDist": 0,
+                            "startDistAdd": 0,
+                            "count": 1,
+                            "duration": 0.04,
+                            "offsetArea": {
+                                "x": 0,
+                                "y": 0
+                            },
+                            "repeat": true
+                        },
+                        {
+                            "time": 0.4,
+                            "missReactTime": 0,
+                            "cancelOnHit": true,
+                            "withBranches": true,
+                            "hit": [{
+                                "type": "SET_ATTRIB_BOOL",
+                                "name": "hitTarget",
+                                "value": true
+                            }],
+                            "missed": [],
+                            "orthoDirFactor": 0,
+                            "ignoreLastHit": false,
+                            "collideSlip": false,
+                            "rotateSpeed": 0.2,
+                            "type": "TACKLE",
+                            "attack": {
+                                "type": "HEAVY",
+                                "element": "SHOCK",
+                                "damageFactor": 2,
+                                "reverse": false,
+                                "stunSteps": [],
+                                "status": 1.25,
+                                "guardable": "",
+                                "skillBonus": "",
+                                "limiter": ""
+                            }
                         }
-                    }
-                ]
-            },
-            {
-                "withElse": false,
-                "type": "IF",
-                "condition": "entity.attrib.element == \"WAVE\"",
-                "thenStep": [
-                    {
-                        "active": "ATTACK",
-                        "element": "WAVE",
-                        "type": "CHANGE_ENEMY_ANNOTATION"
-                    },
-                    {
-                        "duration": 0.4,
-                        "align": "BOTTOM",
-                        "rotateFace": 0,
-                        "flipLeftFace": false,
-                        "wait": false,
-                        "waitSkip": 0,
-                        "actionDetached": false,
-                        "fixPos": false,
-                        "rotateSpeed": 0.1,
-                        "type": "SHOW_EFFECT",
-                        "effect": {
-                            "sheet": "enemies.beach",
-                            "name": "star_trail_WAVE"
-                        },
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        }
-                    },
-                    {
-                        "type": "SHOOT_PROXY_RANGE",
-                        "proxy": "trail_wave",
-                        "offset": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0
-                        },
-                        "align": "BOTTOM",
-                        "centralAngle": 1,
-                        "startDist": 0,
-                        "startDistAdd": 0,
-                        "count": 1,
-                        "duration": 0.04,
-                        "offsetArea": {
-                            "x": 0,
-                            "y": 0
-                        },
-                        "repeat": true
-                    },
-                    {
-                        "time": 0.4,
-                        "missReactTime": 0,
-                        "cancelOnHit": true,
-                        "withBranches": true,
-                        "hit": [{
-                            "type": "SET_ATTRIB_BOOL",
-                            "name": "hitTarget",
-                            "value": true
-                        }],
-                        "missed": [],
-                        "orthoDirFactor": 0,
-                        "ignoreLastHit": false,
-                        "collideSlip": false,
-                        "rotateSpeed": 0.2,
-                        "type": "TACKLE",
-                        "attack": {
-                            "type": "HEAVY",
+                    ],
+                    "WAVE": [
+                        {
+                            "active": "ATTACK",
                             "element": "WAVE",
-                            "damageFactor": 2,
-                            "reverse": false,
-                            "stunSteps": [],
-                            "status": 1.25,
-                            "guardable": "",
-                            "skillBonus": "",
-                            "limiter": ""
+                            "type": "CHANGE_ENEMY_ANNOTATION"
+                        },
+                        {
+                            "duration": 0.4,
+                            "align": "BOTTOM",
+                            "rotateFace": 0,
+                            "flipLeftFace": false,
+                            "wait": false,
+                            "waitSkip": 0,
+                            "actionDetached": false,
+                            "fixPos": false,
+                            "rotateSpeed": 0.1,
+                            "type": "SHOW_EFFECT",
+                            "effect": {
+                                "sheet": "enemies.beach",
+                                "name": "star_trail_WAVE"
+                            },
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            }
+                        },
+                        {
+                            "type": "SHOOT_PROXY_RANGE",
+                            "proxy": "trail_wave",
+                            "offset": {
+                                "x": 0,
+                                "y": 0,
+                                "z": 0
+                            },
+                            "align": "BOTTOM",
+                            "centralAngle": 1,
+                            "startDist": 0,
+                            "startDistAdd": 0,
+                            "count": 1,
+                            "duration": 0.04,
+                            "offsetArea": {
+                                "x": 0,
+                                "y": 0
+                            },
+                            "repeat": true
+                        },
+                        {
+                            "time": 0.4,
+                            "missReactTime": 0,
+                            "cancelOnHit": true,
+                            "withBranches": true,
+                            "hit": [{
+                                "type": "SET_ATTRIB_BOOL",
+                                "name": "hitTarget",
+                                "value": true
+                            }],
+                            "missed": [],
+                            "orthoDirFactor": 0,
+                            "ignoreLastHit": false,
+                            "collideSlip": false,
+                            "rotateSpeed": 0.2,
+                            "type": "TACKLE",
+                            "attack": {
+                                "type": "HEAVY",
+                                "element": "WAVE",
+                                "damageFactor": 2,
+                                "reverse": false,
+                                "stunSteps": [],
+                                "status": 1.25,
+                                "guardable": "",
+                                "skillBonus": "",
+                                "limiter": ""
+                            }
                         }
-                    }
-                ]
+                    ]
+                }
             },
             {
                 "type": "STOP_REPEATING_FORCE"
@@ -2336,6 +2357,34 @@
                         "value": "WAVE"
                     }
                 ]
+            }
+        ],
+        "_CycleElement": [
+            {
+                "type": "SWITCH_CASE",
+                "var": "entity.attrib.element",
+                "cases": {
+                    "HEAT": [{
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "WAVE"
+                    }],
+                    "WAVE": [{
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "COLD"
+                    }],
+                    "COLD": [{
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "SHOCK"
+                    }],
+                    "SHOCK": [{
+                        "type": "SET_ATTRIB_STRING",
+                        "name": "element",
+                        "value": "HEAT"
+                    }]
+                }
             }
         ]
     },

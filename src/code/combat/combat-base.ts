@@ -1,29 +1,17 @@
-import ascendedBooster from "./ascended-booster.js"
-import arena from "./arena.js"
-import buff from "./buffs.js";
-import combatantEntity from "./combatant-entity.js";
-import combatModel from "./combat-model.js"
-import consumables from "./consumables.js"
-import overhealing from "./overhealing.js";
-import proxyEntity from "./proxy.js"
-import statusEffect from "./status-effect.js";
-import combatReactions from "./combat-reactions.js";
+import "./ascended-booster.js";
+import "./arena.js";
+import "./buffs.js";
+import "./combatant-entity.js";
+import "./combat-model.js";
+import "./consumables.js";
+import "./overhealing.js";
+import "./proxy.js";
+import "./status-effect.js";
+import "./combat-reactions.js";
+import "./combat-condition.js";
 
-export default function() {
-    arena();
-    consumables();
-    ascendedBooster();
-    statusEffect();
-    overhealing();
-    combatantEntity();
-    proxyEntity();
-    buff();
-    combatModel();
-    combatReactions();
-
-    sc.COMBAT_FLY_LEVEL["LIGHTER"] = {
-        vel: 75,
-        stun: 0.2,
-        jump: 0
-    }
+sc.COMBAT_FLY_LEVEL["LIGHTER"] = {
+    vel: 75,
+    stun: 0.2,
+    jump: 0
 }

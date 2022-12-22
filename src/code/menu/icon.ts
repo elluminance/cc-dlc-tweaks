@@ -1,4 +1,3 @@
-export default function() {
 const icons = new ig.Font("media/font/els-mod-icons.png", 16, ig.MultiFont.ICON_START);
 
 const buffIcons = new ig.Font("media/font/icons-buff-el-mod.png", 8, ig.MultiFont.ICON_START);
@@ -83,5 +82,3 @@ sc.fontsystem.tinyFont.setMapping({
     "stat-el-shock-boost": [tinyFontIndex, 6],
     "stat-el-wave-boost": [tinyFontIndex, 7],
 })
-
-}

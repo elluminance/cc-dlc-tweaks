@@ -1,4 +1,3 @@
-export default function() {
 const newFoods = [
     "el_COOKIE_S",
     "el_COOKIE_M",
@@ -442,4 +441,3 @@ Object.assign(sc.STAT_CHANGE_SETTINGS, {
         grade: "stat-rank-2"
     }
 })
-}

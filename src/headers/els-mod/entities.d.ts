@@ -13,6 +13,7 @@ declare global {
             namespace Settings {
                 interface Data {
                     animSheet?: string;
+                    walkAnims?: ig.ActorEntity.WalkAnims;
                 }
             }
             interface Settings {

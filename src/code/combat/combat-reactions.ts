@@ -1,4 +1,4 @@
-export default function() {
+
 let VirusBuffAction = new ig.Action("_EL_VirusBuff_Collab", [
     {
         value: "MASSIVE",
@@ -71,4 +71,3 @@ sc.EnemyType.inject({
         }
     }
 })
-}

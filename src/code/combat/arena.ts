@@ -1,4 +1,3 @@
-export default function() {
 sc.Arena.inject({
     init(){
         this.parent()
@@ -55,5 +54,4 @@ sc.ARENA_SCORE_TYPES.EL_CTRON_CLONE_HIT = {
     order: 3,
     points: -5000,
     asMali: true,
-}
 }
