@@ -13,16 +13,11 @@ export default class implements LegacyPluginClass {
     }
 
     prestart() {
-        import("./code/menu/menu-core.js");
-        import("./code/player/player-core.js");
-        import("./code/gems/core.js");
-        import("./code/combat/combat-base.js");
-        import("./code/steps/step-core.js");
-        import("./code/misc/misc-core.js");
+        import("./prestart/prestart.js")
     }
 
     poststart() {
-        //import("./code/player/combat-art.js");
+        //import("./poststart/poststart.js");
         el.gemDatabase = new el.GemDatabase;
     }
 }
