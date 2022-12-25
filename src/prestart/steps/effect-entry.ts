@@ -34,9 +34,8 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EFFECT_ENTRY.COPY_SPRITE.exten
                 else this.color = getColorFromPercent(300, 360, dashCount / maxDash)
                 break;
             case "customColor":
-                let color: sc.EL_ModalColorPicker.Color = ig.vars.get("el.colors.customAura") as any
-                if (color) this.color = rgbToString(color.red, color.green, color.blue);
-                else this.color = "#fff"
+                let color = ig.vars.get<string>("el.colors.customAura.colorString")
+                this.color = color || "#ffffff"
                 break;
             case "rainbow":
             case "pastel-rainbow":

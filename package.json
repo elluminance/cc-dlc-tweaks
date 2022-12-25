@@ -14,7 +14,7 @@
         "item-api": ">=0.4.2",
         "food-api": ">=2.0.0",
         "modifier-api": ">=0.1.0",
-        "el-tweaks": ">=0.5.3",
+        "el-tweaks": ">=0.5.6",
         "mod-utils": ">=0.0.1"
     },
     "devDependencies": {

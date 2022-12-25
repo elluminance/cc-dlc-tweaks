@@ -13,7 +13,7 @@ export default class implements LegacyPluginClass {
     }
 
     prestart() {
-        import("./prestart/prestart.js")
+        import("./prestart/prestart.js");
     }
 
     poststart() {
