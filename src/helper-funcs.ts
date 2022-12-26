@@ -57,17 +57,17 @@ export function hsv2rgbString(h: number,s: number,v: number) {
 const rankRegex = /stat-(?:rank|level)(-down)?-(\d+)/
 export function genBuffString(buffList: string[]) {
     let buffIcons: Record<string, string[]> = {}
-    buffList.forEach(value => {
+    for(const value of buffList) {
         let statSetting = sc.STAT_CHANGE_SETTINGS[value];
         if(statSetting.change == sc.STAT_CHANGE_TYPE.HEAL) return;
         
         if(!buffIcons[statSetting.grade!]) buffIcons[statSetting.grade!] = [];
         
         buffIcons[statSetting.grade!].push(statSetting.icon ?? "stat-default")
-    })
+    }
 
     let buffString = "";
-    Object.keys(buffIcons).sort((a, b) => {
+    let list = Object.keys(buffIcons).sort((a, b) => {
         let a_match = a.match(rankRegex),
             b_match = b.match(rankRegex);
 
@@ -79,9 +79,12 @@ export function genBuffString(buffList: string[]) {
             b_val = parseInt(b_match[2]) * (b_match[1] ? -1 : 1);
         } else b_val = 0;
         return b_val - a_val
-    }).forEach(grade => {
-        buffIcons[grade].forEach(value => {buffString += `\\i[${value}]`})
+    });
+
+    for(const grade of list) {
+        for(const value of buffIcons[grade]) buffString += `\\i[${value}]`;
+
         buffString += `\\i[${grade}]`
-    })
+    }
     return buffString;
 }

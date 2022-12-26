@@ -361,7 +361,7 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
         }
         this.list.clear(refocus);
         let gemList = el.gemDatabase.sortGems(this.sortMethod);
-        gemList.forEach(gem => {
+        for(let gem of gemList) {
             let button = new el.GemButton(gem, true);
             button.submitSound = undefined;
 
@@ -379,7 +379,7 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
             }
 
             this.addButton(button);
-        })
+        }
 
         if (refocus) {
             this.list.scrollToY(toScroll, true);
@@ -466,7 +466,8 @@ el.GemEquipMenu.EquippedGemsPanel = sc.MenuPanel.extend({
     },
 
     updateGemEntries() {
-        this.equipButtons.forEach((entry, index) => {
+        let index = 0;
+        for(let entry of this.equipButtons) {
             if (index >= el.gemDatabase.maxSlots) {
                 entry.setActive(false);
                 entry.setGem();
@@ -474,7 +475,8 @@ el.GemEquipMenu.EquippedGemsPanel = sc.MenuPanel.extend({
                 entry.setActive(true);
                 entry.setGem(el.gemDatabase.equippedGems[index])
             }
-        })
+            index++;
+        }
 
         this.costValues.setText(`${el.gemDatabase.maxPower - el.gemDatabase.getTotalGemCosts()}/${el.gemDatabase.maxPower}`);
     },

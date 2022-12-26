@@ -314,7 +314,7 @@
             "en_US": "Anima Sword"
         },
         "description": {
-            "en_US": "A sword that allows the user to command unparalleled healing ability."
+            "en_US": "A royal sword that allows the user to command unparalleled healing ability."
         },
         "type": "EQUIP",
         "rarity": 6,
@@ -344,44 +344,5 @@
             "name": "circle"
         },
         "isScalable": true
-    },
-
-    {
-        "customItem": "el-tulip-pin",
-        "order": 70,
-        "name": {
-            "en_US": "Tulip Pin"
-        },
-        "description": {
-            "en_US": "A pin depicting a white tulip. Simple, yet perfect."
-        },
-        "type": "EQUIP",
-        "rarity": 3,
-        "cost": 0,
-        "level": 53,
-        "icon": "item-helm",
-        "equipType": "HEAD",
-        "noTrack": true,
-        "noCount": false,
-        "params": {
-            "elemFactor": [
-                1,
-                1,
-                1,
-                1
-            ],
-            "hp": 673,
-            "attack": 69,
-            "defense": 37
-        },
-        "properties": {
-            "EL_NEUTRAL_BOOST": 1.2,
-            "": 1
-        },
-        "effect": {
-            "sheet": "drops",
-            "name": "circle"
-        },
-        "isScalable": false
     }
 ]

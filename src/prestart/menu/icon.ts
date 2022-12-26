@@ -60,11 +60,11 @@ let fontMappings: ig.MultiFont.Mapping = {
 }
 
 let index = 0;
-itemTypes.forEach(itemType => {
-    itemRarities.forEach(itemRarity => {
+for(const itemType of itemTypes) {
+    for(const itemRarity of itemRarities) {
         fontMappings[`${itemType}${itemRarity}`] = [fontIndex + 2, index++];
-    })
-})
+    }
+}
 
 sc.fontsystem.font.setMapping(fontMappings)
 

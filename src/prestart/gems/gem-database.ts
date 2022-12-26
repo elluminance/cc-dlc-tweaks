@@ -58,7 +58,7 @@ el.GemDatabase = ig.Class.extend({
         let values: number[];
         ig.storage.register(this);
         let order = 0;
-        Object.entries(gemInfo.gemTypes).forEach(([key, gemType]) => {
+        for(let [key, gemType] of Object.entries(gemInfo.gemTypes)) {
             if (gemType.values) {
                 if (gemType.values.length >= 6) values = gemType.values;
                 else {
@@ -84,11 +84,11 @@ el.GemDatabase = ig.Class.extend({
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
             }
-        })
+        }
 
         order = 10000;
 
-        Object.entries(gemInfo.uniqueGems).forEach(([key, gemType]) => {
+        for(let [key, gemType] of Object.entries(gemInfo.uniqueGems)) {
             this.gemRoots[key] = {
                 stat: gemType.stat,
                 gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
@@ -101,7 +101,7 @@ el.GemDatabase = ig.Class.extend({
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
             }
-        })
+        }
 
         ig.vars.registerVarAccessor("el-gems", this)
     },
@@ -202,12 +202,9 @@ el.GemDatabase = ig.Class.extend({
     },
 
     getGemName(gem, withIcon, excludeLevel) {
-        let workingString = "",
-            gemRoot = this.getGemRoot(gem);
+        let workingString = "";
 
-        if (withIcon) workingString = this.gemColorToIcon(gemRoot?.gemColor);
-
-        workingString += this.getGemRootName(gemRoot, withIcon);
+        workingString += this.getGemRootName(this.getGemRoot(gem), withIcon);
 
         if (!excludeLevel) {
             workingString += integerToRomanNumeral(this.getGemLevel(gem));
@@ -481,9 +478,11 @@ el.GemDatabase = ig.Class.extend({
 
     //#region Storage
     onStorageSave(savefile) {
-        if (!savefile.vars.storage?.el) savefile.vars.storage.el = {};
+        savefile.vars.storage.el ??= {}
+        savefile.vars.storage.el.gems ??= {}
+        
 
-        Object.assign(savefile.vars.storage.el, {
+        Object.assign(savefile.vars.storage.el.gems, {
             inventory: this.gemInventory,
             equipped: this.equippedGems,
 
