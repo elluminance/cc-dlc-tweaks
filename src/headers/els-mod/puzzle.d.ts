@@ -8,9 +8,14 @@ declare global {
         interface EL_Prism extends ig.AnimatedEntity {
             ballDestroyer: true;
             timer: number;
-            angle: number;
             state: number;
+            animTimer: number;
+            animIndex: number;
+            hoverTimer: number;
+
+            angle: number;
             effects: Record<"puzzle", ig.EffectSheet>
+            gfx: ig.Image;
 
             ballHit(this: this, entity: ig.Entity): boolean | void;
             isBallAdjust(this: this): boolean;
