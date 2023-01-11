@@ -9,7 +9,7 @@ sc.NewGamePlusModel.inject({
             case "disable-exp":
                 if (sc.model.player.getToggleItemState("el-toggle-no-xp")) return true
                 break;
-        };
+        }
         return this.parent(b)
     }
 })

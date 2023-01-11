@@ -117,7 +117,7 @@ declare global {
             GEODE_OPENING = "GEODE_OPENING"
         }
 
-        var MAP_INTERACT_ICONS: Record<string, sc.MapInteractIcon>;
+        let MAP_INTERACT_ICONS: Record<string, sc.MapInteractIcon>;
 
         interface ShopCartEntry {
             gemGfx: ig.Image;
@@ -125,100 +125,6 @@ declare global {
 
         
 
-        //#region Geode
-        interface GeodeRewardsGui extends Omit<sc.ModalButtonInteract, "init"> {
-            sounds: Record<string, ig.Sound>;
-            ninepatch: ig.NinePatch;
-            list: sc.ScrollPane;
-            listContent: ig.GuiElementBase;
-            listItems: GeodeOpeningGui.ItemAmounts;
-            crystals: number;
-            timer: number;
-            done: boolean;
-            currentIndex: number;
-            listEntries: [string, GeodeOpeningGui.ItemAmount][]
-            listitemYOffset: number;
-
-            onDialogCallback(this: this): void;
-            createList(this: this): void;
-            setListItems(this: this, items: sc.GeodeOpeningGui.ItemAmounts, crystals: number): void;
-        }
-
-        interface GeodeRewardsGuiConstructor extends ImpactClass<GeodeRewardsGui> {
-            new (items?: sc.GeodeOpeningGui.ItemAmounts, crystals?: number): sc.GeodeRewardsGui
-        }
-        var GeodeRewardsGui: GeodeRewardsGuiConstructor
-
-        interface GeodeRewardEntry extends ig.GuiElementBase {
-            gfx: ig.Image;
-            item: sc.TextGui;
-            amount: sc.NumberGui;
-            isGems: boolean;
-            transitions: Record<string, ig.GuiHook.Transition>;
-            updateDrawables(this: this, b: ig.GuiRenderer): void;
-        }
-        interface GeodeRewardEntryConstructor extends ImpactClass<GeodeRewardEntry> {
-            new(itemName: string, amount: number, isGems?: boolean): sc.GeodeRewardEntry;
-        }
-        var GeodeRewardEntry: GeodeRewardEntryConstructor
-
-        var BOOSTER_GEMS: sc.ItemID[]
-
-        namespace GeodeOpeningGui {
-            interface ItemAmount {
-                amount: number;
-                isRare?: boolean;
-                orderMult?: number;
-            }
-            type ItemAmounts = Record<sc.ItemID, ItemAmount>
-
-            interface RewardEntry {
-                items: sc.ItemID[];
-                summedWeight: number;
-                isRare?: boolean;
-                order: number;
-            }
-        }
-
-        interface GeodeOpeningGui extends sc.BaseMenu {
-            ninepatch: ig.NinePatch;
-            textGui: sc.TextGui;
-            geodeText: sc.TextGui;
-            geodeAmount: sc.NumberGui;
-            costText: sc.TextGui;
-            costNumber: sc.NumberGui;
-            buttonInteract: ig.ButtonInteractEntry;
-            content: ig.GuiElementBase;
-            buttongroup: sc.ButtonGroup;
-            buttons: {
-                increment: sc.ButtonGui;
-                decrement: sc.ButtonGui;
-                bigIncrement: sc.ButtonGui;
-                bigDecrement: sc.ButtonGui;
-            }
-            rewardGui: sc.GeodeRewardsGui;
-            openGeodesButton: sc.ButtonGui;
-            msgBox: sc.CenterBoxGui;
-            count: number;
-            pricePerGeode: number;
-            rewardTable: GeodeOpeningGui.RewardEntry[];
-            totalWeight: number;
-
-            onButtonCallback(this: this, button: sc.ButtonGui): void;
-            incrementValue(this: this, number: number): void;
-            openGeodes(this: this): void;
-            getMaxGeodes(this: this): number;
-            _updateCounters(this: this): void;
-            onBackButtonPress(this: this): void;
-            generateRewardTable(this: this): void;
-        }
-
-        interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {
-            new (): GeodeOpeningGui
-        }
-
-        var GeodeOpeningGui: GeodeOpeningGuiConstructor;
-        //#endregion Geode
 
 
         interface StatChangeSettings {
@@ -264,5 +170,102 @@ declare global {
         enum COMBAT_PARAM_MSG {
             BUFF_CHANGED,
         }
+    }
+
+    namespace el {
+        //#region Geode
+        interface GeodeRewardsGui extends Omit<sc.ModalButtonInteract, "init"> {
+            sounds: Record<string, ig.Sound>;
+            ninepatch: ig.NinePatch;
+            list: sc.ScrollPane;
+            listContent: ig.GuiElementBase;
+            listItems: GeodeOpeningGui.ItemAmounts;
+            crystals: number;
+            timer: number;
+            done: boolean;
+            currentIndex: number;
+            listEntries: [string, GeodeOpeningGui.ItemAmount][]
+            listitemYOffset: number;
+
+            onDialogCallback(this: this): void;
+            createList(this: this): void;
+            setListItems(this: this, items: el.GeodeOpeningGui.ItemAmounts, crystals: number): void;
+        }
+
+        interface GeodeRewardsGuiConstructor extends ImpactClass<GeodeRewardsGui> {
+            new (items?: el.GeodeOpeningGui.ItemAmounts, crystals?: number): el.GeodeRewardsGui
+        }
+        let GeodeRewardsGui: GeodeRewardsGuiConstructor
+
+        interface GeodeRewardEntry extends ig.GuiElementBase {
+            gfx: ig.Image;
+            item: sc.TextGui;
+            amount: sc.NumberGui;
+            isGems: boolean;
+            transitions: Record<string, ig.GuiHook.Transition>;
+            updateDrawables(this: this, b: ig.GuiRenderer): void;
+        }
+        interface GeodeRewardEntryConstructor extends ImpactClass<GeodeRewardEntry> {
+            new(itemName: string, amount: number, isGems?: boolean): el.GeodeRewardEntry;
+        }
+        let GeodeRewardEntry: GeodeRewardEntryConstructor
+
+        let BOOSTER_GEMS: sc.ItemID[]
+
+        namespace GeodeOpeningGui {
+            interface ItemAmount {
+                amount: number;
+                isRare?: boolean;
+                orderMult?: number;
+            }
+            type ItemAmounts = Record<sc.ItemID, ItemAmount>
+
+            interface RewardEntry {
+                items: sc.ItemID[];
+                summedWeight: number;
+                isRare?: boolean;
+                order: number;
+            }
+        }
+
+        interface GeodeOpeningGui extends sc.BaseMenu {
+            ninepatch: ig.NinePatch;
+            textGui: sc.TextGui;
+            geodeText: sc.TextGui;
+            geodeAmount: sc.NumberGui;
+            costText: sc.TextGui;
+            costNumber: sc.NumberGui;
+            buttonInteract: ig.ButtonInteractEntry;
+            content: ig.GuiElementBase;
+            buttongroup: sc.ButtonGroup;
+            buttons: {
+                increment: sc.ButtonGui;
+                decrement: sc.ButtonGui;
+                bigIncrement: sc.ButtonGui;
+                bigDecrement: sc.ButtonGui;
+            }
+            rewardGui: el.GeodeRewardsGui;
+            openGeodesButton: sc.ButtonGui;
+            msgBox: sc.CenterBoxGui;
+            count: number;
+            pricePerGeode: number;
+            rewardTable: GeodeOpeningGui.RewardEntry[];
+            totalWeight: number;
+
+            onButtonCallback(this: this, button: sc.ButtonGui): void;
+            incrementValue(this: this, number: number): void;
+            openGeodes(this: this): void;
+            getMaxGeodes(this: this): number;
+            _updateCounters(this: this): void;
+            onBackButtonPress(this: this): void;
+            generateRewardTable(this: this): void;
+        }
+
+        interface GeodeOpeningGuiConstructor extends ImpactClass<GeodeOpeningGui> {
+            new (): GeodeOpeningGui
+        }
+
+        let GeodeOpeningGui: GeodeOpeningGuiConstructor;
+        //#endregion Geode
     }
 }

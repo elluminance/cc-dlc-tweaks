@@ -71,7 +71,7 @@ sc.EnemyDisplayGui.inject({
         this.parent(b, a, d, c, e, sc.model.player.getToggleItemState("dlctweaks-ascended-booster") || f);
     }
 })
-sc.BOOSTER_GEMS = [
+el.BOOSTER_GEMS = [
     457,
     458,
     459,
@@ -88,7 +88,7 @@ function getGeodeBaseDropRate(itemDrops: sc.EnemyType.ItemDrop[]): number {
     let geodeChance = 0.03
 
     let foundItem = itemDrops.find(
-        element => sc.BOOSTER_GEMS.includes(Number(element.item) || element.item)
+        element => el.BOOSTER_GEMS.includes(Number(element.item) || element.item)
     );
     
     if(foundItem) {

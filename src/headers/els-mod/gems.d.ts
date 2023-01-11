@@ -106,6 +106,7 @@ declare global {
             interface Gem {
                 gemRoot: string;
                 level: number;
+                name?: string;
             }
             
             namespace ParamBonuses {
@@ -133,6 +134,7 @@ declare global {
             enabled: boolean;
             bonusSlots: number;
             bonusPower: number;
+            specialGemNameEntries: Record<string, string>;
 
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;

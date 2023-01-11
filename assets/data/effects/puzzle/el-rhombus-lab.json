@@ -1,0 +1,83 @@
+{
+    "DOCTYPE": "EFFECT",
+    "ANIMS": {
+        "namedSheets": null,
+        "SUB": [
+            {
+                "name": "CIRCLE_RAINBOW",
+                "sheet": {
+                    "src": "media\/entity\/effects\/el-mod-particle.png",
+                    "offX": 70,
+                    "offY": 0,
+                    "width": 96,
+                    "height": 96
+                },
+                "renderMode": "lighter",
+                "time": 0.3,
+                "repeat": false,
+                "frames": [
+                    0
+                ]
+            }
+        ]
+    },
+    "EFFECTS": {
+        "prismGlow": [
+            {
+                "color": "white",
+                "maxAlpha": 1,
+                "minAlpha": 0.5,
+                "blinkDuration": 0.2,
+                "blinkCount": 1,
+                "noLighter": true,
+                "type": "BLINK_COLOR"
+            },
+            {
+                "useTargetAngle": false,
+                "keepAngleSync": false,
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 8
+                },
+                "pAlpha": {
+                    "init": 1,
+                    "start": {
+                        "value": 0,
+                        "time": 0.2,
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "pScale": {
+                    "init": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "start": {
+                        "value": {
+                            "x": 0.3,
+                            "y": 0.3
+                        },
+                        "spline": "EASE_OUT"
+                    }
+                },
+                "pRotate": {
+                    "init": 0,
+                    "start": {
+                        "value": 1,
+                        "time": 0.2,
+                        "spline": ""
+                    }
+                },
+                "moveWithTarget": 1,
+                "particleDuration": 0.2,
+                "anim": "CIRCLE_RAINBOW",
+                "type": "PLAY_ANIM"
+            },
+            {
+                "type": "WAIT",
+                "time": 0.4
+            }
+        ]
+    }
+}

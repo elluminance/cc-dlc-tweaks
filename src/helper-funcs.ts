@@ -9,12 +9,12 @@ export function numberToElementName(element: sc.ELEMENT) {
 }
 
 export function rgbToString (r: number, g: number, b: number, max255 = false) {
+    function to2DigStr(val: number) {
+        if(val < 16) {
+            return `0${val.toString(16)}`
+        } else return val.toString(16)
+    }
     if(max255) {
-        function to2DigStr(val: number) {
-            if(val < 16) {
-                return `0${val.toString(16)}`
-            } else return val.toString(16)
-        }
         return `#${to2DigStr(r)}${to2DigStr(g)}${to2DigStr(b)}`
     } else {
         return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
@@ -32,11 +32,11 @@ export function hueToRGBValue(hue: number){
 }
 
 export function getColorFromPercent(hueAtMax: number, hueAtMin: number, rotPercent: number): string {
-    let newHue = Math.min(hueAtMin, hueAtMax) + Math.abs(hueAtMax - hueAtMin) * rotPercent
+    const newHue = Math.min(hueAtMin, hueAtMax) + Math.abs(hueAtMax - hueAtMin) * rotPercent
 
-    let red = Math.floor(hueToRGBValue(newHue + 120))
-    let green = Math.floor(hueToRGBValue(newHue))
-    let blue = Math.floor(hueToRGBValue(newHue - 120))
+    const red = Math.floor(hueToRGBValue(newHue + 120))
+    const green = Math.floor(hueToRGBValue(newHue))
+    const blue = Math.floor(hueToRGBValue(newHue - 120))
     return rgbToString(red, green, blue);
 }
 
@@ -87,4 +87,8 @@ export function genBuffString(buffList: string[]) {
         buffString += `\\i[${grade}]`
     }
     return buffString;
+}
+
+export function Vec3ToTuple(v: Vec3): [number,number,number] {
+    return [v.x, v.y, v.z];
 }

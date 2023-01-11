@@ -27,14 +27,14 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EFFECT_ENTRY.COPY_SPRITE.exten
                 break;
             // this is absolutely not inspired by anything, nope not at all
             case "dash":
-                let { dashCount, maxDash } = playerEntity
+                let { dashCount, maxDash } = playerEntity;
 
                 if (dashCount > maxDash || maxDash == 0) this.color = "#00beff";
                 else if (maxDash == 1 && dashCount == 1) this.color = "#ff0000";
                 else this.color = getColorFromPercent(300, 360, dashCount / maxDash)
                 break;
             case "customColor":
-                let color = ig.vars.get<string>("el.colors.customAura.colorString")
+                let color = ig.vars.get<string>("el.colors.customAura.colorString");
                 this.color = color || "#ffffff"
                 break;
             case "rainbow":

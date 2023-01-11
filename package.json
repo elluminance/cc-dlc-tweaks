@@ -5,12 +5,10 @@
     "homepage": "https://github.com/EL20202/cc-dlc-tweaks",
     "plugin": "plugin.js",
     "module": true,
-
     "ccmodDependencies": {
         "crosscode": ">=1.4.2",
         "ccloader": "^2.22.0",
         "post-game": ">=1.4.2",
-
         "item-api": ">=0.4.2",
         "food-api": ">=2.0.0",
         "modifier-api": ">=0.1.0",
@@ -18,10 +16,17 @@
         "mod-utils": ">=0.0.1"
     },
     "devDependencies": {
-        "typescript": "^4.6.2",
-        "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs",
+        "@typescript-eslint/eslint-plugin": "^5.48.1",
+        "@typescript-eslint/parser": "^5.10.2",
+        "el-tweaks": "el20202/el-crosscode-tweaks",
+        "eslint": "^8.8.0",
+        "eslint-config-dmitmel": "dmitmel/eslint-config-dmitmel",
+        "eslint-plugin-node": "^11.0.0",
+        "eslint-plugin-prettier": "^4.0.0",
         "food-api": "el20202/crosscode-food-api",
-        "el-tweaks": "el20202/el-crosscode-tweaks"
+        "prettier": "^2.5.1",
+        "typescript": "^4.6.2",
+        "ultimate-crosscode-typedefs": "el20202/ultimate-crosscode-typedefs"
     },
     "scripts": {
         "build": "tsc --build",

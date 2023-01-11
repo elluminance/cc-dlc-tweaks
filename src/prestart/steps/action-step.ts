@@ -1,3 +1,5 @@
+export {};
+
 
 ig.ACTION_STEP.EL_SET_TARGET_POS = ig.ActionStepBase.extend({
     newPos: null,

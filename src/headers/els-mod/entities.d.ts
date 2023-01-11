@@ -6,6 +6,17 @@ declare global {
             interface Combatant {
                 hideModeAura?: boolean;
             }
+
+            namespace Ball {
+                interface PrismData {
+                    timer: number;
+                    rootBall: ig.ENTITY.Ball | null;
+                    children: ig.ENTITY.Ball[];
+                }
+            }
+            interface Ball {
+                el_prism: Ball.PrismData;
+            }
         }
     }
     namespace sc {

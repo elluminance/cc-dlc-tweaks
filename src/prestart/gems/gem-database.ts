@@ -64,7 +64,7 @@ el.GemDatabase = ig.Class.extend({
                 else {
                     ig.warn(`Warning: Gem entry for ${gemType.stat} found with less than 6 values! Skipping...`);
                     return;
-                };
+                }
             } else if (gemType.valueIncrease != undefined) {
                 values = Array(6).fill(0).map(
                     (_, index) => ((index + 1) * gemType.valueIncrease!)
@@ -72,7 +72,7 @@ el.GemDatabase = ig.Class.extend({
             } else {
                 ig.warn(`Warning: Gem entry for ${gemType.stat} found with missing values/valueIncrease! Skipping...`);
                 return;
-            };
+            }
 
             this.gemRoots[key] = {
                 stat: gemType.stat,
@@ -103,7 +103,9 @@ el.GemDatabase = ig.Class.extend({
             }
         }
 
-        ig.vars.registerVarAccessor("el-gems", this)
+        ig.vars.registerVarAccessor("el-gems", this);
+        
+        this.specialGemNameEntries = ig.lang.get("sc.gui.el-gems.special-gem-names");
     },
 
     _validateData() {
@@ -126,6 +128,9 @@ el.GemDatabase = ig.Class.extend({
             } else i++;
         }
 
+        if(removedGems.length > 0) {
+            ig.game.addTeleportMessage(ig.lang.get("sc.gui.el-gems.gem-update-warning"))
+        }
         this.compileGemBonuses();
     },
 
@@ -176,8 +181,6 @@ el.GemDatabase = ig.Class.extend({
     },
 
     getGemRootName(gemRoot, withIcon) {
-        let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-gem-names");
-
         if (typeof gemRoot === "string") {
             gemRoot = this.gemRoots[gemRoot] ?? this.gemRoots["FALLBACK"];
         }
@@ -191,9 +194,9 @@ el.GemDatabase = ig.Class.extend({
                 workingString += ig.LangLabel.getText(gemRoot.langLabel);
             }
         } else if (!gemRoot.stat) {
-            workingString += "Unknown Gem"
-        } else if (gemRoot.stat in specialLangEntries) {
-            workingString += specialLangEntries[gemRoot.stat]
+            workingString += "Unknown Gem";
+        } else if (gemRoot.stat in this.specialGemNameEntries) {
+            workingString += this.specialGemNameEntries[gemRoot.stat]
         } else {
             workingString += ig.lang.get(`sc.gui.menu.equip.modifier.${gemRoot.stat}`)
         }
@@ -230,7 +233,7 @@ el.GemDatabase = ig.Class.extend({
             workingString = specialLangEntries[gemStat];
         } else {
             workingString = ig.lang.get(`sc.gui.menu.equip.modifier.${gemStat}`);
-        };
+        }
 
         if (includeValue) {
             let value = this.getGemStatBonus(gem);
@@ -416,7 +419,6 @@ el.GemDatabase = ig.Class.extend({
         //no elemental absorption for you >:)
         bonuses.params.elemFactor = bonuses.params.elemFactor.map(factor => Math.max(0, factor));
 
-
         sc.model.player.params.elGemBonuses = bonuses;
     },
 
@@ -487,8 +489,8 @@ el.GemDatabase = ig.Class.extend({
             equipped: this.equippedGems,
 
             enabled: this.enabled,
-            bonusSlots: 0,
-            bonusPower: 0,
+            bonusSlots: this.bonusSlots,
+            bonusPower: this.bonusPower,
         })
     },
 

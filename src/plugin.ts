@@ -8,7 +8,7 @@ export default class implements LegacyPluginClass {
     constructor(public mod: Mod) {}
 
     preload() {
-        //@ts-ignore
+        //@ts-expect-error
         if(!window.el) window.el = {};
     }
 

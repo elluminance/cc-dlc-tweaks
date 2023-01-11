@@ -103,7 +103,7 @@ ig.ACTION_STEP.ADD_ACTION_BUFF.inject({
             if (this.timer) {
                 buff.timer = buff.time = this.timer;
                 buff.hasTimer = true;
-            };
+            }
             if (this.customColor) buff.customTimerColor = this.customColor;
         }
     }
