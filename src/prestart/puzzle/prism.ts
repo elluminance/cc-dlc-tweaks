@@ -10,14 +10,17 @@ const enum PrismState {
     GLOW,
 }
 
+const attackFactor = 2/3;
 ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
-    ballDestroyer: true,
     timer: 0,
     angle: Math.PI / 4,
     state: PrismState.NORMAL,
     animTimer: 0,
     animIndex: 0,
     hoverTimer: 0,
+    condition: null,
+
+    active: true,
 
     effects: {
         puzzle: new ig.EffectSheet("puzzle.el-rhombus-lab"),
@@ -26,20 +29,26 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
     init(x, y, z, settings) {
         this.parent(x, y, z, settings);
+
         this.coll.type = ig.COLLTYPE.VIRTUAL;
         this.coll.weight = -1;
         this.coll.zGravityFactor = 1E3;
         this.coll.setSize(16, 16, 16);
         this.coll.setPadding(2, 2);
+
+        this.condition = new ig.VarCondition(settings.condition);
+        this.active = this.condition.evaluate();
     },
 
     ballHit(entity) {
+        if (!this.active) return false;
+
         if(entity instanceof ig.ENTITY.Ball && entity.isBall && entity.el_prism.timer <= 0) {
             let attackInfo = ig.copy(entity.attackInfo);
-            if(!attackInfo.ballDamage) return false; 
-            attackInfo.damageFactor /= 2;
-            attackInfo.spFactor /= 2;
-            attackInfo.statusInflict /= 2;
+            if(attackInfo.hasHint("NO_PUZZLE")) return false;
+            attackInfo.damageFactor *= attackFactor;
+            attackInfo.spFactor *= attackFactor;
+            attackInfo.statusInflict *= attackFactor;
             
             let rootBall = entity.el_prism.rootBall || entity;
             
@@ -67,7 +76,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
             this.effects.puzzle.spawnOnTarget("prismGlow", this);
 
             this.state = PrismState.GLOW;
-            this.timer = 0.15;
+            this.timer = 0.2;
             return true;
         }
     },
@@ -96,13 +105,45 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     updateSprites() {
         let baseSprite = this.sprites[0];
         let prismSprite = this.sprites[1];
-        
+        const coll = this.coll;
         //this.sprites[1].setPos()
         baseSprite.setEntityDefault(this, 16, 32, "NO_EXPAND", 1, null, this.gfx, 80, 0);
-        
-        Vec3.assignC(vec3_tmp, 0, 0, (1.5 * Math.sin(2 * this.hoverTimer)) + 8);
+        baseSprite.setShadow(0,0,0,0);
 
-        prismSprite.setEntityDefault(this, 16, 16, "NO_EXPAND", 1, vec3_tmp, this.gfx, 16 * this.animIndex, this.state == PrismState.GLOW ? 16 : 0);
+        Vec3.assignC(vec3_tmp, 0, 0, (1.5 * Math.sin(2 * this.hoverTimer)) + 7.5);
+
+        if(this.active) {
+            prismSprite.setEntityDefault(this, 16, 16, "NO_EXPAND", 1, vec3_tmp, this.gfx, 16 * this.animIndex, this.state == PrismState.GLOW ? 16 : 0);
+            prismSprite.setShadow(
+                coll.pos.x + coll.size.x / 2,
+                coll.pos.y + coll.size.y / 2,
+                coll.baseZPos,
+                14 - (2 * Math.sin(2 * this.hoverTimer)),
+            );
+        } else {
+            prismSprite.setInvisible();
+        }
+    },
+
+    varsChanged() {
+        this.active = this.condition.evaluate();
+    },
+
+    isBallDestroyer() {
+        return this.active;
+    }
+})
+
+ig.ENTITY.ElementPole.inject({
+    ballHit(ball) {
+        let parent = this.parent(ball);
+
+        if(parent && ball.el_prism.rootBall) {
+            for(const child of ball.el_prism.rootBall.el_prism.children) {
+                child.destroy();
+            }
+        }
+        return parent;
     }
 })
 
