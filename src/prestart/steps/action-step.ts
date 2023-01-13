@@ -51,7 +51,7 @@ ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions["NEARBY_ALLY"] = (combatant
     let curClosestEntity: ig.ENTITY.Combatant | null = null;
     for (; e--;) {
         let f = entities[e];
-        if ((f instanceof ig.ENTITY.Combatant) && f.party == (combatant as ig.ENTITY.Combatant).party) {
+        if ((f instanceof ig.ENTITY.Combatant) && f.party === (combatant as ig.ENTITY.Combatant).party) {
             let g = ig.CollTools.getDistVec2(combatant.coll, f.coll, vec2_tmp),
                 h = Vec2.angle(combatant.face, g),
                 len = Vec2.length(g) + h * 1E3;

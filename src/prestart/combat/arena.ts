@@ -22,7 +22,7 @@ sc.Arena.inject({
     },
 
     onVarAccess(varString, varParts) {
-        if(varParts[0] == "arena") {
+        if(varParts[0] === "arena") {
             switch(varParts[1]) {
                 case "totalTruePlatsExcludeNoRush":
                     return this.trackedCups.filter(cupName => (
@@ -42,7 +42,7 @@ sc.Arena.inject({
     },
 
     startRound() {
-        if(!this.runtime.rush || this.runtime.rush && this.runtime.currentRound == 0){
+        if(!this.runtime.rush || this.runtime.rush && this.runtime.currentRound===0){
             ig.game.playerEntity.ignoreOverheal = true;
         }
         this.parent();

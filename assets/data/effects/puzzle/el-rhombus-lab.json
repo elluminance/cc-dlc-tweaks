@@ -18,20 +18,45 @@
                 "frames": [
                     0
                 ]
+            },
+            {
+                "name": "RHOMBUS_BLINK",
+                "sheet": {
+                    "src": "media\/entity\/effects\/particles1.png",
+                    "width": 8,
+                    "height": 8,
+                    "offY": 24,
+                    "offX": 16
+                },
+                "time": 0.05,
+                "frames": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "repeat": false
+            },
+            {
+                "name": "RHOMBUS_WHITE_BIG",
+                "sheet": {
+                    "src": "media\/entity\/effects\/particles1.png",
+                    "width": 8,
+                    "height": 8,
+                    "offY": 24,
+                    "offX": 0
+                },
+                "time": 0.05,
+                "frames": [
+                    0
+                ],
+                "repeat": false
             }
         ]
     },
     "EFFECTS": {
         "prismGlow": [
-            {
-                "color": "white",
-                "maxAlpha": 1,
-                "minAlpha": 0.5,
-                "blinkDuration": 0.2,
-                "blinkCount": 1,
-                "noLighter": true,
-                "type": "BLINK_COLOR"
-            },
             {
                 "useTargetAngle": false,
                 "keepAngleSync": false,
@@ -77,6 +102,130 @@
             {
                 "type": "WAIT",
                 "time": 0.4
+            }
+        ],
+
+        "showPrism": [
+            {
+                "volume": 1,
+                "global": false,
+                "loop": false,
+                "sound": "media\/sound\/scenes\/teleport-0.4s.ogg",
+                "type": "PLAY_SOUND"
+            },
+            {
+                "alpha": 0,
+                "duration": 0,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "time": 0.1,
+                "type": "WAIT"
+            },
+            {
+                "size": "L",
+                "fadeIn": 0,
+                "fadeOut": 0.2,
+                "duration": 1,
+                "glow": false,
+                "type": "LIGHT"
+            },
+            {
+                "alpha": 1,
+                "duration": 0.3,
+                "type": "CHANGE_ALPHA"
+            },
+            {
+                "color": "white",
+                "alpha": 0,
+                "duration": 0.4,
+                "keepDuration": 0.2,
+                "noLighter": false,
+                "type": "FLASH_COLOR"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.8,
+                "endValue": 0.2,
+                "duration": 0.3,
+                "setOnlyOneSide": false,
+                "type": "WIPE"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.7,
+                "endValue": 0.3,
+                "duration": 0.5,
+                "numParticles": 15,
+                "moveOffset": {
+                    "y": 8
+                },
+                "inverse": true,
+                "moveWithTarget": 1,
+                "particleDuration": 0.1,
+                "anim": "RHOMBUS_WHITE_BIG",
+                "type": "WIPE_PARTICLES"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.7,
+                "endValue": 0.3,
+                "duration": 0.5,
+                "numParticles": 10,
+                "moveWithTarget": 0,
+                "anim": "RHOMBUS_BLINK",
+                "type": "WIPE_PARTICLES"
+            }
+        ],
+        "hidePrism": [
+            {
+                "volume": 0.8,
+                "global": false,
+                "loop": false,
+                "sound": "media\/sound\/scenes\/teleport-0.4s.ogg",
+                "type": "PLAY_SOUND"
+            },
+            {
+                "color": "white",
+                "maxAlpha": 1,
+                "minAlpha": 1,
+                "blinkDuration": 0.2,
+                "blinkCount": -1,
+                "noLighter": false,
+                "type": "BLINK_COLOR"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.3,
+                "endValue": 0.8,
+                "duration": 0.3,
+                "setOnlyOneSide": false,
+                "type": "WIPE"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.3,
+                "endValue": 0.7,
+                "duration": 0.5,
+                "numParticles": 12,
+                "moveOffset": {
+                    "y": 8
+                },
+                "inverse": false,
+                "moveWithTarget": 1,
+                "particleDuration": 0.1,
+                "anim": "RHOMBUS_WHITE_BIG",
+                "type": "WIPE_PARTICLES"
+            },
+            {
+                "dir": "NORTH",
+                "startValue": 0.3,
+                "endValue": 0.7,
+                "duration": 0.5,
+                "numParticles": 8,
+                "moveWithTarget": 0,
+                "anim": "RHOMBUS_BLINK",
+                "type": "WIPE_PARTICLES"
             }
         ]
     }

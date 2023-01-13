@@ -62,7 +62,7 @@ export function DrawHpBar(renderer: ig.GuiRenderer, currentValue: number, target
                 useWhite = false;
             }
             for (let j = 0; j < height; j++) {
-                if (widthWhite && targetValue != currentValue) {
+                if (widthWhite && targetValue !== currentValue) {
                     useWhite || renderer.addColor(color, x + j, y + j, widthWhite * width, 1)
                     renderer.addColor("#fff", x + j, y + j, widthWhite * width, 1).setAlpha(useWhite ? 0.75 : 0.6)
                 }

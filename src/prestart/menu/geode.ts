@@ -14,7 +14,7 @@ sc.MAP_INTERACT_ICONS.GEODE = new sc.MapInteractIcon(
 ig.ENTITY.NPC.inject({
     setMapInteractIcon(a) {
         this.parent(a)
-        if (a.npcEventType == sc.NPC_EVENT_TYPE.GEODE) {
+        if (a.npcEventType === sc.NPC_EVENT_TYPE.GEODE) {
             this.interactEntry.setIcon(sc.MAP_INTERACT_ICONS.GEODE);
         }
     }
@@ -141,7 +141,7 @@ el.GeodeOpeningGui = sc.BaseMenu.extend({
         this.buttongroup = new sc.ButtonGroup;
         this.buttonInteract.pushButtonGroup(this.buttongroup);
         this.buttongroup.addPressCallback(button => {
-            (button as sc.ButtonGui).data != void 0 && this.onButtonCallback(button as sc.ButtonGui)
+            (button as sc.ButtonGui).data !== void 0 && this.onButtonCallback(button as sc.ButtonGui)
         });
 
         let xOffset = 0;
@@ -286,7 +286,7 @@ el.GeodeOpeningGui = sc.BaseMenu.extend({
         this.geodeAmount.setNumber(this.count, true)
         this.costNumber.setNumber(this.count * -this.pricePerGeode, true)
         this.openGeodesButton.setText(ig.lang.get(this.count !== 1 ? "sc.gui.geode.openGeodesPlural" : "sc.gui.geode.openGeodesSingular").replace("[!]", this.count.toString()))
-        if (this.count == 0) this.openGeodesButton.setActive(false)
+        if (this.count === 0) this.openGeodesButton.setActive(false)
     },
 
     openGeodes() {

@@ -59,7 +59,7 @@ export function genBuffString(buffList: string[]) {
     let buffIcons: Record<string, string[]> = {}
     for(const value of buffList) {
         let statSetting = sc.STAT_CHANGE_SETTINGS[value];
-        if(statSetting.change == sc.STAT_CHANGE_TYPE.HEAL) return;
+        if(statSetting.change === sc.STAT_CHANGE_TYPE.HEAL) return;
         
         if(!buffIcons[statSetting.grade!]) buffIcons[statSetting.grade!] = [];
         

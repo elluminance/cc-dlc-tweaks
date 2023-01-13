@@ -89,7 +89,7 @@ el.GemButton = sc.ButtonGui.extend({
 //#region Vanilla Injections
 sc.EquipMenu.inject({
     showMenu(a, b) {
-        if (sc.menu.previousMenu == sc.MENU_SUBMENU.EL_GEM_EQUIP) {
+        if (sc.menu.previousMenu === sc.MENU_SUBMENU.EL_GEM_EQUIP) {
             sc.menu.previousMenu = sc.MENU_SUBMENU.STATUS
             sc.menu.moveLeaSprite(0, -101, sc.MENU_LEA_STATE.SMALL, false)
         }
@@ -97,7 +97,7 @@ sc.EquipMenu.inject({
     },
 
     hideMenu(_, nextSubmenu) {
-        if (nextSubmenu == sc.MENU_SUBMENU.EL_GEM_EQUIP) {
+        if (nextSubmenu === sc.MENU_SUBMENU.EL_GEM_EQUIP) {
             this.exitMenu(nextSubmenu);
         } else this.parent(_, nextSubmenu)
     }
@@ -333,7 +333,7 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
     },
 
     modelChanged(model, message, data) {
-        if (model == sc.menu) {
+        if (model === sc.menu) {
             switch (message) {
                 case sc.MENU_EVENT.EQUIP_CHANGED:
                     this._addListItems(true);
@@ -493,7 +493,7 @@ el.GemEquipMenu.EquippedGemsPanel = sc.MenuPanel.extend({
     },
 
     modelChanged(model, message) {
-        if (model == sc.menu) {
+        if (model === sc.menu) {
             switch (message) {
                 case sc.MENU_EVENT.EQUIP_CHANGED:
                     this.updateGemEntries();
@@ -835,7 +835,7 @@ el.GemEquipMenu.EquippedGemsPanel.Entry = ig.FocusGui.extend({
 
             let level = el.gemDatabase.getGemLevel(this.gem)
             // adds the gem level
-            if (level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (level == -1 ? 6 : level - 1), 0, 7, 5)
+            if (level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (level === -1 ? 6 : level - 1), 0, 7, 5)
         }
     },
 

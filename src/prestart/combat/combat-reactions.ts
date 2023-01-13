@@ -62,7 +62,7 @@ sc.EnemyType.inject({
         this.parent(data);
 
         for(let reaction in this.reactions) {
-            if(this.reactions[reaction].type == "EL_VIRUS_BUFF") {
+            if(this.reactions[reaction].type === "EL_VIRUS_BUFF") {
                 this.actions["_EL_VirusBuff_Collab"] = VirusBuffAction;
                 //easier than the alternatives tbh
                 this.reactions[reaction].type = "COLLAB";

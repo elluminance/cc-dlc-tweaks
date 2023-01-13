@@ -26,6 +26,8 @@
         "@typescript-eslint/no-empty-interface": "off",
         "prefer-const": "off",
         "no-case-declarations": "off",
-        "no-empty": "off"
+        "no-empty": "off",
+        "no-fallthrough": "error",
+        "eqeqeq": "warn"
     }
 }

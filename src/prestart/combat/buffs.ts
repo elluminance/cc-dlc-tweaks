@@ -83,7 +83,7 @@ sc.DynamicBuff = sc.StatChange.extend({
         //@ts-ignore
         this.init(statChanges, this.name);
         //@ts-ignore stupid "this" context nobody likes you "this" context
-        resetTimer && this.reset(typeof resetTimer == "boolean" ? this.time : resetTimer)
+        resetTimer && this.reset(typeof resetTimer === "boolean" ? this.time : resetTimer)
         this.buffHudEntry?.setIcon(this.iconString!);
     },
 })

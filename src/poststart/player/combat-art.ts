@@ -1,7 +1,7 @@
 // note: runs in poststart!
 
 const snowgraveKey = "EL_SNOWGRAVE";
-const isSnowgraveEquipped = () => sc.model.player.getActiveCombatArt(sc.ELEMENT.COLD, "ATTACK_SPECIAL3")?.name == snowgraveKey
+const isSnowgraveEquipped = () => sc.model.player.getActiveCombatArt(sc.ELEMENT.COLD, "ATTACK_SPECIAL3")?.name === snowgraveKey
 const getSnowgraveCost = () => sc.model.player.params.getModifier("EL_TRANCE") ? 16 : 32
 
 sc.StatusViewCombatArtsEntry.inject({
@@ -33,7 +33,7 @@ ig.ENTITY.Player.inject({
             && this.model.currentElementMode === sc.ELEMENT.COLD
             && isSnowgraveEquipped()
             && this.params.getSp() < getSnowgraveCost()
-            && actionKey.actionKey == "ATTACK_SPECIAL"
+            && actionKey.actionKey==="ATTACK_SPECIAL"
         ) {
             maxCharge = 2;
         }
@@ -43,7 +43,7 @@ ig.ENTITY.Player.inject({
     showChargeEffect(level) {
         this.parent(level);
 
-        if (this.charging.type.actionKey == "ATTACK_SPECIAL"
+        if (this.charging.type.actionKey==="ATTACK_SPECIAL"
             && level === 3
             && this.model.currentElementMode === sc.ELEMENT.COLD
             && isSnowgraveEquipped()
@@ -54,7 +54,7 @@ ig.ENTITY.Player.inject({
 
     getChargeAction(chargeType, level) {
         let key = this.parent(chargeType, level);
-        if (key == snowgraveKey) {
+        if (key===snowgraveKey) {
             sc.newgame.get("infinite-sp") || this.params.consumeSp(getSnowgraveCost() - 6)
         }
         return key;

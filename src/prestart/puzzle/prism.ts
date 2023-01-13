@@ -5,16 +5,26 @@ export {};
 let vec2_tmp = Vec2.create();
 let vec3_tmp = Vec3.create();
 
-const enum PrismState {
-    NORMAL,
-    GLOW,
+
+
+function ElementToColor(element: sc.ELEMENT) {
+    switch(element) {
+        case sc.ELEMENT.HEAT: return "#FF0000";
+        case sc.ELEMENT.COLD: return "#2255ff";
+        case sc.ELEMENT.SHOCK: return "#AA00FF";
+        case sc.ELEMENT.WAVE: return "#00FFAA";
+        default: return "#FFFFFF"
+    }
 }
+
+const glowTime = 0.33;
+const glowMult = 1 / glowTime;
 
 const attackFactor = 2/3;
 ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
-    timer: 0,
+    glowTimer: 0,
+    glowColor: "#FFFFFF",
     angle: Math.PI / 4,
-    state: PrismState.NORMAL,
     animTimer: 0,
     animIndex: 0,
     hoverTimer: 0,
@@ -43,7 +53,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     ballHit(entity) {
         if (!this.active) return false;
 
-        if(entity instanceof ig.ENTITY.Ball && entity.isBall && entity.el_prism.timer <= 0) {
+        if(entity.isBall && entity.el_prism.timer <= 0) {
             let attackInfo = ig.copy(entity.attackInfo);
             if(attackInfo.hasHint("NO_PUZZLE")) return false;
             attackInfo.damageFactor *= attackFactor;
@@ -75,8 +85,8 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
             this.effects.puzzle.spawnOnTarget("prismGlow", this);
 
-            this.state = PrismState.GLOW;
-            this.timer = 0.2;
+            this.glowTimer = glowTime;
+            this.glowColor = ElementToColor(entity.getElement())
             return true;
         }
     },
@@ -86,19 +96,15 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     },
 
     update() {
-        this.timer -= ig.system.tick;
+        this.glowTimer -= ig.system.tick;
         this.animTimer -=  ig.system.tick;
         this.hoverTimer += ig.system.tick;
-
+        
         if(this.animTimer <= 0) {
             this.animIndex += 1;
             this.animIndex %= 4;
-
-            this.animTimer += this.state == PrismState.GLOW ? 0.05 : 0.2;
-        }
-
-        if(this.timer <= 0) {
-            this.state = PrismState.NORMAL;
+            
+            this.animTimer += (this.glowTimer > 0) ? 0.05 : 0.2;
         }
     },
     
@@ -106,27 +112,50 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
         let baseSprite = this.sprites[0];
         let prismSprite = this.sprites[1];
         const coll = this.coll;
-        //this.sprites[1].setPos()
+
         baseSprite.setEntityDefault(this, 16, 32, "NO_EXPAND", 1, null, this.gfx, 80, 0);
         baseSprite.setShadow(0,0,0,0);
 
         Vec3.assignC(vec3_tmp, 0, 0, (1.5 * Math.sin(2 * this.hoverTimer)) + 7.5);
 
         if(this.active) {
-            prismSprite.setEntityDefault(this, 16, 16, "NO_EXPAND", 1, vec3_tmp, this.gfx, 16 * this.animIndex, this.state == PrismState.GLOW ? 16 : 0);
+            prismSprite.setEntityDefault(
+                this,
+                16, 16, //tile w/h
+                "NO_EXPAND",
+                1,
+                vec3_tmp, 
+                this.gfx,
+                16 * this.animIndex,
+                0
+            );
             prismSprite.setShadow(
                 coll.pos.x + coll.size.x / 2,
                 coll.pos.y + coll.size.y / 2,
                 coll.baseZPos,
                 14 - (2 * Math.sin(2 * this.hoverTimer)),
             );
-        } else {
-            prismSprite.setInvisible();
+
+            prismSprite.setLighterOverlayColor(this.glowColor, Math.max(this.glowTimer * glowMult, 0))
         }
     },
 
     varsChanged() {
-        this.active = this.condition.evaluate();
+        let isActive = this.condition.evaluate();
+
+        if(isActive !== this.active) {
+            this.active = isActive;
+            if(this.active) {
+                this.effects.puzzle.spawnOnTarget("showPrism", this, {
+                    spriteFilter: [1]
+                })
+            } else {
+                this.effects.puzzle.spawnOnTarget("hidePrism", this, {
+                    spriteFilter: [1]
+                })
+                this.sprites[1].setShadow(0,0,0,0);
+            }
+        }
     },
 
     isBallDestroyer() {

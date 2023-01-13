@@ -8,11 +8,12 @@ declare global {
             }
         }
         interface EL_Prism extends ig.AnimatedEntity {
-            timer: number;
-            state: number;
             animTimer: number;
             animIndex: number;
             hoverTimer: number;
+
+            glowTimer: number;
+            glowColor: string;
 
             condition: ig.VarCondition;
             angle: number;
@@ -20,9 +21,6 @@ declare global {
             gfx: ig.Image;
             
             active: boolean;
-
-            ballHit(this: this, entity: ig.Entity): boolean | void;
-            isBallAdjust(this: this): boolean;
         }
         interface EL_PrismConstructor extends ImpactClass<EL_Prism> {
             new(x: number, y: number, z: number, settings: EL_Prism.Settings): EL_Prism;

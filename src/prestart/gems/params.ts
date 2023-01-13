@@ -3,7 +3,7 @@ sc.CombatParams.inject({
     getStat(key, noHack) {
         let parentValue = this.parent(key, noHack);
 
-        if (this.elGemBonuses && typeof parentValue == "number") {
+        if (this.elGemBonuses && typeof parentValue === "number") {
             parentValue = Math.round(parentValue * (this.elGemBonuses.params[key as "hp" | "attack" | "defense" | "focus"] ?? 1))
         }
 

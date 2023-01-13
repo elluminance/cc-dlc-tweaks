@@ -65,7 +65,7 @@ el.GemDatabase = ig.Class.extend({
                     ig.warn(`Warning: Gem entry for ${gemType.stat} found with less than 6 values! Skipping...`);
                     return;
                 }
-            } else if (gemType.valueIncrease != undefined) {
+            } else if (gemType.valueIncrease !== undefined) {
                 values = Array(6).fill(0).map(
                     (_, index) => ((index + 1) * gemType.valueIncrease!)
                 );
@@ -135,7 +135,7 @@ el.GemDatabase = ig.Class.extend({
     },
 
     onVarAccess(_path, keys) {
-        if (keys[0] == "el-gems") {
+        if (keys[0] === "el-gems") {
             switch (keys[1]) {
                 case "active": return this.enabled;
 
@@ -173,7 +173,7 @@ el.GemDatabase = ig.Class.extend({
     },
 
     drawGemLevel(level, height) {
-        this.guiImage.draw(6, height - 7, 23 + 8 * (level == -1 ? 6 : (level - 1)), 0, 7, 5)
+        this.guiImage.draw(6, height - 7, 23 + 8 * (level === -1 ? 6 : (level - 1)), 0, 7, 5)
     },
 
     getGemRoot(gem) {
@@ -188,7 +188,7 @@ el.GemDatabase = ig.Class.extend({
         let workingString = withIcon ? this.gemColorToIcon(gemRoot.gemColor) : "";
 
         if (gemRoot.langLabel) {
-            if (typeof gemRoot.langLabel == "string") {
+            if (typeof gemRoot.langLabel === "string") {
                 workingString += ig.lang.get(gemRoot.langLabel)
             } else {
                 workingString += ig.LangLabel.getText(gemRoot.langLabel);
@@ -224,7 +224,7 @@ el.GemDatabase = ig.Class.extend({
         const gemStat = gemRoot.stat;
 
         if (gemRoot.statLangLabel) {
-            if (typeof gemRoot.statLangLabel == "string") {
+            if (typeof gemRoot.statLangLabel === "string") {
                 workingString = ig.lang.get(gemRoot.statLangLabel)
             } else {
                 workingString = ig.LangLabel.getText(gemRoot.statLangLabel);
@@ -284,7 +284,7 @@ el.GemDatabase = ig.Class.extend({
 
     getGemLevel(gem) {
         let gemRoot = this.getGemRoot(gem) as GemRootUnique;
-        if (gemRoot.levelOverride != undefined) return gemRoot.levelOverride;
+        if (gemRoot.levelOverride !== undefined) return gemRoot.levelOverride;
         return gem.level;
     },
 
@@ -297,9 +297,9 @@ el.GemDatabase = ig.Class.extend({
                     let gemA = this.getGemRoot(a);
                     let gemB = this.getGemRoot(b);
 
-                    if (gemA == gemB) {
+                    if (gemA === gemB) {
                         return b.level - a.level;
-                    } else if (gemA.order == gemB.order) {
+                    } else if (gemA.order === gemB.order) {
                         return this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
                     } else {
                         return gemA.order - gemB.order;
@@ -309,7 +309,7 @@ el.GemDatabase = ig.Class.extend({
             case el.GEM_SORT_TYPE.LEVEL:
                 invCopy.sort((a, b) => {
                     let result = Math.max(this.getGemLevel(b), 0) - Math.max(this.getGemLevel(a), 0);
-                    if (result == 0) {
+                    if (result === 0) {
                         result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
                     }
                     return result;
@@ -320,14 +320,14 @@ el.GemDatabase = ig.Class.extend({
                     let nameA = this.getGemName(a, false, true),
                         nameB = this.getGemName(b, false, true),
                         result = nameA.localeCompare(nameB);
-                    if (result == 0) result = b.level - a.level;
+                    if (result === 0) result = b.level - a.level;
                     return result;
                 })
                 break;
             case el.GEM_SORT_TYPE.COST:
                 invCopy.sort((a, b) => {
                     let result = this.getGemCost(b) - this.getGemCost(a);
-                    if (result == 0) {
+                    if (result === 0) {
                         result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
                     }
                     return result;
@@ -425,10 +425,10 @@ el.GemDatabase = ig.Class.extend({
     equipGem(gem) {
         const gemRoot = this.getGemRoot(gem);
         let matchIndex = this.equippedGems.findIndex(
-            equip => this.getGemRoot(equip)?.stat == gemRoot?.stat
+            equip => this.getGemRoot(equip)?.stat === gemRoot?.stat
         );
 
-        if (matchIndex == -1 && this.equippedGems.length >= this.maxSlots) {
+        if (matchIndex === -1 && this.equippedGems.length >= this.maxSlots) {
             return false;
         }
 
@@ -440,7 +440,7 @@ el.GemDatabase = ig.Class.extend({
             return false;
         }
 
-        if (matchIndex == -1) {
+        if (matchIndex === -1) {
             this.equippedGems.push(gem);
         } else {
             this.gemInventory.push(this.equippedGems[matchIndex]);
@@ -464,7 +464,7 @@ el.GemDatabase = ig.Class.extend({
 
         const gemRoot = this.getGemRoot(gem)
         //finds gems of the same stat
-        let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped).stat == gemRoot.stat));
+        let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped).stat === gemRoot.stat));
 
         if (gemMatch) {
             let costDiff = this.getTotalGemCosts() - this.getGemCost(gemMatch);

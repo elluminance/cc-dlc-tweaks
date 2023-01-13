@@ -319,7 +319,7 @@ sc.CombatParams.inject({
                 }
             }
             // undoes normal sergey hax
-            if (combatantParams.buffs.some(buff => buff instanceof sc.ActionBuff && buff.name == "sergeyHax")) {
+            if (combatantParams.buffs.some(buff => buff instanceof sc.ActionBuff && buff.name === "sergeyHax")) {
                 relativeDamage *= combatantParams.getStat("attack", true) / combatantParams.getStat("attack", false)
             }
 

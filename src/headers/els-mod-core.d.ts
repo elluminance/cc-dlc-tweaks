@@ -82,7 +82,7 @@ declare global {
                 active: boolean,
                 skipCheck: boolean,
                 forceCheck: boolean,
-                calcLevel(enemyType: sc.EnemyType): number,
+                calcLevel(enemyData: sc.EnemyType | ig.Database.EnemyData): number,
             }
         }
 

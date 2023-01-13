@@ -13,7 +13,7 @@ sc.COMBAT_CONDITION.TARGET_HAS_BUFF = ig.Class.extend({
         let target = entity.getTarget() as ig.ENTITY.Combatant;
         let count = 0;
         if (this.buffName) {
-            count = target.params.buffs.reduce<number>((value, statChange) => value += (statChange instanceof sc.ActionBuff && statChange.name == this.buffName) ? 1 : 0, 0);
+            count = target.params.buffs.reduce<number>((value, statChange) => value += (statChange instanceof sc.ActionBuff && statChange.name === this.buffName) ? 1 : 0, 0);
         } else {
             count = target.params.buffs.length;
         }

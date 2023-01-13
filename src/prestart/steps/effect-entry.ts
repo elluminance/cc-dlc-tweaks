@@ -29,8 +29,8 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EFFECT_ENTRY.COPY_SPRITE.exten
             case "dash":
                 let { dashCount, maxDash } = playerEntity;
 
-                if (dashCount > maxDash || maxDash == 0) this.color = "#00beff";
-                else if (maxDash == 1 && dashCount == 1) this.color = "#ff0000";
+                if (dashCount > maxDash || maxDash === 0) this.color = "#00beff";
+                else if (maxDash === 1 && dashCount === 1) this.color = "#ff0000";
                 else this.color = getColorFromPercent(300, 360, dashCount / maxDash)
                 break;
             case "customColor":
@@ -41,7 +41,7 @@ ig.EFFECT_ENTRY.COPY_SPRITE_SPECIAL_COLOR_EL = ig.EFFECT_ENTRY.COPY_SPRITE.exten
             case "pastel-rainbow":
                 // make sure it is always divisible by rainbowIncrement
                 if (playerEntity.auraColorStep % rainbowIncrement) playerEntity.auraColorStep = 0;
-                this.color = hsv2rgbString(playerEntity.auraColorStep, this.mode == "pastel-rainbow" ? 0.5 : 1, 1);
+                this.color = hsv2rgbString(playerEntity.auraColorStep, this.mode === "pastel-rainbow" ? 0.5 : 1, 1);
                 playerEntity.auraColorStep = (playerEntity.auraColorStep + rainbowIncrement) % 360;
                 break;
         }

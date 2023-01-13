@@ -1,15 +1,17 @@
+sc.EnemyType
+
 sc.EnemyBooster.inject({
     ascendedBooster: {
         active: false,     // if ascended booster is enabled 
         skipCheck: false,  // skip check in cases such as turning off the booster to set level to normal value
         forceCheck: false, // force a check in cases such as a level up
-        calcLevel: enemyType => Math.max(sc.model.player.level, (enemyType.boostedLevel || sc.MIN_BOOSTER_LEVEL))
+        calcLevel: enemyData => Math.max(sc.model.player.level, (enemyData.boostedLevel || sc.MIN_BOOSTER_LEVEL))
     },
 
     updateBoosterState(){
         this.parent()
         let ascendedBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster")
-        if(this.ascendedBooster.forceCheck || (this.ascendedBooster.active != ascendedBooster)){
+        if(this.ascendedBooster.forceCheck || (this.ascendedBooster.active !== ascendedBooster)){
             this.ascendedBooster.active = ascendedBooster;
             for (let entities = ig.game.getEntitiesByType(ig.ENTITY.Enemy), index = entities.length; index--;){ 
                 this.updateEnemyBoostState(entities[index] as ig.ENTITY.Enemy)
@@ -21,7 +23,7 @@ sc.EnemyBooster.inject({
     updateEnemyBoostState(enemy){
         this.parent(enemy)
         
-        if((enemy.boosterState != sc.ENEMY_BOOSTER_STATE.NONE) && !this.ascendedBooster.skipCheck){
+        if((enemy.boosterState !== sc.ENEMY_BOOSTER_STATE.NONE) && !this.ascendedBooster.skipCheck){
             if (this.ascendedBooster.active) {
                 // set enemy levels to at minimum their standard boosted level, otherwise the player's level.
                 let ascendedLevel = this.ascendedBooster.calcLevel(enemy.enemyType);
@@ -38,7 +40,7 @@ sc.EnemyBooster.inject({
     },
 
     modelChanged(source, message, data){
-        if(source instanceof sc.PlayerModel && message == sc.PLAYER_MSG.LEVEL_CHANGE){
+        if(source instanceof sc.PlayerModel && message===sc.PLAYER_MSG.LEVEL_CHANGE){
             this.ascendedBooster.forceCheck = true 
             this.updateBoosterState()
         }
@@ -50,8 +52,9 @@ sc.EnemyInfoBox.inject({
     setEnemy(b){
         const ascBooster = sc.model.player.getToggleItemState("dlctweaks-ascended-booster");
         this.parent(b);
+        //@ts-ignore
         if(this.enemy && ascBooster && sc.combat.canShowBoostedEntry(b, this.enemy.boss)){
-            this.level.setNumber(sc.enemyBooster.ascendedBooster.calcLevel(b as any))
+            this.level.setNumber(sc.enemyBooster.ascendedBooster.calcLevel(this.enemy))
         }
     }
 })
@@ -134,7 +137,7 @@ sc.EnemyType.inject({
         this.parent(enemyEntity);
         if(sc.enemyBooster.ascendedBooster.active 
           && sc.model.player.getCore(sc.PLAYER_CORE.ITEMS)
-          && enemyEntity.boosterState == sc.ENEMY_BOOSTER_STATE.BOOSTED
+          && enemyEntity.boosterState===sc.ENEMY_BOOSTER_STATE.BOOSTED
         ) {
             let geodeChance = getGeodeBaseDropRate(this.itemDrops)
             geodeChance *= sc.model.player.params.getModifier("DROP_CHANCE") + 1;
