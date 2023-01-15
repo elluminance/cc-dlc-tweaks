@@ -28,6 +28,6 @@
         "no-case-declarations": "off",
         "no-empty": "off",
         "no-fallthrough": "error",
-        "eqeqeq": "warn"
+        "eqeqeq": ["warn", "smart"]
     }
 }

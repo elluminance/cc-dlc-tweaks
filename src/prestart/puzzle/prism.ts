@@ -5,16 +5,28 @@ export {};
 let vec2_tmp = Vec2.create();
 let vec3_tmp = Vec3.create();
 
-
-
 function ElementToColor(element: sc.ELEMENT) {
     switch(element) {
-        case sc.ELEMENT.HEAT: return "#FF0000";
-        case sc.ELEMENT.COLD: return "#2255ff";
+        case sc.ELEMENT.NEUTRAL: return "#666666";
+        case sc.ELEMENT.HEAT: return "#FC6900";
+        case sc.ELEMENT.COLD: return "#00D2FC";
         case sc.ELEMENT.SHOCK: return "#AA00FF";
-        case sc.ELEMENT.WAVE: return "#00FFAA";
+        case sc.ELEMENT.WAVE: return "#00FF4C";
         default: return "#FFFFFF"
     }
+}
+
+function updatePrism(entity: ig.ENTITY.EL_Prism, prism: ig.CubeSprite) {
+    prism.setEntityDefault(
+        entity,
+        16, 16, //tile w/h
+        "NO_EXPAND",
+        1,
+        vec3_tmp, 
+        entity.gfx,
+        16 * entity.animIndex,
+        0
+    );
 }
 
 const glowTime = 0.33;
@@ -29,6 +41,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     animIndex: 0,
     hoverTimer: 0,
     condition: null,
+    forceHidePrism: false,
 
     active: true,
 
@@ -48,6 +61,8 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
         this.condition = new ig.VarCondition(settings.condition);
         this.active = this.condition.evaluate();
+
+        if(!this.active) this.forceHidePrism = true;
     },
 
     ballHit(entity) {
@@ -77,7 +92,9 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
                 ball = proxy.spawn(...pos, baseEntity, vec2_tmp) as ig.ENTITY.Ball;
                 ball.el_prism.timer = 0.1;
                 ball.el_prism.rootBall = rootBall;
-                entity.el_prism.children.push(ball);
+                
+                rootBall.el_prism.children.push(ball);
+                
                 ball.remainingHits = entity.remainingHits;
                 ball.timer = entity.timer;
                 ball.attackInfo = attackInfo;
@@ -93,6 +110,10 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
     initSprites() {
         this.setSpriteCount(2);
+
+        if(!this.active) {
+            this.sprites[1].setInvisible();
+        }
     },
 
     update() {
@@ -106,6 +127,12 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
             
             this.animTimer += (this.glowTimer > 0) ? 0.05 : 0.2;
         }
+
+        if(this.active) {
+            this.coll.type = ig.COLLTYPE.VIRTUAL;
+        } else {
+            this.coll.type = ig.COLLTYPE.IGNORE;
+        }
     },
     
     updateSprites() {
@@ -115,20 +142,10 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
         baseSprite.setEntityDefault(this, 16, 32, "NO_EXPAND", 1, null, this.gfx, 80, 0);
         baseSprite.setShadow(0,0,0,0);
-
-        Vec3.assignC(vec3_tmp, 0, 0, (1.5 * Math.sin(2 * this.hoverTimer)) + 7.5);
-
+        
         if(this.active) {
-            prismSprite.setEntityDefault(
-                this,
-                16, 16, //tile w/h
-                "NO_EXPAND",
-                1,
-                vec3_tmp, 
-                this.gfx,
-                16 * this.animIndex,
-                0
-            );
+            Vec3.assignC(vec3_tmp, 0, 0, (1.5 * Math.sin(2 * this.hoverTimer)) + 7.5);
+            updatePrism(this, prismSprite);
             prismSprite.setShadow(
                 coll.pos.x + coll.size.x / 2,
                 coll.pos.y + coll.size.y / 2,
@@ -138,6 +155,11 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
             prismSprite.setLighterOverlayColor(this.glowColor, Math.max(this.glowTimer * glowMult, 0))
         }
+        
+        if(this.forceHidePrism) {
+            this.forceHidePrism = false;
+            this.sprites[1].setInvisible();
+        }
     },
 
     varsChanged() {
@@ -146,9 +168,12 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
         if(isActive !== this.active) {
             this.active = isActive;
             if(this.active) {
+                updatePrism(this, this.sprites[1]);
+
                 this.effects.puzzle.spawnOnTarget("showPrism", this, {
                     spriteFilter: [1]
                 })
+
             } else {
                 this.effects.puzzle.spawnOnTarget("hidePrism", this, {
                     spriteFilter: [1]
@@ -166,6 +191,8 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 ig.ENTITY.ElementPole.inject({
     ballHit(ball) {
         let parent = this.parent(ball);
+
+        if(ball.getElement() === sc.ELEMENT.NEUTRAL) return parent;
 
         if(parent && ball.el_prism.rootBall) {
             for(const child of ball.el_prism.rootBall.el_prism.children) {
@@ -185,14 +212,17 @@ sc.ElementPoleGroups.onCancelCheck = function(pole) {
     let ball = this.getGroup(pole.group).currentBall;
     //let killStatus = true;
     let orig_killed = ball?._killed;
-    if(ball && ball.el_prism.children.length > 0) {
-        for(let child of ball.el_prism.children) {
-            if(!child._killed) {
-                ball._killed = false;
-                break;
+    if(ball) {
+        if(ball.el_prism.children.length > 0) {
+            for(let child of ball.el_prism.children) {
+                if(!child._killed) {
+                    ball._killed = false;
+                    break;
+                }
             }
         }
     }
+
     let val = orig2(pole);
     if(ball) ball._killed = orig_killed!;
     return val;
