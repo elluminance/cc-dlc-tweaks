@@ -66,24 +66,65 @@ export function DrawHpBar(renderer: ig.GuiRenderer, currentValue: number, target
                     useWhite || renderer.addColor(color, x + j, y + j, widthWhite * width, 1)
                     renderer.addColor("#fff", x + j, y + j, widthWhite * width, 1).setAlpha(useWhite ? 0.75 : 0.6)
                 }
-                renderer.addColor(color, x + j, y + j, widthColor * width, 1)
+                renderer.addColor(color, x + j, y + j, widthColor * width, 1);
             }
         }
     }
 }
 
 sc.HpHudBarGui.inject({
+    overhealMode: false,
+
+    update() {
+        this.parent();
+
+        if(this.targetHp > this.maxHp) {
+            this.overhealMode = true;
+        } else if(this.currentHp < this.maxHp) {
+            this.overhealMode = false;
+        }
+
+        if(this.overhealMode) {
+            let delta = ig.system.actualTick * this.maxHp / 2;
+            let targetDiff = Math.floor(
+                (Math.max(this.currentHp, this.targetHp) 
+                - Math.min(this.currentHp, this.targetHp)) / this.maxHp
+            );
+
+            if(this.currentHp > this.targetHp)
+                this.currentHp = Math.max(this.targetHp, this.currentHp - delta * targetDiff);
+            else if(this.currentHp < this.targetHp)
+                this.currentHp = Math.min(this.targetHp, this.currentHp + delta * targetDiff)
+        }
+    },
+
     updateDrawables(renderer) {
         this.parent(renderer);
-        DrawHpBar(renderer, this.currentHp, this.targetHp, this.maxHp, this.width, this.height);
+        if(this.overhealMode) {
+            DrawHpBar(renderer, this.currentHp, this.targetHp, this.maxHp, this.width, this.height);
+        }
     }
 })
 
 sc.ItemStatusDefaultBar.inject({
-    updateDrawables(renderer) {
-        this.parent(renderer)
+    overhealMode: false,
+
+    update() {
+        this.parent();
+
         if (this.type === sc.MENU_BAR_TYPE.HP) {
-            DrawHpBar(renderer, this.currentValue, this.targetValue, this.maxValue, 119, 4, 2, 9)
+            if (this.targetValue > this.maxValue) {
+                this.overhealMode = true;
+            } else if (this.currentValue < this.maxValue) {
+                this.overhealMode = false;
+            }
+        }
+    },
+
+    updateDrawables(renderer) {
+        this.parent(renderer);
+        if (this.overhealMode && this.type === sc.MENU_BAR_TYPE.HP) {
+            DrawHpBar(renderer, this.currentValue, this.targetValue, this.maxValue, 119, 4, 2, 9);
         }
     }
 })

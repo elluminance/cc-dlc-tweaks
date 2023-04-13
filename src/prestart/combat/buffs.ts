@@ -79,7 +79,7 @@ sc.DynamicBuff = sc.StatChange.extend({
             focus: 1,
             elemFactor: [1, 1, 1, 1]
         },
-            this.modifiers = {};
+        this.modifiers = {};
         //@ts-ignore
         this.init(statChanges, this.name);
         //@ts-ignore stupid "this" context nobody likes you "this" context

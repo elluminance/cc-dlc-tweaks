@@ -170,6 +170,14 @@ declare global {
         enum COMBAT_PARAM_MSG {
             BUFF_CHANGED,
         }
+
+        interface HpHudBarGui {
+            overhealMode: boolean;
+        }
+
+        interface ItemStatusDefaultBar {
+            overhealMode: boolean;
+        }
     }
 
     namespace el {
