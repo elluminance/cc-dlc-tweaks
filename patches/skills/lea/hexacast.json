@@ -1789,7 +1789,7 @@
                     "type": "SHOW_EFFECT",
                     "effect": {
                         "sheet": "combat.hexacast",
-                        "name": "magicMissileShock"
+                        "name": "thunderCallCircle"
                     },
                     "offset": {
                         "x": 0,
@@ -1798,7 +1798,7 @@
                     }
                 },
                 {
-                    "time": 0.75,
+                    "time": 0.55,
                     "type": "WAIT"
                 },
                 {
@@ -1872,7 +1872,7 @@
                     },
                     "startDistCollide": "ALT_DIR",
                     "random": true,
-                    "count": 3,
+                    "count": 5,
                     "duration": 0.25,
                     "clockwise": false,
                     "flipLeftFace": 0,
@@ -2034,9 +2034,9 @@
                     "checkCollision": false,
                     "type": "CIRCLE_ATTACK",
                     "attack": {
-                        "type": "MEDIUM",
+                        "type": "LIGHT",
                         "element": "SHOCK",
-                        "damageFactor": 1.2,
+                        "damageFactor": 0.8,
                         "reverse": false,
                         "status": 0.2,
                         "hints": ["CHARGED"],

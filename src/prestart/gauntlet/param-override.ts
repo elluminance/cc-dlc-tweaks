@@ -1,60 +1,34 @@
+const elementBonusDefault = {
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    focus: 0,
+
+    modifiers: {}
+} as const;
+
+sc.SP_LEVEL[5] = 20;
+sc.SP_LEVEL[6] = 24;
+sc.SP_LEVEL[7] = 28;
+sc.SP_LEVEL[8] = 32;
+
+sc.SP_REGEN_SPEED[20] = 1.8;
+sc.SP_REGEN_SPEED[24] = 2;
+sc.SP_REGEN_SPEED[28] = 2.2;
+sc.SP_REGEN_SPEED[32] = 2.4;
+
 sc.PlayerModel.inject({
-    el_statOverride: {
-        hp: 3600,
-        attack: 360,
-        defense: 360,
-        focus: 360,
-        spLevel: 2,
-        modifiers: {},
+    el_statOverride: null,
 
-        elementBonus: {
-            NEUTRAL: {
-                hp: 0,
-                attack: 0,
-                defense: 0,
-                focus: 0,
-
-                modifiers: {}
-            },
-            HEAT: {
-                hp: 0,
-                attack: 0.25,
-                defense: 0,
-                focus: 0,
-
-                modifiers: {}
-            },
-            COLD: {
-                hp: 0,
-                attack: 0,
-                defense: 0.25,
-                focus: 0,
-
-                modifiers: {}
-            },
-            SHOCK: {
-                hp: 0,
-                attack: 0,
-                defense: 0,
-                focus: 0.25,
-
-                modifiers: {}
-            },
-            WAVE: {
-                hp: 0.25,
-                attack: 0,
-                defense: 0,
-                focus: 0,
-
-                modifiers: {}
-            },
-        },
-        active: false
-    },
-    
-    reset() {
+    init() {
         this.parent();
-        this.el_statOverride.active = false;
+
+        this.el_statOverride = new el.StatOverride(this);
+    },
+
+    reset() {
+        this.el_statOverride.setActive(false);
+        this.parent();
     },
 
     updateStats() {
@@ -66,7 +40,10 @@ sc.PlayerModel.inject({
             for(let element in sc.ELEMENT) {
                 let config = this.elementConfigs[sc.ELEMENT[element as keyof typeof sc.ELEMENT]];
                 let elemBonus = this.el_statOverride.elementBonus[element as keyof typeof sc.ELEMENT];
+                
+                let actions = config.activeActions;
                 config.preSkillInit();
+                config.activeActions = actions;
                 config.skillFactors.hp = elemBonus.hp;
                 config.skillFactors.attack = elemBonus.attack;
                 config.skillFactors.defense = elemBonus.defense;
@@ -80,10 +57,68 @@ sc.PlayerModel.inject({
             this.params.setMaxSp(sc.SP_LEVEL[this.spLevel]);
             this.parent();
         }
+    }
+})
+
+el.StatOverride = ig.Class.extend({
+    hp: 3600,
+    attack: 360,
+    defense: 360,
+    focus: 360,
+    spLevel: 2,
+    modifiers: {},
+
+    elementBonus: {
+        NEUTRAL: {
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            focus: 0,
+
+            modifiers: {}
+        },
+        HEAT: {
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            focus: 0,
+
+            modifiers: {}
+        },
+        COLD: {
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            focus: 0,
+
+            modifiers: {}
+        },
+        SHOCK: {
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            focus: 0,
+
+            modifiers: {}
+        },
+        WAVE: {
+            hp: 0,
+            attack: 0,
+            defense: 0,
+            focus: 0,
+
+            modifiers: {}
+        },
+    },
+    active: false,
+
+    init(root) {
+        this.root = root;
     },
 
-    enableStatOverride(active) {
-        this.el_statOverride.active = active;
-        this.updateStats();
-    }
+    setActive(state) {
+        this.active = state;
+
+        this.root.updateStats();
+    },
 })
