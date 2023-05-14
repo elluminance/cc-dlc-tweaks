@@ -8,30 +8,23 @@ declare global {
             }
 
             namespace EL_Gems {
-                interface GemTypeBase {
+                interface Tier {
+                    level: number;
+                    cost: number;
+                    value: number;
+                }
+                interface GemEntry {
                     stat: string;
                     gemColor: keyof typeof el.GEM_COLORS;
                     order?: number;
                     numberStyle?: el.GemDatabase.GemNumberStyle;
                     langLabel?: ig.LangLabel.Data;
                     statLangLabel?: ig.LangLabel.Data;
-                }
-
-                interface StandardGemType extends GemTypeBase {
-                    valueIncrease?: number;
-                    values?: number[];
-                    costs: number[];
-                }
-
-                interface UniqueGemType extends GemTypeBase {
-                    value: number;
-                    cost: number;
-                    levelOverride?: number;
+                    tiers: Tier[];
                 }
             }
             interface EL_Gems {
-                gemTypes: Record<string, EL_Gems.StandardGemType>;
-                uniqueGems: Record<string, EL_Gems.UniqueGemType>;
+                gemTypes: Record<string, EL_Gems.GemEntry>;
             }
         }
     }
@@ -75,33 +68,25 @@ declare global {
         interface GemHelper {
             gemColorToIcon: Record<el.GEM_COLORS, string>;
         }
-        var GemHelper: GemHelper;
+        let GemHelper: GemHelper;
 
         namespace GemDatabase {
             type GemNumberStyle = "PERCENT" | "NUMBER" | "NONE" | "PREFIX_PLUS" | "NUMBER_PREFIX" | "PERCENT_PREFIX";
 
-            interface GemRootBase {
+            interface TierData {
+                cost: number;
+                value: number;
+            }
+
+            interface GemRoot {
                 stat: string;
                 gemColor: el.GEM_COLORS;
                 order: number;
                 numberStyle: GemNumberStyle;
                 langLabel?: string | ig.LangLabel.Data;
                 statLangLabel?: string | ig.LangLabel.Data;
+                levels: Record<number, TierData>;
             }
-            
-            interface GemRootStandard extends GemRootBase{
-                values: number[];
-                costs: number[];
-            }
-
-            interface GemRootUnique extends GemRootBase {
-                isUniqueGem: boolean;
-                cost: number;
-                value: number;
-                levelOverride: number;
-            }
-
-            type GemRoot = GemRootStandard | GemRootUnique; 
             
             interface Gem {
                 gemRoot: string;
@@ -162,8 +147,8 @@ declare global {
         interface GemDatabaseConstructor extends ImpactClass<GemDatabase> {
             new (): GemDatabase;
         } 
-        var GemDatabase: GemDatabaseConstructor;
-        var gemDatabase: GemDatabase;
+        let GemDatabase: GemDatabaseConstructor;
+        let gemDatabase: GemDatabase;
 
 
         //#region GUI
@@ -176,7 +161,7 @@ declare global {
         interface GemButtonConstructor extends ImpactClass<GemButton> {
             new (gem: el.GemDatabase.Gem, showCost?: boolean): GemButton;
         }
-        var GemButton: GemButtonConstructor;
+        let GemButton: GemButtonConstructor;
 
         namespace GemEquipMenu {
             interface InventoryPanel extends sc.ItemListBox, sc.Model.Observer {
@@ -261,7 +246,7 @@ declare global {
             RightPanel: GemEquipMenu.RightPanelConstructor;
             EquippedGemsPanel: GemEquipMenu.EquippedGemsPanelConstructor;
         }
-        var GemEquipMenu: GemEquipMenuConstructor;
+        let GemEquipMenu: GemEquipMenuConstructor;
         //#endregion GUI
 
     }

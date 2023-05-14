@@ -29,8 +29,7 @@ export function integerToRomanNumeral(num: number) {
 }
 
 type Gem = el.GemDatabase.Gem;
-type GemRootStandard = el.GemDatabase.GemRootStandard;
-type GemRootUnique = el.GemDatabase.GemRootUnique;
+type GemRoot = el.GemDatabase.GemRoot;
 
 el.GemDatabase = ig.Class.extend({
     guiImage: new ig.Image("media/gui/el-mod-gui.png"),
@@ -38,8 +37,12 @@ el.GemDatabase = ig.Class.extend({
         FALLBACK: {
             stat: "UNKNOWN",
             gemColor: el.GEM_COLORS.DEFAULT,
-            costs: [0, 0, 0, 0, 0, 0],
-            values: [0, 0, 0, 0, 0, 0],
+            levels: {
+                0: {
+                    cost: 0,
+                    value: 0,
+                }
+            },
             order: 100000,
             numberStyle: "NONE",
         }
@@ -55,51 +58,26 @@ el.GemDatabase = ig.Class.extend({
     init() {
         let gemInfo = ig.database.get("el-gems");
 
-        let values: number[];
         ig.storage.register(this);
         let order = 0;
         for(let [key, gemType] of Object.entries(gemInfo.gemTypes)) {
-            if (gemType.values) {
-                if (gemType.values.length >= 6) values = gemType.values;
-                else {
-                    ig.warn(`Warning: Gem entry for ${gemType.stat} found with less than 6 values! Skipping...`);
-                    return;
+            let levels: Record<number, el.GemDatabase.TierData> = {};
+
+            for(let data of gemType.tiers) {
+                levels[data.level] = {
+                    value: data.value,
+                    cost: data.cost,
                 }
-            } else if (gemType.valueIncrease !== undefined) {
-                values = Array(6).fill(0).map(
-                    (_, index) => ((index + 1) * gemType.valueIncrease!)
-                );
-            } else {
-                ig.warn(`Warning: Gem entry for ${gemType.stat} found with missing values/valueIncrease! Skipping...`);
-                return;
             }
 
             this.gemRoots[key] = {
                 stat: gemType.stat,
                 gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
-                values,
                 numberStyle: gemType.numberStyle ?? "PERCENT",
                 order: gemType.order ?? order++,
-                costs: gemType.costs,
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
-            }
-        }
-
-        order = 10000;
-
-        for(let [key, gemType] of Object.entries(gemInfo.uniqueGems)) {
-            this.gemRoots[key] = {
-                stat: gemType.stat,
-                gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
-                isUniqueGem: true,
-                order: gemType.order ?? order++,
-                value: gemType.value,
-                cost: gemType.cost,
-                numberStyle: gemType.numberStyle ?? "NONE",
-                levelOverride: gemType.levelOverride ?? -1,
-                langLabel: gemType.langLabel,
-                statLangLabel: gemType.statLangLabel,
+                levels,
             }
         }
 
@@ -261,11 +239,7 @@ el.GemDatabase = ig.Class.extend({
 
     getGemCost(gem) {
         const root = this.getGemRoot(gem);
-        if ((root as GemRootUnique).isUniqueGem) {
-            return (root as GemRootUnique).cost;
-        } else {
-            return (root as GemRootStandard)?.costs[gem.level - 1] || 0;
-        }
+        return root.levels[gem.level]?.cost ?? 0;
     },
 
     getTotalGemCosts() {
@@ -274,17 +248,10 @@ el.GemDatabase = ig.Class.extend({
 
     getGemStatBonus(gem) {
         const root = this.getGemRoot(gem);
-
-        if ((root as GemRootUnique).isUniqueGem) {
-            return (root as GemRootUnique).value;
-        } else {
-            return (root as GemRootStandard).values[gem.level - 1];
-        }
+        return root.levels[gem.level]?.value ?? 0;
     },
 
     getGemLevel(gem) {
-        let gemRoot = this.getGemRoot(gem) as GemRootUnique;
-        if (gemRoot.levelOverride !== undefined) return gemRoot.levelOverride;
         return gem.level;
     },
 
@@ -467,6 +434,7 @@ el.GemDatabase = ig.Class.extend({
         let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped).stat === gemRoot.stat));
 
         if (gemMatch) {
+            if(gemMatch.level === gem.level) return false;
             let costDiff = this.getTotalGemCosts() - this.getGemCost(gemMatch);
             if ((costDiff + this.getGemCost(gem)) > this.maxPower) return false;
         } else {
