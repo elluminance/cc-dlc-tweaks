@@ -27,7 +27,8 @@
         "prefer-const": "off",
         "no-case-declarations": "off",
         "no-empty": "off",
-        "no-fallthrough": "error",
-        "eqeqeq": ["warn", "smart"]
+        "no-fallthrough": "warn",
+        "eqeqeq": ["warn", "smart"],
+        "no-var": "warn"
     }
 }

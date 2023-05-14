@@ -49,14 +49,20 @@ sc.PlayerModel.inject({
                 config.skillFactors.defense = elemBonus.defense;
                 config.skillFactors.focus = elemBonus.focus;
                 config.update(this.baseParams, {});
-            } 
+            }
+            let curSp = this.params.currentSp;
             this.params.setMaxSp(sc.SP_LEVEL[this.el_statOverride.spLevel]);
+            this.params.currentSp = Math.min(curSp, this.params.maxSp);
             this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
             sc.Model.notifyObserver(this, sc.PLAYER_MSG.STATS_CHANGED);
         } else {
             this.params.setMaxSp(sc.SP_LEVEL[this.spLevel]);
             this.parent();
         }
+    },
+
+    el_enableStatOverride(state) {
+        this.el_statOverride.setActive(state);
     }
 })
 
@@ -121,4 +127,17 @@ el.StatOverride = ig.Class.extend({
 
         this.root.updateStats();
     },
+})
+
+ig.EVENT_STEP.EL_ENABLE_STAT_OVERRIDE = ig.EventStepBase.extend({
+    state: false,
+
+    init(settings) {
+        this.state = settings.state;
+    },
+
+    start() {
+        sc.model.player.el_enableStatOverride(this.state);
+        //will eventually add party member stuff
+    }
 })

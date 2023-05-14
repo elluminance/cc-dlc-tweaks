@@ -1,4 +1,4 @@
-import { numberToElementName } from "../../helper-funcs.js"
+import { numberToElementName, randint } from "../../helper-funcs.js";
 
 Object.assign(sc.MODIFIERS, {
     EL_RISKTAKER: {
@@ -133,110 +133,17 @@ sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot
 const lifestealAuraCooldown = 0.2;
 const lifestealMultiplier = 0.04;
 
-sc.EL_TRICKSTER_STAT_CHANGES = [
-    "HP-1",
-    "HP-2",
-    "EL-HP-MINUS-1",
-    "EL-HP-MINUS-2",
 
-    "ATTACK-1",
-    "ATTACK-2",
-    "EL-ATTACK-MINUS-1",
-    "EL-ATTACK-MINUS-2",
 
-    "DEFENSE-1",
-    "DEFENSE-2",
-    "EL-DEFENSE-MINUS-1",
-    "EL-DEFENSE-MINUS-2",
-
-    "FOCUS-1",
-    "FOCUS-2",
-    "EL-FOCUS-MINUS-1",
-    "EL-FOCUS-MINUS-2",
-
-    "EL-CRITICAL_DMG-1",
-    "EL-CRITICAL_DMG-2",
-    "EL-CRITICAL_DMG-MINUS-1",
-    "EL-CRITICAL_DMG-MINUS-2",
-
-    "EL-DASH_INVINC-1",
-    "EL-DASH_INVINC-2",
-    "EL-DASH_INVINC-MINUS-1",
-    "EL-DASH_INVINC-MINUS-2",
-
-    "EL-MOMENTUM-1",
-    "EL-MOMENTUM-2",
-    "EL-MOMENTUM-MINUS-1",
-    "EL-MOMENTUM-MINUS-2",
-
-    "EL-COND_EFFECT_ALL-1",
-    "EL-COND_EFFECT_ALL-2",
-    "EL-COND_EFFECT_ALL-MINUS-1",
-    "EL-COND_EFFECT_ALL-MINUS-2",
-
-    "EL-ASSAULT-1",
-    "EL-ASSAULT-2",
-    "EL-ASSAULT-MINUS-1",
-
-    "EL-BERSERK-1",
-    "EL-BERSERK-2",
-    "EL-BERSERK-MINUS-1",
-    "EL-BERSERK-MINUS-2",
-
-    "HEAT-RES-1",
-    "HEAT-RES-2",
-    "COLD-RES-1",
-    "COLD-RES-2",
-    "SHOCK-RES-1",
-    "SHOCK-RES-2",
-    "WAVE-RES-1",
-    "WAVE-RES-2",
-
-    "REGEN-1",
-    "REGEN-2",
-    "OVERHEAT-1",
-    "OVERHEAT-2",
-    "SP_REGEN-1",
-    "SP_REGEN-2",
-    "COND_HEALING-1",
-    "COND_HEALING-2",
-
-    "MELEE_DMG-1",
-    "MELEE_DMG-2",
-    "EL-MELEE_DMG-MINUS-1",
-    "EL-MELEE_DMG-MINUS-2",
-
-    "RANGED_DMG-1",
-    "RANGED_DMG-2",
-    "EL-RANGED_DMG-MINUS-1",
-    "EL-RANGED_DMG-MINUS-2",
-
-    "DASH-STEP-1",
-    "DASH-STEP-MINUS-1",
-]
+const stats = ["ATTACK", "DEFENSE", "FOCUS", "HP"]
 
 function generateTricksterBuffs() {
-    // generate an integer between 1-4 (inclusive)
-    let i = Math.random(),
-        bufflist: string[] = [],
-        buff: string;
-
-    if (i <= 0.15) {
-        i = 1;
-    } else if (i <= 0.6) {
-        i = 2;
-    } else if (i <= 0.9) {
-        i = 3;
-    } else i = 4;
-
-    while (i-- > 0) {
-        do {
-            buff = sc.EL_TRICKSTER_STAT_CHANGES.random();
-        } while (bufflist.find(value => sc.STAT_CHANGE_SETTINGS[buff].type === sc.STAT_CHANGE_SETTINGS[value].type))
-        bufflist.push(buff);
-    }
-
-    return bufflist;
+    let val1 = randint(4);
+    let val2: number;
+    do {
+        val2 = randint(4);
+    } while(val2 === val1);
+    return [`${stats[val1]}-3`, `EL-${stats[val2]}-MINUS-2`]
 }
 
 sc.CombatParams.inject({

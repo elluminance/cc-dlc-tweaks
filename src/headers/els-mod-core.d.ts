@@ -60,7 +60,6 @@ declare global {
         }
 
 
-        let EL_TRICKSTER_STAT_CHANGES: string[];
         namespace CombatParams {
             interface LifestealInfo {
                 amount: number;

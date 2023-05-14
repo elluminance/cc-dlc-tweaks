@@ -59,7 +59,7 @@ export function genBuffString(buffList: string[]) {
     let buffIcons: Record<string, string[]> = {}
     for(const value of buffList) {
         let statSetting = sc.STAT_CHANGE_SETTINGS[value];
-        if(statSetting.change === sc.STAT_CHANGE_TYPE.HEAL) return;
+        if(statSetting.change === sc.STAT_CHANGE_TYPE.HEAL) continue;
         
         if(!buffIcons[statSetting.grade!]) buffIcons[statSetting.grade!] = [];
         
@@ -91,4 +91,11 @@ export function genBuffString(buffList: string[]) {
 
 export function Vec3ToTuple(v: Vec3): [number,number,number] {
     return [v.x, v.y, v.z];
+}
+
+export function randint(a: number, b?: number) {
+    let range = b === undefined ? a : Math.abs(b - a);
+    let min = b === undefined ? 0 : Math.min(a, b);
+
+    return Math.trunc(min + range * Math.random());
 }
