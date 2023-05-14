@@ -1,3 +1,5 @@
+import { intToRomanNum } from "../../helper-funcs.js";
+
 el.GEM_COLORS = {
     DEFAULT: 0,
     RUBY: 1,
@@ -12,20 +14,6 @@ el.GEM_COLORS = {
     AQUAMARINE: 10,
     ONYX: 11,
     BLOODSTONE: 12,
-}
-
-
-export function integerToRomanNumeral(num: number) {
-    switch (num) {
-        case 1: return " I";
-        case 2: return " II";
-        case 3: return " III";
-        case 4: return " IV";
-        case 5: return " V";
-        case 6: return " VI";
-        case -1: return "";
-        default: return " " + num.toString();
-    }
 }
 
 type Gem = el.GemDatabase.Gem;
@@ -151,7 +139,7 @@ el.GemDatabase = ig.Class.extend({
     },
 
     drawGemLevel(level, height) {
-        this.guiImage.draw(6, height - 7, 23 + 8 * (level === -1 ? 6 : (level - 1)), 0, 7, 5)
+        this.guiImage.draw(6, height - 7, 23 + 8 * level.limit(0, 6), 0, 7, 5)
     },
 
     getGemRoot(gem) {
@@ -187,8 +175,8 @@ el.GemDatabase = ig.Class.extend({
 
         workingString += this.getGemRootName(this.getGemRoot(gem), withIcon);
 
-        if (!excludeLevel) {
-            workingString += integerToRomanNumeral(this.getGemLevel(gem));
+        if (!excludeLevel && gem.level !== 0) {
+            workingString += " " + intToRomanNum(this.getGemLevel(gem));
         }
 
         return workingString;
@@ -427,7 +415,7 @@ el.GemDatabase = ig.Class.extend({
     canEquipGem(gem) {
         if (!gem) return false;
         //checks that the gem is valid
-        if (!(gem.gemRoot in this.gemRoots)) return false;
+        if (!(this.isValidGem(gem))) return false;
 
         const gemRoot = this.getGemRoot(gem)
         //finds gems of the same stat
@@ -443,6 +431,10 @@ el.GemDatabase = ig.Class.extend({
         }
 
         return true;
+    },
+
+    isValidGem(gem) {
+        return gem.gemRoot in this.gemRoots && gem.level in this.gemRoots[gem.gemRoot].levels;
     },
     //#endregion
 

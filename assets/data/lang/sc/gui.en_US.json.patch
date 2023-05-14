@@ -140,7 +140,7 @@
             },
             
             "special-stat-names": {
-                "UNKNOWN": "No Stat",
+                "UNKNOWN": "?????????? +??%",
                 
                 "STAT_MAXHP": "Max HP",
                 "STAT_ATTACK": "Attack",

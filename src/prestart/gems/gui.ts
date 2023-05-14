@@ -244,11 +244,11 @@ el.GemEquipMenu = sc.BaseMenu.extend({
     },
 
     onSort(button) {
-        if ((button as any).data) {
+        if ((button as ig.FocusGui & {data: unknown}).data) {
             this.sortMenu.hideSortMenu();
             sc.menu.sortList(button);
 
-            this.updateSortText((button as any).text)
+            this.updateSortText((button as ig.FocusGui & {text: string}).text)
         }
     },
 
@@ -339,7 +339,7 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
                     this._addListItems(true);
                     break;
                 case sc.MENU_EVENT.SORT_LIST:
-                    this.sortMethod = (data as any).data.sortType;
+                    this.sortMethod = (data as {data: {sortType: el.GEM_SORT_TYPE}}).data.sortType;
                     this._addListItems();
                     break;
             }
@@ -835,7 +835,7 @@ el.GemEquipMenu.EquippedGemsPanel.Entry = ig.FocusGui.extend({
 
             let level = el.gemDatabase.getGemLevel(this.gem)
             // adds the gem level
-            if (level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * (level === -1 ? 6 : level - 1), 0, 7, 5)
+            if (level) renderer.addGfx(this.gfx, 13, this.hook.size.y / 2 + 1, 23 + 8 * level.limit(0, 6), 0, 7, 5)
         }
     },
 

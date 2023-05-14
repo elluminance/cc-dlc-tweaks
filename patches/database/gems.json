@@ -144,487 +144,1970 @@
                         "value": 0.16
                     }
                 ]
-            }
-        },
-
-        "gemTypes_OLD": {
-            "MAXHP": {
-                "stat": "STAT_MAXHP",
-                "gemColor": "EMERALD",
-                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
-            },
-            "ATTACK": {
-                "stat": "STAT_ATTACK",
-                "gemColor": "RUBY",
-                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27 ]
-            },
-            "DEFENSE": {
-                "stat": "STAT_DEFENSE",
-                "gemColor": "LAPIS_LAZULI",
-                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
-            },
-            "FOCUS": {
-                "stat": "STAT_FOCUS",
-                "gemColor": "AMETHYST",
-                "values": [0.02, 0.05, 0.08, 0.11, 0.14, 0.16],
-                "costs": [2, 5, 9, 14, 20, 27]
             },
 
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.04,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.24
+                    }
+                ]
             },
             "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
             "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
                 "gemColor": "CITRINE",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
             "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
                 "gemColor": "TOPAZ",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
             "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
                 "gemColor": "GARNET",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
 
             "MELEE_DMG": {
                 "stat": "MELEE_DMG",
                 "gemColor": "MOONSTONE",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "RANGED_DMG": {
                 "stat": "RANGED_DMG",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "CRITICAL_DMG": {
                 "stat": "CRITICAL_DMG",
                 "gemColor": "TOPAZ",
-                "valueIncrease": 0.06,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.06
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.18
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.24
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.36
+                    }
+                ]
             },
             "BREAK_DMG": {
                 "stat": "BREAK_DMG",
                 "gemColor": "AQUAMARINE",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "BERSERK": {
                 "stat": "BERSERK",
                 "gemColor": "GARNET",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "CROSS_COUNTER": {
                 "stat": "CROSS_COUNTER",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
             "MOMENTUM": {
                 "stat": "MOMENTUM",
                 "gemColor": "ONYX",
-                "valueIncrease": 0.02,
-                "costs": [4, 9, 15, 21, 28, 35]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 4,
+                        "value": 0.02
+                    },
+                    {
+                        "level": 2,
+                        "cost": 9,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 3,
+                        "cost": 15,
+                        "value": 0.06
+                    },
+                    {
+                        "level": 4,
+                        "cost": 21,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 5,
+                        "cost": 28,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 6,
+                        "cost": 35,
+                        "value": 0.12
+                    }
+                ]
             },
-
             "ASSAULT": {
                 "stat": "ASSAULT",
                 "gemColor": "RUBY",
-                "valueIncrease": 0.15,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.45
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.6
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.75
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.9
+                    }
+                ]
             },
-
             "DASH_INVINC": {
                 "stat": "DASH_INVINC",
                 "gemColor": "AMETHYST",
-                "valueIncrease": 0.1,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.5
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.60
+                    }
+                ]
             },
-
             "GUARD_SP": {
                 "stat": "GUARD_SP",
                 "gemColor": "MOONSTONE",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "PERFECT_GUARD_WINDOW": {
                 "stat": "PERFECT_GUARD_WINDOW",
                 "gemColor": "ONYX",
-                "valueIncrease": [0.2, 0.4, 0.6, 0.75, 0.9, 1],
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.6
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.75
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.9
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 1
+                    }
+                ]
             },
             "SPIKE_DMG": {
                 "stat": "SPIKE_DMG",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.08,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.24
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.32
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.48
+                    }
+                ]
             },
             "GUARD_STRENGTH": {
                 "stat": "GUARD_STRENGTH",
                 "gemColor": "RUBY",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
-
             "HP_REGEN": {
                 "stat": "HP_REGEN",
                 "gemColor": "EMERALD",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "SP_REGEN": {
                 "stat": "SP_REGEN",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "OVERHEAT_REDUCTION": {
                 "stat": "OVERHEAT_REDUCTION",
                 "gemColor": "CITRINE",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.3
+                    }
+                ]
             },
-
             "AIM_SPEED": {
                 "stat": "AIM_SPEED",
                 "gemColor": "MOONSTONE",
-                "valueIncrease": 0.15,
-                "costs": [1, 3, 6, 10, 14, 20]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.45
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.6
+                    },
+                    {
+                        "level": 5,
+                        "cost": 14,
+                        "value": 0.75
+                    },
+                    {
+                        "level": 6,
+                        "cost": 20,
+                        "value": 0.9
+                    }
+                ]
             },
             "AIM_STABILITY": {
                 "stat": "AIM_STABILITY",
                 "gemColor": "AMETHYST",
-                "valueIncrease": 0.15,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.45
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.6
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.75
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.9
+                    }
+                ]
             },
             "AIMING_MOVEMENT": {
                 "stat": "AIMING_MOVEMENT",
                 "gemColor": "RUBY",
-                "values": [0.1, 0.2, 0.27, 0.35, 0.43, 0.5],
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.27
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.35
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.43
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.5
+                    }
+                ]
             },
             "KNOCKBACK": {
                 "stat": "KNOCKBACK",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
-            
             "STUN_THRESHOLD": {
                 "stat": "STUN_THRESHOLD",
                 "gemColor": "GARNET",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
-
             "XP_PLUS": {
                 "stat": "XP_PLUS",
                 "gemColor": "CITRINE",
                 "numberStyle": "PERCENT_PREFIX",
-                "valueIncrease": 0.15,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "statLangLabel": {
                     "en_US": "EXP Gained"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.45
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.6
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.75
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.9
+                    }
+                ]
             },
             "DROP_CHANCE": {
                 "stat": "DROP_CHANCE",
                 "gemColor": "ONYX",
                 "numberStyle": "PERCENT_PREFIX",
-                "valueIncrease": 0.1,
-                "costs": [3, 6, 10, 15, 22, 28],
-
                 "statLangLabel": {
                     "en_US": "Item Drop Rate"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 2,
+                        "cost": 6,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 3,
+                        "cost": 10,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 4,
+                        "cost": 15,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 5,
+                        "cost": 22,
+                        "value": 0.5
+                    },
+                    {
+                        "level": 6,
+                        "cost": 28,
+                        "value": 0.60
+                    }
+                ]
             },
             "MONEY_PLUS": {
                 "stat": "MONEY_PLUS",
                 "gemColor": "AQUAMARINE",
                 "numberStyle": "PERCENT_PREFIX",
-                "valueIncrease": 0.1,
-                "costs": [3, 6, 10, 15, 22, 28],
-
                 "statLangLabel": {
                     "en_US": "Credits Gained"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 2,
+                        "cost": 6,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 3,
+                        "cost": 10,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 4,
+                        "cost": 15,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 5,
+                        "cost": 22,
+                        "value": 0.5
+                    },
+                    {
+                        "level": 6,
+                        "cost": 28,
+                        "value": 0.60
+                    }
+                ]
             },
-
             "ITEM_BOOST": {
                 "stat": "ITEM_BOOST",
                 "gemColor": "EMERALD",
-                "valueIncrease": 0.1,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "statLangLabel": {
                     "en_US": "Item Efficacy"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.3
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.4
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.5
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.60
+                    }
+                ]
             },
-
-            "COND_HEALING": {
-                "stat": "COND_HEALING",
-                "gemColor": "AQUAMARINE",
-                "valueIncrease": 0.05,
-                "costs": [3, 6, 10, 15, 22, 28]
-            },
-
             "COND_EFFECT_ALL": {
                 "stat": "COND_EFFECT_ALL",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
             },
             "COND_EFFECT_HEAT": {
                 "stat": "COND_EFFECT_HEAT",
                 "gemColor": "RUBY",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_EFFECT_COLD": {
                 "stat": "COND_EFFECT_COLD",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_EFFECT_SHOCK": {
                 "stat": "COND_EFFECT_SHOCK",
                 "gemColor": "AMETHYST",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_EFFECT_WAVE": {
                 "stat": "COND_EFFECT_WAVE",
                 "gemColor": "EMERALD",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
-
             "EL_COND_GUARD_ALL": {
                 "stat": "EL_COND_GUARD_ALL",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
             },
             "COND_GUARD_HEAT": {
                 "stat": "COND_GUARD_HEAT",
                 "gemColor": "MOONSTONE",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_GUARD_COLD": {
                 "stat": "COND_GUARD_COLD",
                 "gemColor": "CITRINE",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_GUARD_SHOCK": {
                 "stat": "COND_GUARD_SHOCK",
                 "gemColor": "TOPAZ",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
             "COND_GUARD_WAVE": {
                 "stat": "COND_GUARD_WAVE",
                 "gemColor": "GARNET",
-                "valueIncrease": 0.05,
-                "costs": [1, 3, 6, 10, 15, 22]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 1,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 3,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 6,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 10,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 15,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 22,
+                        "value": 0.3
+                    }
+                ]
             },
-
+            "COND_HEALING": {
+                "stat": "COND_HEALING",
+                "gemColor": "AQUAMARINE",
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 3,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 6,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 10,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 15,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 22,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 28,
+                        "value": 0.3
+                    }
+                ]
+            },
 
             "EL_RISKTAKER": {
                 "stat": "EL_RISKTAKER",
                 "gemColor": "ONYX",
-                "valueIncrease": 0.05,
-                "costs": [3, 6, 10, 15, 22, 28]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 3,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 6,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 10,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 15,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 22,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 28,
+                        "value": 0.3
+                    }
+                ]
             },
             "EL_LIFESTEAL": {
                 "stat": "EL_LIFESTEAL",
                 "gemColor": "BLOODSTONE",
-                "valueIncrease": 0,
-                "costs": [0, 0, 0, 0, 0, 0]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 2,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 3,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 4,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 5,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 6,
+                        "cost": 0,
+                        "value": 0
+                    }
+                ]
             },
             "EL_OVERHEAL": {
                 "stat": "EL_OVERHEAL",
                 "gemColor": "AQUAMARINE",
-                "valueIncrease": 0,
-                "costs": [0, 0, 0, 0, 0, 0]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 2,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 3,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 4,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 5,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 6,
+                        "cost": 0,
+                        "value": 0
+                    }
+                ]
             },
             "EL_CRIT_BOOST": {
                 "stat": "EL_CRIT_BOOST",
                 "gemColor": "BLOODSTONE",
-                "valueIncrease": 0,
-                "costs": [0, 0, 0, 0, 0, 0]
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 2,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 3,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 4,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 5,
+                        "cost": 0,
+                        "value": 0
+                    },
+                    {
+                        "level": 6,
+                        "cost": 0,
+                        "value": 0
+                    }
+                ]
             },
-
             "EL_NEUTRAL_BOOST": {
                 "stat": "EL_NEUTRAL_BOOST",
                 "gemColor": "DIAMOND",
-                "valueIncrease": 0.05,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
                     "en_US": "Neutral Damage"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.05
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.15
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.25
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.3
+                    }
+                ]
             },
             "EL_HEAT_BOOST": {
                 "stat": "EL_HEAT_BOOST",
                 "gemColor": "RUBY",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
                     "en_US": "Heat Damage"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
             },
             "EL_COLD_BOOST": {
                 "stat": "EL_COLD_BOOST",
                 "gemColor": "LAPIS_LAZULI",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
                     "en_US": "Cold Damage"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
             },
             "EL_SHOCK_BOOST": {
                 "stat": "EL_SHOCK_BOOST",
                 "gemColor": "AMETHYST",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
                     "en_US": "Shock Damage"
-                }
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
             },
             "EL_WAVE_BOOST": {
                 "stat": "EL_WAVE_BOOST",
                 "gemColor": "EMERALD",
-                "valueIncrease": 0.04,
-                "costs": [2, 5, 9, 13, 18, 24],
-
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
                     "en_US": "Wave Damage"
-                }
-            }
-        },
+                },
+                "tiers": [
+                    {
+                        "level": 1,
+                        "cost": 2,
+                        "value": 0.04
+                    },
+                    {
+                        "level": 2,
+                        "cost": 5,
+                        "value": 0.08
+                    },
+                    {
+                        "level": 3,
+                        "cost": 9,
+                        "value": 0.12
+                    },
+                    {
+                        "level": 4,
+                        "cost": 13,
+                        "value": 0.16
+                    },
+                    {
+                        "level": 5,
+                        "cost": 18,
+                        "value": 0.2
+                    },
+                    {
+                        "level": 6,
+                        "cost": 24,
+                        "value": 0.24
+                    }
+                ]
+            },
 
-        "uniqueGems_OLD": {
-            "APPETITE_1": {
-                "stat": "APPETITE",
-                "gemColor": "EMERALD",
-                "numberStyle": "NUMBER_PREFIX",
-                "value": 1,
-                "cost": 11,
-                "levelOverride": 1
-            },
-            "APPETITE_2": {
-                "stat": "APPETITE",
-                "gemColor": "EMERALD",
-                "numberStyle": "NUMBER_PREFIX",
-                "value": 2,
-                "cost": 21,
-                "levelOverride": 2
-            },
-            "APPETITE_3": {
-                "stat": "APPETITE",
-                "gemColor": "EMERALD",
-                "numberStyle": "NUMBER_PREFIX",
-                "value": 3,
-                "cost": 33,
-                "levelOverride": 3
-            },
-            "ITEM_GUARD": {
-                "stat": "ITEM_GUARD",
-                "gemColor": "DIAMOND",
-                "value": 1,
-                "cost": 15
-            },
             "ONCE_MORE": {
                 "langLabel": {
                     "en_US": "Second Wind"
                 },
                 "stat": "ONCE_MORE",
                 "gemColor": "CITRINE",
-                "value": 1,
-                "cost": 25
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 25
+                    }
+                ]
             },
-            "DASH_STEP_1": {
+            "APPETITE": {
+                "stat": "APPETITE",
+                "gemColor": "EMERALD",
+                "numberStyle": "NUMBER_PREFIX",
+                
+                "tiers": [
+                    {
+                        "level": 1,
+                        "value": 1,
+                        "cost": 9
+                    },
+                    {
+                        "value": 2,
+                        "cost": 19,
+                        "level": 2
+                    },
+                    {
+                        "value": 3,
+                        "cost": 33,
+                        "level": 3
+                    }
+                ]
+            },
+            "ITEM_GUARD": {
+                "stat": "ITEM_GUARD",
+                "gemColor": "DIAMOND",
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 15
+                    }
+                ]
+            },
+            "DASH_STEP": {
                 "stat": "DASH_STEP",
                 "gemColor": "CITRINE",
                 "numberStyle": "NUMBER_PREFIX",
-                "value": 1,
-                "cost": 12,
-                "levelOverride": 1
-            },
-            "DASH_STEP_2": {
-                "stat": "DASH_STEP",
-                "gemColor": "CITRINE",
-                "numberStyle": "NUMBER_PREFIX",
-                "value": 2,
-                "cost": 27,
-                "levelOverride": 2
+                "tiers": [
+                    {
+                        "level": 1,
+                        "value": 1,
+                        "cost": 12
+                    },
+                    {
+                        "level": 2,
+                        "value": 2,
+                        "cost": 27
+                    }
+                ]
             },
             "PERFECT_GUARD_RESET": {
                 "stat": "PERFECT_GUARD_RESET",
                 "gemColor": "TOPAZ",
-                "value": 1,
-                "cost": 25
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 20
+                    }
+                ]
             },
-            "GUARD_AREA_1": {
+            "GUARD_AREA": {
                 "stat": "GUARD_AREA",
                 "gemColor": "MOONSTONE",
-                "value": 1,
-                "cost": 20
-            },
-            "GUARD_AREA_2": {
-                "stat": "GUARD_AREA",
-                "gemColor": "MOONSTONE",
-                "value": 2,
-                "cost": 31
+                "tiers": [
+                    {
+                        "level": 1,
+                        "value": 1,
+                        "cost": 20
+                    },
+                    {
+                        "level": 2,
+                        "value": 2,
+                        "cost": 31
+                    }
+                ]
             },
             "RANK_PLANTS": {
                 "stat": "RANK_PLANTS",
                 "gemColor": "GARNET",
-                "value": 1,
-                "cost": 8
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 8
+                    }
+                ]
             },
             "SPIDER_SLOW_DOWN_GUARD": {
                 "stat": "SPIDER_SLOW_DOWN_GUARD",
                 "gemColor": "AMETHYST",
-                "value": 1,
-                "cost": 15
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 12
+                    }
+                ]
             },
             "BEGONE_ICE": {
                 "stat": "BEGONE_ICE",
                 "gemColor": "GARNET",
-                "value": 1,
-                "cost": 15
+                "tiers": [
+                    {
+                        "level": 0,
+                        "value": 1,
+                        "cost": 15
+                    }
+                ]
             }
         }
     }

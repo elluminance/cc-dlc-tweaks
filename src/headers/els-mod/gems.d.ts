@@ -143,6 +143,7 @@ declare global {
             equipGem(this: this, gem: GemDatabase.Gem): boolean;
             dequipGemByIndex(this: this, index: number): GemDatabase.Gem | undefined;
             canEquipGem(this: this, gem: GemDatabase.Gem): boolean;
+            isValidGem(this: this, gem: GemDatabase.Gem): boolean;
         }
         interface GemDatabaseConstructor extends ImpactClass<GemDatabase> {
             new (): GemDatabase;
