@@ -77,7 +77,7 @@ declare global {
         let GemHelper: GemHelper;
 
         namespace GemDatabase {
-            type GemNumberStyle = "PERCENT" | "NUMBER" | "NONE" | "PREFIX_PLUS" | "NUMBER_PREFIX" | "PERCENT_PREFIX";
+            type GemNumberStyle = "PERCENT" | "NUMBER" | "NONE" | "PREFIX_PLUS" | "NUMBER_PREFIX" | "PERCENT_PREFIX" | "MULTIPLIER";
 
             interface TierData {
                 cost: number;
@@ -139,6 +139,7 @@ declare global {
             getGemCost(this: this, gem: GemDatabase.Gem): number;
             getGemLevel(this: this, gem: GemDatabase.Gem): number;
             getGemCount(this: this, gem: GemDatabase.Gem): number;
+            getTotalGemTypeCount(this: this, gemRoot: string): number;
             getTotalGemCosts(this: this): number;
             getGemShortDesc(this: this, gemRoot: GemDatabase.GemRoot | string): string;
             getStatLangKey(this: this, gemRoot: string, isDesc?: boolean): string;
@@ -286,6 +287,7 @@ declare global {
             heightTransition: GemSelectorGui.HeightTransition | undefined;
             active: boolean;
             costText: sc.TextGui;
+            currentGemRoot: string;
 
             showSelector(this: this, gemRootKey: string): void;
             hide(this: this): void;

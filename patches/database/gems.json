@@ -1738,6 +1738,9 @@
             "EL_OVERHEAL": {
                 "stat": "EL_OVERHEAL",
                 "gemColor": "AQUAMARINE",
+                "langLabel": {
+                    "en_US": "Lifeshield"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2088,6 +2091,10 @@
             "GUARD_AREA": {
                 "stat": "GUARD_AREA",
                 "gemColor": "MOONSTONE",
+                "numberStyle": "MULTIPLIER",
+                "langLabel": {
+                    "en_US": "Full Guard"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2115,6 +2122,9 @@
             "SPIDER_SLOW_DOWN_GUARD": {
                 "stat": "SPIDER_SLOW_DOWN_GUARD",
                 "gemColor": "AMETHYST",
+                "langLabel": {
+                    "en_US": "Unrelenting Soles"
+                },
                 "tiers": [
                     {
                         "level": 0,

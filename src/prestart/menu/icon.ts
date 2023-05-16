@@ -70,6 +70,7 @@ sc.fontsystem.font.setMapping(fontMappings)
 
 sc.fontsystem.smallFont.setMapping({
     "el-gray-arrow": [smallFontIndex, 0],
+    "el-gray-times": [smallFontIndex, 1],
 })
 
 sc.fontsystem.tinyFont.setMapping({

@@ -113,6 +113,7 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
         }
     }),
     buttons: [],
+    currentGemRoot: "FALLBACK",
 
     init(buttonInteract) {
         this.parent();
@@ -143,6 +144,11 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
     },
 
     showSelector(gemRootKey) {
+        let doTransition = false;
+        if(gemRootKey && this.currentGemRoot !== gemRootKey) {
+            this.currentGemRoot = gemRootKey;
+            doTransition = true;
+        }
         this.doStateTransition("DEFAULT");
         this.buttonInteract.addParallelGroup(this.buttonGroup);
         this.clearButtons();
@@ -150,40 +156,48 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
             this.active = true;
         }
 
-        let gemRoot = el.gemDatabase.getGemRoot(gemRootKey);
+        let gemRoot = el.gemDatabase.getGemRoot(this.currentGemRoot);
         let levels = Object.keys(gemRoot.levels);
         let targetHeight = 20 + levels.length * sc.BUTTON_TYPE.ITEM.height;
-        this.doHeightTransition(targetHeight, 0.1);        
+        if(doTransition) this.doHeightTransition(targetHeight, 0.1);        
 
         let y = 12;
         for(let level of levels) {
-            let gem = {gemRoot: gemRootKey, level: +level};
+            let gem = {gemRoot: this.currentGemRoot, level: +level};
 
             let button = new el.GemButton(gem, true);
             this.buttonGroup.addFocusGui(button);
 
-            if(el.gemDatabase.getGemCount(gem) === 0) {
-                button.setText(`${el.gemDatabase.gemColorToIcon(el.gemDatabase.getGemRoot(gemRootKey).gemColor)}\\c[4]---------------\\c[0]`, true);
+            let equipped = el.gemDatabase.equippedGems.find(equipped => equipped.gemRoot === this.currentGemRoot);
+            if(el.gemDatabase.getGemCount(gem) === 0 && !(equipped && equipped.level === +level)) {
+                button.setText(`${el.gemDatabase.gemColorToIcon(el.gemDatabase.getGemRoot(this.currentGemRoot).gemColor)}\\c[4]---------------\\c[0]`, true);
                 button.setActive(false);
                 button.costNumber.setNumber(0);
                 button.costNumber.setColor(sc.GUI_NUMBER_COLOR.GREY)
             }
             if(!el.gemDatabase.canEquipGem(gem)) {
                 button.setActive(false);
-            }            
+            }
 
+            button.onButtonPress = () => {
+                el.gemDatabase.equipGem(button.gem);
+                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
+            }
             button.transitions = BUTTON_TRANSITIONS;
-            button.doStateTransition("HIDDEN", true);
             button.setPos(5, y);
             this.addChildGui(button);
             this.buttons.push(button);
             y += button.hook.size.y;
-            button.doStateTransition("DEFAULT");
+            if(doTransition) {
+                button.doStateTransition("HIDDEN", true);
+                button.doStateTransition("DEFAULT");
+            }
         }
     },
 
     hide() {
         this.active = false;
+        this.currentGemRoot = "FALLBACK";
         this.doStateTransition("HIDDEN");
         this.doHeightTransition(0, 0.1);
     },
@@ -217,6 +231,10 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
     modelChanged(model, message, data) {
         if(model === sc.menu) {
             switch(message) {
+                case sc.MENU_EVENT.EQUIP_CHANGED:
+                    if(!this.active) return;
+                // fallthrough is good as long as it's explicit!
+                // eslint-disable-next-line no-fallthrough
                 case sc.MENU_EVENT.EL_GEM_SELECTED:
                     this.showSelector(data as string);
                     break;
@@ -627,20 +645,11 @@ el.GemEquipMenu.InventoryPanel = sc.ItemListBox.extend({
         let gemList = el.gemDatabase.sortGems(this.sortMethod);
         for(let gem of gemList) {
             let button = new el.GemInventoryEntry(gem);
-            //button.submitSound = undefined;
 
-            //button.setActive(el.gemDatabase.canEquipGem(gem));
+            button.setActive(el.gemDatabase.getTotalGemTypeCount(gem) > 0);
 
             button.onButtonPress = () => {
                 sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_SELECTED, button.gemRoot);
-                // let equipped = el.gemDatabase.equipGem(gem);
-                // if (button.active && equipped) {
-                //     el.gemDatabase.removeGem(gem);
-                //     sc.BUTTON_SOUND.submit.play();
-                // } else {
-                //     sc.BUTTON_SOUND.denied.play();
-                // }
-                // sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
             }
 
             this.addButton(button);

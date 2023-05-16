@@ -225,6 +225,9 @@ el.GemDatabase = ig.Class.extend({
                 case "PREFIX_PLUS":
                     workingString = "+" + workingString;
                     break;
+                case "MULTIPLIER":
+                    workingString += `\\i[el-gray-times]${value}`;
+                    break;
                 case "NONE":
                     break;
                 default:
@@ -343,6 +346,7 @@ el.GemDatabase = ig.Class.extend({
     },
 
     addGem(gem) {
+        if(gem.gemRoot === "FALLBACK") return;
         this.gemInventory[gem.gemRoot] ??= {};
         this.gemInventory[gem.gemRoot][gem.level] ??= 0;
         this.gemInventory[gem.gemRoot][gem.level]++;
@@ -352,14 +356,16 @@ el.GemDatabase = ig.Class.extend({
         if(!this.gemInventory[gem.gemRoot]?.[gem.level]) return;
 
         this.gemInventory[gem.gemRoot][gem.level]--;
-
-        if(Object.values(this.gemInventory[gem.gemRoot]).every(x => !x)) {
-            delete this.gemInventory[gem.gemRoot];
-        }
     },
 
     getGemCount(gem) {
         return this.gemInventory[gem.gemRoot]?.[gem.level] ?? 0;
+    },
+
+    getTotalGemTypeCount(gemRoot) {
+        if(gemRoot in this.gemInventory) {
+            return Object.values(this.gemInventory[gemRoot]).reduce((prev, cur) => prev + cur);
+        } else return 0
     },
 
     compileGemBonuses() {
@@ -442,9 +448,11 @@ el.GemDatabase = ig.Class.extend({
 
         if (matchIndex === -1) {
             this.equippedGems.push(gem);
+            this.removeGem(gem);
         } else {
-            //this.gemInventory.push(this.equippedGems[matchIndex]);
-            //this.equippedGems[matchIndex] = gem;
+            this.addGem(this.equippedGems[matchIndex]);
+            this.removeGem(gem);
+            this.equippedGems[matchIndex] = gem;
         }
         this.compileGemBonuses();
         sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
