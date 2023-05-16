@@ -118,7 +118,7 @@ declare global {
         interface GemDatabase extends ig.Class, ig.Storage.Listener, ig.Vars.Accessor {
             guiImage: ig.Image;
             gemRoots: Record<string, GemDatabase.GemRoot>;
-            gemInventory: el.GemDatabase.Gem[];
+            gemInventory: Record<string, Record<number, number>>;//el.GemDatabase.Gem[];
             equippedGems: el.GemDatabase.Gem[];
             activeBonuses: el.GemDatabase.ParamBonuses;
             maxPower: number;
@@ -138,9 +138,11 @@ declare global {
             getGemStatBonus(this: this, gem: GemDatabase.Gem): number;
             getGemCost(this: this, gem: GemDatabase.Gem): number;
             getGemLevel(this: this, gem: GemDatabase.Gem): number;
+            getGemCount(this: this, gem: GemDatabase.Gem): number;
             getTotalGemCosts(this: this): number;
             getGemShortDesc(this: this, gemRoot: GemDatabase.GemRoot | string): string;
-            sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): GemDatabase.Gem[];
+            getStatLangKey(this: this, gemRoot: string, isDesc?: boolean): string;
+            sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): string[];
             
             _validateData(this: this): void;
             

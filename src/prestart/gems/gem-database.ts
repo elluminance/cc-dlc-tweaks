@@ -35,7 +35,7 @@ el.GemDatabase = ig.Class.extend({
             shortDesc: "??????????",
         }
     },
-    gemInventory: [],
+    gemInventory: {},
     equippedGems: [],
     maxPower: 99,
     maxSlots: 3,
@@ -251,30 +251,38 @@ el.GemDatabase = ig.Class.extend({
         if(gemRoot.shortDesc) {
             return gemRoot.shortDesc;
         } else {
-            switch (gemRoot.stat) {
-                case "STAT_MAXHP":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.maxhp");
-                case "STAT_ATTACK":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.atk");
-                case "STAT_DEFENSE":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.def");
-                case "STAT_FOCUS":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.foc");
-                case "NEUTRAL_RESIST":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.neutral");
-                case "HEAT_RESIST":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.heat");
-                case "COLD_RESIST":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.cold");
-                case "SHOCK_RESIST":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.shock");
-                case "WAVE_RESIST":
-                    return ig.lang.get("sc.gui.menu.equip.descriptions.wave");
-                default:
-                    return ig.lang.get(`sc.gui.menu.equip.descriptions.${gemRoot.stat}`);
-            }
+            return ig.lang.get(this.getStatLangKey(gemRoot.stat, true));
         }
         
+    },
+    getStatLangKey(stat, isDesc) {
+        let descString = "";
+        if(isDesc) {
+            descString = ".descriptions"
+        }
+        switch (stat) {
+            case "STAT_MAXHP":
+                return `sc.gui.menu.equip${descString}.maxhp`;
+            case "STAT_ATTACK":
+                return `sc.gui.menu.equip${descString}.atk`;
+            case "STAT_DEFENSE":
+                return `sc.gui.menu.equip${descString}.def`;
+            case "STAT_FOCUS":
+                return `sc.gui.menu.equip${descString}.foc`;
+            case "NEUTRAL_RESIST":
+                return `sc.gui.menu.equip${descString}.neutral`;
+            case "HEAT_RESIST":
+                return `sc.gui.menu.equip${descString}.heat`;
+            case "COLD_RESIST":
+                return `sc.gui.menu.equip${descString}.cold`;
+            case "SHOCK_RESIST":
+                return `sc.gui.menu.equip${descString}.shock`;
+            case "WAVE_RESIST":
+                return `sc.gui.menu.equip${descString}.wave`;
+            default:
+                if(!isDesc) return `sc.gui.menu.equip.modifier.${stat}`;
+                else return `sc.gui.menu.equip.descriptions.${stat}`;
+        }
     },
 
     getGemStatBonus(gem) {
@@ -287,52 +295,34 @@ el.GemDatabase = ig.Class.extend({
     },
 
     sortGems(sortMethod) {
-        let invCopy = [...this.gemInventory];
+        //return [];
+        let orderedGems = Object.keys(this.gemInventory);
 
         switch (sortMethod) {
             case el.GEM_SORT_TYPE.ORDER:
-                invCopy.sort((a, b) => {
+                orderedGems.sort((a, b) => {
                     let gemA = this.getGemRoot(a);
                     let gemB = this.getGemRoot(b);
 
-                    if (gemA === gemB) {
-                        return b.level - a.level;
-                    } else if (gemA.order === gemB.order) {
-                        return this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
+                    if (gemA.order === gemB.order) {
+                        return this.getGemRootName(a, false).localeCompare(this.getGemRootName(b, false));
                     } else {
                         return gemA.order - gemB.order;
                     }
                 })
                 break;
-            case el.GEM_SORT_TYPE.LEVEL:
-                invCopy.sort((a, b) => {
-                    let result = Math.max(this.getGemLevel(b), 0) - Math.max(this.getGemLevel(a), 0);
-                    if (result === 0) {
-                        result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
-                    }
-                    return result;
-                })
-                break;
             case el.GEM_SORT_TYPE.NAME:
-                invCopy.sort((a, b) => {
-                    let nameA = this.getGemName(a, false, true),
-                        nameB = this.getGemName(b, false, true),
+                orderedGems.sort((a, b) => {
+                    let nameA = this.getGemRootName(a, false),
+                        nameB = this.getGemRootName(b, false),
                         result = nameA.localeCompare(nameB);
-                    if (result === 0) result = b.level - a.level;
+                    if (result === 0) result = this.getGemRoot(b).order - this.getGemRoot(a).order;
                     return result;
                 })
                 break;
-            case el.GEM_SORT_TYPE.COST:
-                invCopy.sort((a, b) => {
-                    let result = this.getGemCost(b) - this.getGemCost(a);
-                    if (result === 0) {
-                        result = this.getGemName(a, false, true).localeCompare(this.getGemName(b, false, true));
-                    }
-                    return result;
-                })
         }
 
-        return invCopy;
+        return orderedGems;
     },
     //#endregion
 
@@ -353,11 +343,23 @@ el.GemDatabase = ig.Class.extend({
     },
 
     addGem(gem) {
-        this.gemInventory.push(gem);
+        this.gemInventory[gem.gemRoot] ??= {};
+        this.gemInventory[gem.gemRoot][gem.level] ??= 0;
+        this.gemInventory[gem.gemRoot][gem.level]++;
     },
 
     removeGem(gem) {
-        this.gemInventory.erase(gem);
+        if(!this.gemInventory[gem.gemRoot]?.[gem.level]) return;
+
+        this.gemInventory[gem.gemRoot][gem.level]--;
+
+        if(Object.values(this.gemInventory[gem.gemRoot]).every(x => !x)) {
+            delete this.gemInventory[gem.gemRoot];
+        }
+    },
+
+    getGemCount(gem) {
+        return this.gemInventory[gem.gemRoot]?.[gem.level] ?? 0;
     },
 
     compileGemBonuses() {
@@ -441,8 +443,8 @@ el.GemDatabase = ig.Class.extend({
         if (matchIndex === -1) {
             this.equippedGems.push(gem);
         } else {
-            this.gemInventory.push(this.equippedGems[matchIndex]);
-            this.equippedGems[matchIndex] = gem;
+            //this.gemInventory.push(this.equippedGems[matchIndex]);
+            //this.equippedGems[matchIndex] = gem;
         }
         this.compileGemBonuses();
         sc.Model.notifyObserver(sc.model.player.params, sc.COMBAT_PARAM_MSG.STATS_CHANGED);
@@ -500,7 +502,7 @@ el.GemDatabase = ig.Class.extend({
     onStoragePreLoad(savefile) {
         const gemData = { ...savefile.vars?.storage?.el?.gems } as const;
 
-        this.gemInventory = gemData?.inventory ?? [];
+        this.gemInventory = gemData?.inventory ?? {};
         this.equippedGems = gemData?.equipped ?? [];
         this.enabled = gemData?.enabled ?? false;
         this.bonusSlots = gemData?.bonusSlots ?? 0;

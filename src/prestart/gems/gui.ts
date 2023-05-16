@@ -18,44 +18,9 @@ Object.assign(sc.MENU_EVENT, {
 })
 
 function getStatLangString(stat: string) {
-    let titlePath: string, descPath: string;
-
-    switch (stat) {
-        case "STAT_MAXHP":
-            descPath = titlePath = "maxhp";
-            break;
-        case "STAT_ATTACK":
-            descPath = titlePath = "atk";
-            break;
-        case "STAT_DEFENSE":
-            descPath = titlePath = "def";
-            break;
-        case "STAT_FOCUS":
-            descPath = titlePath = "foc";
-            break;
-        case "NEUTRAL_RESIST":
-            descPath = titlePath = "neutral";
-            break;
-        case "HEAT_RESIST":
-            descPath = titlePath = "heat";
-            break;
-        case "COLD_RESIST":
-            descPath = titlePath = "cold";
-            break;
-        case "SHOCK_RESIST":
-            descPath = titlePath = "shock";
-            break;
-        case "WAVE_RESIST":
-            descPath = titlePath = "wave";
-            break;
-        default:
-            titlePath = `modifier.${stat}`;
-            descPath = stat;
-            break;
-    }
     return {
-        title: `sc.gui.menu.equip.${titlePath}`,
-        description: `sc.gui.menu.equip.descriptions.${descPath}`,
+        title: el.gemDatabase.getStatLangKey(stat, false),
+        description: el.gemDatabase.getStatLangKey(stat, true),
     }
 }
 
@@ -99,7 +64,9 @@ el.GemInventoryEntry = sc.ButtonGui.extend({
     init(root) {
         this.parent(el.gemDatabase.getGemRootName(root, true), 160, true, sc.BUTTON_TYPE.ITEM);
         this.gemRoot = root;
-    }
+    },
+
+
 })
 const BUTTON_TRANSITIONS = {
     DEFAULT: {
@@ -191,8 +158,20 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
         let y = 12;
         for(let level of levels) {
             let gem = {gemRoot: gemRootKey, level: +level};
+
             let button = new el.GemButton(gem, true);
             this.buttonGroup.addFocusGui(button);
+
+            if(el.gemDatabase.getGemCount(gem) === 0) {
+                button.setText(`${el.gemDatabase.gemColorToIcon(el.gemDatabase.getGemRoot(gemRootKey).gemColor)}\\c[4]---------------\\c[0]`, true);
+                button.setActive(false);
+                button.costNumber.setNumber(0);
+                button.costNumber.setColor(sc.GUI_NUMBER_COLOR.GREY)
+            }
+            if(!el.gemDatabase.canEquipGem(gem)) {
+                button.setActive(false);
+            }            
+
             button.transitions = BUTTON_TRANSITIONS;
             button.doStateTransition("HIDDEN", true);
             button.setPos(5, y);
@@ -322,7 +301,7 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
     },
 
     updateInformation(gemRoot) {
-        this.mainText.setText(el.gemDatabase.getGemRootName(gemRoot))
+        this.mainText.setText(ig.lang.get(el.gemDatabase.getStatLangKey(el.gemDatabase.getGemRoot(gemRoot).stat)));
         this.descText.setText(el.gemDatabase.getGemShortDesc(gemRoot));
     },
 
@@ -443,8 +422,6 @@ el.GemEquipMenu = sc.BaseMenu.extend({
         this.sortMenu = new sc.SortMenu(this.onSort.bind(this));
         this.sortMenu.addButton("auto", el.GEM_SORT_TYPE.ORDER, 0);
         this.sortMenu.addButton("name", el.GEM_SORT_TYPE.NAME, 1);
-        this.sortMenu.addButton("level", el.GEM_SORT_TYPE.LEVEL, 2);
-        this.sortMenu.addButton("el-gem-cost", el.GEM_SORT_TYPE.COST, 3);
 
         this.sortHotkey = new sc.ButtonGui("", void 0, true, sc.BUTTON_TYPE.SMALL)
         this.sortHotkey.keepMouseFocus = true;
@@ -631,15 +608,15 @@ el.GemEquipMenu.InventoryPanel = sc.ItemListBox.extend({
     },
 
     _addListItems(refocus) {
-        this.list.clear();
-        for(let key of Object.keys(el.gemDatabase.gemRoots)) {
-            let button = new el.GemInventoryEntry(key);
-            button.onButtonPress = () => {
-                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_SELECTED, button.gemRoot);
-            }
-            this.addButton(button);
-        }
-        return;
+        // this.list.clear();
+        // for(let key of Object.keys(el.gemDatabase.gemRoots)) {
+        //     let button = new el.GemInventoryEntry(key);
+        //     button.onButtonPress = () => {
+        //         sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_SELECTED, button.gemRoot);
+        //     }
+        //     this.addButton(button);
+        // }
+        // return;
         let lastIndex = 0;
         let toScroll = 0
         if (refocus) {
@@ -649,20 +626,21 @@ el.GemEquipMenu.InventoryPanel = sc.ItemListBox.extend({
         this.list.clear(refocus);
         let gemList = el.gemDatabase.sortGems(this.sortMethod);
         for(let gem of gemList) {
-            let button = new el.GemButton(gem, true);
-            button.submitSound = undefined;
+            let button = new el.GemInventoryEntry(gem);
+            //button.submitSound = undefined;
 
-            button.setActive(el.gemDatabase.canEquipGem(gem));
+            //button.setActive(el.gemDatabase.canEquipGem(gem));
 
             button.onButtonPress = () => {
-                let equipped = el.gemDatabase.equipGem(gem);
-                if (button.active && equipped) {
-                    el.gemDatabase.removeGem(gem);
-                    sc.BUTTON_SOUND.submit.play();
-                } else {
-                    sc.BUTTON_SOUND.denied.play();
-                }
-                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
+                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_SELECTED, button.gemRoot);
+                // let equipped = el.gemDatabase.equipGem(gem);
+                // if (button.active && equipped) {
+                //     el.gemDatabase.removeGem(gem);
+                //     sc.BUTTON_SOUND.submit.play();
+                // } else {
+                //     sc.BUTTON_SOUND.denied.play();
+                // }
+                // sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EQUIP_CHANGED);
             }
 
             this.addButton(button);
