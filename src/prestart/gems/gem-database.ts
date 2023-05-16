@@ -17,7 +17,6 @@ el.GEM_COLORS = {
 }
 
 type Gem = el.GemDatabase.Gem;
-type GemRoot = el.GemDatabase.GemRoot;
 
 el.GemDatabase = ig.Class.extend({
     guiImage: new ig.Image("media/gui/el-mod-gui.png"),
@@ -33,6 +32,7 @@ el.GemDatabase = ig.Class.extend({
             },
             order: 100000,
             numberStyle: "NONE",
+            shortDesc: "??????????",
         }
     },
     gemInventory: [],
@@ -65,6 +65,7 @@ el.GemDatabase = ig.Class.extend({
                 order: gemType.order ?? order++,
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
+                shortDesc: gemType.shortDesc ? ig.LangLabel.getText(gemType.shortDesc) : undefined,
                 levels,
             }
         }
@@ -86,10 +87,11 @@ el.GemDatabase = ig.Class.extend({
                 //removes excess gems
                 i >= this.maxSlots
                 //removes invalid gems
-                && !(this.equippedGems[i].gemRoot in this.gemRoots)
+                && !this.isValidGem(this.equippedGems[i])
                 //removes gems over the limit
                 && powerSum <= this.maxPower
             ) {
+                powerSum -= this.getGemCost(this.equippedGems[i]);
                 removedGems.push(this.dequipGemByIndex(i)!);
             } else i++;
         }
@@ -104,7 +106,6 @@ el.GemDatabase = ig.Class.extend({
         if (keys[0] === "el-gems") {
             switch (keys[1]) {
                 case "active": return this.enabled;
-
                 default:
                     if (keys[1] in this.gemRoots) {
                         switch (keys[2]) {
@@ -143,7 +144,11 @@ el.GemDatabase = ig.Class.extend({
     },
 
     getGemRoot(gem) {
-        return this.gemRoots[gem.gemRoot] ?? this.gemRoots["FALLBACK"];
+        if(typeof gem == "string") {
+            return gem in this.gemRoots ? this.gemRoots[gem] : this.gemRoots["FALLBACK"];
+        } else {
+            return this.gemRoots[gem.gemRoot] ?? this.gemRoots["FALLBACK"];
+        }
     },
 
     getGemRootName(gemRoot, withIcon) {
@@ -220,6 +225,11 @@ el.GemDatabase = ig.Class.extend({
                 case "PREFIX_PLUS":
                     workingString = "+" + workingString;
                     break;
+                case "NONE":
+                    break;
+                default:
+                    console.error(`Unknown gem number style ${gemRoot.numberStyle} for gem type ${gem.gemRoot}!`);
+                    break;
             }
         }
         return workingString;
@@ -232,6 +242,39 @@ el.GemDatabase = ig.Class.extend({
 
     getTotalGemCosts() {
         return this.equippedGems.reduce((value, gem) => value + this.getGemCost(gem), 0);
+    },
+
+    getGemShortDesc(gemRoot) {
+        if(typeof gemRoot === "string") {
+            gemRoot = this.getGemRoot(gemRoot);
+        }
+        if(gemRoot.shortDesc) {
+            return gemRoot.shortDesc;
+        } else {
+            switch (gemRoot.stat) {
+                case "STAT_MAXHP":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.maxhp");
+                case "STAT_ATTACK":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.atk");
+                case "STAT_DEFENSE":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.def");
+                case "STAT_FOCUS":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.foc");
+                case "NEUTRAL_RESIST":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.neutral");
+                case "HEAT_RESIST":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.heat");
+                case "COLD_RESIST":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.cold");
+                case "SHOCK_RESIST":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.shock");
+                case "WAVE_RESIST":
+                    return ig.lang.get("sc.gui.menu.equip.descriptions.wave");
+                default:
+                    return ig.lang.get(`sc.gui.menu.equip.descriptions.${gemRoot.stat}`);
+            }
+        }
+        
     },
 
     getGemStatBonus(gem) {
@@ -418,8 +461,8 @@ el.GemDatabase = ig.Class.extend({
         if (!(this.isValidGem(gem))) return false;
 
         const gemRoot = this.getGemRoot(gem)
-        //finds gems of the same stat
-        let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped).stat === gemRoot.stat));
+        //finds gems of the same type
+        let gemMatch = this.equippedGems.find(equipped => (this.getGemRoot(equipped) === gemRoot));
 
         if (gemMatch) {
             if(gemMatch.level === gem.level) return false;
@@ -434,7 +477,7 @@ el.GemDatabase = ig.Class.extend({
     },
 
     isValidGem(gem) {
-        return gem.gemRoot in this.gemRoots && gem.level in this.gemRoots[gem.gemRoot].levels;
+        return gem.gemRoot in this.gemRoots && gem.gemRoot !== "FALLBACK" && gem.level in this.gemRoots[gem.gemRoot].levels;
     },
     //#endregion
 

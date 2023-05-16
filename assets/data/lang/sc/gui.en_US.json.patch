@@ -116,6 +116,7 @@
             "gem-equip-button-description": "View and equip Gems to power up even further!",
             "gui-gem-cost": "Remaining Power:",
             "cost-heading": "Cost",
+            "stat-bonus": "Equip Effect",
             
             "special-gem-names": {
                 "UNKNOWN": "Unknown Gem",

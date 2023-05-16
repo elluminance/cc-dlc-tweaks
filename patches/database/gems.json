@@ -148,7 +148,7 @@
 
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
-                "gemColor": "DIAMOND",
+                "gemColor": "ONYX",
                 "tiers": [
                     {
                         "level": 1,
@@ -549,33 +549,33 @@
                 "tiers": [
                     {
                         "level": 1,
-                        "cost": 4,
-                        "value": 0.02
+                        "cost": 6,
+                        "value": 0.05
                     },
                     {
                         "level": 2,
-                        "cost": 9,
-                        "value": 0.04
+                        "cost": 10,
+                        "value": 0.06
                     },
                     {
                         "level": 3,
                         "cost": 15,
-                        "value": 0.06
+                        "value": 0.10
                     },
                     {
                         "level": 4,
                         "cost": 21,
-                        "value": 0.08
+                        "value": 0.12
                     },
                     {
                         "level": 5,
                         "cost": 28,
-                        "value": 0.1
+                        "value": 0.13
                     },
                     {
                         "level": 6,
-                        "cost": 35,
-                        "value": 0.12
+                        "cost": 40,
+                        "value": 0.15
                     }
                 ]
             },
@@ -1281,6 +1281,9 @@
             "COND_EFFECT_HEAT": {
                 "stat": "COND_EFFECT_HEAT",
                 "gemColor": "RUBY",
+                "shortDesc": {
+                    "en_US": "Increases the speed of inflicting the \\c[3]Burn\\c[0] Condition and its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1317,6 +1320,9 @@
             "COND_EFFECT_COLD": {
                 "stat": "COND_EFFECT_COLD",
                 "gemColor": "LAPIS_LAZULI",
+                "shortDesc": {
+                    "en_US": "Increases the speed of inflicting the \\c[3]Chill\\c[0] Condition and its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1353,6 +1359,9 @@
             "COND_EFFECT_SHOCK": {
                 "stat": "COND_EFFECT_SHOCK",
                 "gemColor": "AMETHYST",
+                "shortDesc": {
+                    "en_US": "Increases the speed of inflicting the \\c[3]Jolt\\c[0] Condition and its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1389,6 +1398,9 @@
             "COND_EFFECT_WAVE": {
                 "stat": "COND_EFFECT_WAVE",
                 "gemColor": "EMERALD",
+                "shortDesc": {
+                    "en_US": "Increases the speed of inflicting the \\c[3]Mark\\c[0] Condition and its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1461,6 +1473,9 @@
             "COND_GUARD_HEAT": {
                 "stat": "COND_GUARD_HEAT",
                 "gemColor": "MOONSTONE",
+                "shortDesc": {
+                    "en_US": "Increases the resistance against the \\c[3]Burn\\c[0] Condition and reduces its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1497,6 +1512,9 @@
             "COND_GUARD_COLD": {
                 "stat": "COND_GUARD_COLD",
                 "gemColor": "CITRINE",
+                "shortDesc": {
+                    "en_US": "Increases the resistance against the \\c[3]Chill\\c[0] Condition and reduces its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1533,6 +1551,9 @@
             "COND_GUARD_SHOCK": {
                 "stat": "COND_GUARD_SHOCK",
                 "gemColor": "TOPAZ",
+                "shortDesc": {
+                    "en_US": "Increases the resistance against the \\c[3]Jolt\\c[0] Condition and reduces its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1569,6 +1590,9 @@
             "COND_GUARD_WAVE": {
                 "stat": "COND_GUARD_WAVE",
                 "gemColor": "GARNET",
+                "shortDesc": {
+                    "en_US": "Increases the resistance against the \\c[3]Mark\\c[0] Condition and reduces its effect."
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1990,11 +2014,12 @@
                 },
                 "stat": "ONCE_MORE",
                 "gemColor": "CITRINE",
+                "numberStyle": "NONE",
                 "tiers": [
                     {
                         "level": 0,
                         "value": 1,
-                        "cost": 25
+                        "cost": 20
                     }
                 ]
             },

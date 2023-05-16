@@ -20,6 +20,7 @@ declare global {
                     numberStyle?: el.GemDatabase.GemNumberStyle;
                     langLabel?: ig.LangLabel.Data;
                     statLangLabel?: ig.LangLabel.Data;
+                    shortDesc?: ig.LangLabel.Data;
                     tiers: Tier[];
                 }
             }
@@ -35,6 +36,11 @@ declare global {
 
         enum MENU_SUBMENU {
             EL_GEM_EQUIP = "EL_GEM_EQUIP"
+        }
+        enum MENU_EVENT { 
+            EL_GEM_SELECTED,
+            EL_GEM_HOVERED,
+            EL_GEM_HIDE_SELECTOR,
         }
         interface CombatParams {
             elGemBonuses?: el.GemDatabase.ParamBonuses;
@@ -86,6 +92,7 @@ declare global {
                 langLabel?: string | ig.LangLabel.Data;
                 statLangLabel?: string | ig.LangLabel.Data;
                 levels: Record<number, TierData>;
+                shortDesc?: string;
             }
             
             interface Gem {
@@ -124,7 +131,7 @@ declare global {
             gemColorToIcon(this: this, color: el.GEM_COLORS): string;
             drawGemLevel(this: this, level: number, height: number): void;
 
-            getGemRoot(this: this, gem: GemDatabase.Gem): GemDatabase.GemRoot;
+            getGemRoot(this: this, gemRoot: GemDatabase.Gem | string): GemDatabase.GemRoot;
             getGemRootName(this: this, gemRoot: string | el.GemDatabase.GemRoot, withColor?: boolean): string;
             getGemName(this: this, gem: GemDatabase.Gem, withIcon?: boolean, excludeLevel?: boolean): string;
             getGemStatBonusString(this: this, gem: el.GemDatabase.Gem, includeValue?: boolean): string;
@@ -132,6 +139,7 @@ declare global {
             getGemCost(this: this, gem: GemDatabase.Gem): number;
             getGemLevel(this: this, gem: GemDatabase.Gem): number;
             getTotalGemCosts(this: this): number;
+            getGemShortDesc(this: this, gemRoot: GemDatabase.GemRoot | string): string;
             sortGems(this: this, sortMethod: el.GEM_SORT_TYPE): GemDatabase.Gem[];
             
             _validateData(this: this): void;
@@ -165,17 +173,20 @@ declare global {
         let GemButton: GemButtonConstructor;
 
         namespace GemEquipMenu {
+            namespace InventoryPanel {
+                interface Constructor extends ImpactClass<InventoryPanel> {
+                    new (buttonInteract: ig.ButtonInteractEntry): InventoryPanel;
+                }
+            }
             interface InventoryPanel extends sc.ItemListBox, sc.Model.Observer {
                 buttonInteract: ig.ButtonInteractEntry;
-                costText: sc.TextGui;
+                //costText: sc.TextGui;
                 sortMethod: el.GEM_SORT_TYPE;
+                //gemSelector: el.GemSelectorGui;
 
                 showMenu(this: this): void;
                 hideMenu(this: this): void;
                 _addListItems(this: this, refocus?: boolean): void;
-            }
-            interface RightPanelConstructor extends ImpactClass<InventoryPanel> {
-                new (buttonInteract: ig.ButtonInteractEntry): InventoryPanel;
             }
 
             namespace EquippedGemsPanel {
@@ -221,11 +232,21 @@ declare global {
 
                 Entry: EquippedGemsPanel.EntryConstructor
             }
+
+            interface Constructor extends ImpactClass<GemEquipMenu> {
+                new (): el.GemEquipMenu;
+    
+                InventoryPanel: GemEquipMenu.InventoryPanel.Constructor;
+                EquippedGemsPanel: GemEquipMenu.EquippedGemsPanelConstructor;
+            }
         }
 
         interface GemEquipMenu extends sc.BaseMenu {
             rightPanel: el.GemEquipMenu.InventoryPanel;
             leftPanel: el.GemEquipMenu.EquippedGemsPanel;
+            selectorPanel: el.GemSelectorGui;
+            infoPanel: el.GemDetailPanel;
+
             buttonInteract: ig.ButtonInteractEntry;
             sortHotkey: sc.ButtonGui;
             sortMenu: sc.SortMenu;
@@ -240,15 +261,73 @@ declare global {
             addHotkeys(this: this): void;
             commitHotkeys(this: this): void;
         }
-        interface GemEquipMenuConstructor extends ImpactClass<GemEquipMenu> {
-            new (): el.GemEquipMenu;
+        let GemEquipMenu: GemEquipMenu.Constructor;
 
-            //TODO: give these better names
-            RightPanel: GemEquipMenu.RightPanelConstructor;
-            EquippedGemsPanel: GemEquipMenu.EquippedGemsPanelConstructor;
+        namespace GemSelectorGui {
+            interface Constructor extends ImpactClass<GemSelectorGui> {
+                new (buttonInteract: ig.ButtonInteractEntry): GemSelectorGui;
+            }
+
+            interface HeightTransition {
+                startHeight: number;
+                targetHeight: number;
+                time: number;
+                timeFunction: KeySpline;
+                timer: number;
+            }
         }
-        let GemEquipMenu: GemEquipMenuConstructor;
-        //#endregion GUI
+        interface GemSelectorGui extends ig.GuiElementBase, sc.Model.Observer {
+            ninepatch: ig.NinePatch;
+            buttonGroup: sc.ButtonGroup;
+            buttonInteract: ig.ButtonInteractEntry;
+            buttons: el.GemButton[];
+            heightTransition: GemSelectorGui.HeightTransition | undefined;
+            active: boolean;
+            costText: sc.TextGui;
 
+            showSelector(this: this, gemRootKey: string): void;
+            hide(this: this): void;
+            clearButtons(this: this): void;
+            doHeightTransition(this: this, height: number, time: number): void;
+        }
+        let GemSelectorGui: GemSelectorGui.Constructor;
+
+        namespace GemInventoryEntry {
+            interface Constructor extends ImpactClass<GemInventoryEntry> {
+                new (root: string): GemInventoryEntry;
+            }
+        }
+        interface GemInventoryEntry extends sc.ButtonGui {
+            gemRoot: string;
+        }
+        let GemInventoryEntry: GemInventoryEntry.Constructor;
+        
+        namespace GemDetailPanel {
+            interface Constructor extends ImpactClass<GemDetailPanel> {
+                new (): GemDetailPanel;
+
+                Icon: Icon.Constructor;
+            }
+
+            namespace Icon {
+                interface Constructor extends ImpactClass<Icon> {
+                    new (): Icon;
+                }
+            }
+            interface Icon extends ig.GuiElementBase {
+                gfx: ig.Image;
+            }
+        }
+        interface GemDetailPanel extends ig.GuiElementBase, sc.Model.Observer {
+            ninepatch: ig.NinePatch;
+            mainText: sc.TextGui;
+            descText: sc.TextGui;
+            icon: el.GemDetailPanel.Icon;
+            show(this: this): void;
+            hide(this: this): void;
+            updateInformation(this: this, gemRoot: string): void;
+        }
+        let GemDetailPanel: GemDetailPanel.Constructor;
+        //#endregion GUI
     }
 }

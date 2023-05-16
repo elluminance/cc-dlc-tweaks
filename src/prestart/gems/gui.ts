@@ -10,11 +10,18 @@ el.GEM_SORT_TYPE = {
     COST: 4,
 }
 
+let max_event = Math.max(...Object.values(sc.MENU_EVENT as unknown as number[]));
+
+Object.assign(sc.MENU_EVENT, {
+    EL_GEM_SELECTED: ++max_event,
+    EL_GEM_HOVERED: ++max_event,
+})
+
 function getStatLangString(stat: string) {
     let titlePath: string, descPath: string;
 
     switch (stat) {
-        case "STAT_HP":
+        case "STAT_MAXHP":
             descPath = titlePath = "maxhp";
             break;
         case "STAT_ATTACK":
@@ -84,6 +91,270 @@ el.GemButton = sc.ButtonGui.extend({
             renderer.addGfx(vanillaGuiGfx, this.hook.size.x - 26, 0, this.focus ? 62 : 18, 45, 22, 1)
         }
     },
+})
+
+el.GemInventoryEntry = sc.ButtonGui.extend({
+    gemRoot: null,
+
+    init(root) {
+        this.parent(el.gemDatabase.getGemRootName(root, true), 160, true, sc.BUTTON_TYPE.ITEM);
+        this.gemRoot = root;
+    }
+})
+const BUTTON_TRANSITIONS = {
+    DEFAULT: {
+        state: {},
+        time: 0.2,
+        timeFunction: KEY_SPLINES.LINEAR
+    },
+    HIDDEN: {
+        state: {
+            scaleX: 0,
+            scaleY: 1,
+        },
+        time: 0.2,
+        timeFunction: KEY_SPLINES.LINEAR
+    }
+} as const;
+el.GemSelectorGui = ig.GuiElementBase.extend({
+    transitions: {
+        DEFAULT: {
+            state: {},
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        },
+        HIDDEN: {
+            state: {
+                alpha: 0,
+            },
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        }
+    },
+    ninepatch: new ig.NinePatch("media/gui/menu.png", {
+        width: 6,
+        height: 6,
+        left: 9,
+        top: 9,
+        right: 9,
+        bottom: 9,
+        offsets: {
+            "default": {
+                x: 480,
+                y: 304
+            }
+        }
+    }),
+    buttons: [],
+
+    init(buttonInteract) {
+        this.parent();
+        this.buttonGroup = new sc.ButtonGroup;
+        this.buttonInteract = buttonInteract;
+        this.doStateTransition("HIDDEN", true);
+        this.hook.size.x = 185;
+        this.hook.size.y = 0;
+
+        this.costText = new sc.TextGui(ig.lang.get("sc.gui.el-gems.cost-heading"), {
+            font: sc.fontsystem.tinyFont,
+        });
+        this.costText.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_TOP);
+        this.costText.setPos(5, 4);
+        this.addChildGui(this.costText);
+
+        sc.Model.addObserver(sc.menu, this);
+    },
+
+    doHeightTransition(height, time) {
+        this.heightTransition = {
+            startHeight: this.hook.size.y,
+            targetHeight: height,
+            time,
+            timer: 0,
+            timeFunction: KEY_SPLINES.EASE
+        }
+    },
+
+    showSelector(gemRootKey) {
+        this.doStateTransition("DEFAULT");
+        this.buttonInteract.addParallelGroup(this.buttonGroup);
+        this.clearButtons();
+        if(!this.active) {
+            this.active = true;
+        }
+
+        let gemRoot = el.gemDatabase.getGemRoot(gemRootKey);
+        let levels = Object.keys(gemRoot.levels);
+        let targetHeight = 20 + levels.length * sc.BUTTON_TYPE.ITEM.height;
+        this.doHeightTransition(targetHeight, 0.1);        
+
+        let y = 12;
+        for(let level of levels) {
+            let gem = {gemRoot: gemRootKey, level: +level};
+            let button = new el.GemButton(gem, true);
+            this.buttonGroup.addFocusGui(button);
+            button.transitions = BUTTON_TRANSITIONS;
+            button.doStateTransition("HIDDEN", true);
+            button.setPos(5, y);
+            this.addChildGui(button);
+            this.buttons.push(button);
+            y += button.hook.size.y;
+            button.doStateTransition("DEFAULT");
+        }
+    },
+
+    hide() {
+        this.active = false;
+        this.doStateTransition("HIDDEN");
+        this.doHeightTransition(0, 0.1);
+    },
+
+    clearButtons() {
+        this.buttonGroup.clear();
+        for(let button of this.buttons) {
+            this.removeChildGui(button);
+        }
+    },
+
+    update() {
+        if(this.heightTransition) {
+            this.heightTransition.timer += ig.system.tick;
+            let i = this.heightTransition.timeFunction.get(
+                Math.min(this.heightTransition.timer / this.heightTransition.time, 1)
+            );
+
+            this.hook.size.y = Math.round(this.heightTransition.startHeight * (1 - i) + this.heightTransition.targetHeight * i);
+
+            if(i === 1) {
+                delete this.heightTransition;
+            }
+        }
+    },
+
+    updateDrawables(renderer) {
+        this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, "default");
+    },
+
+    modelChanged(model, message, data) {
+        if(model === sc.menu) {
+            switch(message) {
+                case sc.MENU_EVENT.EL_GEM_SELECTED:
+                    this.showSelector(data as string);
+                    break;
+                case sc.MENU_EVENT.EL_GEM_HIDE_SELECTOR:
+                    this.hide();
+                    break;
+            }
+        }
+    },
+})
+
+el.GemDetailPanel = ig.GuiElementBase.extend({
+    transitions: {
+        DEFAULT: {
+            state: {},
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        },
+        HIDDEN: {
+            state: {
+                alpha: 0,
+            },
+            time: 0.2,
+            timeFunction: KEY_SPLINES.LINEAR
+        }
+    },
+    ninepatch: new ig.NinePatch("media/gui/menu.png", {
+        width: 6,
+        height: 6,
+        left: 9,
+        top: 9,
+        right: 9,
+        bottom: 9,
+        offsets: {
+            "default": {
+                x: 480,
+                y: 304
+            }
+        }
+    }),
+    icon: null,
+
+    init() {
+        this.parent();
+        
+        this.setSize(185, 120);
+        this.doStateTransition("HIDDEN", true);
+        sc.Model.addObserver(sc.menu, this);
+
+        let titleContainer = new ig.GuiElementBase;
+
+        titleContainer.setSize(186, 27);
+        titleContainer.setPos(4, 4);
+
+        this.icon = new el.GemDetailPanel.Icon;
+        this.icon.setAlign(ig.GUI_ALIGN.X_LEFT, ig.GUI_ALIGN.Y_CENTER);
+        titleContainer.addChildGui(this.icon);
+        
+        this.mainText = new sc.TextGui("[SAMPLE TEXT]");
+        this.mainText.setAlign(ig.GUI_ALIGN.X_LEFT, ig.GUI_ALIGN.Y_CENTER);
+        this.mainText.setPos(this.icon.hook.size.x + 4, 0)
+        titleContainer.addChildGui(this.mainText);
+        
+        this.addChildGui(titleContainer);
+
+        this.descText = new sc.TextGui("", {
+            font: sc.fontsystem.smallFont
+        });
+        this.descText.setMaxWidth(176);
+        this.descText.setPos(5, titleContainer.hook.pos.y + titleContainer.hook.size.y + 5);
+        this.addChildGui(this.descText);
+    },
+
+    show() {
+        this.doStateTransition("DEFAULT");
+    },
+    hide() {
+        this.doStateTransition("HIDDEN");
+    },
+    updateDrawables(renderer) {
+        this.ninepatch.draw(renderer, this.hook.size.x, this.hook.size.y, "default");
+    },
+
+    updateInformation(gemRoot) {
+        this.mainText.setText(el.gemDatabase.getGemRootName(gemRoot))
+        this.descText.setText(el.gemDatabase.getGemShortDesc(gemRoot));
+    },
+
+    modelChanged(model, message, data) {
+        if(model === sc.menu) {
+            switch(message) {
+                case sc.MENU_EVENT.EL_GEM_SELECTED:
+                    this.show();
+                    this.updateInformation(data as string)
+                    break;
+                case sc.MENU_EVENT.EL_GEM_HOVERED:
+                    this.updateInformation(data as string)
+                    break;
+                case sc.MENU_EVENT.EL_GEM_HIDE_SELECTOR:
+                    this.hide();
+                    break;
+            }
+        }
+    },
+})
+
+el.GemDetailPanel.Icon = ig.GuiElementBase.extend({
+    gfx: new ig.Image("media/gui/el-mod-gui.png"),
+
+    init() {
+        this.parent();
+        this.setSize(27, 27);
+    },
+
+    updateDrawables(renderer) {
+        renderer.addGfx(this.gfx, 0, 0, 0, 75, 27, 27);
+    }
 })
 
 //#region Vanilla Injections
@@ -162,7 +433,7 @@ el.GemEquipMenu = sc.BaseMenu.extend({
         this.hook.size.x = ig.system.width;
         this.hook.size.y = ig.system.height;
 
-        this.rightPanel = new el.GemEquipMenu.RightPanel(sc.menu.buttonInteract);
+        this.rightPanel = new el.GemEquipMenu.InventoryPanel(sc.menu.buttonInteract);
         this.leftPanel = new el.GemEquipMenu.EquippedGemsPanel(sc.menu.buttonInteract);
 
         this.addChildGui(this.rightPanel);
@@ -215,6 +486,19 @@ el.GemEquipMenu = sc.BaseMenu.extend({
         this.helpGui = new sc.HelpScreen(this, ig.lang.get("sc.gui.menu.help-texts.el-gem-equip.title"), ig.lang.get("sc.gui.menu.help-texts.el-gem-equip.pages"), this.commitHotkeys.bind(this), true);
         this.helpGui.hook.zIndex = 15E4;
         this.helpGui.hook.pauseGui = true;
+
+        this.selectorPanel = new el.GemSelectorGui(
+            sc.menu.buttonInteract
+        );
+        this.addChildGui(this.selectorPanel);
+        this.selectorPanel.setPos(
+            this.leftPanel.hook.pos.x + this.leftPanel.hook.size.x + 3, 28
+        )
+        
+        this.infoPanel = new el.GemDetailPanel;
+        this.infoPanel.setPos(this.leftPanel.hook.pos.x + this.leftPanel.hook.size.x + 3, 30);
+        this.infoPanel.setAlign(ig.GUI_ALIGN.X_LEFT, ig.GUI_ALIGN.Y_BOTTOM);
+        this.addChildGui(this.infoPanel);
         //#endregion
 
     },
@@ -284,9 +568,9 @@ el.GemEquipMenu = sc.BaseMenu.extend({
     }
 })
 
-el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
+el.GemEquipMenu.InventoryPanel = sc.ItemListBox.extend({
     buttonInteract: null,
-    costText: null,
+    //costText: null,
     sortMethod: el.GEM_SORT_TYPE.ORDER,
 
     init(buttonInteract) {
@@ -294,8 +578,8 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
 
         this.parent(1, true, this.buttonInteract);
         this.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_TOP);
-        this.setPos(2, 28);
-        this.setSize(180, 250)
+        this.setPos(2, 23);
+        this.setSize(165, 260)
         this.hook.transitions = {
             DEFAULT: {
                 state: {},
@@ -311,13 +595,6 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
                 timeFunction: KEY_SPLINES.LINEAR
             }
         };
-
-        this.costText = new sc.TextGui(ig.lang.get("sc.gui.el-gems.cost-heading"), {
-            font: sc.fontsystem.tinyFont,
-        });
-        this.costText.setAlign(ig.GUI_ALIGN.X_RIGHT, ig.GUI_ALIGN.Y_TOP);
-        this.costText.setPos(5, 0);
-        this.addChildGui(this.costText);
     },
 
     showMenu() {
@@ -329,7 +606,8 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
 
     hideMenu() {
         this.doStateTransition("HIDDEN");
-        sc.Model.removeObserver(sc.menu, this)
+        sc.Model.removeObserver(sc.menu, this);
+        sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_HIDE_SELECTOR);
     },
 
     modelChanged(model, message, data) {
@@ -353,6 +631,15 @@ el.GemEquipMenu.RightPanel = sc.ItemListBox.extend({
     },
 
     _addListItems(refocus) {
+        this.list.clear();
+        for(let key of Object.keys(el.gemDatabase.gemRoots)) {
+            let button = new el.GemInventoryEntry(key);
+            button.onButtonPress = () => {
+                sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_SELECTED, button.gemRoot);
+            }
+            this.addButton(button);
+        }
+        return;
         let lastIndex = 0;
         let toScroll = 0
         if (refocus) {
