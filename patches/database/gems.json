@@ -330,6 +330,9 @@
             "MELEE_DMG": {
                 "stat": "MELEE_DMG",
                 "gemColor": "MOONSTONE",
+                "langLabel": {
+                    "en_US": "Spiked Fists"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -438,6 +441,9 @@
             "BREAK_DMG": {
                 "stat": "BREAK_DMG",
                 "gemColor": "AQUAMARINE",
+                "langLabel": {
+                    "en_US": "Weakness Striker"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -550,7 +556,7 @@
                     {
                         "level": 1,
                         "cost": 6,
-                        "value": 0.05
+                        "value": 0.03
                     },
                     {
                         "level": 2,
@@ -559,23 +565,18 @@
                     },
                     {
                         "level": 3,
-                        "cost": 15,
-                        "value": 0.10
+                        "cost": 16,
+                        "value": 0.09
                     },
                     {
                         "level": 4,
-                        "cost": 21,
-                        "value": 0.12
+                        "cost": 24,
+                        "value": 0.08
                     },
                     {
                         "level": 5,
-                        "cost": 28,
-                        "value": 0.13
-                    },
-                    {
-                        "level": 6,
-                        "cost": 40,
-                        "value": 0.15
+                        "cost": 32,
+                        "value": 0.10
                     }
                 ]
             },
@@ -618,6 +619,9 @@
             "DASH_INVINC": {
                 "stat": "DASH_INVINC",
                 "gemColor": "AMETHYST",
+                "langLabel": {
+                    "en_US": "Agile Feet"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -870,6 +874,9 @@
             "OVERHEAT_REDUCTION": {
                 "stat": "OVERHEAT_REDUCTION",
                 "gemColor": "CITRINE",
+                "langLabel": {
+                    "en_US": "Elemental Master"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1093,33 +1100,28 @@
                 "tiers": [
                     {
                         "level": 1,
-                        "cost": 2,
-                        "value": 0.15
+                        "cost": 4,
+                        "value": 0.2
                     },
                     {
                         "level": 2,
-                        "cost": 5,
-                        "value": 0.3
+                        "cost": 7,
+                        "value": 0.4
                     },
                     {
                         "level": 3,
-                        "cost": 9,
-                        "value": 0.45
-                    },
-                    {
-                        "level": 4,
-                        "cost": 13,
+                        "cost": 11,
                         "value": 0.6
                     },
                     {
-                        "level": 5,
-                        "cost": 18,
-                        "value": 0.75
+                        "level": 4,
+                        "cost": 15,
+                        "value": 0.8
                     },
                     {
-                        "level": 6,
-                        "cost": 24,
-                        "value": 0.9
+                        "level": 5,
+                        "cost": 21,
+                        "value": 1
                     }
                 ]
             },
@@ -1127,6 +1129,9 @@
                 "stat": "DROP_CHANCE",
                 "gemColor": "ONYX",
                 "numberStyle": "PERCENT_PREFIX",
+                "langLabel": {
+                    "en_US": "Item Finder"
+                },
                 "statLangLabel": {
                     "en_US": "Item Drop Rate"
                 },
@@ -1155,11 +1160,6 @@
                         "level": 5,
                         "cost": 22,
                         "value": 0.5
-                    },
-                    {
-                        "level": 6,
-                        "cost": 28,
-                        "value": 0.60
                     }
                 ]
             },
@@ -1167,39 +1167,37 @@
                 "stat": "MONEY_PLUS",
                 "gemColor": "AQUAMARINE",
                 "numberStyle": "PERCENT_PREFIX",
+                "langLabel": {
+                    "en_US": "Midas' Touch"
+                },
                 "statLangLabel": {
                     "en_US": "Credits Gained"
                 },
                 "tiers": [
                     {
                         "level": 1,
-                        "cost": 3,
+                        "cost": 5,
                         "value": 0.1
                     },
                     {
                         "level": 2,
-                        "cost": 6,
+                        "cost": 10,
                         "value": 0.2
                     },
                     {
                         "level": 3,
-                        "cost": 10,
+                        "cost": 15,
                         "value": 0.3
                     },
                     {
                         "level": 4,
-                        "cost": 15,
+                        "cost": 21,
                         "value": 0.4
                     },
                     {
                         "level": 5,
-                        "cost": 22,
+                        "cost": 27,
                         "value": 0.5
-                    },
-                    {
-                        "level": 6,
-                        "cost": 28,
-                        "value": 0.60
                     }
                 ]
             },
@@ -1245,6 +1243,9 @@
             "COND_EFFECT_ALL": {
                 "stat": "COND_EFFECT_ALL",
                 "gemColor": "DIAMOND",
+                "langLabel": {
+                    "en_US": "Buffing Surge"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1281,6 +1282,9 @@
             "COND_EFFECT_HEAT": {
                 "stat": "COND_EFFECT_HEAT",
                 "gemColor": "RUBY",
+                "langLabel": {
+                    "en_US": "Burning Surge"
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Burn\\c[0] Condition and its effect."
                 },
@@ -1320,6 +1324,9 @@
             "COND_EFFECT_COLD": {
                 "stat": "COND_EFFECT_COLD",
                 "gemColor": "LAPIS_LAZULI",
+                "langLabel": {
+                    "en_US": "Chilling Surge"
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Chill\\c[0] Condition and its effect."
                 },
@@ -1359,6 +1366,9 @@
             "COND_EFFECT_SHOCK": {
                 "stat": "COND_EFFECT_SHOCK",
                 "gemColor": "AMETHYST",
+                "langLabel": {
+                    "en_US": "Jolting Surge"
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Jolt\\c[0] Condition and its effect."
                 },
@@ -1398,6 +1408,9 @@
             "COND_EFFECT_WAVE": {
                 "stat": "COND_EFFECT_WAVE",
                 "gemColor": "EMERALD",
+                "langLabel": {
+                    "en_US": "Marking Surge"
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Mark\\c[0] Condition and its effect."
                 },
@@ -1744,39 +1757,42 @@
                 "tiers": [
                     {
                         "level": 1,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 4,
+                        "value": 0.2
                     },
                     {
                         "level": 2,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 9,
+                        "value": 0.4
                     },
                     {
                         "level": 3,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 12,
+                        "value": 0.6
                     },
                     {
                         "level": 4,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 16,
+                        "value": 0.75
                     },
                     {
                         "level": 5,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 21,
+                        "value": 0.9
                     },
                     {
                         "level": 6,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 27,
+                        "value": 1
                     }
                 ]
             },
             "EL_CRIT_BOOST": {
                 "stat": "EL_CRIT_BOOST",
                 "gemColor": "BLOODSTONE",
+                "langLabel": {
+                    "en_US": "Loaded Dice"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2030,7 +2046,6 @@
                 "stat": "APPETITE",
                 "gemColor": "EMERALD",
                 "numberStyle": "NUMBER_PREFIX",
-                
                 "tiers": [
                     {
                         "level": 1,
@@ -2052,6 +2067,9 @@
             "ITEM_GUARD": {
                 "stat": "ITEM_GUARD",
                 "gemColor": "DIAMOND",
+                "langLabel": {
+                    "en_US": "Solid Footing"
+                },
                 "tiers": [
                     {
                         "level": 0,
@@ -2064,6 +2082,9 @@
                 "stat": "DASH_STEP",
                 "gemColor": "CITRINE",
                 "numberStyle": "NUMBER_PREFIX",
+                "langLabel": {
+                    "en_US": "Master Runner"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2080,6 +2101,9 @@
             "PERFECT_GUARD_RESET": {
                 "stat": "PERFECT_GUARD_RESET",
                 "gemColor": "TOPAZ",
+                "langLabel": {
+                    "en_US": "Master Guarder"
+                },
                 "tiers": [
                     {
                         "level": 0,
@@ -2093,7 +2117,7 @@
                 "gemColor": "MOONSTONE",
                 "numberStyle": "MULTIPLIER",
                 "langLabel": {
-                    "en_US": "Full Guard"
+                    "en_US": "Wide Guard"
                 },
                 "tiers": [
                     {
