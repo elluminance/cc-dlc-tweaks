@@ -4,6 +4,11 @@
             "MAXHP": {
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 168,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -40,6 +45,11 @@
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 96,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -76,6 +86,11 @@
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -112,6 +127,11 @@
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 144,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -185,6 +205,11 @@
             "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 192,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -221,6 +246,11 @@
             "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
                 "gemColor": "CITRINE",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 216,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -257,6 +287,11 @@
             "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
                 "gemColor": "TOPAZ",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 0,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -293,6 +328,11 @@
             "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
                 "gemColor": "GARNET",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 24,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -333,6 +373,11 @@
                 "langLabel": {
                     "en_US": "Spiked Fists"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -369,6 +414,11 @@
             "RANGED_DMG": {
                 "stat": "RANGED_DMG",
                 "gemColor": "DIAMOND",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 96,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -405,6 +455,11 @@
             "CRITICAL_DMG": {
                 "stat": "CRITICAL_DMG",
                 "gemColor": "TOPAZ",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 168,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -480,6 +535,11 @@
             "BERSERK": {
                 "stat": "BERSERK",
                 "gemColor": "GARNET",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 24,
+                    "offY": 72
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -516,6 +576,14 @@
             "CROSS_COUNTER": {
                 "stat": "CROSS_COUNTER",
                 "gemColor": "LAPIS_LAZULI",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 0,
+                    "offY": 72
+                },
+                "langLabel": {
+                    "en_US": "Counterer"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -583,6 +651,11 @@
             "ASSAULT": {
                 "stat": "ASSAULT",
                 "gemColor": "RUBY",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 144,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -619,6 +692,11 @@
             "DASH_INVINC": {
                 "stat": "DASH_INVINC",
                 "gemColor": "AMETHYST",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 24,
+                    "offY": 48
+                },
                 "langLabel": {
                     "en_US": "Agile Feet"
                 },
@@ -658,6 +736,11 @@
             "GUARD_SP": {
                 "stat": "GUARD_SP",
                 "gemColor": "MOONSTONE",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 168,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -730,6 +813,11 @@
             "SPIKE_DMG": {
                 "stat": "SPIKE_DMG",
                 "gemColor": "LAPIS_LAZULI",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -766,6 +854,11 @@
             "GUARD_STRENGTH": {
                 "stat": "GUARD_STRENGTH",
                 "gemColor": "RUBY",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 72,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -802,6 +895,11 @@
             "HP_REGEN": {
                 "stat": "HP_REGEN",
                 "gemColor": "EMERALD",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 144,
+                    "offY": 72
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -877,6 +975,11 @@
                 "langLabel": {
                     "en_US": "Elemental Master"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 168,
+                    "offY": 72
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -913,6 +1016,14 @@
             "AIM_SPEED": {
                 "stat": "AIM_SPEED",
                 "gemColor": "MOONSTONE",
+                "langLabel": {
+                    "en_US": "Speedy Sniper"
+                },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 192,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -949,6 +1060,11 @@
             "AIM_STABILITY": {
                 "stat": "AIM_STABILITY",
                 "gemColor": "AMETHYST",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 216,
+                    "offY": 24
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -985,6 +1101,11 @@
             "AIMING_MOVEMENT": {
                 "stat": "AIMING_MOVEMENT",
                 "gemColor": "RUBY",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 0,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1057,6 +1178,11 @@
             "STUN_THRESHOLD": {
                 "stat": "STUN_THRESHOLD",
                 "gemColor": "GARNET",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 144,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1168,7 +1294,7 @@
                 "gemColor": "AQUAMARINE",
                 "numberStyle": "PERCENT_PREFIX",
                 "langLabel": {
-                    "en_US": "Midas' Touch"
+                    "en_US": "Midas Touch"
                 },
                 "statLangLabel": {
                     "en_US": "Credits Gained"
@@ -1206,6 +1332,11 @@
                 "gemColor": "EMERALD",
                 "statLangLabel": {
                     "en_US": "Item Efficacy"
+                },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 192,
+                    "offY": 72
                 },
                 "tiers": [
                     {
@@ -1285,6 +1416,11 @@
                 "langLabel": {
                     "en_US": "Burning Surge"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 0,
+                    "offY": 336
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Burn\\c[0] Condition and its effect."
                 },
@@ -1324,6 +1460,11 @@
             "COND_EFFECT_COLD": {
                 "stat": "COND_EFFECT_COLD",
                 "gemColor": "LAPIS_LAZULI",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 24,
+                    "offY": 336
+                },
                 "langLabel": {
                     "en_US": "Chilling Surge"
                 },
@@ -1369,6 +1510,11 @@
                 "langLabel": {
                     "en_US": "Jolting Surge"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 48,
+                    "offY": 336
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Jolt\\c[0] Condition and its effect."
                 },
@@ -1411,6 +1557,11 @@
                 "langLabel": {
                     "en_US": "Marking Surge"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 72,
+                    "offY": 336
+                },
                 "shortDesc": {
                     "en_US": "Increases the speed of inflicting the \\c[3]Mark\\c[0] Condition and its effect."
                 },
@@ -1447,6 +1598,7 @@
                     }
                 ]
             },
+
             "EL_COND_GUARD_ALL": {
                 "stat": "EL_COND_GUARD_ALL",
                 "gemColor": "DIAMOND",
@@ -1489,6 +1641,11 @@
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Burn\\c[0] Condition and reduces its effect."
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 96,
+                    "offY": 336
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1528,6 +1685,11 @@
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Chill\\c[0] Condition and reduces its effect."
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 336
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1564,6 +1726,11 @@
             "COND_GUARD_SHOCK": {
                 "stat": "COND_GUARD_SHOCK",
                 "gemColor": "TOPAZ",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 336
+                },
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Jolt\\c[0] Condition and reduces its effect."
                 },
@@ -1603,6 +1770,11 @@
             "COND_GUARD_WAVE": {
                 "stat": "COND_GUARD_WAVE",
                 "gemColor": "GARNET",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 168,
+                    "offY": 336
+                },
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Mark\\c[0] Condition and reduces its effect."
                 },
@@ -1642,6 +1814,11 @@
             "COND_HEALING": {
                 "stat": "COND_HEALING",
                 "gemColor": "AQUAMARINE",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 120,
+                    "offY": 72
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1679,6 +1856,11 @@
             "EL_RISKTAKER": {
                 "stat": "EL_RISKTAKER",
                 "gemColor": "ONYX",
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 0,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2031,6 +2213,11 @@
                 "langLabel": {
                     "en_US": "Second Wind"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 48,
+                    "offY": 72
+                },
                 "stat": "ONCE_MORE",
                 "gemColor": "CITRINE",
                 "numberStyle": "NONE",
@@ -2046,6 +2233,11 @@
                 "stat": "APPETITE",
                 "gemColor": "EMERALD",
                 "numberStyle": "NUMBER_PREFIX",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 192,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2085,6 +2277,11 @@
                 "langLabel": {
                     "en_US": "Master Runner"
                 },
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 48,
+                    "offY": 48
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2116,6 +2313,11 @@
                 "stat": "GUARD_AREA",
                 "gemColor": "MOONSTONE",
                 "numberStyle": "MULTIPLIER",
+                "icon": {
+                    "src": "media/gui/circuit-icons.png",
+                    "offX": 96,
+                    "offY": 48
+                },
                 "langLabel": {
                     "en_US": "Wide Guard"
                 },

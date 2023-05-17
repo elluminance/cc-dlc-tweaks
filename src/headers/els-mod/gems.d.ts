@@ -13,6 +13,11 @@ declare global {
                     cost: number;
                     value: number;
                 }
+                interface IconData {
+                    src: string;
+                    offX: number;
+                    offY: number;
+                }
                 interface GemEntry {
                     stat: string;
                     gemColor: keyof typeof el.GEM_COLORS;
@@ -22,6 +27,7 @@ declare global {
                     statLangLabel?: ig.LangLabel.Data;
                     shortDesc?: ig.LangLabel.Data;
                     tiers: Tier[];
+                    icon?: IconData;
                 }
             }
             interface EL_Gems {
@@ -84,6 +90,12 @@ declare global {
                 value: number;
             }
 
+            interface IconData {
+                src: ig.Image;
+                offX: number;
+                offY: number;
+            }
+
             interface GemRoot {
                 stat: string;
                 gemColor: el.GEM_COLORS;
@@ -93,6 +105,7 @@ declare global {
                 statLangLabel?: string | ig.LangLabel.Data;
                 levels: Record<number, TierData>;
                 shortDesc?: string;
+                icon?: IconData;
             }
             
             interface Gem {
@@ -320,6 +333,9 @@ declare global {
             }
             interface Icon extends ig.GuiElementBase {
                 gfx: ig.Image;
+                iconData?: el.GemDatabase.IconData;
+
+                setIcon(this: this, iconData?: el.GemDatabase.IconData): void;
             }
         }
         interface GemDetailPanel extends ig.GuiElementBase, sc.Model.Observer {
@@ -327,9 +343,11 @@ declare global {
             mainText: sc.TextGui;
             descText: sc.TextGui;
             icon: el.GemDetailPanel.Icon;
+            statUpgradeText: sc.TextGui;
             show(this: this): void;
             hide(this: this): void;
             updateInformation(this: this, gemRoot: string): void;
+            updateStatText(this: this, gem: GemDatabase.Gem | undefined): void;
         }
         let GemDetailPanel: GemDetailPanel.Constructor;
         //#endregion GUI

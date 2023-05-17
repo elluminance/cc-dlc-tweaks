@@ -58,15 +58,25 @@ el.GemDatabase = ig.Class.extend({
                 }
             }
 
+            let icon: el.GemDatabase.IconData | undefined = undefined;
+            if(gemType.icon) {
+                icon = {
+                    src: new ig.Image(gemType.icon.src),
+                    offX: gemType.icon.offX,
+                    offY: gemType.icon.offY,
+                }
+            }
+
             this.gemRoots[key] = {
                 stat: gemType.stat,
                 gemColor: el.GEM_COLORS[gemType.gemColor] ?? el.GEM_COLORS.DEFAULT,
                 numberStyle: gemType.numberStyle ?? "PERCENT",
                 order: gemType.order ?? order++,
+                levels,
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
                 shortDesc: gemType.shortDesc ? ig.LangLabel.getText(gemType.shortDesc) : undefined,
-                levels,
+                icon
             }
         }
 

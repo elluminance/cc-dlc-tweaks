@@ -131,6 +131,13 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
         this.addChildGui(this.costText);
 
         sc.Model.addObserver(sc.menu, this);
+
+        this.buttonGroup.addSelectionCallback(button => {
+            sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_HOVERED, !(button as el.GemButton & {data: {ignore: boolean}}).data?.ignore ? (button as el.GemButton).gem : undefined)
+        })
+        this.buttonGroup.setMouseFocusLostCallback(() => {
+            sc.Model.notifyObserver(sc.menu, sc.MENU_EVENT.EL_GEM_HOVERED)
+        })
     },
 
     doHeightTransition(height, time) {
@@ -173,7 +180,8 @@ el.GemSelectorGui = ig.GuiElementBase.extend({
                 button.setText(`${el.gemDatabase.gemColorToIcon(el.gemDatabase.getGemRoot(this.currentGemRoot).gemColor)}\\c[4]---------------\\c[0]`, true);
                 button.setActive(false);
                 button.costNumber.setNumber(0);
-                button.costNumber.setColor(sc.GUI_NUMBER_COLOR.GREY)
+                button.costNumber.setColor(sc.GUI_NUMBER_COLOR.GREY);
+                (button.data as {ignore: boolean}) = {ignore: true};
             }
             if(!el.gemDatabase.canEquipGem(gem)) {
                 button.setActive(false);
@@ -276,6 +284,7 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
         }
     }),
     icon: null,
+    statUpgradeText: null,
 
     init() {
         this.parent();
@@ -306,6 +315,13 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
         this.descText.setMaxWidth(176);
         this.descText.setPos(5, titleContainer.hook.pos.y + titleContainer.hook.size.y + 5);
         this.addChildGui(this.descText);
+        
+        this.statUpgradeText = new sc.TextGui("", {
+            font: sc.fontsystem.smallFont
+        });
+        this.statUpgradeText.setAlign(ig.GUI_ALIGN.X_LEFT, ig.GUI_ALIGN.Y_BOTTOM);
+        this.statUpgradeText.setPos(5, 2);
+        this.addChildGui(this.statUpgradeText);
     },
 
     show() {
@@ -319,8 +335,16 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
     },
 
     updateInformation(gemRoot) {
-        this.mainText.setText(ig.lang.get(el.gemDatabase.getStatLangKey(el.gemDatabase.getGemRoot(gemRoot).stat)));
-        this.descText.setText(el.gemDatabase.getGemShortDesc(gemRoot));
+        let root = el.gemDatabase.getGemRoot(gemRoot);
+        this.mainText.setText(ig.lang.get(el.gemDatabase.getStatLangKey(root.stat)));
+        this.descText.setText(el.gemDatabase.getGemShortDesc(root));
+        this.statUpgradeText.setText("");
+
+        this.icon.setIcon(root.icon);
+    },
+
+    updateStatText(gem) {
+        this.statUpgradeText.setText(gem ? `\\c[4]${ig.lang.get("sc.gui.el-gems.stat-bonus")}:\\c[0]\n   ${el.gemDatabase.getGemStatBonusString(gem, true)}` : "");
     },
 
     modelChanged(model, message, data) {
@@ -331,7 +355,7 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
                     this.updateInformation(data as string)
                     break;
                 case sc.MENU_EVENT.EL_GEM_HOVERED:
-                    this.updateInformation(data as string)
+                    this.updateStatText(data as el.GemDatabase.Gem);
                     break;
                 case sc.MENU_EVENT.EL_GEM_HIDE_SELECTOR:
                     this.hide();
@@ -343,14 +367,22 @@ el.GemDetailPanel = ig.GuiElementBase.extend({
 
 el.GemDetailPanel.Icon = ig.GuiElementBase.extend({
     gfx: new ig.Image("media/gui/el-mod-gui.png"),
+    iconData: undefined,
 
     init() {
         this.parent();
         this.setSize(27, 27);
     },
 
+    setIcon(iconData) {
+        this.iconData = iconData;
+    },
+
     updateDrawables(renderer) {
         renderer.addGfx(this.gfx, 0, 0, 0, 75, 27, 27);
+        if(this.iconData) {
+            renderer.addGfx(this.iconData.src, 1, 1, this.iconData.offX, this.iconData.offY, 24, 24);
+        }
     }
 })
 
