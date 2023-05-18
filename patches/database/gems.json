@@ -1375,7 +1375,7 @@
                 "stat": "COND_EFFECT_ALL",
                 "gemColor": "DIAMOND",
                 "langLabel": {
-                    "en_US": "Buffing Surge"
+                    "en_US": "Rainbow Surge"
                 },
                 "tiers": [
                     {
@@ -1602,6 +1602,11 @@
             "EL_COND_GUARD_ALL": {
                 "stat": "EL_COND_GUARD_ALL",
                 "gemColor": "DIAMOND",
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 24,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1728,7 +1733,7 @@
                 "gemColor": "TOPAZ",
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
-                    "offX": 120,
+                    "offX": 144,
                     "offY": 336
                 },
                 "shortDesc": {
@@ -1936,6 +1941,11 @@
                 "langLabel": {
                     "en_US": "Lifeshield"
                 },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 48,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1975,36 +1985,39 @@
                 "langLabel": {
                     "en_US": "Loaded Dice"
                 },
+                "statLangLabel": {
+                    "en_US": "Crit. Chance"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 72,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 8,
+                        "value": 0.05
                     },
                     {
                         "level": 2,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 13,
+                        "value": 0.1
                     },
                     {
                         "level": 3,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 19,
+                        "value": 0.15
                     },
                     {
                         "level": 4,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 25,
+                        "value": 0.2
                     },
                     {
                         "level": 5,
-                        "cost": 0,
-                        "value": 0
-                    },
-                    {
-                        "level": 6,
-                        "cost": 0,
-                        "value": 0
+                        "cost": 31,
+                        "value": 0.25
                     }
                 ]
             },
