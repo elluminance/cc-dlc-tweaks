@@ -30,6 +30,12 @@ el.GemDatabase = ig.Class.extend({
                     value: 0,
                 }
             },
+            langLabel: {
+                en_US: "Unknown Gem",
+            },
+            statLangLabel: {
+                en_US: "No Effect"
+            },
             order: 100000,
             numberStyle: "NONE",
             shortDesc: "??????????",
@@ -75,14 +81,13 @@ el.GemDatabase = ig.Class.extend({
                 levels,
                 langLabel: gemType.langLabel,
                 statLangLabel: gemType.statLangLabel,
-                shortDesc: gemType.shortDesc ? ig.LangLabel.getText(gemType.shortDesc) : undefined,
+                shortDesc: gemType.shortDesc && ig.currentLang in gemType.shortDesc ? ig.LangLabel.getText(gemType.shortDesc) : undefined,
                 icon
             }
         }
 
         ig.vars.registerVarAccessor("el-gems", this);
         
-        this.specialGemNameEntries = ig.lang.get("sc.gui.el-gems.special-gem-names");
     },
 
     _validateData() {
@@ -168,16 +173,10 @@ el.GemDatabase = ig.Class.extend({
 
         let workingString = withIcon ? this.gemColorToIcon(gemRoot.gemColor) : "";
 
-        if (gemRoot.langLabel) {
-            if (typeof gemRoot.langLabel === "string") {
-                workingString += ig.lang.get(gemRoot.langLabel)
-            } else {
-                workingString += ig.LangLabel.getText(gemRoot.langLabel);
-            }
+        if (gemRoot.langLabel && ig.currentLang in gemRoot.langLabel) {
+            workingString += ig.LangLabel.getText(gemRoot.langLabel);
         } else if (!gemRoot.stat) {
             workingString += "Unknown Gem";
-        } else if (gemRoot.stat in this.specialGemNameEntries) {
-            workingString += this.specialGemNameEntries[gemRoot.stat]
         } else {
             workingString += ig.lang.get(`sc.gui.menu.equip.modifier.${gemRoot.stat}`)
         }
@@ -198,7 +197,6 @@ el.GemDatabase = ig.Class.extend({
     },
 
     getGemStatBonusString(gem, includeValue) {
-        let specialLangEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gems.special-stat-names");
         let workingString = "";
         const gemRoot = this.getGemRoot(gem);
 
@@ -210,8 +208,6 @@ el.GemDatabase = ig.Class.extend({
             } else {
                 workingString = ig.LangLabel.getText(gemRoot.statLangLabel);
             }
-        } else if (gemStat in specialLangEntries) {
-            workingString = specialLangEntries[gemStat];
         } else {
             workingString = ig.lang.get(`sc.gui.menu.equip.modifier.${gemStat}`);
         }
@@ -221,10 +217,13 @@ el.GemDatabase = ig.Class.extend({
 
             switch (gemRoot.numberStyle) {
                 case "PERCENT":
-                    workingString += ` +${(this.getGemStatBonus(gem) * 100).round(1)}%`;
+                    workingString += ` +${(value * 100).round(1)}%`;
                     break;
                 case "PERCENT_PREFIX":
-                    workingString = `+${(this.getGemStatBonus(gem) * 100).round(1)}% ${workingString}`;
+                    workingString = `+${(value * 100).round(1)}% ${workingString}`;
+                    break;
+                case "PERCENT_PREFIX_MINUS":
+                    workingString = `-${value * 100}% ${workingString}`;
                     break;
                 case "NUMBER":
                     workingString += ` +${value}`
@@ -237,6 +236,11 @@ el.GemDatabase = ig.Class.extend({
                     break;
                 case "MULTIPLIER":
                     workingString += `\\i[el-gray-times]${value}`;
+                    break;
+                case "CUSTOM":
+                    //replaces [x] with the actual value, and [%] with the value times 100.
+                    workingString.replace(/\[x\]/g, value.toString());
+                    workingString.replace(/\[%\]/g, (value * 100).round(1).toString());
                     break;
                 case "NONE":
                     break;

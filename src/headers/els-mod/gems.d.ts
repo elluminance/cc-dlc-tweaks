@@ -83,7 +83,16 @@ declare global {
         let GemHelper: GemHelper;
 
         namespace GemDatabase {
-            type GemNumberStyle = "PERCENT" | "NUMBER" | "NONE" | "PREFIX_PLUS" | "NUMBER_PREFIX" | "PERCENT_PREFIX" | "MULTIPLIER";
+            type GemNumberStyle = 
+                "PERCENT"
+                | "NUMBER"
+                | "NONE"
+                | "CUSTOM"
+                | "PREFIX_PLUS"
+                | "PERCENT_PREFIX_MINUS"
+                | "NUMBER_PREFIX"
+                | "PERCENT_PREFIX"
+                | "MULTIPLIER";
 
             interface TierData {
                 cost: number;
@@ -101,7 +110,7 @@ declare global {
                 gemColor: el.GEM_COLORS;
                 order: number;
                 numberStyle: GemNumberStyle;
-                langLabel?: string | ig.LangLabel.Data;
+                langLabel?: ig.LangLabel.Data;
                 statLangLabel?: string | ig.LangLabel.Data;
                 levels: Record<number, TierData>;
                 shortDesc?: string;

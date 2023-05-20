@@ -4,6 +4,12 @@
             "MAXHP": {
                 "stat": "STAT_MAXHP",
                 "gemColor": "EMERALD",
+                "langLabel": {
+                    "en_US": "HP Up"
+                },
+                "statLangLabel": {
+                    "en_US": "Max HP"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 168,
@@ -45,6 +51,12 @@
             "ATTACK": {
                 "stat": "STAT_ATTACK",
                 "gemColor": "RUBY",
+                "langLabel": {
+                    "en_US": "Attack Up"
+                },
+                "statLangLabel": {
+                    "en_US": "Attack"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 96,
@@ -86,6 +98,12 @@
             "DEFENSE": {
                 "stat": "STAT_DEFENSE",
                 "gemColor": "LAPIS_LAZULI",
+                "langLabel": {
+                    "en_US": "Defense Up"
+                },
+                "statLangLabel": {
+                    "en_US": "Defense"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 120,
@@ -127,6 +145,12 @@
             "FOCUS": {
                 "stat": "STAT_FOCUS",
                 "gemColor": "AMETHYST",
+                "langLabel": {
+                    "en_US": "Focus Up"
+                },
+                "statLangLabel": {
+                    "en_US": "Focus"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 144,
@@ -169,6 +193,13 @@
             "NEUTRAL_RESISTANCE": {
                 "stat": "NEUTRAL_RESIST",
                 "gemColor": "ONYX",
+                "langLabel": {
+                    "en_US": "Neutral Armor"
+                },
+                "numberStyle": "PERCENT_PREFIX_MINUS",
+                "statLangLabel": {
+                    "en_US": "Neutral Dmg Taken"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -205,6 +236,13 @@
             "HEAT_RESISTANCE": {
                 "stat": "HEAT_RESIST",
                 "gemColor": "MOONSTONE",
+                "numberStyle": "PERCENT_PREFIX_MINUS",
+                "statLangLabel": {
+                    "en_US": "Heat Dmg Taken"
+                },
+                "langLabel": {
+                    "en_US": "Heat Armor"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 192,
@@ -246,6 +284,13 @@
             "COLD_RESISTANCE": {
                 "stat": "COLD_RESIST",
                 "gemColor": "CITRINE",
+                "langLabel": {
+                    "en_US": "Cold Armor"
+                },
+                "numberStyle": "PERCENT_PREFIX_MINUS",
+                "statLangLabel": {
+                    "en_US": "Cold Dmg Taken"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 216,
@@ -287,6 +332,13 @@
             "SHOCK_RESISTANCE": {
                 "stat": "SHOCK_RESIST",
                 "gemColor": "TOPAZ",
+                "langLabel": {
+                    "en_US": "Shock Armor"
+                },
+                "numberStyle": "PERCENT_PREFIX_MINUS",
+                "statLangLabel": {
+                    "en_US": "Shock Dmg Taken"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 0,
@@ -328,6 +380,13 @@
             "WAVE_RESISTANCE": {
                 "stat": "WAVE_RESIST",
                 "gemColor": "GARNET",
+                "langLabel": {
+                    "en_US": "Wave Armor"
+                },
+                "numberStyle": "PERCENT_PREFIX_MINUS",
+                "statLangLabel": {
+                    "en_US": "Wave Dmg Taken"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 24,
@@ -620,21 +679,24 @@
             "MOMENTUM": {
                 "stat": "MOMENTUM",
                 "gemColor": "ONYX",
+                "langLabel": {
+                    "en_US": "Supercharger"
+                },
                 "tiers": [
                     {
                         "level": 1,
                         "cost": 6,
-                        "value": 0.03
+                        "value": 0.02
                     },
                     {
                         "level": 2,
                         "cost": 10,
-                        "value": 0.06
+                        "value": 0.04
                     },
                     {
                         "level": 3,
                         "cost": 16,
-                        "value": 0.09
+                        "value": 0.06
                     },
                     {
                         "level": 4,
@@ -777,6 +839,11 @@
             "PERFECT_GUARD_WINDOW": {
                 "stat": "PERFECT_GUARD_WINDOW",
                 "gemColor": "ONYX",
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 96,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1377,6 +1444,11 @@
                 "langLabel": {
                     "en_US": "Rainbow Surge"
                 },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 144,
+                    "offY": 0
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -1643,6 +1715,9 @@
             "COND_GUARD_HEAT": {
                 "stat": "COND_GUARD_HEAT",
                 "gemColor": "MOONSTONE",
+                "langLabel": {
+                    "en_US": "Burn Protect"
+                },
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Burn\\c[0] Condition and reduces its effect."
                 },
@@ -1687,6 +1762,9 @@
             "COND_GUARD_COLD": {
                 "stat": "COND_GUARD_COLD",
                 "gemColor": "CITRINE",
+                "langLabel": {
+                    "en_US": "Chill Protect"
+                },
                 "shortDesc": {
                     "en_US": "Increases the resistance against the \\c[3]Chill\\c[0] Condition and reduces its effect."
                 },
@@ -1731,6 +1809,9 @@
             "COND_GUARD_SHOCK": {
                 "stat": "COND_GUARD_SHOCK",
                 "gemColor": "TOPAZ",
+                "langLabel": {
+                    "en_US": "Jolt Protect"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 144,
@@ -1775,6 +1856,9 @@
             "COND_GUARD_WAVE": {
                 "stat": "COND_GUARD_WAVE",
                 "gemColor": "GARNET",
+                "langLabel": {
+                    "en_US": "Mark Protect"
+                },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
                     "offX": 168,
@@ -2025,8 +2109,16 @@
                 "stat": "EL_NEUTRAL_BOOST",
                 "gemColor": "DIAMOND",
                 "numberStyle": "PERCENT_PREFIX",
+                "langLabel": {
+                    "en_US":"Neutral Boost"
+                },
                 "statLangLabel": {
-                    "en_US": "Neutral Damage"
+                    "en_US": "Neutral Dmg Dealt"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 0,
+                    "offY": 24
                 },
                 "tiers": [
                     {
@@ -2066,7 +2158,12 @@
                 "gemColor": "RUBY",
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
-                    "en_US": "Heat Damage"
+                    "en_US": "Heat Dmg Dealt"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 24,
+                    "offY": 24
                 },
                 "tiers": [
                     {
@@ -2106,7 +2203,12 @@
                 "gemColor": "LAPIS_LAZULI",
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
-                    "en_US": "Cold Damage"
+                    "en_US": "Cold Dmg Dealt"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 48,
+                    "offY": 24
                 },
                 "tiers": [
                     {
@@ -2146,7 +2248,12 @@
                 "gemColor": "AMETHYST",
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
-                    "en_US": "Shock Damage"
+                    "en_US": "Shock Dmg Dealt"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 72,
+                    "offY": 24
                 },
                 "tiers": [
                     {
@@ -2186,7 +2293,12 @@
                 "gemColor": "EMERALD",
                 "numberStyle": "PERCENT_PREFIX",
                 "statLangLabel": {
-                    "en_US": "Wave Damage"
+                    "en_US": "Wave Dmg Dealt"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 96,
+                    "offY": 24
                 },
                 "tiers": [
                     {
@@ -2251,6 +2363,9 @@
                     "offX": 192,
                     "offY": 48
                 },
+                "statLangLabel": {
+                    "en_US": "Buff Slot(s)"
+                },
                 "tiers": [
                     {
                         "level": 1,
@@ -2272,6 +2387,7 @@
             "ITEM_GUARD": {
                 "stat": "ITEM_GUARD",
                 "gemColor": "DIAMOND",
+                "numberStyle": "NONE",
                 "langLabel": {
                     "en_US": "Solid Footing"
                 },
@@ -2288,7 +2404,10 @@
                 "gemColor": "CITRINE",
                 "numberStyle": "NUMBER_PREFIX",
                 "langLabel": {
-                    "en_US": "Master Runner"
+                    "en_US": "Master Dasher"
+                },
+                "statLangLabel": {
+                    "en_US": "Extra Dash(es)"
                 },
                 "icon": {
                     "src": "media/gui/circuit-icons.png",
@@ -2310,9 +2429,15 @@
             },
             "PERFECT_GUARD_RESET": {
                 "stat": "PERFECT_GUARD_RESET",
+                "numberStyle": "NONE",
                 "gemColor": "TOPAZ",
                 "langLabel": {
                     "en_US": "Master Guarder"
+                },
+                "icon": {
+                    "src": "media/gui/el-mod-stat-icons.png",
+                    "offX": 120,
+                    "offY": 0
                 },
                 "tiers": [
                     {
@@ -2350,6 +2475,7 @@
             "RANK_PLANTS": {
                 "stat": "RANK_PLANTS",
                 "gemColor": "GARNET",
+                "numberStyle": "NONE",
                 "tiers": [
                     {
                         "level": 0,
@@ -2361,6 +2487,7 @@
             "SPIDER_SLOW_DOWN_GUARD": {
                 "stat": "SPIDER_SLOW_DOWN_GUARD",
                 "gemColor": "AMETHYST",
+                "numberStyle": "NONE",
                 "langLabel": {
                     "en_US": "Unrelenting Soles"
                 },
@@ -2375,6 +2502,7 @@
             "BEGONE_ICE": {
                 "stat": "BEGONE_ICE",
                 "gemColor": "GARNET",
+                "numberStyle": "NONE",
                 "tiers": [
                     {
                         "level": 0,

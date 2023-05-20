@@ -676,6 +676,7 @@ el.GemEquipMenu.InventoryPanel = sc.ItemListBox.extend({
         this.list.clear(refocus);
         let gemList = el.gemDatabase.sortGems(this.sortMethod);
         for(let gem of gemList) {
+            if(!(gem in el.gemDatabase.gemRoots)) continue;
             let button = new el.GemInventoryEntry(gem);
 
             button.setActive(el.gemDatabase.getTotalGemTypeCount(gem) > 0);
