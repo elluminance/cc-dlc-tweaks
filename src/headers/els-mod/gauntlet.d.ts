@@ -4,7 +4,6 @@ declare global {
     namespace sc {
         interface PlayerModel {
             el_statOverride: el.StatOverride;
-            el_gauntletXp: number,
 
             el_enableStatOverride(this: this, active: boolean): void;
         }
@@ -21,6 +20,8 @@ declare global {
 
         namespace GauntletController {
             interface Runtime {
+                currentCup: GauntletCup | null;
+                currentRound: number;
                 curPoints: number;
                 totalPoints: number;
                 curXp: number;
@@ -29,15 +30,72 @@ declare global {
             interface Constructor extends ImpactClass<GauntletController> {
                 new(): GauntletController;
             }
+
+            interface EnemyData {
+                type: string
+            }
+
+            interface LocationData {
+                marker: string;
+                offX: number;
+                offY: number;
+                offZ: number;
+            }
         }
         interface GauntletController extends ig.GameAddon {
             runtime: GauntletController.Runtime;
             active: boolean;
+            cups: Record<string, el.GauntletCup>
 
+            startGauntlet(this: this, name: string): void;
+            startNextRound(this: this): void;
+            registerCup(this: this, name: string | string[]): void;
+            _spawnEnemy(
+                this: this,
+                enemySettings: sc.EnemyInfo.Settings,
+                marker: GauntletController.LocationData,
+                level: number,
+                showEffect?: boolean,
+            ): void;
         }
         let GauntletController: GauntletController.Constructor;
         let gauntlet: GauntletController;
 
+        namespace GauntletCup {
+            interface Constructor extends ImpactClass<GauntletCup> {
+                new (name: string): GauntletCup;
+            }
+
+            interface EnemyType {
+                enemyInfo: sc.EnemyInfo;
+            }
+
+            interface EnemyInfoData {
+                settings: sc.EnemyInfo.Settings;
+            }
+
+            interface Data {
+                name: ig.LangLabel.Data;
+                description: ig.LangLabel.Data;
+                condition?: string;
+
+                enemyTypes: Record<string, EnemyInfoData>;
+            }
+        }
+        interface GauntletCup extends ig.JsonLoadable {
+            data: GauntletCup.Data;
+            
+            enemyTypes: Record<string, GauntletCup.EnemyType>;
+            name: string;
+            desc: string;
+            condition: ig.VarCondition;
+
+            getName(this: this): string;
+            onload(this: this, data: GauntletCup.Data): void;
+        }
+        let GauntletCup: GauntletCup.Constructor;
+
+        //#region stat override
         namespace StatOverride {
             interface ElementBonus {
                 hp: number;
@@ -71,6 +129,7 @@ declare global {
         }
 
         let StatOverride: StatOverride.Constructor;
+        //#endregion
 
 
         namespace GauntletXpBar {

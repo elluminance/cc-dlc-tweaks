@@ -4,11 +4,11 @@ el.GauntletXpBar = ig.GuiElementBase.extend({
     active: false,
 
     updateVal() {
-        this.curVal = sc.model.player.el_gauntletXp;
+        this.curVal = el.gauntlet.runtime.curXp;
     },
     
     updateDrawables(renderer) {
-        if(this.active) {
+        if(el.gauntlet.active) {
             renderer.addGfx(this.gfx, 0, 0, 23, 7, 55, 2);
             renderer.addColor("#009fff", 3, 0, (this.curVal / 1000) * 48, 1);
         }

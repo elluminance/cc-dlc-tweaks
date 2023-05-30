@@ -1,0 +1,31 @@
+{
+    "name": {
+        "en_US": "Test Gauntlet"
+    },
+    "condition": "tmp.debug",
+    "map": "gauntlet.basic",
+
+    "startLevel": 55,
+    "playerStats": {
+        "hp": 3600,
+        "atk": 360,
+        "def": 360,
+        "foc": 360
+    },
+    "roundData": [
+        {
+            "numEnemies": 4,
+            "enemies": [
+                {"type": "hedgehag-1", "weight": 100}
+            ]
+        }
+    ],
+
+    "enemyTypes": {
+        "hedgehag-1": {
+            "settings": {
+                "type": "hedgehog"
+            }
+        }
+    }
+}
