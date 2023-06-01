@@ -5,6 +5,10 @@
                 "EL_CTRON_CLONE_HIT": "Interrogation Hits"
             }
         },
+        "el-gauntlet": {
+            "round": "Round",
+            "points": "Points"
+        },
 
         "menu": {
             "equip": {

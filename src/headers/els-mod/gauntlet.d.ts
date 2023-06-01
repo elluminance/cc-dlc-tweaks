@@ -21,7 +21,11 @@ declare global {
         namespace GauntletController {
             interface Runtime {
                 currentCup: GauntletCup | null;
+                
                 currentRound: number;
+                roundEnemiesDefeated: number;
+                roundEnemiesGoal: number;
+
                 curPoints: number;
                 totalPoints: number;
                 curXp: number;
@@ -35,28 +39,38 @@ declare global {
                 type: string
             }
 
-            interface LocationData {
-                marker: string;
-                offX: number;
-                offY: number;
-                offZ: number;
-            }
+            
         }
-        interface GauntletController extends ig.GameAddon {
+        interface GauntletController extends ig.GameAddon, ig.Vars.Accessor {
             runtime: GauntletController.Runtime;
             active: boolean;
             cups: Record<string, el.GauntletCup>
+            storedPartyBehavior: keyof sc.PARTY_STRATEGY.BehaviourStrategies;
+            partyStash: string[];
+            roundGui?: ig.GUI.CounterHud;
+            scoreGui?: ig.GUI.ScoreHud;
+            //timerGui: ????
+
+            registerCup(this: this, name: string | string[]): void;
 
             startGauntlet(this: this, name: string): void;
             startNextRound(this: this): void;
-            registerCup(this: this, name: string | string[]): void;
+            checkForNextRound(this: this): void;
             _spawnEnemy(
                 this: this,
-                enemySettings: sc.EnemyInfo.Settings,
-                marker: GauntletController.LocationData,
+                enemyInfo: sc.EnemyInfo,
+                marker: GauntletCup.LocationData,
                 level: number,
                 showEffect?: boolean,
             ): void;
+            addGui(this: this): void;
+
+            onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
+
+            addScore(this: this, score: number): void;
+
+            stashPartyMembers(this: this): void;
+            unstashPartyMembers(this: this): void;
         }
         let GauntletController: GauntletController.Constructor;
         let gauntlet: GauntletController;
@@ -74,12 +88,29 @@ declare global {
                 settings: sc.EnemyInfo.Settings;
             }
 
+            interface LocationData {
+                marker: string;
+                offX?: number;
+                offY?: number;
+                offZ?: number;
+            }
+            interface EnemyEntry {
+                type: string;
+                pos: LocationData;
+            }
+            interface Round {
+                level: number;
+                enemies: EnemyEntry[];
+            }
+
             interface Data {
                 name: ig.LangLabel.Data;
                 description: ig.LangLabel.Data;
                 condition?: string;
 
                 enemyTypes: Record<string, EnemyInfoData>;
+                rounds: GauntletCup.Round[];
+                playerStats: StatOverride.OverrideEntry;
             }
         }
         interface GauntletCup extends ig.JsonLoadable {
@@ -89,6 +120,8 @@ declare global {
             name: string;
             desc: string;
             condition: ig.VarCondition;
+            rounds: GauntletCup.Round[];
+            playerStats: StatOverride.OverrideEntry;
 
             getName(this: this): string;
             onload(this: this, data: GauntletCup.Data): void;
@@ -108,6 +141,15 @@ declare global {
             interface Constructor extends ImpactClass<StatOverride> {
                 new (root: sc.PlayerModel): StatOverride;
             }
+
+            interface OverrideEntry {
+                hp: number;
+                attack: number;
+                defense: number;
+                focus: number;
+                modifiers?: Partial<Record<keyof sc.MODIFIERS, number>>;
+                spLevel?: number;
+            }
         }
 
         interface StatOverride extends ig.Class {
@@ -117,13 +159,14 @@ declare global {
             defense: number;
             focus: number;
             modifiers: Partial<Record<keyof sc.MODIFIERS, number>>;
-            spLevel: number;
+            spLevel?: number;
 
             elementBonus: Record<keyof typeof sc.ELEMENT, StatOverride.ElementBonus>;
 
             active: boolean;
 
             setActive(this: this, state: boolean): void;
+            applyOverride(this: this, override: StatOverride.OverrideEntry): void;
             setStat(this: this, stat: string, value: number): void;
             addStat(this: this, stat: string, value: number): void;
         }
@@ -158,10 +201,16 @@ declare global {
                     new (settings: Settings): EL_ENABLE_STAT_OVERRIDE;
                 }
             }
-            interface EL_ENABLE_STAT_OVERRIDE extends ig.ActionStepBase {
+            interface EL_ENABLE_STAT_OVERRIDE extends ig.EventStepBase {
                 state: boolean;
             }
             let EL_ENABLE_STAT_OVERRIDE: EL_ENABLE_STAT_OVERRIDE.Constructor;
+
+            namespace START_EL_GAUNTLET {
+                interface Constructor extends ImpactClass<START_EL_GAUNTLET> {}
+            }
+            interface START_EL_GAUNTLET extends ig.EventStepBase {}
+            let START_EL_GAUNTLET: START_EL_GAUNTLET.Constructor;
         }
     }
     

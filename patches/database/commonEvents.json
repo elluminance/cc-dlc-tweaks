@@ -38,5 +38,99 @@
         "event": [
 
         ]
+    },
+
+    "el-gauntlet-start-cup": {
+        "frequency": "ALWAYS",
+            "repeat": "REPEAT",
+            "eventType": "CUTSCENE",
+            "overrideSideMessage": false,
+            "event": [
+                {
+                    "value": true,
+                    "type": "SET_FORCE_COMBAT"
+                },
+                {
+                    "alpha": 1,
+                    "time": 0,
+                    "lighter": false,
+                    "type": "SET_OVERLAY",
+                    "color": "black"
+                },
+                {
+                    "ignoreSlowDown": false,
+                    "type": "WAIT",
+                    "time": 0.1
+                },
+                {
+                    "alpha": 0,
+                    "time": 1,
+                    "lighter": false,
+                    "type": "SET_OVERLAY",
+                    "color": "black"
+                },
+                {
+                    "type": "START_EL_GAUNTLET"
+                },
+                {
+                    "withElse": false,
+                    "type": "IF",
+                    "condition": "arena.roundCameraTarget",
+                    "thenStep": [
+                        {
+                            "entity": {
+                                "varName": "arena.roundCameraTarget"
+                            },
+                            "offsetX": 0,
+                            "offsetY": 0,
+                            "speed": "NORMAL",
+                            "transition": "EASE_IN_OUT",
+                            "wait": false,
+                            "waitSkip": 0,
+                            "zoom": 1,
+                            "type": "SET_CAMERA_TARGET"
+                        }
+                    ]
+                },
+                {
+                    "volume": 0.6,
+                    "name": "",
+                    "loop": false,
+                    "offset": 0,
+                    "startTime": 0,
+                    "type": "PLAY_SOUND",
+                    "sound": "media\/sound\/arena\/applause-short-01.ogg"
+                },
+                {
+                    "volume": 1,
+                    "name": "",
+                    "loop": false,
+                    "offset": 0,
+                    "startTime": 0,
+                    "type": "PLAY_SOUND",
+                    "sound": "media\/sound\/arena\/round-start-swoosh.ogg"
+                },
+                {
+                    "ignoreSlowDown": false,
+                    "type": "WAIT",
+                    "time": 2.2
+                },
+                {
+                    "withElse": false,
+                    "type": "IF",
+                    "condition": "option.arena-cam-focus && arena.roundFocusTarget",
+                    "thenStep": [
+                        {
+                            "entity": {
+                                "varName": "arena.roundFocusTarget"
+                            },
+                            "type": "ADD_PLAYER_CAMERA_TARGET"
+                        }
+                    ]
+                }
+            ],
+            "type": {
+                "type": "CALL"
+            }
     }
 }

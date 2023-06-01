@@ -51,7 +51,9 @@ sc.PlayerModel.inject({
                 config.update(this.baseParams, {});
             }
             let curSp = this.params.currentSp;
-            this.params.setMaxSp(sc.SP_LEVEL[this.el_statOverride.spLevel]);
+            if(this.el_statOverride.spLevel) {
+                this.params.setMaxSp(sc.SP_LEVEL[this.el_statOverride.spLevel]);
+            }
             this.params.currentSp = Math.min(curSp, this.params.maxSp);
             this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
             sc.Model.notifyObserver(this, sc.PLAYER_MSG.STATS_CHANGED);
@@ -126,6 +128,21 @@ el.StatOverride = ig.Class.extend({
         this.active = state;
 
         this.root.updateStats();
+    },
+
+    applyOverride(override) {
+        this.hp = override.hp;
+        this.attack = override.attack;
+        this.defense = override.defense;
+        this.focus = override.focus;
+
+        if(override.modifiers) {
+            this.modifiers = {...override.modifiers};
+        } else {
+            this.modifiers = {};
+        }
+
+        this.setActive(true);
     },
 })
 

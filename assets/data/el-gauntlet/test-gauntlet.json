@@ -5,18 +5,71 @@
     "condition": "tmp.debug",
     "map": "gauntlet.basic",
 
-    "startLevel": 55,
     "playerStats": {
-        "hp": 3600,
-        "atk": 360,
-        "def": 360,
-        "foc": 360
+        "hp": 4000,
+        "attack": 400,
+        "defense": 400,
+        "focus": 400,
+
+        "spLevel": 2
     },
-    "roundData": [
+    "rounds": [
         {
-            "numEnemies": 4,
+            "level": 55,
             "enemies": [
-                {"type": "hedgehag-1", "weight": 100}
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },
+        {
+            "level": 56,
+            "enemies": [
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
             ]
         }
     ],
