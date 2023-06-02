@@ -1,21 +1,21 @@
+import "./gui";
+import "./stat-override";
+import "./steps";
+
 export {};
 
 declare global {
-    namespace sc {
-        interface PlayerModel {
-            el_statOverride: el.StatOverride;
-
-            el_enableStatOverride(this: this, active: boolean): void;
-        }
-
-        interface HpHudGui {
-            el_GauntletXp: el.GauntletXpBar;
-        }
-    }
-
     namespace el {
-        enum GAUNTLET_MESSAGE {
-            CHANGED_STATE = 0,
+        interface GauntletRank {
+            expBonus: number;
+            rankLabel: string;
+            penaltyMultiplier: number;
+        }
+        let GAUNTLET_RANKS: GauntletRank[];
+
+        enum GAUNTLET_MSG {
+            RANK_CHANGED,
+            ROUND_STARTED,
         }
 
         namespace GauntletController {
@@ -29,6 +29,9 @@ declare global {
                 curPoints: number;
                 totalPoints: number;
                 curXp: number;
+
+                combatRankLevel: number;
+                combatRankProgress: number;
             }
 
             interface Constructor extends ImpactClass<GauntletController> {
@@ -41,7 +44,7 @@ declare global {
 
             
         }
-        interface GauntletController extends ig.GameAddon, ig.Vars.Accessor {
+        interface GauntletController extends ig.GameAddon, ig.Vars.Accessor, sc.Model {
             runtime: GauntletController.Runtime;
             active: boolean;
             cups: Record<string, el.GauntletCup>
@@ -64,13 +67,31 @@ declare global {
                 showEffect?: boolean,
             ): void;
             addGui(this: this): void;
+            addScore(this: this, score: number): void;
 
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
-
-            addScore(this: this, score: number): void;
+            onEnemyDamage(
+                this: this,
+                combatant: ig.ENTITY.Enemy,
+                damageResult: sc.CombatParams.DamageResult
+            ): void;
+            onPlayerDamage(
+                this: this,
+                combatant: ig.ENTITY.Player,
+                damageResult: sc.CombatParams.DamageResult,
+                shieldResult: sc.SHIELD_RESULT,
+            ): void;
 
             stashPartyMembers(this: this): void;
             unstashPartyMembers(this: this): void;
+
+            _getRank(this: this): el.GauntletRank;
+            getRankLabel(this: this): string;
+            getRankProgress(this: this): number;
+            getRankMultiplier(this: this): number;
+            getRankPenalty(this: this): number;
+            isSRank(this: this): boolean;
+            addRank(this: this, value: number, applyPenalty?: boolean): void;
         }
         let GauntletController: GauntletController.Constructor;
         let gauntlet: GauntletController;
@@ -127,91 +148,5 @@ declare global {
             onload(this: this, data: GauntletCup.Data): void;
         }
         let GauntletCup: GauntletCup.Constructor;
-
-        //#region stat override
-        namespace StatOverride {
-            interface ElementBonus {
-                hp: number;
-                attack: number;
-                defense: number;
-                focus: number;
-                modifiers: Partial<Record<keyof sc.MODIFIERS, number>>;
-            }
-
-            interface Constructor extends ImpactClass<StatOverride> {
-                new (root: sc.PlayerModel): StatOverride;
-            }
-
-            interface OverrideEntry {
-                hp: number;
-                attack: number;
-                defense: number;
-                focus: number;
-                modifiers?: Partial<Record<keyof sc.MODIFIERS, number>>;
-                spLevel?: number;
-            }
-        }
-
-        interface StatOverride extends ig.Class {
-            root: sc.PlayerModel;
-            hp: number;
-            attack: number;
-            defense: number;
-            focus: number;
-            modifiers: Partial<Record<keyof sc.MODIFIERS, number>>;
-            spLevel?: number;
-
-            elementBonus: Record<keyof typeof sc.ELEMENT, StatOverride.ElementBonus>;
-
-            active: boolean;
-
-            setActive(this: this, state: boolean): void;
-            applyOverride(this: this, override: StatOverride.OverrideEntry): void;
-            setStat(this: this, stat: string, value: number): void;
-            addStat(this: this, stat: string, value: number): void;
-        }
-
-        let StatOverride: StatOverride.Constructor;
-        //#endregion
-
-
-        namespace GauntletXpBar {
-            interface Constructor extends ImpactClass<GauntletXpBar> {
-                new(): el.GauntletXpBar;
-            }
-        }
-        interface GauntletXpBar extends ig.GuiElementBase {
-            gfx: ig.Image;
-            curVal: number;
-            active: boolean;
-
-            updateVal(this: this): void;
-        }
-        
-        let GauntletXpBar: GauntletXpBar.Constructor;
     }
-
-    namespace ig {
-        namespace EVENT_STEP {
-            namespace EL_ENABLE_STAT_OVERRIDE {
-                interface Settings {
-                    state: boolean;
-                }
-                interface Constructor extends ImpactClass<EL_ENABLE_STAT_OVERRIDE> {
-                    new (settings: Settings): EL_ENABLE_STAT_OVERRIDE;
-                }
-            }
-            interface EL_ENABLE_STAT_OVERRIDE extends ig.EventStepBase {
-                state: boolean;
-            }
-            let EL_ENABLE_STAT_OVERRIDE: EL_ENABLE_STAT_OVERRIDE.Constructor;
-
-            namespace START_EL_GAUNTLET {
-                interface Constructor extends ImpactClass<START_EL_GAUNTLET> {}
-            }
-            interface START_EL_GAUNTLET extends ig.EventStepBase {}
-            let START_EL_GAUNTLET: START_EL_GAUNTLET.Constructor;
-        }
-    }
-    
 }

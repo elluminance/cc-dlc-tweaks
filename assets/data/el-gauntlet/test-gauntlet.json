@@ -71,6 +71,35 @@
                     }
                 }
             ]
+        },
+        {
+            "level": 57,
+            "enemies": [
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag-1",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
         }
     ],
 
@@ -78,7 +107,8 @@
         "hedgehag-1": {
             "settings": {
                 "type": "hedgehog"
-            }
+            },
+            "xp": 60
         }
     }
 }

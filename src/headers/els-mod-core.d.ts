@@ -1,6 +1,6 @@
 import "./els-mod/combat"
 import "./els-mod/entities"
-import "./els-mod/gauntlet"
+import "./els-mod/gauntlet/base"
 import "./els-mod/gems"
 import "./els-mod/puzzle"
 import "./els-mod/steps"

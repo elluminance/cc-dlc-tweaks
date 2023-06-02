@@ -1,6 +1,31 @@
-el.GAUNTLET_MESSAGE = {
-    CHANGED_STATE: 0
+el.GAUNTLET_MSG = {
+    RANK_CHANGED: 0,
+    ROUND_STARTED: 1,
 }
+
+el.GAUNTLET_RANKS = [
+    {
+        rankLabel: "D",
+        expBonus: 1,
+        penaltyMultiplier: 0.5
+    }, {
+        rankLabel: "C",
+        expBonus: 1.25,
+        penaltyMultiplier: 1
+    }, {
+        rankLabel: "B",
+        expBonus: 1.5,
+        penaltyMultiplier: 2
+    }, {
+        rankLabel: "A",
+        expBonus: 2,
+        penaltyMultiplier: 3
+    }, {
+        rankLabel: "S",
+        expBonus: 3,
+        penaltyMultiplier: 4
+    },
+]
 
 const DEFAULT_RUNTIME: Readonly<el.GauntletController.Runtime> = {
     currentCup: null,
@@ -10,6 +35,9 @@ const DEFAULT_RUNTIME: Readonly<el.GauntletController.Runtime> = {
     currentRound: 0,
     roundEnemiesDefeated: 0,
     roundEnemiesGoal: 0,
+
+    combatRankLevel: 0,
+    combatRankProgress: 0,
 } as const;
 
 el.GauntletCup = ig.JsonLoadable.extend({
@@ -51,11 +79,19 @@ el.GauntletController = ig.GameAddon.extend({
     partyStash: [],
     storedPartyBehavior: "OFFENSIVE",
 
+    observers: [],
 
     init() {
         this.parent("el-Gauntlet");
         this.registerCup(DEFAULT_CUPS);
         ig.vars.registerVarAccessor("el-gauntlet", this);
+    },
+
+    onPostUpdate() {
+        if(this.active && !ig.loading && !ig.game.paused) {
+            //TODO: Make it so this doesn't always happen, only if you idle for too long.
+            this.addRank(-ig.system.tick * 2, false);
+        }
     },
 
     registerCup(cupName) {
@@ -114,6 +150,7 @@ el.GauntletController = ig.GameAddon.extend({
             let type = enemyTypes[enemy.type];
             this._spawnEnemy(type.enemyInfo, enemy.pos, currentRound.level);
         }
+        sc.Model.notifyObserver(this, el.GAUNTLET_MSG.ROUND_STARTED);
     },
 
     checkForNextRound() {
@@ -164,17 +201,33 @@ el.GauntletController = ig.GameAddon.extend({
             if(victim instanceof ig.ENTITY.Enemy) {
                 this.addScore(victim.getLevel() * 10);
                 this.runtime.roundEnemiesDefeated++;
-                this.checkForNextRound();      
+                this.checkForNextRound();
+                this.addRank(10 * victim.enemyType.enduranceScale)
             }
         }
     },
 
+    onEnemyDamage(combatant, damageResult) {
+        if(!this.active) return;
+
+        let damageVal = Math.min(combatant.params.currentHp, damageResult.damage);
+        this.addRank(25 * Math.log1p(damageVal / combatant.params.getStat('hp')));
+    },
+    onPlayerDamage(combatant, damageResult, shieldResult) {
+        if(!this.active) return;
+
+        if(shieldResult === sc.SHIELD_RESULT.PERFECT) {
+            this.addRank(0.5);
+        } else {
+            this.addRank(-25 * (damageResult.damage / combatant.params.getStat("hp")) * this.getRankPenalty());
+        }
+    },
 
     addScore(score) {
         if(this.active) {
-            this.runtime.curPoints += score;
+            this.runtime.curPoints += score * this.getRankMultiplier();
+            ig.game.varsChangedDeferred();
         }
-        ig.game.varsChangedDeferred();
     },
 
     onVarAccess(path, keys) {
@@ -183,7 +236,7 @@ el.GauntletController = ig.GameAddon.extend({
                 case "active":
                     return this.active;
                 case "points":
-                    return this.runtime ? this.runtime.curPoints : 0;
+                    return this.runtime ? Math.round(this.runtime.curPoints) : 0;
                 case "round":
                     return this.active ? this.runtime.currentRound : undefined;
 
@@ -219,13 +272,60 @@ el.GauntletController = ig.GameAddon.extend({
             cutsceneOkay: true
         });
         ig.gui.spawnEventGui(this.scoreGui!);
-    }
+    },
+
+    _getRank() {
+        return el.GAUNTLET_RANKS[this.runtime.combatRankLevel];
+    },
+    getRankProgress() {
+        if(this.runtime.combatRankLevel === el.GAUNTLET_RANKS.length - 1) return 1;
+        return (this.runtime.combatRankProgress / 50) % 1;
+    },
+    getRankLabel() {
+        return this._getRank().rankLabel;
+    },
+    getRankMultiplier() {
+        return this._getRank().expBonus;
+    },
+    getRankPenalty() {
+        return this._getRank().penaltyMultiplier;
+    },
+    isSRank() {
+        return this.runtime?.combatRankLevel === el.GAUNTLET_RANKS.length - 1;
+    },
+    addRank(value, applyPenalty = true) {
+        if(this.active) {
+            let runtime = this.runtime;
+            value = (applyPenalty && value < 0) ? value * this._getRank().penaltyMultiplier : value;
+            runtime.combatRankProgress =
+                (runtime.combatRankProgress + value).limit(0, (el.GAUNTLET_RANKS.length) * 50 - 25);
+            
+            if(Math.floor(runtime.combatRankProgress / 50) !== runtime.combatRankLevel) {
+                runtime.combatRankLevel = Math.floor(runtime.combatRankProgress / 50);
+                sc.Model.notifyObserver(this, el.GAUNTLET_MSG.RANK_CHANGED, value > 0);
+            }
+        }
+    },
 })
 
 sc.Combat.inject({
     onCombatantDeathHit(attacker, victim) {
         el.gauntlet.onCombatantDeathHit(attacker, victim);
         this.parent(attacker, victim);
+    },
+})
+
+ig.ENTITY.Enemy.inject({
+    onPreDamageModification(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult) {
+        el.gauntlet.onEnemyDamage(this, damageResult);
+        return this.parent(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult);
+    },
+})
+
+ig.ENTITY.Player.inject({
+    onPreDamageModification(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult) {
+        el.gauntlet.onPlayerDamage(this, damageResult, shieldResult)
+        return this.parent(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult);
     },
 })
 
