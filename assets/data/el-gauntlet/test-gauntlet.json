@@ -18,25 +18,25 @@
             "level": 55,
             "enemies": [
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag-atk",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -47,25 +47,25 @@
             "level": 56,
             "enemies": [
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag-leveled",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag-leveled",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -76,25 +76,25 @@
             "level": 57,
             "enemies": [
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-1",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -104,11 +104,28 @@
     ],
 
     "enemyTypes": {
-        "hedgehag-1": {
+        "hedgehag": {
             "settings": {
                 "type": "hedgehog"
             },
             "xp": 60
+        },
+        "hedgehag-leveled": {
+            "settings": {
+                "type": "hedgehog"
+            },
+            "xp": 60,
+            "levelOffset": 5
+        },
+        "hedgehag-atk": {
+            "settings": {
+                "type": "hedgehog"
+            },
+            "buff": {
+                "attack": 1.2
+            },
+            "xp": 75,
+            "pointMultiplier": 1.25
         }
     }
 }

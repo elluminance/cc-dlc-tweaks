@@ -44,6 +44,7 @@ const DEFAULT_RUNTIME: Readonly<el.GauntletController.Runtime> = {
 el.GauntletCup = ig.JsonLoadable.extend({
     enemyTypes: null,
     cacheType: "EL_GAUNTLET_CUP",
+    debugReload: true,
 
     getJsonPath() {
         return `${ig.root}${this.path.toPath("data/el-gauntlet/", ".json")}`
@@ -57,8 +58,22 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         this.enemyTypes = {};
         for(let [name, type] of Object.entries(data.enemyTypes)) {
+            let statChange = new sc.StatChange([]);
+            statChange.update = () => false;
+            
+            if(type.buff) {
+                for(let param in type.buff) {
+                    //@ts-ignore - can't be bothered to deal with typing
+                    statChange.params[param] = type.buff[param];
+                }
+            }
+            
             this.enemyTypes[name] = {
                 enemyInfo: new sc.EnemyInfo(type.settings),
+                xp: type.xp,
+                buff: statChange,
+                levelOffset: type.levelOffset || 0,
+                pointMultiplier: type.pointMultiplier || 1,
             }
         }
 
@@ -156,7 +171,11 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.roundEnemiesGoal = currentRound.enemies.length;
         for(let enemy of currentRound.enemies) {
             let type = enemyTypes[enemy.type];
-            this._spawnEnemy(type.enemyInfo, enemy.pos, currentRound.level);
+            let entity = this._spawnEnemy(type.enemyInfo, enemy.pos, currentRound.level + type.levelOffset);
+            entity.el_gauntletEnemyInfo = type;
+            if(type.buff) {
+                entity.params.addBuff(type.buff);
+            }
         }
         sc.Model.notifyObserver(this, el.GAUNTLET_MSG.ROUND_STARTED);
     },
@@ -177,16 +196,16 @@ el.GauntletController = ig.GameAddon.extend({
 
         //let enemyInfo = new sc.EnemyInfo({...enemySettings, level})
 
-        enemyInfo.enemyType.load(() => {
-            let entity = ig.game.spawnEntity(
-                ig.ENTITY.Enemy,
-                pos.x, pos.y, pos.z,
-                {enemyInfo: enemyInfo.getSettings()},
-                showEffects
-            );
-            entity.setLevelOverride(level);
-            entity.setTarget(ig.game.playerEntity, true)
-        })
+        let entity = ig.game.spawnEntity(
+            ig.ENTITY.Enemy,
+            pos.x, pos.y, pos.z,
+            {enemyInfo: enemyInfo.getSettings()},
+            showEffects
+        );
+        entity.setLevelOverride(level);
+        entity.setTarget(ig.game.playerEntity, true)
+
+        return entity;
     },
 
     stashPartyMembers() {
@@ -207,7 +226,7 @@ el.GauntletController = ig.GameAddon.extend({
     onCombatantDeathHit(attacker, victim) {
         if(this.active) {
             if(victim instanceof ig.ENTITY.Enemy) {
-                this.addScore(victim.getLevel() * 10);
+                this.addScore(victim.getLevel() * 10 * victim.el_gauntletEnemyInfo!.pointMultiplier);
                 this.runtime.roundEnemiesDefeated++;
                 this.checkForNextRound();
                 if(this.addRank(10 * victim.enemyType.enduranceScale)) {
@@ -362,6 +381,8 @@ sc.Combat.inject({
 })
 
 ig.ENTITY.Enemy.inject({
+    el_gauntletEnemyInfo: null,
+
     onPreDamageModification(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult) {
         el.gauntlet.onEnemyDamage(this, damageResult);
         return this.parent(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult);

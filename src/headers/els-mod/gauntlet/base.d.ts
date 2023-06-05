@@ -5,6 +5,11 @@ import "./steps";
 export {};
 
 declare global {
+    namespace ig.ENTITY {
+        interface Enemy {
+            el_gauntletEnemyInfo: el.GauntletCup.EnemyType
+        }
+    }
     namespace el {
         interface GauntletRank {
             expBonus: number;
@@ -38,11 +43,6 @@ declare global {
             interface Constructor extends ImpactClass<GauntletController> {
                 new(): GauntletController;
             }
-
-            interface EnemyData {
-                type: string
-            }
-
             
         }
         interface GauntletController extends ig.GameAddon, ig.Vars.Accessor, sc.Model {
@@ -66,7 +66,7 @@ declare global {
                 marker: GauntletCup.LocationData,
                 level: number,
                 showEffect?: boolean,
-            ): void;
+            ): ig.ENTITY.Enemy;
             addGui(this: this): void;
             addScore(this: this, score: number): void;
 
@@ -107,10 +107,18 @@ declare global {
 
             interface EnemyType {
                 enemyInfo: sc.EnemyInfo;
+                xp: number;
+                buff: sc.StatChange;
+                levelOffset: number;
+                pointMultiplier: number
             }
 
             interface EnemyInfoData {
                 settings: sc.EnemyInfo.Settings;
+                xp: number;
+                buff?: Partial<sc.StatChange.Params>;
+                levelOffset?: number;
+                pointMultiplier?: number;
             }
 
             interface LocationData {
