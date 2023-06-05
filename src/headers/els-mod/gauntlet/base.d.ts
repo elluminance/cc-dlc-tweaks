@@ -32,6 +32,7 @@ declare global {
 
                 combatRankLevel: number;
                 combatRankProgress: number;
+                combatRankTimer: number;
             }
 
             interface Constructor extends ImpactClass<GauntletController> {
@@ -70,6 +71,8 @@ declare global {
             addScore(this: this, score: number): void;
 
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
+            onGuardCounter(this: this, enemy: ig.ENTITY.Enemy): void;
+            onEnemyBreak(this: this, enemy: ig.ENTITY.Enemy): void;
             onEnemyDamage(
                 this: this,
                 combatant: ig.ENTITY.Enemy,
@@ -90,8 +93,9 @@ declare global {
             getRankProgress(this: this): number;
             getRankMultiplier(this: this): number;
             getRankPenalty(this: this): number;
+            isRankDecaying(this: this): boolean;
             isSRank(this: this): boolean;
-            addRank(this: this, value: number, applyPenalty?: boolean): void;
+            addRank(this: this, value: number, applyPenalty?: boolean): boolean;
         }
         let GauntletController: GauntletController.Constructor;
         let gauntlet: GauntletController;

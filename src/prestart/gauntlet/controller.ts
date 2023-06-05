@@ -7,7 +7,7 @@ el.GAUNTLET_RANKS = [
     {
         rankLabel: "D",
         expBonus: 1,
-        penaltyMultiplier: 0.5
+        penaltyMultiplier: 0.75
     }, {
         rankLabel: "C",
         expBonus: 1.25,
@@ -15,15 +15,15 @@ el.GAUNTLET_RANKS = [
     }, {
         rankLabel: "B",
         expBonus: 1.5,
-        penaltyMultiplier: 2
+        penaltyMultiplier: 1.25
     }, {
         rankLabel: "A",
         expBonus: 2,
-        penaltyMultiplier: 3
+        penaltyMultiplier: 1.5
     }, {
         rankLabel: "S",
         expBonus: 3,
-        penaltyMultiplier: 4
+        penaltyMultiplier: 2
     },
 ]
 
@@ -38,6 +38,7 @@ const DEFAULT_RUNTIME: Readonly<el.GauntletController.Runtime> = {
 
     combatRankLevel: 0,
     combatRankProgress: 0,
+    combatRankTimer: 0,
 } as const;
 
 el.GauntletCup = ig.JsonLoadable.extend({
@@ -72,6 +73,10 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
 const DEFAULT_CUPS = ["test-gauntlet"];
 
+function createRankBox(entity: ig.Entity) {
+    return new sc.SmallEntityBox(entity, `${ig.lang.get("sc.gui.combat-msg.rank-up")} ${el.gauntlet.getRankLabel()}`, 2);
+}
+
 el.GauntletController = ig.GameAddon.extend({
     runtime: {...DEFAULT_RUNTIME},
     active: false,
@@ -89,8 +94,11 @@ el.GauntletController = ig.GameAddon.extend({
 
     onPostUpdate() {
         if(this.active && !ig.loading && !ig.game.paused) {
-            //TODO: Make it so this doesn't always happen, only if you idle for too long.
-            this.addRank(-ig.system.tick * 2, false);
+            if(this.runtime.combatRankTimer <= 0) {
+                this.addRank(-ig.system.tick * 5, false);
+            } else {
+                this.runtime.combatRankTimer -= ig.system.tick;
+            }
         }
     },
 
@@ -202,8 +210,20 @@ el.GauntletController = ig.GameAddon.extend({
                 this.addScore(victim.getLevel() * 10);
                 this.runtime.roundEnemiesDefeated++;
                 this.checkForNextRound();
-                this.addRank(10 * victim.enemyType.enduranceScale)
+                if(this.addRank(10 * victim.enemyType.enduranceScale)) {
+                    ig.gui.addGuiElement(createRankBox(victim))
+                }
             }
+        }
+    },
+    onGuardCounter(enemy) {
+        if(this.active) {
+            this.addRank(5);
+        }
+    },
+    onEnemyBreak(enemy) {
+        if(this.active) {
+            this.addRank(5);
         }
     },
 
@@ -211,15 +231,22 @@ el.GauntletController = ig.GameAddon.extend({
         if(!this.active) return;
 
         let damageVal = Math.min(combatant.params.currentHp, damageResult.damage);
-        this.addRank(25 * Math.log1p(damageVal / combatant.params.getStat('hp')));
+        let rankVal = damageVal / combatant.params.getStat('hp');
+        rankVal *= 10;
+        rankVal *= damageResult.defensiveFactor;
+        if (this.addRank(rankVal)) {
+            ig.gui.addGuiElement(createRankBox(combatant));
+        }
     },
     onPlayerDamage(combatant, damageResult, shieldResult) {
         if(!this.active) return;
 
         if(shieldResult === sc.SHIELD_RESULT.PERFECT) {
-            this.addRank(0.5);
+            if(this.addRank(0.5)) {
+                ig.gui.addGuiElement(createRankBox(ig.game.playerEntity));
+            }
         } else {
-            this.addRank(-25 * (damageResult.damage / combatant.params.getStat("hp")) * this.getRankPenalty());
+            this.addRank(-20 * (damageResult.damage / combatant.params.getStat("hp")) * this.getRankPenalty());
         }
     },
 
@@ -230,7 +257,7 @@ el.GauntletController = ig.GameAddon.extend({
         }
     },
 
-    onVarAccess(path, keys) {
+    onVarAccess(_path, keys) {
         if(keys[0] === "el-gauntlet") {
             switch(keys[1]) {
                 case "active":
@@ -278,8 +305,7 @@ el.GauntletController = ig.GameAddon.extend({
         return el.GAUNTLET_RANKS[this.runtime.combatRankLevel];
     },
     getRankProgress() {
-        if(this.runtime.combatRankLevel === el.GAUNTLET_RANKS.length - 1) return 1;
-        return (this.runtime.combatRankProgress / 50) % 1;
+        return this.runtime.combatRankProgress !== ((el.GAUNTLET_RANKS.length) * 50 - 25) ? (this.runtime.combatRankProgress / (this.isSRank() ? 25 : 50)) % 1 : 1;
     },
     getRankLabel() {
         return this._getRank().rankLabel;
@@ -291,21 +317,41 @@ el.GauntletController = ig.GameAddon.extend({
         return this._getRank().penaltyMultiplier;
     },
     isSRank() {
-        return this.runtime?.combatRankLevel === el.GAUNTLET_RANKS.length - 1;
+        return this.runtime.combatRankLevel === el.GAUNTLET_RANKS.length - 1;
+    },
+    isRankDecaying() {
+        return this.runtime.combatRankTimer <= 0;
     },
     addRank(value, applyPenalty = true) {
+        let rankedUp = false;
         if(this.active) {
             let runtime = this.runtime;
-            value = (applyPenalty && value < 0) ? value * this._getRank().penaltyMultiplier : value;
+            let isIncrease = value > 0;
+            value = (applyPenalty && !isIncrease) ? value * this._getRank().penaltyMultiplier : value;
             runtime.combatRankProgress =
                 (runtime.combatRankProgress + value).limit(0, (el.GAUNTLET_RANKS.length) * 50 - 25);
             
             if(Math.floor(runtime.combatRankProgress / 50) !== runtime.combatRankLevel) {
                 runtime.combatRankLevel = Math.floor(runtime.combatRankProgress / 50);
                 sc.Model.notifyObserver(this, el.GAUNTLET_MSG.RANK_CHANGED, value > 0);
+                rankedUp = isIncrease;
+            }
+
+            if(isIncrease) {
+                this.runtime.combatRankTimer = 10;
             }
         }
+
+        return rankedUp;
     },
+})
+
+sc.Arena.inject({
+    //it was easier to just inject into this.
+    onEnemyBreak(enemy) {
+        this.parent(enemy);
+        el.gauntlet.onEnemyBreak(enemy);
+    }
 })
 
 sc.Combat.inject({
@@ -326,6 +372,15 @@ ig.ENTITY.Player.inject({
     onPreDamageModification(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult) {
         el.gauntlet.onPlayerDamage(this, damageResult, shieldResult)
         return this.parent(modifications, damagingEntity, attackInfo, partEntity, damageResult, shieldResult);
+    },
+})
+
+sc.ENEMY_REACTION.GUARD_COUNTER.inject({
+    onGuardCountered(enemy, guardingEntity) {
+        this.parent(enemy, guardingEntity);
+        if(guardingEntity.getCombatantRoot().isPlayer) {
+            el.gauntlet.onGuardCounter(enemy);
+        }
     },
 })
 

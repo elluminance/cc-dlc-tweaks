@@ -36,15 +36,18 @@ el.GauntletCombatUpperHud = ig.GuiElementBase.extend({
                 this.progress = progress
             }
         }
-        this.blinkTimer = el.gauntlet.isSRank() ? this.blinkTimer + ig.system.actualTick : 0
+        this.blinkTimer = (el.gauntlet.isSRank() || el.gauntlet.isRankDecaying()) ? this.blinkTimer + ig.system.actualTick : 0
     },
 
     updateDrawables(renderer) {
         let hook = this.hook;
         renderer.addGfx(this.gfx, hook.size.x - 18, 0, 160, 96, 13, 13);
-        let size = this.progress === 1 ? 22 : Math.floor(21 * this.progress);
+        let size = Math.round(22 * this.progress);
         renderer.addGfx(this.gfx, hook.size.x - 50, 8, 128, 112, 24, 3);
         let blinkAlpha = 1 - Math.abs(Math.sin(this.blinkTimer / 0.2 * Math.PI));
+        if(el.gauntlet.isRankDecaying() && size) {
+            renderer.addGfx(this.gfx, hook.size.x - 50, 8, 128, 112 + 8, 1 + size, 3)
+        }
         renderer.addTransform().setAlpha(blinkAlpha);
         if(size) {
             renderer.addGfx(this.gfx, hook.size.x - 50, 8, 128, 112 + 4, 1 + size, 3);
@@ -56,7 +59,7 @@ el.GauntletCombatUpperHud = ig.GuiElementBase.extend({
         if(model === el.gauntlet) {
             switch(message) {
                 case el.GAUNTLET_MSG.RANK_CHANGED:
-                    this.progress = data ? 0 : 1;
+                    this.progress = data ? 1 : 0;
                     this.rankValue.setText(el.gauntlet.getRankLabel());
             }
         }

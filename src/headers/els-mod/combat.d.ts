@@ -7,11 +7,8 @@ declare global {
             interface EL_VIRUS_BUFF_CONSTRUCTOR extends ImpactClass<EL_VIRUS_BUFF> {
                 new (name: string, data: ENEMY_REACTION.COLLAB.Data): EL_VIRUS_BUFF;
             }
+            let EL_VIRUS_BUFF: ENEMY_REACTION.EL_VIRUS_BUFF_CONSTRUCTOR
         }
-        interface ENEMY_REACTION {
-            EL_VIRUS_BUFF: ENEMY_REACTION.EL_VIRUS_BUFF_CONSTRUCTOR
-        }
-
         namespace COMBAT_CONDITION {
             namespace TARGET_HAS_BUFF {
                 interface Settings {
