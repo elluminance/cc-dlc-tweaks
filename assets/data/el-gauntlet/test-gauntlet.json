@@ -3,13 +3,14 @@
         "en_US": "Test Gauntlet"
     },
     "condition": "tmp.debug",
-    "map": "gauntlet.basic",
+    "map": "el-gauntlet.basic",
+    "marker": "PlayerStart",
 
     "playerStats": {
-        "hp": 4000,
+        "hp": 3600,
         "attack": 400,
-        "defense": 400,
-        "focus": 400,
+        "defense": 360,
+        "focus": 360,
 
         "spLevel": 2
     },
@@ -108,13 +109,13 @@
             "settings": {
                 "type": "hedgehog"
             },
-            "xp": 60
+            "xp": 90
         },
         "hedgehag-leveled": {
             "settings": {
                 "type": "hedgehog"
             },
-            "xp": 60,
+            "xp": 125,
             "levelOffset": 5
         },
         "hedgehag-atk": {
@@ -124,7 +125,7 @@
             "buff": {
                 "attack": 1.2
             },
-            "xp": 75,
+            "xp": 110,
             "pointMultiplier": 1.25
         }
     }

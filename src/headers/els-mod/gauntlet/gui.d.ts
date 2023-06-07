@@ -26,7 +26,7 @@ declare global {
         interface GauntletXpBar extends ig.GuiElementBase {
             gfx: ig.Image;
             curVal: number;
-            active: boolean;
+            blinkTimer: number;
 
             updateVal(this: this): void;
         }
@@ -49,5 +49,26 @@ declare global {
             end(this: this): void;
         }
         let GauntletCombatUpperHud: GauntletCombatUpperHud.Constructor;
+
+        namespace GauntletExpEntry {
+            interface Constructor extends ImpactClass<GauntletExpEntry> {
+                new (withLabel: boolean, exp?: number): GauntletExpEntry; 
+            }
+        }
+        interface GauntletExpEntry extends sc.ExpEntryGui {
+
+        }
+        let GauntletExpEntry: GauntletExpEntry.Constructor;
+
+
+        namespace GauntletExpHud {
+            interface Constructor extends ImpactClass<GauntletExpHud> {
+                new(): GauntletExpHud;
+            }
+        }
+        interface GauntletExpHud extends sc.ExpHudGui {
+
+        }
+        let GauntletExpHud: GauntletExpHud.Constructor;
     }
 }

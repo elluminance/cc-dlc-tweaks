@@ -12,8 +12,9 @@ declare global {
     }
     namespace el {
         interface GauntletRank {
-            expBonus: number;
             rankLabel: string;
+            pointMultiplier: number;
+            expMultiplier: number;
             penaltyMultiplier: number;
         }
         let GAUNTLET_RANKS: GauntletRank[];
@@ -21,6 +22,8 @@ declare global {
         enum GAUNTLET_MSG {
             RANK_CHANGED,
             ROUND_STARTED,
+            LEVEL_CHANGED,
+            EXP_CHANGED
         }
 
         namespace GauntletController {
@@ -34,6 +37,7 @@ declare global {
                 curPoints: number;
                 totalPoints: number;
                 curXp: number;
+                curLevel: number;
 
                 combatRankLevel: number;
                 combatRankProgress: number;
@@ -68,7 +72,8 @@ declare global {
                 showEffect?: boolean,
             ): ig.ENTITY.Enemy;
             addGui(this: this): void;
-            addScore(this: this, score: number): void;
+            addPoints(this: this, score: number): void;
+            addExp(this: this, exp: number): void;
 
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
             onGuardCounter(this: this, enemy: ig.ENTITY.Enemy): void;
@@ -91,7 +96,8 @@ declare global {
             _getRank(this: this): el.GauntletRank;
             getRankLabel(this: this): string;
             getRankProgress(this: this): number;
-            getRankMultiplier(this: this): number;
+            getRankPointMultiplier(this: this): number;
+            getRankExpMultiplier(this: this): number;
             getRankPenalty(this: this): number;
             isRankDecaying(this: this): boolean;
             isSRank(this: this): boolean;
@@ -141,6 +147,9 @@ declare global {
                 description: ig.LangLabel.Data;
                 condition?: string;
 
+                map: string;
+                marker?: string;
+
                 enemyTypes: Record<string, EnemyInfoData>;
                 rounds: GauntletCup.Round[];
                 playerStats: StatOverride.OverrideEntry;
@@ -155,6 +164,8 @@ declare global {
             condition: ig.VarCondition;
             rounds: GauntletCup.Round[];
             playerStats: StatOverride.OverrideEntry;
+            map: string;
+            marker?: string;
 
             getName(this: this): string;
             onload(this: this, data: GauntletCup.Data): void;
