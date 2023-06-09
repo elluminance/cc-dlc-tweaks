@@ -8,14 +8,23 @@
 
     "playerStats": {
         "hp": 3600,
-        "attack": 400,
+        "attack": 400000,
         "defense": 360,
         "focus": 360,
 
         "spLevel": 2
     },
-    "rounds": [
+
+    "playerStatIncrease": {
+        "hp": 20,
+        "attack": 5,
+        "defense": 5,
+        "focus": 5
+    },
+
+    "roundSteps": [
         {
+            "type": "SIMPLE_ENEMY_ROUND",
             "level": 55,
             "enemies": [
                 {
@@ -45,6 +54,7 @@
             ]
         },
         {
+            "type": "SIMPLE_ENEMY_ROUND",
             "level": 56,
             "enemies": [
                 {
@@ -74,6 +84,7 @@
             ]
         },
         {
+            "type": "SIMPLE_ENEMY_ROUND",
             "level": 57,
             "enemies": [
                 {

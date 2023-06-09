@@ -43,6 +43,8 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
     currentRound: 0,
     roundEnemiesDefeated: 0,
     roundEnemiesGoal: 0,
+    currentRoundStep: null,
+    roundStarted: false,
 
     combatRankLevel: 0,
     combatRankProgress: 0,
@@ -88,7 +90,20 @@ el.GauntletCup = ig.JsonLoadable.extend({
             }
         }
 
-        this.rounds = data.rounds;
+        this.numRounds = 0;
+        this.roundSteps = [];
+        let prevStep: el.GauntletStep | undefined = undefined;
+        for(const settings of data.roundSteps) {
+            //@ts-expect-error does not like me calling this
+            let step: el.GauntletStep = new el.GAUNTLET_STEP[settings.type](settings);
+            if(step.advanceRoundNumber) this.numRounds++;
+
+            if(prevStep) prevStep.next = step;
+            prevStep = step;
+
+            this.roundSteps.push(step);
+        }
+        //this.rounds = data.rounds;
         this.playerStats = data.playerStats;
     },
 
@@ -119,11 +134,23 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     onPostUpdate() {
+        const runtime = this.runtime;
         if(this.active && !ig.loading && !ig.game.paused) {
-            if(this.runtime.combatRankTimer <= 0) {
+            if(runtime.combatRankTimer <= 0) {
                 this.addRank(-ig.system.tick * 5, false);
             } else {
-                this.runtime.combatRankTimer -= ig.system.tick;
+                runtime.combatRankTimer -= ig.system.tick;
+            }
+
+            if(runtime.roundStarted && runtime.currentRoundStep!.canAdvanceRound()) {
+                runtime.roundStarted = false;
+
+                runtime.currentRoundStep = runtime.currentRoundStep!.next;
+                if(runtime.currentRoundStep) {
+                    this.startNextRound();
+                } else {
+                    //END THE CUP
+                }
             }
         }
     },
@@ -163,6 +190,7 @@ el.GauntletController = ig.GameAddon.extend({
         let cup = this.cups[name];
         this.runtime.currentCup = cup;
         this.runtime.currentRound = 0;
+        this.runtime.currentRoundStep = cup.roundSteps[0];
         sc.model.player.el_statOverride.applyOverride(cup.playerStats);
 
         this.storedPartyBehavior = sc.party.strategyKeys.BEHAVIOUR;
@@ -172,27 +200,20 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     startNextRound() {
-        let runtime = this.runtime;
-        runtime.currentRound++;
-        let cup = runtime.currentCup!;
-        if(runtime.currentRound > cup.rounds.length) {
-            // maybe do a crash or something later, but for debugging
-            // this is more than fine.
-            console.warn("Reached end of cup, and tried to go to next round!")
-            return;
-        }
-        let currentRound = cup.rounds[runtime.currentRound - 1];
-        let enemyTypes = cup.enemyTypes;
+        const runtime = this.runtime;
+        //let cup = runtime.currentCup!;
+        
+        runtime.roundStarted = true;
         runtime.roundEnemiesDefeated = 0;
-        runtime.roundEnemiesGoal = currentRound.enemies.length;
-        for(let enemy of currentRound.enemies) {
-            let type = enemyTypes[enemy.type];
-            let entity = this._spawnEnemy(type.enemyInfo, enemy.pos, currentRound.level + type.levelOffset);
-            entity.el_gauntletEnemyInfo = type;
-            if(type.buff) {
-                entity.params.addBuff(type.buff);
-            }
+        let step = runtime.currentRoundStep!;
+
+        if(step.advanceRoundNumber) runtime.currentRound++;
+        if(step) {
+            step.start();
+        } else {
+            console.warn("Tried to start next round when there was no round to start!")
         }
+        
         sc.Model.notifyObserver(this, el.GAUNTLET_MSG.ROUND_STARTED);
     },
 
@@ -207,7 +228,7 @@ el.GauntletController = ig.GameAddon.extend({
         }
         this.roundGui = ig.gui.createEventGui("round", "CounterHud", {
             taskTitle: ig.lang.get("sc.gui.el-gauntlet.round"),
-            maxCount: this.runtime.currentCup!.rounds.length,
+            maxCount: this.runtime.currentCup!.numRounds,
             time: 0.2,
             useDots: true,
             variable: "el-gauntlet.round",
@@ -241,14 +262,6 @@ el.GauntletController = ig.GameAddon.extend({
         this.partyStash.length = 0;
     },
 
-    checkForNextRound() {
-        let runtime = this.runtime;
-        if(runtime.roundEnemiesDefeated >= runtime.roundEnemiesGoal) {
-            //TODO: move to common event
-            this.startNextRound();
-        }
-    },
-
     onVarAccess(_path, keys) {
         if(keys[0] === "el-gauntlet") {
             switch(keys[1]) {
@@ -263,7 +276,10 @@ el.GauntletController = ig.GameAddon.extend({
         }
     },
 
-    _spawnEnemy(enemyInfo, marker, level, showEffects = true) {
+    spawnEnemy(enemyEntry, baseLevel, showEffects = true) {
+        let {type, pos: marker} = enemyEntry;
+        let enemyType = this._getEnemyType(type);
+        let {enemyInfo, buff, levelOffset} = enemyType;
         let pos = {...ig.game.getEntityByName(marker.marker).coll.pos};
         pos.x += marker.offX || 0;
         pos.y += marker.offY || 0;
@@ -277,10 +293,23 @@ el.GauntletController = ig.GameAddon.extend({
             {enemyInfo: enemyInfo.getSettings()},
             showEffects
         );
-        entity.setLevelOverride(level);
+        entity.setLevelOverride(baseLevel + levelOffset);
         entity.setTarget(ig.game.playerEntity, true)
 
+        entity.el_gauntletEnemyInfo = enemyType;
+        if(enemyType.buff) {
+            entity.params.addBuff(enemyType.buff);
+        }
+
         return entity;
+    },
+
+    _getEnemyType(enemyType) {
+        return this.runtime.currentCup!.enemyTypes[enemyType]
+    },
+
+    getRoundEnemiesDefeated() {
+        return this.active ? this.runtime!.roundEnemiesDefeated : 0;
     },
     //#endregion
 
@@ -290,7 +319,6 @@ el.GauntletController = ig.GameAddon.extend({
             if(victim instanceof ig.ENTITY.Enemy) {
                 this.addPoints(victim.getLevel() * 10 * victim.el_gauntletEnemyInfo!.pointMultiplier);
                 this.runtime.roundEnemiesDefeated++;
-                this.checkForNextRound();
                 if(this.addRank(10 * victim.enemyType.enduranceScale)) {
                     ig.gui.addGuiElement(createRankBox(victim))
                 }
@@ -353,6 +381,12 @@ el.GauntletController = ig.GameAddon.extend({
         //     runtime.curXp %= 1000;
         //     sc.Model.notifyObserver(this, el.GAUNTLET_MSG.LEVEL_CHANGED);
         // }
+    },
+
+    processLevel() {
+        if(this.active && this.runtime!.curXp >= 1000) {
+
+        }
     },
     //#endregion
 

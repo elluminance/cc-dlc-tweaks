@@ -55,9 +55,7 @@ declare global {
                 new (withLabel: boolean, exp?: number): GauntletExpEntry; 
             }
         }
-        interface GauntletExpEntry extends sc.ExpEntryGui {
-
-        }
+        interface GauntletExpEntry extends sc.ExpEntryGui {}
         let GauntletExpEntry: GauntletExpEntry.Constructor;
 
 
