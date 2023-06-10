@@ -48,6 +48,7 @@ declare global {
     }
 
     namespace el.GAUNTLET_STEP {
+        //#region SIMPLE_ENEMY_ROUND
         namespace SIMPLE_ENEMY_ROUND {
             interface Constructor extends ImpactClass<SIMPLE_ENEMY_ROUND>{
                 new (settings: Settings): SIMPLE_ENEMY_ROUND;
@@ -65,6 +66,58 @@ declare global {
             //numKilled: number;
         }
         let SIMPLE_ENEMY_ROUND: SIMPLE_ENEMY_ROUND.Constructor;
-    }
+        //#endregion
 
+        //#region CHANGE_VARS
+        namespace CHANGE_VARS {
+            interface Constructor extends ImpactClass<CHANGE_VARS>{
+                new (settings: Settings): CHANGE_VARS;
+            }
+
+            type VarVal = ig.VarValue | ig.Event.VarExpression<ig.VarValue>
+            interface Settings extends GauntletStepBase.Settings {
+                vars: Record<string, VarVal>;
+            }
+        }
+        interface CHANGE_VARS extends el.GauntletStepBase {
+            vars: Record<string, CHANGE_VARS.VarVal>;
+        }
+        let CHANGE_VARS: CHANGE_VARS.Constructor;
+        //#endregion
+
+        //#region DEBUG_LOG
+        namespace DEBUG_LOG {
+            interface Constructor extends ImpactClass<DEBUG_LOG>{
+                new (settings: Settings): DEBUG_LOG;
+            }
+
+            interface Settings extends GauntletStepBase.Settings {
+                msg: string;
+            }
+        }
+        interface DEBUG_LOG extends el.GauntletStepBase {
+            msg: string
+        }
+        let DEBUG_LOG: DEBUG_LOG.Constructor;
+        //#endregion
+        
+        //#region DO_EVENT
+        namespace DO_EVENT {
+            interface Constructor extends ImpactClass<DO_EVENT>{
+                new (settings: Settings): DO_EVENT;
+            }
+
+            interface Settings extends GauntletStepBase.Settings {
+                event: unknown[];
+                isBlocking: boolean;
+            }
+        }
+        interface DO_EVENT extends el.GauntletStepBase {
+            event: ig.Event;
+            isBlocking: boolean;
+            inEvent: boolean;
+        }
+        let DO_EVENT: DO_EVENT.Constructor;
+        //#endregion
+    }
 }

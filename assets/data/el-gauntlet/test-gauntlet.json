@@ -24,6 +24,25 @@
 
     "roundSteps": [
         {
+            "type": "CHANGE_VARS",
+            "vars": {
+                "tmp.fart": {
+                    "varName": "player.level"
+                }
+            }
+        },{
+            "type": "DEBUG_LOG",
+            "msg": "Changed the value of 'tmp.fart' to \\v[tmp.fart]!"
+        },{
+            "type": "DO_EVENT",
+            "isBlocking": true,
+            "event": [
+                {
+                    "type": "WAIT",
+                    "time": 3
+                }
+            ]
+        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 55,
             "enemies": [
@@ -52,8 +71,7 @@
                     }
                 }
             ]
-        },
-        {
+        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 56,
             "enemies": [
@@ -82,8 +100,7 @@
                     }
                 }
             ]
-        },
-        {
+        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 57,
             "enemies": [

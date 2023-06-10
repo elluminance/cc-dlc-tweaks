@@ -64,6 +64,7 @@ el.GauntletExpHud = sc.ExpHudGui.extend({
     },
 
     addExp(exp) {
+        
         if (this.expSum) {
             let entry = new el.GauntletExpEntry(false, exp);
             entry.doStateTransition("HIDDEN", true);
@@ -81,6 +82,8 @@ el.GauntletExpHud = sc.ExpHudGui.extend({
     },
 
     modelChanged(model, message, data) {
+        if(!el.gauntlet.active) return;
+        
         if(model === el.gauntlet) {
             switch(message) {
                 case el.GAUNTLET_MSG.EXP_CHANGED:
