@@ -34,7 +34,7 @@ declare global {
         }
         //behaves like action/event steps, but simplified
         interface GauntletStepBase extends ig.Class {
-            advanceRoundNumber: boolean;
+            isProperRound: boolean;
             next?: GauntletStep;
 
             //called when round is started
@@ -118,6 +118,29 @@ declare global {
             inEvent: boolean;
         }
         let DO_EVENT: DO_EVENT.Constructor;
+        //#endregion
+
+        //#region SPAWN_ENTITIES
+        namespace SPAWN_ENTITIES {
+            interface Constructor extends ImpactClass<SPAWN_ENTITIES>{
+                new (settings: Settings): SPAWN_ENTITIES;
+            }
+
+            interface EntityEntry {
+                type: string,
+                settings: ig.Entity.Settings;
+                posOffset: Vec3;
+                rootMarker?: string;
+            }
+
+            interface Settings extends GauntletStepBase.Settings {
+                entities: EntityEntry[];
+            }
+        }
+        interface SPAWN_ENTITIES extends el.GauntletStepBase {
+            entities: SPAWN_ENTITIES.EntityEntry[];
+        }
+        let SPAWN_ENTITIES: SPAWN_ENTITIES.Constructor;
         //#endregion
     }
 }

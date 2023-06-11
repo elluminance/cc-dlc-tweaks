@@ -39,7 +39,24 @@
             "event": [
                 {
                     "type": "WAIT",
-                    "time": 3
+                    "time": 0.2
+                }
+            ]
+        },{
+            "type": "SPAWN_ENTITIES",
+            "entities": [
+                {
+                    "type": "EL_Prism",
+                    "rootMarker": "PlayerStart",
+                    "name": "funny_prism",
+                    "offPos": {
+                        "x": 32,
+                        "y": 32,
+                        "z": 0
+                    },
+                    "settings": {
+                        "condition": "!tmp.hidePrism"
+                    }
                 }
             ]
         },{

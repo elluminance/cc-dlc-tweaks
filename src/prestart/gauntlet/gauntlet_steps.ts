@@ -1,5 +1,5 @@
 el.GauntletStepBase = ig.Class.extend({
-    advanceRoundNumber: false,
+    isProperRound: false,
     next: null,
 
     start() {},
@@ -13,7 +13,7 @@ el.GauntletStepBase = ig.Class.extend({
 el.GAUNTLET_STEP = {};
 
 el.GAUNTLET_STEP.SIMPLE_ENEMY_ROUND = el.GauntletStepBase.extend({
-    advanceRoundNumber: true,
+    isProperRound: true,
 
     enemies: [],
     level: 0,
@@ -89,4 +89,30 @@ el.GAUNTLET_STEP.DO_EVENT = el.GauntletStepBase.extend({
     canAdvanceRound() {
         return !this.inEvent;
     },
+})
+
+const vec3_temp = Vec3.create();
+//intended for things such as puzzle elements that are needed to defeat enemies.
+el.GAUNTLET_STEP.SPAWN_ENTITIES = el.GauntletStepBase.extend({
+    entities: [],
+
+    init(settings) {
+        this.entities = settings.entities;
+    },
+
+    start() {
+        for(const entity of this.entities) {
+            let marker = entity.rootMarker ? ig.game.getEntityByName(entity.rootMarker) : undefined;
+
+            if(marker) {
+                Vec3.assign(vec3_temp, marker.coll.pos)
+            } else {
+                Vec3.assignC(vec3_temp, 0, 0, 0);
+            }
+
+            Vec3.add(vec3_temp, entity.posOffset || {x: 0, y: 0, z: 0});
+
+            ig.game.spawnEntity(entity.type, vec3_temp.x, vec3_temp.y, vec3_temp.z, entity.settings)
+        }
+    }
 })

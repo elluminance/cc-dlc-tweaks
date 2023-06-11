@@ -96,7 +96,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
         for(const settings of data.roundSteps) {
             //@ts-expect-error does not like me calling this
             let step: el.GauntletStep = new el.GAUNTLET_STEP[settings.type](settings);
-            if(step.advanceRoundNumber) this.numRounds++;
+            if(step.isProperRound) this.numRounds++;
 
             if(prevStep) prevStep.next = step;
             prevStep = step;
@@ -207,7 +207,7 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.roundEnemiesDefeated = 0;
         let step = runtime.currentRoundStep!;
 
-        if(step.advanceRoundNumber) runtime.currentRound++;
+        if(step.isProperRound) runtime.currentRound++;
         if(step) {
             step.start();
         } else {
