@@ -34,27 +34,18 @@
             "type": "DEBUG_LOG",
             "msg": "Changed the value of 'tmp.fart' to \\v[tmp.fart]!"
         },{
-            "type": "DO_EVENT",
-            "isBlocking": true,
-            "event": [
-                {
-                    "type": "WAIT",
-                    "time": 0.2
-                }
-            ]
-        },{
             "type": "SPAWN_ENTITIES",
             "entities": [
                 {
                     "type": "EL_Prism",
-                    "rootMarker": "PlayerStart",
-                    "name": "funny_prism",
+                    "marker": "PlayerStart",
                     "offPos": {
                         "x": 32,
                         "y": 32,
                         "z": 0
                     },
                     "settings": {
+                        "name": "funny_prism",
                         "condition": "!tmp.hidePrism"
                     }
                 }
@@ -89,6 +80,73 @@
                 }
             ]
         },{
+            "type": "KILL_ENTITIES",
+            "entities": [
+                {
+                    "name": "funny_prism"
+                }
+            ]
+        },{
+            "type": "SPAWN_ENTITIES",
+            "entities": [
+                {
+                    "type": "Magnet",
+                    "marker": "SpawnNW",
+                    "offPos": {
+                        "x": -48,
+                        "y": -80,
+                        "z": 0
+                    },
+                    "settings": {
+                        "dir": "SOUTH",
+                        "name": "magnet_NW",
+                        "spawnCondition": "true"
+                    }
+                },
+                {
+                    "type": "Magnet",
+                    "marker": "SpawnNE",
+                    "offPos": {
+                        "x": 48,
+                        "y": -80,
+                        "z": 0
+                    },
+                    "settings": {
+                        "dir": "SOUTH",
+                        "name": "magnet_NE",
+                        "spawnCondition": "true"
+                    }
+                },
+                {
+                    "type": "Magnet",
+                    "marker": "SpawnSW",
+                    "offPos": {
+                        "x": -48,
+                        "y": 80,
+                        "z": 0
+                    },
+                    "settings": {
+                        "dir": "NORTH",
+                        "name": "magnet_SW",
+                        "spawnCondition": "true"
+                    }
+                },
+                {
+                    "type": "Magnet",
+                    "marker": "SpawnSE",
+                    "offPos": {
+                        "x": 48,
+                        "y": 80,
+                        "z": 0
+                    },
+                    "settings": {
+                        "dir": "NORTH",
+                        "name": "magnet_SE",
+                        "spawnCondition": "true"
+                    }
+                }
+            ]
+        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 56,
             "enemies": [
@@ -116,6 +174,14 @@
                         "marker": "SpawnSE"
                     }
                 }
+            ]
+        },{
+            "type": "KILL_ENTITIES",
+            "entities": [
+                "magnet_NW",
+                "magnet_NE",
+                "magnet_SW",
+                "magnet_SE"
             ]
         },{
             "type": "SIMPLE_ENEMY_ROUND",

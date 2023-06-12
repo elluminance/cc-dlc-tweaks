@@ -129,8 +129,8 @@ declare global {
             interface EntityEntry {
                 type: string,
                 settings: ig.Entity.Settings;
-                posOffset: Vec3;
-                rootMarker?: string;
+                offPos: Vec3;
+                marker?: string;
             }
 
             interface Settings extends GauntletStepBase.Settings {
@@ -141,6 +141,32 @@ declare global {
             entities: SPAWN_ENTITIES.EntityEntry[];
         }
         let SPAWN_ENTITIES: SPAWN_ENTITIES.Constructor;
+        //#endregion
+
+        //#region KILL_ENTITIES
+        namespace KILL_ENTITIES {
+            interface Constructor extends ImpactClass<KILL_ENTITIES>{
+                new (settings: Settings): KILL_ENTITIES;
+            }
+
+            interface EntityEntryData {
+                name: string;
+                killEffect?: ig.EffectHandle.Settings
+            }
+
+            interface EntityEntry {
+                name: string;
+                killEffect: ig.EffectHandle | null
+            }
+
+            interface Settings extends GauntletStepBase.Settings {
+                entities: (EntityEntryData | string)[];
+            }
+        }
+        interface KILL_ENTITIES extends el.GauntletStepBase {
+            entities: KILL_ENTITIES.EntityEntry[];
+        }
+        let KILL_ENTITIES: KILL_ENTITIES.Constructor;
         //#endregion
     }
 }

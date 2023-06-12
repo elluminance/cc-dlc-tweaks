@@ -102,7 +102,7 @@ el.GAUNTLET_STEP.SPAWN_ENTITIES = el.GauntletStepBase.extend({
 
     start() {
         for(const entity of this.entities) {
-            let marker = entity.rootMarker ? ig.game.getEntityByName(entity.rootMarker) : undefined;
+            let marker = entity.marker ? ig.game.getEntityByName(entity.marker) : undefined;
 
             if(marker) {
                 Vec3.assign(vec3_temp, marker.coll.pos)
@@ -110,9 +110,46 @@ el.GAUNTLET_STEP.SPAWN_ENTITIES = el.GauntletStepBase.extend({
                 Vec3.assignC(vec3_temp, 0, 0, 0);
             }
 
-            Vec3.add(vec3_temp, entity.posOffset || {x: 0, y: 0, z: 0});
+            Vec3.add(vec3_temp, entity.offPos || {x: 0, y: 0, z: 0});
 
             ig.game.spawnEntity(entity.type, vec3_temp.x, vec3_temp.y, vec3_temp.z, entity.settings)
         }
     }
+})
+
+el.GAUNTLET_STEP.KILL_ENTITIES = el.GauntletStepBase.extend({
+    entities: [],
+
+    init(settings) {
+        for(let entity of settings.entities) {
+            if(typeof entity == "string") {
+                this.entities.push({
+                    name: entity,
+                    killEffect: null
+                })
+            } else {
+                this.entities.push({
+                    name: entity.name,
+                    killEffect: entity.killEffect ? new ig.EffectHandle(entity.killEffect) : null,
+                })
+            }
+        }
+    },
+
+    start() {
+        for(let entityData of this.entities) {
+            let callback = {
+                onEffectEvent(effect: ig.ENTITY.Effect) {
+                    if(effect.isDone()) entity.kill()
+                }
+            }
+            let entity = ig.game.getEntityByName(entityData.name);
+
+            if(entityData.killEffect) {
+                entityData.killEffect.spawnOnTarget(entity, {callback});
+            } else {
+                ig.game.effects.teleport.spawnOnTarget("hideDefault", entity, {callback});
+            }
+        }
+    },
 })
