@@ -36,15 +36,29 @@ declare global {
         interface GauntletStepBase extends ig.Class {
             isProperRound: boolean;
             next?: GauntletStep;
+            cup: el.GauntletCup
 
             //called when round is started
-            start(this: this): void;
+            start(this: this, runtime: el.GauntletController.Runtime): void;
             //called every update loop to see if round is finished.
             //returns true if ready to advance to next round.
             canAdvanceRound(this: this): boolean;
+
+            nextStep(this: this): [el.GauntletStep | undefined, el.GauntletStep | undefined];
+            getBranch?(this: this): el.GauntletStep | undefined;
         }
         let GauntletStepBase: GauntletStepBase.Constructor;
         type GauntletStep = GauntletStepBase;
+
+        namespace GauntletFunction {
+            interface Constructor extends ImpactClass<GauntletFunction> {
+                new (steps: GauntletStep[]): GauntletFunction
+            }
+        }
+        interface GauntletFunction extends ig.Class {
+            steps: GauntletStep[];
+        }
+        let GauntletFunction: GauntletFunction.Constructor;
     }
 
     namespace el.GAUNTLET_STEP {
@@ -167,6 +181,34 @@ declare global {
             entities: KILL_ENTITIES.EntityEntry[];
         }
         let KILL_ENTITIES: KILL_ENTITIES.Constructor;
+        //#endregion
+    
+        //#region CALL_FUNCTION
+        namespace CALL_FUNCTION {
+            interface Constructor extends ImpactClass<CALL_FUNCTION>{
+                new (settings: Settings): CALL_FUNCTION;
+            }
+
+            interface Settings extends GauntletStepBase.Settings {
+                name: string;
+            }
+        }
+        interface CALL_FUNCTION extends el.GauntletStepBase {
+            name: string
+        }
+        let CALL_FUNCTION: CALL_FUNCTION.Constructor;
+        //#endregion
+    
+        //#region RETURN
+        // namespace RETURN {
+        //     interface Constructor extends ImpactClass<RETURN>{
+        //         new (settings: Settings): RETURN;
+        //     }
+
+        //     interface Settings extends GauntletStepBase.Settings {}
+        // }
+        // interface RETURN extends el.GauntletStepBase {}
+        // let RETURN: RETURN.Constructor;
         //#endregion
     }
 }

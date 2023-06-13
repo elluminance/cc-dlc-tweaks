@@ -4,9 +4,14 @@ el.GauntletStepBase = ig.Class.extend({
 
     start() {},
     canAdvanceRound() {
-        //assumes a step that does not override run doesn't need to wait.
+        //assumes a step that does not override this doesn't need to wait.
         return true;
-    }
+    },
+
+    //do not override this! override getBranch if you need to!
+    nextStep() {
+        return [this.next, this.getBranch?.()];
+    },
 })
 
 //@ts-expect-error
@@ -91,6 +96,7 @@ el.GAUNTLET_STEP.DO_EVENT = el.GauntletStepBase.extend({
     },
 })
 
+//#region Entity Manipulation
 const vec3_temp = Vec3.create();
 //intended for things such as puzzle elements that are needed to defeat enemies.
 el.GAUNTLET_STEP.SPAWN_ENTITIES = el.GauntletStepBase.extend({
@@ -153,3 +159,31 @@ el.GAUNTLET_STEP.KILL_ENTITIES = el.GauntletStepBase.extend({
         }
     },
 })
+//#endregion
+
+//#region Functions
+el.GauntletFunction = ig.Class.extend({
+    init(steps) {
+        this.steps = steps;
+    }
+})
+
+el.GAUNTLET_STEP.CALL_FUNCTION = el.GauntletStepBase.extend({
+    init(settings) {
+        this.name = settings.name
+    },
+
+    getBranch() {
+        if(!(this.name in this.cup.functions)) throw Error(`Function ${this.name} not found.`)
+        return this.cup.functions[this.name].steps[0];
+    },
+})
+
+// el.GAUNTLET_STEP.RETURN = el.GauntletStepBase.extend({
+//     init() {
+//         this.next = undefined;
+//     }
+// })
+//#endregion
+
+sc.EnemyPageGeneralInfo

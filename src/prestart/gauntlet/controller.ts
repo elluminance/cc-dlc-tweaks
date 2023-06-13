@@ -43,13 +43,35 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
     currentRound: 0,
     roundEnemiesDefeated: 0,
     roundEnemiesGoal: 0,
-    currentRoundStep: null,
-    roundStarted: false,
+    steps: {
+        callstack: []
+    },
+    gauntletStarted: false,
 
     combatRankLevel: 0,
     combatRankProgress: 0,
     combatRankTimer: 0,
-} as const;
+};
+
+function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
+    let numRounds = 0;
+    let roundSteps = [];
+    let prevStep: el.GauntletStep | undefined = undefined;
+    for(const settings of steps) {
+        //@ts-expect-error does not like me calling this
+        let step: el.GauntletStep = new el.GAUNTLET_STEP[settings.type](settings);
+        if(step.isProperRound) numRounds++;
+        
+        step.cup = cup;
+
+        if(prevStep) prevStep.next = step;
+        prevStep = step;
+
+        roundSteps.push(step);
+    }
+
+    return [roundSteps, numRounds]
+}
 
 el.GauntletCup = ig.JsonLoadable.extend({
     enemyTypes: null,
@@ -90,19 +112,17 @@ el.GauntletCup = ig.JsonLoadable.extend({
             }
         }
 
-        this.numRounds = 0;
-        this.roundSteps = [];
-        let prevStep: el.GauntletStep | undefined = undefined;
-        for(const settings of data.roundSteps) {
-            //@ts-expect-error does not like me calling this
-            let step: el.GauntletStep = new el.GAUNTLET_STEP[settings.type](settings);
-            if(step.isProperRound) this.numRounds++;
+        this.functions = {};
+        if(data.functions) for(let [name, func] of Object.entries(data.functions)) {
+            let [stepList, stepCount] = compileSteps(func.steps, this)
+            
+            if (stepCount > 0) console.error("Warning: Gauntlet functions are not supposed to have round-based steps!")
 
-            if(prevStep) prevStep.next = step;
-            prevStep = step;
-
-            this.roundSteps.push(step);
+            this.functions[name] = new el.GauntletFunction(stepList)
         }
+        
+        [this.roundSteps, this.numRounds] = compileSteps(data.roundSteps, this);
+        
         //this.rounds = data.rounds;
         this.playerStats = data.playerStats;
     },
@@ -142,14 +162,28 @@ el.GauntletController = ig.GameAddon.extend({
                 runtime.combatRankTimer -= ig.system.tick;
             }
 
-            if(runtime.roundStarted && runtime.currentRoundStep!.canAdvanceRound()) {
-                runtime.roundStarted = false;
+            let callstack = runtime.steps.callstack;
+            //let currentStep: el.GauntletStep;
 
-                runtime.currentRoundStep = runtime.currentRoundStep!.next;
-                if(runtime.currentRoundStep) {
-                    this.startNextRound();
-                } else {
-                    //END THE CUP
+
+            if(runtime.gauntletStarted) {
+                //will run through all valid rounds it can
+                while(callstack.length > 0) {
+                    let lastStep = callstack.last();
+                    if(lastStep.canAdvanceRound()) {
+                        let [nextStep, branchStep] = lastStep.nextStep();
+
+                        if(nextStep) callstack[callstack.length-1] = nextStep;
+                        else callstack.pop();
+                        
+                        if(branchStep) callstack.push(branchStep);
+
+                        if(callstack.length > 0) this.startNextRound();
+                    } else break;
+                }
+    
+                if(callstack.length === 0) {
+                    // end the cup! 
                 }
             }
         }
@@ -159,6 +193,8 @@ el.GauntletController = ig.GameAddon.extend({
         if(this.active) {
             sc.commonEvents.startCallEvent("el-gauntlet-start-cup");
             this.addGui();
+            this.runtime.steps.callstack.push(this.runtime.currentCup!.roundSteps[0]);
+
         }
     },
     
@@ -178,7 +214,7 @@ el.GauntletController = ig.GameAddon.extend({
         }
     },
 
-    startGauntlet(name) {
+    enterGauntletMode(name) {
         this.active = true;
 
         sc.model.setMobilityBlock("CHECKPOINT")
@@ -190,7 +226,6 @@ el.GauntletController = ig.GameAddon.extend({
         let cup = this.cups[name];
         this.runtime.currentCup = cup;
         this.runtime.currentRound = 0;
-        this.runtime.currentRoundStep = cup.roundSteps[0];
         sc.model.player.el_statOverride.applyOverride(cup.playerStats);
 
         this.storedPartyBehavior = sc.party.strategyKeys.BEHAVIOUR;
@@ -199,17 +234,23 @@ el.GauntletController = ig.GameAddon.extend({
         ig.game.teleport(cup.map, cup.marker ? new ig.TeleportPosition(cup.marker) : null)
     },
 
+    beginGauntlet() {
+        if(this.active) {
+            this.runtime.gauntletStarted = true;
+        }
+    },
+
     startNextRound() {
         const runtime = this.runtime;
         //let cup = runtime.currentCup!;
         
-        runtime.roundStarted = true;
+        runtime.gauntletStarted = true;
         runtime.roundEnemiesDefeated = 0;
-        let step = runtime.currentRoundStep!;
+        let step = runtime.steps.callstack.last()!;
 
         if(step.isProperRound) runtime.currentRound++;
         if(step) {
-            step.start();
+            step.start(runtime);
         } else {
             console.warn("Tried to start next round when there was no round to start!")
         }

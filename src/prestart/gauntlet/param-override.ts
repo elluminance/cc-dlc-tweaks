@@ -52,13 +52,16 @@ sc.PlayerModel.inject({
             }
             let curSp = this.params.currentSp;
             if(this.el_statOverride.spLevel) {
-                this.params.setMaxSp(sc.SP_LEVEL[this.el_statOverride.spLevel]);
+                let maxSp = sc.SP_LEVEL[this.el_statOverride.spLevel];
+                this.params.setMaxSp(maxSp);
+                this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
             }
             this.params.currentSp = Math.min(curSp, this.params.maxSp);
             this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
             sc.Model.notifyObserver(this, sc.PLAYER_MSG.STATS_CHANGED);
         } else {
             this.params.setMaxSp(sc.SP_LEVEL[this.spLevel]);
+            this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
             this.parent();
         }
     },

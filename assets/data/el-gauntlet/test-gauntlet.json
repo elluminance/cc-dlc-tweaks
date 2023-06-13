@@ -7,10 +7,10 @@
     "marker": "PlayerStart",
 
     "playerStats": {
-        "hp": 3600,
-        "attack": 400000,
-        "defense": 360,
-        "focus": 360,
+        "hp": 3000,
+        "attack": 360,
+        "defense": 300,
+        "focus": 300,
 
         "spLevel": 2
     },
@@ -87,6 +87,75 @@
                 }
             ]
         },{
+            "type": "CALL_FUNCTION",
+            "name": "SpawnMagnets"
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 56,
+            "enemies": [
+                {
+                    "type": "octopus",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "octopus",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "octopus",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "octopus",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },{
+            "type": "CALL_FUNCTION",
+            "name": "KillMagnets"
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 57,
+            "enemies": [
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        }
+    ],
+
+    "functions": {
+        "SpawnMagnets": {
+            "steps": [{
             "type": "SPAWN_ENTITIES",
             "entities": [
                 {
@@ -146,74 +215,21 @@
                     }
                 }
             ]
-        },{
-            "type": "SIMPLE_ENEMY_ROUND",
-            "level": 56,
-            "enemies": [
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnNW"
-                    }
-                },
-                {
-                    "type": "hedgehag-leveled",
-                    "pos": {
-                        "marker": "SpawnNE"
-                    }
-                },
-                {
-                    "type": "hedgehag-leveled",
-                    "pos": {
-                        "marker": "SpawnSW"
-                    }
-                },
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnSE"
-                    }
-                }
-            ]
-        },{
-            "type": "KILL_ENTITIES",
-            "entities": [
-                "magnet_NW",
-                "magnet_NE",
-                "magnet_SW",
-                "magnet_SE"
-            ]
-        },{
-            "type": "SIMPLE_ENEMY_ROUND",
-            "level": 57,
-            "enemies": [
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnNW"
-                    }
-                },
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnNE"
-                    }
-                },
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnSW"
-                    }
-                },
-                {
-                    "type": "hedgehag",
-                    "pos": {
-                        "marker": "SpawnSE"
-                    }
-                }
-            ]
+            }]
+        },
+
+        "KillMagnets": {
+            "steps": [{
+                "type": "KILL_ENTITIES",
+                "entities": [
+                    "magnet_NW",
+                    "magnet_NE",
+                    "magnet_SW",
+                    "magnet_SE"
+                ]
+            }]
         }
-    ],
+    },
 
     "enemyTypes": {
         "hedgehag": {
@@ -238,6 +254,13 @@
             },
             "xp": 110,
             "pointMultiplier": 1.25
+        },
+
+        "octopus": {
+            "settings": {
+                "type": "jungle.octopus"
+            },
+            "xp": 90
         }
     }
 }

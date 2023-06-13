@@ -27,14 +27,21 @@ declare global {
         }
 
         namespace GauntletController {
+            interface StepData {
+                //currentStep?: el.GauntletStep;
+                callstack: el.GauntletStep[];
+                
+            }
+
             interface Runtime {
                 currentCup: GauntletCup | null;
                 
                 currentRound: number;
-                currentRoundStep?: GauntletStep | null;
+                steps: StepData;
+                //currentRoundStep?: GauntletStep | null;
                 roundEnemiesDefeated: number;
                 roundEnemiesGoal: number;
-                roundStarted: boolean;
+                gauntletStarted: boolean;
 
                 curPoints: number;
                 totalPoints: number;
@@ -74,9 +81,9 @@ declare global {
 
             registerCup(this: this, name: string | string[]): void;
 
-            startGauntlet(this: this, name: string): void;
+            enterGauntletMode(this: this, name: string): void;
+            beginGauntlet(this: this): void;
             startNextRound(this: this): void;
-            //checkForNextRound(this: this): void;
             spawnEnemy(
                 this: this,
                 enemyEntry: GauntletController.EnemyEntry,
@@ -145,6 +152,10 @@ declare global {
                 pointMultiplier?: number;
             }
 
+            interface FunctionEntry {
+                steps: GauntletStepBase.Settings[];
+            }
+
             interface Data {
                 name: ig.LangLabel.Data;
                 description: ig.LangLabel.Data;
@@ -155,6 +166,7 @@ declare global {
 
                 enemyTypes: Record<string, EnemyInfoData>;
                 roundSteps: GauntletStepBase.Settings[];
+                functions?: Record<string, FunctionEntry>;
                 playerStats: StatOverride.OverrideEntry;
             }
         }
@@ -166,6 +178,7 @@ declare global {
             desc: string;
             condition: ig.VarCondition;
             roundSteps: GauntletStep[];
+            functions: Record<string, GauntletFunction>
             playerStats: StatOverride.OverrideEntry;
             map: string;
             marker?: string;
