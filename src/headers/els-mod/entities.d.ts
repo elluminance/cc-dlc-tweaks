@@ -10,7 +10,7 @@ declare global {
             namespace Ball {
                 interface PrismData {
                     timer: number;
-                    rootBall: ig.ENTITY.Ball | null;
+                    rootBall: Optional<ig.ENTITY.Ball>;
                     children: ig.ENTITY.Ball[];
                 }
             }

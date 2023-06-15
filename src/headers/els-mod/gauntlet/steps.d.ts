@@ -170,7 +170,7 @@ declare global {
 
             interface EntityEntry {
                 name: string;
-                killEffect: ig.EffectHandle | null
+                killEffect: Optional<ig.EffectHandle>;
             }
 
             interface Settings extends GauntletStepBase.Settings {
@@ -197,18 +197,6 @@ declare global {
             name: string
         }
         let CALL_FUNCTION: CALL_FUNCTION.Constructor;
-        //#endregion
-    
-        //#region RETURN
-        // namespace RETURN {
-        //     interface Constructor extends ImpactClass<RETURN>{
-        //         new (settings: Settings): RETURN;
-        //     }
-
-        //     interface Settings extends GauntletStepBase.Settings {}
-        // }
-        // interface RETURN extends el.GauntletStepBase {}
-        // let RETURN: RETURN.Constructor;
         //#endregion
     }
 }

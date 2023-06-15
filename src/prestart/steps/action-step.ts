@@ -48,7 +48,7 @@ ig.ACTION_STEP.SET_TEMP_TARGET.CustomTargetFunctions["NEARBY_ALLY"] = (combatant
     let entities = ig.game.getEntitiesInCircle(entityPos, ig.system.width / 2, 1, 32, combatant.face, -c / 2, c / 2, combatant)
     let d = 0;
     let e = entities.length;
-    let curClosestEntity: ig.ENTITY.Combatant | null = null;
+    let curClosestEntity: Optional<ig.ENTITY.Combatant> = null;
     for (; e--;) {
         let f = entities[e];
         if ((f instanceof ig.ENTITY.Combatant) && f.party === (combatant as ig.ENTITY.Combatant).party) {

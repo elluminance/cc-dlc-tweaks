@@ -56,7 +56,7 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
     let numRounds = 0;
     let roundSteps = [];
-    let prevStep: el.GauntletStep | undefined = undefined;
+    let prevStep: Optional<el.GauntletStep> = undefined;
     for(const settings of steps) {
         //@ts-expect-error does not like me calling this
         let step: el.GauntletStep = new el.GAUNTLET_STEP[settings.type](settings);
@@ -102,13 +102,21 @@ el.GauntletCup = ig.JsonLoadable.extend({
                     statChange.params[param] = type.buff[param];
                 }
             }
+
+            let effect: Optional<ig.EffectHandle>;
+            if(type.effect) {
+                effect = new ig.EffectHandle(type.effect);
+            }
             
             this.enemyTypes[name] = {
                 enemyInfo: new sc.EnemyInfo(type.settings),
                 xp: type.xp,
-                buff: statChange,
+
                 levelOffset: type.levelOffset || 0,
                 pointMultiplier: type.pointMultiplier || 1,
+
+                buff: statChange,
+                effect,
             }
         }
 
@@ -320,7 +328,7 @@ el.GauntletController = ig.GameAddon.extend({
     spawnEnemy(enemyEntry, baseLevel, showEffects = true) {
         let {type, pos: marker} = enemyEntry;
         let enemyType = this._getEnemyType(type);
-        let {enemyInfo, buff, levelOffset} = enemyType;
+        let {enemyInfo, buff, levelOffset, effect} = enemyType;
         let pos = {...ig.game.getEntityByName(marker.marker).coll.pos};
         pos.x += marker.offX || 0;
         pos.y += marker.offY || 0;
@@ -338,8 +346,15 @@ el.GauntletController = ig.GameAddon.extend({
         entity.setTarget(ig.game.playerEntity, true)
 
         entity.el_gauntletEnemyInfo = enemyType;
-        if(enemyType.buff) {
-            entity.params.addBuff(enemyType.buff);
+        if(buff) {
+            entity.params.addBuff(buff);
+        }
+        if(effect) {
+            effect.spawnOnTarget(entity, {
+                align: "CENTER",
+                duration: -1,
+                group: "gauntlet_fx"
+            })
         }
 
         return entity;

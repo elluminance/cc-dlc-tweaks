@@ -15,6 +15,5 @@
         "allowJs": true,
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
-        "watch": true
     }
 }

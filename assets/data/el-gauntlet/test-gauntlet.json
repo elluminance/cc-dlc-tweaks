@@ -9,8 +9,8 @@
     "playerStats": {
         "hp": 3000,
         "attack": 360,
-        "defense": 300,
-        "focus": 300,
+        "defense": 360,
+        "focus": 360,
 
         "spLevel": 2
     },
@@ -236,14 +236,24 @@
             "settings": {
                 "type": "hedgehog"
             },
-            "xp": 90
+            "xp": 90,
+
+            "effect": {
+                "sheet": "combatant",
+                "name": "boosted"
+            }
         },
         "hedgehag-leveled": {
             "settings": {
                 "type": "hedgehog"
             },
             "xp": 125,
-            "levelOffset": 5
+            "levelOffset": 5,
+
+            "effect": {
+                "sheet": "combatant",
+                "name": "boosted"
+            }
         },
         "hedgehag-atk": {
             "settings": {

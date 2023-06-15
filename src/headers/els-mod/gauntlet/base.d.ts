@@ -34,7 +34,7 @@ declare global {
             }
 
             interface Runtime {
-                currentCup: GauntletCup | null;
+                currentCup: Optional<GauntletCup>;
                 
                 currentRound: number;
                 steps: StepData;
@@ -140,6 +140,7 @@ declare global {
                 enemyInfo: sc.EnemyInfo;
                 xp: number;
                 buff: sc.StatChange;
+                effect?: Optional<ig.EffectHandle>;
                 levelOffset: number;
                 pointMultiplier: number
             }
@@ -148,6 +149,7 @@ declare global {
                 settings: sc.EnemyInfo.Settings;
                 xp: number;
                 buff?: Partial<sc.StatChange.Params>;
+                effect?: ig.EffectHandle.Settings;
                 levelOffset?: number;
                 pointMultiplier?: number;
             }

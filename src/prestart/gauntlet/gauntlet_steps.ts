@@ -178,12 +178,4 @@ el.GAUNTLET_STEP.CALL_FUNCTION = el.GauntletStepBase.extend({
         return this.cup.functions[this.name].steps[0];
     },
 })
-
-// el.GAUNTLET_STEP.RETURN = el.GauntletStepBase.extend({
-//     init() {
-//         this.next = undefined;
-//     }
-// })
 //#endregion
-
-sc.EnemyPageGeneralInfo
