@@ -2,11 +2,7 @@ export {};
 
 declare global {
     namespace sc {
-        interface PlayerModel {
-            el_statOverride: el.StatOverride;
-
-            el_enableStatOverride(this: this, active: boolean): void;
-        }
+        interface PlayerModel extends el.StatOverride.SupportsOverride {}
     }
 
     namespace el {
@@ -20,7 +16,7 @@ declare global {
             }
 
             interface Constructor extends ImpactClass<StatOverride> {
-                new (root: sc.PlayerModel): StatOverride;
+                new (stats: StatOverride.OverrideEntry): StatOverride;
             }
 
             interface OverrideEntry {
@@ -31,10 +27,28 @@ declare global {
                 modifiers?: Partial<Record<keyof sc.MODIFIERS, number>>;
                 spLevel?: number;
             }
+
+            interface StatModification {
+                hp?: number;
+                attack?: number;
+                defense?: number;
+                focus?: number;
+            }
+
+
+
+            interface SupportsOverride {
+                statOverride?: Optional<el.StatOverride>;
+    
+                //el_enableStatOverride(this: this, active: boolean): void;
+                el_updateStatOverride(this: this): void;
+            }
+
+            type UpdateMode = "add" | "set" | "mul";
         }
 
         interface StatOverride extends ig.Class {
-            root: sc.PlayerModel;
+            roots: Set<StatOverride.SupportsOverride>;
             hp: number;
             attack: number;
             defense: number;
@@ -48,8 +62,9 @@ declare global {
 
             setActive(this: this, state: boolean): void;
             applyOverride(this: this, override: StatOverride.OverrideEntry): void;
-            setStat(this: this, stat: string, value: number): void;
-            addStat(this: this, stat: string, value: number): void;
+            updateStats(this: this, stats: StatOverride.StatModification, changeMode?: StatOverride.UpdateMode, factor?: number): void;
+            applyModel(this: this, model: el.StatOverride.SupportsOverride): void;
+            removeModel(this: this, model: el.StatOverride.SupportsOverride): void;
         }
 
         let StatOverride: StatOverride.Constructor;

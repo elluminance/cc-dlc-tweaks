@@ -15,11 +15,11 @@
         "spLevel": 2
     },
 
-    "playerStatIncrease": {
-        "hp": 20,
-        "attack": 5,
-        "defense": 5,
-        "focus": 5
+    "statIncrease": {
+        "hp": 50,
+        "attack": 10,
+        "defense": 10,
+        "focus": 10
     },
 
     "roundSteps": [
@@ -106,13 +106,13 @@
                     }
                 },
                 {
-                    "type": "octopus",
+                    "type": "hedgehag-atk",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "octopus",
+                    "type": "hedgehag-atk",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -124,6 +124,35 @@
         },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 57,
+            "enemies": [
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 58,
             "enemies": [
                 {
                     "type": "hedgehag",
@@ -236,7 +265,7 @@
             "settings": {
                 "type": "hedgehog"
             },
-            "xp": 90,
+            "xp": 100,
 
             "effect": {
                 "sheet": "combatant",
@@ -262,7 +291,7 @@
             "buff": {
                 "attack": 1.2
             },
-            "xp": 110,
+            "xp": 115,
             "pointMultiplier": 1.25
         },
 
@@ -270,7 +299,7 @@
             "settings": {
                 "type": "jungle.octopus"
             },
-            "xp": 90
+            "xp": 100
         }
     }
 }

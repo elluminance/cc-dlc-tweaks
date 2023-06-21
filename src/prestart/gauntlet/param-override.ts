@@ -17,29 +17,29 @@ sc.SP_REGEN_SPEED[24] = 2;
 sc.SP_REGEN_SPEED[28] = 2.2;
 sc.SP_REGEN_SPEED[32] = 2.4;
 
+
+
 sc.PlayerModel.inject({
-    el_statOverride: null,
+    statOverride: null,
 
     init() {
         this.parent();
-
-        this.el_statOverride = new el.StatOverride(this);
     },
 
     reset() {
-        this.el_statOverride.setActive(false);
+        this.statOverride = null;
         this.parent();
     },
 
     updateStats() {
-        if(this.el_statOverride.active) {
-            this.baseParams.hp = this.el_statOverride.hp;
-            this.baseParams.attack = this.el_statOverride.attack;
-            this.baseParams.defense = this.el_statOverride.defense;
-            this.baseParams.focus = this.el_statOverride.focus;
+        if(this.statOverride?.active) {
+            this.baseParams.hp = this.statOverride.hp;
+            this.baseParams.attack = this.statOverride.attack;
+            this.baseParams.defense = this.statOverride.defense;
+            this.baseParams.focus = this.statOverride.focus;
             for(let element in sc.ELEMENT) {
                 let config = this.elementConfigs[sc.ELEMENT[element as keyof typeof sc.ELEMENT]];
-                let elemBonus = this.el_statOverride.elementBonus[element as keyof typeof sc.ELEMENT];
+                let elemBonus = this.statOverride.elementBonus[element as keyof typeof sc.ELEMENT];
                 
                 let actions = config.activeActions;
                 config.preSkillInit();
@@ -51,10 +51,11 @@ sc.PlayerModel.inject({
                 config.update(this.baseParams, {});
             }
             let curSp = this.params.currentSp;
-            if(this.el_statOverride.spLevel) {
-                let maxSp = sc.SP_LEVEL[this.el_statOverride.spLevel];
+            if(this.statOverride.spLevel) {
+                let maxSp = sc.SP_LEVEL[this.statOverride.spLevel];
                 this.params.setMaxSp(maxSp);
                 this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
+                sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED)
             }
             this.params.currentSp = Math.min(curSp, this.params.maxSp);
             this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
@@ -62,16 +63,18 @@ sc.PlayerModel.inject({
         } else {
             this.params.setMaxSp(sc.SP_LEVEL[this.spLevel]);
             this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
+            sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED)
             this.parent();
         }
     },
 
-    el_enableStatOverride(state) {
-        this.el_statOverride.setActive(state);
+    el_updateStatOverride() {
+        this.updateStats();
     }
 })
 
 el.StatOverride = ig.Class.extend({
+    roots: null,
     hp: 3600,
     attack: 360,
     defense: 360,
@@ -123,41 +126,68 @@ el.StatOverride = ig.Class.extend({
     },
     active: false,
 
-    init(root) {
-        this.root = root;
+    init(stats) {
+        this.hp = stats.hp;
+        this.attack = stats.attack;
+        this.defense = stats.defense;
+        this.hp = stats.hp;
+        this.spLevel = stats.spLevel;
+        this.modifiers = {...(stats.modifiers || {})};
+        this.active = true;
+        
+        this.roots = new Set();
     },
 
     setActive(state) {
         this.active = state;
 
-        this.root.updateStats();
+        for(let root of this.roots) root.el_updateStatOverride();
     },
 
-    applyOverride(override) {
-        this.hp = override.hp;
-        this.attack = override.attack;
-        this.defense = override.defense;
-        this.focus = override.focus;
-
-        if(override.modifiers) {
-            this.modifiers = {...override.modifiers};
-        } else {
-            this.modifiers = {};
+    updateStats(stats, changeMode = "set", factor = 1) {
+        switch(changeMode) {
+            case "set":
+                if(stats.hp) this.hp = stats.hp * factor;
+                if(stats.attack) this.attack = stats.attack * factor;
+                if(stats.defense) this.defense = stats.defense * factor;
+                if(stats.focus) this.focus = stats.focus * factor;
+                break;
+            case "add":
+                if(stats.hp) this.hp += stats.hp * factor;
+                if(stats.attack) this.attack += stats.attack * factor;
+                if(stats.defense) this.defense += stats.defense * factor;
+                if(stats.focus) this.focus += stats.focus * factor;
+                break;
+            case "mul":
+                if(stats.hp) this.hp *= stats.hp * factor;
+                if(stats.attack) this.attack *= stats.attack * factor;
+                if(stats.defense) this.defense *= stats.defense * factor;
+                if(stats.focus) this.focus *= stats.focus * factor;
+                break;
         }
 
-        this.setActive(true);
-    },
-})
-
-ig.EVENT_STEP.EL_ENABLE_STAT_OVERRIDE = ig.EventStepBase.extend({
-    state: false,
-
-    init(settings) {
-        this.state = settings.state;
+        for(let root of this.roots) root.el_updateStatOverride();
     },
 
-    start() {
-        sc.model.player.el_enableStatOverride(this.state);
-        //will eventually add party member stuff
-    }
+    applyModel(model) {
+        if(model.statOverride === this) return;
+
+        if(model.statOverride) {
+            model.statOverride.removeModel(model);
+        }
+
+        this.roots.add(model);
+
+        model.statOverride = this;
+
+        model.el_updateStatOverride();
+    },
+
+    removeModel(model) {
+        if(this.roots.has(model)) {
+            model.statOverride = null;
+            this.roots.delete(model);
+            model.el_updateStatOverride();
+        }
+    },
 })

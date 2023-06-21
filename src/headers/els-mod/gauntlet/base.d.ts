@@ -48,10 +48,14 @@ declare global {
                 curXp: number;
                 curLevel: number;
 
+                playerStatOverride: Optional<el.StatOverride>;
+                partyStatOverrides: Optional<Record<string, el.StatOverride>>;
+                
                 combatRankLevel: number;
                 combatRankProgress: number;
                 combatRankTimer: number;
 
+                statIncrease: GauntletCup.StatIncrease
             }
 
             interface LocationData {
@@ -77,6 +81,7 @@ declare global {
             partyStash: string[];
             roundGui?: ig.GUI.CounterHud;
             scoreGui?: ig.GUI.ScoreHud;
+
             //timerGui: ????
 
             registerCup(this: this, name: string | string[]): void;
@@ -165,12 +170,15 @@ declare global {
 
                 map: string;
                 marker?: string;
-
+                
                 enemyTypes: Record<string, EnemyInfoData>;
                 roundSteps: GauntletStepBase.Settings[];
                 functions?: Record<string, FunctionEntry>;
                 playerStats: StatOverride.OverrideEntry;
+                statIncrease: StatIncrease;
             }
+
+            type StatIncrease = Required<el.StatOverride.StatModification>;
         }
         interface GauntletCup extends ig.JsonLoadable {
             data: GauntletCup.Data;
@@ -182,6 +190,8 @@ declare global {
             roundSteps: GauntletStep[];
             functions: Record<string, GauntletFunction>
             playerStats: StatOverride.OverrideEntry;
+            statIncrease: GauntletCup.StatIncrease;
+
             map: string;
             marker?: string;
             numRounds: number;

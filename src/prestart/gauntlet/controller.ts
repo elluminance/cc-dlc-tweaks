@@ -47,10 +47,19 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
         callstack: []
     },
     gauntletStarted: false,
+    statIncrease: {
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        focus: 0,
+    },
 
     combatRankLevel: 0,
     combatRankProgress: 0,
     combatRankTimer: 0,
+
+    playerStatOverride: undefined,
+    partyStatOverrides: undefined,
 };
 
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
@@ -90,6 +99,8 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         this.map = data.map;
         this.marker = data.marker;
+
+        this.statIncrease = data.statIncrease;
 
         this.enemyTypes = {};
         for(let [name, type] of Object.entries(data.enemyTypes)) {
@@ -232,9 +243,16 @@ el.GauntletController = ig.GameAddon.extend({
 
         this.runtime = {...DEFAULT_RUNTIME};
         let cup = this.cups[name];
-        this.runtime.currentCup = cup;
-        this.runtime.currentRound = 0;
-        sc.model.player.el_statOverride.applyOverride(cup.playerStats);
+        let runtime = this.runtime;
+        
+        runtime.currentCup = cup;
+        runtime.currentRound = 0;
+
+        runtime.playerStatOverride = new el.StatOverride(cup.playerStats);
+        runtime.playerStatOverride.applyModel(sc.model.player);
+        
+        runtime.statIncrease = {...cup.statIncrease}
+        //sc.model.player.statOverride.applyOverride(cup.playerStats);
 
         this.storedPartyBehavior = sc.party.strategyKeys.BEHAVIOUR;
         this.stashPartyMembers();
@@ -255,6 +273,8 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.gauntletStarted = true;
         runtime.roundEnemiesDefeated = 0;
         let step = runtime.steps.callstack.last()!;
+
+        this.processLevel();
 
         if(step.isProperRound) runtime.currentRound++;
         if(step) {
@@ -330,11 +350,10 @@ el.GauntletController = ig.GameAddon.extend({
         let enemyType = this._getEnemyType(type);
         let {enemyInfo, buff, levelOffset, effect} = enemyType;
         let pos = {...ig.game.getEntityByName(marker.marker).coll.pos};
+
         pos.x += marker.offX || 0;
         pos.y += marker.offY || 0;
         pos.z += marker.offZ || 0;
-
-        //let enemyInfo = new sc.EnemyInfo({...enemySettings, level})
 
         let entity = ig.game.spawnEntity(
             ig.ENTITY.Enemy,
@@ -440,8 +459,17 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     processLevel() {
-        if(this.active && this.runtime!.curXp >= 1000) {
+        let runtime = this.runtime;
+        if(this.active && runtime.curXp >= 1000) {
+            //TODO: level up gui with shop
+            let levelDelta = Math.floor(runtime.curXp / 1000);
 
+            runtime.playerStatOverride!.updateStats(runtime.statIncrease, "add", levelDelta);
+            
+            runtime.curLevel += levelDelta;
+            runtime.curXp %= 1000;
+
+            sc.Model.notifyObserver(this, el.GAUNTLET_MSG.LEVEL_CHANGED);
         }
     },
     //#endregion
