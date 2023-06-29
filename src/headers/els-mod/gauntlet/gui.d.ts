@@ -68,5 +68,17 @@ declare global {
 
         }
         let GauntletExpHud: GauntletExpHud.Constructor;
+
+
+
+        namespace GauntletLevelUpGui {
+            interface Constructor extends ImpactClass<GauntletLevelUpGui> {
+                new (): GauntletLevelUpGui;
+            }
+        }
+        interface GauntletLevelUpGui extends sc.ModalButtonInteract {
+            onClick(this: this, button: sc.ButtonGui): void;
+        }
+        let GauntletLevelUpGui: GauntletLevelUpGui.Constructor;
     }
 }

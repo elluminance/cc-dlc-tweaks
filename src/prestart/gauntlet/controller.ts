@@ -249,7 +249,7 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.currentRound = 0;
 
         runtime.playerStatOverride = new el.StatOverride(cup.playerStats);
-        runtime.playerStatOverride.applyModel(sc.model.player);
+        runtime.playerStatOverride.addModel(sc.model.player);
         
         runtime.statIncrease = {...cup.statIncrease}
         //sc.model.player.statOverride.applyOverride(cup.playerStats);
@@ -263,6 +263,22 @@ el.GauntletController = ig.GameAddon.extend({
     beginGauntlet() {
         if(this.active) {
             this.runtime.gauntletStarted = true;
+            if(sc.timers.timers.gauntletTimer) {
+                sc.timers.resumeTimer("gauntletTimer")
+            } else {
+                sc.timers.addTimer(
+                    "gauntletTimer",
+                    sc.TIMER_TYPES.COUNTER,
+                    null,
+                    null,
+                    null,
+                    true,
+                    true,
+                    null,
+                    ig.lang.get("sc.gui.arena.time"),
+                    true
+                );
+            }
         }
     },
 
@@ -301,7 +317,7 @@ el.GauntletController = ig.GameAddon.extend({
             time: 0.2,
             useDots: true,
             variable: "el-gauntlet.round",
-            cutsceneOkay: true
+            cutsceneOkay: false
         });
         ig.gui.spawnEventGui(this.roundGui!);
 
@@ -311,7 +327,7 @@ el.GauntletController = ig.GameAddon.extend({
             time: 0.2,
             useDots: true,
             variable: "el-gauntlet.points",
-            cutsceneOkay: true
+            cutsceneOkay: false
         });
         ig.gui.spawnEventGui(this.scoreGui!);
     },
@@ -385,6 +401,19 @@ el.GauntletController = ig.GameAddon.extend({
 
     getRoundEnemiesDefeated() {
         return this.active ? this.runtime!.roundEnemiesDefeated : 0;
+    },
+
+    addPartyMember(member) {
+        if(!this.active) return;
+
+        if(sc.PARTY_OPTIONS.includes(member)) {
+            sc.party.addPartyMember(member, null, null, false, true);
+            let model = sc.party.models[member];
+            model.setTemporary(false);
+            this.runtime.playerStatOverride!.addModel(model);
+        } else {
+            console.error(`Warning: ${member} not found in sc.PARTY_OPTIONS!`)
+        }
     },
     //#endregion
 
@@ -470,6 +499,17 @@ el.GauntletController = ig.GameAddon.extend({
             runtime.curXp %= 1000;
 
             sc.Model.notifyObserver(this, el.GAUNTLET_MSG.LEVEL_CHANGED);
+        }
+    },
+
+    applyLevelUpBonus(option) {
+        if(!this.active) return;
+        switch(option.type) {
+            case "statUp":
+                break;
+            case "addPartyMember":
+                this.addPartyMember(option.partyMemberName!)
+                break;
         }
     },
     //#endregion

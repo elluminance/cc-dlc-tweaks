@@ -69,6 +69,23 @@ declare global {
                 pos: LocationData;
             }
 
+            interface LevelUpTypeKeys {
+                statUp: never;
+                addPartyMember: never;
+            }
+
+            type LevelUpType = keyof LevelUpTypeKeys;
+
+            interface LevelUpOption {
+                type: LevelUpType;
+                
+                value?: number;
+                statType?: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS;
+                element?: keyof sc.ELEMENT | "ALL";
+                partyMemberName?: string;
+
+            }
+
             interface Constructor extends ImpactClass<GauntletController> {
                 new(): GauntletController;
             }
@@ -81,8 +98,6 @@ declare global {
             partyStash: string[];
             roundGui?: ig.GUI.CounterHud;
             scoreGui?: ig.GUI.ScoreHud;
-
-            //timerGui: ????
 
             registerCup(this: this, name: string | string[]): void;
 
@@ -97,10 +112,12 @@ declare global {
             ): ig.ENTITY.Enemy;
             addGui(this: this): void;
             addPoints(this: this, score: number): void;
+            addPartyMember(this: this, member: string): void;
 
             addExp(this: this, exp: number): void;
             processLevel(this: this): void;
-
+            applyLevelUpBonus(this: this, option: GauntletController.LevelUpOption): void;
+            
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
             onGuardCounter(this: this, enemy: ig.ENTITY.Enemy): void;
             onEnemyBreak(this: this, enemy: ig.ENTITY.Enemy): void;
@@ -116,7 +133,7 @@ declare global {
                 shieldResult: sc.SHIELD_RESULT,
             ): void;
             _getEnemyType(this: this, enemyType: string): GauntletCup.EnemyType;
-
+            
             stashPartyMembers(this: this): void;
             unstashPartyMembers(this: this): void;
             getRoundEnemiesDefeated(this: this): number;

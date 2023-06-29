@@ -1,3 +1,7 @@
+import { getEntries } from "../../helper-funcs.js";
+
+type ELEMENT_KEY = keyof typeof sc.ELEMENT;
+
 const elementBonusDefault = {
     hp: 0,
     attack: 0,
@@ -17,17 +21,11 @@ sc.SP_REGEN_SPEED[24] = 2;
 sc.SP_REGEN_SPEED[28] = 2.2;
 sc.SP_REGEN_SPEED[32] = 2.4;
 
-
-
 sc.PlayerModel.inject({
     statOverride: null,
 
-    init() {
-        this.parent();
-    },
-
     reset() {
-        this.statOverride = null;
+        this.statOverride?.removeModel(this);
         this.parent();
     },
 
@@ -37,33 +35,33 @@ sc.PlayerModel.inject({
             this.baseParams.attack = this.statOverride.attack;
             this.baseParams.defense = this.statOverride.defense;
             this.baseParams.focus = this.statOverride.focus;
-            for(let element in sc.ELEMENT) {
-                let config = this.elementConfigs[sc.ELEMENT[element as keyof typeof sc.ELEMENT]];
-                let elemBonus = this.statOverride.elementBonus[element as keyof typeof sc.ELEMENT];
+            let element: ELEMENT_KEY;
+            for(element in sc.ELEMENT) {
+                let config = this.elementConfigs[sc.ELEMENT[element as ELEMENT_KEY]];
+                //let elemBonus = this.statOverride.elementBonus[element as ELEMENT_KEY];
                 
                 let actions = config.activeActions;
                 config.preSkillInit();
                 config.activeActions = actions;
-                config.skillFactors.hp = elemBonus.hp;
-                config.skillFactors.attack = elemBonus.attack;
-                config.skillFactors.defense = elemBonus.defense;
-                config.skillFactors.focus = elemBonus.focus;
-                config.update(this.baseParams, {});
+                config.update(
+                    this.statOverride.getBaseParams(element),
+                    this.statOverride.getModifiers(element)
+                );
             }
-            let curSp = this.params.currentSp;
-            if(this.statOverride.spLevel) {
+            if(this.statOverride.spLevel !== this.params.maxSp && this.statOverride.spLevel) {
+                let curSp = this.params.currentSp;
                 let maxSp = sc.SP_LEVEL[this.statOverride.spLevel];
                 this.params.setMaxSp(maxSp);
-                this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
+                this.params.currentSp = Math.min(curSp, maxSp);
                 sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED)
             }
-            this.params.currentSp = Math.min(curSp, this.params.maxSp);
             this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
+            this.params.setModifiers(this.elementConfigs[this.currentElementMode].modifiers);
             sc.Model.notifyObserver(this, sc.PLAYER_MSG.STATS_CHANGED);
         } else {
             this.params.setMaxSp(sc.SP_LEVEL[this.spLevel]);
             this.params.setRelativeSp(sc.SP_REGEN_FACTOR);
-            sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED)
+            sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED);
             this.parent();
         }
     },
@@ -72,6 +70,51 @@ sc.PlayerModel.inject({
         this.updateStats();
     }
 })
+
+sc.PartyMemberModel.inject({
+    statOverride: null,
+
+    reset() {
+        this.statOverride?.removeModel(this);
+        this.parent();
+    },
+
+    updateStats() {
+        if(this.statOverride?.active) {
+            for(let element in sc.ELEMENT) {
+                let config = this.elementConfigs[sc.ELEMENT[element as ELEMENT_KEY]];
+                let activeActions = config.activeActions;
+
+                config.preSkillInit();
+                config.activeActions = activeActions;
+
+                config.update(
+                    this.statOverride.getBaseParams(element as ELEMENT_KEY),
+                    this.statOverride.getModifiers(element as ELEMENT_KEY)
+                );
+            }
+
+            if(this.statOverride.spLevel !== this.params.maxSp && this.statOverride.spLevel) {
+                let curSp = this.params.currentSp;
+                let maxSp = sc.SP_LEVEL[this.statOverride.spLevel];
+                this.params.setMaxSp(maxSp);
+                this.params.currentSp = Math.min(curSp, maxSp);
+                sc.Model.notifyObserver(this.params, sc.COMBAT_PARAM_MSG.SP_CHANGED)
+            }
+
+            this.params.setBaseParams(this.elementConfigs[this.currentElementMode].baseParams);
+            this.params.setModifiers(this.elementConfigs[this.currentElementMode].modifiers);
+            
+            sc.Model.notifyObserver(this, sc.PARTY_MEMBER_MSG.STATS_CHANGED);
+        } else this.parent();
+    },
+
+    el_updateStatOverride() {
+        this.updateStats();
+    },
+})
+
+
 
 el.StatOverride = ig.Class.extend({
     roots: null,
@@ -169,7 +212,7 @@ el.StatOverride = ig.Class.extend({
         for(let root of this.roots) root.el_updateStatOverride();
     },
 
-    applyModel(model) {
+    addModel(model) {
         if(model.statOverride === this) return;
 
         if(model.statOverride) {
@@ -189,5 +232,43 @@ el.StatOverride = ig.Class.extend({
             this.roots.delete(model);
             model.el_updateStatOverride();
         }
+    },
+
+    getBaseParams(element) {
+        let params: sc.CombatParams.BaseParams = {
+            hp: this.hp,
+            attack: this.attack,
+            defense: this.defense,
+            focus: this.focus,
+
+            elemFactor: [1, 1, 1, 1],
+            statusEffect: [1, 1, 1, 1],
+            statusInflict: [1, 1, 1, 1],
+        }
+
+        if(element) {
+            params.hp *= 1 + this.elementBonus[element].hp;
+            params.attack *= 1 + this.elementBonus[element].attack;
+            params.defense *= 1 + this.elementBonus[element].defense;
+            params.focus *= 1 + this.elementBonus[element].focus;
+        }
+
+        return params;
+    },
+
+    getModifiers(element) {
+        let modifiers = {...this.modifiers};
+
+        if(element) {
+            for(let [key, val] of getEntries(this.elementBonus[element].modifiers)) {
+                if(key in modifiers) {
+                    modifiers[key]! *= val;
+                } else {
+                    modifiers[key] = val;
+                }
+            }
+        }
+
+        return modifiers;
     },
 })

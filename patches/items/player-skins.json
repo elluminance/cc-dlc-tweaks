@@ -88,7 +88,7 @@
             "en_US": "Rainbow Aura"
         },
         "description": {
-            "en_US": "Taste the \\i[el-rainbow-text]."
+            "en_US": "Taste the \\c[1]r\\c[5]a\\c[3]i\\c[11]n\\c[7]b\\c[8]o\\c[6]w\\c[0]."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -108,7 +108,7 @@
             "en_US": "Pastel Rainbow Aura"
         },
         "description": {
-            "en_US": "Taste the (pastel) \\i[el-rainbow-text]."
+            "en_US": "Taste the (pastel) \\c[1]r\\c[5]a\\c[3]i\\c[11]n\\c[7]b\\c[8]o\\c[6]w\\c[0]."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -128,7 +128,7 @@
             "en_US": "Vaporwave Aura"
         },
         "description": {
-            "en_US": "Feel the power of ~ a e s t h e t i c ~ within you."
+            "en_US": "Feel the power of \\c[7]~ a e s t h e t i c ~\\c[0] within you."
         },
         "type": "TOGGLE",
         "rarity": 0,
@@ -268,7 +268,7 @@
             "en_US": "Decoy Aura"
         },
         "description": {
-            "en_US": "Embrace the power of Warp Decoy to become a decoy yourself."
+            "en_US": "Embrace the power of \\c[2]Warp Decoy\\c[0] to become a decoy yourself."
         },
         "type": "TOGGLE",
         "rarity": 0,

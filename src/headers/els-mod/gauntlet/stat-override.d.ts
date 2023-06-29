@@ -3,6 +3,7 @@ export {};
 declare global {
     namespace sc {
         interface PlayerModel extends el.StatOverride.SupportsOverride {}
+        interface PartyMemberModel extends el.StatOverride.SupportsOverride {}
     }
 
     namespace el {
@@ -12,7 +13,7 @@ declare global {
                 attack: number;
                 defense: number;
                 focus: number;
-                modifiers: Partial<Record<keyof sc.MODIFIERS, number>>;
+                modifiers: sc.ModifierList;
             }
 
             interface Constructor extends ImpactClass<StatOverride> {
@@ -24,7 +25,7 @@ declare global {
                 attack: number;
                 defense: number;
                 focus: number;
-                modifiers?: Partial<Record<keyof sc.MODIFIERS, number>>;
+                modifiers?: sc.ModifierList;
                 spLevel?: number;
             }
 
@@ -53,7 +54,7 @@ declare global {
             attack: number;
             defense: number;
             focus: number;
-            modifiers: Partial<Record<keyof sc.MODIFIERS, number>>;
+            modifiers: sc.ModifierList;
             spLevel?: number;
 
             elementBonus: Record<keyof typeof sc.ELEMENT, StatOverride.ElementBonus>;
@@ -63,8 +64,11 @@ declare global {
             setActive(this: this, state: boolean): void;
             applyOverride(this: this, override: StatOverride.OverrideEntry): void;
             updateStats(this: this, stats: StatOverride.StatModification, changeMode?: StatOverride.UpdateMode, factor?: number): void;
-            applyModel(this: this, model: el.StatOverride.SupportsOverride): void;
+            addModel(this: this, model: el.StatOverride.SupportsOverride): void;
             removeModel(this: this, model: el.StatOverride.SupportsOverride): void;
+
+            getBaseParams(this: this, element?: keyof typeof sc.ELEMENT): sc.CombatParams.BaseParams;
+            getModifiers(this: this, element?: keyof typeof sc.ELEMENT): sc.ModifierList;
         }
 
         let StatOverride: StatOverride.Constructor;

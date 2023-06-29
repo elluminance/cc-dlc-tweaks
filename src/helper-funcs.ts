@@ -131,3 +131,7 @@ export function intToRomanNum(num: number) {
 
     return str;
 }
+
+export function getEntries<Key extends string | number | symbol, Value>(obj: {[key in Key]?: Value}): [Key, Value][] {
+    return Object.entries(obj) as [Key, Value][];
+}
