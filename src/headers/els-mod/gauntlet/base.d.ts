@@ -26,6 +26,7 @@ declare global {
             EXP_CHANGED,
         }
 
+
         namespace GauntletController {
             interface StepData {
                 //currentStep?: el.GauntletStep;
@@ -69,21 +70,49 @@ declare global {
                 pos: LocationData;
             }
 
+            interface LevelUpScaleTypeKeys {
+                NONE: never;
+                LINEAR: never;
+
+                PARTY: never;
+            }
+            type LevelUpScaleType = keyof LevelUpScaleTypeKeys;
+
             interface LevelUpTypeKeys {
                 statUp: never;
+                modifier: never;
+                heal: never;
                 addPartyMember: never;
+                item: never;
             }
 
             type LevelUpType = keyof LevelUpTypeKeys;
 
+            interface Replacement {
+                original: string;
+                replacement: sc.TextLike;
+            } 
+
             interface LevelUpOption {
                 type: LevelUpType;
+                icon: ig.Image;
+                iconIndex: number;
+                cost: number;
+                key: string;
+                condition?: ig.VarCondition,
+
+                repeat?: number | boolean;
+                scaleType?: LevelUpScaleType;
                 
                 value?: number;
                 statType?: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS;
                 element?: keyof sc.ELEMENT | "ALL";
                 partyMemberName?: string;
+                itemID?: sc.ItemID;
 
+                name?: string | ig.LangLabel.Data;
+                shortDesc?: string | ig.LangLabel.Data;
+                descReplace?: Replacement[];
             }
 
             interface Constructor extends ImpactClass<GauntletController> {
@@ -117,7 +146,11 @@ declare global {
             addExp(this: this, exp: number): void;
             processLevel(this: this): void;
             applyLevelUpBonus(this: this, option: GauntletController.LevelUpOption): void;
-            
+            getLevelOptionName(this: this, option: GauntletController.LevelUpOption): string;
+            getLevelOptionDesc(this: this, option: GauntletController.LevelUpOption): string;
+            getLevelOptionCost(this: this, option: GauntletController.LevelUpOption): number;
+            getLevelOptionTypeName(this: this, option: GauntletController.LevelUpOption): string;
+
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
             onGuardCounter(this: this, enemy: ig.ENTITY.Enemy): void;
             onEnemyBreak(this: this, enemy: ig.ENTITY.Enemy): void;
@@ -151,11 +184,13 @@ declare global {
         let GauntletController: GauntletController.Constructor;
         let gauntlet: GauntletController;
 
-        
+        let DEFAULT_GAUNTLET_LEVEL_UP_OPTIONS: Record<string, GauntletController.LevelUpOption>;
 
         namespace GauntletCup {
             interface Constructor extends ImpactClass<GauntletCup> {
                 new (name: string): GauntletCup;
+
+                DefaultLevelUpOptions: Record<string, LevelUpOptionList>;
             }
 
             interface EnemyType {
@@ -196,6 +231,25 @@ declare global {
             }
 
             type StatIncrease = Required<el.StatOverride.StatModification>;
+
+            interface LevelUpEntry {
+                type: GauntletController.LevelUpType;
+                iconSrc: string;
+                iconIndex: number;
+                cost: number;
+                condition?: ig.VarCondition,
+
+                repeat?: number | boolean;
+                scaleType?: GauntletController.LevelUpScaleType;
+                
+                value?: number;
+                statType?: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS;
+                element?: keyof sc.ELEMENT | "ALL";
+                partyMemberName?: string;
+                itemID?: sc.ItemID;
+            }
+
+            type LevelUpOptionList = Record<string, GauntletController.LevelUpOption>;
         }
         interface GauntletCup extends ig.JsonLoadable {
             data: GauntletCup.Data;
@@ -208,6 +262,8 @@ declare global {
             functions: Record<string, GauntletFunction>
             playerStats: StatOverride.OverrideEntry;
             statIncrease: GauntletCup.StatIncrease;
+
+            levelUpOptions: GauntletCup.LevelUpOptionList;
 
             map: string;
             marker?: string;

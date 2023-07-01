@@ -8,7 +8,59 @@
         "el-gauntlet": {
             "round": "Round",
             "points": "Points",
-            "rank": "Rank"
+            "rank": "Rank",
+
+            "levelUp": {
+                "skip": "Skip",
+                "cost": "Cost: [!]",
+                "categoryTypes": {
+                    "statUp": "\\C[green]Stat Up",
+                    "modifier": "\\C[yellow]+Modifier",
+                    "heal": "\\C[blue]Healing",
+                    "addPartyMember": "\\C[purple]+Party Member",
+                    "item": "\\C[orange]Item",
+                    "other": "\\C[white]Other"
+                },
+
+                "options": {
+                    "PARTY_EMILIE": {
+                        "name": "Party Member: Emilie",
+                        "shortDesc": "Summons the pentafist Emilie to assist you."
+                    },
+                    "PARTY_CTRON": {
+                        "name": "Party Member: C'tron",
+                        "shortDesc": "Summons the hexacast C'tron to assist you."
+                    },
+                    "PARTY_JOERN": {
+                        "name": "Party Member: Joern",
+                        "shortDesc": "Summons the quadroguard Joern to assist you."
+                    },
+                    "PARTY_APOLLO": {
+                        "name": "Party Member: Apollo",
+                        "shortDesc": "Summons the spheromancer Apollo to assist you."
+                    },
+                    "PARTY_LUKAS": {
+                        "name": "Party Member: Lukas",
+                        "shortDesc": "Summons the triblader Lukas to assist you."
+                    },
+                    "PARTY_SHIZUKA": {
+                        "name": "Party Member: Shizuka",
+                        "shortDesc": "Summons the spheromancer Shizuka to assist you."
+                    },
+                    "PARTY_LUKE": {
+                        "name": "Party Member: Luke",
+                        "shortDesc": "Summons the triblader Luke to assist you."
+                    },
+
+                    "HEAL_20": {
+                        "name": "Small Heal"
+                    }
+                },
+
+                "genericDesc": {
+                    "healing": "Restores [!]% of maximum HP."
+                }
+            }
         },
 
         "menu": {

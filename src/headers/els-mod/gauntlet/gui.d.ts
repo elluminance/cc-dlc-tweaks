@@ -69,15 +69,39 @@ declare global {
         }
         let GauntletExpHud: GauntletExpHud.Constructor;
 
-
-
         namespace GauntletLevelUpGui {
             interface Constructor extends ImpactClass<GauntletLevelUpGui> {
                 new (): GauntletLevelUpGui;
+
+                LevelUpEntry: LevelUpEntry.Constructor;
+            }
+
+            namespace LevelUpEntry {
+                interface Constructor extends ImpactClass<LevelUpEntry> {
+                    new (option: GauntletController.LevelUpOption): LevelUpEntry;
+                }
+            }
+
+            interface LevelUpEntry extends ig.FocusGui {
+                gfx: ig.Image;
+                ninepatch: ig.NinePatch;
+                levelOption: el.GauntletController.LevelUpOption;
+                
+                icon: ig.Image;
+                iconOffX: number;
+                iconOffY: number;
+                titleText: sc.TextGui;
+                shortDescText: sc.TextGui;
+                upgradeTypeText: sc.TextGui;
+                costText: sc.TextGui;
+                
+                updateInfo(this: this): void;
             }
         }
         interface GauntletLevelUpGui extends sc.ModalButtonInteract {
-            onClick(this: this, button: sc.ButtonGui): void;
+            levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry;
+            
+            onClick(this: this, button: ig.FocusGui): void;
         }
         let GauntletLevelUpGui: GauntletLevelUpGui.Constructor;
     }

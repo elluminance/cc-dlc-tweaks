@@ -34,6 +34,25 @@ el.GAUNTLET_RANKS = [
     },
 ]
 
+const PARTY_MEMBER_COST = 1000;
+const DefaultIcon = new ig.Image("media/gui/gauntlet-icons/el-mod.png");
+
+
+
+el.DEFAULT_GAUNTLET_LEVEL_UP_OPTIONS = {
+    //#region Party Members
+    
+    //#endregion
+
+    //#region Healing
+    
+    //#endregion
+
+    //#region Base Stats
+    
+    //#endregion
+}
+
 const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
     currentCup: null,
     curPoints: 0,
@@ -144,6 +163,13 @@ el.GauntletCup = ig.JsonLoadable.extend({
         
         //this.rounds = data.rounds;
         this.playerStats = data.playerStats;
+
+        const defaultOptions = el.GauntletCup.DefaultLevelUpOptions;
+
+        this.levelUpOptions = {
+            ...defaultOptions.PARTY,
+            ...defaultOptions.HEALING
+        }
     },
 
     getName() {
@@ -151,11 +177,99 @@ el.GauntletCup = ig.JsonLoadable.extend({
     }
 })
 
+el.GauntletCup.DefaultLevelUpOptions = {
+    PARTY: {
+        PARTY_EMILIE: {
+            type: "addPartyMember",
+            key: "PARTY_EMILIE",
+            icon: DefaultIcon,
+            iconIndex: 10,
+            partyMemberName: "Emilie",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_CTRON: {
+            type: "addPartyMember",
+            key: "PARTY_CTRON",
+            icon: DefaultIcon,
+            iconIndex: 11,
+            partyMemberName: "Glasses",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_JOERN: {
+            type: "addPartyMember",
+            key: "PARTY_JOERN",
+            icon: DefaultIcon,
+            iconIndex: 12,
+            partyMemberName: "Joern",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_APOLLO: {
+            type: "addPartyMember",
+            key: "PARTY_APOLLO",
+            icon: DefaultIcon,
+            iconIndex: 13,
+            partyMemberName: "Apollo",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_LUKAS: {
+            type: "addPartyMember",
+            key: "PARTY_LUKAS",
+            icon: DefaultIcon,
+            iconIndex: 14,
+            partyMemberName: "Schneider",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_SHIZUKA: {
+            type: "addPartyMember",
+            key: "PARTY_SHIZUKA",
+            icon: DefaultIcon,
+            iconIndex: 15,
+            partyMemberName: "Shizuka",
+            cost: PARTY_MEMBER_COST,
+            scaleType: "PARTY",
+        },
+        PARTY_LUKE: {
+            type: "addPartyMember",
+            key: "PARTY_LUKE",
+            icon: DefaultIcon,
+            iconIndex: 16,
+            scaleType: "PARTY",
+            partyMemberName: "Luke",
+            cost: PARTY_MEMBER_COST,
+        },
+    },
+
+    HEALING: {
+        HEAL_20: {
+            type: "heal",
+            key: "HEAL_20",
+            icon: DefaultIcon,
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
+            descReplace: [{
+                original: "[!]",
+                replacement: 25
+            }],
+            iconIndex: 20,
+            value: 0.25,
+            repeat: true,
+            cost: 500,
+        },
+    },
+}
+
 const DEFAULT_CUPS = ["test-gauntlet"];
 
 function createRankBox(entity: ig.Entity) {
     return new sc.SmallEntityBox(entity, `${ig.lang.get("sc.gui.combat-msg.rank-up")} ${el.gauntlet.getRankLabel()}`, 2);
 }
+
+
 
 el.GauntletController = ig.GameAddon.extend({
     runtime: {...DEFAULT_RUNTIME},
@@ -506,11 +620,70 @@ el.GauntletController = ig.GameAddon.extend({
         if(!this.active) return;
         switch(option.type) {
             case "statUp":
+            case "modifier":
                 break;
             case "addPartyMember":
                 this.addPartyMember(option.partyMemberName!)
                 break;
+            case "heal":
+                ig.game.playerEntity.heal({value: option.value!});
+                break;
+            case "item": //todo: once i add in the new item inventory
+                break;
         }
+    },
+
+    getLevelOptionCost(option) {
+        //TODO: Apply cost scaling.
+        return option.cost;
+    },
+    getLevelOptionName(option) {
+        if(option.name) {
+            if(typeof option.name == "string") {
+                return ig.lang.get(option.name);
+            } else {
+                return ig.LangLabel.getText(option.name);
+            }
+        }
+        return ig.lang.get(`sc.gui.el-gauntlet.levelUp.options.${option.key}.name`);
+    },
+    getLevelOptionDesc(option) {
+        if(option.shortDesc) {
+            if(typeof option.shortDesc == "string") {
+                let text = ig.lang.get(option.shortDesc);
+                if(option.descReplace) {
+                    for(let replacer of option.descReplace) {
+                        text = text.replace(replacer.original, replacer.replacement!.toString());
+                    }
+                }
+                return text;
+            } else {
+                return ig.LangLabel.getText(option.shortDesc);
+            }
+        }
+        return ig.lang.get(`sc.gui.el-gauntlet.levelUp.options.${option.key}.shortDesc`);
+    },
+    getLevelOptionTypeName(option) {
+        let color = "\\c[0]"
+        switch(option.type) {
+            case "statUp":
+                color = "\\C[green]"
+                break;
+            case "modifier":
+                color = "\\C[yellow]"
+                break;
+            case "addPartyMember":
+                color = "\\C[purple]"
+                break;
+            case "heal":
+                color = "\\C[blue]"
+                break;
+            case "item":
+                color = "\\C[orange]"
+                break;
+        }
+
+        return color + ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
     },
     //#endregion
 
