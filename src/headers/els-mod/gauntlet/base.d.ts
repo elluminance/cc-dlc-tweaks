@@ -103,8 +103,10 @@ declare global {
 
                 repeat?: number | boolean;
                 scaleType?: LevelUpScaleType;
+                scaleFactor?: number;
                 
                 value?: number;
+                absolute?: boolean;
                 statType?: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS;
                 element?: keyof sc.ELEMENT | "ALL";
                 partyMemberName?: string;

@@ -1,9 +1,11 @@
 el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
+    levelUpChoices: [],
+    
     init() {
         this.parent(
-            "",
+            ig.lang.get("sc.gui.el-gauntlet.levelUp.title"),
             null,
-            ["Skip"],
+            [ig.lang.get("sc.gui.el-gauntlet.levelUp.skip")],
             this.onClick.bind(this)
         )
         this.keepOpen = true;
@@ -16,17 +18,17 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
         let offset = 24;
         for(let option of [
             el.GauntletCup.DefaultLevelUpOptions.PARTY.PARTY_EMILIE,
-            el.GauntletCup.DefaultLevelUpOptions.PARTY.PARTY_CTRON,
+            el.GauntletCup.DefaultLevelUpOptions.BASE_STATS.ATTACK_UP_ABS,
             el.GauntletCup.DefaultLevelUpOptions.PARTY.PARTY_APOLLO,
-            el.GauntletCup.DefaultLevelUpOptions.HEALING.HEAL_20,
+            el.GauntletCup.DefaultLevelUpOptions.HEALING.HEAL_MEDIUM,
         ]) {
-            //@ts-ignore
             let button = new el.GauntletLevelUpGui.LevelUpEntry(option);
             button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
             button.setPos(0, offset);
             offset += button.hook.size.y + 4;
-            this.buttongroup.addFocusGui(button);
 
+            this.levelUpChoices.push(button);
+            this.buttongroup.addFocusGui(button);
             this.content.addChildGui(button)
         }
     },
@@ -37,8 +39,20 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
 
             this.hide();
         } else {
-            this.hide();
+            sc.Dialogs.showYesNoDialog(
+                ig.lang.get("sc.gui.el-gauntlet.levelUp.skipConfirm"),
+                null, //icon
+                button => {
+                    if(button.data === 0) {
+                        this.hide();
+                    }
+                }
+            )
         }
+    },
+
+    onBackButtonCheck() {
+        return false;
     },
 })
 
@@ -51,7 +65,7 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
 // other: pink OR red 
 
 el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
-
+    data: {},
     gfx: new ig.Image("media/gui/el-mod-gui.png"),
 
     ninepatch: new ig.NinePatch("media/gui/el-mod-gui.png", {
@@ -117,7 +131,6 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
         this.upgradeTypeText.setPos(3, 0);
         this.addChildGui(this.upgradeTypeText);
 
-        //this.icon = new ig.Image("media/gui/gauntlet-icons/el-mod.png")
         this.updateInfo();
     },
 

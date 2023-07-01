@@ -245,22 +245,148 @@ el.GauntletCup.DefaultLevelUpOptions = {
     },
 
     HEALING: {
-        HEAL_20: {
+        HEAL_SMALL: {
             type: "heal",
-            key: "HEAL_20",
+            key: "HEAL_SMALL",
             icon: DefaultIcon,
 
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
             descReplace: [{
                 original: "[!]",
-                replacement: 25
+                replacement: 20
             }],
             iconIndex: 20,
-            value: 0.25,
+            value: 0.20,
             repeat: true,
-            cost: 500,
+            cost: 400,
+        },
+        HEAL_MEDIUM: {
+            type: "heal",
+            key: "HEAL_MEDIUM",
+            icon: DefaultIcon,
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
+            descReplace: [{
+                original: "[!]",
+                replacement: 40
+            }],
+            iconIndex: 20,
+            value: 0.40,
+            repeat: true,
+            cost: 750,
+        },
+        HEAL_LARGE: {
+            type: "heal",
+            key: "HEAL_LARGE",
+            icon: DefaultIcon,
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
+            descReplace: [{
+                original: "[!]",
+                replacement: 60
+            }],
+            iconIndex: 20,
+            value: 0.6,
+            repeat: true,
+            cost: 1100,
         },
     },
+
+    BASE_STATS: {
+        MAXHP_UP_ABS1: {
+            type: "statUp",
+            icon: DefaultIcon,
+            iconIndex: 21,
+            key: "MAXHP_UP_ABS",
+            name: "sc.gui.el-gauntlet.levelUp.genericName.maxhpUp",
+            repeat: true,
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.maxhp]"
+            },{
+                original: "[VALUE]",
+                replacement: 100
+            }],
+
+            cost: 500,
+            scaleType: "LINEAR",
+            scaleFactor: 100,
+
+            statType: "hp",
+            absolute: true,
+            value: 100
+        },
+        ATTACK_UP_ABS1: {
+            type: "statUp",
+            icon: DefaultIcon,
+            iconIndex: 22,
+            key: "ATTACK_UP_ABS",
+            name: "sc.gui.el-gauntlet.levelUp.genericName.attackUp",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[VALUE]",
+                replacement: 10
+            }],
+
+            cost: 500,
+            scaleType: "LINEAR",
+            scaleFactor: 100,
+
+            statType: "attack",
+            absolute: true,
+            value: 10
+        },
+        DEFENSE_UP_ABS1: {
+            type: "statUp",
+            icon: DefaultIcon,
+            iconIndex: 23,
+            key: "DEFENSE_UP_ABS1",
+            name: "sc.gui.el-gauntlet.levelUp.genericName.defenseUp",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[VALUE]",
+                replacement: 10
+            }],
+
+            cost: 500,
+            scaleType: "LINEAR",
+            scaleFactor: 100,
+
+            statType: "defense",
+            absolute: true,
+            value: 10
+        },
+        FOCUS_UP_ABS1: {
+            type: "statUp",
+            icon: DefaultIcon,
+            iconIndex: 24,
+            key: "FOCUS_UP_ABS",
+            name: "sc.gui.el-gauntlet.levelUp.genericName.focusUp",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[VALUE]",
+                replacement: 10
+            }],
+
+            cost: 500,
+            scaleType: "LINEAR",
+            scaleFactor: 100,
+
+            statType: "attack",
+            absolute: true,
+            value: 10
+        },
+    }
 }
 
 const DEFAULT_CUPS = ["test-gauntlet"];

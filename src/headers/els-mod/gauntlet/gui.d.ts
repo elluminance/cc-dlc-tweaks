@@ -83,6 +83,7 @@ declare global {
             }
 
             interface LevelUpEntry extends ig.FocusGui {
+                data: Record<string, never>;
                 gfx: ig.Image;
                 ninepatch: ig.NinePatch;
                 levelOption: el.GauntletController.LevelUpOption;
@@ -99,7 +100,7 @@ declare global {
             }
         }
         interface GauntletLevelUpGui extends sc.ModalButtonInteract {
-            levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry;
+            levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry[];
             
             onClick(this: this, button: ig.FocusGui): void;
         }

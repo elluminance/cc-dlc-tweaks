@@ -11,54 +11,73 @@
             "rank": "Rank",
 
             "levelUp": {
-                "skip": "Skip",
+                "title": "Choose a Level Up Bonus:",
                 "cost": "Cost: [!]",
+                
+                "skip": "Skip",
+                "skipConfirm": "Are you sure you want to skip this bonus?",
+                
                 "categoryTypes": {
-                    "statUp": "\\C[green]Stat Up",
-                    "modifier": "\\C[yellow]+Modifier",
-                    "heal": "\\C[blue]Healing",
-                    "addPartyMember": "\\C[purple]+Party Member",
-                    "item": "\\C[orange]Item",
-                    "other": "\\C[white]Other"
+                    "statUp": "Stat Up",
+                    "modifier": "+Modifier",
+                    "heal": "Healing",
+                    "addPartyMember": "+Party Member",
+                    "item": "Item",
+                    "other": "Other"
                 },
 
                 "options": {
                     "PARTY_EMILIE": {
                         "name": "Party Member: Emilie",
-                        "shortDesc": "Summons the pentafist Emilie to assist you."
+                        "shortDesc": "Summons the pentafist \\c[3]Emilie\\c[0] to assist you."
                     },
                     "PARTY_CTRON": {
                         "name": "Party Member: C'tron",
-                        "shortDesc": "Summons the hexacast C'tron to assist you."
+                        "shortDesc": "Summons the hexacast \\c[3]C'tron\\c[0] to assist you."
                     },
                     "PARTY_JOERN": {
                         "name": "Party Member: Joern",
-                        "shortDesc": "Summons the quadroguard Joern to assist you."
+                        "shortDesc": "Summons the quadroguard \\c[3]Joern\\c[0] to assist you."
                     },
                     "PARTY_APOLLO": {
                         "name": "Party Member: Apollo",
-                        "shortDesc": "Summons the spheromancer Apollo to assist you."
+                        "shortDesc": "Summons the spheromancer \\c[3]Apollo\\c[0] to assist you."
                     },
                     "PARTY_LUKAS": {
                         "name": "Party Member: Lukas",
-                        "shortDesc": "Summons the triblader Lukas to assist you."
+                        "shortDesc": "Summons the triblader \\c[3]Lukas\\c[0] to assist you."
                     },
                     "PARTY_SHIZUKA": {
                         "name": "Party Member: Shizuka",
-                        "shortDesc": "Summons the spheromancer Shizuka to assist you."
+                        "shortDesc": "Summons the spheromancer \\c[3]Shizuka\\c[0] to assist you."
                     },
                     "PARTY_LUKE": {
                         "name": "Party Member: Luke",
-                        "shortDesc": "Summons the triblader Luke to assist you."
+                        "shortDesc": "Summons the triblader \\c[3]Luke\\c[0] to assist you."
                     },
 
-                    "HEAL_20": {
+                    "HEAL_SMALL": {
                         "name": "Small Heal"
+                    },
+                    "HEAL_MEDIUM": {
+                        "name": "Medium Heal"
+                    },
+                    "HEAL_LARGE": {
+                        "name": "Large Heal"
                     }
                 },
 
+                "genericName": {
+                    "maxhpUp": "Max HP Up",
+                    "attackUp": "Attack Up",
+                    "defenseUp": "Defense Up",
+                    "focusUp": "Focus Up"
+                },
+
                 "genericDesc": {
-                    "healing": "Restores [!]% of maximum HP."
+                    "healing": "Restores [!]% of maximum HP.",
+
+                    "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE]."
                 }
             }
         },
