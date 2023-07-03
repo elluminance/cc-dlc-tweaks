@@ -51,7 +51,6 @@ declare global {
                 curLevel: number;
 
                 playerStatOverride: Optional<el.StatOverride>;
-                partyStatOverrides: Optional<Record<string, el.StatOverride>>;
                 
                 combatRankLevel: number;
                 combatRankProgress: number;
@@ -59,6 +58,8 @@ declare global {
 
                 statIncrease: GauntletCup.StatIncrease;
                 levelDiff: number;
+                selectedBonuses: Record<string, number>;
+                partySelected: number;
             }
 
             interface LocationData {
@@ -82,6 +83,7 @@ declare global {
 
             interface LevelUpTypeKeys {
                 statUp: never;
+                statLevelUp: never;
                 modifier: never;
                 heal: never;
                 addPartyMember: never;
@@ -140,6 +142,8 @@ declare global {
             scoreGui?: ig.GUI.ScoreHud;
             pauseExecution: boolean;
             levelUpEvent: ig.Event;
+
+            categoryColorCodes: PartialRecord<GauntletController.LevelUpType, string>;
 
             registerCup(this: this, name: string | string[]): void;
 

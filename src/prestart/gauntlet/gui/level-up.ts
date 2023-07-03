@@ -46,17 +46,23 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
             if(el.gauntlet.purchaseLevelOption(button.levelOption!)) {
                 sc.BUTTON_SOUND.submit.play();
                 button.updateInfo(null)
+                this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.levelUp.close"));
+                this.hasPurchased = true;
             } else sc.BUTTON_SOUND.denied.play();
         } else {
-            sc.Dialogs.showYesNoDialog(
-                ig.lang.get("sc.gui.el-gauntlet.levelUp.skipConfirm"),
-                null, //icon
-                button => {
-                    if(button.data === 0) {
-                        this.hide();
+            if(this.hasPurchased) {
+                this.hide();
+            } else {
+                sc.Dialogs.showYesNoDialog(
+                    ig.lang.get("sc.gui.el-gauntlet.levelUp.skipConfirm"),
+                    null, //icon
+                    button => {
+                        if(button.data === 0) {
+                            this.hide();
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     },
 

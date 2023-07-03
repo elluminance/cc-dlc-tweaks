@@ -6,7 +6,7 @@
             }
         },
         "el-gauntlet": {
-            "round": "Round",
+            "round": "Current Round",
             "points": "Points",
             "rank": "Rank",
 
@@ -17,8 +17,11 @@
                 "skip": "Skip",
                 "skipConfirm": "Are you sure you want to skip this bonus?",
                 
+                "close": "Close",
+                
                 "categoryTypes": {
                     "statUp": "Stat Up",
+                    "statLevelUp": "+Level Up Gains",
                     "modifier": "+Modifier",
                     "heal": "Healing",
                     "addPartyMember": "+Party Member",
@@ -76,13 +79,23 @@
                     "maxhpUp": "Max HP Up",
                     "attackUp": "Attack Up",
                     "defenseUp": "Defense Up",
-                    "focusUp": "Focus Up"
+                    "focusUp": "Focus Up",
+
+                    "maxhpLevelUpBonus": "Max HP Gain Up",
+                    "attackLevelUpBonus": "Attack Gain Up",
+                    "defenseLevelUpBonus": "Defense Gain Up",
+                    "focusLevelUpBonus": "Focus Gain Up"
                 },
 
                 "genericDesc": {
                     "healing": "Restores [!]% of maximum HP.",
 
+                    "statLevelUp": "Increases future level up gain for \\c[3][STAT]\\c[0] by [VALUE].",
                     "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE]."
+                },
+
+                "other": {
+                    "maxhp_full": "Max HP"
                 }
             }
         },

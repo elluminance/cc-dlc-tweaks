@@ -65,8 +65,9 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
     combatRankTimer: 0,
 
     playerStatOverride: undefined,
-    partyStatOverrides: undefined,
     levelDiff: 0,
+    selectedBonuses: {},
+    partySelected: 0,
 };
 
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
@@ -187,7 +188,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Emilie",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Emilie && party.size <= 5",
+            condition: "!party.has.Emilie && party.size < 5",
         },
         PARTY_CTRON: {
             type: "addPartyMember",
@@ -196,7 +197,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Glasses",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Glasses && party.size <= 5",
+            condition: "!party.has.Glasses && party.size < 5",
         },
         PARTY_JOERN: {
             type: "addPartyMember",
@@ -205,7 +206,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Joern",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Joern && party.size <= 5",
+            condition: "!party.has.Joern && party.size < 5",
         },
         PARTY_APOLLO: {
             type: "addPartyMember",
@@ -214,7 +215,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Apollo",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Apollo && party.size <= 5",
+            condition: "!party.has.Apollo && party.size < 5",
         },
         PARTY_LUKAS: {
             type: "addPartyMember",
@@ -223,7 +224,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Schneider",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Schneider && party.size <= 5",
+            condition: "!party.has.Schneider && party.size < 5",
         },
         PARTY_SHIZUKA: {
             type: "addPartyMember",
@@ -232,7 +233,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             partyMemberName: "Shizuka",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
-            condition: "!party.has.Shizuka && party.size <= 5",
+            condition: "!party.has.Shizuka && party.size < 5",
         },
         PARTY_LUKE: {
             type: "addPartyMember",
@@ -241,7 +242,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             scaleType: "PARTY",
             partyMemberName: "Luke",
             cost: PARTY_MEMBER_COST,
-            condition: "!party.has.Luke && party.size <= 5",
+            condition: "!party.has.Luke && party.size < 5",
         },
     },
 
@@ -300,7 +301,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
                 original: "[STAT]",
-                replacement: "\\l[sc.gui.menu.equip.maxhp]"
+                replacement: "\\l[sc.gui.el-gauntlet.levelUp.other.maxhp_full]"
             },{
                 original: "[VALUE]",
                 replacement: 100
@@ -380,6 +381,95 @@ el.GauntletCup.DefaultLevelUpOptions = {
             absolute: true,
             value: 10
         },
+
+        MAXHP_LEVEL_UP1: {
+            type: "statLevelUp",
+            iconSrc: DefaultIcon,
+            iconIndex: 26,
+            name: "sc.gui.el-gauntlet.levelUp.genericName.maxhpLevelUpBonus",
+            repeat: true,
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.el-gauntlet.levelUp.other.maxhp_full]"
+            },{
+                original: "[VALUE]",
+                replacement: 20
+            }],
+
+            cost: 1000,
+            scaleType: "LINEAR",
+            scaleFactor: 250,
+
+            statType: "hp",
+            absolute: true,
+            value: 20
+        },
+        ATTACK_LEVEL_UP1: {
+            type: "statLevelUp",
+            iconSrc: DefaultIcon,
+            iconIndex: 27,
+            name: "sc.gui.el-gauntlet.levelUp.genericName.attackLevelUpBonus",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[VALUE]",
+                replacement: 2
+            }],
+
+            cost: 1000,
+            scaleType: "LINEAR",
+            scaleFactor: 250,
+
+            statType: "attack",
+            value: 2
+        },
+        DEFENSE_LEVEL_UP1: {
+            type: "statLevelUp",
+            iconSrc: DefaultIcon,
+            iconIndex: 28,
+            name: "sc.gui.el-gauntlet.levelUp.genericName.defenseLevelUpBonus",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[VALUE]",
+                replacement: 2
+            }],
+
+            cost: 1000,
+            scaleType: "LINEAR",
+            scaleFactor: 250,
+
+            statType: "defense",
+            absolute: true,
+            value: 2
+        },
+        FOCUS_LEVEL_UP1: {
+            type: "statLevelUp",
+            iconSrc: DefaultIcon,
+            iconIndex: 29,
+            name: "sc.gui.el-gauntlet.levelUp.genericName.focusLevelUpBonus",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[VALUE]",
+                replacement: 2
+            }],
+
+            cost: 1000,
+            scaleType: "LINEAR",
+            scaleFactor: 250,
+
+            statType: "attack",
+            absolute: true,
+            value: 2
+        },
     },
 
     SP: {
@@ -416,10 +506,19 @@ el.GauntletController = ig.GameAddon.extend({
 
     observers: [],
 
+    categoryColorCodes: {
+        statUp: "\\C[green]",
+        statLevelUp: "\\C[green]",
+        modifier: "\\C[yellow]",
+        addPartyMember: "\\C[purple]",
+        heal: "\\C[blue]",
+        item: "\\C[orange]",
+    },
+
     init() {
         this.parent("el-Gauntlet");
         this.registerCup(DEFAULT_CUPS);
-        ig.vars.registerVarAccessor("el-gauntlet", this);
+        ig.vars.registerVarAccessor("gauntlet", this);
         this.levelUpGui = new el.GauntletLevelUpGui;
         this.levelUpEvent = new ig.Event({
             name: "GauntletLevelUp",
@@ -473,9 +572,7 @@ el.GauntletController = ig.GameAddon.extend({
     onLevelLoaded() {
         if(this.active) {
             sc.commonEvents.startCallEvent("el-gauntlet-start-cup");
-            this.addGui();
             this.runtime.steps.callstack.push(this.runtime.currentCup!.roundSteps[0]);
-
         }
     },
     
@@ -527,6 +624,7 @@ el.GauntletController = ig.GameAddon.extend({
         if(this.active) {
             this.runtime.gauntletStarted = true;
             this.startTimer();
+            this.addGui();
         }
     },
 
@@ -558,13 +656,13 @@ el.GauntletController = ig.GameAddon.extend({
             this.scoreGui.remove();
             ig.gui.freeEventGui(this.scoreGui);
         }
-        this.roundGui = ig.gui.createEventGui("round", "CounterHud", {
+        this.roundGui = ig.gui.createEventGui("round", "ScoreHud", {
             taskTitle: ig.lang.get("sc.gui.el-gauntlet.round"),
-            maxCount: this.runtime.currentCup!.numRounds,
+            maxValue: 999999999,
             time: 0.2,
             useDots: true,
-            variable: "el-gauntlet.round",
-            cutsceneOkay: false
+            variable: "gauntlet.round",
+            cutsceneOkay: true
         });
         ig.gui.spawnEventGui(this.roundGui!);
 
@@ -573,8 +671,8 @@ el.GauntletController = ig.GameAddon.extend({
             maxValue: 999999999,
             time: 0.2,
             useDots: true,
-            variable: "el-gauntlet.points",
-            cutsceneOkay: false
+            variable: "gauntlet.points",
+            cutsceneOkay: true
         });
         ig.gui.spawnEventGui(this.scoreGui!);
     },
@@ -595,7 +693,7 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     onVarAccess(_path, keys) {
-        if(keys[0] === "el-gauntlet") {
+        if(keys[0] === "gauntlet") {
             switch(keys[1]) {
                 case "active":
                     return this.active;
@@ -603,7 +701,8 @@ el.GauntletController = ig.GameAddon.extend({
                     return this.runtime ? Math.round(this.runtime.curPoints) : 0;
                 case "round":
                     return this.active ? this.runtime.currentRound : undefined;
-
+                case "bonus":
+                    return true;
             }
         }
     },
@@ -773,22 +872,38 @@ el.GauntletController = ig.GameAddon.extend({
         }
     },
 
-    applyLevelUpBonus(option) {
+    applyLevelUpBonus(opt) {
+        const runtime = this.runtime;
+        //we will assume that the option will have all that's needed for a type.
+        //beats having to type ! after everything.
+        let option = opt as Required<typeof opt>;
         if(!this.active) return;
+
+        if(option.key in runtime.selectedBonuses) {
+            runtime.selectedBonuses[option.key]++;
+        } else {
+            runtime.selectedBonuses[option.key] = 1
+        }
+
         switch(option.type) {
             case "statUp":
             case "modifier":
+                let statOverride = runtime.playerStatOverride!;
                 if(option.statType === "maxSp") {
-
+                    statOverride.addSp(option.value);
                 } else {
-
+                    statOverride.updateStats({[option.statType]: option.value}, "add");
                 }
                 break;
+            case "statLevelUp":
+                runtime.statIncrease[option.statType as keyof el.StatOverride.StatModification] += option.value;
+                break;
             case "addPartyMember":
-                this.addPartyMember(option.partyMemberName!)
+                this.addPartyMember(option.partyMemberName);
+                runtime.partySelected++;
                 break;
             case "heal":
-                ig.game.playerEntity.heal({value: option.value!});
+                ig.game.playerEntity.heal({value: option.value});
                 break;
             case "item": //todo: once i add in the new item inventory
                 break;
@@ -796,7 +911,15 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     getLevelOptionCost(option) {
+        const runtime = this.runtime;
         //TODO: Apply cost scaling.
+        switch(option.scaleType) {
+            case "LINEAR":
+                return option.cost + option.scaleFactor! * (runtime.selectedBonuses[option.key] || 0);
+            case "PARTY":
+                return option.cost * (2 ** runtime.partySelected);
+        }
+        
         return option.cost;
     },
     getLevelOptionName(option) {
@@ -826,24 +949,7 @@ el.GauntletController = ig.GameAddon.extend({
         return ig.lang.get(`sc.gui.el-gauntlet.levelUp.options.${option.key}.shortDesc`);
     },
     getLevelOptionTypeName(option) {
-        let color = "\\c[0]"
-        switch(option.type) {
-            case "statUp":
-                color = "\\C[green]"
-                break;
-            case "modifier":
-                color = "\\C[yellow]"
-                break;
-            case "addPartyMember":
-                color = "\\C[purple]"
-                break;
-            case "heal":
-                color = "\\C[blue]"
-                break;
-            case "item":
-                color = "\\C[orange]"
-                break;
-        }
+        let color = option.type in this.categoryColorCodes ? this.categoryColorCodes[option.type] : "\\c[0]";
 
         return color + ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
     },
@@ -882,6 +988,7 @@ el.GauntletController = ig.GameAddon.extend({
     showLevelGui() {
         this.pauseExecution = true;
         this.pauseTimer();
+        sc.model.enterCutscene(true);
         ig.game.events.callEvent(
             this.levelUpEvent,
             ig.EventRunType.BLOCKING,
@@ -891,6 +998,7 @@ el.GauntletController = ig.GameAddon.extend({
     },
     onLevelGuiClose() {
         this.runtime.levelDiff -= 1;
+        sc.model.enterGame();
         if(this.runtime.levelDiff > 0) {
             this.showLevelGui();
         } else {

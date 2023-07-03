@@ -108,6 +108,7 @@ declare global {
         interface GauntletLevelUpGui extends sc.ModalButtonInteract {
             levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry[];
             done: boolean;
+            hasPurchased: boolean;
             
             onClick(this: this, button: ig.FocusGui): void;
             setOptions(this: this, options: el.GauntletController.LevelUpOption[]): void;

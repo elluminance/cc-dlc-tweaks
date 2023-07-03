@@ -122,7 +122,7 @@ el.StatOverride = ig.Class.extend({
     attack: 360,
     defense: 360,
     focus: 360,
-    spLevel: 2,
+    spLevel: null,
     modifiers: {},
 
     elementBonus: {
@@ -184,7 +184,7 @@ el.StatOverride = ig.Class.extend({
     setActive(state) {
         this.active = state;
 
-        for(let root of this.roots) root.el_updateStatOverride();
+        this._updateModifications();
     },
 
     updateStats(stats, changeMode = "set", factor = 1) {
@@ -209,6 +209,21 @@ el.StatOverride = ig.Class.extend({
                 break;
         }
 
+        this._updateModifications();
+    },
+
+    changeSp(newValue) {
+        this.spLevel = newValue;
+        this._updateModifications();
+    },
+    addSp(value) {
+        if(this.spLevel) {
+            this.spLevel += value;
+        } else this.spLevel = value;
+        this._updateModifications();
+    },
+
+    _updateModifications() {
         for(let root of this.roots) root.el_updateStatOverride();
     },
 

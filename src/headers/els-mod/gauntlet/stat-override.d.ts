@@ -66,7 +66,10 @@ declare global {
             updateStats(this: this, stats: StatOverride.StatModification, changeMode?: StatOverride.UpdateMode, factor?: number): void;
             addModel(this: this, model: el.StatOverride.SupportsOverride): void;
             removeModel(this: this, model: el.StatOverride.SupportsOverride): void;
+            changeSp(this: this, newValue: number): void;
+            addSp(this: this, value: number): void;
 
+            _updateModifications(this: this): void;
             getBaseParams(this: this, element?: keyof typeof sc.ELEMENT): sc.CombatParams.BaseParams;
             getModifiers(this: this, element?: keyof typeof sc.ELEMENT): sc.ModifierList;
         }
