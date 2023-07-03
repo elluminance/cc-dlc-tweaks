@@ -277,5 +277,8 @@ declare global {
 
         let GeodeOpeningGui: GeodeOpeningGuiConstructor;
         //#endregion Geode
+
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let debug: Record<string, any>
     }
 }

@@ -70,6 +70,20 @@
                     "color": "black"
                 },
                 {
+                    "type": "RESET_SP",
+                    "target": {
+                        "player": true
+                    },
+                    "sp": 0.25
+                },
+                {
+                    "type": "SET_RELATIVE_HP",
+                    "target": {
+                        "player": true
+                    },
+                    "value": 1
+                },
+                {
                     "type": "START_EL_GAUNTLET"
                 },
                 {

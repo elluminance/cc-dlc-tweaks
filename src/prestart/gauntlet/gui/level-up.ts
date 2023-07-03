@@ -1,5 +1,6 @@
 el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     levelUpChoices: [],
+    done: false,
     
     init() {
         this.parent(
@@ -11,33 +12,41 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
         this.keepOpen = true;
         this.content.setSize(270, 250);
         this.msgBox.resize();
-    },
-    
-    show() {
-        this.parent();
+        
         let offset = 24;
-        for(let option of [
-            el.GauntletCup.DefaultLevelUpOptions.PARTY.PARTY_EMILIE,
-            el.GauntletCup.DefaultLevelUpOptions.BASE_STATS.ATTACK_UP_ABS,
-            el.GauntletCup.DefaultLevelUpOptions.PARTY.PARTY_APOLLO,
-            el.GauntletCup.DefaultLevelUpOptions.HEALING.HEAL_MEDIUM,
-        ]) {
-            let button = new el.GauntletLevelUpGui.LevelUpEntry(option);
+        for(let i = 0; i < 4; i++) {
+            let button = new el.GauntletLevelUpGui.LevelUpEntry;
             button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
             button.setPos(0, offset);
             offset += button.hook.size.y + 4;
 
             this.levelUpChoices.push(button);
             this.buttongroup.addFocusGui(button);
-            this.content.addChildGui(button)
+            this.content.addChildGui(button);
+        }
+    },
+    
+    show() {
+        this.done = false;
+        this.setOptions(el.gauntlet.generateLevelUpOptions());
+        this.parent();
+        for(let i of this.levelUpChoices) {
+            i.show();
+        }
+    },
+
+    setOptions(options) {
+        for(let i = 0; i < 4; i++) {
+            this.levelUpChoices[i].updateInfo(options[i]);
         }
     },
 
     onClick(button) {
         if(button instanceof el.GauntletLevelUpGui.LevelUpEntry) {
-            el.gauntlet.applyLevelUpBonus(button.levelOption);
-
-            this.hide();
+            if(el.gauntlet.purchaseLevelOption(button.levelOption!)) {
+                sc.BUTTON_SOUND.submit.play();
+                button.updateInfo(null)
+            } else sc.BUTTON_SOUND.denied.play();
         } else {
             sc.Dialogs.showYesNoDialog(
                 ig.lang.get("sc.gui.el-gauntlet.levelUp.skipConfirm"),
@@ -54,6 +63,14 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     onBackButtonCheck() {
         return false;
     },
+
+    hide() {
+        this.done = true;
+        this.parent();
+        for(let i of this.levelUpChoices) {
+            i.hide();
+        }
+    },
 })
 
 //rough idea for type colors:
@@ -63,6 +80,12 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
 // party member: purple
 // buy item: orange
 // other: pink OR red 
+
+const enum BUTTON_STATE {
+    INACTIVE = 0,
+    ACTIVE = 1,
+    CANT_AFFORD = 2,
+}
 
 el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
     data: {},
@@ -89,6 +112,10 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             inactive: {
                 x: 64,
                 y: 106
+            },
+            inactive_cost: {
+                x: 96,
+                y: 106
             }
         }
     }),
@@ -101,9 +128,8 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
     upgradeTypeText: null,
     costText: null,
 
-    init(option) {
+    init() {
         this.parent(true);
-        this.levelOption = option;
 
         this.setSize(270, 40);
         this.titleText = new sc.TextGui("");
@@ -114,7 +140,7 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             font: sc.fontsystem.smallFont,
         });
         this.shortDescText.setPos(30, 14);
-        this.shortDescText.setMaxWidth(240);
+        this.shortDescText.setMaxWidth(225);
         this.addChildGui(this.shortDescText);
 
         this.costText = new sc.TextGui("", {
@@ -131,35 +157,92 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
         this.upgradeTypeText.setPos(3, 0);
         this.addChildGui(this.upgradeTypeText);
 
-        this.updateInfo();
+        //this.updateInfo();
     },
 
-    updateInfo() {
-        let option = this.levelOption;
-        this.icon = option.icon;
-        const size = Math.floor(this.icon.width / 20);
-        this.iconOffX = 20 * (option.iconIndex % size);
-        this.iconOffY = 20 * Math.floor(option.iconIndex / size);
-        
-        this.titleText.setText(el.gauntlet.getLevelOptionName(option));
-        this.shortDescText.setText(el.gauntlet.getLevelOptionDesc(option));
-        this.costText.setText(
-            ig.lang.get("sc.gui.el-gauntlet.levelUp.cost")
-                .replace("[!]", el.gauntlet.getLevelOptionCost(option).toString())
-        );
-        this.upgradeTypeText.setText(el.gauntlet.getLevelOptionTypeName(option));
+    updateInfo(option) {
+        if(option !== undefined) this.levelOption = option;
+
+        if(this.levelOption) {
+            let cost = el.gauntlet.getLevelOptionCost(this.levelOption);
+            let canAfford = true;
+            if(cost > el.gauntlet.runtime.curPoints) {
+                this.active = false;
+                this.buttonState = BUTTON_STATE.CANT_AFFORD;
+                canAfford = false;
+            } else {
+                this.active = true;
+                this.buttonState = BUTTON_STATE.ACTIVE;
+            }
+
+            this.icon = this.levelOption.icon;
+            const size = Math.floor(this.icon.width / 20);
+            this.iconOffX = 20 * (this.levelOption.iconIndex % size);
+            this.iconOffY = 20 * Math.floor(this.levelOption.iconIndex / size);
+            
+            this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getLevelOptionName(this.levelOption));
+            this.shortDescText.setText(el.gauntlet.getLevelOptionDesc(this.levelOption));
+            this.costText.setText(
+                (!canAfford ? "\\C[red]" : "") +
+                ig.lang.get("sc.gui.el-gauntlet.levelUp.cost")
+                    .replace("[!]", cost.toString())
+            );
+            this.upgradeTypeText.setText(el.gauntlet.getLevelOptionTypeName(this.levelOption));
+        } else {
+            this.active = false;
+            this.buttonState = BUTTON_STATE.INACTIVE;
+
+            this.titleText.setText("");
+            this.shortDescText.setText("");
+            this.costText.setText("");
+            this.upgradeTypeText.setText("");
+        }
     },
 
     updateDrawables(renderer) {
+        let state;
+
+        switch(this.buttonState) {
+            case BUTTON_STATE.ACTIVE:
+                state = this.focus ? "focus" : "default";
+                break;
+            case BUTTON_STATE.CANT_AFFORD:
+                state = "inactive_cost";
+                break;
+            case BUTTON_STATE.INACTIVE:
+            default:
+                state = "inactive";
+                break;
+        }
+
         this.ninepatch.draw(
             renderer,
             this.hook.size.x, this.hook.size.y,
-            this.active ? (this.focus ? "focus" : "default") : "inactive"
+            state
         );
 
-        //main icon
-        renderer.addGfx(this.icon, 4, 10, this.iconOffX, this.iconOffY, 20, 20);
-        //element icon
-        if(this.levelOption.element !== undefined) renderer.addGfx(this.gfx, 18, 24, 99 + 6 * (this.levelOption.element as unknown as number), 131, 5, 5);
+        if(this.levelOption) {
+            //main icon
+            renderer.addGfx(this.icon, 4, 10, this.iconOffX, this.iconOffY, 20, 20);
+            //element icon
+            if(this.levelOption.element !== undefined) renderer.addGfx(this.gfx, 18, 24, 132 + 6 * (this.levelOption.element as unknown as number), 131, 5, 5);
+        }
+    },
+
+    show() {
+        sc.Model.addObserver(el.gauntlet, this)
+    },
+    hide() {
+        sc.Model.removeObserver(el.gauntlet, this);
+    },
+
+    modelChanged(model, message) {
+        if(model === el.gauntlet) {
+            switch(message) {
+                case el.GAUNTLET_MSG.UPGRADE_PURCHASED:
+                    this.updateInfo();
+                    break;
+            }
+        }
     },
 })

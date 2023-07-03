@@ -1,8 +1,11 @@
+import { getEntries } from "../../helper-funcs.js";
+
 el.GAUNTLET_MSG = {
     RANK_CHANGED: 0,
     ROUND_STARTED: 1,
     LEVEL_CHANGED: 2,
     EXP_CHANGED: 3,
+    UPGRADE_PURCHASED: 4,
 }
 
 el.GAUNTLET_RANKS = [
@@ -35,23 +38,7 @@ el.GAUNTLET_RANKS = [
 ]
 
 const PARTY_MEMBER_COST = 1000;
-const DefaultIcon = new ig.Image("media/gui/gauntlet-icons/el-mod.png");
-
-
-
-el.DEFAULT_GAUNTLET_LEVEL_UP_OPTIONS = {
-    //#region Party Members
-    
-    //#endregion
-
-    //#region Healing
-    
-    //#endregion
-
-    //#region Base Stats
-    
-    //#endregion
-}
+const DefaultIcon = "media/gui/gauntlet-icons/el-mod.png";
 
 const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
     currentCup: null,
@@ -79,6 +66,7 @@ const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
 
     playerStatOverride: undefined,
     partyStatOverrides: undefined,
+    levelDiff: 0,
 };
 
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
@@ -105,6 +93,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
     enemyTypes: null,
     cacheType: "EL_GAUNTLET_CUP",
     debugReload: true,
+    levelUpOptions: {},
 
     getJsonPath() {
         return `${ig.root}${this.path.toPath("data/el-gauntlet/", ".json")}`
@@ -166,9 +155,21 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         const defaultOptions = el.GauntletCup.DefaultLevelUpOptions;
 
-        this.levelUpOptions = {
+        let levelUpOptions = {
             ...defaultOptions.PARTY,
-            ...defaultOptions.HEALING
+            ...defaultOptions.HEALING,
+            ...defaultOptions.BASE_STATS,
+            ...defaultOptions.SP,
+        }
+
+        for(let [key, value] of getEntries(levelUpOptions)) {
+            this.levelUpOptions[key] = {
+                ...value,
+                key: key as string,
+                icon: new ig.Image(value.iconSrc),
+                condition: new ig.VarCondition(value.condition || "true"),
+                type: value.type,
+            }
         }
     },
 
@@ -181,74 +182,73 @@ el.GauntletCup.DefaultLevelUpOptions = {
     PARTY: {
         PARTY_EMILIE: {
             type: "addPartyMember",
-            key: "PARTY_EMILIE",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 10,
             partyMemberName: "Emilie",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Emilie && party.size <= 5",
         },
         PARTY_CTRON: {
             type: "addPartyMember",
-            key: "PARTY_CTRON",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 11,
             partyMemberName: "Glasses",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Glasses && party.size <= 5",
         },
         PARTY_JOERN: {
             type: "addPartyMember",
-            key: "PARTY_JOERN",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 12,
             partyMemberName: "Joern",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Joern && party.size <= 5",
         },
         PARTY_APOLLO: {
             type: "addPartyMember",
-            key: "PARTY_APOLLO",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 13,
             partyMemberName: "Apollo",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Apollo && party.size <= 5",
         },
         PARTY_LUKAS: {
             type: "addPartyMember",
-            key: "PARTY_LUKAS",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 14,
             partyMemberName: "Schneider",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Schneider && party.size <= 5",
         },
         PARTY_SHIZUKA: {
             type: "addPartyMember",
-            key: "PARTY_SHIZUKA",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 15,
             partyMemberName: "Shizuka",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
+            condition: "!party.has.Shizuka && party.size <= 5",
         },
         PARTY_LUKE: {
             type: "addPartyMember",
-            key: "PARTY_LUKE",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 16,
             scaleType: "PARTY",
             partyMemberName: "Luke",
             cost: PARTY_MEMBER_COST,
+            condition: "!party.has.Luke && party.size <= 5",
         },
     },
 
     HEALING: {
         HEAL_SMALL: {
             type: "heal",
-            key: "HEAL_SMALL",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
 
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
             descReplace: [{
@@ -262,8 +262,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
         },
         HEAL_MEDIUM: {
             type: "heal",
-            key: "HEAL_MEDIUM",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
 
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
             descReplace: [{
@@ -277,8 +276,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
         },
         HEAL_LARGE: {
             type: "heal",
-            key: "HEAL_LARGE",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
 
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.healing",
             descReplace: [{
@@ -295,9 +293,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
     BASE_STATS: {
         MAXHP_UP_ABS1: {
             type: "statUp",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 21,
-            key: "MAXHP_UP_ABS",
             name: "sc.gui.el-gauntlet.levelUp.genericName.maxhpUp",
             repeat: true,
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
@@ -319,9 +316,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         },
         ATTACK_UP_ABS1: {
             type: "statUp",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 22,
-            key: "ATTACK_UP_ABS",
             name: "sc.gui.el-gauntlet.levelUp.genericName.attackUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -342,9 +338,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         },
         DEFENSE_UP_ABS1: {
             type: "statUp",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 23,
-            key: "DEFENSE_UP_ABS1",
             name: "sc.gui.el-gauntlet.levelUp.genericName.defenseUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -365,9 +360,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         },
         FOCUS_UP_ABS1: {
             type: "statUp",
-            icon: DefaultIcon,
+            iconSrc: DefaultIcon,
             iconIndex: 24,
-            key: "FOCUS_UP_ABS",
             name: "sc.gui.el-gauntlet.levelUp.genericName.focusUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -385,6 +379,22 @@ el.GauntletCup.DefaultLevelUpOptions = {
             statType: "attack",
             absolute: true,
             value: 10
+        },
+    },
+
+    SP: {
+        MAX_SP_1: {
+            type: "statUp",
+            iconSrc: DefaultIcon,
+            iconIndex: 25,
+            repeat: true,
+
+            cost: 1000,
+            scaleType: "LINEAR",
+            scaleFactor: 1000,
+
+            statType: "maxSp",
+            value: 1
         },
     }
 }
@@ -410,6 +420,13 @@ el.GauntletController = ig.GameAddon.extend({
         this.parent("el-Gauntlet");
         this.registerCup(DEFAULT_CUPS);
         ig.vars.registerVarAccessor("el-gauntlet", this);
+        this.levelUpGui = new el.GauntletLevelUpGui;
+        this.levelUpEvent = new ig.Event({
+            name: "GauntletLevelUp",
+            steps: [{
+                type: "SHOW_GAUNTLET_LEVEL_UP",
+            }]
+        })
     },
 
     onPostUpdate() {
@@ -427,7 +444,7 @@ el.GauntletController = ig.GameAddon.extend({
 
             if(runtime.gauntletStarted) {
                 //will run through all valid rounds it can
-                while(callstack.length > 0) {
+                while(callstack.length > 0 && !this.pauseExecution) {
                     let lastStep = callstack.last();
                     if(lastStep.canAdvanceRound()) {
                         let [nextStep, branchStep] = lastStep.nextStep();
@@ -437,7 +454,12 @@ el.GauntletController = ig.GameAddon.extend({
                         
                         if(branchStep) callstack.push(branchStep);
 
-                        if(callstack.length > 0) this.startNextRound();
+                        if(callstack.length > 0) {
+                            if(this.processLevel()) {
+                                this.showLevelGui();
+                            }
+                            else this.startNextRound();
+                        }
                     } else break;
                 }
     
@@ -496,6 +518,7 @@ el.GauntletController = ig.GameAddon.extend({
 
         this.storedPartyBehavior = sc.party.strategyKeys.BEHAVIOUR;
         this.stashPartyMembers();
+        this.pauseExecution = false;
 
         ig.game.teleport(cup.map, cup.marker ? new ig.TeleportPosition(cup.marker) : null)
     },
@@ -503,22 +526,7 @@ el.GauntletController = ig.GameAddon.extend({
     beginGauntlet() {
         if(this.active) {
             this.runtime.gauntletStarted = true;
-            if(sc.timers.timers.gauntletTimer) {
-                sc.timers.resumeTimer("gauntletTimer")
-            } else {
-                sc.timers.addTimer(
-                    "gauntletTimer",
-                    sc.TIMER_TYPES.COUNTER,
-                    null,
-                    null,
-                    null,
-                    true,
-                    true,
-                    null,
-                    ig.lang.get("sc.gui.arena.time"),
-                    true
-                );
-            }
+            this.startTimer();
         }
     },
 
@@ -530,7 +538,6 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.roundEnemiesDefeated = 0;
         let step = runtime.steps.callstack.last()!;
 
-        this.processLevel();
 
         if(step.isProperRound) runtime.currentRound++;
         if(step) {
@@ -706,7 +713,9 @@ el.GauntletController = ig.GameAddon.extend({
 
     addPoints(score) {
         if(this.active) {
-            this.runtime.curPoints += score * this.getRankPointMultiplier();
+            let points = score * this.getRankPointMultiplier();
+            this.runtime.curPoints += points;
+            this.runtime.totalPoints += points;
             ig.game.varsChangedDeferred();
         }
     },
@@ -730,15 +739,37 @@ el.GauntletController = ig.GameAddon.extend({
     processLevel() {
         let runtime = this.runtime;
         if(this.active && runtime.curXp >= 1000) {
-            //TODO: level up gui with shop
-            let levelDelta = Math.floor(runtime.curXp / 1000);
+            runtime.levelDiff = Math.floor(runtime.curXp / 1000);
 
-            runtime.playerStatOverride!.updateStats(runtime.statIncrease, "add", levelDelta);
+            runtime.playerStatOverride!.updateStats(runtime.statIncrease, "add", runtime.levelDiff);
             
-            runtime.curLevel += levelDelta;
+            runtime.curLevel += runtime.levelDiff;
             runtime.curXp %= 1000;
 
             sc.Model.notifyObserver(this, el.GAUNTLET_MSG.LEVEL_CHANGED);
+            return true;
+        }
+        return false;
+    },
+    pauseTimer() {
+        sc.timers.stopTimer("gauntletTimer")
+    },
+    startTimer() {
+        if(sc.timers.timers.gauntletTimer) {
+            sc.timers.resumeTimer("gauntletTimer")
+        } else {
+            sc.timers.addTimer(
+                "gauntletTimer",
+                sc.TIMER_TYPES.COUNTER,
+                null,
+                null,
+                null,
+                true,
+                true,
+                null,
+                ig.lang.get("sc.gui.arena.time"),
+                true
+            );
         }
     },
 
@@ -747,6 +778,11 @@ el.GauntletController = ig.GameAddon.extend({
         switch(option.type) {
             case "statUp":
             case "modifier":
+                if(option.statType === "maxSp") {
+
+                } else {
+
+                }
                 break;
             case "addPartyMember":
                 this.addPartyMember(option.partyMemberName!)
@@ -810,6 +846,58 @@ el.GauntletController = ig.GameAddon.extend({
         }
 
         return color + ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
+    },
+
+    purchaseLevelOption(option) {
+        const runtime = this.runtime;
+
+        let cost = this.getLevelOptionCost(option);
+        if(cost <= runtime.curPoints) {
+            runtime.curPoints -= this.getLevelOptionCost(option);
+            this.applyLevelUpBonus(option);
+            ig.game.varsChangedDeferred();
+            sc.Model.notifyObserver(this, el.GAUNTLET_MSG.UPGRADE_PURCHASED);
+            return true;
+        }
+        return false;
+    },
+
+    generateLevelUpOptions() {
+        let cup = this.runtime.currentCup!;
+        const OptionsList = Object.values(cup.levelUpOptions);
+
+        let options: typeof OptionsList = [];
+
+        while(options.length < 4) {
+            let gennedOption = OptionsList.random();
+
+            if(gennedOption.condition && !gennedOption.condition.evaluate()) continue;
+
+            if(!options.includes(gennedOption)) options.push(gennedOption);
+        }
+
+        return options
+    },
+
+    showLevelGui() {
+        this.pauseExecution = true;
+        this.pauseTimer();
+        ig.game.events.callEvent(
+            this.levelUpEvent,
+            ig.EventRunType.BLOCKING,
+            null,
+            this.onLevelGuiClose.bind(this)
+        );
+    },
+    onLevelGuiClose() {
+        this.runtime.levelDiff -= 1;
+        if(this.runtime.levelDiff > 0) {
+            this.showLevelGui();
+        } else {
+            this.pauseExecution = false;
+            this.startTimer();
+            this.startNextRound();
+        }
     },
     //#endregion
 

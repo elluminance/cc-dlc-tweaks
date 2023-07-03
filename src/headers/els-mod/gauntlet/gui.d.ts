@@ -69,6 +69,7 @@ declare global {
         }
         let GauntletExpHud: GauntletExpHud.Constructor;
 
+
         namespace GauntletLevelUpGui {
             interface Constructor extends ImpactClass<GauntletLevelUpGui> {
                 new (): GauntletLevelUpGui;
@@ -78,16 +79,19 @@ declare global {
 
             namespace LevelUpEntry {
                 interface Constructor extends ImpactClass<LevelUpEntry> {
-                    new (option: GauntletController.LevelUpOption): LevelUpEntry;
+                    new (): LevelUpEntry;
                 }
             }
 
-            interface LevelUpEntry extends ig.FocusGui {
+            
+
+            interface LevelUpEntry extends ig.FocusGui, sc.Model.Observer {
                 data: Record<string, never>;
                 gfx: ig.Image;
                 ninepatch: ig.NinePatch;
-                levelOption: el.GauntletController.LevelUpOption;
-                
+                levelOption?: Optional<el.GauntletController.LevelUpOption>;
+                buttonState: number;
+
                 icon: ig.Image;
                 iconOffX: number;
                 iconOffY: number;
@@ -96,13 +100,17 @@ declare global {
                 upgradeTypeText: sc.TextGui;
                 costText: sc.TextGui;
                 
-                updateInfo(this: this): void;
+                updateInfo(this: this, option?: Optional<el.GauntletController.LevelUpOption>): void;
+                show(this: this): void;
+                hide(this: this): void;
             }
         }
         interface GauntletLevelUpGui extends sc.ModalButtonInteract {
             levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry[];
+            done: boolean;
             
             onClick(this: this, button: ig.FocusGui): void;
+            setOptions(this: this, options: el.GauntletController.LevelUpOption[]): void;
         }
         let GauntletLevelUpGui: GauntletLevelUpGui.Constructor;
     }

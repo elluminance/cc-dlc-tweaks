@@ -7,6 +7,17 @@ declare global {
         }
         interface START_EL_GAUNTLET extends ig.EventStepBase {}
         let START_EL_GAUNTLET: START_EL_GAUNTLET.Constructor;
+
+        namespace SHOW_GAUNTLET_LEVEL_UP {
+            interface Constructor extends ImpactClass<SHOW_GAUNTLET_LEVEL_UP> {
+                new (): SHOW_GAUNTLET_LEVEL_UP;
+            }
+            interface Settings extends ig.EventStepBase.Settings {}
+        }
+        interface SHOW_GAUNTLET_LEVEL_UP extends ig.EventStepBase {
+            levelGui: el.GauntletLevelUpGui;
+        }
+        let SHOW_GAUNTLET_LEVEL_UP: SHOW_GAUNTLET_LEVEL_UP.Constructor;
     }
 
     namespace el {
@@ -109,7 +120,7 @@ declare global {
             }
 
             interface Settings extends GauntletStepBase.Settings {
-                event: unknown[];
+                event: ig.EventStepBase.Settings[];
                 isBlocking: boolean;
             }
         }

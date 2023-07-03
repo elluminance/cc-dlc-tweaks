@@ -64,6 +64,11 @@
                     },
                     "HEAL_LARGE": {
                         "name": "Large Heal"
+                    },
+
+                    "MAX_SP_1": {
+                        "name": "Increase Max SP",
+                        "shortDesc": "Adds one extra bar of SP, allowing you to do more \\c[3]combat arts\\c[0]."
                     }
                 },
 
