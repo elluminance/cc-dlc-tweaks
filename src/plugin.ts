@@ -5,7 +5,8 @@ export default class implements LegacyPluginClass {
 
     preload() {
         //@ts-expect-error
-        if(!window.el) window.el = {};
+        window.el ??= {};
+        el.debug ??= {};
     }
 
     prestart() {

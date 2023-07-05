@@ -102,7 +102,9 @@ declare global {
                 iconSrc: string;
                 iconIndex: number;
                 cost: number;
+                weight: number;
                 condition?: string;
+                minLevel?: number;
 
                 repeat?: number | boolean;
                 scaleType?: LevelUpScaleType;

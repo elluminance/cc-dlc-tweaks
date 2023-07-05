@@ -185,6 +185,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 10,
+            weight: 100,
             partyMemberName: "Emilie",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -193,6 +194,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_CTRON: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
+            weight: 100,
             iconIndex: 11,
             partyMemberName: "Glasses",
             cost: PARTY_MEMBER_COST,
@@ -203,6 +205,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 12,
+            weight: 100,
             partyMemberName: "Joern",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -212,6 +215,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 13,
+            weight: 100,
             partyMemberName: "Apollo",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -221,6 +225,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 14,
+            weight: 100,
             partyMemberName: "Schneider",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -230,6 +235,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 15,
+            weight: 100,
             partyMemberName: "Shizuka",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -239,6 +245,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             iconIndex: 16,
+            weight: 100,
             scaleType: "PARTY",
             partyMemberName: "Luke",
             cost: PARTY_MEMBER_COST,
@@ -256,6 +263,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
                 original: "[!]",
                 replacement: 20
             }],
+            weight: 250,
             iconIndex: 20,
             value: 0.20,
             repeat: true,
@@ -274,6 +282,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             value: 0.40,
             repeat: true,
             cost: 750,
+            weight: 100,
         },
         HEAL_LARGE: {
             type: "heal",
@@ -288,6 +297,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             value: 0.6,
             repeat: true,
             cost: 1100,
+            weight: 50,
         },
     },
 
@@ -308,12 +318,13 @@ el.GauntletCup.DefaultLevelUpOptions = {
             }],
 
             cost: 500,
+            weight: 100,
             scaleType: "LINEAR",
             scaleFactor: 100,
 
             statType: "hp",
             absolute: true,
-            value: 100
+            value: 100,
         },
         ATTACK_UP_ABS1: {
             type: "statUp",
@@ -330,6 +341,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             }],
 
             cost: 500,
+            weight: 100,
             scaleType: "LINEAR",
             scaleFactor: 100,
 
@@ -353,6 +365,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
 
             cost: 500,
             scaleType: "LINEAR",
+            weight: 100,
             scaleFactor: 100,
 
             statType: "defense",
@@ -376,6 +389,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 500,
             scaleType: "LINEAR",
             scaleFactor: 100,
+            weight: 100,
 
             statType: "attack",
             absolute: true,
@@ -400,6 +414,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 1000,
             scaleType: "LINEAR",
             scaleFactor: 250,
+            weight: 100,
 
             statType: "hp",
             absolute: true,
@@ -422,6 +437,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 1000,
             scaleType: "LINEAR",
             scaleFactor: 250,
+            weight: 100,
 
             statType: "attack",
             value: 2
@@ -443,6 +459,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 1000,
             scaleType: "LINEAR",
             scaleFactor: 250,
+            weight: 100,
 
             statType: "defense",
             absolute: true,
@@ -465,6 +482,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 1000,
             scaleType: "LINEAR",
             scaleFactor: 250,
+            weight: 100,
 
             statType: "attack",
             absolute: true,
@@ -482,6 +500,7 @@ el.GauntletCup.DefaultLevelUpOptions = {
             cost: 1000,
             scaleType: "LINEAR",
             scaleFactor: 1000,
+            weight: 10,
 
             statType: "maxSp",
             value: 1
@@ -538,8 +557,6 @@ el.GauntletController = ig.GameAddon.extend({
             }
 
             let callstack = runtime.steps.callstack;
-            //let currentStep: el.GauntletStep;
-
 
             if(runtime.gauntletStarted) {
                 //will run through all valid rounds it can
@@ -600,6 +617,8 @@ el.GauntletController = ig.GameAddon.extend({
         sc.model.player.setCore(sc.PLAYER_CORE.EXP, false);
         sc.model.player.setCore(sc.PLAYER_CORE.ITEMS, false);
 
+        sc.timers.removeTimer("gauntletTimer")
+
         this.runtime = {...DEFAULT_RUNTIME};
         let cup = this.cups[name];
         let runtime = this.runtime;
@@ -611,7 +630,6 @@ el.GauntletController = ig.GameAddon.extend({
         runtime.playerStatOverride.addModel(sc.model.player);
         
         runtime.statIncrease = {...cup.statIncrease}
-        //sc.model.player.statOverride.applyOverride(cup.playerStats);
 
         this.storedPartyBehavior = sc.party.strategyKeys.BEHAVIOUR;
         this.stashPartyMembers();
@@ -693,16 +711,30 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     onVarAccess(_path, keys) {
+        const runtime = this.runtime;
+        const cup = runtime.currentCup!;
         if(keys[0] === "gauntlet") {
             switch(keys[1]) {
                 case "active":
                     return this.active;
                 case "points":
-                    return this.runtime ? Math.round(this.runtime.curPoints) : 0;
+                    return this.active ? Math.round(runtime.curPoints) : 0;
                 case "round":
-                    return this.active ? this.runtime.currentRound : undefined;
+                    return this.active ? runtime.currentRound : undefined;
                 case "bonus":
-                    return true;
+                    if(!this.active) return;
+                    const bonusKey = keys[2];
+                    if(!bonusKey || !(bonusKey in cup.levelUpOptions)) return;
+                    const bonus = cup.levelUpOptions[bonusKey];
+                    switch(keys[3]) {
+                        case "count":
+                            return runtime.selectedBonuses[bonusKey] || 0;
+                        case "name":
+                            return this.getLevelOptionName(bonus);
+                        case "cost":
+                            return this.getLevelOptionCost(bonus);
+                    }
+                    break;
             }
         }
     },
@@ -969,20 +1001,51 @@ el.GauntletController = ig.GameAddon.extend({
     },
 
     generateLevelUpOptions() {
-        let cup = this.runtime.currentCup!;
-        const OptionsList = Object.values(cup.levelUpOptions);
+        const runtime = this.runtime;
+        const cup = this.runtime.currentCup!;
+        const level = this.runtime.curLevel - this.runtime.levelDiff + 1;
+        
+        //const OptionsList = Object.values(cup.levelUpOptions);
 
-        let options: typeof OptionsList = [];
+        let choices: [string, number][] = [];
+        let weightedSum = 0;
+        //generate the list of level up options that can be picked in general.
+        for(let [key, option] of getEntries(cup.levelUpOptions)) {
+            //makes sure the option can be picked.
+            if(option.condition && !option.condition.evaluate()) continue;
 
-        while(options.length < 4) {
-            let gennedOption = OptionsList.random();
+            //options that don't repeat won't be selected again.
+            if (runtime.selectedBonuses[key]) {
+                //option can't repeat.
+                if(!option.repeat) continue;
+                //option *can* repeat, but only to a limit.
+                if(typeof option.repeat == "number" && option.repeat <= runtime.selectedBonuses[key]) continue;
+            }
 
-            if(gennedOption.condition && !gennedOption.condition.evaluate()) continue;
+            //ensures the level requirement is met.
+            if(option.minLevel && level < option.minLevel) continue;
 
-            if(!options.includes(gennedOption)) options.push(gennedOption);
+            weightedSum += option.weight;
+            choices.push([key, weightedSum]);
         }
 
-        return options
+        //if(el.debug.gauntlet_printWeightTable) console.log(choices);
+        
+        //2: pick 4 of them.
+        let options: string[] = [];
+        while(options.length < 4) {
+            let randVal = Math.random() * weightedSum;
+            let prevWeight = 0;
+
+            for(let [key, weight] of choices) {
+                if(prevWeight < randVal && randVal <= weight) {
+                    if(!options.includes(key)) options.push(key);
+                    break;
+                } else prevWeight = weight;
+            }
+        }
+
+        return options.map(option => cup.levelUpOptions[option]).sort(() => (Math.random() - 0.5));
     },
 
     showLevelGui() {
