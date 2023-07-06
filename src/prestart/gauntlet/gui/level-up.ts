@@ -182,9 +182,8 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             }
 
             this.icon = this.levelOption.icon;
-            const size = Math.floor(this.icon.width / 20);
-            this.iconOffX = 20 * (this.levelOption.iconIndex % size);
-            this.iconOffY = 20 * Math.floor(this.levelOption.iconIndex / size);
+            this.iconOffX = 20 * this.levelOption.iconIndexX;
+            this.iconOffY = 20 * this.levelOption.iconIndexY;
             
             this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getLevelOptionName(this.levelOption));
             this.shortDescText.setText(el.gauntlet.getLevelOptionDesc(this.levelOption));

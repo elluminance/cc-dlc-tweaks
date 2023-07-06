@@ -88,6 +88,7 @@ declare global {
                 heal: never;
                 addPartyMember: never;
                 item: never;
+                special: never;
             }
 
             type LevelUpType = keyof LevelUpTypeKeys;
@@ -97,14 +98,21 @@ declare global {
                 replacement: sc.TextLike;
             } 
 
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            type SpecialFuncParams = any[] | Record<string, any>;
+            type SpecialFunc = (params: SpecialFuncParams, option: LevelUpOption, runtime: Runtime) => void;
+
             interface BaseLevelUpEntry {
                 type: LevelUpType;
                 iconSrc: string;
-                iconIndex: number;
+                iconIndexX: number;
+                iconIndexY: number;
                 cost: number;
                 weight: number;
                 condition?: string;
                 minLevel?: number;
+                specialFunc?: string;
+                specialFuncParams?: SpecialFuncParams;
 
                 repeat?: number | boolean;
                 scaleType?: LevelUpScaleType;
@@ -133,6 +141,9 @@ declare global {
                 new(): GauntletController;
             }
         }
+
+        let GAUNTLET_SPECIAL_BONUS_FUNC: Record<string, GauntletController.SpecialFunc>;
+
         interface GauntletController extends ig.GameAddon, ig.Vars.Accessor, sc.Model {
             runtime: GauntletController.Runtime;
             active: boolean;

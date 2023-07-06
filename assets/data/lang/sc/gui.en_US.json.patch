@@ -26,7 +26,8 @@
                     "heal": "Healing",
                     "addPartyMember": "+Party Member",
                     "item": "Item",
-                    "other": "Other"
+                    "other": "Other",
+                    "special": "Special"
                 },
 
                 "options": {
@@ -84,19 +85,32 @@
                     "maxhpLevelUpBonus": "Max HP Gain Up",
                     "attackLevelUpBonus": "Attack Gain Up",
                     "defenseLevelUpBonus": "Defense Gain Up",
-                    "focusLevelUpBonus": "Focus Gain Up"
+                    "focusLevelUpBonus": "Focus Gain Up",
+
+                    "atkUpDefDown": "A-Up, D-Down",
+                    "defUpAtkDown": "D-Up, A-Down",
+                    "atkUpFocDown": "A-Up, F-Down",
+                    "atkUpAtkDown": "F-Up, A-Down",
+                    "defUpFocDown": "D-Up, F-Down",
+                    "focUpDefDown": "F-Up, D-Down"
                 },
 
                 "genericDesc": {
                     "healing": "Restores [!]% of maximum HP.",
 
                     "statLevelUp": "Increases future level up gain for \\c[3][STAT]\\c[0] by [VALUE].",
-                    "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE]."
+                    "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE].",
+
+                    "statSwap": "\\C[red]Lose\\c[0] [VALUE2] \\c[3][STAT2]\\c[0] in exchange for \\C[green]gaining\\c[0] [VALUE1] \\c[3][STAT1]\\c[0]."
                 },
 
                 "other": {
                     "maxhp_full": "Max HP"
-                }
+                },
+
+                "specialFuncLabels": {
+                    "statSwap": "Stat Swap"
+                } 
             }
         },
 

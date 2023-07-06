@@ -161,6 +161,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
             ...defaultOptions.HEALING,
             ...defaultOptions.BASE_STATS,
             ...defaultOptions.SP,
+            ...defaultOptions.STAT_SWAP,
         }
 
         for(let [key, value] of getEntries(levelUpOptions)) {
@@ -184,7 +185,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_EMILIE: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 10,
+			iconIndexX: 0,
+            iconIndexY: 1,
             weight: 100,
             partyMemberName: "Emilie",
             cost: PARTY_MEMBER_COST,
@@ -195,7 +197,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
             weight: 100,
-            iconIndex: 11,
+            iconIndexX: 1,
+			iconIndexY: 1,
             partyMemberName: "Glasses",
             cost: PARTY_MEMBER_COST,
             scaleType: "PARTY",
@@ -204,7 +207,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_JOERN: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 12,
+			iconIndexX: 2,
+            iconIndexY: 1,
             weight: 100,
             partyMemberName: "Joern",
             cost: PARTY_MEMBER_COST,
@@ -214,7 +218,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_APOLLO: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 13,
+			iconIndexX: 3,
+            iconIndexY: 1,
             weight: 100,
             partyMemberName: "Apollo",
             cost: PARTY_MEMBER_COST,
@@ -224,7 +229,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_LUKAS: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 14,
+			iconIndexX: 4,
+            iconIndexY: 1,
             weight: 100,
             partyMemberName: "Schneider",
             cost: PARTY_MEMBER_COST,
@@ -234,7 +240,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_SHIZUKA: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 15,
+			iconIndexX: 5,
+            iconIndexY: 1,
             weight: 100,
             partyMemberName: "Shizuka",
             cost: PARTY_MEMBER_COST,
@@ -244,7 +251,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         PARTY_LUKE: {
             type: "addPartyMember",
             iconSrc: DefaultIcon,
-            iconIndex: 16,
+			iconIndexX: 6,
+            iconIndexY: 1,
             weight: 100,
             scaleType: "PARTY",
             partyMemberName: "Luke",
@@ -264,7 +272,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
                 replacement: 20
             }],
             weight: 250,
-            iconIndex: 20,
+			iconIndexX: 0,
+            iconIndexY: 2,
             value: 0.20,
             repeat: true,
             cost: 400,
@@ -278,7 +287,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
                 original: "[!]",
                 replacement: 40
             }],
-            iconIndex: 20,
+			iconIndexX: 0,
+            iconIndexY: 2,
             value: 0.40,
             repeat: true,
             cost: 750,
@@ -293,7 +303,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
                 original: "[!]",
                 replacement: 60
             }],
-            iconIndex: 20,
+			iconIndexX: 0,
+            iconIndexY: 2,
             value: 0.6,
             repeat: true,
             cost: 1100,
@@ -305,7 +316,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         MAXHP_UP_ABS1: {
             type: "statUp",
             iconSrc: DefaultIcon,
-            iconIndex: 21,
+			iconIndexX: 1,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.maxhpUp",
             repeat: true,
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
@@ -329,7 +341,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         ATTACK_UP_ABS1: {
             type: "statUp",
             iconSrc: DefaultIcon,
-            iconIndex: 22,
+			iconIndexX: 2,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.attackUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -352,7 +365,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         DEFENSE_UP_ABS1: {
             type: "statUp",
             iconSrc: DefaultIcon,
-            iconIndex: 23,
+			iconIndexX: 3,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.defenseUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -375,7 +389,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         FOCUS_UP_ABS1: {
             type: "statUp",
             iconSrc: DefaultIcon,
-            iconIndex: 24,
+			iconIndexX: 4,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.focusUp",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
             descReplace: [{
@@ -399,7 +414,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         MAXHP_LEVEL_UP1: {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
-            iconIndex: 26,
+			iconIndexX: 6,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.maxhpLevelUpBonus",
             repeat: true,
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
@@ -423,7 +439,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         ATTACK_LEVEL_UP1: {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
-            iconIndex: 27,
+			iconIndexX: 7,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.attackLevelUpBonus",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
             descReplace: [{
@@ -445,7 +462,8 @@ el.GauntletCup.DefaultLevelUpOptions = {
         DEFENSE_LEVEL_UP1: {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
-            iconIndex: 28,
+			iconIndexX: 8,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.defenseLevelUpBonus",
             shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
             descReplace: [{
@@ -468,9 +486,10 @@ el.GauntletCup.DefaultLevelUpOptions = {
         FOCUS_LEVEL_UP1: {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
-            iconIndex: 29,
+			iconIndexX: 9,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.levelUp.genericName.focusLevelUpBonus",
-            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statUpAbsolute",
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statLevelUp",
             descReplace: [{
                 original: "[STAT]",
                 replacement: "\\l[sc.gui.menu.equip.foc]"
@@ -494,8 +513,9 @@ el.GauntletCup.DefaultLevelUpOptions = {
         MAX_SP_1: {
             type: "statUp",
             iconSrc: DefaultIcon,
-            iconIndex: 25,
-            repeat: true,
+			iconIndexX: 5,
+            iconIndexY: 2,
+            repeat: 4,
 
             cost: 1000,
             scaleType: "LINEAR",
@@ -505,6 +525,213 @@ el.GauntletCup.DefaultLevelUpOptions = {
             statType: "maxSp",
             value: 1
         },
+    },
+
+    STAT_SWAP: {
+        ATK_UP_DEF_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 4,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "attack",
+                stat2: "defense",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.defense >= 25",
+            
+            name: "sc.gui.el-gauntlet.levelUp.genericName.atkUpDefDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
+        DEF_UP_ATK_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 5,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "defense",
+                stat2: "attack",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.attack >= 25",
+            
+            name: "sc.gui.el-gauntlet.levelUp.genericName.atkUpDefDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
+        FOC_UP_DEF_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 8,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "focus",
+                stat2: "defense",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.defense >= 25",
+            
+            name: "sc.gui.el-gauntlet.levelUp.genericName.focUpDefDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
+        DEF_UP_FOC_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 9,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "defense",
+                stat2: "focus",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.focus >= 25",
+            
+            name: "sc.gui.el-gauntlet.levelUp.genericName.focUpDefDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.def]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
+        ATK_UP_FOC_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 6,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "attack",
+                stat2: "focus",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.focus >= 25",
+            
+            name: "sc.gui.el-gauntlet.levelUp.genericName.atkUpFocDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
+        FOC_UP_ATK_DOWN1: {
+            type: "special",
+            iconSrc: DefaultIcon,
+            iconIndexX: 7,
+			iconIndexY: 3,
+            cost: 1500,
+            weight: 50,
+            specialFunc: "statSwap",
+            specialFuncParams: {
+                stat1: "focus",
+                stat2: "attack",
+                value: 20
+            },
+            repeat: true,
+            condition: "player.param.attack >= 25",
+
+            name: "sc.gui.el-gauntlet.levelUp.genericName.FocUpAtkDown",
+
+            shortDesc: "sc.gui.el-gauntlet.levelUp.genericDesc.statSwap",
+            descReplace: [{
+                original: "[STAT1]",
+                replacement: "\\l[sc.gui.menu.equip.foc]"
+            },{
+                original: "[STAT2]",
+                replacement: "\\l[sc.gui.menu.equip.atk]"
+            },{
+                original: "[VALUE1]",
+                replacement: 20
+            },{
+                original: "[VALUE2]",
+                replacement: 20
+            }],
+
+        },
     }
 }
 
@@ -513,8 +740,6 @@ const DEFAULT_CUPS = ["test-gauntlet"];
 function createRankBox(entity: ig.Entity) {
     return new sc.SmallEntityBox(entity, `${ig.lang.get("sc.gui.combat-msg.rank-up")} ${el.gauntlet.getRankLabel()}`, 2);
 }
-
-
 
 el.GauntletController = ig.GameAddon.extend({
     runtime: {...DEFAULT_RUNTIME},
@@ -532,6 +757,7 @@ el.GauntletController = ig.GameAddon.extend({
         addPartyMember: "\\C[purple]",
         heal: "\\C[blue]",
         item: "\\C[orange]",
+        special: "\\C[pink]"
     },
 
     init() {
@@ -892,12 +1118,7 @@ el.GauntletController = ig.GameAddon.extend({
             sc.timers.addTimer(
                 "gauntletTimer",
                 sc.TIMER_TYPES.COUNTER,
-                null,
-                null,
-                null,
-                true,
-                true,
-                null,
+                null, null, null, true, true, null,
                 ig.lang.get("sc.gui.arena.time"),
                 true
             );
@@ -938,6 +1159,13 @@ el.GauntletController = ig.GameAddon.extend({
                 ig.game.playerEntity.heal({value: option.value});
                 break;
             case "item": //todo: once i add in the new item inventory
+                break;
+            case "special":
+                if(option.specialFunc in el.GAUNTLET_SPECIAL_BONUS_FUNC) {
+                    el.GAUNTLET_SPECIAL_BONUS_FUNC[option.specialFunc](option.specialFuncParams, option, runtime);
+                } else {
+                    console.error(`Warning: Function for ${option.specialFunc} not found in el.GAUNTLET_SPECIAL_BONUS_FUNC.`)
+                }
                 break;
         }
     },
@@ -982,8 +1210,15 @@ el.GauntletController = ig.GameAddon.extend({
     },
     getLevelOptionTypeName(option) {
         let color = option.type in this.categoryColorCodes ? this.categoryColorCodes[option.type] : "\\c[0]";
+        let type = ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
 
-        return color + ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
+        if(option.type === "special") {
+            let langEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gauntlet.levelUp.specialFuncLabels")
+            if(option.specialFunc && option.specialFunc in langEntries) {
+                type = langEntries[option.specialFunc];
+            }
+        }
+        return color + type;
     },
 
     purchaseLevelOption(option) {

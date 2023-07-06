@@ -1,5 +1,6 @@
+import "./bonus-funcs.js";
 import "./controller.js";
-import "./gauntlet_steps.js";
+import "./gauntlet-steps.js";
 import "./param-override.js";
 import "./steps.js";
 
