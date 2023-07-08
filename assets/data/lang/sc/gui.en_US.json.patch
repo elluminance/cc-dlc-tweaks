@@ -11,7 +11,7 @@
             "rank": "Rank",
 
             "levelUp": {
-                "title": "Choose a Level Up Bonus:",
+                "title": "Choose a Level Up Bonus!",
                 "cost": "Cost: [!]",
                 
                 "skip": "Skip",
@@ -73,6 +73,11 @@
                     "MAX_SP_1": {
                         "name": "Increase Max SP",
                         "shortDesc": "Adds one extra bar of SP, allowing you to do more \\c[3]combat arts\\c[0]."
+                    },
+
+                    "REMOVE_NEUTRAL_BONUS": {
+                        "name": "Neutral Overclock",
+                        "shortDesc": "Trade the 0.5x neutral stats in other elements in exchange for 1.75x neutral stat bonus."
                     }
                 },
 
@@ -90,9 +95,25 @@
                     "atkUpDefDown": "A-Up, D-Down",
                     "defUpAtkDown": "D-Up, A-Down",
                     "atkUpFocDown": "A-Up, F-Down",
-                    "atkUpAtkDown": "F-Up, A-Down",
+                    "focUpAtkDown": "F-Up, A-Down",
                     "defUpFocDown": "D-Up, F-Down",
                     "focUpDefDown": "F-Up, D-Down"
+                },
+
+                "elementSuffix": {
+                    "NEUTRAL": "(Neutral)",
+                    "HEAT": "(Heat)",
+                    "COLD": "(Cold)",
+                    "SHOCK": "(Shock)",
+                    "WAVE": "(Wave)"
+                },
+
+                "elementName": {
+                    "NEUTRAL": "Neutral",
+                    "HEAT": "Heat",
+                    "COLD": "Cold",
+                    "SHOCK": "Shock",
+                    "WAVE": "Wave"
                 },
 
                 "genericDesc": {
@@ -100,6 +121,7 @@
 
                     "statLevelUp": "Increases future level up gain for \\c[3][STAT]\\c[0] by [VALUE].",
                     "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE].",
+                    "statUpPercentElement": "Increases \\c[3][STAT]\\c[0] by [VALUE]% while in [ELEMENT].",
 
                     "statSwap": "\\C[red]Lose\\c[0] [VALUE2] \\c[3][STAT2]\\c[0] in exchange for \\C[green]gaining\\c[0] [VALUE1] \\c[3][STAT1]\\c[0]."
                 },

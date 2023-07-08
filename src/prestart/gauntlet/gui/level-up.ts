@@ -2,7 +2,7 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     levelUpChoices: [],
     done: false,
     
-    init() {
+    init(optionCount) {
         this.parent(
             ig.lang.get("sc.gui.el-gauntlet.levelUp.title"),
             null,
@@ -10,11 +10,9 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
             this.onClick.bind(this)
         )
         this.keepOpen = true;
-        this.content.setSize(270, 250);
-        this.msgBox.resize();
         
         let offset = 24;
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < optionCount; i++) {
             let button = new el.GauntletLevelUpGui.LevelUpEntry;
             button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
             button.setPos(0, offset);
@@ -24,19 +22,31 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
             this.buttongroup.addFocusGui(button);
             this.content.addChildGui(button);
         }
+
+        this.content.setSize(302, 250);
+        this.msgBox.resize();
     },
     
     show() {
         this.done = false;
+        this.hasPurchased = true;
         this.setOptions(el.gauntlet.generateLevelUpOptions());
         this.parent();
-        for(let i of this.levelUpChoices) {
-            i.show();
+        let offset = 20;
+        this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.levelUp.skip"));
+        for(let button of this.levelUpChoices) {
+            button.show();
+            button.setPos(0, offset);
+            if(button.active) this.hasPurchased = false;
+            offset += button.hook.size.y + 2;
         }
+
+        this.content.hook.size.y = offset + 25;
+        this.msgBox.resize();
     },
 
     setOptions(options) {
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < el.gauntlet.numLevelOptions; i++) {
             this.levelUpChoices[i].updateInfo(options[i]);
         }
     },
@@ -137,7 +147,7 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
     init() {
         this.parent(true);
 
-        this.setSize(270, 40);
+        this.setSize(302, 40);
         this.titleText = new sc.TextGui("");
         this.titleText.setPos(30, 0);
         this.addChildGui(this.titleText);
@@ -146,7 +156,7 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             font: sc.fontsystem.smallFont,
         });
         this.shortDescText.setPos(30, 14);
-        this.shortDescText.setMaxWidth(225);
+        this.shortDescText.setMaxWidth(270);
         this.addChildGui(this.shortDescText);
 
         this.costText = new sc.TextGui("", {
@@ -202,6 +212,10 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             this.costText.setText("");
             this.upgradeTypeText.setText("");
         }
+
+        let sizeY = 14 + this.shortDescText.hook.size.y + 12;
+
+        this.hook.size.y = sizeY;
     },
 
     updateDrawables(renderer) {
@@ -230,7 +244,13 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             //main icon
             renderer.addGfx(this.icon, 4, 10, this.iconOffX, this.iconOffY, 20, 20);
             //element icon
-            if(this.levelOption.element !== undefined) renderer.addGfx(this.gfx, 18, 24, 132 + 6 * (this.levelOption.element as unknown as number), 131, 5, 5);
+            if(this.levelOption.element !== undefined && this.levelOption.element !== "ALL") 
+                renderer.addGfx(
+                    this.gfx,
+                    18, 24,
+                    131 + 7 * (sc.ELEMENT[this.levelOption.element as keyof typeof sc.ELEMENT]), 130,
+                    7, 7
+                );
         }
     },
 

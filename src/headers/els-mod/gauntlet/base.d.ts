@@ -99,7 +99,7 @@ declare global {
             } 
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            type SpecialFuncParams = any[] | Record<string, any>;
+            type SpecialFuncParams = Record<string, any>;
             type SpecialFunc = (params: SpecialFuncParams, option: LevelUpOption, runtime: Runtime) => void;
 
             interface BaseLevelUpEntry {
@@ -121,7 +121,7 @@ declare global {
                 value?: number;
                 absolute?: boolean;
                 statType?: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS | "maxSp";
-                element?: keyof sc.ELEMENT | "ALL";
+                element?: keyof typeof sc.ELEMENT | "ALL";
                 partyMemberName?: string;
                 itemID?: sc.ItemID;
 
@@ -155,6 +155,7 @@ declare global {
             scoreGui?: ig.GUI.ScoreHud;
             pauseExecution: boolean;
             levelUpEvent: ig.Event;
+            numLevelOptions: number;
 
             categoryColorCodes: PartialRecord<GauntletController.LevelUpType, string>;
 

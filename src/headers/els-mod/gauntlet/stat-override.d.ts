@@ -14,6 +14,8 @@ declare global {
                 defense: number;
                 focus: number;
                 modifiers: sc.ModifierList;
+
+                universalBonus?: number;
             }
 
             interface Constructor extends ImpactClass<StatOverride> {
@@ -27,6 +29,7 @@ declare global {
                 focus: number;
                 modifiers?: sc.ModifierList;
                 spLevel?: number;
+                neutralEfficacy?: number;
             }
 
             interface StatModification {
@@ -56,6 +59,7 @@ declare global {
             focus: number;
             modifiers: sc.ModifierList;
             spLevel?: number;
+            neutralEfficacy: number;
 
             elementBonus: Record<keyof typeof sc.ELEMENT, StatOverride.ElementBonus>;
 
@@ -68,6 +72,8 @@ declare global {
             removeModel(this: this, model: el.StatOverride.SupportsOverride): void;
             changeSp(this: this, newValue: number): void;
             addSp(this: this, value: number): void;
+            setNeutralEfficacy(this: this, value: number): void;
+            setElementUniversalBonus(this: this, element: keyof typeof sc.ELEMENT, value: number): void;
 
             _updateModifications(this: this): void;
             getBaseParams(this: this, element?: keyof typeof sc.ELEMENT): sc.CombatParams.BaseParams;

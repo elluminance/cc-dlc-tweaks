@@ -122,6 +122,7 @@ el.StatOverride = ig.Class.extend({
     attack: 360,
     defense: 360,
     focus: 360,
+    neutralEfficacy: 0.5,
     spLevel: null,
     modifiers: {},
 
@@ -223,6 +224,13 @@ el.StatOverride = ig.Class.extend({
         this._updateModifications();
     },
 
+    setNeutralEfficacy(value) {
+        
+    },
+    setElementUniversalBonus(element, value) {
+        
+    },
+
     _updateModifications() {
         for(let root of this.roots) root.el_updateStatOverride();
     },
@@ -262,10 +270,22 @@ el.StatOverride = ig.Class.extend({
         }
 
         if(element) {
-            params.hp *= 1 + this.elementBonus[element].hp;
-            params.attack *= 1 + this.elementBonus[element].attack;
-            params.defense *= 1 + this.elementBonus[element].defense;
-            params.focus *= 1 + this.elementBonus[element].focus;
+            let bonusHp = this.elementBonus[element].hp;
+            let bonusAtk = this.elementBonus[element].attack;
+            let bonusDef = this.elementBonus[element].defense;
+            let bonusFoc = this.elementBonus[element].focus;
+
+            if(element !== "NEUTRAL") {
+                bonusHp += this.elementBonus["NEUTRAL"].hp * this.neutralEfficacy;
+                bonusAtk += this.elementBonus["NEUTRAL"].attack * this.neutralEfficacy;
+                bonusDef += this.elementBonus["NEUTRAL"].defense * this.neutralEfficacy;
+                bonusFoc += this.elementBonus["NEUTRAL"].focus * this.neutralEfficacy;
+            }
+            
+            params.hp *= 1 + bonusHp;
+            params.attack *= 1 + bonusAtk;
+            params.defense *= 1 + bonusDef;
+            params.focus *= 1 + bonusFoc;
         }
 
         return params;

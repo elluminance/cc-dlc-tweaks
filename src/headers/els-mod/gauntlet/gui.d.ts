@@ -72,7 +72,7 @@ declare global {
 
         namespace GauntletLevelUpGui {
             interface Constructor extends ImpactClass<GauntletLevelUpGui> {
-                new (): GauntletLevelUpGui;
+                new (numButtons: number): GauntletLevelUpGui;
 
                 LevelUpEntry: LevelUpEntry.Constructor;
             }
