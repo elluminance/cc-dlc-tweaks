@@ -9,8 +9,9 @@
             "round": "Current Round",
             "points": "Points",
             "rank": "Rank",
+            "level-up": "Level Up!",
 
-            "levelUp": {
+            "bonuses": {
                 "title": "Choose a Level Up Bonus!",
                 "cost": "Cost: [!]",
                 
@@ -75,9 +76,26 @@
                         "shortDesc": "Adds one extra bar of SP, allowing you to do more \\c[3]combat arts\\c[0]."
                     },
 
-                    "REMOVE_NEUTRAL_BONUS": {
+                    "REMOVE_NEUTRAL_BONUS1": {
                         "name": "Neutral Overclock",
-                        "shortDesc": "Trade the 0.5x neutral stats in other elements in exchange for 1.75x neutral stat bonus."
+                        "shortDesc": "Trade the 0.5x neutral stats in other elements in exchange for 1.25x neutral stat bonus."
+                    },
+                    "REMOVE_NEUTRAL_BONUS2": {
+                        "name": "Neutral Overclock II",
+                        "shortDesc": "Increase the 1.25x neutral stat bonus to 1.5x stat bonus instead."
+                    },
+                    "REMOVE_NEUTRAL_BONUS3": {
+                        "name": "Neutral Overclock III",
+                        "shortDesc": "Increase the 1.5x neutral stat bonus to 1.75x stat bonus instead."
+                    },
+
+                    "INCREASE_NEUTRAL_BONUS1": {
+                        "name": "Neutral Charger",
+                        "shortDesc": "Increase the 0.5x neutral element bonus to become 0.75x instead."
+                    },
+                    "INCREASE_NEUTRAL_BONUS2": {
+                        "name": "Neutral Charger II",
+                        "shortDesc": "Increase the 0.75x neutral element bonus to 1x."
                     }
                 },
 

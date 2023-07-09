@@ -91,7 +91,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
     enemyTypes: null,
     cacheType: "EL_GAUNTLET_CUP",
     debugReload: true,
-    levelUpOptions: {},
+    bonusOptions: {},
 
     getJsonPath() {
         return `${ig.root}${this.path.toPath("data/el-gauntlet/", ".json")}`
@@ -151,7 +151,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
         //this.rounds = data.rounds;
         this.playerStats = data.playerStats;
 
-        const defaultOptions = el.GauntletCup.DefaultLevelUpOptions;
+        const defaultOptions = el.GauntletCup.DefaultBonusOptions;
 
         let levelUpOptions = {
             ...defaultOptions.PARTY,
@@ -163,7 +163,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
         }
 
         for(let [key, value] of getEntries(levelUpOptions)) {
-            this.levelUpOptions[key] = {
+            this.bonusOptions[key] = {
                 ...value,
                 key: key as string,
                 icon: new ig.Image(value.iconSrc),
@@ -203,14 +203,14 @@ el.GauntletController = ig.GameAddon.extend({
         item: "\\C[orange]",
         special: "\\C[pink]"
     },
-    numLevelOptions: 4,
+    numBonusOptions: 4,
 
     init() {
         this.parent("el-Gauntlet");
         this.registerCup(DEFAULT_CUPS);
         ig.vars.registerVarAccessor("gauntlet", this);
-        this.levelUpGui = new el.GauntletLevelUpGui(this.numLevelOptions);
-        this.levelUpEvent = new ig.Event({
+        this.levelUpGui = new el.GauntletLevelUpGui(this.numBonusOptions);
+        this.bonusEvent = new ig.Event({
             name: "GauntletLevelUp",
             steps: [{
                 type: "SHOW_GAUNTLET_LEVEL_UP",
@@ -242,9 +242,7 @@ el.GauntletController = ig.GameAddon.extend({
                         if(branchStep) callstack.push(branchStep);
 
                         if(callstack.length > 0) {
-                            if(this.processLevel()) {
-                                this.showLevelGui();
-                            }
+                            if(lastStep.isProperRound) this.showBonusGui();
                             else this.startNextRound();
                         }
                     } else break;
@@ -395,15 +393,15 @@ el.GauntletController = ig.GameAddon.extend({
                 case "bonus":
                     if(!this.active) return;
                     const bonusKey = keys[2];
-                    if(!bonusKey || !(bonusKey in cup.levelUpOptions)) return;
-                    const bonus = cup.levelUpOptions[bonusKey];
+                    if(!bonusKey || !(bonusKey in cup.bonusOptions)) return;
+                    const bonus = cup.bonusOptions[bonusKey];
                     switch(keys[3]) {
                         case "count":
                             return runtime.selectedBonuses[bonusKey] || 0;
                         case "name":
-                            return this.getLevelOptionName(bonus);
+                            return this.getBonusOptionName(bonus);
                         case "cost":
-                            return this.getLevelOptionCost(bonus);
+                            return this.getBonusOptionCost(bonus);
                     }
                     break;
             }
@@ -529,6 +527,9 @@ el.GauntletController = ig.GameAddon.extend({
 
         let exp_gain = Math.round(exp * this.getRankExpMultiplier());
         runtime.curXp += exp_gain;
+        if(this.processLevel()) {
+            new sc.SmallEntityBox(ig.game.playerEntity, ig.lang.get("sc.gui.el-gauntlet.level-up"), 2);
+        }
 
         sc.Model.notifyObserver(this, el.GAUNTLET_MSG.EXP_CHANGED, exp_gain)
         // if(runtime.curXp >= 1000) {
@@ -637,7 +638,7 @@ el.GauntletController = ig.GameAddon.extend({
         }
     },
 
-    getLevelOptionCost(option) {
+    getBonusOptionCost(option) {
         const runtime = this.runtime;
         //TODO: Apply cost scaling.
         switch(option.scaleType) {
@@ -649,7 +650,7 @@ el.GauntletController = ig.GameAddon.extend({
         
         return option.cost;
     },
-    getLevelOptionName(option) {
+    getBonusOptionName(option) {
         let name = "";
         if(option.name) {
             if(typeof option.name == "string") {
@@ -657,15 +658,15 @@ el.GauntletController = ig.GameAddon.extend({
             } else {
                 name = ig.LangLabel.getText(option.name);
             }
-        } else name =  ig.lang.get(`sc.gui.el-gauntlet.levelUp.options.${option.key}.name`);
+        } else name =  ig.lang.get(`sc.gui.el-gauntlet.bonuses.options.${option.key}.name`);
 
         if(option.element && option.element !== "ALL") {
-            name += " " + ig.lang.get("sc.gui.el-gauntlet.levelUp.elementSuffix." + option.element);
+            name += " " + ig.lang.get("sc.gui.el-gauntlet.bonuses.elementSuffix." + option.element);
         }
 
         return name;
     },
-    getLevelOptionDesc(option) {
+    getBonusOptionDesc(option) {
         if(option.shortDesc) {
             if(typeof option.shortDesc == "string") {
                 let text = ig.lang.get(option.shortDesc);
@@ -679,14 +680,14 @@ el.GauntletController = ig.GameAddon.extend({
                 return ig.LangLabel.getText(option.shortDesc);
             }
         }
-        return ig.lang.get(`sc.gui.el-gauntlet.levelUp.options.${option.key}.shortDesc`);
+        return ig.lang.get(`sc.gui.el-gauntlet.bonuses.options.${option.key}.shortDesc`);
     },
-    getLevelOptionTypeName(option) {
+    getBonusOptionTypeName(option) {
         let color = option.type in this.categoryColorCodes ? this.categoryColorCodes[option.type] : "\\c[0]";
-        let type = ig.lang.get(`sc.gui.el-gauntlet.levelUp.categoryTypes.${option.type}`);
+        let type = ig.lang.get(`sc.gui.el-gauntlet.bonuses.categoryTypes.${option.type}`);
 
         if(option.type === "special") {
-            let langEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gauntlet.levelUp.specialFuncLabels")
+            let langEntries = ig.lang.get<Record<string, string>>("sc.gui.el-gauntlet.bonuses.specialFuncLabels")
             if(option.specialFunc && option.specialFunc in langEntries) {
                 type = langEntries[option.specialFunc];
             }
@@ -694,12 +695,12 @@ el.GauntletController = ig.GameAddon.extend({
         return color + type;
     },
 
-    purchaseLevelOption(option) {
+    purchaseBonusOption(option) {
         const runtime = this.runtime;
 
-        let cost = this.getLevelOptionCost(option);
+        let cost = this.getBonusOptionCost(option);
         if(cost <= runtime.curPoints) {
-            runtime.curPoints -= this.getLevelOptionCost(option);
+            runtime.curPoints -= this.getBonusOptionCost(option);
             this.applyLevelUpBonus(option);
             ig.game.varsChangedDeferred();
             sc.Model.notifyObserver(this, el.GAUNTLET_MSG.UPGRADE_PURCHASED);
@@ -708,75 +709,89 @@ el.GauntletController = ig.GameAddon.extend({
         return false;
     },
 
-    generateLevelUpOptions() {
+    generateBonusOptions() {
         const runtime = this.runtime;
         const cup = this.runtime.currentCup!;
         const level = this.runtime.curLevel - this.runtime.levelDiff + 1;
+        const bonuses = runtime.selectedBonuses;
         
         //const OptionsList = Object.values(cup.levelUpOptions);
 
-        let choices: [string, number][] = [];
+        let choices: [string, number, el.GauntletController.BonusOption][] = [];
         let weightedSum = 0;
         //generate the list of level up options that can be picked in general.
-        for(let [key, option] of getEntries(cup.levelUpOptions)) {
+        for(let [key, option] of getEntries(cup.bonusOptions)) {
             //makes sure the option can be picked.
             if(option.condition && !option.condition.evaluate()) continue;
 
             //options that don't repeat won't be selected again.
-            if (runtime.selectedBonuses[key]) {
+            if (bonuses[key]) {
                 //option can't repeat.
                 if(!option.repeat) continue;
                 //option *can* repeat, but only to a limit.
-                if(typeof option.repeat == "number" && option.repeat <= runtime.selectedBonuses[key]) continue;
+                if(typeof option.repeat == "number" && option.repeat <= bonuses[key]) continue;
+            }
+
+            if(option.mutuallyExclusive) {
+                if(option.mutuallyExclusive.find(x => x in bonuses)) continue;
+            }
+
+            if(option.requires) {
+                if(option.requires.find(x => !(x in bonuses))) continue;
             }
 
             //ensures the level requirement is met.
             if(option.minLevel && level < option.minLevel) continue;
 
             weightedSum += option.weight;
-            choices.push([key, weightedSum]);
+            choices.push([key, weightedSum, option]);
         }
 
         //if(el.debug.gauntlet_printWeightTable) console.log(choices);
         
         //2: pick all of them.
         let options: string[] = [];
-        while(options.length < this.numLevelOptions) {
+        let selections: string[] = [];
+        while(options.length < this.numBonusOptions) {
             let randVal = Math.random() * weightedSum;
             let prevWeight = 0;
 
-            for(let [key, weight] of choices) {
+            for(let [key, weight, option] of choices) {
                 if(prevWeight < randVal && randVal <= weight) {
-                    if(!options.includes(key)) options.push(key);
+                    if(!(selections.includes(key) || selections.includes(option.generalKey!))) {
+                        if(option.mutuallyExclusive) {
+                            if(option.mutuallyExclusive.find(x => options.includes(x))) continue;
+                        }
+
+                        selections.push(key);
+                        if(option.generalKey) selections.push(option.generalKey);
+                        
+                        options.push(key);
+                    }
                     break;
                 } else prevWeight = weight;
             }
         }
 
-        return options.map(option => cup.levelUpOptions[option]).sort(() => (Math.random() - 0.5));
+        return options.map(option => cup.bonusOptions[option]).sort(() => (Math.random() - 0.5));
     },
 
-    showLevelGui() {
+    showBonusGui() {
         this.pauseExecution = true;
         this.pauseTimer();
         sc.model.enterCutscene(true);
         ig.game.events.callEvent(
-            this.levelUpEvent,
+            this.bonusEvent,
             ig.EventRunType.BLOCKING,
             null,
-            this.onLevelGuiClose.bind(this)
+            this.onBonusGuiClose.bind(this)
         );
     },
-    onLevelGuiClose() {
-        this.runtime.levelDiff -= 1;
+    onBonusGuiClose() {
         sc.model.enterGame();
-        if(this.runtime.levelDiff > 0) {
-            this.showLevelGui();
-        } else {
-            this.pauseExecution = false;
-            this.startTimer();
-            this.startNextRound();
-        }
+        this.pauseExecution = false;
+        this.startTimer();
+        this.startNextRound();
     },
     //#endregion
 

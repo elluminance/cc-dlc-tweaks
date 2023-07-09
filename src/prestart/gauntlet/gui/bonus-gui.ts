@@ -1,24 +1,24 @@
 el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
-    levelUpChoices: [],
+    bonusChoices: [],
     done: false,
     
     init(optionCount) {
         this.parent(
-            ig.lang.get("sc.gui.el-gauntlet.levelUp.title"),
+            ig.lang.get("sc.gui.el-gauntlet.bonuses.title"),
             null,
-            [ig.lang.get("sc.gui.el-gauntlet.levelUp.skip")],
+            [ig.lang.get("sc.gui.el-gauntlet.bonuses.skip")],
             this.onClick.bind(this)
         )
         this.keepOpen = true;
         
         let offset = 24;
         for(let i = 0; i < optionCount; i++) {
-            let button = new el.GauntletLevelUpGui.LevelUpEntry;
+            let button = new el.GauntletLevelUpGui.BonusEntry;
             button.setAlign(ig.GUI_ALIGN.X_CENTER, ig.GUI_ALIGN.Y_TOP);
             button.setPos(0, offset);
             offset += button.hook.size.y + 4;
 
-            this.levelUpChoices.push(button);
+            this.bonusChoices.push(button);
             this.buttongroup.addFocusGui(button);
             this.content.addChildGui(button);
         }
@@ -30,11 +30,11 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     show() {
         this.done = false;
         this.hasPurchased = true;
-        this.setOptions(el.gauntlet.generateLevelUpOptions());
+        this.setOptions(el.gauntlet.generateBonusOptions());
         this.parent();
         let offset = 20;
-        this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.levelUp.skip"));
-        for(let button of this.levelUpChoices) {
+        this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.bonuses.skip"));
+        for(let button of this.bonusChoices) {
             button.show();
             button.setPos(0, offset);
             if(button.active) this.hasPurchased = false;
@@ -46,17 +46,17 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     },
 
     setOptions(options) {
-        for(let i = 0; i < el.gauntlet.numLevelOptions; i++) {
-            this.levelUpChoices[i].updateInfo(options[i]);
+        for(let i = 0; i < el.gauntlet.numBonusOptions; i++) {
+            this.bonusChoices[i].updateInfo(options[i]);
         }
     },
 
     onClick(button) {
-        if(button instanceof el.GauntletLevelUpGui.LevelUpEntry) {
-            if(el.gauntlet.purchaseLevelOption(button.levelOption!)) {
+        if(button instanceof el.GauntletLevelUpGui.BonusEntry) {
+            if(el.gauntlet.purchaseBonusOption(button.bonusOption!)) {
                 sc.BUTTON_SOUND.submit.play();
                 button.updateInfo(null)
-                this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.levelUp.close"));
+                this.buttons[0].setText(ig.lang.get("sc.gui.el-gauntlet.bonuses.close"));
                 this.hasPurchased = true;
             } else sc.BUTTON_SOUND.denied.play();
         } else {
@@ -64,7 +64,7 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
                 this.hide();
             } else {
                 sc.Dialogs.showYesNoDialog(
-                    ig.lang.get("sc.gui.el-gauntlet.levelUp.skipConfirm"),
+                    ig.lang.get("sc.gui.el-gauntlet.bonuses.skipConfirm"),
                     null, //icon
                     button => {
                         if(button.data === 0) {
@@ -83,7 +83,7 @@ el.GauntletLevelUpGui = sc.ModalButtonInteract.extend({
     hide() {
         this.done = true;
         this.parent();
-        for(let i of this.levelUpChoices) {
+        for(let i of this.bonusChoices) {
             i.hide();
         }
     },
@@ -103,7 +103,7 @@ const enum BUTTON_STATE {
     CANT_AFFORD = 2,
 }
 
-el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
+el.GauntletLevelUpGui.BonusEntry = ig.FocusGui.extend({
     data: {},
     gfx: new ig.Image("media/gui/el-mod-gui.png"),
 
@@ -177,10 +177,10 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
     },
 
     updateInfo(option) {
-        if(option !== undefined) this.levelOption = option;
+        if(option !== undefined) this.bonusOption = option;
 
-        if(this.levelOption) {
-            let cost = el.gauntlet.getLevelOptionCost(this.levelOption);
+        if(this.bonusOption) {
+            let cost = el.gauntlet.getBonusOptionCost(this.bonusOption);
             let canAfford = true;
             if(cost > el.gauntlet.runtime.curPoints) {
                 this.active = false;
@@ -191,18 +191,18 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
                 this.buttonState = BUTTON_STATE.ACTIVE;
             }
 
-            this.icon = this.levelOption.icon;
-            this.iconOffX = 20 * this.levelOption.iconIndexX;
-            this.iconOffY = 20 * this.levelOption.iconIndexY;
+            this.icon = this.bonusOption.icon;
+            this.iconOffX = 20 * this.bonusOption.iconIndexX;
+            this.iconOffY = 20 * this.bonusOption.iconIndexY;
             
-            this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getLevelOptionName(this.levelOption));
-            this.shortDescText.setText(el.gauntlet.getLevelOptionDesc(this.levelOption));
+            this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getBonusOptionName(this.bonusOption));
+            this.shortDescText.setText(el.gauntlet.getBonusOptionDesc(this.bonusOption));
             this.costText.setText(
                 (!canAfford ? "\\C[red]" : "") +
-                ig.lang.get("sc.gui.el-gauntlet.levelUp.cost")
+                ig.lang.get("sc.gui.el-gauntlet.bonuses.cost")
                     .replace("[!]", cost.toString())
             );
-            this.upgradeTypeText.setText(el.gauntlet.getLevelOptionTypeName(this.levelOption));
+            this.upgradeTypeText.setText(el.gauntlet.getBonusOptionTypeName(this.bonusOption));
         } else {
             this.active = false;
             this.buttonState = BUTTON_STATE.INACTIVE;
@@ -240,16 +240,16 @@ el.GauntletLevelUpGui.LevelUpEntry = ig.FocusGui.extend({
             state
         );
 
-        if(this.levelOption) {
+        if(this.bonusOption) {
             //main icon
             renderer.addGfx(this.icon, 4, 10, this.iconOffX, this.iconOffY, 20, 20);
             //element icon
-            if(this.levelOption.element !== undefined && this.levelOption.element !== "ALL") 
+            if(this.bonusOption.element !== undefined && this.bonusOption.element !== "ALL") 
                 renderer.addGfx(
                     this.gfx,
-                    18, 24,
-                    131 + 7 * (sc.ELEMENT[this.levelOption.element as keyof typeof sc.ELEMENT]), 130,
-                    7, 7
+                    16, 22,
+                    131 + 9 * (sc.ELEMENT[this.bonusOption.element as keyof typeof sc.ELEMENT]), 130,
+                    9, 9
                 );
         }
     },

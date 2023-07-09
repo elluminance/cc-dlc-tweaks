@@ -70,26 +70,26 @@ declare global {
         let GauntletExpHud: GauntletExpHud.Constructor;
 
 
-        namespace GauntletLevelUpGui {
-            interface Constructor extends ImpactClass<GauntletLevelUpGui> {
-                new (numButtons: number): GauntletLevelUpGui;
+        namespace GauntletBonusGui {
+            interface Constructor extends ImpactClass<GauntletBonusGui> {
+                new (numButtons: number): GauntletBonusGui;
 
-                LevelUpEntry: LevelUpEntry.Constructor;
+                BonusEntry: BonusEntry.Constructor;
             }
 
-            namespace LevelUpEntry {
-                interface Constructor extends ImpactClass<LevelUpEntry> {
-                    new (): LevelUpEntry;
+            namespace BonusEntry {
+                interface Constructor extends ImpactClass<BonusEntry> {
+                    new (): BonusEntry;
                 }
             }
 
             
 
-            interface LevelUpEntry extends ig.FocusGui, sc.Model.Observer {
+            interface BonusEntry extends ig.FocusGui, sc.Model.Observer {
                 data: Record<string, never>;
                 gfx: ig.Image;
                 ninepatch: ig.NinePatch;
-                levelOption?: Optional<el.GauntletController.LevelUpOption>;
+                bonusOption?: Optional<el.GauntletController.BonusOption>;
                 buttonState: number;
 
                 icon: ig.Image;
@@ -100,19 +100,19 @@ declare global {
                 upgradeTypeText: sc.TextGui;
                 costText: sc.TextGui;
                 
-                updateInfo(this: this, option?: Optional<el.GauntletController.LevelUpOption>): void;
+                updateInfo(this: this, option?: Optional<el.GauntletController.BonusOption>): void;
                 show(this: this): void;
                 hide(this: this): void;
             }
         }
-        interface GauntletLevelUpGui extends sc.ModalButtonInteract {
-            levelUpChoices: el.GauntletLevelUpGui.LevelUpEntry[];
+        interface GauntletBonusGui extends sc.ModalButtonInteract {
+            bonusChoices: el.GauntletBonusGui.BonusEntry[];
             done: boolean;
             hasPurchased: boolean;
             
             onClick(this: this, button: ig.FocusGui): void;
-            setOptions(this: this, options: el.GauntletController.LevelUpOption[]): void;
+            setOptions(this: this, options: el.GauntletController.BonusOption[]): void;
         }
-        let GauntletLevelUpGui: GauntletLevelUpGui.Constructor;
+        let GauntletLevelUpGui: GauntletBonusGui.Constructor;
     }
 }

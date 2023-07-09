@@ -15,7 +15,7 @@ declare global {
             interface Settings extends ig.EventStepBase.Settings {}
         }
         interface SHOW_GAUNTLET_LEVEL_UP extends ig.EventStepBase {
-            levelGui: el.GauntletLevelUpGui;
+            levelGui: el.GauntletBonusGui;
         }
         let SHOW_GAUNTLET_LEVEL_UP: SHOW_GAUNTLET_LEVEL_UP.Constructor;
     }

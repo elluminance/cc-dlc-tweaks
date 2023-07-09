@@ -73,15 +73,15 @@ declare global {
                 pos: LocationData;
             }
 
-            interface LevelUpScaleTypeKeys {
+            interface BonusScaleTypeKeys {
                 NONE: never;
                 LINEAR: never;
 
                 PARTY: never;
             }
-            type LevelUpScaleType = keyof LevelUpScaleTypeKeys;
+            type BonusScaleType = keyof BonusScaleTypeKeys;
 
-            interface LevelUpTypeKeys {
+            interface BonusTypeKeys {
                 statUp: never;
                 statLevelUp: never;
                 modifier: never;
@@ -91,7 +91,7 @@ declare global {
                 special: never;
             }
 
-            type LevelUpType = keyof LevelUpTypeKeys;
+            type BonusType = keyof BonusTypeKeys;
 
             interface Replacement {
                 original: string;
@@ -100,22 +100,29 @@ declare global {
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             type SpecialFuncParams = Record<string, any>;
-            type SpecialFunc = (params: SpecialFuncParams, option: LevelUpOption, runtime: Runtime) => void;
+            type SpecialFunc = (params: SpecialFuncParams, option: BonusOption, runtime: Runtime) => void;
 
-            interface BaseLevelUpEntry {
-                type: LevelUpType;
+            interface BaseBonusEntry {
+                type: BonusType;
                 iconSrc: string;
                 iconIndexX: number;
                 iconIndexY: number;
                 cost: number;
                 weight: number;
+
+                mutuallyExclusive?: string[];
+                requires?: string[];
+                //this will be used 
+                generalKey?: string;
+                
                 condition?: string;
                 minLevel?: number;
                 specialFunc?: string;
                 specialFuncParams?: SpecialFuncParams;
 
+
                 repeat?: number | boolean;
-                scaleType?: LevelUpScaleType;
+                scaleType?: BonusScaleType;
                 scaleFactor?: number;
 
                 value?: number;
@@ -130,7 +137,7 @@ declare global {
                 descReplace?: Replacement[];
             }
 
-            interface LevelUpOption extends Omit<BaseLevelUpEntry, "condition"> {
+            interface BonusOption extends Omit<BaseBonusEntry, "condition"> {
                 icon: ig.Image;
                 key: string;
                 condition?: ig.VarCondition,
@@ -150,14 +157,14 @@ declare global {
             cups: Record<string, el.GauntletCup>
             storedPartyBehavior: keyof sc.PARTY_STRATEGY.BehaviourStrategies;
             partyStash: string[];
-            levelUpGui: el.GauntletLevelUpGui;
+            levelUpGui: el.GauntletBonusGui;
             roundGui?: ig.GUI.CounterHud;
             scoreGui?: ig.GUI.ScoreHud;
             pauseExecution: boolean;
-            levelUpEvent: ig.Event;
-            numLevelOptions: number;
+            bonusEvent: ig.Event;
+            numBonusOptions: number;
 
-            categoryColorCodes: PartialRecord<GauntletController.LevelUpType, string>;
+            categoryColorCodes: PartialRecord<GauntletController.BonusType, string>;
 
             registerCup(this: this, name: string | string[]): void;
 
@@ -179,16 +186,16 @@ declare global {
 
             addExp(this: this, exp: number): void;
             processLevel(this: this): boolean;
-            applyLevelUpBonus(this: this, option: GauntletController.LevelUpOption): void;
-            getLevelOptionName(this: this, option: GauntletController.LevelUpOption): string;
-            getLevelOptionDesc(this: this, option: GauntletController.LevelUpOption): string;
-            getLevelOptionCost(this: this, option: GauntletController.LevelUpOption): number;
-            getLevelOptionTypeName(this: this, option: GauntletController.LevelUpOption): string;
-            purchaseLevelOption(this: this, option: GauntletController.LevelUpOption): boolean;
+            applyLevelUpBonus(this: this, option: GauntletController.BonusOption): void;
+            getBonusOptionName(this: this, option: GauntletController.BonusOption): string;
+            getBonusOptionDesc(this: this, option: GauntletController.BonusOption): string;
+            getBonusOptionCost(this: this, option: GauntletController.BonusOption): number;
+            getBonusOptionTypeName(this: this, option: GauntletController.BonusOption): string;
+            purchaseBonusOption(this: this, option: GauntletController.BonusOption): boolean;
 
-            generateLevelUpOptions(this: this): GauntletController.LevelUpOption[];
-            showLevelGui(this: this): void;
-            onLevelGuiClose(this: this): void;
+            generateBonusOptions(this: this): GauntletController.BonusOption[];
+            showBonusGui(this: this): void;
+            onBonusGuiClose(this: this): void;
 
             onCombatantDeathHit(this: this, attacker: ig.ENTITY.Combatant, victim: ig.ENTITY.Combatant): void;
             onGuardCounter(this: this, enemy: ig.ENTITY.Enemy): void;
@@ -227,7 +234,7 @@ declare global {
             interface Constructor extends ImpactClass<GauntletCup> {
                 new (name: string): GauntletCup;
 
-                DefaultLevelUpOptions: Record<string, Record<string, LevelUpEntry>>;
+                DefaultBonusOptions: Record<string, Record<string, BonusEntry>>;
             }
 
             interface EnemyType {
@@ -269,7 +276,7 @@ declare global {
 
             type StatIncrease = Required<el.StatOverride.StatModification>;
 
-            type LevelUpEntry = GauntletController.BaseLevelUpEntry;
+            type BonusEntry = GauntletController.BaseBonusEntry;
         }
         interface GauntletCup extends ig.JsonLoadable {
             data: GauntletCup.Data;
@@ -283,7 +290,7 @@ declare global {
             playerStats: StatOverride.OverrideEntry;
             statIncrease: GauntletCup.StatIncrease;
 
-            levelUpOptions: Record<string, GauntletController.LevelUpOption>;
+            bonusOptions: Record<string, GauntletController.BonusOption>;
 
             map: string;
             marker?: string;
