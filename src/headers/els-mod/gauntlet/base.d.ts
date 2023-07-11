@@ -76,10 +76,16 @@ declare global {
             interface BonusScaleTypeKeys {
                 NONE: never;
                 LINEAR: never;
-
                 PARTY: never;
             }
             type BonusScaleType = keyof BonusScaleTypeKeys;
+            
+            interface BonusWeightScaleTypeKeys {
+                NONE: never;
+                EXPONENTIAL: never;
+                PARTY: never;
+            }
+            type BonusWeightScaleType = keyof BonusWeightScaleTypeKeys;
 
             interface BonusTypeKeys {
                 statUp: never;
@@ -109,6 +115,8 @@ declare global {
                 iconIndexY: number;
                 cost: number;
                 weight: number;
+                weightScaleType?: BonusWeightScaleType;
+                weightScaleFactor?: number;
 
                 mutuallyExclusive?: string[];
                 requires?: string[];
@@ -122,8 +130,8 @@ declare global {
 
 
                 repeat?: number | boolean;
-                scaleType?: BonusScaleType;
-                scaleFactor?: number;
+                costScaleType?: BonusScaleType;
+                costScaleFactor?: number;
 
                 value?: number;
                 absolute?: boolean;
@@ -133,6 +141,7 @@ declare global {
                 itemID?: sc.ItemID;
 
                 name?: string | ig.LangLabel.Data;
+                nameReplace?: Replacement[];
                 shortDesc?: string | ig.LangLabel.Data;
                 descReplace?: Replacement[];
             }
@@ -141,7 +150,6 @@ declare global {
                 icon: ig.Image;
                 key: string;
                 condition?: ig.VarCondition,
-
             }
 
             interface Constructor extends ImpactClass<GauntletController> {
@@ -187,9 +195,10 @@ declare global {
             addExp(this: this, exp: number): void;
             processLevel(this: this): boolean;
             applyLevelUpBonus(this: this, option: GauntletController.BonusOption): void;
-            getBonusOptionName(this: this, option: GauntletController.BonusOption): string;
+            getBonusOptionName(this: this, option: GauntletController.BonusOption, useElementColor?: boolean): string;
             getBonusOptionDesc(this: this, option: GauntletController.BonusOption): string;
             getBonusOptionCost(this: this, option: GauntletController.BonusOption): number;
+            getBonusOptionWeight(this: this, option: GauntletController.BonusOption): number;
             getBonusOptionTypeName(this: this, option: GauntletController.BonusOption): string;
             purchaseBonusOption(this: this, option: GauntletController.BonusOption): boolean;
 

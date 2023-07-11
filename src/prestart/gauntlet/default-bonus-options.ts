@@ -14,7 +14,7 @@ el.GauntletCup.DefaultBonusOptions = {
             weight: 100,
             partyMemberName: "Emilie",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Emilie && party.size < 5",
         },
         PARTY_CTRON: {
@@ -26,7 +26,7 @@ el.GauntletCup.DefaultBonusOptions = {
 			iconIndexY: 1,
             partyMemberName: "Glasses",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Glasses && party.size < 5",
         },
         PARTY_JOERN: {
@@ -38,7 +38,7 @@ el.GauntletCup.DefaultBonusOptions = {
             weight: 100,
             partyMemberName: "Joern",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Joern && party.size < 5",
         },
         PARTY_APOLLO: {
@@ -50,7 +50,7 @@ el.GauntletCup.DefaultBonusOptions = {
             weight: 100,
             partyMemberName: "Apollo",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Apollo && party.size < 5",
         },
         PARTY_LUKAS: {
@@ -62,7 +62,7 @@ el.GauntletCup.DefaultBonusOptions = {
             weight: 100,
             partyMemberName: "Schneider",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Schneider && party.size < 5",
         },
         PARTY_SHIZUKA: {
@@ -74,7 +74,7 @@ el.GauntletCup.DefaultBonusOptions = {
             weight: 100,
             partyMemberName: "Shizuka",
             cost: PARTY_MEMBER_COST,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             condition: "!party.has.Shizuka && party.size < 5",
         },
         PARTY_LUKE: {
@@ -84,7 +84,7 @@ el.GauntletCup.DefaultBonusOptions = {
 			iconIndexX: 6,
             iconIndexY: 1,
             weight: 100,
-            scaleType: "PARTY",
+            costScaleType: "PARTY",
             partyMemberName: "Luke",
             cost: PARTY_MEMBER_COST,
             condition: "!party.has.Luke && party.size < 5",
@@ -165,8 +165,8 @@ el.GauntletCup.DefaultBonusOptions = {
 
             cost: 500,
             weight: 100,
-            scaleType: "LINEAR",
-            scaleFactor: 100,
+            costScaleType: "LINEAR",
+            costScaleFactor: 100,
 
             statType: "hp",
             absolute: true,
@@ -190,8 +190,8 @@ el.GauntletCup.DefaultBonusOptions = {
 
             cost: 500,
             weight: 100,
-            scaleType: "LINEAR",
-            scaleFactor: 100,
+            costScaleType: "LINEAR",
+            costScaleFactor: 100,
 
             statType: "attack",
             absolute: true,
@@ -214,9 +214,9 @@ el.GauntletCup.DefaultBonusOptions = {
             generalKey: "defense",
 
             cost: 500,
-            scaleType: "LINEAR",
+            costScaleType: "LINEAR",
             weight: 100,
-            scaleFactor: 100,
+            costScaleFactor: 100,
 
             statType: "defense",
             absolute: true,
@@ -239,8 +239,8 @@ el.GauntletCup.DefaultBonusOptions = {
             generalKey: "focus",
 
             cost: 500,
-            scaleType: "LINEAR",
-            scaleFactor: 100,
+            costScaleType: "LINEAR",
+            costScaleFactor: 100,
             weight: 100,
 
             statType: "attack",
@@ -261,17 +261,17 @@ el.GauntletCup.DefaultBonusOptions = {
                 replacement: "\\l[sc.gui.el-gauntlet.bonuses.other.maxhp_full]"
             },{
                 original: "[VALUE]",
-                replacement: 20
+                replacement: 30
             }],
 
             cost: 1000,
-            scaleType: "LINEAR",
-            scaleFactor: 250,
+            costScaleType: "LINEAR",
+            costScaleFactor: 250,
             weight: 100,
 
             statType: "hp",
             absolute: true,
-            value: 20
+            value: 30
         },
         ATTACK_LEVEL_UP1: {
             type: "statLevelUp",
@@ -285,22 +285,22 @@ el.GauntletCup.DefaultBonusOptions = {
                 replacement: "\\l[sc.gui.menu.equip.atk]"
             },{
                 original: "[VALUE]",
-                replacement: 2
+                replacement: 3
             }],
 
             cost: 1000,
-            scaleType: "LINEAR",
-            scaleFactor: 250,
+            costScaleType: "LINEAR",
+            costScaleFactor: 250,
             weight: 100,
 
             statType: "attack",
-            value: 2
+            value: 3
         },
         DEFENSE_LEVEL_UP1: {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
 			iconIndexX: 8,
-            iconIndexY: 2,
+            iconIndexY: 3,
             name: "sc.gui.el-gauntlet.bonuses.genericName.defenseLevelUpBonus",
             shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.statLevelUp",
             descReplace: [{
@@ -308,17 +308,17 @@ el.GauntletCup.DefaultBonusOptions = {
                 replacement: "\\l[sc.gui.menu.equip.def]"
             },{
                 original: "[VALUE]",
-                replacement: 2
+                replacement: 3
             }],
 
             cost: 1000,
-            scaleType: "LINEAR",
-            scaleFactor: 250,
+            costScaleType: "LINEAR",
+            costScaleFactor: 250,
             weight: 100,
 
             statType: "defense",
             absolute: true,
-            value: 2
+            value: 3
         },
         FOCUS_LEVEL_UP1: {
             type: "statLevelUp",
@@ -332,19 +332,22 @@ el.GauntletCup.DefaultBonusOptions = {
                 replacement: "\\l[sc.gui.menu.equip.foc]"
             },{
                 original: "[VALUE]",
-                replacement: 2
+                replacement: 3
             }],
 
             cost: 1000,
-            scaleType: "LINEAR",
-            scaleFactor: 250,
+            costScaleType: "LINEAR",
+            costScaleFactor: 250,
             weight: 100,
 
             statType: "attack",
             absolute: true,
-            value: 2
+            value: 3
         },
     },
+
+    //filled in below
+    MODIFIERS: {},
 
     SP: {
         MAX_SP_1: {
@@ -355,8 +358,8 @@ el.GauntletCup.DefaultBonusOptions = {
             repeat: 4,
 
             cost: 1000,
-            scaleType: "LINEAR",
-            scaleFactor: 1000,
+            costScaleType: "LINEAR",
+            costScaleFactor: 1000,
             weight: 10,
 
             statType: "maxSp",
@@ -417,7 +420,7 @@ el.GauntletCup.DefaultBonusOptions = {
             condition: "player.param.attack >= 25",
             generalKey: "atkDefSwap",
             
-            name: "sc.gui.el-gauntlet.bonuses.genericName.atkUpDefDown",
+            name: "sc.gui.el-gauntlet.bonuses.genericName.defUpAtkDown",
 
             shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.statSwap",
             descReplace: [{
@@ -681,128 +684,424 @@ el.GauntletCup.DefaultBonusOptions = {
 }
 
 function toPercent(value: number) {
-    value -= 1;
     value *= 100;
     value = Math.round(value);
     
     return value;
 }
 
-function createElementBonuses(
+interface ElementStatEntry {
     stat: keyof sc.CombatParams.BaseParams | keyof sc.MODIFIERS,
     langKey: string,
     statNameLangKey: string,
     bonuses: Record<keyof typeof sc.ELEMENT, number>,
     iconIndex: Vec2,
+    cost: number,
+    scaleFactor: number,
+    weight: number,
+    weightMul: PartialRecord<keyof typeof sc.ELEMENT, number>
+}
+
+function createElementBonuses(
+    params: ElementStatEntry,
     obj: Record<string, el.GauntletCup.BonusEntry>,
-    isModifier = false,
-    cost = 500,
-    scaleFactor = 100,
-    weight = 100,
 ) {
+    let {
+        bonuses,
+        iconIndex,
+        langKey,
+        stat,
+        statNameLangKey,
+        cost, weight, scaleFactor,
+        weightMul
+    } = params
     for(let [element, value] of getEntries(bonuses)) {
 
         obj[`${stat.toUpperCase()}_${element}1`] = {
-                type: isModifier ? "modifier" : "statUp",
-                iconSrc: DefaultIcon,
-                iconIndexX: iconIndex.x,
-                iconIndexY: iconIndex.y,
-                name: langKey,
-                generalKey: stat,
-    
-                shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.statUpPercentElement",
-                descReplace: [{
-                    original: "[STAT]",
-                    replacement: `\\l[${statNameLangKey}]`
-                },{
-                    original: "[VALUE]",
-                    replacement: toPercent(value)
-                },{
-                    original: "[ELEMENT]",
-                    replacement: `\\l[sc.gui.el-gauntlet.bonuses.elementName.${element}]`
-                }],
-    
-                cost,
-                weight,
-                scaleType: "LINEAR",
-                scaleFactor,
-                
-                statType: stat,
-                value: bonuses[element],
-                element,
-            }
+            type: "statUp",
+            iconSrc: DefaultIcon,
+            iconIndexX: iconIndex.x,
+            iconIndexY: iconIndex.y,
+            name: langKey,
+            generalKey: stat,
+
+            shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.statUpPercentElement",
+            descReplace: [{
+                original: "[STAT]",
+                replacement: `\\l[${statNameLangKey}]`
+            },{
+                original: "[VALUE]",
+                replacement: toPercent(value - 1)
+            },{
+                original: "[ELEMENT]",
+                replacement: `\\l[sc.gui.el-gauntlet.bonuses.elementName.${element}]`
+            }],
+
+            cost,
+            weight: weight * (weightMul[element] ?? 1),
+            costScaleType: "LINEAR",
+            costScaleFactor: scaleFactor,
+            
+            statType: stat,
+            value: bonuses[element],
+            element,
         }
+    }
 }
 
 createElementBonuses(
-    "attack",
-    "sc.gui.el-gauntlet.bonuses.genericName.attackUp",
-    "sc.gui.menu.equip.atk",
-    {
-        NEUTRAL: 1.02,
-        HEAT: 1.04,
-        COLD: 1.03,
-        SHOCK: 1.03,
-        WAVE: 1.03,
-    }, 
-    {x: 2, y: 2},
-    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
-    false,
-    750, //cost
-    250, //cost gain
-    50, //weight
-)
-createElementBonuses(
-    "defense",
-    "sc.gui.el-gauntlet.bonuses.genericName.defenseUp",
-    "sc.gui.menu.equip.def",
-    {
-        NEUTRAL: 1.02,
-        HEAT: 1.03,
+{
+    stat: "attack",
+    langKey: "sc.gui.el-gauntlet.bonuses.genericName.attackUp",
+    statNameLangKey: "sc.gui.menu.equip.atk",
+    bonuses: {
+        NEUTRAL: 1.03,
+        HEAT: 1.05,
         COLD: 1.04,
-        SHOCK: 1.03,
-        WAVE: 1.03,
-    }, 
-    {x: 3, y: 2},
-    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
-    false,
-    750, //cost
-    250, //cost gain
-    50, //weight
-)
-createElementBonuses(
-    "focus",
-    "sc.gui.el-gauntlet.bonuses.genericName.focusUp",
-    "sc.gui.menu.equip.foc",
-    {
-        NEUTRAL: 1.02,
-        HEAT: 1.04,
-        COLD: 1.03,
-        SHOCK: 1.03,
-        WAVE: 1.03,
-    }, 
-    {x: 4, y: 2},
-    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
-    false,
-    750, //cost
-    250, //cost gain
-    50, //weight
-)
-createElementBonuses(
-    "hp",
-    "sc.gui.el-gauntlet.bonuses.genericName.maxhpUp",
-    "sc.gui.el-gauntlet.bonuses.other.maxhp_full",
-    {
-        NEUTRAL: 1.02,
-        HEAT: 1.03,
-        COLD: 1.03,
-        SHOCK: 1.03,
+        SHOCK: 1.04,
         WAVE: 1.04,
     }, 
-    {x: 1, y: 2},
+    iconIndex: {x: 2, y: 2},
+    cost: 750, 
+    scaleFactor: 250, 
+    weight: 50,
+    weightMul: {
+        HEAT: 1.5
+    }
+}, 
     el.GauntletCup.DefaultBonusOptions.BASE_STATS,
-    false,
-    750, //cost
-    250, //cost gain
-    50, //weight
 )
+createElementBonuses(
+{
+    stat: "defense",
+    langKey: "sc.gui.el-gauntlet.bonuses.genericName.defenseUp",
+    statNameLangKey: "sc.gui.menu.equip.def",
+    bonuses: {
+        NEUTRAL: 1.03,
+        HEAT: 1.04,
+        COLD: 1.05,
+        SHOCK: 1.04,
+        WAVE: 1.04,
+    }, 
+    iconIndex: {x: 3, y: 2},
+    cost: 750,
+    scaleFactor: 250, 
+    weight: 50,
+    weightMul: {
+        COLD: 1.5
+    }
+}, 
+    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
+)
+createElementBonuses(
+{
+    stat: "focus",
+    langKey: "sc.gui.el-gauntlet.bonuses.genericName.focusUp",
+    statNameLangKey: "sc.gui.menu.equip.foc",
+    bonuses: {
+        NEUTRAL: 1.03,
+        HEAT: 1.04,
+        COLD: 1.04,
+        SHOCK: 1.05,
+        WAVE: 1.04,
+    }, 
+    iconIndex: {x: 4, y: 2},
+    cost: 750,
+    scaleFactor: 250, 
+    weight: 50,
+    weightMul: {
+        SHOCK: 1.5
+    }
+},
+    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
+)
+createElementBonuses(
+{
+    stat: "hp",
+    langKey: "sc.gui.el-gauntlet.bonuses.genericName.maxhpUp",
+    statNameLangKey: "sc.gui.el-gauntlet.bonuses.other.maxhp_full",
+    bonuses: {
+        NEUTRAL: 1.03,
+        HEAT: 1.04,
+        COLD: 1.04,
+        SHOCK: 1.04,
+        WAVE: 1.05,
+    }, 
+    iconIndex: {x: 1, y: 2},
+    cost: 750, 
+    scaleFactor: 250,
+    weight: 50,
+    weightMul: {
+        WAVE: 1.5
+    }
+},
+    el.GauntletCup.DefaultBonusOptions.BASE_STATS,
+)
+
+function createModifierEntry(
+    modifier: keyof sc.MODIFIERS,
+    value: number,
+    cost: number,
+    costScaleFactor: number,
+    weight: number,
+    iconIndexX: number,
+    iconIndexY: number,
+) {
+    el.GauntletCup.DefaultBonusOptions.MODIFIERS[`${modifier}1`] = {
+        type: "modifier",
+        iconSrc: DefaultIcon,
+        iconIndexX,
+        iconIndexY,
+        name: "sc.gui.el-gauntlet.bonuses.genericName.modifier",
+        nameReplace: [
+            {original: "[MOD]", replacement: `\\l[sc.gui.menu.equip.modifier.${modifier}]`}
+        ],
+        generalKey: modifier,
+        shortDesc: "sc.gui.el-gauntlet.bonuses.modifierDesc." + modifier,
+        descReplace: [
+            {original: "[VALUE]", replacement: toPercent(value)},
+            {original: "[VALUE2]", replacement: toPercent(value*2)},
+        ],
+    
+        statType: modifier,
+        value,
+
+        cost,
+        costScaleType: "LINEAR",
+        costScaleFactor,
+        weight,
+        weightScaleType: "EXPONENTIAL",
+        weightScaleFactor: 0.95
+    }
+}
+//#region modifiers
+createModifierEntry(
+    "MELEE_DMG",
+    0.04, //value
+    1000, //cost
+    250, // cost scale factor
+    70, // weight
+    0, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "RANGED_DMG",
+    0.04, // value
+    1000, // cost
+    250, // cost scale factor
+    70, // weight
+    1, //icon X
+    4, //icon Y
+)
+
+createModifierEntry(
+    "HP_REGEN",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    2, //icon X
+    4, //icon Y
+)
+
+createModifierEntry(
+    "OVERHEAT_REDUCTION",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    3, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "SP_REGEN",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    25, // weight
+    4, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "STUN_THRESHOLD",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    6, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "COND_HEALING",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    7, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "CRITICAL_DMG",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    8, //icon X
+    4, //icon Y
+)
+createModifierEntry(
+    "DASH_INVINC",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    9, //icon X
+    4, //icon Y
+)
+
+createModifierEntry(
+    "ASSAULT",
+    0.2, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    0, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "GUARD_SP",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    1, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "MOMENTUM",
+    0.02, // value
+    2500, // cost
+    500, // cost scale factor
+    25, // weight
+    2, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "COND_EFFECT_ALL",
+    0.05, // value
+    1500, // cost
+    500, // cost scale factor
+    50, // weight
+    3, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "KNOCKBACK",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    4, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "BERSERK",
+    0.1, // value
+    1500, // cost
+    500, // cost scale factor
+    50, // weight
+    5, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "EL_RISKTAKER",
+    0.05, // value
+    2000, // cost
+    500, // cost scale factor
+    40, // weight
+    7, //icon X
+    5, //icon Y
+)
+createModifierEntry(
+    "EL_OVERHEAL",
+    0.2, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    8, //icon X
+    5, //icon Y
+)
+
+createModifierEntry(
+    "EL_NEUTRAL_BOOST",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    0, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "EL_HEAT_BOOST",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    1, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "EL_COLD_BOOST",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    2, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "EL_SHOCK_BOOST",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    3, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "EL_WAVE_BOOST",
+    0.03, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    4, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "SPIKE_DMG",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    5, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "CROSS_COUNTER",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    6, //icon X
+    6, //icon Y
+)
+createModifierEntry(
+    "BREAK_DMG",
+    0.05, // value
+    1000, // cost
+    250, // cost scale factor
+    50, // weight
+    7, //icon X
+    6, //icon Y
+)
+//#endregion

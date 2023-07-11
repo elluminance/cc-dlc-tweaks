@@ -105,6 +105,8 @@
                     "defenseUp": "Defense Up",
                     "focusUp": "Focus Up",
 
+                    "modifier": "[MOD] Up",
+
                     "maxhpLevelUpBonus": "Max HP Gain Up",
                     "attackLevelUpBonus": "Attack Gain Up",
                     "defenseLevelUpBonus": "Defense Gain Up",
@@ -139,9 +141,38 @@
 
                     "statLevelUp": "Increases future level up gain for \\c[3][STAT]\\c[0] by [VALUE].",
                     "statUpAbsolute": "Increases \\c[3][STAT]\\c[0] by [VALUE].",
+                    "statUpPercent": "Increases \\c[3][STAT]\\c[0] by [VALUE]%.",
                     "statUpPercentElement": "Increases \\c[3][STAT]\\c[0] by [VALUE]% while in [ELEMENT].",
 
                     "statSwap": "\\C[red]Lose\\c[0] [VALUE2] \\c[3][STAT2]\\c[0] in exchange for \\C[green]gaining\\c[0] [VALUE1] \\c[3][STAT1]\\c[0]."
+                },
+
+                "modifierDesc": {
+                    "MELEE_DMG": "Increases melee damage dealt by [VALUE]%.",
+                    "RANGED_DMG": "Increases ranged damage dealt by [VALUE]%.",
+                    "HP_REGEN": "Increases HP Regen by [VALUE]%.",
+                    "OVERHEAT_REDUCTION": "Reduces elemental overload by [VALUE]%.",
+                    "SP_REGEN": "Increases SP gained by [VALUE]%.",
+                    "STUN_THRESHOLD": "Increases melee damage dealt by [VALUE]%.",
+                    "COND_HEALING": "Increases recovery from statuses by [VALUE]%.",
+                    "CRITICAL_DMG": "Increases damage dealt by critcal hits by [VALUE]%.",
+                    "DASH_INVINC": "Increases dash invincibility by [VALUE]%.",
+                    "ASSAULT": "Adds mini particles during melee combos, adding [VALUE]% damage.",
+                    "GUARD_SP": "Restores SP based on guarding attacks (+[VALUE]%)",
+                    "MOMENTUM": "Adds [VALUE]% damage per dash for the next attack after you dash.",
+                    "COND_EFFECT_ALL": "Adds [VALUE]% chance to inflict status as well as status efficacy.",
+                    "KNOCKBACK": "Increases knockback of charged shots by [VALUE]%.",
+                    "BERSERK": "Increases damage at low health by [VALUE]%.",
+                    "EL_RISKTAKER": "Increases damage dealt by [VALUE]%, but increases damage taken by [VALUE2]%.",
+                    "EL_OVERHEAL": "Allows healing beyond max HP by [VALUE].",
+                    "EL_NEUTRAL_BOOST": "Increases damage of neutral attacks by [VALUE]%.",
+                    "EL_HEAT_BOOST": "Increases damage of heat attacks by [VALUE]%.",
+                    "EL_COLD_BOOST": "Increases damage of cold attacks by [VALUE]%.",
+                    "EL_SHOCK_BOOST": "Increases damage of shock attacks by [VALUE]%.",
+                    "EL_WAVE_BOOST": "Increases damage of wave attacks by [VALUE]%.",
+                    "SPIKE_DMG": "Shielded attacks will deal [VALUE]% guarded damage back to attackers.",
+                    "CROSS_COUNTER": "Increases damage dealt to enemies charging or attacking by [VALUE]%.",
+                    "BREAK_DMG": "Increases damage dealt to enemies who are broken by [VALUE]%."
                 },
 
                 "other": {

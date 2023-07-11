@@ -1,4 +1,4 @@
-import { getEntries } from "../../helper-funcs.js";
+import { getEntries, safeAdd } from "../../helper-funcs.js";
 
 el.GAUNTLET_MSG = {
     RANK_CHANGED: 0,
@@ -157,6 +157,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
             ...defaultOptions.PARTY,
             ...defaultOptions.HEALING,
             ...defaultOptions.BASE_STATS,
+            ...defaultOptions.MODIFIERS,
             ...defaultOptions.SP,
             ...defaultOptions.STAT_SWAP,
             ...defaultOptions.OTHER
@@ -184,6 +185,7 @@ const DEFAULT_CUPS = ["test-gauntlet"];
 function createRankBox(entity: ig.Entity) {
     return new sc.SmallEntityBox(entity, `${ig.lang.get("sc.gui.combat-msg.rank-up")} ${el.gauntlet.getRankLabel()}`, 2);
 }
+
 
 el.GauntletController = ig.GameAddon.extend({
     runtime: {...DEFAULT_RUNTIME},
@@ -605,15 +607,12 @@ el.GauntletController = ig.GameAddon.extend({
             }
             break;
         case "modifier":
-            if(option.absolute) {
-                statOverride.updateStats({[option.statType]: option.value}, "add");
+            if(option.element && option.element !== "ALL") {
+                let element = statOverride.elementBonus[option.element];
+                safeAdd(element.modifiers, option.statType, option.value);
+                statOverride._updateModifications();
             } else {
-                if(option.element && option.element !== "ALL") {
-                    let bonus = statOverride.elementBonus[option.element];
-                    
-                } else {
-                    statOverride.updateStats({[option.statType]: option.value}, "mul")
-                }
+                statOverride.updateStats({[option.statType]: option.value}, "add");                
             }
             break;
         case "statLevelUp":
@@ -641,16 +640,38 @@ el.GauntletController = ig.GameAddon.extend({
     getBonusOptionCost(option) {
         const runtime = this.runtime;
         //TODO: Apply cost scaling.
-        switch(option.scaleType) {
+        switch(option.costScaleType) {
             case "LINEAR":
-                return option.cost + option.scaleFactor! * (runtime.selectedBonuses[option.key] || 0);
+                return option.cost + option.costScaleFactor! * (runtime.selectedBonuses[option.key] || 0);
             case "PARTY":
                 return option.cost * (2 ** runtime.partySelected);
         }
         
         return option.cost;
     },
-    getBonusOptionName(option) {
+    getBonusOptionWeight(option) {
+        const runtime = this.runtime;
+        const bonusesPicked = runtime.selectedBonuses;
+        switch(option.weightScaleType) {
+            case "EXPONENTIAL":
+                return option.weight * option.weightScaleFactor! ** (bonusesPicked[option.key] || 0);
+            case "PARTY":
+                return option.weight * 0.75 ** runtime.partySelected;
+            default:
+                return option.weight;
+        }
+    },
+    getBonusOptionName(option, useElementColors) {
+        function elemToColorCode(element: keyof typeof sc.ELEMENT) {
+            if(useElementColors) switch(element) {
+                case "NEUTRAL": return "\\C[gray]";
+                case "HEAT": return "\\C[red]";
+                case "COLD": return "\\C[blue]";
+                case "SHOCK": return "\\C[purple]";
+                case "WAVE": return "\\C[lime]";
+            }
+        }
+
         let name = "";
         if(option.name) {
             if(typeof option.name == "string") {
@@ -658,10 +679,17 @@ el.GauntletController = ig.GameAddon.extend({
             } else {
                 name = ig.LangLabel.getText(option.name);
             }
-        } else name =  ig.lang.get(`sc.gui.el-gauntlet.bonuses.options.${option.key}.name`);
+        } else name = ig.lang.get(`sc.gui.el-gauntlet.bonuses.options.${option.key}.name`);
+
+        
+
+        if(option.nameReplace) for(let replacer of option.nameReplace) {
+            name = name.replace(replacer.original, replacer.replacement!.toString());
+        }
+
 
         if(option.element && option.element !== "ALL") {
-            name += " " + ig.lang.get("sc.gui.el-gauntlet.bonuses.elementSuffix." + option.element);
+            name += " " + elemToColorCode(option.element) + ig.lang.get("sc.gui.el-gauntlet.bonuses.elementSuffix." + option.element);
         }
 
         return name;
@@ -743,11 +771,16 @@ el.GauntletController = ig.GameAddon.extend({
             //ensures the level requirement is met.
             if(option.minLevel && level < option.minLevel) continue;
 
-            weightedSum += option.weight;
+            let weight = this.getBonusOptionWeight(option);
+
+            //this will break the algorithm 
+            if(weight <= 0) continue;
+
+            weightedSum += weight;
             choices.push([key, weightedSum, option]);
         }
 
-        //if(el.debug.gauntlet_printWeightTable) console.log(choices);
+        if(el.debug.gauntlet_printWeightTable) console.log(choices);
         
         //2: pick all of them.
         let options: string[] = [];

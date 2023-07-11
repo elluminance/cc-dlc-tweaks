@@ -195,7 +195,7 @@ el.GauntletLevelUpGui.BonusEntry = ig.FocusGui.extend({
             this.iconOffX = 20 * this.bonusOption.iconIndexX;
             this.iconOffY = 20 * this.bonusOption.iconIndexY;
             
-            this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getBonusOptionName(this.bonusOption));
+            this.titleText.setText((!canAfford ? "\\C[gray]" : "") + el.gauntlet.getBonusOptionName(this.bonusOption, canAfford));
             this.shortDescText.setText(el.gauntlet.getBonusOptionDesc(this.bonusOption));
             this.costText.setText(
                 (!canAfford ? "\\C[red]" : "") +
