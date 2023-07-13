@@ -22,6 +22,33 @@
         "focus": 10
     },
 
+    "partyMembers": [
+        "Emilie",
+        "Glasses",
+        "Joern",
+        "Apollo",
+        "Schneider",
+        "Shizuka",
+        "Luke"
+    ],
+
+    "defaultBonusSets": [
+        "HEALING",
+        "BASE_STATS",
+        "MODIFIERS",
+        "SP",
+        "STAT_SWAP",
+        "OTHER"
+    ],
+
+    "foodItemShopEntries": [
+        {"id": 1, "cost": 250, "weight": 2500000, "count": 3}
+    ],
+
+    "bonuses": {
+
+    },
+
     "roundSteps": [
         {
             "type": "CHANGE_VARS",

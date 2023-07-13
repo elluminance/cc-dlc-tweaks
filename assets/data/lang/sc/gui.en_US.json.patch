@@ -105,6 +105,9 @@
                     "defenseUp": "Defense Up",
                     "focusUp": "Focus Up",
 
+                    "itemBuy": "Buy Item: [NAME]",
+                    "itemBuyNumber": "Buy Item: [NAME] ([COUNT])",
+
                     "modifier": "[MOD] Up",
 
                     "maxhpLevelUpBonus": "Max HP Gain Up",
@@ -144,7 +147,9 @@
                     "statUpPercent": "Increases \\c[3][STAT]\\c[0] by [VALUE]%.",
                     "statUpPercentElement": "Increases \\c[3][STAT]\\c[0] by [VALUE]% while in [ELEMENT].",
 
-                    "statSwap": "\\C[red]Lose\\c[0] [VALUE2] \\c[3][STAT2]\\c[0] in exchange for \\C[green]gaining\\c[0] [VALUE1] \\c[3][STAT1]\\c[0]."
+                    "statSwap": "\\C[red]Lose\\c[0] [VALUE2] \\c[3][STAT2]\\c[0] in exchange for \\C[green]gaining\\c[0] [VALUE1] \\c[3][STAT1]\\c[0].",
+                    
+                    "item": "Gives you [COUNT] [NAME](s) to be used during a round."
                 },
 
                 "modifierDesc": {

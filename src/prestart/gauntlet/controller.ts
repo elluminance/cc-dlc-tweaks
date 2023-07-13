@@ -37,36 +37,6 @@ el.GAUNTLET_RANKS = [
     },
 ]
 
-const DEFAULT_RUNTIME: el.GauntletController.Runtime = {
-    currentCup: null,
-    curPoints: 0,
-    totalPoints: 0,
-    curXp: 0,
-    curLevel: 1,
-    currentRound: 0,
-    roundEnemiesDefeated: 0,
-    roundEnemiesGoal: 0,
-    steps: {
-        callstack: []
-    },
-    gauntletStarted: false,
-    statIncrease: {
-        hp: 0,
-        attack: 0,
-        defense: 0,
-        focus: 0,
-    },
-
-    combatRankLevel: 0,
-    combatRankProgress: 0,
-    combatRankTimer: 0,
-
-    playerStatOverride: undefined,
-    levelDiff: 0,
-    selectedBonuses: {},
-    partySelected: 0,
-};
-
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
     let numRounds = 0;
     let roundSteps = [];
@@ -85,6 +55,45 @@ function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup
     }
 
     return [roundSteps, numRounds]
+}
+
+function generateFoodEntry(key: string, entry: el.GauntletCup.FoodItemEntry): el.GauntletController.BonusOption {
+    let item = sc.inventory.getItem(entry.id)!;
+    return {
+        type: "item",
+        weight: entry.weight,
+        cost: entry.cost,
+        name: "sc.gui.el-gauntlet.bonuses.genericName." + (entry.count! > 1 ? "itemBuyNumber" : "itemBuy"),
+        nameReplace: [
+            {
+                original: "[NAME]",
+                replacement: `\\v[item.${entry.id}.name]`
+            },
+            {
+                original: "[COUNT]",
+                replacement: entry.count || 1
+            }
+        ],
+        shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.item",
+        descReplace: [
+            {
+                original: "[NAME]",
+                replacement: `\\v[item.${entry.id}.name]`
+            },
+            {
+                original: "[COUNT]",
+                replacement: entry.count || 1
+            }
+        ],
+        key,
+        iconSrc: "",
+        icon: new el.GauntletFoodIcon(item.foodSprite || "SANDWICH"),
+        iconIndexX: 0,
+        iconIndexY: 0,
+        itemID: entry.id,
+        value: entry.count || 1,
+        repeat: true,
+    }
 }
 
 el.GauntletCup = ig.JsonLoadable.extend({
@@ -153,25 +162,32 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         const defaultOptions = el.GauntletCup.DefaultBonusOptions;
 
-        let levelUpOptions = {
-            ...defaultOptions.PARTY,
-            ...defaultOptions.HEALING,
-            ...defaultOptions.BASE_STATS,
-            ...defaultOptions.MODIFIERS,
-            ...defaultOptions.SP,
-            ...defaultOptions.STAT_SWAP,
-            ...defaultOptions.OTHER
+        let bonusOptions: Record<string, el.GauntletCup.BonusEntry> = {}
+
+        if(data.defaultBonusSets) for(let set of data.defaultBonusSets) {
+            if(set in defaultOptions) {
+                Object.assign(bonusOptions, defaultOptions[set]);
+            } else {
+                console.error(`Cup parsing error: Could not find set ${set} in default options for cup ${this.name}!`);
+            }
         }
 
-        for(let [key, value] of getEntries(levelUpOptions)) {
+        for(let [key, value] of getEntries(bonusOptions)) {
             this.bonusOptions[key] = {
                 ...value,
-                key: key as string,
+                key: key,
                 icon: new ig.Image(value.iconSrc),
                 condition: new ig.VarCondition(value.condition || "true"),
                 type: value.type,
             }
         }
+
+        if(data.foodItemShopEntries) for(let entry of data.foodItemShopEntries) {
+            let key = `ITEM_BUY_${entry.id}__COUNT_${entry.count || 1}`;
+
+            this.bonusOptions[key] = generateFoodEntry(key, entry);
+        }
+
     },
 
     getName() {
@@ -188,7 +204,7 @@ function createRankBox(entity: ig.Entity) {
 
 
 el.GauntletController = ig.GameAddon.extend({
-    runtime: {...DEFAULT_RUNTIME},
+    runtime: null,
     active: false,
     cups: {},
     partyStash: [],
@@ -206,6 +222,7 @@ el.GauntletController = ig.GameAddon.extend({
         special: "\\C[pink]"
     },
     numBonusOptions: 4,
+    foodIconSprites: null,
 
     init() {
         this.parent("el-Gauntlet");
@@ -290,12 +307,39 @@ el.GauntletController = ig.GameAddon.extend({
 
         sc.timers.removeTimer("gauntletTimer")
 
-        this.runtime = {...DEFAULT_RUNTIME};
         let cup = this.cups[name];
-        let runtime = this.runtime;
+        let runtime: typeof this.runtime = this.runtime = {
+            currentCup: cup,
+            curPoints: 0,
+            totalPoints: 0,
+            curXp: 0,
+            curLevel: 1,
+            currentRound: 0,
+            roundEnemiesDefeated: 0,
+            roundEnemiesGoal: 0,
+            steps: {
+                callstack: []
+            },
+            gauntletStarted: false,
+            statIncrease: {
+                hp: 0,
+                attack: 0,
+                defense: 0,
+                focus: 0,
+            },
+            inventory: {},
+        
+            combatRankLevel: 0,
+            combatRankProgress: 0,
+            combatRankTimer: 0,
+        
+            playerStatOverride: undefined,
+            levelDiff: 0,
+            selectedBonuses: {},
+            partySelected: 0,
+        };
         
         runtime.currentCup = cup;
-        runtime.currentRound = 0;
 
         runtime.playerStatOverride = new el.StatOverride(cup.playerStats);
         runtime.playerStatOverride.addModel(sc.model.player);
@@ -625,7 +669,8 @@ el.GauntletController = ig.GameAddon.extend({
         case "heal":
             ig.game.playerEntity.heal({value: option.value});
             break;
-        case "item": //todo: once i add in the new item inventory
+        case "item": 
+            safeAdd(runtime.inventory, option.itemID, option.value);
             break;
         case "special":
             if(option.specialFunc in el.GAUNTLET_SPECIAL_BONUS_FUNC) {
@@ -739,7 +784,7 @@ el.GauntletController = ig.GameAddon.extend({
 
     generateBonusOptions() {
         const runtime = this.runtime;
-        const cup = this.runtime.currentCup!;
+        const cup = this.runtime.currentCup;
         const level = this.runtime.curLevel - this.runtime.levelDiff + 1;
         const bonuses = runtime.selectedBonuses;
         
@@ -826,6 +871,26 @@ el.GauntletController = ig.GameAddon.extend({
         this.startTimer();
         this.startNextRound();
     },
+    //#endregion
+
+    //#region Inventory
+    getItems() {
+        if(!this.active) return [];
+        let items = Object.entries(this.runtime.inventory);
+        
+        items.sort((a, b) => {
+            let orderA = sc.inventory.getItem(a[0])!.order || 0;
+            let orderB = sc.inventory.getItem(b[0])!.order || 0;
+
+            if(sc.model.player.isFavorite(a[0])) orderA -= 1e6; 
+            if(sc.model.player.isFavorite(b[0])) orderB -= 1e6; 
+            
+            return orderA - orderB;
+        })
+
+        return items;
+    },
+
     //#endregion
 
     //#region Rank
@@ -915,6 +980,27 @@ sc.ENEMY_REACTION.GUARD_COUNTER.inject({
         if(guardingEntity.getCombatantRoot().isPlayer) {
             el.gauntlet.onGuardCounter(enemy);
         }
+    },
+})
+
+sc.PlayerModel.inject({
+    useItem(id) {
+        if(el.gauntlet.active) {
+            let inventory = el.gauntlet.runtime.inventory;
+            if(inventory[id] > 0) {
+                inventory[id] -= 1;
+                this.itemBlockTimer = this.getItemBlockTime();
+
+                sc.stats.addMap("items", "used", 1);
+                sc.stats.addMap("items", "used-" + id, 1);
+                sc.stats.setMap("items", "usedTotal", this.getTotalItemsUsed(true));
+
+                if(inventory[id] === 0) delete inventory[id];
+                sc.Model.notifyObserver(this, sc.PLAYER_MSG.ITEM_USED, id);
+                return true;
+            }
+            return false;
+        } else return this.parent(id);
     },
 })
 

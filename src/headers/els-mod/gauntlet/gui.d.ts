@@ -114,5 +114,18 @@ declare global {
             setOptions(this: this, options: el.GauntletController.BonusOption[]): void;
         }
         let GauntletLevelUpGui: GauntletBonusGui.Constructor;
+
+        namespace GauntletFoodIcon {
+            interface Constructor extends ImpactClass<GauntletFoodIcon> {
+                new (foodName: string): GauntletFoodIcon;
+            }
+        }
+        interface GauntletFoodIcon extends ig.Image {
+            foodtilesheet: ig.TileSheet;
+            index: number;
+
+            getCacheKey(foodName: string): string;
+        }
+        let GauntletFoodIcon: GauntletFoodIcon.Constructor;
     }
 }

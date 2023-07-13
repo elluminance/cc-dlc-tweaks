@@ -36,7 +36,7 @@ declare global {
             }
 
             interface Runtime {
-                currentCup: Optional<GauntletCup>;
+                currentCup: GauntletCup;
                 
                 currentRound: number;
                 steps: StepData;
@@ -44,6 +44,8 @@ declare global {
                 roundEnemiesDefeated: number;
                 roundEnemiesGoal: number;
                 gauntletStarted: boolean;
+
+                inventory: Record<sc.ItemID, number>;
 
                 curPoints: number;
                 totalPoints: number;
@@ -171,6 +173,7 @@ declare global {
             pauseExecution: boolean;
             bonusEvent: ig.Event;
             numBonusOptions: number;
+            foodIconSprites: GauntletFoodIcon;
 
             categoryColorCodes: PartialRecord<GauntletController.BonusType, string>;
 
@@ -226,6 +229,9 @@ declare global {
             unstashPartyMembers(this: this): void;
             getRoundEnemiesDefeated(this: this): number;
 
+            getItems(this: this): [sc.ItemID, number][];
+            getItemCount(this: this): void;
+
             _getRank(this: this): el.GauntletRank;
             getRankLabel(this: this): string;
             getRankProgress(this: this): number;
@@ -268,6 +274,13 @@ declare global {
                 steps: GauntletStepBase.Settings[];
             }
 
+            interface FoodItemEntry {
+                id: sc.ItemID;
+                cost: number;
+                weight: number;
+                count?: number;
+            }
+
             interface Data {
                 name: ig.LangLabel.Data;
                 description: ig.LangLabel.Data;
@@ -281,6 +294,13 @@ declare global {
                 functions?: Record<string, FunctionEntry>;
                 playerStats: StatOverride.OverrideEntry;
                 statIncrease: StatIncrease;
+
+                partyMembers?: string[];
+                partyCost?: number;
+
+                foodItemShopEntries?: FoodItemEntry[];
+                defaultBonusSets?: string[];
+                bonuses?: BonusEntry[]
             }
 
             type StatIncrease = Required<el.StatOverride.StatModification>;

@@ -1,3 +1,5 @@
+import "../../node_modules/food-api/src/headers/food-api"
+
 import "./els-mod/combat"
 import "./els-mod/entities"
 import "./els-mod/gauntlet/base"
