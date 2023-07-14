@@ -1,4 +1,4 @@
-import { getEntries, safeAdd } from "../../helper-funcs.js";
+import { getEntries, safeAdd, assignToRecord } from "../../helper-funcs.js";
 
 el.GAUNTLET_MSG = {
     RANK_CHANGED: 0,
@@ -36,6 +36,55 @@ el.GAUNTLET_RANKS = [
         penaltyMultiplier: 2
     },
 ]
+
+el.GAUNTLET_DEFAULT_PARTY_ICONS = {
+    Emilie: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 0,
+        indexY: 1,
+    },
+    Glasses: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 1,
+        indexY: 1,
+    },
+    Joern: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 2,
+        indexY: 1,
+    },
+    Apollo: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 3,
+        indexY: 1,
+    },
+    Schneider: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 4,
+        indexY: 1,
+    },
+    Shizuka: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 5,
+        indexY: 1,
+    },
+    Luke: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 6,
+        indexY: 1,
+    },
+    Lea: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 7,
+        indexY: 1,
+    },
+
+    FALLBACK: {
+        imgSrc: "media/gui/gauntlet-icons/el-mod.png",
+        indexX: 8,
+        indexY: 1,
+    },
+}
 
 function compileSteps(steps: el.GauntletStepBase.Settings[], cup: el.GauntletCup): [el.GauntletStep[], number] {
     let numRounds = 0;
@@ -93,6 +142,25 @@ function generateFoodEntry(key: string, entry: el.GauntletCup.FoodItemEntry): el
         itemID: entry.id,
         value: entry.count || 1,
         repeat: true,
+    }
+}
+
+function generatePartyIcon(partyMemberName: string, cost: number, weight: number): el.GauntletCup.BonusEntry {
+    let icon = partyMemberName in el.GAUNTLET_DEFAULT_PARTY_ICONS ? el.GAUNTLET_DEFAULT_PARTY_ICONS[partyMemberName] : el.GAUNTLET_DEFAULT_PARTY_ICONS.FALLBACK;
+
+    return {
+        type: "addPartyMember",
+        iconSrc: icon.imgSrc,
+        generalKey: "party",
+        name: `sc.gui.el-gauntlet.bonuses.options.PARTY.${partyMemberName}.name`,
+        shortDesc: `sc.gui.el-gauntlet.bonuses.options.PARTY.${partyMemberName}.shortDesc`,
+        iconIndexX: icon.indexX,
+        iconIndexY: icon.indexY,
+        weight,
+        partyMemberName: partyMemberName,
+        cost,
+        costScaleType: "PARTY",
+        condition: "!party.has.Emilie && party.size < 5",
     }
 }
 
@@ -166,11 +234,17 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         if(data.defaultBonusSets) for(let set of data.defaultBonusSets) {
             if(set in defaultOptions) {
-                Object.assign(bonusOptions, defaultOptions[set]);
+                assignToRecord(bonusOptions, defaultOptions[set]);
             } else {
                 console.error(`Cup parsing error: Could not find set ${set} in default options for cup ${this.name}!`);
             }
         }
+
+        if(data.partyMembers) for(let member of data.partyMembers) {
+            bonusOptions[`PARTY_${member}`] = generatePartyIcon(member, data.partyCost || 2000, data.partyWeight || 100)
+        }
+
+        if(data.bonuses) assignToRecord(bonusOptions, data.bonuses)
 
         for(let [key, value] of getEntries(bonusOptions)) {
             this.bonusOptions[key] = {

@@ -159,6 +159,14 @@ declare global {
             }
         }
 
+        interface GauntletPartyIcon {
+            imgSrc: string;
+            indexX: number;
+            indexY: number;
+        }
+
+        let GAUNTLET_DEFAULT_PARTY_ICONS: Record<string, GauntletPartyIcon>
+
         let GAUNTLET_SPECIAL_BONUS_FUNC: Record<string, GauntletController.SpecialFunc>;
 
         interface GauntletController extends ig.GameAddon, ig.Vars.Accessor, sc.Model {
@@ -297,10 +305,11 @@ declare global {
 
                 partyMembers?: string[];
                 partyCost?: number;
+                partyWeight?: number;
 
                 foodItemShopEntries?: FoodItemEntry[];
                 defaultBonusSets?: string[];
-                bonuses?: BonusEntry[]
+                bonuses?: Record<string, BonusEntry>
             }
 
             type StatIncrease = Required<el.StatOverride.StatModification>;

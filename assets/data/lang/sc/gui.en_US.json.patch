@@ -32,33 +32,35 @@
                 },
 
                 "options": {
-                    "PARTY_EMILIE": {
-                        "name": "Party Member: Emilie",
-                        "shortDesc": "Summons the pentafist \\c[3]Emilie\\c[0] to assist you."
-                    },
-                    "PARTY_CTRON": {
-                        "name": "Party Member: C'tron",
-                        "shortDesc": "Summons the hexacast \\c[3]C'tron\\c[0] to assist you."
-                    },
-                    "PARTY_JOERN": {
-                        "name": "Party Member: Joern",
-                        "shortDesc": "Summons the quadroguard \\c[3]Joern\\c[0] to assist you."
-                    },
-                    "PARTY_APOLLO": {
-                        "name": "Party Member: Apollo",
-                        "shortDesc": "Summons the spheromancer \\c[3]Apollo\\c[0] to assist you."
-                    },
-                    "PARTY_LUKAS": {
-                        "name": "Party Member: Lukas",
-                        "shortDesc": "Summons the triblader \\c[3]Lukas\\c[0] to assist you."
-                    },
-                    "PARTY_SHIZUKA": {
-                        "name": "Party Member: Shizuka",
-                        "shortDesc": "Summons the spheromancer \\c[3]Shizuka\\c[0] to assist you."
-                    },
-                    "PARTY_LUKE": {
-                        "name": "Party Member: Luke",
-                        "shortDesc": "Summons the triblader \\c[3]Luke\\c[0] to assist you."
+                    "PARTY": {
+                        "Emilie": {
+                            "name": "Party Member: Emilie",
+                            "shortDesc": "Summons the pentafist \\c[3]Emilie\\c[0] to assist you."
+                        },
+                        "Glasses": {
+                            "name": "Party Member: C'tron",
+                            "shortDesc": "Summons the hexacast \\c[3]C'tron\\c[0] to assist you."
+                        },
+                        "Joern": {
+                            "name": "Party Member: Joern",
+                            "shortDesc": "Summons the quadroguard \\c[3]Joern\\c[0] to assist you."
+                        },
+                        "Apollo": {
+                            "name": "Party Member: Apollo",
+                            "shortDesc": "Summons the spheromancer \\c[3]Apollo\\c[0] to assist you."
+                        },
+                        "Schneider": {
+                            "name": "Party Member: Lukas",
+                            "shortDesc": "Summons the triblader \\c[3]Lukas\\c[0] to assist you."
+                        },
+                        "Shizuka": {
+                            "name": "Party Member: Shizuka",
+                            "shortDesc": "Summons the spheromancer \\c[3]Shizuka\\c[0] to assist you."
+                        },
+                        "Luke": {
+                            "name": "Party Member: Luke",
+                            "shortDesc": "Summons the triblader \\c[3]Luke\\c[0] to assist you."
+                        }
                     },
 
                     "HEAL_SMALL": {

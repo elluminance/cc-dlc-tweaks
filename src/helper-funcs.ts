@@ -132,13 +132,20 @@ export function intToRomanNum(num: number) {
     return str;
 }
 
-export function getEntries<Key extends string | number | symbol, Value>(obj: {[key in Key]?: Value}): [Key, Value][] {
+type RecordKey = string | number | symbol;
+
+export function getEntries<Key extends RecordKey, Value>(obj: {[key in Key]?: Value}): [Key, Value][] {
     return Object.entries(obj) as [Key, Value][];
 }
 
-export function safeAdd<K extends string | number | symbol>(obj: {[key in K]?: number}, key: K, val: number) {
+export function safeAdd<K extends RecordKey>(obj: {[key in K]?: number}, key: K, val: number) {
     if(!(key in obj)) {
         obj[key] = 0;
     }
     obj[key]! += val;
+}
+
+//a strict type alias of Object.assign().
+export function assignToRecord<K extends RecordKey, V, T extends {[key in K]?: V}>(dest: T, src: T): T {
+    return Object.assign(dest, src)
 }

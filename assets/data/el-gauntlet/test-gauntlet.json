@@ -31,6 +31,7 @@
         "Shizuka",
         "Luke"
     ],
+    "partyWeight": 100,
 
     "defaultBonusSets": [
         "HEALING",
@@ -42,7 +43,7 @@
     ],
 
     "foodItemShopEntries": [
-        {"id": 1, "cost": 250, "weight": 2500000, "count": 3}
+        {"id": 1, "cost": 500, "weight": 75, "count": 3}
     ],
 
     "bonuses": {
