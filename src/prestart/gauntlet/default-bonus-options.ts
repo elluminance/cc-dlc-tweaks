@@ -101,7 +101,7 @@ el.GauntletCup.DefaultBonusOptions = {
             generalKey: "attack",
 
             cost: 500,
-            weight: 100,
+            weight: 200,
             costScaleType: "LINEAR",
             costScaleFactor: 100,
 
@@ -127,7 +127,7 @@ el.GauntletCup.DefaultBonusOptions = {
 
             cost: 500,
             costScaleType: "LINEAR",
-            weight: 100,
+            weight: 200,
             costScaleFactor: 100,
 
             statType: "defense",
@@ -153,9 +153,9 @@ el.GauntletCup.DefaultBonusOptions = {
             cost: 500,
             costScaleType: "LINEAR",
             costScaleFactor: 100,
-            weight: 100,
+            weight: 200,
 
-            statType: "attack",
+            statType: "focus",
             absolute: true,
             value: 10
         },
@@ -179,7 +179,7 @@ el.GauntletCup.DefaultBonusOptions = {
             cost: 1000,
             costScaleType: "LINEAR",
             costScaleFactor: 250,
-            weight: 100,
+            weight: 200,
 
             statType: "hp",
             absolute: true,
@@ -212,7 +212,7 @@ el.GauntletCup.DefaultBonusOptions = {
             type: "statLevelUp",
             iconSrc: DefaultIcon,
 			iconIndexX: 8,
-            iconIndexY: 3,
+            iconIndexY: 2,
             name: "sc.gui.el-gauntlet.bonuses.genericName.defenseLevelUpBonus",
             shortDesc: "sc.gui.el-gauntlet.bonuses.genericDesc.statLevelUp",
             descReplace: [{
@@ -252,7 +252,7 @@ el.GauntletCup.DefaultBonusOptions = {
             costScaleFactor: 250,
             weight: 100,
 
-            statType: "attack",
+            statType: "focus",
             absolute: true,
             value: 3
         },
@@ -286,7 +286,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 4,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "attack",
@@ -321,7 +321,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 5,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "defense",
@@ -356,7 +356,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 8,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "focus",
@@ -391,7 +391,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 9,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "defense",
@@ -426,7 +426,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 6,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "attack",
@@ -461,7 +461,7 @@ el.GauntletCup.DefaultBonusOptions = {
             iconIndexX: 7,
 			iconIndexY: 3,
             cost: 1500,
-            weight: 50,
+            weight: 25,
             specialFunc: "statSwap",
             specialFuncParams: {
                 stat1: "focus",
@@ -501,7 +501,7 @@ el.GauntletCup.DefaultBonusOptions = {
             repeat: false,
 
             cost: 5000,
-            weight: 250000,
+            weight: 10,
             minLevel: 10,
             mutuallyExclusive: [
                 "INCREASE_NEUTRAL_BONUS1"
@@ -521,7 +521,7 @@ el.GauntletCup.DefaultBonusOptions = {
             repeat: false,
 
             cost: 10000,
-            weight: 25,
+            weight: 10,
             minLevel: 20,
             requires: [
                 "REMOVE_NEUTRAL_BONUS1"
@@ -541,7 +541,7 @@ el.GauntletCup.DefaultBonusOptions = {
             repeat: false,
 
             cost: 15000,
-            weight: 25,
+            weight: 10,
             minLevel: 30,
             requires: [
                 "REMOVE_NEUTRAL_BONUS2"
@@ -565,7 +565,7 @@ el.GauntletCup.DefaultBonusOptions = {
             ],
 
             cost: 7500,
-            weight: 250000,
+            weight: 10,
             minLevel: 10,
 
             specialFunc: "setNeutralBonus",
@@ -581,7 +581,7 @@ el.GauntletCup.DefaultBonusOptions = {
             repeat: false,
 
             cost: 25000,
-            weight: 250000,
+            weight: 10,
             minLevel: 25,
             requires: [
                 "INCREASE_NEUTRAL_BONUS1"

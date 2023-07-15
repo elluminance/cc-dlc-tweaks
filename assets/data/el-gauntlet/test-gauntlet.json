@@ -16,10 +16,10 @@
     },
 
     "statIncrease": {
-        "hp": 100,
-        "attack": 10,
-        "defense": 10,
-        "focus": 10
+        "hp": 50,
+        "attack": 5,
+        "defense": 5,
+        "focus": 5
     },
 
     "partyMembers": [
@@ -52,44 +52,17 @@
 
     "roundSteps": [
         {
-            "type": "CHANGE_VARS",
-            "vars": {
-                "tmp.fart": {
-                    "varName": "player.level"
-                }
-            }
-        },{
-            "type": "DEBUG_LOG",
-            "msg": "Changed the value of 'tmp.fart' to \\v[tmp.fart]!"
-        },{
-            "type": "SPAWN_ENTITIES",
-            "entities": [
-                {
-                    "type": "EL_Prism",
-                    "marker": "PlayerStart",
-                    "offPos": {
-                        "x": 32,
-                        "y": 32,
-                        "z": 0
-                    },
-                    "settings": {
-                        "name": "funny_prism",
-                        "condition": "!tmp.hidePrism"
-                    }
-                }
-            ]
-        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 55,
             "enemies": [
                 {
-                    "type": "hedgehag",
+                    "type": "meerkat",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "meerkat",
                     "pos": {
                         "marker": "SpawnNE"
                     }
@@ -101,78 +74,65 @@
                     }
                 },
                 {
-                    "type": "hedgehag-atk",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
                 }
             ]
-        },{
-            "type": "KILL_ENTITIES",
-            "entities": [
-                {
-                    "name": "funny_prism"
-                }
-            ]
-        },{
-            "type": "CALL_FUNCTION",
-            "name": "SpawnMagnets"
         },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 56,
             "enemies": [
                 {
-                    "type": "octopus",
+                    "type": "buffalo",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "octopus",
+                    "type": "buffalo",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-atk",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-atk",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
                 }
             ]
         },{
-            "type": "CALL_FUNCTION",
-            "name": "KillMagnets"
-        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 57,
             "enemies": [
                 {
-                    "type": "hedgehag",
+                    "type": "meerkat-alt",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "meerkat-alt",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -183,25 +143,67 @@
             "level": 58,
             "enemies": [
                 {
-                    "type": "hedgehag",
+                    "type": "buffalo-alt",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "buffalo-alt",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "hedgehag-alt",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 60,
+            "enemies": [
+                {
+                    "type": "buffalo-alt",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "buffalo-alt",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "meerkat-alt",
+                    "pos": {
+                        "marker": "SpawnW"
+                    }
+                },
+                {
+                    "type": "meerkat-alt",
+                    "pos": {
+                        "marker": "SpawnE"
+                    }
+                },
+                {
+                    "type": "hedgehag-alt",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -293,41 +295,55 @@
             "settings": {
                 "type": "hedgehog"
             },
-            "xp": 100,
-
-            "effect": {
-                "sheet": "combatant",
-                "name": "boosted"
-            }
-        },
-        "hedgehag-leveled": {
-            "settings": {
-                "type": "hedgehog"
+            "buff": {
+                "defense": 0.8
             },
-            "xp": 125,
-            "levelOffset": 5,
-
-            "effect": {
-                "sheet": "combatant",
-                "name": "boosted"
-            }
+            "xp": 90
         },
-        "hedgehag-atk": {
+        "hedgehag-alt": {
             "settings": {
-                "type": "hedgehog"
+                "type": "hedgehog-alt"
             },
             "buff": {
-                "attack": 1.2
+                "defense": 0.9
             },
-            "xp": 115,
-            "pointMultiplier": 1.25
+            "xp": 95
         },
-
-        "octopus": {
+        "meerkat": {
             "settings": {
-                "type": "jungle.octopus"
+                "type": "meerkat"
+            },
+            "buff": {
+                "defense": 0.8
             },
             "xp": 100
+        },
+        "meerkat-alt": {
+            "settings": {
+                "type": "meerkat-alt"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 105
+        },
+        "buffalo": {
+            "settings": {
+                "type": "buffalo"
+            },
+            "buff": {
+                "defense": 0.8
+            },
+            "xp": 120
+        },
+        "buffalo-alt": {
+            "settings": {
+                "type": "buffalo-alt"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 130
         }
     }
 }
