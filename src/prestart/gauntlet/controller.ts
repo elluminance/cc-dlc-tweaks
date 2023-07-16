@@ -182,6 +182,7 @@ el.GauntletCup = ig.JsonLoadable.extend({
 
         this.map = data.map;
         this.marker = data.marker;
+        this.cameraTarget = data.cameraTarget;
 
         this.statIncrease = data.statIncrease;
 
@@ -391,6 +392,7 @@ el.GauntletController = ig.GameAddon.extend({
             currentRound: 0,
             roundEnemiesDefeated: 0,
             roundEnemiesGoal: 0,
+            cameraTarget: null,
             steps: {
                 callstack: []
             },
@@ -414,6 +416,7 @@ el.GauntletController = ig.GameAddon.extend({
         };
         
         runtime.currentCup = cup;
+        runtime.cameraTarget = cup.cameraTarget;
 
         runtime.playerStatOverride = new el.StatOverride(cup.playerStats);
         runtime.playerStatOverride.addModel(sc.model.player);
@@ -430,6 +433,7 @@ el.GauntletController = ig.GameAddon.extend({
     beginGauntlet() {
         if(this.active) {
             this.runtime.gauntletStarted = true;
+            this.startNextRound();
             this.startTimer();
             this.addGui();
         }
@@ -510,6 +514,8 @@ el.GauntletController = ig.GameAddon.extend({
                     return this.active ? Math.round(runtime.curPoints) : 0;
                 case "round":
                     return this.active ? runtime.currentRound : undefined;
+                case "cameraTarget":
+                    return this.active ? runtime.cameraTarget : undefined;
                 case "bonus":
                     if(!this.active) return;
                     const bonusKey = keys[2];

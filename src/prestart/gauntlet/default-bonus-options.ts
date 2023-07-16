@@ -272,7 +272,9 @@ el.GauntletCup.DefaultBonusOptions = {
             cost: 1000,
             costScaleType: "LINEAR",
             costScaleFactor: 1000,
-            weight: 10,
+            weight: 75,
+            weightScaleType: "EXPONENTIAL",
+            weightScaleFactor: 0.9,
 
             statType: "maxSp",
             value: 1

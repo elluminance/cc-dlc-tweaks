@@ -5,6 +5,7 @@
     "condition": "tmp.debug",
     "map": "el-gauntlet.basic",
     "marker": "PlayerStart",
+    "cameraTarget": "SpawnCenter",
 
     "playerStats": {
         "hp": 3000,
@@ -37,7 +38,6 @@
         "HEALING",
         "BASE_STATS",
         "MODIFIERS",
-        "SP",
         "STAT_SWAP",
         "OTHER"
     ],
@@ -47,7 +47,54 @@
     ],
 
     "bonuses": {
+        "MAX_SP_1": {
+            "type": "statUp",
+            "iconSrc": "media/gui/gauntlet-icons/el-mod.png",
+			"iconIndexX": 5,
+            "iconIndexY": 2,
 
+            "cost": 5000,
+            "weight": 100,
+
+            "statType": "maxSp",
+            "value": 1
+        },
+        "MAX_SP_2": {
+            "type": "statUp",
+            "iconSrc": "media/gui/gauntlet-icons/el-mod.png",
+			"iconIndexX": 5,
+            "iconIndexY": 2,
+
+            "cost": 10000,
+            "weight": 65,
+
+            "statType": "maxSp",
+            "value": 1
+        },
+        "MAX_SP_3": {
+            "type": "statUp",
+            "iconSrc": "media/gui/gauntlet-icons/el-mod.png",
+			"iconIndexX": 5,
+            "iconIndexY": 2,
+
+            "cost": 20000,
+            "weight": 42.5,
+
+            "statType": "maxSp",
+            "value": 1
+        },
+        "MAX_SP_4": {
+            "type": "statUp",
+            "iconSrc": "media/gui/gauntlet-icons/el-mod.png",
+			"iconIndexX": 5,
+            "iconIndexY": 2,
+
+            "cost": 40000,
+            "weight": 21.25,
+
+            "statType": "maxSp",
+            "value": 1
+        }
     },
 
     "roundSteps": [
@@ -56,13 +103,13 @@
             "level": 55,
             "enemies": [
                 {
-                    "type": "meerkat",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "meerkat",
+                    "type": "hedgehag",
                     "pos": {
                         "marker": "SpawnNE"
                     }
@@ -85,13 +132,13 @@
             "level": 56,
             "enemies": [
                 {
-                    "type": "buffalo",
+                    "type": "meerkat",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "buffalo",
+                    "type": "meerkat",
                     "pos": {
                         "marker": "SpawnNE"
                     }
@@ -114,6 +161,35 @@
             "level": 57,
             "enemies": [
                 {
+                    "type": "buffalo",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "buffalo",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "hedgehag",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 58,
+            "enemies": [
+                {
                     "type": "meerkat-alt",
                     "pos": {
                         "marker": "SpawnNW"
@@ -140,7 +216,7 @@
             ]
         },{
             "type": "SIMPLE_ENEMY_ROUND",
-            "level": 58,
+            "level": 59,
             "enemies": [
                 {
                     "type": "buffalo-alt",
@@ -167,8 +243,7 @@
                     }
                 }
             ]
-        },
-        {
+        },{
             "type": "SIMPLE_ENEMY_ROUND",
             "level": 60,
             "enemies": [
@@ -206,6 +281,208 @@
                     "type": "hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },
+        
+        {
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 61,
+            "enemies": [
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnNW_Up"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnNW_Down"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnNE_Up"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnNE_Down"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSW_Up"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSW_Down"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSE_Up"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSE_Down"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 62,
+            "enemies": [
+                {
+                    "type": "seahorse",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "seahorse",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnSW_Up"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnSW_Down"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSE_Up"
+                    }
+                },
+                {
+                    "type": "gray-frobbit",
+                    "pos": {
+                        "marker": "SpawnSE_Down"
+                    }
+                },
+                {
+                    "type": "frobbit",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+            ]
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 63,
+            "enemies": [
+                {
+                    "type": "penguin",
+                    "pos": {
+                        "marker": "SpawnNW_Up"
+                    }
+                },
+                {
+                    "type": "penguin",
+                    "pos": {
+                        "marker": "SpawnNW_Down"
+                    }
+                },
+                {
+                    "type": "goat",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "seahorse",
+                    "pos": {
+                        "marker": "SpawnSW"
+                    }
+                },
+                {
+                    "type": "seahorse",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                }
+                
+            ]
+        },{
+            "type": "SIMPLE_ENEMY_ROUND",
+            "level": 64,
+            "enemies": [
+                {
+                    "type": "snowman",
+                    "pos": {
+                        "marker": "SpawnNW"
+                    }
+                },
+                {
+                    "type": "snowman",
+                    "pos": {
+                        "marker": "SpawnNE"
+                    }
+                },
+                {
+                    "type": "goat",
+                    "pos": {
+                        "marker": "SpawnSE"
+                    }
+                },
+                {
+                    "type": "seahorse",
+                    "pos": {
+                        "marker": "SpawnSW"
                     }
                 }
             ]
@@ -296,7 +573,7 @@
                 "type": "hedgehog"
             },
             "buff": {
-                "defense": 0.8
+                "defense": 0.75
             },
             "xp": 90
         },
@@ -305,45 +582,101 @@
                 "type": "hedgehog-alt"
             },
             "buff": {
-                "defense": 0.9
+                "defense": 0.8
             },
-            "xp": 95
+            "xp": 90
         },
         "meerkat": {
             "settings": {
                 "type": "meerkat"
             },
             "buff": {
-                "defense": 0.8
+                "defense": 0.75
             },
-            "xp": 100
+            "xp": 95
         },
         "meerkat-alt": {
             "settings": {
                 "type": "meerkat-alt"
             },
             "buff": {
-                "defense": 0.9
+                "defense": 0.8
             },
-            "xp": 105
+            "xp": 95
         },
         "buffalo": {
             "settings": {
                 "type": "buffalo"
             },
             "buff": {
-                "defense": 0.8
+                "defense": 0.75
             },
-            "xp": 120
+            "xp": 110
         },
         "buffalo-alt": {
             "settings": {
                 "type": "buffalo-alt"
             },
             "buff": {
-                "defense": 0.9
+                "defense": 0.8
             },
-            "xp": 130
+            "xp": 110
+        },
+
+
+        "frobbit": {
+            "settings": {
+                "type": "frobbit"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 55
+        },
+        "gray-frobbit": {
+            "settings": {
+                "type": "gray-frobbit"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 55
+        },
+        "goat": {
+            "settings": {
+                "type": "goat"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 85
+        },
+        "snowman": {
+            "settings": {
+                "type": "gray-frobbit"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 95
+        },
+        "penguin": {
+            "settings": {
+                "type": "penguin"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 85
+        },
+        "seahorse": {
+            "settings": {
+                "type": "seahorse"
+            },
+            "buff": {
+                "defense": 0.85
+            },
+            "xp": 85
         }
     }
 }

@@ -44,6 +44,7 @@ declare global {
                 roundEnemiesDefeated: number;
                 roundEnemiesGoal: number;
                 gauntletStarted: boolean;
+                cameraTarget?: Optional<string>;
 
                 inventory: Record<sc.ItemID, number>;
 
@@ -293,6 +294,7 @@ declare global {
                 name: ig.LangLabel.Data;
                 description: ig.LangLabel.Data;
                 condition?: string;
+                cameraTarget?: Optional<string>;
 
                 map: string;
                 marker?: string;
@@ -327,6 +329,7 @@ declare global {
             functions: Record<string, GauntletFunction>
             playerStats: StatOverride.OverrideEntry;
             statIncrease: GauntletCup.StatIncrease;
+            cameraTarget?: Optional<string>;
 
             bonusOptions: Record<string, GauntletController.BonusOption>;
 

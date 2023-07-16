@@ -87,26 +87,6 @@
                     "type": "START_EL_GAUNTLET"
                 },
                 {
-                    "withElse": false,
-                    "type": "IF",
-                    "condition": "arena.roundCameraTarget",
-                    "thenStep": [
-                        {
-                            "entity": {
-                                "varName": "arena.roundCameraTarget"
-                            },
-                            "offsetX": 0,
-                            "offsetY": 0,
-                            "speed": "NORMAL",
-                            "transition": "EASE_IN_OUT",
-                            "wait": false,
-                            "waitSkip": 0,
-                            "zoom": 1,
-                            "type": "SET_CAMERA_TARGET"
-                        }
-                    ]
-                },
-                {
                     "volume": 0.6,
                     "name": "",
                     "loop": false,
@@ -132,11 +112,11 @@
                 {
                     "withElse": false,
                     "type": "IF",
-                    "condition": "option.arena-cam-focus && arena.roundFocusTarget",
+                    "condition": "option.arena-cam-focus && gauntlet.cameraTarget",
                     "thenStep": [
                         {
                             "entity": {
-                                "varName": "arena.roundFocusTarget"
+                                "varName": "gauntlet.cameraTarget"
                             },
                             "type": "ADD_PLAYER_CAMERA_TARGET"
                         }
