@@ -103,25 +103,25 @@
             "level": 55,
             "enemies": [
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -132,25 +132,25 @@
             "level": 56,
             "enemies": [
                 {
-                    "type": "meerkat",
+                    "type": "autumn-rise.meerkat",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "meerkat",
+                    "type": "autumn-rise.meerkat",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -161,25 +161,25 @@
             "level": 57,
             "enemies": [
                 {
-                    "type": "buffalo",
+                    "type": "autumn-rise.buffalo",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "buffalo",
+                    "type": "autumn-rise.buffalo",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag",
+                    "type": "autumn-rise.hedgehag",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -190,25 +190,25 @@
             "level": 58,
             "enemies": [
                 {
-                    "type": "meerkat-alt",
+                    "type": "autumn-rise.meerkat-alt",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "meerkat-alt",
+                    "type": "autumn-rise.meerkat-alt",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -219,25 +219,25 @@
             "level": 59,
             "enemies": [
                 {
-                    "type": "buffalo-alt",
+                    "type": "autumn-rise.buffalo-alt",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "buffalo-alt",
+                    "type": "autumn-rise.buffalo-alt",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -248,37 +248,37 @@
             "level": 60,
             "enemies": [
                 {
-                    "type": "buffalo-alt",
+                    "type": "autumn-rise.buffalo-alt",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "buffalo-alt",
+                    "type": "autumn-rise.buffalo-alt",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "meerkat-alt",
+                    "type": "autumn-rise.meerkat-alt",
                     "pos": {
                         "marker": "SpawnW"
                     }
                 },
                 {
-                    "type": "meerkat-alt",
+                    "type": "autumn-rise.meerkat-alt",
                     "pos": {
                         "marker": "SpawnE"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "hedgehag-alt",
+                    "type": "autumn-rise.hedgehag-alt",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -291,76 +291,76 @@
             "level": 61,
             "enemies": [
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnNW_Up"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnNW_Down"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
 
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnNE_Up"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnNE_Down"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSW_Up"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSW_Down"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
 
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSE_Up"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSE_Down"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -371,51 +371,51 @@
             "level": 62,
             "enemies": [
                 {
-                    "type": "seahorse",
+                    "type": "bergen.seahorse",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "seahorse",
+                    "type": "bergen.seahorse",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnSW_Up"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnSW_Down"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
 
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSE_Up"
                     }
                 },
                 {
-                    "type": "gray-frobbit",
+                    "type": "bergen.gray-frobbit",
                     "pos": {
                         "marker": "SpawnSE_Down"
                     }
                 },
                 {
-                    "type": "frobbit",
+                    "type": "bergen.frobbit",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -426,31 +426,31 @@
             "level": 63,
             "enemies": [
                 {
-                    "type": "penguin",
+                    "type": "bergen.penguin",
                     "pos": {
                         "marker": "SpawnNW_Up"
                     }
                 },
                 {
-                    "type": "penguin",
+                    "type": "bergen.penguin",
                     "pos": {
                         "marker": "SpawnNW_Down"
                     }
                 },
                 {
-                    "type": "goat",
+                    "type": "bergen.goat",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "seahorse",
+                    "type": "bergen.seahorse",
                     "pos": {
                         "marker": "SpawnSW"
                     }
                 },
                 {
-                    "type": "seahorse",
+                    "type": "bergen.seahorse",
                     "pos": {
                         "marker": "SpawnSE"
                     }
@@ -462,25 +462,25 @@
             "level": 64,
             "enemies": [
                 {
-                    "type": "snowman",
+                    "type": "bergen.snowman",
                     "pos": {
                         "marker": "SpawnNW"
                     }
                 },
                 {
-                    "type": "snowman",
+                    "type": "bergen.snowman",
                     "pos": {
                         "marker": "SpawnNE"
                     }
                 },
                 {
-                    "type": "goat",
+                    "type": "bergen.goat",
                     "pos": {
                         "marker": "SpawnSE"
                     }
                 },
                 {
-                    "type": "seahorse",
+                    "type": "bergen.seahorse",
                     "pos": {
                         "marker": "SpawnSW"
                     }
@@ -568,7 +568,7 @@
     },
 
     "enemyTypes": {
-        "hedgehag": {
+        "autumn-rise.hedgehag": {
             "settings": {
                 "type": "hedgehog"
             },
@@ -577,7 +577,7 @@
             },
             "xp": 90
         },
-        "hedgehag-alt": {
+        "autumn-rise.hedgehag-alt": {
             "settings": {
                 "type": "hedgehog-alt"
             },
@@ -586,7 +586,7 @@
             },
             "xp": 90
         },
-        "meerkat": {
+        "autumn-rise.meerkat": {
             "settings": {
                 "type": "meerkat"
             },
@@ -595,7 +595,7 @@
             },
             "xp": 95
         },
-        "meerkat-alt": {
+        "autumn-rise.meerkat-alt": {
             "settings": {
                 "type": "meerkat-alt"
             },
@@ -604,7 +604,7 @@
             },
             "xp": 95
         },
-        "buffalo": {
+        "autumn-rise.buffalo": {
             "settings": {
                 "type": "buffalo"
             },
@@ -613,7 +613,7 @@
             },
             "xp": 110
         },
-        "buffalo-alt": {
+        "autumn-rise.buffalo-alt": {
             "settings": {
                 "type": "buffalo-alt"
             },
@@ -624,7 +624,7 @@
         },
 
 
-        "frobbit": {
+        "bergen.frobbit": {
             "settings": {
                 "type": "frobbit"
             },
@@ -633,7 +633,7 @@
             },
             "xp": 55
         },
-        "gray-frobbit": {
+        "bergen.gray-frobbit": {
             "settings": {
                 "type": "gray-frobbit"
             },
@@ -642,7 +642,7 @@
             },
             "xp": 55
         },
-        "goat": {
+        "bergen.goat": {
             "settings": {
                 "type": "goat"
             },
@@ -651,7 +651,7 @@
             },
             "xp": 85
         },
-        "snowman": {
+        "bergen.snowman": {
             "settings": {
                 "type": "gray-frobbit"
             },
@@ -660,7 +660,7 @@
             },
             "xp": 95
         },
-        "penguin": {
+        "bergen.penguin": {
             "settings": {
                 "type": "penguin"
             },
@@ -669,7 +669,7 @@
             },
             "xp": 85
         },
-        "seahorse": {
+        "bergen.seahorse": {
             "settings": {
                 "type": "seahorse"
             },
@@ -677,6 +677,115 @@
                 "defense": 0.85
             },
             "xp": 85
+        },
+
+        "temple-mine.fleazer": {
+            "settings": {
+                "type": "mine-coldbug"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 45
+        },
+        "temple-mine.small-bot": {
+            "settings": {
+                "type": "mine-runbot"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 85
+        },
+        "temple-mine.kamikatze": {
+            "settings": {
+                "type": "mine-kamikatze"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 90
+        },
+        "temple-mine.digmo": {
+            "settings": {
+                "type": "mine-diggingbot"
+            },
+            "buff": {
+                "defense": 0.9
+            },
+            "xp": 100
+        },
+
+        "maroon-valley.scorpion": {
+            "settings": {
+                "type": "heat.scorpion"
+            },
+            "buff": {
+                "defense": 0.95
+            },
+            "xp": 100
+        },
+        "maroon-valley.shark": {
+            "settings": {
+                "type": "heat.sandshark"
+            },
+            "buff": {
+                "defense": 0.95
+            },
+            "xp": 100
+        },
+        "maroon-valley.tortoise": {
+            "settings": {
+                "type": "heat.drillertoise"
+            },
+            "buff": {
+                "defense": 0.95
+            },
+            "xp": 100
+        },
+        "maroon-valley.tim": {
+            "settings": {
+                "type": "heat.sandworm"
+            },
+            "buff": {
+                "defense": 0.95
+            },
+            "xp": 100
+        },
+        "maroon-valley.volturbine": {
+            "settings": {
+                "type": "mine-diggingbot"
+            },
+            "buff": {
+                "defense": 0.95
+            },
+            "xp": 100
+        },
+
+        
+        "fajro.moth": {
+            "settings": {
+                "type": "heat.moth"
+            },
+            "xp": 100
+        },
+        "fajro.darth-moth": {
+            "settings": {
+                "type": "heat.darth-moth"
+            },
+            "xp": 100
+        },
+        "fajro.magmarizer": {
+            "settings": {
+                "type": "heat.heat-golem"
+            },
+            "xp": 100
+        },
+        "fajro.jellyfish": {
+            "settings": {
+                "type": "heat.jellyfish"
+            },
+            "xp": 100
         }
     }
 }

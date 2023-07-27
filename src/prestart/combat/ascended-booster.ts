@@ -1,5 +1,3 @@
-sc.EnemyType
-
 sc.EnemyBooster.inject({
     ascendedBooster: {
         active: false,     // if ascended booster is enabled 
