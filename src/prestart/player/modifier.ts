@@ -121,10 +121,13 @@ Object.assign(sc.MODIFIERS, {
 })
 
 sc.DAMAGE_MODIFIER_FUNCS.EL_RISKTAKER = (attackInfo, damageFactor, combatantRoot, shieldResult, hitIgnore, params) => {
+    let attackerVal = attackInfo.attackerParams.getModifier("EL_RISKTAKER");
+    let defenderVal = params.getModifier("EL_RISKTAKER");
+    
     // apply increased damage on the offense.
-    damageFactor *= 1 + attackInfo.attackerParams.getModifier("EL_RISKTAKER")
+    damageFactor *= Math.max(1 + attackerVal / (attackerVal > 0 ? 1 : 2), 0.1);
     // doubles incoming risktaker damage
-    damageFactor *= 1 + Math.min((params.getModifier("EL_RISKTAKER") * 2), 0.5)
+    damageFactor *= Math.max(1 + (defenderVal * (defenderVal > 0 ? 2 : 1)), 0.1);
 
     return { attackInfo, damageFactor, applyDamageCallback: null }
 }
