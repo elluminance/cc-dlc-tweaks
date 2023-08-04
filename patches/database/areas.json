@@ -1,18 +1,19 @@
 {
     "el-rhombus-lab": {
         "name": {
-            "en_US": "??????"
+            "en_US": "Abandoned Laboratory",
+            "langUid": 0
         },
         "description": {
-            "en_US": "??????"
+            "en_US": "A mysterious abandoned lab found deep below Rhombus Square."
         },
         "areaType": "DUNGEON",
         "order": 300,
         "track": false,
         "chests": 6,
         "position": {
-            "x": 296,
-            "y": 253
+            "x": 279,
+            "y": 270
         }
     }
 }

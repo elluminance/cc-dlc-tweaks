@@ -6,7 +6,7 @@
     "content": {
         "path": "rhombus-sqr.interior.el-shop-f1",
         "name": {
-            "en_US": "Exuberant Luxuries F1",
+            "en_US": "Exuberant Luxuries GF",
             "langUid": 1900
         },
         "offset": {
@@ -42,5 +42,18 @@
         "size": 1,
         "map2": 6,
         "map1": "el-shop-f1"
+    }
+}, {
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "icons"
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "icon": "trader",
+        "x": 539,
+        "y": 401,
+        "map": "el-shop-f1"
     }
 }]
