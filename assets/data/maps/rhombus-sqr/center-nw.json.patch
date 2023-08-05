@@ -1,0 +1,11 @@
+[{
+    "type": "ENTER",
+    "index": ["entities", 231, "settings"]
+},{
+    "type": "MERGE_CONTENT",
+    "content": {
+        "map": "rhombus-sqr.interior.el-rhombus-lab-connector",
+        "marker": "RhombusOut",
+        "condition": "item.el-rhombus-lab-key.amount > 0"
+    }
+}]

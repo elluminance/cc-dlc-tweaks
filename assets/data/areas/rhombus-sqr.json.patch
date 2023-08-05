@@ -56,4 +56,62 @@
         "y": 401,
         "map": "el-shop-f1"
     }
+},{
+    "type": "EXIT",
+    "count": 2
+},{
+    "type": "ENTER",
+    "index": [0, "maps"]
+},{
+    "type": "ADD_ARRAY_ELEMENT",
+    "content": {
+        "path": "rhombus-sqr.interior.el-rhombus-lab-connector",
+        "name": {
+            "en_US": "Mysterious Building",
+            "langUid": 1901
+        },
+        "offset": {
+            "x": 0,
+            "y": 0
+        },
+        "dungeon": "",
+
+        "customMap": {
+            "mapData": [
+                [1, 1, 1, 1],
+                [1, 1, 1, 1],
+                [1, 1, 1, 1]
+            ],
+
+            "offX": 34,
+            "offY": 36,
+
+            "customName": "el-lab-connect"
+        }
+    }
+},{
+    "type": "EXIT"
+},{
+    "type": "ENTER",
+    "index": "icons"
+},{
+    "type": "MERGE_CONTENT",
+    "content": [
+        {
+            "icon": "area_up",
+            "x": 288,
+            "y": 284,
+            "map": "el-lab-connect",
+            "data": {
+                "area": "el-rhombus-lab",
+                "map": "el-rhombus-lab.rs-entrance"
+            }
+        },
+        {
+            "icon": "floor_up",
+            "x": 288,
+            "y": 302,
+            "map": "el-lab-connect"
+        }
+    ]
 }]

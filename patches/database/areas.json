@@ -10,7 +10,7 @@
         "areaType": "DUNGEON",
         "order": 300,
         "track": false,
-        "chests": 6,
+        "chests": 0,
         "position": {
             "x": 279,
             "y": 270
