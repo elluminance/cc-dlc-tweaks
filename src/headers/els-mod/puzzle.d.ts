@@ -22,6 +22,7 @@ declare global {
             
             active: boolean;
             forceHidePrism: boolean;
+            lightHandle: Optional<ig.LightHandle>;
         }
         interface EL_PrismConstructor extends ImpactClass<EL_Prism> {
             new(x: number, y: number, z: number, settings: EL_Prism.Settings): EL_Prism;

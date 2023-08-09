@@ -87,4 +87,46 @@
         "sheet": "drops",
         "name": "circle"
     }
+},{
+    "customItem": "el-rhombus-lab-shade",
+    "order": 28.01,
+    "name": {
+        "en_US": "Crimson Tear Shade"
+    },
+    "description": {
+        "en_US": "Grants passage to \\c[3][Unknown Area Name]\\c[0]. \\C[red][Unused???]\\c[0]"
+    },
+    "type": "KEY",
+    "rarity": 0,
+    "cost": 0,
+    "level": 1,
+    "icon": "item-key",
+    "noTrack": true,
+    "noCount": false,
+    "isScalable": false,
+    "effect": {
+        "sheet": "drops",
+        "name": "circle"
+    }
+},{
+    "customItem": "el-rhombus-lab-shade-upgraded",
+    "order": 28.02,
+    "name": {
+        "en_US": "Crimson Tear Shade"
+    },
+    "description": {
+        "en_US": "Grants passage to the \\c[3]\\v[area.el-rhombus-lab.name]\\c[0] and \\c[3]\\v[area.arid.name]\\c[0]."
+    },
+    "type": "KEY",
+    "rarity": 0,
+    "cost": 0,
+    "level": 1,
+    "icon": "item-key",
+    "noTrack": true,
+    "noCount": false,
+    "isScalable": false,
+    "effect": {
+        "sheet": "drops",
+        "name": "circle"
+    }
 }]

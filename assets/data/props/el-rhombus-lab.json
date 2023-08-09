@@ -1,0 +1,41 @@
+{
+    "DOCTYPE": "PROP_SHEET",
+    "props": [
+        {
+            "name": "barrierSignTear",
+            "size": {
+                "x": 24,
+                "y": 24,
+                "z": 0
+            },
+            "collType": "NONE",
+            "anims": {
+                "sheet": {
+                    "src": "media/map/el-rhombus-lab.png",
+                    "width": 24,
+                    "height": 24,
+                    "offX": 304,
+                    "offY": 448
+                },
+                "SUB": [
+                    {
+                        "name": "off",
+                        "time": 1,
+                        "frames": [
+                            0
+                        ],
+                        "repeat": true
+                    },
+                    {
+                        "name": "on",
+                        "time": 1,
+                        "frames": [
+                            1
+                        ],
+                        "repeat": true
+                    }
+                ]
+            }
+        }
+    ]
+}

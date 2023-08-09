@@ -42,6 +42,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     hoverTimer: 0,
     condition: null,
     forceHidePrism: false,
+    lightHandle: null,
 
     active: true,
 
@@ -130,8 +131,17 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
 
         if(this.active) {
             this.coll.type = ig.COLLTYPE.VIRTUAL;
+            if(!this.lightHandle) {
+                this.lightHandle = new ig.LightHandle(this, ig.LIGHT_SIZE.M, 0.1, 0.3, -1, 1, false);                
+                this.lightHandle.setOffset(0, 6, 0);
+                ig.light.addLightHandle(this.lightHandle);
+            }
         } else {
             this.coll.type = ig.COLLTYPE.IGNORE;
+            if(this.lightHandle) {
+                this.lightHandle.stop();
+                this.lightHandle = null;
+            }
         }
     },
     

@@ -15,3 +15,15 @@ ig.MapStyle.registerStyle("el-rhombus-lab", "puzzle", {
 ig.MapStyle.registerStyle("el-rhombus-lab", "puzzle2", {
     sheet: "media/entity/style/el-rhombus-lab-puzzle2.png"
 })
+
+ig.MapStyle.registerStyle("el-rhombus-lab", "walls", {
+    colors: {
+        blockFront: "#475ae2",
+        blockTop: "#d9eeff",
+        pBlockFront: "#67fc69",
+        pBlockTop: "#bafcbb",
+        npBlockFront: "#eb8835",
+        npBlockTop: "#fff7e5"
+    },
+    alpha: 0.7
+})
