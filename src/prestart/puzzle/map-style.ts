@@ -27,3 +27,15 @@ ig.MapStyle.registerStyle("el-rhombus-lab", "walls", {
     },
     alpha: 0.7
 })
+
+ig.MapStyle.registerStyle("el-rhombus-lab", "waveblock", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 287,
+    y: 336,
+})
+
+ig.MapStyle.registerStyle("default", "waveblock_prismcopy", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 352,
+    y: 448,
+})

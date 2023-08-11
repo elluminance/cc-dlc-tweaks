@@ -28,5 +28,33 @@ declare global {
             new(x: number, y: number, z: number, settings: EL_Prism.Settings): EL_Prism;
         }
         let EL_Prism: EL_PrismConstructor;
+
+        interface WavePushPullBlock {
+            ballAttached: ig.ENTITY.Ball[];
+            lastTeleportPos: Vec3;
+
+            el_lastSplitBlock?: Optional<el.WavePushPullBlockPrismCopy>; 
+        }
+    }
+    namespace ig.MapStyle {
+        interface MapStyleTypes {
+            waveblock_prismcopy: MapStyleType.PuzzleElement;
+        } 
+    }
+    namespace el {
+        namespace WavePushPullBlockPrismCopy {
+            interface Settings extends ig.ENTITY.PushPullBlock.Settings {
+
+            }
+            interface Constructor extends ImpactClass<WavePushPullBlockPrismCopy> {
+                new(x: number, y: number, z: number, settings: Settings): WavePushPullBlockPrismCopy;
+            }
+        }
+        interface WavePushPullBlockPrismCopy extends ig.ENTITY.PushPullBlock {
+            effects: Record<string, ig.EffectSheet>;
+
+            disappear(this: this): void;
+        }
+        let WavePushPullBlockPrismCopy: WavePushPullBlockPrismCopy.Constructor
     }
 }
