@@ -7,16 +7,7 @@ declare global {
                 hideModeAura?: boolean;
             }
 
-            namespace Ball {
-                interface PrismData {
-                    timer: number;
-                    rootBall: Optional<ig.ENTITY.Ball>;
-                    children: ig.ENTITY.Ball[];
-                }
-            }
-            interface Ball {
-                el_prism: Ball.PrismData;
-            }
+            interface Ball extends ig.ENTITY.EL_Prism.Splittable<Ball> {}
         }
     }
     namespace sc {
@@ -27,8 +18,7 @@ declare global {
                     walkAnims?: ig.ActorEntity.WalkAnims;
                 }
             }
-            interface Settings {
-            }
         }
+        interface CompressedBaseEntity extends ig.ENTITY.EL_Prism.Splittable<CompressedBaseEntity> {}
     }
 }

@@ -28,13 +28,46 @@ ig.MapStyle.registerStyle("el-rhombus-lab", "walls", {
     alpha: 0.7
 })
 
+ig.MapStyle.registerStyle("el-rhombus-lab", "rotateBlocker", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 192,
+    y: 336,
+})
+
+ig.MapStyle.registerStyle("el-rhombus-lab", "anticompressor", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 144,
+    y: 384,
+})
+
+ig.MapStyle.registerStyle("el-rhombus-lab", "tesla", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 144,
+    y: 336,
+})
+ig.MapStyle.registerStyle("el-rhombus-lab", "teslaSwitch", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 112,
+    y: 336,
+})
+
+ig.MapStyle.registerStyle("el-rhombus-lab", "waveSwitch", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 192,
+    y: 400,
+})
 ig.MapStyle.registerStyle("el-rhombus-lab", "waveblock", {
     sheet: "media/map/el-rhombus-lab.png",
-    x: 287,
+    x: 288,
     y: 336,
 })
 
 ig.MapStyle.registerStyle("default", "waveblock_prismcopy", {
+    sheet: "media/map/el-rhombus-lab.png",
+    x: 352,
+    y: 448,
+})
+ig.MapStyle.registerStyle("el-rhombus-lab", "waveblock_prismcopy", {
     sheet: "media/map/el-rhombus-lab.png",
     x: 352,
     y: 448,

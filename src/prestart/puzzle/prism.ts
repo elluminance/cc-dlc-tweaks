@@ -67,16 +67,16 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     },
 
     ballHit(entity) {
-        if (!this.active) return false;
+        if (!this.active || this.cooldown > 0) return false;
 
-        if(entity.isBall && entity.el_prism.timer <= 0) {
+        if((!entity.el_prism) || entity.el_prism.timer >= 0) return false;
+
+        if(entity instanceof ig.ENTITY.Ball) {
             let attackInfo = ig.copy(entity.attackInfo);
             if(attackInfo.hasHint("NO_PUZZLE")) return false;
             attackInfo.damageFactor *= attackFactor;
             attackInfo.spFactor *= attackFactor;
             attackInfo.statusInflict *= attackFactor;
-            
-            let rootBall = entity.el_prism.rootBall || entity;
             
             let baseEntity = entity.getCombatantRoot() as sc.PlayerBaseEntity;
             let proxy = sc.PlayerConfig.getElementBall(
@@ -85,29 +85,74 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
                 entity.attackInfo.hasHint("CHARGED")
             )
 
-            let ball: ig.ENTITY.Ball;
-            let pos = Vec3ToTuple(Vec3.addC(this.coll.pos, this.coll.size.x / 2, this.coll.size.y / 2, 0, vec3_tmp));
-            
-            for(let i of [-1, 1]) {
-                Vec2.rotate(entity.coll.vel, i * this.angle, vec2_tmp);
-                ball = proxy.spawn(...pos, baseEntity, vec2_tmp) as ig.ENTITY.Ball;
-                ball.el_prism.timer = 0.1;
-                ball.el_prism.rootBall = rootBall;
-                
-                rootBall.el_prism.children.push(ball);
-                
-                ball.remainingHits = entity.remainingHits;
-                ball.timer = entity.timer;
-                ball.attackInfo = attackInfo;
-                for(let attached of entity.entityAttached) ball.addEntityAttached(attached);
+            this._splitEntity(
+                entity,
+                ElementToColor(entity.getElement()),
+                ball => {
+                    ball.remainingHits = entity.remainingHits;
+                    ball.timer = entity.timer;
+                    ball.attackInfo = attackInfo;
+                },
+                (pos, vel) => proxy.spawn(...Vec3ToTuple(pos), baseEntity, vel) as ig.ENTITY.Ball
+            );
+
+            return true;
+        } else if(entity instanceof sc.CompressedBaseEntity) {
+            this._splitEntity(entity, ElementToColor(entity.getElement()), spawned => {
+                spawned.speedFactor = entity.speedFactor;
+                spawned.fastMode = entity.fastMode;
+                spawned.globalCount = entity.globalCount + 0.5;
+                spawned.killTimer = entity.killTimer;
+                spawned.combatant = entity.combatant;
+                spawned.attackInfo = entity.attackInfo;
+
+                if(entity instanceof sc.CompressedShockEntity) spawned.el_prism.timer *= 2;
+            });
+
+            for(let entity of ig.game.getEntitiesByType(sc.CompressedBaseEntity)) {
+                entity.globalCount += 1;
             }
 
-            this.effects.puzzle.spawnOnTarget("prismGlow", this);
-
-            this.glowTimer = glowTime;
-            this.glowColor = ElementToColor(entity.getElement())
+            entity.kill();
             return true;
         }
+    },
+
+    _splitEntity(entity, glowColor, postSpawnCallback, spawnFunc) {
+        let entities: (typeof entity)[] = [];
+
+        let vel = entity.coll.vel;
+        let pos = Vec3.addC(this.coll.pos, this.coll.size.x / 2, this.coll.size.y / 2, 0, vec3_tmp);
+            
+        for(let i of [1, -1]) {
+            Vec2.rotate(vel, i * this.angle, vec2_tmp);
+
+            let spawned: typeof entity;
+            if(!spawnFunc) {
+                spawned = ig.game.spawnEntity(
+                    entity.constructor as (new (x: number, y: number, z: number, settings: unknown) => typeof entity),
+                    ...Vec3ToTuple(pos)
+                );
+            }
+            else spawned = spawnFunc(pos, vec2_tmp); 
+
+            spawned.el_prism.timer = 0.25;
+            spawned.el_prism.rootEntity = entity;
+            entity.el_prism.children.push(spawned);
+            Vec2.assign(spawned.coll.vel, vec2_tmp);
+
+            for(let attached of entity.entityAttached) spawned.addEntityAttached(attached);
+
+            if(postSpawnCallback) postSpawnCallback(spawned);
+        }
+
+        this.effects.puzzle.spawnOnTarget("prismGlow", this);
+
+        this.glowTimer = glowTime;
+        this.glowColor = glowColor;
+        this.cooldown = 0.25;
+
+        return entities;
     },
 
     initSprites() {
@@ -122,6 +167,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
         this.glowTimer -= ig.system.tick;
         this.animTimer -=  ig.system.tick;
         this.hoverTimer += ig.system.tick;
+        this.cooldown -= ig.system.tick;
         
         if(this.animTimer <= 0) {
             this.animIndex += 1;
@@ -205,8 +251,8 @@ ig.ENTITY.ElementPole.inject({
 
         if(ball.getElement() === sc.ELEMENT.NEUTRAL) return parent;
 
-        if(parent && ball.el_prism.rootBall) {
-            for(const child of ball.el_prism.rootBall.el_prism.children) {
+        if(parent && ball.el_prism.rootEntity) {
+            for(const child of ball.el_prism.rootEntity.el_prism.children) {
                 child.destroy();
             }
         }
@@ -216,7 +262,7 @@ ig.ENTITY.ElementPole.inject({
 
 let orig1 = sc.ElementPoleGroups.onPoleHit.bind(sc.ElementPoleGroups);
 sc.ElementPoleGroups.onPoleHit = function(pole, ball, alreadyHit) {
-    return orig1(pole, ball.el_prism.rootBall || ball, alreadyHit);
+    return orig1(pole, ball.el_prism.rootEntity || ball, alreadyHit);
 }
 let orig2 = sc.ElementPoleGroups.onCancelCheck.bind(sc.ElementPoleGroups)
 sc.ElementPoleGroups.onCancelCheck = function(pole) {
@@ -239,10 +285,28 @@ sc.ElementPoleGroups.onCancelCheck = function(pole) {
     return val;
 }
 
+function applyPrismData<T>(baseClass: T) {
+    //@ts-expect-error
+    baseClass.inject({
+        el_prism: {
+            timer: 0,
+            rootEntity: null,
+            children: []
+        },
+        update() {
+            this.parent();
+            this.el_prism.timer -= ig.system.tick;
+        }
+    })
+}
+
+applyPrismData(ig.ENTITY.Ball);
+applyPrismData(sc.CompressedBaseEntity);
+
 ig.ENTITY.Ball.inject({
     el_prism: {
         timer: 0,
-        rootBall: null,
+        rootEntity: null,
         children: []
     },
     update() {
@@ -298,6 +362,12 @@ ig.ENTITY.WavePushPullBlock.inject({
             this.el_lastSplitBlock = entity;
         }
     },
+
+    resetPos(pos) {
+        this.parent(pos);
+
+        this.el_lastSplitBlock?.disappear();
+    }
 })
 
 el.WavePushPullBlockPrismCopy = ig.ENTITY.PushPullBlock.extend({
