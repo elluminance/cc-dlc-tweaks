@@ -1,0 +1,87 @@
+{
+    "DOCTYPE": "SCALABLE_PROP_SHEET",
+    "entries": {
+        "blockLineH": {
+            "baseSize": {
+                "x": 16,
+                "y": 8,
+                "z": 3
+            },
+            "terrain": "METAL",
+            "renderHeight": 3,
+            "scalableX": true,
+            "scalableY": false,
+            "scalableStep": 4,
+            "collType": "BLOCK",
+            "gfx": "media/map/el-rhombus-lab.png",
+            "gfxBaseX": 64,
+            "gfxBaseY": 512,
+            "wallY": 1,
+            "patterns": {
+                "x": 24,
+                "y": 5,
+                "w": 14,
+                "h": 11
+            },
+            "gfxEnds": {
+                "west": {
+                    "WEST_END": {
+                        "x": 8,
+                        "y": 5,
+                        "w": 8,
+                        "h": 11
+                    }
+                },
+                "east": {
+                    "EAST_END": {
+                        "x": 8,
+                        "y": 5,
+                        "w": 8,
+                        "h": 11
+                    }
+                }
+            }
+        },
+        "blockLineV": {
+            "baseSize": {
+                "x": 8,
+                "y": 16,
+                "z": 3
+            },
+            "terrain": "METAL",
+            "renderHeight": 3,
+            "scalableX": false,
+            "scalableY": true,
+            "scalableStep": 4,
+            "collType": "BLOCK",
+            "gfx": "media/map/el-rhombus-lab.png",
+            "gfxBaseX": 64,
+            "gfxBaseY": 512,
+            "wallY": 1,
+            "patterns": {
+                "x": 16,
+                "y": 0,
+                "w": 8,
+                "h": 14
+            },
+            "gfxEnds": {
+                "north": {
+                    "NORTH_END": {
+                        "x": 0,
+                        "y": 5,
+                        "w": 8,
+                        "h": 11
+                    }
+                },
+                "south": {
+                    "SOUTH_END": {
+                        "x": 8,
+                        "y": 5,
+                        "w": 8,
+                        "h": 11
+                    }
+                }
+            }
+        }
+    }
+}

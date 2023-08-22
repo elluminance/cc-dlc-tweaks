@@ -11,6 +11,9 @@ declare global {
                 timer: number;
                 rootEntity: Optional<T>;
                 children: T[];
+
+                directRoot: Optional<T>;
+                directChildren: T[];
             }
 
             interface Splittable<T extends ig.Entity> {
@@ -47,6 +50,7 @@ declare global {
 
             ballHit(this: this, entity: ig.ENTITY.Ball): void;
             ballHit(this: this, entity: sc.CompressedBaseEntity): void;
+            ballHit(this: this, entity: sc.IceDiskEntity): void;
         }
         interface EL_PrismConstructor extends ImpactClass<EL_Prism> {
             new(x: number, y: number, z: number, settings: EL_Prism.Settings): EL_Prism;
@@ -54,13 +58,22 @@ declare global {
         let EL_Prism: EL_PrismConstructor;
 
         interface WavePushPullBlock {
-            ballAttached: ig.ENTITY.Ball[];
+            ballAttached?: Optional<ig.ENTITY.Ball>;
             lastTeleportPos: Vec3;
 
             el_lastSplitBlock?: Optional<el.WavePushPullBlockPrismCopy>; 
         }
     }
     namespace ig.MapStyle {
+        namespace MapStyleType {
+            namespace Walls {
+                interface Colors {
+                    ballDestroyFront?: string;
+                    ballDestroyTop?: string;
+                }
+            }
+        }
+
         interface MapStyleTypes {
             waveblock_prismcopy: MapStyleType.PuzzleElement;
         }

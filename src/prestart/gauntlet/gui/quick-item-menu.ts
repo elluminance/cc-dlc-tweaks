@@ -1,6 +1,7 @@
 sc.QuickItemMenu.inject({
     updateList(skipSounds) {
         if(el.gauntlet.active) {
+            
             let scrollY = this.list.getScrollY();
             let currentY = this.buttongroup.current.y;
 

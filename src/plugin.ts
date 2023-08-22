@@ -7,6 +7,8 @@ export default class implements LegacyPluginClass {
         //@ts-expect-error
         window.el ??= {};
         el.debug ??= {};
+        //@ts-expect-error
+        el.Constants ??= {};
     }
 
     prestart() {

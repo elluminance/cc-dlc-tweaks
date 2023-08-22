@@ -151,7 +151,8 @@ declare global {
             name: string;
             time: number;
             timer: number;
-            changeStat(statChanges: string[], resetTimer?: number | boolean): void;
+            changeStat(this: this, statChanges: string[], resetTimer?: number | boolean): void;
+            reset(this: this, time: number): void;
         }
         interface DynamicBuffConstructor extends ImpactClass<DynamicBuff> {
             new (statChanges: string[], name: string,  time?: number, customTimerColor?: string): sc.DynamicBuff;
@@ -282,5 +283,11 @@ declare global {
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         let debug: Record<string, any>
+
+        interface Constants {
+            BallDestroyerWallTopDefault: string;
+            BallDestroyerWallFrontDefault: string;
+        }
+        let Constants: Readonly<el.Constants>;
     }
 }

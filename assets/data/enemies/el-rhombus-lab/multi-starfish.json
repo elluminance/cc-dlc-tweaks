@@ -153,6 +153,53 @@
                 }
             ]
         },
+        "IDLE_PEACEFUL": {
+            "choices": [
+                {
+                    "req": [
+                        {
+                            "negated": false,
+                            "type": "HAS_TARGET"
+                        }
+                    ],
+                    "postSwitchState": "DEFAULT"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "!SPAWN_POINT_DISTANCE",
+                            "max": 64
+                        }
+                    ],
+                    "action": "MoveToSpawnPoint"
+                },
+                {
+                    "req": [
+                        {
+                            "name": "hidden",
+                            "negated": false,
+                            "type": "ATTRIB_IS_TRUE"
+                        }
+                    ],
+                    "preSwitchState": "HIDDEN"
+                },
+                {
+                    "req": [
+                        {
+                            "type": "RANDOM",
+                            "max": 0.3
+                        }
+                    ],
+                    "action": "MoveRandom"
+                },
+                {
+                    "action": "Idle"
+                }
+            ],
+            "aggression": "PEACEFUL",
+            "damageFactor": 0.1,
+            "analyzable": false
+        },
         "DEFAULT": {
             "enabledReactions": [
                 "GUARD_COUNTER",

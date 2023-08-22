@@ -1,16 +1,22 @@
 export {};
 
 declare global {
-    namespace ig {
-        namespace ENTITY {
-            interface Combatant {
-                hideModeAura?: boolean;
-            }
+    namespace ig.ENTITY {
+        interface Combatant {
+            hideModeAura?: boolean;
+        }
 
-            interface Ball extends ig.ENTITY.EL_Prism.Splittable<Ball> {}
+        interface Ball extends ig.ENTITY.EL_Prism.Splittable<Ball> {}
+
+        interface WallBlocker {
+            el_glowTimer: number;
         }
     }
     namespace sc {
+        enum WALL_COLL_TYPES {
+            BALL_DESTROYER
+        }
+
         namespace CombatProxyEntity {
             namespace Settings {
                 interface Data {
@@ -20,5 +26,6 @@ declare global {
             }
         }
         interface CompressedBaseEntity extends ig.ENTITY.EL_Prism.Splittable<CompressedBaseEntity> {}
+        interface IceDiskEntity extends ig.ENTITY.EL_Prism.Splittable<IceDiskEntity> {}
     }
 }
