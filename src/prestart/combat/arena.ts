@@ -27,7 +27,7 @@ sc.Arena.inject({
                 case "totalTruePlatsExcludeNoRush":
                     return this.trackedCups.filter(cupName => (
                         (!this.getCupCoreAttrib(cupName, "noRush")) // check the cup isn't set to noRush
-                        && (this.getCupRounds(cupName).length >= 2) // and that the cup has more than 1 round
+                        && (this.getCupRounds(cupName)?.length >= 2) // and that the cup has more than 1 round
                         && (this.getCupTrophy(cupName) === sc.ARENA_MEDALS_TROPHIES.TRUE_PLATIN) // and that the player has gotten a true platinum trophy
                     )).length;
             }
