@@ -26,7 +26,7 @@ sc.Arena.inject({
             switch(varParts[1]) {
                 case "totalTruePlatsExcludeNoRush":
                     return this.trackedCups.filter(cupName => (
-                        (!this.getCupCoreAttrib(cupName, "noRush")) // check the cup isn't set to noRush
+                        (!this.getCupCoreAttrib(cupName, "noRush") !== null) // check the cup isn't set to noRush
                         && (this.getCupRounds(cupName)?.length >= 2) // and that the cup has more than 1 round
                         && (this.getCupTrophy(cupName) === sc.ARENA_MEDALS_TROPHIES.TRUE_PLATIN) // and that the player has gotten a true platinum trophy
                     )).length;
@@ -47,7 +47,13 @@ sc.Arena.inject({
         }
         this.parent();
         ig.game.playerEntity.ignoreOverheal = false;
-    }
+    },
+
+    onStoragePreLoad(savefile) {
+        this.parent!(savefile);
+
+        sc.Model.notifyObserver(sc.stats, sc.STATS_EVENT.STAT_CHANGED, {key: "varValue"})
+    },
 })
 
 sc.ARENA_SCORE_TYPES.EL_CTRON_CLONE_HIT = {

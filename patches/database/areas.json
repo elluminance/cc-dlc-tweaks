@@ -14,6 +14,16 @@
         "position": {
             "x": 279,
             "y": 270
+        },
+        "landmarks": {
+            "rhombus-entrance": {
+                "name": {
+                    "en_US": "Rhombus Connection"
+                },
+                "description": {
+                    "en_US": "A landmark right under a pit in Rhombus Square."
+                }
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
             "langUid": 2
         },
         "creator": {
-            "en_US": "EL2020",
+            "en_US": "elluminance",
             "langUid": 3
         },
         "music": "challenge",
@@ -37,7 +37,7 @@
             },
             "customCode": true,
             "camFocus": "PLAYER_SPAWN",
-            "platPoints": 175000,
+            "platPoints": 190000,
             "coins": 0,
             "objective": {
                 "en_US": "Beat a stronger version of the \\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0] boss from \\c[3]\\v[area.autumn-area.name]\\c[0]!",
@@ -48,7 +48,7 @@
                 "de_DE": "Besiege eine st\u00e4rkere Version von \\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0], dem Boss aus dem \\c[3]\\v[area.autumn-area.name]\\c[0]!",
                 "zh_TW": "\u64ca\u6557\u4f86\u81ea\\c[3]\\v[area.autumn-area.name]\\c[0]\u7684\u5f37\u5316\u7248\\c[3]\\v[combat.name.minibosses\/blue-hedge]\\c[0]!<<A<<[CHANGED 2019\/04\/16]"
             },
-            "points": 140000,
+            "points": 170000,
             "type": "DEFAULT",
             "medal": 0,
             "waves": [],

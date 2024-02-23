@@ -18,9 +18,15 @@ sc.StatsModel.inject({
         if (b === "varValue") return ig.vars.get(a) as number;
 
         return this.parent(b, a);
-    }
+    },
+
+    onVarsChanged() {
+        this.parent?.();
+
+        sc.Model.notifyObserver(this, sc.STATS_EVENT.STAT_CHANGED, {key: "varValue"})
+    },
 })
 
 // yes, this is necessary. why is it necessary?
 // don't ask me. i am *just* as confused as you.
-ig.addGameAddon(() => (sc.stats = new sc.StatsModel))
+//ig.addGameAddon(() => (sc.stats = new sc.StatsModel))
