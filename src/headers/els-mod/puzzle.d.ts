@@ -2,6 +2,7 @@ export {}
 
 declare global {
     namespace ig.ENTITY {
+        //#region Prism
         namespace EL_Prism {
             interface Settings extends ig.Entity.Settings {
                 condition: string;
@@ -9,6 +10,7 @@ declare global {
 
             interface SplittablePrismData<T extends ig.Entity> {
                 timer: number;
+                lastPrism: ig.ENTITY.EL_Prism;
                 rootEntity: Optional<T>;
                 children: T[];
 
@@ -63,6 +65,27 @@ declare global {
 
             el_lastSplitBlock?: Optional<el.WavePushPullBlockPrismCopy>; 
         }
+        //#endregion Prism
+
+        namespace EL_ElementSwitch {
+            interface Settings extends ig.Entity.Settings {
+                variable: string;
+
+            }
+        }
+
+        interface EL_ElementSwitch extends ig.AnimatedEntity {
+            currentElement: sc.ELEMENT;
+            sounds: Record<string, ig.Sound>;
+            variable: string;
+
+            ballHit(this: this, ball: ig.ENTITY.Ball): boolean;
+            switchElement(this: this, element: sc.ELEMENT): void;
+        }
+        interface EL_ElementSwitchConstructor extends ImpactClass<EL_ElementSwitch> {
+            new (x: number, y: number, z: number, settings: EL_ElementSwitch.Settings): EL_ElementSwitch;
+        }
+        let EL_ElementSwitch: EL_ElementSwitchConstructor;
     }
     namespace ig.MapStyle {
         namespace MapStyleType {

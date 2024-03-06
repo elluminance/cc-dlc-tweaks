@@ -70,7 +70,10 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
     ballHit(entity) {
         if (!this.active || this.cooldown > 0) return false;
 
-        if((!entity.el_prism) || entity.el_prism.timer >= 0) return false;
+        if((!entity.el_prism) || (entity.el_prism.timer >= 0 && entity.el_prism.lastPrism === this)) {
+            entity.el_prism.timer = Math.max(0.1, entity.el_prism.timer);
+            return false;
+        }
 
         if(entity instanceof ig.ENTITY.Ball) {
             let attackInfo = ig.copy(entity.attackInfo);
@@ -150,6 +153,7 @@ ig.ENTITY.EL_Prism = ig.AnimatedEntity.extend({
             else spawned = spawnFunc(pos, vel); 
 
             spawned.el_prism.timer = 0.25;
+            spawned.el_prism.lastPrism = this;
             spawned.el_prism.rootEntity = entity.el_prism.rootEntity ?? entity;
             spawned.el_prism.children = entity.el_prism.children;
             spawned.el_prism.directRoot = entity;

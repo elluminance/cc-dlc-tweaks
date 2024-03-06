@@ -1,6 +1,7 @@
 *.ccmod
 /.vscode
-/tmp
+tmp/*
+!tmp/*.aseprite
 dist/
 node_modules/
 package-lock.json
