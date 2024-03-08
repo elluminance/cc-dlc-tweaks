@@ -8,21 +8,30 @@ declare global {
                 condition: string;
             }
 
+            //type SpawnCallback<E extends ig.Entity> = (pos: Vec3, vel: Vec2) => E;
+            //type PostSpawnCallback<E1 extends ig.Entity, E2 extends ig.Entity> = (newEntity: E1, oldEntity: E2) => void;
+
             interface SplittablePrismData<T extends ig.Entity> {
                 timer: number;
                 lastPrism: ig.ENTITY.EL_Prism;
                 rootEntity: Optional<T>;
                 children: T[];
+                glowColor: string | ((entity: T) => string);
 
                 directRoot: Optional<T>;
-                directChildren: T[];
+                directChildren: ig.Entity[];
             }
 
-            interface Splittable<T extends ig.Entity> {
+            interface Splittable<T extends ig.Entity = ig.Entity> {
                 el_prism: SplittablePrismData<T>;
+
+                prismSpawnFunc?(this: this, prism: ig.ENTITY.EL_Prism, pos: Vec3, vel: Vec3): SplittableEntity<T>;
+                onPrismSpawn?(this: this, prism: ig.ENTITY.EL_Prism, root: SplittableEntity<T>): void;
+                postPrismSplit?(this: this, prism: ig.ENTITY.EL_Prism): void;
+                getPrismGlowColor?(this: this): string;
             }
 
-            type SplittableEntity<T extends ig.Entity> = T & Splittable<T>
+            type SplittableEntity<T extends ig.Entity = ig.Entity> = T & Splittable<T>
         }
         interface EL_Prism extends ig.AnimatedEntity {
             animTimer: number;
@@ -45,14 +54,10 @@ declare global {
             _splitEntity<E extends ig.Entity>(
                 this: this,
                 entity: EL_Prism.SplittableEntity<E>,
-                glowColor: string,
-                postSpawnCallback?: (entity: EL_Prism.SplittableEntity<E>) => void,
-                spawnFunc?: (pos: Vec3, vel: Vec2) => EL_Prism.SplittableEntity<E>,
             ): EL_Prism.SplittableEntity<E>[];
 
             ballHit(this: this, entity: ig.ENTITY.Ball): void;
-            ballHit(this: this, entity: sc.CompressedBaseEntity): void;
-            ballHit(this: this, entity: sc.IceDiskEntity): void;
+            ballHit(this: this, entity: EL_Prism.SplittableEntity): void;
         }
         interface EL_PrismConstructor extends ImpactClass<EL_Prism> {
             new(x: number, y: number, z: number, settings: EL_Prism.Settings): EL_Prism;
@@ -65,6 +70,8 @@ declare global {
 
             el_lastSplitBlock?: Optional<el.WavePushPullBlockPrismCopy>; 
         }
+
+        interface Ball extends EL_Prism.Splittable<Ball> {}
         //#endregion Prism
 
         namespace EL_ElementSwitch {
@@ -115,6 +122,6 @@ declare global {
 
             disappear(this: this): void;
         }
-        let WavePushPullBlockPrismCopy: WavePushPullBlockPrismCopy.Constructor
+        let WavePushPullBlockPrismCopy: WavePushPullBlockPrismCopy.Constructor;
     }
 }
