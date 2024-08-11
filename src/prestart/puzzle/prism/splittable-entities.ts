@@ -28,6 +28,7 @@ function applyPrismData<T>(
 applyPrismData(ig.ENTITY.Ball);
 applyPrismData(sc.CompressedBaseEntity);
 applyPrismData(sc.IceDiskEntity);
+applyPrismData(sc.BombEntity);
 
 function ElementToColor(element: sc.ELEMENT) {
     switch(element) {
@@ -102,8 +103,30 @@ sc.IceDiskEntity.inject({
 
     collideWith(entity, dir) {
         if(this.state === 2 && entity instanceof ig.ENTITY.EL_Prism) {
-            //@ts-expect-error
             entity.ballHit(this);
         } else this.parent(entity, dir);
+    },
+})
+
+sc.BombEntity.inject({
+    collideWith(entity, dir) {
+        if(this.heatMode && entity instanceof ig.ENTITY.EL_Prism) {
+            entity.ballHit(this);
+        }
+        this.parent(entity, dir);
+    },
+    getPrismGlowColor() {
+        return "#a8204f";
+    },
+    postPrismSplit(prism) {
+        this.panel?.onBombExplode();
+        if(this.cameraHandle) ig.camera.removeTarget(this.cameraHandle, "FAST", KEY_SPLINES.EASE_IN_OUT)
+        this.kill()
+    },
+    onPrismSpawn(prism, root) {
+        //this.panel = root.panel;
+        this.noHeatFocus = root.noHeatFocus;
+        this.enterHeatMode(this.coll.vel, root.combatant);
+        this.timer = root.timer;
     },
 })

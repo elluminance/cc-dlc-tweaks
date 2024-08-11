@@ -6,7 +6,7 @@
     "type": "ENTER",
     "index": "proxies"
 },{
-    "type": "FOR_IN",
+    "type": "FOR",
     "keyword": {
         "proxy": "__PROXY__",
         "index": "__INDEX__"
@@ -24,7 +24,7 @@
     "body": [
         {
             "type": "ENTER",
-            "index": ["__PROXY__", "action", "__INDEX__", "thenStep", 0]
+            "index": ["__FORVALUE__[proxy]", "action", "__FORVALUE__[index]", "thenStep", 0]
         },
         {
             "type": "SET_KEY",

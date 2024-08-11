@@ -16,7 +16,6 @@ declare global {
                 lastPrism: ig.ENTITY.EL_Prism;
                 rootEntity: Optional<T>;
                 children: T[];
-                glowColor: string | ((entity: T) => string);
 
                 directRoot: Optional<T>;
                 directChildren: ig.Entity[];

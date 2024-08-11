@@ -1,0 +1,26 @@
+{
+    "EL_SET_TARGET_POS": {
+        "attributes": {
+            "newPos": {
+                "type": "Vec3",
+                "description": "The center of where the target moves to."
+            },
+            "random": {
+                "type": "Boolean",
+                "description": "If the position should be randomly adjusted."
+            },
+            "randRange": {
+                "type": "Offset",
+                "description": "The range in which one is teleported"
+            }
+        }
+    },
+    "SET_ATTRIB_CURRENT_POS": {
+        "attributes": {
+            "attrib": {
+                "type": "StringExpression",
+                "description": "Name of actor attribute to set"
+            }
+        }
+    }
+}

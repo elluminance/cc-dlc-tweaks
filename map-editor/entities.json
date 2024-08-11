@@ -1,0 +1,11 @@
+{
+    "EL_Prism": {
+        "spawnable": true,
+        "attributes": {
+            "condition": {
+                "type": "VarCondition",
+                "description": "Condition for prism to appear"
+            }
+        }
+    }
+}

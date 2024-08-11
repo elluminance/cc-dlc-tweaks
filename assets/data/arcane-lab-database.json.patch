@@ -2,7 +2,7 @@
     "type": "ENTER",
     "index": "customSkills"
 },{
-    "type": "FOR_IN",
+    "type": "FOR",
     "keyword": "__FILE__",
     "values": [
         "neutral-override",
@@ -17,7 +17,7 @@
     "body": [
         {
             "type": "INCLUDE",
-            "src": "mod:patches/skills/al-database/__FILE__.json"
+            "src": "mod:patches/skills/al-database/__FORVALUE__.json"
         }
     ]
 },{

@@ -11,6 +11,10 @@ declare global {
         interface WallBlocker {
             el_glowTimer: number;
         }
+
+        interface BombPanel {
+            lastBomb?: sc.BombEntity;
+        }
     }
     namespace sc {
         enum WALL_COLL_TYPES {
@@ -27,5 +31,6 @@ declare global {
         }
         interface CompressedBaseEntity extends ig.ENTITY.EL_Prism.Splittable<CompressedBaseEntity> {}
         interface IceDiskEntity extends ig.ENTITY.EL_Prism.Splittable<IceDiskEntity> {}
+        interface BombEntity extends ig.ENTITY.EL_Prism.Splittable<BombEntity> {}
     }
 }
